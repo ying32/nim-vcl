@@ -21,7 +21,7 @@ type
 
 #---------------------------------------------------------------
 
-proc ShowMessage*(msg: cstring) =
+proc ShowMessage*(msg: string) =
   DShowMessage(msg)
 
 proc CheckPtr*(obj: TObject): pointer =
@@ -36,7 +36,7 @@ proc NewApplication(owner: TComponent): TApplication =
   new(result)
   result.FInstance = Application_Instance()
     
-method SetTitle*(this: TApplication, value: cstring) {.base.} =
+method SetTitle*(this: TApplication, value: string) {.base.} =
    Application_SetTitle(this.FInstance, value)
 
 method SetMainFormOnTaskBar*(this: TApplication, value: bool) {.base.} =
@@ -58,7 +58,7 @@ method Run*(this: TApplication) {.base.} =
 #   new(result)
 #   result.FInstance = Form_Create(checkPtr(owner))
     
-method SetCaption*(this: TForm, value: cstring) {.base.} =
+method SetCaption*(this: TForm, value: string) {.base.} =
    Form_SetCaption(this.FInstance, value)
 
 method SetPosition*(this: TForm, value: TPosition) {.base.} =
@@ -70,7 +70,7 @@ proc NewButton*(owner: TComponent): TButton =
   new(result)
   result.FInstance = Button_Create(CheckPtr(owner))
     
-method SetCaption*(this: TButton, value: cstring) {.base.} =
+method SetCaption*(this: TButton, value: string) {.base.} =
    Button_SetCaption(this.FInstance, value)
 
 method SetParent*(this: TButton, value: TWinControl) {.base.} =
