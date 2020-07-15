@@ -11,6 +11,8 @@ type
 
     TWinControl* = ref object of TControl
 
+    TIcon*  = ref object of TObject
+    
     TForm* = ref object of TWinControl
 
     TApplication* = ref object of TComponent
@@ -54,6 +56,24 @@ method CreateForm*(this: TApplication): TForm {.base.} =
 
 method Run*(this: TApplication) {.base.} =
    Application_Run(this.FInstance)
+
+method GetIcon*(this: TApplication): TIcon {.base.} =
+   new(result)
+   result.FInstance = Application_GetIcon(this.FInstance)
+
+#------------ TIcon -------------------------
+proc NewIcon*(): TIcon =
+   new(result)
+   result.FInstance = Icon_Create()
+
+method Free*(this: TIcon) {.base.} =
+  if this != nil:
+     Icon_Free(this.FInstance)
+     this.TObject.FInstance = nil
+   
+method LoadFromFile*(this: TIcon, fileName: string) {.base.} =
+  Icon_LoadFromFile(this.FInstance, fileName)
+   
 
 #------------- TForm -------------------------
 

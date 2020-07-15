@@ -23,7 +23,13 @@ proc Application_Initialize*(obj: pointer)  {.importc: "Application_Initialize",
 proc Application_Run*(obj: pointer)  {.importc: "Application_Run", dynlib: dllname.}
 proc Application_CreateForm*(obj: pointer, initScale: bool): pointer  {.importc: "Application_CreateForm", dynlib: dllname.}
 proc Application_SetTitle*(obj: pointer, val: cstring)  {.importc: "Application_SetTitle", dynlib: dllname.}
+proc Application_GetIcon*(obj: pointer): pointer {.importc: "Application_GetIcon", dynlib: dllname.}
   
+  # TIcon
+proc Icon_Create*(): pointer {.importc: "Icon_Create", dynlib: dllname.}
+proc Icon_Free*(obj: pointer) {.importc: "Icon_Free", dynlib: dllname.}
+proc Icon_LoadFromFile*(obj: pointer, fileName: cstring) {.importc: "Icon_LoadFromFile", dynlib: dllname.}
+
   # TForm
 proc Form_SetPosition*(obj: pointer, val: TPosition)  {.importc: "Form_SetPosition", dynlib: dllname.}
 proc Form_SetCaption*(obj: pointer, val: cstring) {.importc: "Form_SetCaption", dynlib: dllname.}

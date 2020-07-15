@@ -43,6 +43,10 @@ btn.SetLeft(100)
 btn.SetTop(50)
 btn.SetOnClick(onButton1Click)
 
+# 异常捕捉测试
+# let ico = Application.GetIcon()
+# ico.LoadFromFile("ff.jpg")
+
 # run
 Application.Run()
 
