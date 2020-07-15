@@ -1,5 +1,5 @@
 
-import liblcl,types
+import liblcl, types
 
 type
     TObject* {.inheritable.} = ref object
@@ -13,9 +13,9 @@ type
 
     TForm* = ref object of TWinControl
 
-    TApplication = ref object of TComponent
+    TApplication* = ref object of TComponent
 
-    TButton = ref object of TWinControl
+    TButton* = ref object of TWinControl
    
 
 
@@ -23,6 +23,9 @@ type
 
 proc ShowMessage*(msg: string) =
   DShowMessage(msg)
+
+proc GetStringArrOf*(p: pointer, index: int): string =
+  return $DGetStringArrOf(p, index)
 
 proc CheckPtr*(obj: TObject): pointer =
   if obj != nil:
@@ -64,6 +67,13 @@ method SetCaption*(this: TForm, value: string) {.base.} =
 method SetPosition*(this: TForm, value: TPosition) {.base.} =
    Form_SetPosition(this.FInstance, value)
 
+method SetAllowDropFiles*(this: TForm, allow: bool) {.base.} =
+   Form_SetAllowDropFiles(this.FInstance, allow)
+
+method SetOnDropFiles*(this: TForm, event: TDropFilesEvent) {.base.} =
+   Form_SetOnDropFiles(this.FInstance, event)
+
+ 
 #------------- TButton -------------------------
 
 proc NewButton*(owner: TComponent): TButton =
@@ -90,6 +100,6 @@ method SetOnClick*(this: TButton, event: TNotifyEvent) {.base.} =
 #------------ global vars ----------------------
 
 var
-    Application* = NewApplication(nil)
+   Application* = NewApplication(nil)
 
 

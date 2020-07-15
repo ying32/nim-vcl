@@ -27,6 +27,8 @@ proc Application_SetTitle*(obj: pointer, val: cstring)  {.importc: "Application_
   # TForm
 proc Form_SetPosition*(obj: pointer, val: TPosition)  {.importc: "Form_SetPosition", dynlib: dllname.}
 proc Form_SetCaption*(obj: pointer, val: cstring) {.importc: "Form_SetCaption", dynlib: dllname.}
+proc Form_SetAllowDropFiles*(obj: pointer, allow: bool) {.importc: "Form_SetAllowDropFiles", dynlib: dllname.}
+proc Form_SetOnDropFiles*(obj: pointer, event: TDropFilesEvent) {.importc: "Form_SetOnDropFiles", dynlib: dllname.}
 
   # TButton
 proc Button_Create*(owner: pointer): pointer  {.importc: "Button_Create", dynlib: dllname.}
@@ -42,51 +44,65 @@ proc SetEventCallback(callback: pointer)  {.importc: "SetEventCallback", dynlib:
 proc SetMessageCallback(callback: pointer)  {.importc: "SetMessageCallback", dynlib: dllname.}
 proc SetThreadSyncCallback(callback: pointer)  {.importc: "SetThreadSyncCallback", dynlib: dllname.}
 
+# others
 proc DShowMessage*(msg: cstring) {.importc: "DShowMessage", dynlib: dllname.}
+proc DGetStringArrOf*(p: pointer, index: int): cstring {.importc: "DGetStringArrOf", dynlib: dllname.}
 
  
 # 开始 
 
+# 普通事件回调函数
 proc doEventCallbackProc(f: pointer, args: pointer, argCount: int32): uint =
 
-  # args为一个数组，长度为argCount,argCount最大为12
-  var val = proc (index: int): uint {.nimcall.} =
-    return cast[ptr uint](cast[uint](args) + cast[uint](index * sizeof(int)))[]
+  # args为一个数组，长度为argCount, argCount最大为12
+  var val = proc(index: int): pointer {.nimcall.} =
+    return cast[pointer](cast[ptr uint](cast[uint](args) + cast[uint](index * sizeof(int)))[])
 
-  echo("doEventCallbackProc: f: ", cast[uint](f), ", args: ",cast[uint](args), ", count: ", argCount)
-  # echo("args:", cast[uint](getParamOf(0, args)))
+  # echo("doEventCallbackProc: f: ", cast[uint](f), ", args: ",cast[uint](args), ", count: ", argCount)
+
   case argCount
   of 0: 
     cast[proc(){.nimcall.}](f)()
   of 1:
-    cast[proc(a1:uint) {.nimcall.} ](f)(val(0))
+    cast[proc(a1:pointer) {.nimcall.} ](f)(val(0))
   of 2:
-    cast[proc(a1,a2:uint) {.nimcall.} ](f)(val(0), val(1))
+    cast[proc(a1,a2:pointer) {.nimcall.} ](f)(val(0), val(1))
   of 3:
-    cast[proc(a1,a2,a3:uint) {.nimcall.} ](f)(val(0), val(1), val(2))
+    cast[proc(a1,a2,a3:pointer) {.nimcall.} ](f)(val(0), val(1), val(2))
   of 4:
-    cast[proc(a1,a2,a3,a4:uint) {.nimcall.} ](f)(val(0), val(1), val(2), val(3))
-  # of 5:
-  #    echo(1)
-  # of 6:
-  #    echo(1)
-  # of 7:
-  #    echo(1)
-  # of 8:
-  #    echo(1)
-  # of 9:
-  #    echo(1)
-  # of 10:
-  #    echo(1)
-  # of 11:
-  #    echo(1)
-  # of 12:  
-  #    echo(1)
+    cast[proc(a1,a2,a3,a4:pointer) {.nimcall.} ](f)(val(0), val(1), val(2), val(3))
+  of 5:
+    cast[proc(a1,a2,a3,a4,a5:pointer) {.nimcall.} ](f)(val(0), val(1), val(2), val(3), val(4))
+  of 6:
+    cast[proc(a1,a2,a3,a4,a5,a6:pointer) {.nimcall.} ](f)(val(0), val(1), val(2), val(3), val(4), val(5))
+  of 7:
+    cast[proc(a1,a2,a3,a4,a5,a6,a7:pointer) {.nimcall.} ](f)(val(0), val(1), val(2), val(3), val(4), val(5), val(6))
+  of 8:
+    cast[proc(a1,a2,a3,a4,a5,a6,a7,a8:pointer) {.nimcall.} ](f)(val(0), val(1), val(2), val(3), val(4), val(5), val(6), val(7))
+  of 9:
+    cast[proc(a1,a2,a3,a4,a5,a6,a7,a8,a9:pointer) {.nimcall.} ](f)(val(0), val(1), val(2), val(3), val(4), val(5), val(6), val(7), val(8))
+  of 10:
+    cast[proc(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10:pointer) {.nimcall.} ](f)(val(0), val(1), val(2), val(3), val(4), val(5), val(6), val(7), val(8), val(9))
+  of 11:
+    cast[proc(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11:pointer) {.nimcall.} ](f)(val(0), val(1), val(2), val(3), val(4), val(5), val(6), val(7), val(8), val(9), val(10))
+  of 12:  
+    cast[proc(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12:pointer) {.nimcall.} ](f)(val(0), val(1), val(2), val(3), val(4), val(5), val(6), val(7), val(8), val(9), val(10), val(11))
   else:
-    echo("参数超出12个了")
+    echo("There are more than 12 parameters.")
 
   return 0
 
+# 窗口消息专用回调
+proc doMessageCallbackProc(f: pointer, msg: pointer): uint =
+  # 这里要转发消息
+  cast[proc(a1:pointer) {.nimcall.} ](f)(msg)
+  return 0
+
+# 线程同步专用回调
+proc doThreadSyncCallbackProc(): uint =
+  return 0
 
 # set callback
 SetEventCallback(cast[pointer](doEventCallbackProc))
+SetMessageCallback(cast[pointer](doMessageCallbackProc))
+SetThreadSyncCallback(cast[pointer](doThreadSyncCallbackProc))
