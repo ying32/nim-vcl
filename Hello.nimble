@@ -3,7 +3,7 @@
 version       = "0.1.0"
 author        = "ying32"
 description   = "A new awesome nimble package"
-license       = "MIT"
+license       = "Apache-2.0"
 srcDir        = "src"
 bin           = @["Hello"]
 
