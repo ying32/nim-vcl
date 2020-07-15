@@ -5,13 +5,13 @@ type
     TObject* {.inheritable.} = ref object
       FInstance: pointer
 
-    TComponent* {.inheritable.} = ref object of TObject
+    TComponent*  = ref object of TObject
 
-    TControl* {.inheritable.} = ref object of TComponent
+    TControl*  = ref object of TComponent
 
-    TWinControl* {.inheritable.} = ref object of TControl
+    TWinControl* = ref object of TControl
 
-    TForm* {.inheritable.} = ref object of TWinControl
+    TForm* = ref object of TWinControl
 
     TApplication = ref object of TComponent
 
