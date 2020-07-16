@@ -38,10 +38,36 @@ form.SetOnDropFiles(onDropFiles)
 # button
 let btn = NewButton(form)
 btn.SetParent(form)
-btn.SetCaption("button1")
+btn.SetCaption("hello")
 btn.SetLeft(100)
 btn.SetTop(50)
 btn.SetOnClick(onButton1Click)
+
+
+
+# edit
+let edit = NewEdit(form)
+edit.SetParent(form)
+edit.SetLeft(100)
+edit.SetTop(90)
+edit.SetWidth(500)
+
+# opendialog
+let dlgOpen = NewOpenDialog(form)
+let opts = dlgOpen.Options() # 测试集合类型
+dlgOpen.SetOptions(opts + {ofAllowMultiSelect,ofViewDetail,ofAutoPreview})
+
+# button
+let btn2 = NewButton(form)
+btn2.SetParent(form)
+btn2.SetCaption("open dialog")
+btn2.SetLeft(100)
+btn2.SetTop(120)
+btn2.SetWidth(100)
+btn2.SetOnClick(proc(sender: pointer)=
+  if dlgOpen.Execute():
+    edit.SetText(dlgOpen.FileName())
+)
 
 # 异常捕捉测试
 # let ico = Application.GetIcon()

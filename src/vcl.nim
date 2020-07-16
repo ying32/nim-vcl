@@ -19,7 +19,10 @@ type
 
     TButton* = ref object of TWinControl
    
-
+    TEdit* = ref object of TWinControl
+     
+    TOpendialog* = ref object of TComponent
+    
 
 #---------------------------------------------------------------
 
@@ -115,8 +118,52 @@ method SetTop*(this: TButton, value: int32) {.base.} =
 method SetOnClick*(this: TButton, event: TNotifyEvent) {.base.} =
    Button_SetOnClick(this.FInstance, event)
 
+method SetWidth*(this: TButton, value: int32) {.base.} =
+   Button_SetWidth(this.FInstance, value)
  
+# ------------------- TEdit ------------------------------
+proc NewEdit*(owner: TComponent): TEdit =
+  new(result)
+  result.FInstance = Edit_Create(CheckPtr(owner))
+    
+method SetText*(this: TEdit, value: string) {.base.} =
+   Edit_SetText(this.FInstance, value)
 
+method SetParent*(this: TEdit, value: TWinControl) {.base.} =
+   Edit_SetParent(this.FInstance, CheckPtr(value))
+
+method SetLeft*(this: TEdit, value: int32) {.base.} =
+   Edit_SetLeft(this.FInstance, value)
+
+method SetTop*(this: TEdit, value: int32) {.base.} =
+   Edit_SetTop(this.FInstance, value)
+
+method SetWidth*(this: TEdit, value: int32) {.base.} =
+   Edit_SetWidth(this.FInstance, value)
+
+# ------------------ TOpendialog ---------------------------
+
+
+proc NewOpenDialog*(owner: TComponent): TOpendialog =
+  new(result)
+  result.FInstance = OpenDialog_Create(CheckPtr(owner))
+    
+method Free*(this: TOpendialog) {.base.} =
+   OpenDialog_Free(this.FInstance)
+
+method Execute*(this: TOpendialog): bool {.base.} =
+   return OpenDialog_Execute(this.FInstance)
+ 
+method Options*(this: TOpendialog): TOpenOptions {.base.} =
+   return OpenDialog_GetOptions(this.FInstance)
+
+method SetOptions*(this: TOpendialog, value: TOpenOptions) {.base.} =
+   OpenDialog_SetOptions(this.FInstance, value)
+
+method FileName*(this: TOpendialog): string {.base.} =
+   return $OpenDialog_GetFileName(this.FInstance)
+
+ 
 #------------ global vars ----------------------
 
 var

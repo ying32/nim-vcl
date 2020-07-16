@@ -44,6 +44,25 @@ proc Button_SetCaption*(obj: pointer, val: cstring)  {.importc: "Button_SetCapti
 proc Button_SetLeft*(obj: pointer, val: int32)  {.importc: "Button_SetLeft", dynlib: dllname.}
 proc Button_SetTop*(obj: pointer, val: int32)  {.importc: "Button_SetTop", dynlib: dllname.}
 proc Button_GetCaption*(obj: pointer): cstring  {.importc: "Button_GetCaption", dynlib: dllname.}
+proc Button_SetWidth*(obj: pointer, value: int32)  {.importc: "Button_SetWidth", dynlib: dllname.}
+
+  # TEdit
+proc Edit_Create*(owner: pointer): pointer {.importc: "Edit_Create", dynlib: dllname.}
+proc Edit_Free*(obj: pointer) {.importc: "Edit_Free", dynlib: dllname.}
+proc Edit_SetText*(obj: pointer, value: cstring) {.importc: "Edit_SetText", dynlib: dllname.}
+proc Edit_SetLeft*(obj: pointer, val: int32)  {.importc: "Edit_SetLeft", dynlib: dllname.}
+proc Edit_SetTop*(obj: pointer, val: int32)  {.importc: "Edit_SetTop", dynlib: dllname.}
+proc Edit_SetParent*(obj: pointer, parent: pointer)  {.importc: "Edit_SetParent", dynlib: dllname.}
+proc Edit_SetWidth*(obj: pointer, value: int32)  {.importc: "Edit_SetWidth", dynlib: dllname.}
+
+  # TOpenDialog
+proc OpenDialog_Create*(owner: pointer): pointer {.importc: "OpenDialog_Create", dynlib: dllname.}
+proc OpenDialog_Free*(obj: pointer) {.importc: "OpenDialog_Free", dynlib: dllname.}
+proc OpenDialog_Execute*(obj: pointer): bool {.importc: "OpenDialog_Execute", dynlib: dllname.}
+proc OpenDialog_GetOptions*(obj: pointer): TOpenOptions {.importc: "OpenDialog_GetOptions", dynlib: dllname.}
+proc OpenDialog_SetOptions*(obj: pointer, value: TOpenOptions) {.importc: "OpenDialog_SetOptions", dynlib: dllname.}
+proc OpenDialog_GetFileName*(obj: pointer): cstring {.importc: "OpenDialog_GetFileName", dynlib: dllname.}
+
 
   # callback
 proc SetEventCallback(callback: pointer)  {.importc: "SetEventCallback", dynlib: dllname.}
