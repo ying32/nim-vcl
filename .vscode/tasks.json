@@ -9,7 +9,9 @@
             "command": "nimble",
             "args": [
                 "run",
-                "--debugger:native",
+                // "--debugger:native",
+                "--app:gui",
+                "-d:release"
             ],
             "group": {
                 "kind": "build",

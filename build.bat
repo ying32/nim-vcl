@@ -1,0 +1,1 @@
+nim c --app:gui -d:release  src/Hello.nim

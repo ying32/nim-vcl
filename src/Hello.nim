@@ -15,6 +15,7 @@ proc onButton1Click(sender: pointer) =
   #echo("Button1 Click: ", Button_GetCaption(sender))
   ShowMessage("Hello Nim! Hello 世界！")
 
+
 # 拖放文件测试
 proc onDropFiles(sender: pointer, fileNames: pointer, len: int) =
   for i in 0..len-1:
@@ -29,7 +30,7 @@ Application.SetMainFormOnTaskBar(true)
 Application.Initialize()
 
 # form
-let form = Application.CreateForm()
+let form = Application.CreateForm(false)
 form.SetPosition(poScreenCenter)
 form.SetCaption("Nim: LCL Form")
 form.SetAllowDropFiles(true)
@@ -68,6 +69,24 @@ btn2.SetOnClick(proc(sender: pointer)=
   if dlgOpen.Execute():
     edit.SetText(dlgOpen.FileName())
 )
+
+# ResForm
+let form2 = Application.CreateForm(false)
+LoadResFormFile("./Form1.gfm", form2)
+
+# button
+let btnOpenForm2 = NewButton(form)
+btnOpenForm2.SetParent(form)
+btnOpenForm2.SetCaption("Open Form2")
+btnOpenForm2.SetLeft(100)
+btnOpenForm2.SetTop(btn2.Top+btn2.Height+10)
+btnOpenForm2.SetWidth(100)
+btnOpenForm2.SetOnClick(proc(sender: pointer)=
+  form2.Show
+)
+
+
+
 
 # 异常捕捉测试
 # let ico = Application.GetIcon()
