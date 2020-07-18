@@ -3,9 +3,9 @@
 
 when defined(gcc) and defined(windows):
   when defined(x86):
-    {.link: "appres.res".}
+    {.link: "appres_386.o".}
   else:  
-    {.link: "appres.o".}
+    {.link: "appres_amd64.o".}
 
 import vcl,types
 

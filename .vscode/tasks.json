@@ -10,8 +10,8 @@
             "args": [
                 "run",
                 // "--debugger:native",
-                "--app:gui",
-                "-d:release"
+                // "--app:gui",
+                // "-d:release"
             ],
             "group": {
                 "kind": "build",
