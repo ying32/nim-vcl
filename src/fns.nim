@@ -7,7 +7,7 @@ proc ShowMessage*(msg: string) =
 proc ShowMessageFmt*(formatstr: string, a: varargs[string, `$`]) =
   ShowMessage(strutils.format(formatstr, a))
 
-proc GetStringArrOf*(p: pointer, index: int): string =
+proc GetFPStringArrayMember*(p: pointer, index: int): string =
   return $DGetStringArrOf(p, index)
 
 proc LoadResFormFile*(fileName: string, root: TObject) =

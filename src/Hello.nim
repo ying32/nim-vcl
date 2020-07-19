@@ -27,7 +27,7 @@ proc onButton1Click(sender: pointer) =
 # 拖放文件测试
 proc onDropFiles(sender: pointer, fileNames: pointer, len: int) =
   for i in 0..len-1:
-    let fName = GetStringArrOf(fileNames, i)
+    let fName = GetFPStringArrayMember(fileNames, i)
     echo(i, ":", fName)
     if memo != nil:
       memo.Append(fName)
