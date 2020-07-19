@@ -9,19 +9,6 @@ when defined(gcc) and defined(windows):
 
 import strutils,vcl,types,fns
 
-
-  
-# var
-#   ss: Test1
-#   s2: Test2
-
-# new(ss)
-# ss.width=12
-# echo ss.width
- 
-# new(s2)
-# s2.width=1
-
 var 
   memo: TMemo
   edit: TEdit
@@ -31,7 +18,7 @@ var
 proc onButton1Click(sender: pointer) =
   let btn = AsButton(sender)
   if edit != nil:
-    edit.SetText(btn.Caption)
+    edit.Text = btn.Caption
   ShowMessage("Hello Nim! Hello 世界！")  
   # ShowMessageFmt("Hello Nim! Hello 世界！ $1", "xxx")
 
@@ -47,67 +34,66 @@ proc onDropFiles(sender: pointer, fileNames: pointer, len: int) =
 # 窗口鼠标移动
 proc onFormMouseMove(sender: pointer, shift: TShiftState, x: int32, y: int32) =
   if lbl1 != nil:
-    let sp = Mouse.CursorPos()
-    lbl1.SetCaption(format("p: x=$1, y=$2, screen: x=$3, y=$4", x, y, sp.x, sp.y))
+    let sp = Mouse.CursorPos
+    lbl1.Caption = format("p: x=$1, y=$2, screen: x=$3, y=$4", x, y, sp.x, sp.y)
   # discard
 
 ###########################################################################
 
 echo("start gui")
 
-Application.SetTitle("Nim: LCL Application")
-Application.SetMainFormOnTaskBar(true)
-Application.Initialize()
+Application.Title = "Nim: LCL Application"
+Application.MainFormOnTaskBar =true
+Application.Initialize
 
 # form
 let form = Application.CreateForm(false)
-form.SetPosition(poScreenCenter)
-form.SetCaption("Nim: LCL Form")
-form.SetAllowDropFiles(true)
-form.SetOnDropFiles(onDropFiles)
-form.SetHeight(550)
-form.SetOnMouseMove(onFormMouseMove)
+form.Position = poScreenCenter
+form.Caption = "Nim: LCL Form"
+form.AllowDropFiles = true
+form.OnDropFiles = onDropFiles
+form.Height = 550
+form.OnMouseMove = onFormMouseMove
 
 #label
 lbl1 = NewLabel(form)
-lbl1.SetParent(form)
-lbl1.SetLeft(100)
-lbl1.SetTop(20)
+lbl1.Parent = form
+lbl1.Left = 100
+lbl1.Top = 20
 
 
 # button
 let btn = NewButton(form)
-btn.SetParent(form)
-btn.SetCaption("hello")
-btn.SetLeft(100)
-btn.SetTop(50)
-btn.SetOnClick(onButton1Click)
+btn.Parent = form
+btn.Caption = "hello"
+btn.Left = 100
+btn.Top = 50
+btn.OnClick = onButton1Click
 
 
 
 # edit
 edit = NewEdit(form)
-edit.SetParent(form)
-edit.SetLeft(100)
-edit.SetTop(90)
-edit.SetWidth(500)
+edit.Parent = form
+edit.Left = 100
+edit.Top = 90
+edit.Width = 500
 
 # opendialog
 let dlgOpen = NewOpenDialog(form)
-let opts = dlgOpen.Options() # 测试集合类型
-dlgOpen.SetOptions(opts + {ofAllowMultiSelect,ofViewDetail,ofAutoPreview})
+# 测试集合类型
+dlgOpen.Options = dlgOpen.Options + {ofAllowMultiSelect, ofViewDetail, ofAutoPreview}
 
 # button
 let btn2 = NewButton(form)
-btn2.SetParent(form)
-btn2.SetCaption("open dialog")
-btn2.SetLeft(100)
-btn2.SetTop(120)
-btn2.SetWidth(100)
-btn2.SetOnClick(proc(sender: pointer)=
-  if dlgOpen.Execute():
-    edit.SetText(dlgOpen.FileName())
-)
+btn2.Parent = form
+btn2.Caption = "open dialog"
+btn2.Left = 100
+btn2.Top = 120
+btn2.Width = 100
+btn2.OnClick = proc(sender: pointer)=
+  if dlgOpen.Execute:
+    edit.Text = dlgOpen.FileName
 
 # ResForm
 let form2 = Application.CreateForm(false)
@@ -115,35 +101,41 @@ LoadResFormFile("./Form1.gfm", form2)
 # 这里测试直接查找form2的按钮
 let obj = form2.FindComponent("Button1")
 if obj != nil:
-  cast[TButton](obj).SetOnClick(onButton1Click)
+  cast[TButton](obj).OnClick = onButton1Click
 
-# button
+# openfiledialog
 let btnOpenForm2 = NewButton(form)
-btnOpenForm2.SetParent(form)
-btnOpenForm2.SetCaption("Open Form2")
-btnOpenForm2.SetLeft(100)
-btnOpenForm2.SetTop(btn2.Top+btn2.Height+10)
-btnOpenForm2.SetWidth(100)
-btnOpenForm2.SetOnClick(proc(sender: pointer)=
+btnOpenForm2.Parent = form
+btnOpenForm2.Caption = "Open Form2"
+btnOpenForm2.Left = 100
+btnOpenForm2.Top = btn2.Top + btn2.Height + 10
+btnOpenForm2.Width = 100
+btnOpenForm2.OnClick = proc(sender: pointer)=
   form2.Show
-) 
+
+
+# opencolordialog
+let dlgColor = NewColorDialog(form)
+let btnOpenColordlg = NewButton(form)
+btnOpenColordlg.Parent = form
+btnOpenColordlg.Caption = "Open dlgColor"
+btnOpenColordlg.Left = 100 + btnOpenForm2.Width + 10
+btnOpenColordlg.Top = btnOpenForm2.Top
+btnOpenColordlg.Width = 100
+btnOpenColordlg.OnClick = proc(sender: pointer)=
+  if dlgColor.Execute:
+    lbl1.Font.Color = dlgColor.Color
 
 # memo
 memo = NewMemo(form)
-memo.SetParent(form)
-memo.SetLeft(100)
-memo.SetTop(btnOpenForm2.Top+btnOpenForm2.Height+10)
-memo.SetWidth(500)
-memo.SetHeight(300)
-memo.SetScrollBars(ssVertical)
-
-
-
-# 异常捕捉测试
-# let ico = Application.GetIcon()
-# ico.LoadFromFile("ff.jpg")
+memo.Parent = form
+memo.Left = 100
+memo.Top = btnOpenForm2.Top + btnOpenForm2.Height + 10
+memo.Width = 500
+memo.Height = 300
+memo.ScrollBars = ssVertical
 
 # run
-Application.Run()
+Application.Run
 
 echo("end.")
