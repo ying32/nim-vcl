@@ -6,186 +6,186 @@
 
 type
 
-  TPoint* = object 
-    x: int32
-    y: int32
+  TPoint* = object
+    x*: int32
+    y*: int32
 
-  TRect* = object 
-    left: int32
-    top: int32
-    right: int32
-    bottom: int32
+  TRect* = object
+    left*: int32
+    top*: int32
+    right*: int32
+    bottom*: int32
 
-  TSize* = object 
-    cx: int32
-    cy: int32
+  TSize* = object
+    cx*: int32
+    cy*: int32
 
-  HWND* = uint 
+  HWND* = uint
 
-  HBITMAP* = uint 
+  HBITMAP* = uint
 
-  HMENU* = uint 
+  HMENU* = uint
 
-  HICON* = uint 
+  HICON* = uint
 
-  HDC* = uint 
+  HDC* = uint
 
-  HFONT* = uint 
+  HFONT* = uint
 
-  HBRUSH* = uint 
+  HBRUSH* = uint
 
-  HPEN* = uint 
+  HPEN* = uint
 
-  HKEY* = uint 
+  HKEY* = uint
 
-  HMONITOR* = uint 
+  HMONITOR* = uint
 
-  HGDIOBJ* = uint 
+  HGDIOBJ* = uint
 
-  HMODULE* = uint 
+  HMODULE* = uint
 
-  COLORREF* = uint32 
+  COLORREF* = uint32
 
-  DWORD* = uint32 
+  DWORD* = uint32
 
-  HCURSOR* = HICON 
+  HCURSOR* = HICON
 
-  HINST* = uint 
+  HINST* = uint
 
-  LPCWSTR* = uint 
+  LPCWSTR* = uint
 
-  HRGN* = uint 
+  HRGN* = uint
 
-  UINT* = uint32 
+  UINT* = uint32
 
-  LPARAM* = uint 
+  LPARAM* = uint
 
-  WPARAM* = uint 
+  WPARAM* = uint
 
-  LRESULT* = uint 
+  LRESULT* = uint
 
-  HResult* = uint 
+  HResult* = uint
 
-  HPALETTE* = uint 
+  HPALETTE* = uint
 
-  HRSRC* = uint 
+  HRSRC* = uint
 
-  HGLOBAL* = uint 
+  HGLOBAL* = uint
 
-  TFNWndEnumProc* = uint 
+  TFNWndEnumProc* = uint
 
-  TXID* = uint64 
+  TXID* = uint64
 
-  ATOM* = uint16 
+  ATOM* = uint16
 
-  TAtom* = uint16 
+  TAtom* = uint16
 
-  SIZE_T* = uint 
+  SIZE_T* = uint
 
-  TSet* = uint32 
+  TSet* = uint32
 
-  TMsg* = object 
-    hwnd: HWND
-    message: uint32
-    wParam: uint
-    lParam: uint
-    time: uint32
-    pt: TPoint
+  TMsg* = object
+    hwnd*: HWND
+    message*: uint32
+    wParam*: uint
+    lParam*: uint
+    time*: uint32
+    pt*: TPoint
 
-  TCursorInfo* = object 
-    cbSize: uint32
-    flags: uint32
-    hCursor: HCURSOR
-    ptScreenPos: TPoint
+  TCursorInfo* = object
+    cbSize*: uint32
+    flags*: uint32
+    hCursor*: HCURSOR
+    ptScreenPos*: TPoint
 
-  TWndClass* = object 
-    style: uint32
-    lpfnWndProc: uint
-    cbClsExtra: int32
-    cbWndExtra: int32
-    hInstance: uint
-    hIcon: HICON
-    hCursor: HCURSOR
-    hbrBackground: HBRUSH
-    lpszMenuName: LPCWSTR
-    lpszClassName: LPCWSTR
+  TWndClass* = object
+    style*: uint32
+    lpfnWndProc*: uint
+    cbClsExtra*: int32
+    cbWndExtra*: int32
+    hInstance*: uint
+    hIcon*: HICON
+    hCursor*: HCURSOR
+    hbrBackground*: HBRUSH
+    lpszMenuName*: LPCWSTR
+    lpszClassName*: LPCWSTR
 
-  TModalResult* = int32 
+  TModalResult* = int32
 
-  TColor* = uint32 
+  TColor* = uint32
 
-  THelpEventData* = uint 
+  THelpEventData* = uint
 
-  TTabOrder* = int16 
+  TTabOrder* = int16
 
-  PFNLVCOMPARE* = uint 
+  PFNLVCOMPARE* = uint
 
-  PFNTVCOMPARE* = uint 
+  PFNTVCOMPARE* = uint
 
-  Integer* = int32 
+  Integer* = int32
 
-  Cardinal* = uint32 
+  Cardinal* = uint32
 
-  Single* = float32 
+  Single* = float32
 
-  Word* = uint16 
+  Word* = uint16
 
-  Byte* = uint8 
+  Byte* = uint8
 
-  TFontCharset* = uint8 
+  TFontCharset* = uint8
 
-  TSpacingSize* = int32 
+  TSpacingSize* = int32
 
-  Char* = uint16 
+  Char* = uint16
 
-  TClass* = uint 
+  TClass* = uint
 
-  TThreadID* = uint 
+  TThreadID* = uint
 
-  TGridCoord* = object 
-    x: int32
-    y: int32
+  TGridCoord* = object
+    x*: int32
+    y*: int32
 
-  TCustomData* = uint 
+  TCustomData* = uint
 
-  TGridRect* = TRect 
+  TGridRect* = TRect
 
-  IObjectArray* = uint 
+  IObjectArray* = uint
 
-  TSysLocale* = object 
-    defaultLCID: int32
-    priLangID: int32
-    subLangID: int32
-    farEast: bool
-    middleEast: bool
+  TSysLocale* = object
+    defaultLCID*: int32
+    priLangID*: int32
+    subLangID*: int32
+    farEast*: bool
+    middleEast*: bool
 
-  TSmallPoint* = object 
-    x: int16
-    y: int16
+  TSmallPoint* = object
+    x*: int16
+    y*: int16
 
-  TGUID* = object 
-    d1: uint32
-    d2: uint16
-    d3: uint16
-    d4: array[0..7, uint8]
+  TGUID* = object
+    d1*: uint32
+    d2*: uint16
+    d3*: uint16
+    d4*: array[0..7, uint8]
 
-  TLibResource* = object 
-    name: cstring
-    valPtr: uint
+  TLibResource* = object
+    name*: cstring
+    valPtr*: uint
 
-  TResItem* = object 
-    name: uint
-    value: uint
+  TResItem* = object
+    name*: uint
+    value*: uint
 
-  TConstraintSize* = int32 
+  TConstraintSize* = int32
 
-  TAlignInfo* = object 
-    alignList: uint
-    controlIndex: int32
-    align: TAlign
-    scratch: int32
+  TAlignInfo* = object
+    alignList*: uint
+    controlIndex*: int32
+    align*: TAlign
+    scratch*: int32
 
-  TAlign* = enum 
+  TAlign* = enum
     alNone,
     alTop,
     alBottom,
@@ -194,9 +194,9 @@ type
     alClient,
     alCustom,
 
-  TAlignSet* = set[TAlign] 
+  TAlignSet* = set[TAlign]
 
-  TBorderStyle* = enum 
+  TBorderStyle* = enum
     bsNone,
     bsSingle,
     bsSizeable,
@@ -204,9 +204,9 @@ type
     bsToolWindow,
     bsSizeToolWin,
 
-  TFormBorderStyle* = TBorderStyle 
+  TFormBorderStyle* = TBorderStyle
 
-  TFormStyle* = enum 
+  TFormStyle* = enum
     fsNormal,
     fsMDIChild,
     fsMDIForm,
@@ -214,7 +214,7 @@ type
     fsSplash,
     fsSystemStayOnTop,
 
-  TPosition* = enum 
+  TPosition* = enum
     poDesigned, # use bounds from the designer (read from stream)
     poDefault, # LCL decision (normally window manager decides)
     poDefaultPosOnly, # designed size and LCL position
@@ -225,14 +225,14 @@ type
     poOwnerFormCenter, # center form on owner form (depends on DefaultMonitor)
     poWorkAreaCenter, # center form on working area (depends on DefaultMonitor)
 
-  TCursor* = int16 
+  TCursor* = int16
 
-  TSeekOrigin* = enum 
+  TSeekOrigin* = enum
     soBeginning,
     soCurrent,
     soEnd,
 
-  TPixelFormat* = enum 
+  TPixelFormat* = enum
     pfDevice,
     pf1bit,
     pf4bit,
@@ -243,25 +243,25 @@ type
     pf32bit,
     pfCustom,
 
-  TAlignment* = enum 
+  TAlignment* = enum
     taLeftJustify,
     taRightJustify,
     taCenter,
 
-  TLeftRight* = int32 
+  TLeftRight* = int32
 
-  TBiDiMode* = enum 
+  TBiDiMode* = enum
     bdLeftToRight,
     bdRightToLeft,
     bdRightToLeftNoAlign,
     bdRightToLeftReadingOnly,
 
-  TVerticalAlignment* = enum 
+  TVerticalAlignment* = enum
     taAlignTop,
     taAlignBottom,
     taVerticalCenter,
 
-  TComboBoxStyle* = enum 
+  TComboBoxStyle* = enum
     csDropDown, # like an TEdit plus a button to drop down the list, default
     csSimple, # like an TEdit plus a TListBox
     csDropDownList, # like TLabel plus a button to drop down the list
@@ -270,91 +270,91 @@ type
     csOwnerDrawEditableFixed, # like csOwnerDrawFixed, but with TEdit
     csOwnerDrawEditableVariable, # like csOwnerDrawVariable, but with TEdit
 
-  TColorBoxStyle* = TComboBoxStyle 
+  TColorBoxStyle* = TComboBoxStyle
 
-  TWindowState* = enum 
+  TWindowState* = enum
     wsNormal,
     wsMinimized,
     wsMaximized,
     wsFullScreen,
 
-  TTextLayout* = enum 
+  TTextLayout* = enum
     tlTop,
     tlCenter,
     tlBottom,
 
-  TEllipsisPosition* = enum 
+  TEllipsisPosition* = enum
     epNone,
     epPathEllipsis,
     epEndEllipsis,
     epWordEllipsis,
 
-  TLinkAlignment* = TAlignment 
+  TLinkAlignment* = TAlignment
 
-  TListBoxStyle* = enum 
+  TListBoxStyle* = enum
     lbStandard,
     lbOwnerDrawFixed,
     lbOwnerDrawVariable,
     lbVirtual,
 
-  TPopupAlignment* = enum 
+  TPopupAlignment* = enum
     paLeft,
     paRight,
     paCenter,
 
-  TTrackButton* = enum 
+  TTrackButton* = enum
     tbRightButton,
     tbLeftButton,
 
-  TProgressBarOrientation* = enum 
+  TProgressBarOrientation* = enum
     pbHorizontal,
     pbVertical,
     pbRightToLeft,
     pbTopDown,
 
-  TProgressBarStyle* = enum 
+  TProgressBarStyle* = enum
     pbstNormal,
     pbstMarquee,
 
-  TProgressBarState* = enum 
+  TProgressBarState* = enum
     pbsNormal,
     pbsError,
     pbsPaused,
 
-  TButtonLayout* = enum 
+  TButtonLayout* = enum
     blGlyphLeft,
     blGlyphRight,
     blGlyphTop,
     blGlyphBottom,
 
-  TButtonState* = enum 
+  TButtonState* = enum
     bsUp, # button is up
     bsDisabled, # button disabled (grayed)
     bsDown, # button is down
     bsExclusive, # button is the only down in his group
     bsHot, # button is under mouse
 
-  TButtonStyle* = enum 
+  TButtonStyle* = enum
     bsAutoDetect,
     bsWin31,
     bsNew,
 
-  TNumGlyphs* = int32 
+  TNumGlyphs* = int32
 
-  TStaticBorderStyle* = enum 
+  TStaticBorderStyle* = enum
     sbsNone,
     sbsSingle,
     sbsSunken,
 
-  TFontStyle* = enum 
+  TFontStyle* = enum
     fsBold,
     fsItalic,
     fsUnderline,
     fsStrikeOut,
 
-  TFontStyles* = set[TFontStyle] 
+  TFontStyles* = set[TFontStyle]
 
-  TScrollStyle* = enum 
+  TScrollStyle* = enum
     ssNone,
     ssHorizontal,
     ssVertical,
@@ -363,13 +363,13 @@ type
     ssAutoVertical,
     ssAutoBoth,
 
-  TSortType* = enum 
+  TSortType* = enum
     stNone,
     stData,
     stText,
     stBoth,
 
-  TListArrangement* = enum 
+  TListArrangement* = enum
     arAlignBottom,
     arAlignLeft,
     arAlignRight,
@@ -377,13 +377,13 @@ type
     arDefault,
     arSnapToGrid,
 
-  TViewStyle* = enum 
+  TViewStyle* = enum
     vsIcon,
     vsSmallIcon,
     vsList,
     vsReport,
 
-  TItemState* = enum 
+  TItemState* = enum
     isNone,
     isCut,
     isDropHilited,
@@ -391,41 +391,41 @@ type
     isSelected,
     isActivating,
 
-  TItemStates* = set[TItemState] 
+  TItemStates* = set[TItemState]
 
-  TItemChange* = enum 
+  TItemChange* = enum
     ctText,
     ctImage,
     ctState,
 
-  TItemFind* = enum 
+  TItemFind* = enum
     ifData,
     ifPartialString,
     ifExactString,
     ifNearest,
 
-  TSearchDirection* = enum 
+  TSearchDirection* = enum
     sdLeft,
     sdRight,
     sdAbove,
     sdBelow,
     sdAll,
 
-  TListHotTrackStyle* = enum 
+  TListHotTrackStyle* = enum
     htHandPoint,
     htUnderlineCold,
     htUnderlineHot,
 
-  TListHotTrackStyles* = set[TListHotTrackStyle] 
+  TListHotTrackStyles* = set[TListHotTrackStyle]
 
-  TItemRequests* = enum 
+  TItemRequests* = enum
     irText,
     irImage,
     irParam,
     irState,
     irIndent,
 
-  TBrushStyle* = enum 
+  TBrushStyle* = enum
     bsSolid,
     bsClear,
     bsHorizontal,
@@ -437,7 +437,7 @@ type
     bsImage,
     bsPattern,
 
-  TPenStyle* = enum 
+  TPenStyle* = enum
     psSolid,
     psDash,
     psDot,
@@ -447,27 +447,27 @@ type
     psPattern,
     psClear,
 
-  TUDBtnType* = enum 
+  TUDBtnType* = enum
     btNext,
     btPrev,
 
-  TTabPosition* = enum 
+  TTabPosition* = enum
     tpTop,
     tpBottom,
     tpLeft,
     tpRight,
 
-  TTabStyle* = enum 
+  TTabStyle* = enum
     tsTabs,
     tsButtons,
     tsFlatButtons,
 
-  TFontPitch* = enum 
+  TFontPitch* = enum
     fpDefault,
     fpVariable,
     fpFixed,
 
-  TPenMode* = enum 
+  TPenMode* = enum
     pmBlack,
     pmWhite,
     pmNop,
@@ -485,15 +485,15 @@ type
     pmXor,
     pmNotXor,
 
-  TTrackBarOrientation* = enum 
+  TTrackBarOrientation* = enum
     trHorizontal,
     trVertical,
 
-  TUDOrientation* = enum 
+  TUDOrientation* = enum
     udHorizontal,
     udVertical,
 
-  TFontQuality* = enum 
+  TFontQuality* = enum
     fqDefault,
     fqDraft,
     fqProof,
@@ -502,26 +502,26 @@ type
     fqClearType,
     fqClearTypeNatural,
 
-  TCloseAction* = enum 
+  TCloseAction* = enum
     caNone,
     caHide,
     caFree,
     caMinimize,
 
-  TBalloonFlags* = enum 
+  TBalloonFlags* = enum
     bfNone,
     bfInfo,
     bfWarning,
     bfError,
 
-  TMsgDlgType* = enum 
+  TMsgDlgType* = enum
     mtWarning,
     mtError,
     mtInformation,
     mtConfirmation,
     mtCustom,
 
-  TMsgDlgBtn* = enum 
+  TMsgDlgBtn* = enum
     mbYes,
     mbNo,
     mbOK,
@@ -535,25 +535,25 @@ type
     mbHelp,
     mbClose,
 
-  TMsgDlgButtons* = set[TMsgDlgBtn] 
+  TMsgDlgButtons* = set[TMsgDlgBtn]
 
-  TSysLinkType* = enum 
+  TSysLinkType* = enum
     sltURL,
     sltID,
 
-  TStatusPanelStyle* = enum 
+  TStatusPanelStyle* = enum
     psText,
     psOwnerDraw,
 
-  TJPEGPerformance* = enum 
+  TJPEGPerformance* = enum
     jpBestQuality,
     jpBestSpeed,
 
-  TJPEGPixelFormat* = TPixelFormat 
+  TJPEGPixelFormat* = TPixelFormat
 
-  TShortCut* = uint16 
+  TShortCut* = uint16
 
-  TNodeState* = enum 
+  TNodeState* = enum
     nsCut,
     nsDropHilite, # = Node.DropTarget
     nsFocused, # = Node.Focused
@@ -565,7 +565,7 @@ type
     nsVisible, # = Node.Visible
     nsBound, # bound to a tree, e.g. has Parent or is top lvl node
 
-  TNodeAttachMode* = enum 
+  TNodeAttachMode* = enum
     naAdd, # add as last sibling of Destination
     naAddFirst, # add as first sibling of Destination
     naAddChild, # add as last child of Destination
@@ -573,44 +573,44 @@ type
     naInsert, # insert in front of Destination
     naInsertBehind, # insert behind Destination
 
-  TAddMode* = enum 
+  TAddMode* = enum
     taAddFirst,
     taAdd,
     taInsert,
 
-  TMultiSelectStyles* = enum 
+  TMultiSelectStyles* = enum
     msControlSelect,
     msShiftSelect,
     msVisibleOnly,
     msSiblingOnly,
 
-  TMultiSelectStyle* = set[TMultiSelectStyles] 
+  TMultiSelectStyle* = set[TMultiSelectStyles]
 
-  TActionListState* = enum 
+  TActionListState* = enum
     asNormal,
     asSuspended,
     asSuspendedEnabled,
 
-  TGradientDirection* = enum 
+  TGradientDirection* = enum
     gdHorizontal,
     gdVertical,
 
-  TDrawingStyle* = enum 
+  TDrawingStyle* = enum
     dSFocus,
     dSSelected,
     dSNormal,
     dSTransparent,
 
-  TImageType* = enum 
+  TImageType* = enum
     itImage,
     itMask,
 
-  TResType* = enum 
+  TResType* = enum
     rtBitmap,
     rtCursor,
     rtIcon,
 
-  TLoadResource* = enum 
+  TLoadResource* = enum
     lrDefaultColor,
     lrDefaultSize,
     lrFromFile,
@@ -618,9 +618,9 @@ type
     lrTransparent,
     lrMonoChrome,
 
-  TLoadResources* = set[TLoadResource] 
+  TLoadResources* = set[TLoadResource]
 
-  TColorDepth* = enum 
+  TColorDepth* = enum
     cdDefault,
     cdDeviceDependent,
     cd4Bit,
@@ -629,12 +629,12 @@ type
     cd24Bit,
     cd32Bit,
 
-  TCheckBoxState* = enum 
+  TCheckBoxState* = enum
     cbUnchecked,
     cbChecked,
     cbGrayed,
 
-  TToolButtonStyle* = enum 
+  TToolButtonStyle* = enum
     tbsButton, # button (can be clicked)
     tbsCheck, # check item (click to toggle state, can be grouped)
     tbsDropDown, # button with dropdown button to show a popup menu
@@ -642,30 +642,30 @@ type
     tbsDivider, # space holder with line
     tbsButtonDrop, # button with arrow (not separated from each other)
 
-  TTBGradientDrawingOption* = enum 
+  TTBGradientDrawingOption* = enum
     gdoHotTrack,
     gdoGradient,
 
-  TTBGradientDrawingOptions* = set[TTBGradientDrawingOption] 
+  TTBGradientDrawingOptions* = set[TTBGradientDrawingOption]
 
-  TColorDialogOption* = enum 
+  TColorDialogOption* = enum
     cdFullOpen,
     cdPreventFullOpen,
     cdShowHelp,
     cdSolidColor,
     cdAnyColor,
 
-  TColorDialogOptions* = set[TColorDialogOption] 
+  TColorDialogOptions* = set[TColorDialogOption]
 
-  TBorderIcon* = enum 
+  TBorderIcon* = enum
     biSystemMenu,
     biMinimize,
     biMaximize,
     biHelp,
 
-  TBorderIcons* = set[TBorderIcon] 
+  TBorderIcons* = set[TBorderIcon]
 
-  TFontDialogOption* = enum 
+  TFontDialogOption* = enum
     fdAnsiOnly,
     fdTrueTypeOnly,
     fdEffects,
@@ -683,9 +683,9 @@ type
     fdScalableOnly,
     fdApplyButton,
 
-  TFontDialogOptions* = set[TFontDialogOption] 
+  TFontDialogOptions* = set[TFontDialogOption]
 
-  TOpenOption* = enum 
+  TOpenOption* = enum
     ofReadOnly,
     ofOverwritePrompt, # if selected file exists shows a message, that file
     ofHideReadOnly, # hide read only file
@@ -712,20 +712,20 @@ type
     ofViewDetail, # details are OS and interface dependent
     ofAutoPreview, # details are OS and interface dependent
 
-  TOpenOptions* = set[TOpenOption] 
+  TOpenOptions* = set[TOpenOption]
 
-  TOpenOptionEx* = enum 
+  TOpenOptionEx* = enum
     ofExNoPlacesBar,
 
-  TOpenOptionsEx* = set[TOpenOptionEx] 
+  TOpenOptionsEx* = set[TOpenOptionEx]
 
-  TPrintRange* = enum 
+  TPrintRange* = enum
     prAllPages,
     prSelection,
     prPageNums,
     prCurrentPage,
 
-  TPrintDialogOption* = enum 
+  TPrintDialogOption* = enum
     poPrintToFile,
     poPageNums,
     poSelection,
@@ -734,9 +734,9 @@ type
     poDisablePrintToFile,
     poBeforeBeginDoc,
 
-  TPrintDialogOptions* = set[TPrintDialogOption] 
+  TPrintDialogOptions* = set[TPrintDialogOption]
 
-  TPageSetupDialogOption* = enum 
+  TPageSetupDialogOption* = enum
     psoDefaultMinMargins,
     psoDisableMargins,
     psoDisableOrientation,
@@ -749,30 +749,30 @@ type
     psoWarning,
     psoNoNetworkButton,
 
-  TPageSetupDialogOptions* = set[TPageSetupDialogOption] 
+  TPageSetupDialogOptions* = set[TPageSetupDialogOption]
 
-  TPrinterKind* = enum 
+  TPrinterKind* = enum
     pkDotMatrix,
     pkHPPCL,
 
-  TPageType* = enum 
+  TPageType* = enum
     ptEnvelope,
     ptPaper,
 
-  TPageMeasureUnits* = enum 
+  TPageMeasureUnits* = enum
     pmDefault,
     pmMillimeters,
     pmInches,
 
-  TStringsOption* = enum 
+  TStringsOption* = enum
     soStrictDelimiter,
     soWriteBOM,
     soTrailingLineBreak,
     soUseLocale,
 
-  TStringsOptions* = set[TStringsOption] 
+  TStringsOptions* = set[TStringsOption]
 
-  TShiftStateEnum* = enum 
+  TShiftStateEnum* = enum
     ssShift,
     ssAlt,
     ssCtrl,
@@ -792,37 +792,37 @@ type
     ssExtra1,
     ssExtra2,
 
-  TShiftState* = set[TShiftStateEnum] 
+  TShiftState* = set[TShiftStateEnum]
 
-  TMouseButton* = enum 
+  TMouseButton* = enum
     mbLeft,
     mbRight,
     mbMiddle,
     mbExtra1,
     mbExtra2,
 
-  TFillStyle* = enum 
+  TFillStyle* = enum
     fsSurface,
     fsBorder,
 
-  TFillMode* = enum 
+  TFillMode* = enum
     fmAlternate,
     fmWinding,
 
-  TCanvasStates* = enum 
+  TCanvasStates* = enum
     csHandleValid,
     csFontValid,
     csPenValid,
     csBrushValid,
     csRegionValid,
 
-  TCanvasState* = set[TCanvasStates] 
+  TCanvasState* = set[TCanvasStates]
 
-  TCanvasOrientation* = enum 
+  TCanvasOrientation* = enum
     coLeftToRight,
     coRightToLeft,
 
-  TTextFormats* = enum 
+  TTextFormats* = enum
     tfBottom,
     tfCalcRect,
     tfCenter,
@@ -848,65 +848,65 @@ type
     tfWordEllipsis,
     tfComposited,
 
-  TTextFormat* = set[TTextFormats] 
+  TTextFormat* = set[TTextFormats]
 
-  TBevelCut* = enum 
+  TBevelCut* = enum
     bvNone,
     bvLowered,
     bvRaised,
     bvSpace,
 
-  TBevelEdge* = enum 
+  TBevelEdge* = enum
     beLeft,
     beTop,
     beRight,
     beBottom,
 
-  TBevelEdges* = set[TBevelEdge] 
+  TBevelEdges* = set[TBevelEdge]
 
-  TBevelKind* = enum 
+  TBevelKind* = enum
     bkNone,
     bkTile,
     bkSoft,
     bkFlat,
 
-  TTickMark* = enum 
+  TTickMark* = enum
     tmBottomRight,
     tmTopLeft,
     tmBoth,
 
-  TTickStyle* = enum 
+  TTickStyle* = enum
     tsNone,
     tsAuto,
     tsManual,
 
-  TPositionToolTip* = enum 
+  TPositionToolTip* = enum
     ptNone,
     ptTop,
     ptLeft,
     ptBottom,
     ptRight,
 
-  TDateTimeKind* = enum 
+  TDateTimeKind* = enum
     dtkDate,
     dtkTime,
     dtkDateTime,
 
-  TDTDateMode* = enum 
+  TDTDateMode* = enum
     dmComboBox,
     dmUpDown,
     dmNone,
 
-  TDTDateFormat* = enum 
+  TDTDateFormat* = enum
     dfShort,
     dfLong,
 
-  TDTCalAlignment* = enum 
+  TDTCalAlignment* = enum
     dtaLeft,
     dtaRight,
     dtaDefault,
 
-  TCalDayOfWeek* = enum 
+  TCalDayOfWeek* = enum
     dowMonday,
     dowTuesday,
     dowWednesday,
@@ -916,21 +916,21 @@ type
     dowSunday,
     dowLocaleDefault,
 
-  TSearchType* = enum 
+  TSearchType* = enum
     stWholeWord,
     stMatchCase,
 
-  TSearchTypes* = set[TSearchType] 
+  TSearchTypes* = set[TSearchType]
 
-  TNumberingStyle* = enum 
+  TNumberingStyle* = enum
     nsNone,
     nsBullte,
 
-  TAttributeType* = enum 
+  TAttributeType* = enum
     atSelected,
     atDefaultText,
 
-  TConsistentAttribute* = enum 
+  TConsistentAttribute* = enum
     caBold,
     caColor,
     caFace,
@@ -940,33 +940,33 @@ type
     caUnderline,
     caProtected,
 
-  TConsistentAttributes* = set[TConsistentAttribute] 
+  TConsistentAttributes* = set[TConsistentAttribute]
 
-  TIconArrangement* = enum 
+  TIconArrangement* = enum
     iaTop,
     iaLeft,
 
-  THeaderStyle* = enum 
+  THeaderStyle* = enum
     hsGradient,
     hsImage,
     hsThemed,
 
-  TImageAlignment* = enum 
+  TImageAlignment* = enum
     iiaLeft,
     iiaRight,
     iiaTop,
     iiaBottom,
     iiaCenter,
 
-  TAnchorKind* = enum 
+  TAnchorKind* = enum
     akTop,
     akLeft,
     akRight,
     akBottom,
 
-  TAnchors* = set[TAnchorKind] 
+  TAnchors* = set[TAnchorKind]
 
-  TOwnerDrawStateType* = enum 
+  TOwnerDrawStateType* = enum
     odSelected,
     odGrayed,
     odDisabled,
@@ -982,9 +982,9 @@ type
     odComboBoxEdit,
     odBackgroundPainted, # item background already painted
 
-  TOwnerDrawState* = set[TOwnerDrawStateType] 
+  TOwnerDrawState* = set[TOwnerDrawStateType]
 
-  TBitBtnKind* = enum 
+  TBitBtnKind* = enum
     bkCustom,
     bkOK,
     bkCancel,
@@ -999,18 +999,18 @@ type
     bkNoToAll,
     bkYesToAll,
 
-  TScrollBarKind* = enum 
+  TScrollBarKind* = enum
     sbHorizontal,
     sbVertical,
 
-  TScrollBarInc* = int16 
+  TScrollBarInc* = int16
 
-  TScrollBarStyle* = enum 
+  TScrollBarStyle* = enum
     ssRegular,
     ssFlat,
     ssHotTrack,
 
-  TShapeType* = enum 
+  TShapeType* = enum
     stRectangle,
     stSquare,
     stRoundRect,
@@ -1026,9 +1026,9 @@ type
     stStar,
     stStarDown,
 
-  TBevelStyle* = int32 
+  TBevelStyle* = int32
 
-  TBevelShape* = enum 
+  TBevelShape* = enum
     bsBox,
     bsFrame,
     bsTopLine,
@@ -1037,7 +1037,7 @@ type
     bsRightLine,
     bsSpacer,
 
-  TGaugeKind* = enum 
+  TGaugeKind* = enum
     gkText,
     gkHorizontalBar,
     gkVerticalBar,
@@ -1045,18 +1045,18 @@ type
     gkNeedle,
     gkHalfPie,
 
-  TCustomDrawTarget* = enum 
+  TCustomDrawTarget* = enum
     dtControl,
     dtItem,
     dtSubItem,
 
-  TCustomDrawStage* = enum 
+  TCustomDrawStage* = enum
     cdPrePaint,
     cdPostPaint,
     cdPreErase,
     cdPostErase,
 
-  TCustomDrawStateFlag* = enum 
+  TCustomDrawStateFlag* = enum
     cdsSelected,
     cdsGrayed,
     cdsDisabled,
@@ -1067,22 +1067,22 @@ type
     cdsMarked,
     cdsIndeterminate,
 
-  TCustomDrawState* = set[TCustomDrawStateFlag] 
+  TCustomDrawState* = set[TCustomDrawStateFlag]
 
-  TDisplayCode* = enum 
+  TDisplayCode* = enum
     drBounds,
     drIcon,
     drLabel,
     drSelectBounds,
 
-  TSelectDirOpt* = enum 
+  TSelectDirOpt* = enum
     sdAllowCreate,
     sdPerformCreate,
     sdPrompt,
 
-  TSelectDirOpts* = set[TSelectDirOpt] 
+  TSelectDirOpts* = set[TSelectDirOpt]
 
-  TFindOption* = enum 
+  TFindOption* = enum
     frDown,
     frFindNext,
     frHideMatchCase,
@@ -1102,45 +1102,45 @@ type
     frHidePromptOnReplace,
     frButtonsAtBottom,
 
-  TFindOptions* = set[TFindOption] 
+  TFindOptions* = set[TFindOption]
 
-  TDragMode* = enum 
+  TDragMode* = enum
     dmManual,
     dmAutomatic,
 
-  TDragState* = enum 
+  TDragState* = enum
     dsDragEnter,
     dsDragLeave,
     dsDragMove,
 
-  TDragKind* = enum 
+  TDragKind* = enum
     dkDrag,
     dkDock,
 
-  TEditCharCase* = enum 
+  TEditCharCase* = enum
     ecNormal,
     ecUpperCase,
     ecLowerCase,
 
-  TEdgeBorder* = enum 
+  TEdgeBorder* = enum
     ebLeft,
     ebTop,
     ebRight,
     ebBottom,
 
-  TEdgeBorders* = set[TEdgeBorder] 
+  TEdgeBorders* = set[TEdgeBorder]
 
-  TEdgeStyle* = enum 
+  TEdgeStyle* = enum
     esNone,
     esRaised,
     esLowered,
 
-  TGridDrawingStyle* = enum 
+  TGridDrawingStyle* = enum
     gdsClassic,
     gdsThemed,
     gdsGradient,
 
-  TGridOption* = enum 
+  TGridOption* = enum
     goFixedVertLine,
     goFixedHorzLine,
     goVertLine,
@@ -1174,9 +1174,9 @@ type
     goAutoAddRowsSkipContentCheck, # BB Also add a row (if AutoAddRows in Options) if last row is empty
     goRowHighlight, # Highlight the current Row
 
-  TGridOptions* = set[TGridOption] 
+  TGridOptions* = set[TGridOption]
 
-  TGridDrawStates* = enum 
+  TGridDrawStates* = enum
     gdSelected,
     gdFocused,
     gdFixed,
@@ -1184,19 +1184,19 @@ type
     gdPushed,
     gdRowHighlight,
 
-  TGridDrawState* = set[TGridDrawStates] 
+  TGridDrawState* = set[TGridDrawStates]
 
-  THeaderSectionStyle* = enum 
+  THeaderSectionStyle* = enum
     hsText,
     hsOwnerDraw,
 
-  TLabelPosition* = enum 
+  TLabelPosition* = enum
     lpAbove,
     lpBelow,
     lpLeft,
     lpRight,
 
-  TFlowStyle* = enum 
+  TFlowStyle* = enum
     fsLeftRightTopBottom,
     fsRightLeftTopBottom,
     fsLeftRightBottomTop,
@@ -1206,22 +1206,22 @@ type
     fsTopBottomRightLeft,
     fsBottomTopRightLeft,
 
-  TCoolBandMaximize* = enum 
+  TCoolBandMaximize* = enum
     bmNone,
     bmClick,
     bmDblClick,
 
-  TMenuBreak* = enum 
+  TMenuBreak* = enum
     mbNone,
     mbBreak,
     mbBarBreak,
 
-  TSectionTrackState* = enum 
+  TSectionTrackState* = enum
     tsTrackBegin,
     tsTrackMove,
     tsTrackEnd,
 
-  TControlStateType* = enum 
+  TControlStateType* = enum
     csLButtonDown,
     csClicked,
     csPalette,
@@ -1234,9 +1234,9 @@ type
     csDocking,
     csVisibleSetInLoading,
 
-  TControlState* = set[TControlStateType] 
+  TControlState* = set[TControlStateType]
 
-  TControlStyleType* = enum 
+  TControlStyleType* = enum
     csAcceptsControls, # can have children in the designer
     csCaptureMouse, # auto capture mouse when clicked
     csDesignInteractive, # wants mouse events in design mode
@@ -1270,68 +1270,68 @@ type
     csAutoSizeKeepChildTop, # when AutoSize=true do not move children vertically
     csRequiresKeyboardInput, # If the device has no physical keyboard then show the virtual keyboard when this control gets focus (therefore available only to TWinControl descendents)
 
-  TControlStyle* = set[TControlStyleType] 
+  TControlStyle* = set[TControlStyleType]
 
-  TMouseActivate* = enum 
+  TMouseActivate* = enum
     maDefault,
     maActivate,
     maActivateAndEat,
     maNoActivate,
     maNoActivateAndEat,
 
-  TTaskBarProgressState* = enum 
+  TTaskBarProgressState* = enum
     none,
     indeterminate,
     normal,
     error,
     paused,
 
-  TBitmapHandleType* = enum 
+  TBitmapHandleType* = enum
     bmDIB,
     bmDDB,
 
-  TPrinterState* = enum 
+  TPrinterState* = enum
     psNoDefine,
     psReady,
     psPrinting,
     psStopped,
 
-  TPrinterOrientation* = enum 
+  TPrinterOrientation* = enum
     poPortrait,
     poLandscape,
     poReverseLandscape,
     poReversePortrait,
 
-  TPrinterCapability* = enum 
+  TPrinterCapability* = enum
     pcCopies,
     pcOrientation,
     pcCollation,
 
-  TPrinterCapabilities* = set[TPrinterCapability] 
+  TPrinterCapabilities* = set[TPrinterCapability]
 
-  TPrinterType* = enum 
+  TPrinterType* = enum
     ptLocal,
     ptNetWork,
 
-  TReadyState* = enum 
+  TReadyState* = enum
     rsUninitialized,
     rsLoading,
     rsLoaded,
     rsInterActive,
     rsComplete,
 
-  TStringEncoding* = enum 
+  TStringEncoding* = enum
     seUnknown,
     seANSI,
     seUnicode,
     seUTF8,
 
-  TShowInTaskbar* = enum 
+  TShowInTaskbar* = enum
     stDefault, # use default rules for showing taskbar item
     stAlways, # always show taskbar item for the form
     stNever, # never show taskbar item for the form
 
-  TTaskDialogCommonButton* = enum 
+  TTaskDialogCommonButton* = enum
     tcbOk,
     tcbYes,
     tcbNo,
@@ -1339,9 +1339,9 @@ type
     tcbRetry,
     tcbClose,
 
-  TTaskDialogCommonButtons* = set[TTaskDialogCommonButton] 
+  TTaskDialogCommonButtons* = set[TTaskDialogCommonButton]
 
-  TTaskDialogFlag* = enum 
+  TTaskDialogFlag* = enum
     tfEnableHyperlinks,
     tfUseHiconMain,
     tfUseHiconFooter,
@@ -1359,9 +1359,9 @@ type
     tfNoDefaultRadioButton,
     tfCanBeMinimized,
 
-  TTaskDialogFlags* = set[TTaskDialogFlag] 
+  TTaskDialogFlags* = set[TTaskDialogFlag]
 
-  TTaskDialogIcon* = enum 
+  TTaskDialogIcon* = enum
     tdiNone,
     tdiWarning,
     tdiError,
@@ -1369,21 +1369,21 @@ type
     tdiShield,
     tdiQuestion,
 
-  TComboBoxExStyle* = enum 
+  TComboBoxExStyle* = enum
     csExDropDown,
     csExSimple,
     csExDropDownList,
 
-  TComboBoxExStyleEx* = enum 
+  TComboBoxExStyleEx* = enum
     csExCaseSensitive,
     csExNoEditImage,
     csExNoEditImageIndent,
     csExNoSizeLimit,
     csExPathWordBreak,
 
-  TComboBoxExStyles* = set[TComboBoxExStyleEx] 
+  TComboBoxExStyles* = set[TComboBoxExStyleEx]
 
-  TAutoCompleteOption* = enum 
+  TAutoCompleteOption* = enum
     acoAutoSuggest,
     acoAutoAppend,
     acoSearch,
@@ -1392,44 +1392,44 @@ type
     acoUpDownKeyDropsList,
     acoRtlReading,
 
-  TAutoCompleteOptions* = set[TAutoCompleteOption] 
+  TAutoCompleteOptions* = set[TAutoCompleteOption]
 
-  TDefaultMonitor* = enum 
+  TDefaultMonitor* = enum
     dmDesktop,
     dmPrimary,
     dmMainForm,
     dmActiveForm,
 
-  TTransparentMode* = enum 
+  TTransparentMode* = enum
     tmAuto,
     tmFixed,
 
-  TDrawImageMode* = enum 
+  TDrawImageMode* = enum
     dimNormal,
     dimCenter,
     dimStretch,
 
-  TListBoxOption* = enum 
+  TListBoxOption* = enum
     lboDrawFocusRect, # draw focus rect in case of owner drawing
 
-  TListBoxOptions* = set[TListBoxOption] 
+  TListBoxOptions* = set[TListBoxOption]
 
-  TAntialiasingMode* = enum 
+  TAntialiasingMode* = enum
     amDontCare, # default antialiasing
     amOn, # enabled
     amOff, # disabled
 
-  TSortDirection* = enum 
+  TSortDirection* = enum
     sdAscending,
     sdDescending,
 
-  TTreeViewExpandSignType* = enum 
+  TTreeViewExpandSignType* = enum
     tvestTheme, # use themed sign
     tvestPlusMinus, # use &#43;/- sign
     tvestArrow, # use blank arrow
     tvestArrowFill, # use filled arrow
 
-  TTreeViewOption* = enum 
+  TTreeViewOption* = enum
     tvoAllowMultiselect,
     tvoAutoExpand,
     tvoAutoInsertMark,
@@ -1448,15 +1448,15 @@ type
     tvoNoDoubleClickExpand,
     tvoThemedDraw,
 
-  TTreeViewOptions* = set[TTreeViewOption] 
+  TTreeViewOptions* = set[TTreeViewOption]
 
-  TGlyphShowMode* = enum 
+  TGlyphShowMode* = enum
     gsmAlways, # always show
     gsmNever, # never show
     gsmApplication, # depends on application settings
     gsmSystem, # depends on system settings
 
-  TCTabControlOption* = enum 
+  TCTabControlOption* = enum
     nboShowCloseButtons,
     nboMultiLine,
     nboHidePageListPopup,
@@ -1464,44 +1464,44 @@ type
     nboShowAddTabButton,
     nboDoChangeOnSetIndex,
 
-  TCTabControlOptions* = set[TCTabControlOption] 
+  TCTabControlOptions* = set[TCTabControlOption]
 
-  TAnchorSideReference* = enum 
+  TAnchorSideReference* = enum
     asrTop,
     asrBottom,
     asrCenter,
 
-  TControlCellAlign* = enum 
+  TControlCellAlign* = enum
     ccaFill,
     ccaLeftTop,
     ccaRightBottom,
     ccaCenter,
 
-  TControlCellAligns* = set[TControlCellAlign] 
+  TControlCellAligns* = set[TControlCellAlign]
 
-  TChildControlResizeStyle* = enum 
+  TChildControlResizeStyle* = enum
     crsAnchorAligning, # (like Delphi)
     crsScaleChilds, # scale children equally, keep space between children fixed
     crsHomogenousChildResize, # enlarge children equally (i.e. by the same amount of pixel)
     crsHomogenousSpaceResize, # enlarge space between children equally
 
-  TControlChildrenLayout* = enum 
+  TControlChildrenLayout* = enum
     cclNone,
     cclLeftToRightThenTopToBottom, # if BiDiMode &lt;&gt; bdLeftToRight then it becomes RightToLeft
     cclTopToBottomThenLeftToRight,
 
-  TColumnLayout* = enum 
+  TColumnLayout* = enum
     clHorizontalThenVertical,
     clVerticalThenHorizontal,
 
-  TSortIndicator* = enum 
+  TSortIndicator* = enum
     siNone,
     siAscending,
     siDescending,
 
-  TLibType* = int32 
+  TLibType* = int32
 
-  TColumnButtonStyle* = enum 
+  TColumnButtonStyle* = enum
     cbsAuto,
     cbsEllipsis,
     cbsNone,
@@ -1510,20 +1510,20 @@ type
     cbsButton,
     cbsButtonColumn,
 
-  TGridZone* = enum 
+  TGridZone* = enum
     gzNormal,
     gzFixedCols,
     gzFixedRows,
     gzFixedCells,
     gzInvalid,
 
-  TGridZoneSet* = set[TGridZone] 
+  TGridZoneSet* = set[TGridZone]
 
-  TSortOrder* = enum 
+  TSortOrder* = enum
     soAscending,
     soDescending,
 
-  TAutoAdvance* = enum 
+  TAutoAdvance* = enum
     aaNone,
     aaDown,
     aaRight,
@@ -1533,81 +1533,81 @@ type
     aaRightUp,
     aaLeftUp,
 
-  TCellHintPriority* = enum 
+  TCellHintPriority* = enum
     chpAll,
     chpAllNoDefault,
     chpTruncOnly,
 
-  TMouseWheelOption* = enum 
+  TMouseWheelOption* = enum
     mwCursor,
     mwGrid,
 
-  TGridOption2* = enum 
+  TGridOption2* = enum
     goScrollToLastCol, # allow scrolling to last column (so that last column can be leftcol)
     goScrollToLastRow, # allow scrolling to last row (so that last row can be toprow)
 
-  TGridOptions2* = set[TGridOption2] 
+  TGridOptions2* = set[TGridOption2]
 
-  TRangeSelectMode* = enum 
+  TRangeSelectMode* = enum
     rsmSingle,
     rsmMulti,
 
-  TTitleStyle* = enum 
+  TTitleStyle* = enum
     tsLazarus,
     tsStandard,
     tsNative,
 
-  TPrefixOption* = enum 
+  TPrefixOption* = enum
     poNone,
     poHeaderClick,
 
 when defined(i386):
   type
-    TDWordFiller* = object
+    TDWordFiller = object
 
 when defined(i386):
   type
     TWMKey* = object
-      msg: uint32
+      msg*: uint32
       msgFiller: TDWordFiller
-      charCode: array[0..1, uint16]
+      charCode*: array[0..1, uint16]
       charCodeUnusedFiller: TDWordFiller
-      keyData: uint32
+      keyData*: uint32
       keyDataFiller: TDWordFiller
-      result: uint
+      result*: uint
 
 when defined(amd64):
   type
-    TDWordFiller* = object
-      filler: array[0..3, uint8]
+    TDWordFiller = object
+      filler*: array[0..3, uint8]
 
 when defined(amd64):
   type
     TWMKey* = object
-      msg: uint32
+      msg*: uint32
       msgFiller: TDWordFiller
-      charCode: array[0..1, uint16]
+      charCode*: array[0..1, uint16]
       charCodeUnusedFiller: TDWordFiller
-      keyData: uint32
+      keyData*: uint32
       keyDataFiller: TDWordFiller
-      result: uint
+      result*: uint
 
 when defined(i386):
   type
     TMessage* = object
-      msg: uint32
-      wParam: WPARAM
-      lParam: LPARAM
-      result: LRESULT
+      msg*: uint32
+      wParam*: WPARAM
+      lParam*: LPARAM
+      result*: LRESULT
 
 when defined(amd64):
   type
     TMessage* = object
-      msg: uint32
+      msg*: uint32
       unusedMsg: uint32
-      wParam: WPARAM
-      lParam: LPARAM
-      result: LRESULT
+      wParam*: WPARAM
+      lParam*: LPARAM
+      result*: LRESULT
 
 when defined(linux):
   type
