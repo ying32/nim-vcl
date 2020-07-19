@@ -32,9 +32,9 @@ proc DTextToShortCut*(AText: cstring): TShortCut {.importc: "DTextToShortCut", d
 proc DShortCutToText*(AVal: TShortCut): cstring {.importc: "DShortCutToText", dynlib: dllname.}
 proc Clipboard_Instance*(): pointer {.importc: "Clipboard_Instance", dynlib: dllname.}
 when not defined(windows):
-  proc DSendMessage*(hWd: HWND, msg: uint32, wParam: WParam, lParam: LParam): LResult {.importc: "DSendMessage", dynlib: dllname.}
+  proc DSendMessage*(hWd: HWND, msg: uint32, wParam: WPARAM, lParam: LPARAM): LRESULT {.importc: "DSendMessage", dynlib: dllname.}
 when not defined(windows):
-  proc DPostMessage*(hWd: HWND, msg: uint32, wParam: WParam, lParam: LParam): bool {.importc: "DPostMessage", dynlib: dllname.}
+  proc DPostMessage*(hWd: HWND, msg: uint32, wParam: WPARAM, lParam: LPARAM): bool {.importc: "DPostMessage", dynlib: dllname.}
 when not defined(windows):
   proc DIsIconic*(hWnd: HWND): bool {.importc: "DIsIconic", dynlib: dllname.}
 when not defined(windows):
@@ -70,6 +70,9 @@ proc DSelectDirectory1*(Directory: var cstring, Options: TSelectDirOpts, HelpCtx
 proc DSelectDirectory2*(Caption: cstring, Root: cstring, AShowHidden: bool, Directory: var cstring): bool {.importc: "DSelectDirectory2", dynlib: dllname.}
 proc DInputBox*(ACaption: cstring, APrompt: cstring, ADefault: cstring): cstring {.importc: "DInputBox", dynlib: dllname.}
 proc DInputQuery*(ACaption: cstring, APrompt: cstring, Value: cstring, AOut: var cstring): bool {.importc: "DInputQuery", dynlib: dllname.}
+proc DPasswordBox*(ACaption: cstring, APrompt: cstring): cstring {.importc: "DPasswordBox", dynlib: dllname.}
+proc DInputCombo*(ACaption: cstring, APrompt: cstring, AList: pointer): int32 {.importc: "DInputCombo", dynlib: dllname.}
+proc DInputComboEx*(ACaption: cstring, APrompt: cstring, AList: pointer, AllowCustomText: bool): cstring {.importc: "DInputComboEx", dynlib: dllname.}
 when defined(windows):
   proc DCreateURLShortCut*(ADestPath: cstring, AShortCutName: cstring, AURL: cstring) {.importc: "DCreateURLShortCut", dynlib: dllname.}
 when defined(windows):
@@ -92,6 +95,16 @@ proc DFindOwnerControl*(Handle: HWND): pointer {.importc: "DFindOwnerControl", d
 proc DFindControlAtPosition*(APosition: var TPoint, AllowDisabled: bool): pointer {.importc: "DFindControlAtPosition", dynlib: dllname.}
 proc DFindLCLWindow*(AScreenPos: var TPoint, AllowDisabled: bool): pointer {.importc: "DFindLCLWindow", dynlib: dllname.}
 proc DFindDragTarget*(APosition: var TPoint, AllowDisabled: bool): pointer {.importc: "DFindDragTarget", dynlib: dllname.}
+when defined(linux):
+  proc GtkWidget_GetGtkFixed*(Ah: HWND): PGtkFixed {.importc: "GtkWidget_GetGtkFixed", dynlib: dllname.}
+when defined(linux):
+  proc GdkWindow_FromForm*(AForm: pointer): PGdkWindow {.importc: "GdkWindow_FromForm", dynlib: dllname.}
+when defined(linux):
+  proc GdkWindow_GetXId*(AW: PGdkWindow, AXId: var TXId) {.importc: "GdkWindow_GetXId", dynlib: dllname.}
+when defined(linux):
+  proc GtkWidget_Window*(Ah: HWND): PGdkWindow {.importc: "GtkWidget_Window", dynlib: dllname.}
+when defined(macos):
+  proc NSWindow_FromForm*(AForm: pointer): MyNSWindow {.importc: "NSWindow_FromForm", dynlib: dllname.}
 proc ResFormLoadFromResourceName*(AInstance: uint, AResName: cstring, ARoot: pointer) {.importc: "ResFormLoadFromResourceName", dynlib: dllname.}
 proc ResFormLoadFromFile*(AFileName: cstring, ARoot: pointer) {.importc: "ResFormLoadFromFile", dynlib: dllname.}
 proc ResFormLoadFromStream*(AStream: pointer, ARoot: pointer) {.importc: "ResFormLoadFromStream", dynlib: dllname.}
@@ -1466,6 +1479,8 @@ proc ListBox_GetDragMode*(AObj: pointer): TDragMode {.importc: "ListBox_GetDragM
 proc ListBox_SetDragMode*(AObj: pointer, AValue: TDragMode) {.importc: "ListBox_SetDragMode", dynlib: dllname.}
 proc ListBox_GetEnabled*(AObj: pointer): bool {.importc: "ListBox_GetEnabled", dynlib: dllname.}
 proc ListBox_SetEnabled*(AObj: pointer, AValue: bool) {.importc: "ListBox_SetEnabled", dynlib: dllname.}
+proc ListBox_GetExtendedSelect*(AObj: pointer): bool {.importc: "ListBox_GetExtendedSelect", dynlib: dllname.}
+proc ListBox_SetExtendedSelect*(AObj: pointer, AValue: bool) {.importc: "ListBox_SetExtendedSelect", dynlib: dllname.}
 proc ListBox_GetFont*(AObj: pointer): pointer {.importc: "ListBox_GetFont", dynlib: dllname.}
 proc ListBox_SetFont*(AObj: pointer, AValue: pointer) {.importc: "ListBox_SetFont", dynlib: dllname.}
 proc ListBox_GetItemHeight*(AObj: pointer): int32 {.importc: "ListBox_GetItemHeight", dynlib: dllname.}
@@ -2472,6 +2487,8 @@ proc Splitter_GetCursor*(AObj: pointer): TCursor {.importc: "Splitter_GetCursor"
 proc Splitter_SetCursor*(AObj: pointer, AValue: TCursor) {.importc: "Splitter_SetCursor", dynlib: dllname.}
 proc Splitter_GetConstraints*(AObj: pointer): pointer {.importc: "Splitter_GetConstraints", dynlib: dllname.}
 proc Splitter_SetConstraints*(AObj: pointer, AValue: pointer) {.importc: "Splitter_SetConstraints", dynlib: dllname.}
+proc Splitter_GetMinSize*(AObj: pointer): int32 {.importc: "Splitter_GetMinSize", dynlib: dllname.}
+proc Splitter_SetMinSize*(AObj: pointer, AValue: int32) {.importc: "Splitter_SetMinSize", dynlib: dllname.}
 proc Splitter_GetParentColor*(AObj: pointer): bool {.importc: "Splitter_GetParentColor", dynlib: dllname.}
 proc Splitter_SetParentColor*(AObj: pointer, AValue: bool) {.importc: "Splitter_SetParentColor", dynlib: dllname.}
 proc Splitter_GetVisible*(AObj: pointer): bool {.importc: "Splitter_GetVisible", dynlib: dllname.}
@@ -6199,6 +6216,8 @@ proc Strings_SetCommaText*(AObj: pointer, AValue: cstring) {.importc: "Strings_S
 proc Strings_GetCount*(AObj: pointer): int32 {.importc: "Strings_GetCount", dynlib: dllname.}
 proc Strings_GetDelimiter*(AObj: pointer): Char {.importc: "Strings_GetDelimiter", dynlib: dllname.}
 proc Strings_SetDelimiter*(AObj: pointer, AValue: Char) {.importc: "Strings_SetDelimiter", dynlib: dllname.}
+proc Strings_GetNameValueSeparator*(AObj: pointer): Char {.importc: "Strings_GetNameValueSeparator", dynlib: dllname.}
+proc Strings_SetNameValueSeparator*(AObj: pointer, AValue: Char) {.importc: "Strings_SetNameValueSeparator", dynlib: dllname.}
 proc Strings_GetText*(AObj: pointer): cstring {.importc: "Strings_GetText", dynlib: dllname.}
 proc Strings_SetText*(AObj: pointer, AValue: cstring) {.importc: "Strings_SetText", dynlib: dllname.}
 proc Strings_GetObjects*(AObj: pointer, Index: int32): pointer {.importc: "Strings_GetObjects", dynlib: dllname.}
@@ -6250,6 +6269,8 @@ proc StringList_SetCommaText*(AObj: pointer, AValue: cstring) {.importc: "String
 proc StringList_GetCount*(AObj: pointer): int32 {.importc: "StringList_GetCount", dynlib: dllname.}
 proc StringList_GetDelimiter*(AObj: pointer): Char {.importc: "StringList_GetDelimiter", dynlib: dllname.}
 proc StringList_SetDelimiter*(AObj: pointer, AValue: Char) {.importc: "StringList_SetDelimiter", dynlib: dllname.}
+proc StringList_GetNameValueSeparator*(AObj: pointer): Char {.importc: "StringList_GetNameValueSeparator", dynlib: dllname.}
+proc StringList_SetNameValueSeparator*(AObj: pointer, AValue: Char) {.importc: "StringList_SetNameValueSeparator", dynlib: dllname.}
 proc StringList_GetText*(AObj: pointer): cstring {.importc: "StringList_GetText", dynlib: dllname.}
 proc StringList_SetText*(AObj: pointer, AValue: cstring) {.importc: "StringList_SetText", dynlib: dllname.}
 proc StringList_GetObjects*(AObj: pointer, Index: int32): pointer {.importc: "StringList_GetObjects", dynlib: dllname.}
@@ -10550,9 +10571,38 @@ proc DragDockObject_StaticClassType*(): TClass {.importc: "DragDockObject_Static
 # ----------------- TStringGrid ----------------------
 proc StringGrid_Create*(AOwner: pointer): pointer {.importc: "StringGrid_Create", dynlib: dllname.}
 proc StringGrid_Free*(AObj: pointer) {.importc: "StringGrid_Free", dynlib: dllname.}
+proc StringGrid_DeleteColRow*(AObj: pointer, IsColumn: bool, index: int32) {.importc: "StringGrid_DeleteColRow", dynlib: dllname.}
+proc StringGrid_DeleteCol*(AObj: pointer, Index: int32) {.importc: "StringGrid_DeleteCol", dynlib: dllname.}
+proc StringGrid_DeleteRow*(AObj: pointer, Index: int32) {.importc: "StringGrid_DeleteRow", dynlib: dllname.}
+proc StringGrid_ExchangeColRow*(AObj: pointer, IsColumn: bool, index: int32, WithIndex: int32) {.importc: "StringGrid_ExchangeColRow", dynlib: dllname.}
+proc StringGrid_InsertColRow*(AObj: pointer, IsColumn: bool, index: int32) {.importc: "StringGrid_InsertColRow", dynlib: dllname.}
+proc StringGrid_MoveColRow*(AObj: pointer, IsColumn: bool, FromIndex: int32, ToIndex: int32) {.importc: "StringGrid_MoveColRow", dynlib: dllname.}
+proc StringGrid_SortColRow*(AObj: pointer, IsColumn: bool, Index: int32, FromIndex: int32, ToIndex: int32) {.importc: "StringGrid_SortColRow", dynlib: dllname.}
+proc StringGrid_EditorByStyle*(AObj: pointer, Style: TColumnButtonStyle): pointer {.importc: "StringGrid_EditorByStyle", dynlib: dllname.}
+proc StringGrid_EditorKeyDown*(AObj: pointer, Sender: pointer, Key: var uint16, Shift: TShiftState) {.importc: "StringGrid_EditorKeyDown", dynlib: dllname.}
+proc StringGrid_EditorKeyPress*(AObj: pointer, Sender: pointer, Key: var Char) {.importc: "StringGrid_EditorKeyPress", dynlib: dllname.}
+proc StringGrid_EditorKeyUp*(AObj: pointer, Sender: pointer, key: var uint16, shift: TShiftState) {.importc: "StringGrid_EditorKeyUp", dynlib: dllname.}
+proc StringGrid_EditorTextChanged*(AObj: pointer, aCol: int32, aRow: int32, aText: cstring) {.importc: "StringGrid_EditorTextChanged", dynlib: dllname.}
+proc StringGrid_EditingDone*(AObj: pointer) {.importc: "StringGrid_EditingDone", dynlib: dllname.}
+proc StringGrid_AutoAdjustColumns*(AObj: pointer) {.importc: "StringGrid_AutoAdjustColumns", dynlib: dllname.}
 proc StringGrid_CellRect*(AObj: pointer, ACol: int32, ARow: int32, Result: var TRect) {.importc: "StringGrid_CellRect", dynlib: dllname.}
-proc StringGrid_MouseToCell*(AObj: pointer, X: int32, Y: int32, ACol: var int32, ARow: var int32) {.importc: "StringGrid_MouseToCell", dynlib: dllname.}
+proc StringGrid_CellToGridZone*(AObj: pointer, aCol: int32, aRow: int32): TGridZone {.importc: "StringGrid_CellToGridZone", dynlib: dllname.}
+proc StringGrid_CheckPosition*(AObj: pointer) {.importc: "StringGrid_CheckPosition", dynlib: dllname.}
+proc StringGrid_ClearCols*(AObj: pointer): bool {.importc: "StringGrid_ClearCols", dynlib: dllname.}
+proc StringGrid_ClearRows*(AObj: pointer): bool {.importc: "StringGrid_ClearRows", dynlib: dllname.}
+proc StringGrid_Clear*(AObj: pointer) {.importc: "StringGrid_Clear", dynlib: dllname.}
+proc StringGrid_ClearSelections*(AObj: pointer) {.importc: "StringGrid_ClearSelections", dynlib: dllname.}
+proc StringGrid_HasMultiSelection*(AObj: pointer): bool {.importc: "StringGrid_HasMultiSelection", dynlib: dllname.}
+proc StringGrid_InvalidateCell*(AObj: pointer, aCol: int32, aRow: int32) {.importc: "StringGrid_InvalidateCell", dynlib: dllname.}
+proc StringGrid_InvalidateCol*(AObj: pointer, ACol: int32) {.importc: "StringGrid_InvalidateCol", dynlib: dllname.}
+proc StringGrid_InvalidateRange*(AObj: pointer, aRange: var TRect) {.importc: "StringGrid_InvalidateRange", dynlib: dllname.}
+proc StringGrid_InvalidateRow*(AObj: pointer, ARow: int32) {.importc: "StringGrid_InvalidateRow", dynlib: dllname.}
+proc StringGrid_IsCellVisible*(AObj: pointer, aCol: int32, aRow: int32): bool {.importc: "StringGrid_IsCellVisible", dynlib: dllname.}
+proc StringGrid_IsFixedCellVisible*(AObj: pointer, aCol: int32, aRow: int32): bool {.importc: "StringGrid_IsFixedCellVisible", dynlib: dllname.}
 proc StringGrid_MouseCoord*(AObj: pointer, X: int32, Y: int32, Result: var TGridCoord) {.importc: "StringGrid_MouseCoord", dynlib: dllname.}
+proc StringGrid_MouseToCell*(AObj: pointer, Mouse: var TPoint, Result: var TPoint) {.importc: "StringGrid_MouseToCell", dynlib: dllname.}
+proc StringGrid_MouseToLogcell*(AObj: pointer, Mouse: var TPoint, Result: var TPoint) {.importc: "StringGrid_MouseToLogcell", dynlib: dllname.}
+proc StringGrid_MouseToGridZone*(AObj: pointer, X: int32, Y: int32): TGridZone {.importc: "StringGrid_MouseToGridZone", dynlib: dllname.}
 proc StringGrid_CanFocus*(AObj: pointer): bool {.importc: "StringGrid_CanFocus", dynlib: dllname.}
 proc StringGrid_ContainsControl*(AObj: pointer, Control: pointer): bool {.importc: "StringGrid_ContainsControl", dynlib: dllname.}
 proc StringGrid_ControlAtPos*(AObj: pointer, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): pointer {.importc: "StringGrid_ControlAtPos", dynlib: dllname.}
@@ -10603,7 +10653,97 @@ proc StringGrid_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.im
 proc StringGrid_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "StringGrid_AnchorVerticalCenterTo", dynlib: dllname.}
 proc StringGrid_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "StringGrid_AnchorAsAlign", dynlib: dllname.}
 proc StringGrid_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "StringGrid_AnchorClient", dynlib: dllname.}
-proc StringGrid_SetOnColRowMoved*(AObj: pointer, AEventId: TMovedEvent) {.importc: "StringGrid_SetOnColRowMoved", dynlib: dllname.}
+proc StringGrid_GetSelectedColor*(AObj: pointer): TColor {.importc: "StringGrid_GetSelectedColor", dynlib: dllname.}
+proc StringGrid_SetSelectedColor*(AObj: pointer, AValue: TColor) {.importc: "StringGrid_SetSelectedColor", dynlib: dllname.}
+proc StringGrid_GetSelectedColumn*(AObj: pointer): pointer {.importc: "StringGrid_GetSelectedColumn", dynlib: dllname.}
+proc StringGrid_GetStrictSort*(AObj: pointer): bool {.importc: "StringGrid_GetStrictSort", dynlib: dllname.}
+proc StringGrid_SetStrictSort*(AObj: pointer, AValue: bool) {.importc: "StringGrid_SetStrictSort", dynlib: dllname.}
+proc StringGrid_GetFixedHotColor*(AObj: pointer): TColor {.importc: "StringGrid_GetFixedHotColor", dynlib: dllname.}
+proc StringGrid_SetFixedHotColor*(AObj: pointer, AValue: TColor) {.importc: "StringGrid_SetFixedHotColor", dynlib: dllname.}
+proc StringGrid_GetFastEditing*(AObj: pointer): bool {.importc: "StringGrid_GetFastEditing", dynlib: dllname.}
+proc StringGrid_SetFastEditing*(AObj: pointer, AValue: bool) {.importc: "StringGrid_SetFastEditing", dynlib: dllname.}
+proc StringGrid_GetFixedGridLineColor*(AObj: pointer): TColor {.importc: "StringGrid_GetFixedGridLineColor", dynlib: dllname.}
+proc StringGrid_SetFixedGridLineColor*(AObj: pointer, AValue: TColor) {.importc: "StringGrid_SetFixedGridLineColor", dynlib: dllname.}
+proc StringGrid_GetFocusColor*(AObj: pointer): TColor {.importc: "StringGrid_GetFocusColor", dynlib: dllname.}
+proc StringGrid_SetFocusColor*(AObj: pointer, AValue: TColor) {.importc: "StringGrid_SetFocusColor", dynlib: dllname.}
+proc StringGrid_GetFocusRectVisible*(AObj: pointer): bool {.importc: "StringGrid_GetFocusRectVisible", dynlib: dllname.}
+proc StringGrid_SetFocusRectVisible*(AObj: pointer, AValue: bool) {.importc: "StringGrid_SetFocusRectVisible", dynlib: dllname.}
+proc StringGrid_GetGridLineColor*(AObj: pointer): TColor {.importc: "StringGrid_GetGridLineColor", dynlib: dllname.}
+proc StringGrid_SetGridLineColor*(AObj: pointer, AValue: TColor) {.importc: "StringGrid_SetGridLineColor", dynlib: dllname.}
+proc StringGrid_GetGridLineStyle*(AObj: pointer): TPenStyle {.importc: "StringGrid_GetGridLineStyle", dynlib: dllname.}
+proc StringGrid_SetGridLineStyle*(AObj: pointer, AValue: TPenStyle) {.importc: "StringGrid_SetGridLineStyle", dynlib: dllname.}
+proc StringGrid_GetEditor*(AObj: pointer): pointer {.importc: "StringGrid_GetEditor", dynlib: dllname.}
+proc StringGrid_SetEditor*(AObj: pointer, AValue: pointer) {.importc: "StringGrid_SetEditor", dynlib: dllname.}
+proc StringGrid_GetEditorBorderStyle*(AObj: pointer): TBorderStyle {.importc: "StringGrid_GetEditorBorderStyle", dynlib: dllname.}
+proc StringGrid_SetEditorBorderStyle*(AObj: pointer, AValue: TBorderStyle) {.importc: "StringGrid_SetEditorBorderStyle", dynlib: dllname.}
+proc StringGrid_GetEditorMode*(AObj: pointer): bool {.importc: "StringGrid_GetEditorMode", dynlib: dllname.}
+proc StringGrid_SetEditorMode*(AObj: pointer, AValue: bool) {.importc: "StringGrid_SetEditorMode", dynlib: dllname.}
+proc StringGrid_GetSortOrder*(AObj: pointer): TSortOrder {.importc: "StringGrid_GetSortOrder", dynlib: dllname.}
+proc StringGrid_SetSortOrder*(AObj: pointer, AValue: TSortOrder) {.importc: "StringGrid_SetSortOrder", dynlib: dllname.}
+proc StringGrid_GetSortColumn*(AObj: pointer): int32 {.importc: "StringGrid_GetSortColumn", dynlib: dllname.}
+proc StringGrid_SetOnAfterSelection*(AObj: pointer, AEventId: TOnSelectEvent) {.importc: "StringGrid_SetOnAfterSelection", dynlib: dllname.}
+proc StringGrid_SetOnBeforeSelection*(AObj: pointer, AEventId: TOnSelectEvent) {.importc: "StringGrid_SetOnBeforeSelection", dynlib: dllname.}
+proc StringGrid_SetOnButtonClick*(AObj: pointer, AEventId: TOnSelectEvent) {.importc: "StringGrid_SetOnButtonClick", dynlib: dllname.}
+proc StringGrid_SetOnCheckboxToggled*(AObj: pointer, AEventId: TToggledCheckboxEvent) {.importc: "StringGrid_SetOnCheckboxToggled", dynlib: dllname.}
+proc StringGrid_SetOnColRowDeleted*(AObj: pointer, AEventId: TGridOperationEvent) {.importc: "StringGrid_SetOnColRowDeleted", dynlib: dllname.}
+proc StringGrid_SetOnColRowExchanged*(AObj: pointer, AEventId: TGridOperationEvent) {.importc: "StringGrid_SetOnColRowExchanged", dynlib: dllname.}
+proc StringGrid_SetOnColRowInserted*(AObj: pointer, AEventId: TGridOperationEvent) {.importc: "StringGrid_SetOnColRowInserted", dynlib: dllname.}
+proc StringGrid_SetOnColRowMoved*(AObj: pointer, AEventId: TGridOperationEvent) {.importc: "StringGrid_SetOnColRowMoved", dynlib: dllname.}
+proc StringGrid_SetOnCompareCells*(AObj: pointer, AEventId: TOnCompareCells) {.importc: "StringGrid_SetOnCompareCells", dynlib: dllname.}
+proc StringGrid_SetOnEditingDone*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "StringGrid_SetOnEditingDone", dynlib: dllname.}
+proc StringGrid_SetOnGetCellHint*(AObj: pointer, AEventId: TGetCellHintEvent) {.importc: "StringGrid_SetOnGetCellHint", dynlib: dllname.}
+proc StringGrid_SetOnGetCheckboxState*(AObj: pointer, AEventId: TGetCheckboxStateEvent) {.importc: "StringGrid_SetOnGetCheckboxState", dynlib: dllname.}
+proc StringGrid_SetOnSetCheckboxState*(AObj: pointer, AEventId: TSetCheckboxStateEvent) {.importc: "StringGrid_SetOnSetCheckboxState", dynlib: dllname.}
+proc StringGrid_SetOnHeaderClick*(AObj: pointer, AEventId: THdrEvent) {.importc: "StringGrid_SetOnHeaderClick", dynlib: dllname.}
+proc StringGrid_SetOnHeaderSized*(AObj: pointer, AEventId: THdrEvent) {.importc: "StringGrid_SetOnHeaderSized", dynlib: dllname.}
+proc StringGrid_SetOnHeaderSizing*(AObj: pointer, AEventId: THeaderSizingEvent) {.importc: "StringGrid_SetOnHeaderSizing", dynlib: dllname.}
+proc StringGrid_SetOnPickListSelect*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "StringGrid_SetOnPickListSelect", dynlib: dllname.}
+proc StringGrid_SetOnSelection*(AObj: pointer, AEventId: TOnSelectEvent) {.importc: "StringGrid_SetOnSelection", dynlib: dllname.}
+proc StringGrid_SetOnSelectEditor*(AObj: pointer, AEventId: TSelectEditorEvent) {.importc: "StringGrid_SetOnSelectEditor", dynlib: dllname.}
+proc StringGrid_SetOnUserCheckboxBitmap*(AObj: pointer, AEventId: TUserCheckBoxBitmapEvent) {.importc: "StringGrid_SetOnUserCheckboxBitmap", dynlib: dllname.}
+proc StringGrid_SetOnValidateEntry*(AObj: pointer, AEventId: TValidateEntryEvent) {.importc: "StringGrid_SetOnValidateEntry", dynlib: dllname.}
+proc StringGrid_GetAlternateColor*(AObj: pointer): TColor {.importc: "StringGrid_GetAlternateColor", dynlib: dllname.}
+proc StringGrid_SetAlternateColor*(AObj: pointer, AValue: TColor) {.importc: "StringGrid_SetAlternateColor", dynlib: dllname.}
+proc StringGrid_GetAutoAdvance*(AObj: pointer): TAutoAdvance {.importc: "StringGrid_GetAutoAdvance", dynlib: dllname.}
+proc StringGrid_SetAutoAdvance*(AObj: pointer, AValue: TAutoAdvance) {.importc: "StringGrid_SetAutoAdvance", dynlib: dllname.}
+proc StringGrid_GetAutoEdit*(AObj: pointer): bool {.importc: "StringGrid_GetAutoEdit", dynlib: dllname.}
+proc StringGrid_SetAutoEdit*(AObj: pointer, AValue: bool) {.importc: "StringGrid_SetAutoEdit", dynlib: dllname.}
+proc StringGrid_GetAutoFillColumns*(AObj: pointer): bool {.importc: "StringGrid_GetAutoFillColumns", dynlib: dllname.}
+proc StringGrid_SetAutoFillColumns*(AObj: pointer, AValue: bool) {.importc: "StringGrid_SetAutoFillColumns", dynlib: dllname.}
+proc StringGrid_GetCellHintPriority*(AObj: pointer): TCellHintPriority {.importc: "StringGrid_GetCellHintPriority", dynlib: dllname.}
+proc StringGrid_SetCellHintPriority*(AObj: pointer, AValue: TCellHintPriority) {.importc: "StringGrid_SetCellHintPriority", dynlib: dllname.}
+proc StringGrid_GetColumnClickSorts*(AObj: pointer): bool {.importc: "StringGrid_GetColumnClickSorts", dynlib: dllname.}
+proc StringGrid_SetColumnClickSorts*(AObj: pointer, AValue: bool) {.importc: "StringGrid_SetColumnClickSorts", dynlib: dllname.}
+proc StringGrid_GetColumns*(AObj: pointer): pointer {.importc: "StringGrid_GetColumns", dynlib: dllname.}
+proc StringGrid_SetColumns*(AObj: pointer, AValue: pointer) {.importc: "StringGrid_SetColumns", dynlib: dllname.}
+proc StringGrid_GetExtendedSelect*(AObj: pointer): bool {.importc: "StringGrid_GetExtendedSelect", dynlib: dllname.}
+proc StringGrid_SetExtendedSelect*(AObj: pointer, AValue: bool) {.importc: "StringGrid_SetExtendedSelect", dynlib: dllname.}
+proc StringGrid_GetFlat*(AObj: pointer): bool {.importc: "StringGrid_GetFlat", dynlib: dllname.}
+proc StringGrid_SetFlat*(AObj: pointer, AValue: bool) {.importc: "StringGrid_SetFlat", dynlib: dllname.}
+proc StringGrid_GetHeaderHotZones*(AObj: pointer): TGridZoneSet {.importc: "StringGrid_GetHeaderHotZones", dynlib: dllname.}
+proc StringGrid_SetHeaderHotZones*(AObj: pointer, AValue: TGridZoneSet) {.importc: "StringGrid_SetHeaderHotZones", dynlib: dllname.}
+proc StringGrid_GetHeaderPushZones*(AObj: pointer): TGridZoneSet {.importc: "StringGrid_GetHeaderPushZones", dynlib: dllname.}
+proc StringGrid_SetHeaderPushZones*(AObj: pointer, AValue: TGridZoneSet) {.importc: "StringGrid_SetHeaderPushZones", dynlib: dllname.}
+proc StringGrid_GetImageIndexSortAsc*(AObj: pointer): int32 {.importc: "StringGrid_GetImageIndexSortAsc", dynlib: dllname.}
+proc StringGrid_SetImageIndexSortAsc*(AObj: pointer, AValue: int32) {.importc: "StringGrid_SetImageIndexSortAsc", dynlib: dllname.}
+proc StringGrid_GetImageIndexSortDesc*(AObj: pointer): int32 {.importc: "StringGrid_GetImageIndexSortDesc", dynlib: dllname.}
+proc StringGrid_SetImageIndexSortDesc*(AObj: pointer, AValue: int32) {.importc: "StringGrid_SetImageIndexSortDesc", dynlib: dllname.}
+proc StringGrid_GetMouseWheelOption*(AObj: pointer): TMouseWheelOption {.importc: "StringGrid_GetMouseWheelOption", dynlib: dllname.}
+proc StringGrid_SetMouseWheelOption*(AObj: pointer, AValue: TMouseWheelOption) {.importc: "StringGrid_SetMouseWheelOption", dynlib: dllname.}
+proc StringGrid_GetOptions2*(AObj: pointer): TGridOptions2 {.importc: "StringGrid_GetOptions2", dynlib: dllname.}
+proc StringGrid_SetOptions2*(AObj: pointer, AValue: TGridOptions2) {.importc: "StringGrid_SetOptions2", dynlib: dllname.}
+proc StringGrid_GetRangeSelectMode*(AObj: pointer): TRangeSelectMode {.importc: "StringGrid_GetRangeSelectMode", dynlib: dllname.}
+proc StringGrid_SetRangeSelectMode*(AObj: pointer, AValue: TRangeSelectMode) {.importc: "StringGrid_SetRangeSelectMode", dynlib: dllname.}
+proc StringGrid_GetTabAdvance*(AObj: pointer): TAutoAdvance {.importc: "StringGrid_GetTabAdvance", dynlib: dllname.}
+proc StringGrid_SetTabAdvance*(AObj: pointer, AValue: TAutoAdvance) {.importc: "StringGrid_SetTabAdvance", dynlib: dllname.}
+proc StringGrid_GetTitleFont*(AObj: pointer): pointer {.importc: "StringGrid_GetTitleFont", dynlib: dllname.}
+proc StringGrid_SetTitleFont*(AObj: pointer, AValue: pointer) {.importc: "StringGrid_SetTitleFont", dynlib: dllname.}
+proc StringGrid_GetTitleImageList*(AObj: pointer): pointer {.importc: "StringGrid_GetTitleImageList", dynlib: dllname.}
+proc StringGrid_SetTitleImageList*(AObj: pointer, AValue: pointer) {.importc: "StringGrid_SetTitleImageList", dynlib: dllname.}
+proc StringGrid_GetTitleStyle*(AObj: pointer): TTitleStyle {.importc: "StringGrid_GetTitleStyle", dynlib: dllname.}
+proc StringGrid_SetTitleStyle*(AObj: pointer, AValue: TTitleStyle) {.importc: "StringGrid_SetTitleStyle", dynlib: dllname.}
+proc StringGrid_GetUseXORFeatures*(AObj: pointer): bool {.importc: "StringGrid_GetUseXORFeatures", dynlib: dllname.}
+proc StringGrid_SetUseXORFeatures*(AObj: pointer, AValue: bool) {.importc: "StringGrid_SetUseXORFeatures", dynlib: dllname.}
 proc StringGrid_GetAlign*(AObj: pointer): TAlign {.importc: "StringGrid_GetAlign", dynlib: dllname.}
 proc StringGrid_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "StringGrid_SetAlign", dynlib: dllname.}
 proc StringGrid_GetAnchors*(AObj: pointer): TAnchors {.importc: "StringGrid_GetAnchors", dynlib: dllname.}
@@ -10697,8 +10837,6 @@ proc StringGrid_SetOnTopLeftChanged*(AObj: pointer, AEventId: TNotifyEvent) {.im
 proc StringGrid_GetCanvas*(AObj: pointer): pointer {.importc: "StringGrid_GetCanvas", dynlib: dllname.}
 proc StringGrid_GetCol*(AObj: pointer): int32 {.importc: "StringGrid_GetCol", dynlib: dllname.}
 proc StringGrid_SetCol*(AObj: pointer, AValue: int32) {.importc: "StringGrid_SetCol", dynlib: dllname.}
-proc StringGrid_GetEditorMode*(AObj: pointer): bool {.importc: "StringGrid_GetEditorMode", dynlib: dllname.}
-proc StringGrid_SetEditorMode*(AObj: pointer, AValue: bool) {.importc: "StringGrid_SetEditorMode", dynlib: dllname.}
 proc StringGrid_GetGridHeight*(AObj: pointer): int32 {.importc: "StringGrid_GetGridHeight", dynlib: dllname.}
 proc StringGrid_GetGridWidth*(AObj: pointer): int32 {.importc: "StringGrid_GetGridWidth", dynlib: dllname.}
 proc StringGrid_GetLeftCol*(AObj: pointer): int32 {.importc: "StringGrid_GetLeftCol", dynlib: dllname.}
@@ -10773,6 +10911,7 @@ proc StringGrid_GetChildSizing*(AObj: pointer): pointer {.importc: "StringGrid_G
 proc StringGrid_SetChildSizing*(AObj: pointer, AValue: pointer) {.importc: "StringGrid_SetChildSizing", dynlib: dllname.}
 proc StringGrid_GetBorderSpacing*(AObj: pointer): pointer {.importc: "StringGrid_GetBorderSpacing", dynlib: dllname.}
 proc StringGrid_SetBorderSpacing*(AObj: pointer, AValue: pointer) {.importc: "StringGrid_SetBorderSpacing", dynlib: dllname.}
+proc StringGrid_GetIsCellSelected*(AObj: pointer, aCol: int32, aRow: int32): bool {.importc: "StringGrid_GetIsCellSelected", dynlib: dllname.}
 proc StringGrid_GetCells*(AObj: pointer, ACol: int32, ARow: int32): cstring {.importc: "StringGrid_GetCells", dynlib: dllname.}
 proc StringGrid_SetCells*(AObj: pointer, ACol: int32, ARow: int32, AValue: cstring) {.importc: "StringGrid_SetCells", dynlib: dllname.}
 proc StringGrid_GetCols*(AObj: pointer, Index: int32): pointer {.importc: "StringGrid_GetCols", dynlib: dllname.}
@@ -10846,7 +10985,7 @@ proc DrawGrid_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.impo
 proc DrawGrid_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "DrawGrid_AnchorVerticalCenterTo", dynlib: dllname.}
 proc DrawGrid_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "DrawGrid_AnchorAsAlign", dynlib: dllname.}
 proc DrawGrid_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "DrawGrid_AnchorClient", dynlib: dllname.}
-proc DrawGrid_SetOnColRowMoved*(AObj: pointer, AEventId: TMovedEvent) {.importc: "DrawGrid_SetOnColRowMoved", dynlib: dllname.}
+proc DrawGrid_SetOnColRowMoved*(AObj: pointer, AEventId: TGridOperationEvent) {.importc: "DrawGrid_SetOnColRowMoved", dynlib: dllname.}
 proc DrawGrid_GetAlign*(AObj: pointer): TAlign {.importc: "DrawGrid_GetAlign", dynlib: dllname.}
 proc DrawGrid_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "DrawGrid_SetAlign", dynlib: dllname.}
 proc DrawGrid_GetAnchors*(AObj: pointer): TAnchors {.importc: "DrawGrid_GetAnchors", dynlib: dllname.}
@@ -11028,6 +11167,7 @@ proc DrawGrid_StaticClassType*(): TClass {.importc: "DrawGrid_StaticClassType", 
 # ----------------- TValueListEditor ----------------------
 proc ValueListEditor_Create*(AOwner: pointer): pointer {.importc: "ValueListEditor_Create", dynlib: dllname.}
 proc ValueListEditor_Free*(AObj: pointer) {.importc: "ValueListEditor_Free", dynlib: dllname.}
+proc ValueListEditor_DeleteRow*(AObj: pointer, ARow: int32) {.importc: "ValueListEditor_DeleteRow", dynlib: dllname.}
 proc ValueListEditor_Refresh*(AObj: pointer) {.importc: "ValueListEditor_Refresh", dynlib: dllname.}
 proc ValueListEditor_CellRect*(AObj: pointer, ACol: int32, ARow: int32, Result: var TRect) {.importc: "ValueListEditor_CellRect", dynlib: dllname.}
 proc ValueListEditor_MouseToCell*(AObj: pointer, X: int32, Y: int32, ACol: var int32, ARow: var int32) {.importc: "ValueListEditor_MouseToCell", dynlib: dllname.}
@@ -11112,6 +11252,8 @@ proc ValueListEditor_GetDragKind*(AObj: pointer): TDragKind {.importc: "ValueLis
 proc ValueListEditor_SetDragKind*(AObj: pointer, AValue: TDragKind) {.importc: "ValueListEditor_SetDragKind", dynlib: dllname.}
 proc ValueListEditor_GetDragMode*(AObj: pointer): TDragMode {.importc: "ValueListEditor_GetDragMode", dynlib: dllname.}
 proc ValueListEditor_SetDragMode*(AObj: pointer, AValue: TDragMode) {.importc: "ValueListEditor_SetDragMode", dynlib: dllname.}
+proc ValueListEditor_GetDropDownRows*(AObj: pointer): int32 {.importc: "ValueListEditor_GetDropDownRows", dynlib: dllname.}
+proc ValueListEditor_SetDropDownRows*(AObj: pointer, AValue: int32) {.importc: "ValueListEditor_SetDropDownRows", dynlib: dllname.}
 proc ValueListEditor_GetEnabled*(AObj: pointer): bool {.importc: "ValueListEditor_GetEnabled", dynlib: dllname.}
 proc ValueListEditor_SetEnabled*(AObj: pointer, AValue: bool) {.importc: "ValueListEditor_SetEnabled", dynlib: dllname.}
 proc ValueListEditor_GetFixedColor*(AObj: pointer): TColor {.importc: "ValueListEditor_GetFixedColor", dynlib: dllname.}
@@ -13654,6 +13796,125 @@ proc ToggleBox_GetControls*(AObj: pointer, Index: int32): pointer {.importc: "To
 proc ToggleBox_GetComponents*(AObj: pointer, AIndex: int32): pointer {.importc: "ToggleBox_GetComponents", dynlib: dllname.}
 proc ToggleBox_GetAnchorSide*(AObj: pointer, AKind: TAnchorKind): pointer {.importc: "ToggleBox_GetAnchorSide", dynlib: dllname.}
 proc ToggleBox_StaticClassType*(): TClass {.importc: "ToggleBox_StaticClassType", dynlib: dllname.}
+# ----------------- TGridColumnTitle ----------------------
+proc GridColumnTitle_Assign*(AObj: pointer, Source: pointer) {.importc: "GridColumnTitle_Assign", dynlib: dllname.}
+proc GridColumnTitle_FillTitleDefaultFont*(AObj: pointer) {.importc: "GridColumnTitle_FillTitleDefaultFont", dynlib: dllname.}
+proc GridColumnTitle_IsDefault*(AObj: pointer): bool {.importc: "GridColumnTitle_IsDefault", dynlib: dllname.}
+proc GridColumnTitle_GetNamePath*(AObj: pointer): cstring {.importc: "GridColumnTitle_GetNamePath", dynlib: dllname.}
+proc GridColumnTitle_ClassType*(AObj: pointer): TClass {.importc: "GridColumnTitle_ClassType", dynlib: dllname.}
+proc GridColumnTitle_ClassName*(AObj: pointer): cstring {.importc: "GridColumnTitle_ClassName", dynlib: dllname.}
+proc GridColumnTitle_InstanceSize*(AObj: pointer): int32 {.importc: "GridColumnTitle_InstanceSize", dynlib: dllname.}
+proc GridColumnTitle_InheritsFrom*(AObj: pointer, AClass: TClass): bool {.importc: "GridColumnTitle_InheritsFrom", dynlib: dllname.}
+proc GridColumnTitle_Equals*(AObj: pointer, Obj: pointer): bool {.importc: "GridColumnTitle_Equals", dynlib: dllname.}
+proc GridColumnTitle_GetHashCode*(AObj: pointer): int32 {.importc: "GridColumnTitle_GetHashCode", dynlib: dllname.}
+proc GridColumnTitle_ToString*(AObj: pointer): cstring {.importc: "GridColumnTitle_ToString", dynlib: dllname.}
+proc GridColumnTitle_GetColumn*(AObj: pointer): pointer {.importc: "GridColumnTitle_GetColumn", dynlib: dllname.}
+proc GridColumnTitle_GetAlignment*(AObj: pointer): TAlignment {.importc: "GridColumnTitle_GetAlignment", dynlib: dllname.}
+proc GridColumnTitle_SetAlignment*(AObj: pointer, AValue: TAlignment) {.importc: "GridColumnTitle_SetAlignment", dynlib: dllname.}
+proc GridColumnTitle_GetCaption*(AObj: pointer): cstring {.importc: "GridColumnTitle_GetCaption", dynlib: dllname.}
+proc GridColumnTitle_SetCaption*(AObj: pointer, AValue: cstring) {.importc: "GridColumnTitle_SetCaption", dynlib: dllname.}
+proc GridColumnTitle_GetColor*(AObj: pointer): TColor {.importc: "GridColumnTitle_GetColor", dynlib: dllname.}
+proc GridColumnTitle_SetColor*(AObj: pointer, AValue: TColor) {.importc: "GridColumnTitle_SetColor", dynlib: dllname.}
+proc GridColumnTitle_GetFont*(AObj: pointer): pointer {.importc: "GridColumnTitle_GetFont", dynlib: dllname.}
+proc GridColumnTitle_SetFont*(AObj: pointer, AValue: pointer) {.importc: "GridColumnTitle_SetFont", dynlib: dllname.}
+proc GridColumnTitle_GetImageIndex*(AObj: pointer): int32 {.importc: "GridColumnTitle_GetImageIndex", dynlib: dllname.}
+proc GridColumnTitle_SetImageIndex*(AObj: pointer, AValue: int32) {.importc: "GridColumnTitle_SetImageIndex", dynlib: dllname.}
+proc GridColumnTitle_GetImageLayout*(AObj: pointer): TButtonLayout {.importc: "GridColumnTitle_GetImageLayout", dynlib: dllname.}
+proc GridColumnTitle_SetImageLayout*(AObj: pointer, AValue: TButtonLayout) {.importc: "GridColumnTitle_SetImageLayout", dynlib: dllname.}
+proc GridColumnTitle_GetLayout*(AObj: pointer): TTextLayout {.importc: "GridColumnTitle_GetLayout", dynlib: dllname.}
+proc GridColumnTitle_SetLayout*(AObj: pointer, AValue: TTextLayout) {.importc: "GridColumnTitle_SetLayout", dynlib: dllname.}
+proc GridColumnTitle_GetMultiLine*(AObj: pointer): bool {.importc: "GridColumnTitle_GetMultiLine", dynlib: dllname.}
+proc GridColumnTitle_SetMultiLine*(AObj: pointer, AValue: bool) {.importc: "GridColumnTitle_SetMultiLine", dynlib: dllname.}
+proc GridColumnTitle_GetPrefixOption*(AObj: pointer): TPrefixOption {.importc: "GridColumnTitle_GetPrefixOption", dynlib: dllname.}
+proc GridColumnTitle_SetPrefixOption*(AObj: pointer, AValue: TPrefixOption) {.importc: "GridColumnTitle_SetPrefixOption", dynlib: dllname.}
+proc GridColumnTitle_StaticClassType*(): TClass {.importc: "GridColumnTitle_StaticClassType", dynlib: dllname.}
+# ----------------- TGridColumn ----------------------
+proc GridColumn_Assign*(AObj: pointer, Source: pointer) {.importc: "GridColumn_Assign", dynlib: dllname.}
+proc GridColumn_IsDefault*(AObj: pointer): bool {.importc: "GridColumn_IsDefault", dynlib: dllname.}
+proc GridColumn_GetNamePath*(AObj: pointer): cstring {.importc: "GridColumn_GetNamePath", dynlib: dllname.}
+proc GridColumn_ClassType*(AObj: pointer): TClass {.importc: "GridColumn_ClassType", dynlib: dllname.}
+proc GridColumn_ClassName*(AObj: pointer): cstring {.importc: "GridColumn_ClassName", dynlib: dllname.}
+proc GridColumn_InstanceSize*(AObj: pointer): int32 {.importc: "GridColumn_InstanceSize", dynlib: dllname.}
+proc GridColumn_InheritsFrom*(AObj: pointer, AClass: TClass): bool {.importc: "GridColumn_InheritsFrom", dynlib: dllname.}
+proc GridColumn_Equals*(AObj: pointer, Obj: pointer): bool {.importc: "GridColumn_Equals", dynlib: dllname.}
+proc GridColumn_GetHashCode*(AObj: pointer): int32 {.importc: "GridColumn_GetHashCode", dynlib: dllname.}
+proc GridColumn_ToString*(AObj: pointer): cstring {.importc: "GridColumn_ToString", dynlib: dllname.}
+proc GridColumn_GetGrid*(AObj: pointer): pointer {.importc: "GridColumn_GetGrid", dynlib: dllname.}
+proc GridColumn_GetDefaultWidth*(AObj: pointer): int32 {.importc: "GridColumn_GetDefaultWidth", dynlib: dllname.}
+proc GridColumn_GetStoredWidth*(AObj: pointer): int32 {.importc: "GridColumn_GetStoredWidth", dynlib: dllname.}
+proc GridColumn_GetWidthChanged*(AObj: pointer): bool {.importc: "GridColumn_GetWidthChanged", dynlib: dllname.}
+proc GridColumn_GetAlignment*(AObj: pointer): TAlignment {.importc: "GridColumn_GetAlignment", dynlib: dllname.}
+proc GridColumn_SetAlignment*(AObj: pointer, AValue: TAlignment) {.importc: "GridColumn_SetAlignment", dynlib: dllname.}
+proc GridColumn_GetButtonStyle*(AObj: pointer): TColumnButtonStyle {.importc: "GridColumn_GetButtonStyle", dynlib: dllname.}
+proc GridColumn_SetButtonStyle*(AObj: pointer, AValue: TColumnButtonStyle) {.importc: "GridColumn_SetButtonStyle", dynlib: dllname.}
+proc GridColumn_GetColor*(AObj: pointer): TColor {.importc: "GridColumn_GetColor", dynlib: dllname.}
+proc GridColumn_SetColor*(AObj: pointer, AValue: TColor) {.importc: "GridColumn_SetColor", dynlib: dllname.}
+proc GridColumn_GetDropDownRows*(AObj: pointer): int32 {.importc: "GridColumn_GetDropDownRows", dynlib: dllname.}
+proc GridColumn_SetDropDownRows*(AObj: pointer, AValue: int32) {.importc: "GridColumn_SetDropDownRows", dynlib: dllname.}
+proc GridColumn_GetExpanded*(AObj: pointer): bool {.importc: "GridColumn_GetExpanded", dynlib: dllname.}
+proc GridColumn_SetExpanded*(AObj: pointer, AValue: bool) {.importc: "GridColumn_SetExpanded", dynlib: dllname.}
+proc GridColumn_GetFont*(AObj: pointer): pointer {.importc: "GridColumn_GetFont", dynlib: dllname.}
+proc GridColumn_SetFont*(AObj: pointer, AValue: pointer) {.importc: "GridColumn_SetFont", dynlib: dllname.}
+proc GridColumn_GetLayout*(AObj: pointer): TTextLayout {.importc: "GridColumn_GetLayout", dynlib: dllname.}
+proc GridColumn_SetLayout*(AObj: pointer, AValue: TTextLayout) {.importc: "GridColumn_SetLayout", dynlib: dllname.}
+proc GridColumn_GetMinSize*(AObj: pointer): int32 {.importc: "GridColumn_GetMinSize", dynlib: dllname.}
+proc GridColumn_SetMinSize*(AObj: pointer, AValue: int32) {.importc: "GridColumn_SetMinSize", dynlib: dllname.}
+proc GridColumn_GetMaxSize*(AObj: pointer): int32 {.importc: "GridColumn_GetMaxSize", dynlib: dllname.}
+proc GridColumn_SetMaxSize*(AObj: pointer, AValue: int32) {.importc: "GridColumn_SetMaxSize", dynlib: dllname.}
+proc GridColumn_GetPickList*(AObj: pointer): pointer {.importc: "GridColumn_GetPickList", dynlib: dllname.}
+proc GridColumn_SetPickList*(AObj: pointer, AValue: pointer) {.importc: "GridColumn_SetPickList", dynlib: dllname.}
+proc GridColumn_GetReadOnly*(AObj: pointer): bool {.importc: "GridColumn_GetReadOnly", dynlib: dllname.}
+proc GridColumn_SetReadOnly*(AObj: pointer, AValue: bool) {.importc: "GridColumn_SetReadOnly", dynlib: dllname.}
+proc GridColumn_GetSizePriority*(AObj: pointer): int32 {.importc: "GridColumn_GetSizePriority", dynlib: dllname.}
+proc GridColumn_SetSizePriority*(AObj: pointer, AValue: int32) {.importc: "GridColumn_SetSizePriority", dynlib: dllname.}
+proc GridColumn_GetTag*(AObj: pointer): int {.importc: "GridColumn_GetTag", dynlib: dllname.}
+proc GridColumn_SetTag*(AObj: pointer, AValue: int) {.importc: "GridColumn_SetTag", dynlib: dllname.}
+proc GridColumn_GetTitle*(AObj: pointer): pointer {.importc: "GridColumn_GetTitle", dynlib: dllname.}
+proc GridColumn_SetTitle*(AObj: pointer, AValue: pointer) {.importc: "GridColumn_SetTitle", dynlib: dllname.}
+proc GridColumn_GetWidth*(AObj: pointer): int32 {.importc: "GridColumn_GetWidth", dynlib: dllname.}
+proc GridColumn_SetWidth*(AObj: pointer, AValue: int32) {.importc: "GridColumn_SetWidth", dynlib: dllname.}
+proc GridColumn_GetVisible*(AObj: pointer): bool {.importc: "GridColumn_GetVisible", dynlib: dllname.}
+proc GridColumn_SetVisible*(AObj: pointer, AValue: bool) {.importc: "GridColumn_SetVisible", dynlib: dllname.}
+proc GridColumn_GetValueChecked*(AObj: pointer): cstring {.importc: "GridColumn_GetValueChecked", dynlib: dllname.}
+proc GridColumn_SetValueChecked*(AObj: pointer, AValue: cstring) {.importc: "GridColumn_SetValueChecked", dynlib: dllname.}
+proc GridColumn_GetValueUnchecked*(AObj: pointer): cstring {.importc: "GridColumn_GetValueUnchecked", dynlib: dllname.}
+proc GridColumn_SetValueUnchecked*(AObj: pointer, AValue: cstring) {.importc: "GridColumn_SetValueUnchecked", dynlib: dllname.}
+proc GridColumn_GetCollection*(AObj: pointer): pointer {.importc: "GridColumn_GetCollection", dynlib: dllname.}
+proc GridColumn_SetCollection*(AObj: pointer, AValue: pointer) {.importc: "GridColumn_SetCollection", dynlib: dllname.}
+proc GridColumn_GetIndex*(AObj: pointer): int32 {.importc: "GridColumn_GetIndex", dynlib: dllname.}
+proc GridColumn_SetIndex*(AObj: pointer, AValue: int32) {.importc: "GridColumn_SetIndex", dynlib: dllname.}
+proc GridColumn_GetDisplayName*(AObj: pointer): cstring {.importc: "GridColumn_GetDisplayName", dynlib: dllname.}
+proc GridColumn_SetDisplayName*(AObj: pointer, AValue: cstring) {.importc: "GridColumn_SetDisplayName", dynlib: dllname.}
+proc GridColumn_StaticClassType*(): TClass {.importc: "GridColumn_StaticClassType", dynlib: dllname.}
+# ----------------- TGridColumns ----------------------
+proc GridColumns_Add*(AObj: pointer): pointer {.importc: "GridColumns_Add", dynlib: dllname.}
+proc GridColumns_Clear*(AObj: pointer) {.importc: "GridColumns_Clear", dynlib: dllname.}
+proc GridColumns_RealIndex*(AObj: pointer, Index: int32): int32 {.importc: "GridColumns_RealIndex", dynlib: dllname.}
+proc GridColumns_IndexOf*(AObj: pointer, Column: pointer): int32 {.importc: "GridColumns_IndexOf", dynlib: dllname.}
+proc GridColumns_IsDefault*(AObj: pointer): bool {.importc: "GridColumns_IsDefault", dynlib: dllname.}
+proc GridColumns_HasIndex*(AObj: pointer, Index: int32): bool {.importc: "GridColumns_HasIndex", dynlib: dllname.}
+proc GridColumns_Owner*(AObj: pointer): pointer {.importc: "GridColumns_Owner", dynlib: dllname.}
+proc GridColumns_Assign*(AObj: pointer, Source: pointer) {.importc: "GridColumns_Assign", dynlib: dllname.}
+proc GridColumns_BeginUpdate*(AObj: pointer) {.importc: "GridColumns_BeginUpdate", dynlib: dllname.}
+proc GridColumns_Delete*(AObj: pointer, Index: int32) {.importc: "GridColumns_Delete", dynlib: dllname.}
+proc GridColumns_EndUpdate*(AObj: pointer) {.importc: "GridColumns_EndUpdate", dynlib: dllname.}
+proc GridColumns_FindItemID*(AObj: pointer, ID: int32): pointer {.importc: "GridColumns_FindItemID", dynlib: dllname.}
+proc GridColumns_GetNamePath*(AObj: pointer): cstring {.importc: "GridColumns_GetNamePath", dynlib: dllname.}
+proc GridColumns_Insert*(AObj: pointer, Index: int32): pointer {.importc: "GridColumns_Insert", dynlib: dllname.}
+proc GridColumns_ClassType*(AObj: pointer): TClass {.importc: "GridColumns_ClassType", dynlib: dllname.}
+proc GridColumns_ClassName*(AObj: pointer): cstring {.importc: "GridColumns_ClassName", dynlib: dllname.}
+proc GridColumns_InstanceSize*(AObj: pointer): int32 {.importc: "GridColumns_InstanceSize", dynlib: dllname.}
+proc GridColumns_InheritsFrom*(AObj: pointer, AClass: TClass): bool {.importc: "GridColumns_InheritsFrom", dynlib: dllname.}
+proc GridColumns_Equals*(AObj: pointer, Obj: pointer): bool {.importc: "GridColumns_Equals", dynlib: dllname.}
+proc GridColumns_GetHashCode*(AObj: pointer): int32 {.importc: "GridColumns_GetHashCode", dynlib: dllname.}
+proc GridColumns_ToString*(AObj: pointer): cstring {.importc: "GridColumns_ToString", dynlib: dllname.}
+proc GridColumns_GetGrid*(AObj: pointer): pointer {.importc: "GridColumns_GetGrid", dynlib: dllname.}
+proc GridColumns_GetVisibleCount*(AObj: pointer): int32 {.importc: "GridColumns_GetVisibleCount", dynlib: dllname.}
+proc GridColumns_GetEnabled*(AObj: pointer): bool {.importc: "GridColumns_GetEnabled", dynlib: dllname.}
+proc GridColumns_GetCount*(AObj: pointer): int32 {.importc: "GridColumns_GetCount", dynlib: dllname.}
+proc GridColumns_GetItems*(AObj: pointer, Index: int32): pointer {.importc: "GridColumns_GetItems", dynlib: dllname.}
+proc GridColumns_SetItems*(AObj: pointer, Index: int32, AValue: pointer) {.importc: "GridColumns_SetItems", dynlib: dllname.}
+proc GridColumns_StaticClassType*(): TClass {.importc: "GridColumns_StaticClassType", dynlib: dllname.}
 
 # 开始 
 

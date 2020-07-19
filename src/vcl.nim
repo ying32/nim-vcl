@@ -284,6 +284,12 @@ type
   TCheckGroup* = ref object of TWinControl
 
   TToggleBox* = ref object of TWinControl
+
+  TGridColumnTitle* = ref object of TObject
+
+  TGridColumn* = ref object of TObject
+
+  TGridColumns* = ref object of TObject
 #---------------------------------------------------------------
 
 proc ShowMessage*(msg: string) =
@@ -305,6 +311,8 @@ proc getApplication(): TApplication =
 
 proc LoadResFormFile*(fileName: string, root: TObject) =
   ResFormLoadFromFile(fileName, CheckPtr(root))
+
+
 
 #------------------------- TObject -------------------------
 
@@ -5940,6 +5948,14 @@ method SetEnabled*(this: TListBox, AValue: bool) =
   ListBox_SetEnabled(this.FInstance, AValue)
 
 
+method ExtendedSelect*(this: TListBox): bool {.base.} =
+  return ListBox_GetExtendedSelect(this.FInstance)
+
+
+method SetExtendedSelect*(this: TListBox, AValue: bool) {.base.} =
+  ListBox_SetExtendedSelect(this.FInstance, AValue)
+
+
 method Font*(this: TListBox): TFont {.base.} =
   new(result)
   result.FInstance = ListBox_GetFont(this.FInstance)
@@ -10076,6 +10092,14 @@ method Constraints*(this: TSplitter): TSizeConstraints =
 
 method SetConstraints*(this: TSplitter, AValue: TSizeConstraints) =
   Splitter_SetConstraints(this.FInstance, CheckPtr(AValue))
+
+
+method MinSize*(this: TSplitter): int32 {.base.} =
+  return Splitter_GetMinSize(this.FInstance)
+
+
+method SetMinSize*(this: TSplitter, AValue: int32) {.base.} =
+  Splitter_SetMinSize(this.FInstance, AValue)
 
 
 method ParentColor*(this: TSplitter): bool {.base.} =
@@ -25400,6 +25424,14 @@ method SetDelimiter*(this: TStrings, AValue: Char) {.base.} =
   Strings_SetDelimiter(this.FInstance, AValue)
 
 
+method NameValueSeparator*(this: TStrings): Char {.base.} =
+  return Strings_GetNameValueSeparator(this.FInstance)
+
+
+method SetNameValueSeparator*(this: TStrings, AValue: Char) {.base.} =
+  Strings_SetNameValueSeparator(this.FInstance, AValue)
+
+
 method Text*(this: TStrings): string {.base.} =
   return $Strings_GetText(this.FInstance)
 
@@ -25604,6 +25636,14 @@ method Delimiter*(this: TStringList): Char {.base.} =
 
 method SetDelimiter*(this: TStringList, AValue: Char) {.base.} =
   StringList_SetDelimiter(this.FInstance, AValue)
+
+
+method NameValueSeparator*(this: TStringList): Char {.base.} =
+  return StringList_GetNameValueSeparator(this.FInstance)
+
+
+method SetNameValueSeparator*(this: TStringList, AValue: Char) {.base.} =
+  StringList_SetNameValueSeparator(this.FInstance, AValue)
 
 
 method Text*(this: TStringList): string {.base.} =
@@ -43273,16 +43313,133 @@ method Free*(this: TStringGrid) =
      this.TObject.FInstance = nil
 
 
+method DeleteColRow*(this: TStringGrid, IsColumn: bool, index: int32) {.base.} =
+  StringGrid_DeleteColRow(this.FInstance, IsColumn, index)
+
+
+method DeleteCol*(this: TStringGrid, Index: int32) {.base.} =
+  StringGrid_DeleteCol(this.FInstance, Index)
+
+
+method DeleteRow*(this: TStringGrid, Index: int32) {.base.} =
+  StringGrid_DeleteRow(this.FInstance, Index)
+
+
+method ExchangeColRow*(this: TStringGrid, IsColumn: bool, index: int32, WithIndex: int32) {.base.} =
+  StringGrid_ExchangeColRow(this.FInstance, IsColumn, index, WithIndex)
+
+
+method InsertColRow*(this: TStringGrid, IsColumn: bool, index: int32) {.base.} =
+  StringGrid_InsertColRow(this.FInstance, IsColumn, index)
+
+
+method MoveColRow*(this: TStringGrid, IsColumn: bool, FromIndex: int32, ToIndex: int32) {.base.} =
+  StringGrid_MoveColRow(this.FInstance, IsColumn, FromIndex, ToIndex)
+
+
+method SortColRow*(this: TStringGrid, IsColumn: bool, Index: int32, FromIndex: int32, ToIndex: int32) {.base.} =
+  StringGrid_SortColRow(this.FInstance, IsColumn, Index, FromIndex, ToIndex)
+
+
+method EditorByStyle*(this: TStringGrid, Style: TColumnButtonStyle): TWinControl {.base.} =
+  new(result)
+  result.FInstance = StringGrid_EditorByStyle(this.FInstance, Style)
+
+
+method EditorKeyDown*(this: TStringGrid, Sender: TObject, Key: var uint16, Shift: TShiftState) {.base.} =
+  StringGrid_EditorKeyDown(this.FInstance, CheckPtr(Sender), Key, Shift)
+
+
+method EditorKeyPress*(this: TStringGrid, Sender: TObject, Key: var Char) {.base.} =
+  StringGrid_EditorKeyPress(this.FInstance, CheckPtr(Sender), Key)
+
+
+method EditorKeyUp*(this: TStringGrid, Sender: TObject, key: var uint16, shift: TShiftState) {.base.} =
+  StringGrid_EditorKeyUp(this.FInstance, CheckPtr(Sender), key, shift)
+
+
+method EditorTextChanged*(this: TStringGrid, aCol: int32, aRow: int32, aText: string) {.base.} =
+  StringGrid_EditorTextChanged(this.FInstance, aCol, aRow, aText)
+
+
+method EditingDone*(this: TStringGrid) {.base.} =
+  StringGrid_EditingDone(this.FInstance)
+
+
+method AutoAdjustColumns*(this: TStringGrid) {.base.} =
+  StringGrid_AutoAdjustColumns(this.FInstance)
+
+
 method CellRect*(this: TStringGrid, ACol: int32, ARow: int32, Result: var TRect) {.base.} =
   StringGrid_CellRect(this.FInstance, ACol, ARow, Result)
 
 
-method MouseToCell*(this: TStringGrid, X: int32, Y: int32, ACol: var int32, ARow: var int32) {.base.} =
-  StringGrid_MouseToCell(this.FInstance, X, Y, ACol, ARow)
+method CellToGridZone*(this: TStringGrid, aCol: int32, aRow: int32): TGridZone {.base.} =
+  return StringGrid_CellToGridZone(this.FInstance, aCol, aRow)
+
+
+method CheckPosition*(this: TStringGrid) {.base.} =
+  StringGrid_CheckPosition(this.FInstance)
+
+
+method ClearCols*(this: TStringGrid): bool {.base.} =
+  return StringGrid_ClearCols(this.FInstance)
+
+
+method ClearRows*(this: TStringGrid): bool {.base.} =
+  return StringGrid_ClearRows(this.FInstance)
+
+
+method Clear*(this: TStringGrid) {.base.} =
+  StringGrid_Clear(this.FInstance)
+
+
+method ClearSelections*(this: TStringGrid) {.base.} =
+  StringGrid_ClearSelections(this.FInstance)
+
+
+method HasMultiSelection*(this: TStringGrid): bool {.base.} =
+  return StringGrid_HasMultiSelection(this.FInstance)
+
+
+method InvalidateCell*(this: TStringGrid, aCol: int32, aRow: int32) {.base.} =
+  StringGrid_InvalidateCell(this.FInstance, aCol, aRow)
+
+
+method InvalidateCol*(this: TStringGrid, ACol: int32) {.base.} =
+  StringGrid_InvalidateCol(this.FInstance, ACol)
+
+
+method InvalidateRange*(this: TStringGrid, aRange: var TRect) {.base.} =
+  StringGrid_InvalidateRange(this.FInstance, aRange)
+
+
+method InvalidateRow*(this: TStringGrid, ARow: int32) {.base.} =
+  StringGrid_InvalidateRow(this.FInstance, ARow)
+
+
+method IsCellVisible*(this: TStringGrid, aCol: int32, aRow: int32): bool {.base.} =
+  return StringGrid_IsCellVisible(this.FInstance, aCol, aRow)
+
+
+method IsFixedCellVisible*(this: TStringGrid, aCol: int32, aRow: int32): bool {.base.} =
+  return StringGrid_IsFixedCellVisible(this.FInstance, aCol, aRow)
 
 
 method MouseCoord*(this: TStringGrid, X: int32, Y: int32, Result: var TGridCoord) {.base.} =
   StringGrid_MouseCoord(this.FInstance, X, Y, Result)
+
+
+method MouseToCell*(this: TStringGrid, Mouse: var TPoint, Result: var TPoint) {.base.} =
+  StringGrid_MouseToCell(this.FInstance, Mouse, Result)
+
+
+method MouseToLogcell*(this: TStringGrid, Mouse: var TPoint, Result: var TPoint) {.base.} =
+  StringGrid_MouseToLogcell(this.FInstance, Mouse, Result)
+
+
+method MouseToGridZone*(this: TStringGrid, X: int32, Y: int32): TGridZone {.base.} =
+  return StringGrid_MouseToGridZone(this.FInstance, X, Y)
 
 
 method CanFocus*(this: TStringGrid): bool =
@@ -43488,8 +43645,373 @@ method AnchorClient*(this: TStringGrid, ASpace: int32) =
   StringGrid_AnchorClient(this.FInstance, ASpace)
 
 
-method SetOnColRowMoved*(this: TStringGrid, AEventId: TMovedEvent) {.base.} =
+method SelectedColor*(this: TStringGrid): TColor {.base.} =
+  return StringGrid_GetSelectedColor(this.FInstance)
+
+
+method SetSelectedColor*(this: TStringGrid, AValue: TColor) {.base.} =
+  StringGrid_SetSelectedColor(this.FInstance, AValue)
+
+
+method SelectedColumn*(this: TStringGrid): TGridColumn {.base.} =
+  new(result)
+  result.FInstance = StringGrid_GetSelectedColumn(this.FInstance)
+
+
+method StrictSort*(this: TStringGrid): bool {.base.} =
+  return StringGrid_GetStrictSort(this.FInstance)
+
+
+method SetStrictSort*(this: TStringGrid, AValue: bool) {.base.} =
+  StringGrid_SetStrictSort(this.FInstance, AValue)
+
+
+method FixedHotColor*(this: TStringGrid): TColor {.base.} =
+  return StringGrid_GetFixedHotColor(this.FInstance)
+
+
+method SetFixedHotColor*(this: TStringGrid, AValue: TColor) {.base.} =
+  StringGrid_SetFixedHotColor(this.FInstance, AValue)
+
+
+method FastEditing*(this: TStringGrid): bool {.base.} =
+  return StringGrid_GetFastEditing(this.FInstance)
+
+
+method SetFastEditing*(this: TStringGrid, AValue: bool) {.base.} =
+  StringGrid_SetFastEditing(this.FInstance, AValue)
+
+
+method FixedGridLineColor*(this: TStringGrid): TColor {.base.} =
+  return StringGrid_GetFixedGridLineColor(this.FInstance)
+
+
+method SetFixedGridLineColor*(this: TStringGrid, AValue: TColor) {.base.} =
+  StringGrid_SetFixedGridLineColor(this.FInstance, AValue)
+
+
+method FocusColor*(this: TStringGrid): TColor {.base.} =
+  return StringGrid_GetFocusColor(this.FInstance)
+
+
+method SetFocusColor*(this: TStringGrid, AValue: TColor) {.base.} =
+  StringGrid_SetFocusColor(this.FInstance, AValue)
+
+
+method FocusRectVisible*(this: TStringGrid): bool {.base.} =
+  return StringGrid_GetFocusRectVisible(this.FInstance)
+
+
+method SetFocusRectVisible*(this: TStringGrid, AValue: bool) {.base.} =
+  StringGrid_SetFocusRectVisible(this.FInstance, AValue)
+
+
+method GridLineColor*(this: TStringGrid): TColor {.base.} =
+  return StringGrid_GetGridLineColor(this.FInstance)
+
+
+method SetGridLineColor*(this: TStringGrid, AValue: TColor) {.base.} =
+  StringGrid_SetGridLineColor(this.FInstance, AValue)
+
+
+method GridLineStyle*(this: TStringGrid): TPenStyle {.base.} =
+  return StringGrid_GetGridLineStyle(this.FInstance)
+
+
+method SetGridLineStyle*(this: TStringGrid, AValue: TPenStyle) {.base.} =
+  StringGrid_SetGridLineStyle(this.FInstance, AValue)
+
+
+method Editor*(this: TStringGrid): TWinControl {.base.} =
+  new(result)
+  result.FInstance = StringGrid_GetEditor(this.FInstance)
+
+
+method SetEditor*(this: TStringGrid, AValue: TWinControl) {.base.} =
+  StringGrid_SetEditor(this.FInstance, CheckPtr(AValue))
+
+
+method EditorBorderStyle*(this: TStringGrid): TBorderStyle {.base.} =
+  return StringGrid_GetEditorBorderStyle(this.FInstance)
+
+
+method SetEditorBorderStyle*(this: TStringGrid, AValue: TBorderStyle) {.base.} =
+  StringGrid_SetEditorBorderStyle(this.FInstance, AValue)
+
+
+method EditorMode*(this: TStringGrid): bool {.base.} =
+  return StringGrid_GetEditorMode(this.FInstance)
+
+
+method SetEditorMode*(this: TStringGrid, AValue: bool) {.base.} =
+  StringGrid_SetEditorMode(this.FInstance, AValue)
+
+
+method SortOrder*(this: TStringGrid): TSortOrder {.base.} =
+  return StringGrid_GetSortOrder(this.FInstance)
+
+
+method SetSortOrder*(this: TStringGrid, AValue: TSortOrder) {.base.} =
+  StringGrid_SetSortOrder(this.FInstance, AValue)
+
+
+method SortColumn*(this: TStringGrid): int32 {.base.} =
+  return StringGrid_GetSortColumn(this.FInstance)
+
+
+method SetOnAfterSelection*(this: TStringGrid, AEventId: TOnSelectEvent) {.base.} =
+  StringGrid_SetOnAfterSelection(this.FInstance, AEventId)
+
+
+method SetOnBeforeSelection*(this: TStringGrid, AEventId: TOnSelectEvent) {.base.} =
+  StringGrid_SetOnBeforeSelection(this.FInstance, AEventId)
+
+
+method SetOnButtonClick*(this: TStringGrid, AEventId: TOnSelectEvent) {.base.} =
+  StringGrid_SetOnButtonClick(this.FInstance, AEventId)
+
+
+method SetOnCheckboxToggled*(this: TStringGrid, AEventId: TToggledCheckboxEvent) {.base.} =
+  StringGrid_SetOnCheckboxToggled(this.FInstance, AEventId)
+
+
+method SetOnColRowDeleted*(this: TStringGrid, AEventId: TGridOperationEvent) {.base.} =
+  StringGrid_SetOnColRowDeleted(this.FInstance, AEventId)
+
+
+method SetOnColRowExchanged*(this: TStringGrid, AEventId: TGridOperationEvent) {.base.} =
+  StringGrid_SetOnColRowExchanged(this.FInstance, AEventId)
+
+
+method SetOnColRowInserted*(this: TStringGrid, AEventId: TGridOperationEvent) {.base.} =
+  StringGrid_SetOnColRowInserted(this.FInstance, AEventId)
+
+
+method SetOnColRowMoved*(this: TStringGrid, AEventId: TGridOperationEvent) {.base.} =
   StringGrid_SetOnColRowMoved(this.FInstance, AEventId)
+
+
+method SetOnCompareCells*(this: TStringGrid, AEventId: TOnCompareCells) {.base.} =
+  StringGrid_SetOnCompareCells(this.FInstance, AEventId)
+
+
+method SetOnEditingDone*(this: TStringGrid, AEventId: TNotifyEvent) {.base.} =
+  StringGrid_SetOnEditingDone(this.FInstance, AEventId)
+
+
+method SetOnGetCellHint*(this: TStringGrid, AEventId: TGetCellHintEvent) {.base.} =
+  StringGrid_SetOnGetCellHint(this.FInstance, AEventId)
+
+
+method SetOnGetCheckboxState*(this: TStringGrid, AEventId: TGetCheckboxStateEvent) {.base.} =
+  StringGrid_SetOnGetCheckboxState(this.FInstance, AEventId)
+
+
+method SetOnSetCheckboxState*(this: TStringGrid, AEventId: TSetCheckboxStateEvent) {.base.} =
+  StringGrid_SetOnSetCheckboxState(this.FInstance, AEventId)
+
+
+method SetOnHeaderClick*(this: TStringGrid, AEventId: THdrEvent) {.base.} =
+  StringGrid_SetOnHeaderClick(this.FInstance, AEventId)
+
+
+method SetOnHeaderSized*(this: TStringGrid, AEventId: THdrEvent) {.base.} =
+  StringGrid_SetOnHeaderSized(this.FInstance, AEventId)
+
+
+method SetOnHeaderSizing*(this: TStringGrid, AEventId: THeaderSizingEvent) {.base.} =
+  StringGrid_SetOnHeaderSizing(this.FInstance, AEventId)
+
+
+method SetOnPickListSelect*(this: TStringGrid, AEventId: TNotifyEvent) {.base.} =
+  StringGrid_SetOnPickListSelect(this.FInstance, AEventId)
+
+
+method SetOnSelection*(this: TStringGrid, AEventId: TOnSelectEvent) {.base.} =
+  StringGrid_SetOnSelection(this.FInstance, AEventId)
+
+
+method SetOnSelectEditor*(this: TStringGrid, AEventId: TSelectEditorEvent) {.base.} =
+  StringGrid_SetOnSelectEditor(this.FInstance, AEventId)
+
+
+method SetOnUserCheckboxBitmap*(this: TStringGrid, AEventId: TUserCheckBoxBitmapEvent) {.base.} =
+  StringGrid_SetOnUserCheckboxBitmap(this.FInstance, AEventId)
+
+
+method SetOnValidateEntry*(this: TStringGrid, AEventId: TValidateEntryEvent) {.base.} =
+  StringGrid_SetOnValidateEntry(this.FInstance, AEventId)
+
+
+method AlternateColor*(this: TStringGrid): TColor {.base.} =
+  return StringGrid_GetAlternateColor(this.FInstance)
+
+
+method SetAlternateColor*(this: TStringGrid, AValue: TColor) {.base.} =
+  StringGrid_SetAlternateColor(this.FInstance, AValue)
+
+
+method AutoAdvance*(this: TStringGrid): TAutoAdvance {.base.} =
+  return StringGrid_GetAutoAdvance(this.FInstance)
+
+
+method SetAutoAdvance*(this: TStringGrid, AValue: TAutoAdvance) {.base.} =
+  StringGrid_SetAutoAdvance(this.FInstance, AValue)
+
+
+method AutoEdit*(this: TStringGrid): bool {.base.} =
+  return StringGrid_GetAutoEdit(this.FInstance)
+
+
+method SetAutoEdit*(this: TStringGrid, AValue: bool) {.base.} =
+  StringGrid_SetAutoEdit(this.FInstance, AValue)
+
+
+method AutoFillColumns*(this: TStringGrid): bool {.base.} =
+  return StringGrid_GetAutoFillColumns(this.FInstance)
+
+
+method SetAutoFillColumns*(this: TStringGrid, AValue: bool) {.base.} =
+  StringGrid_SetAutoFillColumns(this.FInstance, AValue)
+
+
+method CellHintPriority*(this: TStringGrid): TCellHintPriority {.base.} =
+  return StringGrid_GetCellHintPriority(this.FInstance)
+
+
+method SetCellHintPriority*(this: TStringGrid, AValue: TCellHintPriority) {.base.} =
+  StringGrid_SetCellHintPriority(this.FInstance, AValue)
+
+
+method ColumnClickSorts*(this: TStringGrid): bool {.base.} =
+  return StringGrid_GetColumnClickSorts(this.FInstance)
+
+
+method SetColumnClickSorts*(this: TStringGrid, AValue: bool) {.base.} =
+  StringGrid_SetColumnClickSorts(this.FInstance, AValue)
+
+
+method Columns*(this: TStringGrid): TGridColumns {.base.} =
+  new(result)
+  result.FInstance = StringGrid_GetColumns(this.FInstance)
+
+
+method SetColumns*(this: TStringGrid, AValue: TGridColumns) {.base.} =
+  StringGrid_SetColumns(this.FInstance, CheckPtr(AValue))
+
+
+method ExtendedSelect*(this: TStringGrid): bool {.base.} =
+  return StringGrid_GetExtendedSelect(this.FInstance)
+
+
+method SetExtendedSelect*(this: TStringGrid, AValue: bool) {.base.} =
+  StringGrid_SetExtendedSelect(this.FInstance, AValue)
+
+
+method Flat*(this: TStringGrid): bool {.base.} =
+  return StringGrid_GetFlat(this.FInstance)
+
+
+method SetFlat*(this: TStringGrid, AValue: bool) {.base.} =
+  StringGrid_SetFlat(this.FInstance, AValue)
+
+
+method HeaderHotZones*(this: TStringGrid): TGridZoneSet {.base.} =
+  return StringGrid_GetHeaderHotZones(this.FInstance)
+
+
+method SetHeaderHotZones*(this: TStringGrid, AValue: TGridZoneSet) {.base.} =
+  StringGrid_SetHeaderHotZones(this.FInstance, AValue)
+
+
+method HeaderPushZones*(this: TStringGrid): TGridZoneSet {.base.} =
+  return StringGrid_GetHeaderPushZones(this.FInstance)
+
+
+method SetHeaderPushZones*(this: TStringGrid, AValue: TGridZoneSet) {.base.} =
+  StringGrid_SetHeaderPushZones(this.FInstance, AValue)
+
+
+method ImageIndexSortAsc*(this: TStringGrid): int32 {.base.} =
+  return StringGrid_GetImageIndexSortAsc(this.FInstance)
+
+
+method SetImageIndexSortAsc*(this: TStringGrid, AValue: int32) {.base.} =
+  StringGrid_SetImageIndexSortAsc(this.FInstance, AValue)
+
+
+method ImageIndexSortDesc*(this: TStringGrid): int32 {.base.} =
+  return StringGrid_GetImageIndexSortDesc(this.FInstance)
+
+
+method SetImageIndexSortDesc*(this: TStringGrid, AValue: int32) {.base.} =
+  StringGrid_SetImageIndexSortDesc(this.FInstance, AValue)
+
+
+method MouseWheelOption*(this: TStringGrid): TMouseWheelOption {.base.} =
+  return StringGrid_GetMouseWheelOption(this.FInstance)
+
+
+method SetMouseWheelOption*(this: TStringGrid, AValue: TMouseWheelOption) {.base.} =
+  StringGrid_SetMouseWheelOption(this.FInstance, AValue)
+
+
+method Options2*(this: TStringGrid): TGridOptions2 {.base.} =
+  return StringGrid_GetOptions2(this.FInstance)
+
+
+method SetOptions2*(this: TStringGrid, AValue: TGridOptions2) {.base.} =
+  StringGrid_SetOptions2(this.FInstance, AValue)
+
+
+method RangeSelectMode*(this: TStringGrid): TRangeSelectMode {.base.} =
+  return StringGrid_GetRangeSelectMode(this.FInstance)
+
+
+method SetRangeSelectMode*(this: TStringGrid, AValue: TRangeSelectMode) {.base.} =
+  StringGrid_SetRangeSelectMode(this.FInstance, AValue)
+
+
+method TabAdvance*(this: TStringGrid): TAutoAdvance {.base.} =
+  return StringGrid_GetTabAdvance(this.FInstance)
+
+
+method SetTabAdvance*(this: TStringGrid, AValue: TAutoAdvance) {.base.} =
+  StringGrid_SetTabAdvance(this.FInstance, AValue)
+
+
+method TitleFont*(this: TStringGrid): TFont {.base.} =
+  new(result)
+  result.FInstance = StringGrid_GetTitleFont(this.FInstance)
+
+
+method SetTitleFont*(this: TStringGrid, AValue: TFont) {.base.} =
+  StringGrid_SetTitleFont(this.FInstance, CheckPtr(AValue))
+
+
+method TitleImageList*(this: TStringGrid): TImageList {.base.} =
+  new(result)
+  result.FInstance = StringGrid_GetTitleImageList(this.FInstance)
+
+
+method SetTitleImageList*(this: TStringGrid, AValue: TImageList) {.base.} =
+  StringGrid_SetTitleImageList(this.FInstance, CheckPtr(AValue))
+
+
+method TitleStyle*(this: TStringGrid): TTitleStyle {.base.} =
+  return StringGrid_GetTitleStyle(this.FInstance)
+
+
+method SetTitleStyle*(this: TStringGrid, AValue: TTitleStyle) {.base.} =
+  StringGrid_SetTitleStyle(this.FInstance, AValue)
+
+
+method UseXORFeatures*(this: TStringGrid): bool {.base.} =
+  return StringGrid_GetUseXORFeatures(this.FInstance)
+
+
+method SetUseXORFeatures*(this: TStringGrid, AValue: bool) {.base.} =
+  StringGrid_SetUseXORFeatures(this.FInstance, AValue)
 
 
 method Align*(this: TStringGrid): TAlign =
@@ -43868,14 +44390,6 @@ method SetCol*(this: TStringGrid, AValue: int32) {.base.} =
   StringGrid_SetCol(this.FInstance, AValue)
 
 
-method EditorMode*(this: TStringGrid): bool {.base.} =
-  return StringGrid_GetEditorMode(this.FInstance)
-
-
-method SetEditorMode*(this: TStringGrid, AValue: bool) {.base.} =
-  StringGrid_SetEditorMode(this.FInstance, AValue)
-
-
 method GridHeight*(this: TStringGrid): int32 {.base.} =
   return StringGrid_GetGridHeight(this.FInstance)
 
@@ -44182,6 +44696,10 @@ method SetBorderSpacing*(this: TStringGrid, AValue: TControlBorderSpacing) =
   StringGrid_SetBorderSpacing(this.FInstance, CheckPtr(AValue))
 
 
+method IsCellSelected*(this: TStringGrid, aCol: int32, aRow: int32): bool {.base.} =
+  return StringGrid_GetIsCellSelected(this.FInstance, aCol, aRow)
+
+
 method Cells*(this: TStringGrid, ACol: int32, ARow: int32): string {.base.} =
   return $StringGrid_GetCells(this.FInstance, ACol, ARow)
 
@@ -44485,7 +45003,7 @@ method AnchorClient*(this: TDrawGrid, ASpace: int32) =
   DrawGrid_AnchorClient(this.FInstance, ASpace)
 
 
-method SetOnColRowMoved*(this: TDrawGrid, AEventId: TMovedEvent) {.base.} =
+method SetOnColRowMoved*(this: TDrawGrid, AEventId: TGridOperationEvent) {.base.} =
   DrawGrid_SetOnColRowMoved(this.FInstance, AEventId)
 
 
@@ -45232,6 +45750,10 @@ method Free*(this: TValueListEditor) =
      this.TObject.FInstance = nil
 
 
+method DeleteRow*(this: TValueListEditor, ARow: int32) {.base.} =
+  ValueListEditor_DeleteRow(this.FInstance, ARow)
+
+
 method Refresh*(this: TValueListEditor) =
   ValueListEditor_Refresh(this.FInstance)
 
@@ -45570,6 +46092,14 @@ method DragMode*(this: TValueListEditor): TDragMode {.base.} =
 
 method SetDragMode*(this: TValueListEditor, AValue: TDragMode) {.base.} =
   ValueListEditor_SetDragMode(this.FInstance, AValue)
+
+
+method DropDownRows*(this: TValueListEditor): int32 {.base.} =
+  return ValueListEditor_GetDropDownRows(this.FInstance)
+
+
+method SetDropDownRows*(this: TValueListEditor, AValue: int32) {.base.} =
+  ValueListEditor_SetDropDownRows(this.FInstance, AValue)
 
 
 method Enabled*(this: TValueListEditor): bool =
@@ -56027,6 +56557,494 @@ method AnchorSide*(this: TToggleBox, AKind: TAnchorKind): TAnchorSide =
 
 proc TToggleBoxClass*(): TClass =
   return ToggleBox_StaticClassType()
+
+#------------------------- TGridColumnTitle -------------------------
+
+
+
+
+method Assign*(this: TGridColumnTitle, Source: pointer) {.base.} =
+  GridColumnTitle_Assign(this.FInstance, Source)
+
+
+method FillTitleDefaultFont*(this: TGridColumnTitle) {.base.} =
+  GridColumnTitle_FillTitleDefaultFont(this.FInstance)
+
+
+method IsDefault*(this: TGridColumnTitle): bool {.base.} =
+  return GridColumnTitle_IsDefault(this.FInstance)
+
+
+method GetNamePath*(this: TGridColumnTitle): string {.base.} =
+  return $GridColumnTitle_GetNamePath(this.FInstance)
+
+
+method ClassType*(this: TGridColumnTitle): TClass =
+  return GridColumnTitle_ClassType(this.FInstance)
+
+
+method ClassName*(this: TGridColumnTitle): string =
+  return $GridColumnTitle_ClassName(this.FInstance)
+
+
+method InstanceSize*(this: TGridColumnTitle): int32 =
+  return GridColumnTitle_InstanceSize(this.FInstance)
+
+
+method InheritsFrom*(this: TGridColumnTitle, AClass: TClass): bool =
+  return GridColumnTitle_InheritsFrom(this.FInstance, AClass)
+
+
+method Equals*(this: TGridColumnTitle, Obj: TObject): bool =
+  return GridColumnTitle_Equals(this.FInstance, CheckPtr(Obj))
+
+
+method GetHashCode*(this: TGridColumnTitle): int32 =
+  return GridColumnTitle_GetHashCode(this.FInstance)
+
+
+method ToString*(this: TGridColumnTitle): string =
+  return $GridColumnTitle_ToString(this.FInstance)
+
+
+method Column*(this: TGridColumnTitle): TGridColumn {.base.} =
+  new(result)
+  result.FInstance = GridColumnTitle_GetColumn(this.FInstance)
+
+
+method Alignment*(this: TGridColumnTitle): TAlignment {.base.} =
+  return GridColumnTitle_GetAlignment(this.FInstance)
+
+
+method SetAlignment*(this: TGridColumnTitle, AValue: TAlignment) {.base.} =
+  GridColumnTitle_SetAlignment(this.FInstance, AValue)
+
+
+method Caption*(this: TGridColumnTitle): string {.base.} =
+  return $GridColumnTitle_GetCaption(this.FInstance)
+
+
+method SetCaption*(this: TGridColumnTitle, AValue: string) {.base.} =
+  GridColumnTitle_SetCaption(this.FInstance, AValue)
+
+
+method Color*(this: TGridColumnTitle): TColor {.base.} =
+  return GridColumnTitle_GetColor(this.FInstance)
+
+
+method SetColor*(this: TGridColumnTitle, AValue: TColor) {.base.} =
+  GridColumnTitle_SetColor(this.FInstance, AValue)
+
+
+method Font*(this: TGridColumnTitle): TFont {.base.} =
+  new(result)
+  result.FInstance = GridColumnTitle_GetFont(this.FInstance)
+
+
+method SetFont*(this: TGridColumnTitle, AValue: TFont) {.base.} =
+  GridColumnTitle_SetFont(this.FInstance, CheckPtr(AValue))
+
+
+method ImageIndex*(this: TGridColumnTitle): int32 {.base.} =
+  return GridColumnTitle_GetImageIndex(this.FInstance)
+
+
+method SetImageIndex*(this: TGridColumnTitle, AValue: int32) {.base.} =
+  GridColumnTitle_SetImageIndex(this.FInstance, AValue)
+
+
+method ImageLayout*(this: TGridColumnTitle): TButtonLayout {.base.} =
+  return GridColumnTitle_GetImageLayout(this.FInstance)
+
+
+method SetImageLayout*(this: TGridColumnTitle, AValue: TButtonLayout) {.base.} =
+  GridColumnTitle_SetImageLayout(this.FInstance, AValue)
+
+
+method Layout*(this: TGridColumnTitle): TTextLayout {.base.} =
+  return GridColumnTitle_GetLayout(this.FInstance)
+
+
+method SetLayout*(this: TGridColumnTitle, AValue: TTextLayout) {.base.} =
+  GridColumnTitle_SetLayout(this.FInstance, AValue)
+
+
+method MultiLine*(this: TGridColumnTitle): bool {.base.} =
+  return GridColumnTitle_GetMultiLine(this.FInstance)
+
+
+method SetMultiLine*(this: TGridColumnTitle, AValue: bool) {.base.} =
+  GridColumnTitle_SetMultiLine(this.FInstance, AValue)
+
+
+method PrefixOption*(this: TGridColumnTitle): TPrefixOption {.base.} =
+  return GridColumnTitle_GetPrefixOption(this.FInstance)
+
+
+method SetPrefixOption*(this: TGridColumnTitle, AValue: TPrefixOption) {.base.} =
+  GridColumnTitle_SetPrefixOption(this.FInstance, AValue)
+
+
+proc TGridColumnTitleClass*(): TClass =
+  return GridColumnTitle_StaticClassType()
+
+#------------------------- TGridColumn -------------------------
+
+
+
+
+method Assign*(this: TGridColumn, Source: pointer) {.base.} =
+  GridColumn_Assign(this.FInstance, Source)
+
+
+method IsDefault*(this: TGridColumn): bool {.base.} =
+  return GridColumn_IsDefault(this.FInstance)
+
+
+method GetNamePath*(this: TGridColumn): string {.base.} =
+  return $GridColumn_GetNamePath(this.FInstance)
+
+
+method ClassType*(this: TGridColumn): TClass =
+  return GridColumn_ClassType(this.FInstance)
+
+
+method ClassName*(this: TGridColumn): string =
+  return $GridColumn_ClassName(this.FInstance)
+
+
+method InstanceSize*(this: TGridColumn): int32 =
+  return GridColumn_InstanceSize(this.FInstance)
+
+
+method InheritsFrom*(this: TGridColumn, AClass: TClass): bool =
+  return GridColumn_InheritsFrom(this.FInstance, AClass)
+
+
+method Equals*(this: TGridColumn, Obj: TObject): bool =
+  return GridColumn_Equals(this.FInstance, CheckPtr(Obj))
+
+
+method GetHashCode*(this: TGridColumn): int32 =
+  return GridColumn_GetHashCode(this.FInstance)
+
+
+method ToString*(this: TGridColumn): string =
+  return $GridColumn_ToString(this.FInstance)
+
+
+method Grid*(this: TGridColumn): TStringGrid {.base.} =
+  new(result)
+  result.FInstance = GridColumn_GetGrid(this.FInstance)
+
+
+method DefaultWidth*(this: TGridColumn): int32 {.base.} =
+  return GridColumn_GetDefaultWidth(this.FInstance)
+
+
+method StoredWidth*(this: TGridColumn): int32 {.base.} =
+  return GridColumn_GetStoredWidth(this.FInstance)
+
+
+method WidthChanged*(this: TGridColumn): bool {.base.} =
+  return GridColumn_GetWidthChanged(this.FInstance)
+
+
+method Alignment*(this: TGridColumn): TAlignment {.base.} =
+  return GridColumn_GetAlignment(this.FInstance)
+
+
+method SetAlignment*(this: TGridColumn, AValue: TAlignment) {.base.} =
+  GridColumn_SetAlignment(this.FInstance, AValue)
+
+
+method ButtonStyle*(this: TGridColumn): TColumnButtonStyle {.base.} =
+  return GridColumn_GetButtonStyle(this.FInstance)
+
+
+method SetButtonStyle*(this: TGridColumn, AValue: TColumnButtonStyle) {.base.} =
+  GridColumn_SetButtonStyle(this.FInstance, AValue)
+
+
+method Color*(this: TGridColumn): TColor {.base.} =
+  return GridColumn_GetColor(this.FInstance)
+
+
+method SetColor*(this: TGridColumn, AValue: TColor) {.base.} =
+  GridColumn_SetColor(this.FInstance, AValue)
+
+
+method DropDownRows*(this: TGridColumn): int32 {.base.} =
+  return GridColumn_GetDropDownRows(this.FInstance)
+
+
+method SetDropDownRows*(this: TGridColumn, AValue: int32) {.base.} =
+  GridColumn_SetDropDownRows(this.FInstance, AValue)
+
+
+method Expanded*(this: TGridColumn): bool {.base.} =
+  return GridColumn_GetExpanded(this.FInstance)
+
+
+method SetExpanded*(this: TGridColumn, AValue: bool) {.base.} =
+  GridColumn_SetExpanded(this.FInstance, AValue)
+
+
+method Font*(this: TGridColumn): TFont {.base.} =
+  new(result)
+  result.FInstance = GridColumn_GetFont(this.FInstance)
+
+
+method SetFont*(this: TGridColumn, AValue: TFont) {.base.} =
+  GridColumn_SetFont(this.FInstance, CheckPtr(AValue))
+
+
+method Layout*(this: TGridColumn): TTextLayout {.base.} =
+  return GridColumn_GetLayout(this.FInstance)
+
+
+method SetLayout*(this: TGridColumn, AValue: TTextLayout) {.base.} =
+  GridColumn_SetLayout(this.FInstance, AValue)
+
+
+method MinSize*(this: TGridColumn): int32 {.base.} =
+  return GridColumn_GetMinSize(this.FInstance)
+
+
+method SetMinSize*(this: TGridColumn, AValue: int32) {.base.} =
+  GridColumn_SetMinSize(this.FInstance, AValue)
+
+
+method MaxSize*(this: TGridColumn): int32 {.base.} =
+  return GridColumn_GetMaxSize(this.FInstance)
+
+
+method SetMaxSize*(this: TGridColumn, AValue: int32) {.base.} =
+  GridColumn_SetMaxSize(this.FInstance, AValue)
+
+
+method PickList*(this: TGridColumn): TStrings {.base.} =
+  new(result)
+  result.FInstance = GridColumn_GetPickList(this.FInstance)
+
+
+method SetPickList*(this: TGridColumn, AValue: TStrings) {.base.} =
+  GridColumn_SetPickList(this.FInstance, CheckPtr(AValue))
+
+
+method ReadOnly*(this: TGridColumn): bool {.base.} =
+  return GridColumn_GetReadOnly(this.FInstance)
+
+
+method SetReadOnly*(this: TGridColumn, AValue: bool) {.base.} =
+  GridColumn_SetReadOnly(this.FInstance, AValue)
+
+
+method SizePriority*(this: TGridColumn): int32 {.base.} =
+  return GridColumn_GetSizePriority(this.FInstance)
+
+
+method SetSizePriority*(this: TGridColumn, AValue: int32) {.base.} =
+  GridColumn_SetSizePriority(this.FInstance, AValue)
+
+
+method Tag*(this: TGridColumn): int {.base.} =
+  return GridColumn_GetTag(this.FInstance)
+
+
+method SetTag*(this: TGridColumn, AValue: int) {.base.} =
+  GridColumn_SetTag(this.FInstance, AValue)
+
+
+method Title*(this: TGridColumn): TGridColumnTitle {.base.} =
+  new(result)
+  result.FInstance = GridColumn_GetTitle(this.FInstance)
+
+
+method SetTitle*(this: TGridColumn, AValue: TGridColumnTitle) {.base.} =
+  GridColumn_SetTitle(this.FInstance, CheckPtr(AValue))
+
+
+method Width*(this: TGridColumn): int32 {.base.} =
+  return GridColumn_GetWidth(this.FInstance)
+
+
+method SetWidth*(this: TGridColumn, AValue: int32) {.base.} =
+  GridColumn_SetWidth(this.FInstance, AValue)
+
+
+method Visible*(this: TGridColumn): bool {.base.} =
+  return GridColumn_GetVisible(this.FInstance)
+
+
+method SetVisible*(this: TGridColumn, AValue: bool) {.base.} =
+  GridColumn_SetVisible(this.FInstance, AValue)
+
+
+method ValueChecked*(this: TGridColumn): string {.base.} =
+  return $GridColumn_GetValueChecked(this.FInstance)
+
+
+method SetValueChecked*(this: TGridColumn, AValue: string) {.base.} =
+  GridColumn_SetValueChecked(this.FInstance, AValue)
+
+
+method ValueUnchecked*(this: TGridColumn): string {.base.} =
+  return $GridColumn_GetValueUnchecked(this.FInstance)
+
+
+method SetValueUnchecked*(this: TGridColumn, AValue: string) {.base.} =
+  GridColumn_SetValueUnchecked(this.FInstance, AValue)
+
+
+method Collection*(this: TGridColumn): TCollection {.base.} =
+  new(result)
+  result.FInstance = GridColumn_GetCollection(this.FInstance)
+
+
+method SetCollection*(this: TGridColumn, AValue: TCollection) {.base.} =
+  GridColumn_SetCollection(this.FInstance, CheckPtr(AValue))
+
+
+method Index*(this: TGridColumn): int32 {.base.} =
+  return GridColumn_GetIndex(this.FInstance)
+
+
+method SetIndex*(this: TGridColumn, AValue: int32) {.base.} =
+  GridColumn_SetIndex(this.FInstance, AValue)
+
+
+method DisplayName*(this: TGridColumn): string {.base.} =
+  return $GridColumn_GetDisplayName(this.FInstance)
+
+
+method SetDisplayName*(this: TGridColumn, AValue: string) {.base.} =
+  GridColumn_SetDisplayName(this.FInstance, AValue)
+
+
+proc TGridColumnClass*(): TClass =
+  return GridColumn_StaticClassType()
+
+#------------------------- TGridColumns -------------------------
+
+
+
+
+method Add*(this: TGridColumns): TGridColumn {.base.} =
+  new(result)
+  result.FInstance = GridColumns_Add(this.FInstance)
+
+
+method Clear*(this: TGridColumns) {.base.} =
+  GridColumns_Clear(this.FInstance)
+
+
+method RealIndex*(this: TGridColumns, Index: int32): int32 {.base.} =
+  return GridColumns_RealIndex(this.FInstance, Index)
+
+
+method IndexOf*(this: TGridColumns, Column: TGridColumn): int32 {.base.} =
+  return GridColumns_IndexOf(this.FInstance, CheckPtr(Column))
+
+
+method IsDefault*(this: TGridColumns): bool {.base.} =
+  return GridColumns_IsDefault(this.FInstance)
+
+
+method HasIndex*(this: TGridColumns, Index: int32): bool {.base.} =
+  return GridColumns_HasIndex(this.FInstance, Index)
+
+
+method Owner*(this: TGridColumns): pointer {.base.} =
+  return GridColumns_Owner(this.FInstance)
+
+
+method Assign*(this: TGridColumns, Source: pointer) {.base.} =
+  GridColumns_Assign(this.FInstance, Source)
+
+
+method BeginUpdate*(this: TGridColumns) {.base.} =
+  GridColumns_BeginUpdate(this.FInstance)
+
+
+method Delete*(this: TGridColumns, Index: int32) {.base.} =
+  GridColumns_Delete(this.FInstance, Index)
+
+
+method EndUpdate*(this: TGridColumns) {.base.} =
+  GridColumns_EndUpdate(this.FInstance)
+
+
+method FindItemID*(this: TGridColumns, ID: int32): TCollectionItem {.base.} =
+  new(result)
+  result.FInstance = GridColumns_FindItemID(this.FInstance, ID)
+
+
+method GetNamePath*(this: TGridColumns): string {.base.} =
+  return $GridColumns_GetNamePath(this.FInstance)
+
+
+method Insert*(this: TGridColumns, Index: int32): TCollectionItem {.base.} =
+  new(result)
+  result.FInstance = GridColumns_Insert(this.FInstance, Index)
+
+
+method ClassType*(this: TGridColumns): TClass =
+  return GridColumns_ClassType(this.FInstance)
+
+
+method ClassName*(this: TGridColumns): string =
+  return $GridColumns_ClassName(this.FInstance)
+
+
+method InstanceSize*(this: TGridColumns): int32 =
+  return GridColumns_InstanceSize(this.FInstance)
+
+
+method InheritsFrom*(this: TGridColumns, AClass: TClass): bool =
+  return GridColumns_InheritsFrom(this.FInstance, AClass)
+
+
+method Equals*(this: TGridColumns, Obj: TObject): bool =
+  return GridColumns_Equals(this.FInstance, CheckPtr(Obj))
+
+
+method GetHashCode*(this: TGridColumns): int32 =
+  return GridColumns_GetHashCode(this.FInstance)
+
+
+method ToString*(this: TGridColumns): string =
+  return $GridColumns_ToString(this.FInstance)
+
+
+method Grid*(this: TGridColumns): TStringGrid {.base.} =
+  new(result)
+  result.FInstance = GridColumns_GetGrid(this.FInstance)
+
+
+method VisibleCount*(this: TGridColumns): int32 {.base.} =
+  return GridColumns_GetVisibleCount(this.FInstance)
+
+
+method Enabled*(this: TGridColumns): bool {.base.} =
+  return GridColumns_GetEnabled(this.FInstance)
+
+
+method Count*(this: TGridColumns): int32 {.base.} =
+  return GridColumns_GetCount(this.FInstance)
+
+
+method Items*(this: TGridColumns, Index: int32): TGridColumn {.base.} =
+  new(result)
+  result.FInstance = GridColumns_GetItems(this.FInstance, Index)
+
+
+method SetItems*(this: TGridColumns, Index: int32, AValue: TGridColumn) {.base.} =
+  GridColumns_SetItems(this.FInstance, Index, CheckPtr(AValue))
+
+
+proc TGridColumnsClass*(): TClass =
+  return GridColumns_StaticClassType()
 
 
 #------------ global vars ----------------------

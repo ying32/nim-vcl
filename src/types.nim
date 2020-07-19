@@ -1501,6 +1501,66 @@ type
 
   TLibType* = int32 
 
+  TColumnButtonStyle* = enum 
+    cbsAuto,
+    cbsEllipsis,
+    cbsNone,
+    cbsPickList,
+    cbsCheckboxColumn,
+    cbsButton,
+    cbsButtonColumn,
+
+  TGridZone* = enum 
+    gzNormal,
+    gzFixedCols,
+    gzFixedRows,
+    gzFixedCells,
+    gzInvalid,
+
+  TGridZoneSet* = set[TGridZone] 
+
+  TSortOrder* = enum 
+    soAscending,
+    soDescending,
+
+  TAutoAdvance* = enum 
+    aaNone,
+    aaDown,
+    aaRight,
+    aaLeft,
+    aaRightDown,
+    aaLeftDown,
+    aaRightUp,
+    aaLeftUp,
+
+  TCellHintPriority* = enum 
+    chpAll,
+    chpAllNoDefault,
+    chpTruncOnly,
+
+  TMouseWheelOption* = enum 
+    mwCursor,
+    mwGrid,
+
+  TGridOption2* = enum 
+    goScrollToLastCol, # allow scrolling to last column (so that last column can be leftcol)
+    goScrollToLastRow, # allow scrolling to last row (so that last row can be toprow)
+
+  TGridOptions2* = set[TGridOption2] 
+
+  TRangeSelectMode* = enum 
+    rsmSingle,
+    rsmMulti,
+
+  TTitleStyle* = enum 
+    tsLazarus,
+    tsStandard,
+    tsNative,
+
+  TPrefixOption* = enum 
+    poNone,
+    poHeaderClick,
+
 when defined(i386):
   type
     TDWordFiller* = object
@@ -1548,6 +1608,18 @@ when defined(amd64):
       wParam: WPARAM
       lParam: LPARAM
       result: LRESULT
+
+when defined(linux):
+  type
+    PGdkWindow* = pointer
+    TXId* = usize
+    PGtkFixed* = pointer
+
+
+when defined(macos):
+  type
+    MyNSWindow* = pointer
+
 
 type
 
@@ -1629,8 +1701,6 @@ type
 
   TDragDropEvent* = proc(sender: pointer, source: pointer, x: int32, y: int32) {.nimcall.}
 
-  TStartDragEvent* = proc(sender: pointer, dragObject: pointer) {.nimcall.}
-
   TEndDragEvent* = proc(sender: pointer, target: pointer, x: int32, y: int32) {.nimcall.}
 
   TDockDropEvent* = proc(sender: pointer, source: pointer, x: int32, y: int32) {.nimcall.}
@@ -1645,7 +1715,7 @@ type
 
   TMouseWheelUpDownEvent* = proc(sender: pointer, shift: TShiftState, mousePos: var TPoint, handled: var bool) {.nimcall.}
 
-  TMovedEvent* = proc(sender: pointer, isColumn: bool, sIndex: int32, tIndex: int32) {.nimcall.}
+  TGridOperationEvent* = proc(sender: pointer, isColumn: bool, sIndex: int32, tIndex: int32) {.nimcall.}
 
   TDrawCellEvent* = proc(sender: pointer, aCol: int32, aRow: int32, aRect: var TRect, state: TGridDrawState) {.nimcall.}
 
@@ -1709,12 +1779,6 @@ type
 
   TCreatingListErrorEvent* = proc(sender: pointer, winErrorCode: uint32, errorDescription: cstring, handled: var bool) {.nimcall.}
 
-  TThumbPreviewItemRequestEvent* = proc(sender: pointer, aPreviewHeight: int32, aPreviewWidth: int32, previewBitmap: pointer) {.nimcall.}
-
-  TWindowPreviewItemRequestEvent* = proc(sender: pointer, position: var TPoint, previewBitmap: pointer) {.nimcall.}
-
-  TThumbButtonNotifyEvent* = proc(sender: pointer, aButtonID: int32) {.nimcall.}
-
   TLVCustomDrawEvent* = proc(sender: pointer, aRect: var TRect, defaultDraw: var bool) {.nimcall.}
 
   TLVCustomDrawItemEvent* = proc(sender: pointer, item: pointer, state: TCustomDrawStage, defaultDraw: var bool) {.nimcall.}
@@ -1744,6 +1808,28 @@ type
   TAlignPositionEvent* = proc(sender: pointer, control: pointer, newLeft: var int32, newTop: var int32, newWidth: var int32, newHeight: var int32, alignRect: var TRect, alignInfo: TAlignInfo) {.nimcall.}
 
   TCheckGroupClicked* = proc(sender: pointer, index: int32) {.nimcall.}
+
+  TOnSelectEvent* = proc(sender: pointer, aCol: int32, aRow: int32) {.nimcall.}
+
+  TToggledCheckboxEvent* = proc(sender: pointer, aCol: int32, aRow: int32, aState: TCheckBoxState) {.nimcall.}
+
+  TOnCompareCells* = proc(sender: pointer, ACol: int32, ARow: int32, BCol: int32, BRow: int32, result: var int32) {.nimcall.}
+
+  TGetCellHintEvent* = proc(sender: pointer, ACol: int32, ARow: int32, hintText: var cstring) {.nimcall.}
+
+  TGetCheckboxStateEvent* = proc(sender: pointer, ACol: int32, ARow: int32, value: var TCheckBoxState) {.nimcall.}
+
+  TSetCheckboxStateEvent* = proc(sender: pointer, ACol: int32, ARow: int32, Value: TCheckBoxState) {.nimcall.}
+
+  THdrEvent* = proc(sender: pointer, isColumn: bool, index: int32) {.nimcall.}
+
+  THeaderSizingEvent* = proc(sender: pointer, isColumn: bool, aIndex: int32, aSize: int32) {.nimcall.}
+
+  TSelectEditorEvent* = proc(sender: pointer, aCol: int32, aRow: int32, editor: pointer) {.nimcall.}
+
+  TUserCheckBoxBitmapEvent* = proc(sender: pointer, aCol: int32, aRow: int32, CheckedState: TCheckBoxState, aBitmap: pointer) {.nimcall.}
+
+  TValidateEntryEvent* = proc(sender: pointer, aCol: int32, aRow: int32, oldValue: cstring, newValue: var cstring) {.nimcall.}
 
 const
 
