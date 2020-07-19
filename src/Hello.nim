@@ -10,6 +10,18 @@ when defined(gcc) and defined(windows):
 import strutils,vcl,types,fns
 
 
+  
+# var
+#   ss: Test1
+#   s2: Test2
+
+# new(ss)
+# ss.width=12
+# echo ss.width
+ 
+# new(s2)
+# s2.width=1
+
 var 
   memo: TMemo
   edit: TEdit
