@@ -299,854 +299,164 @@ proc CheckPtr*(obj: TObject): pointer =
 
 ## -------------------- 转换对象定义 ------------------------------------------
 
-
-proc AsObject*(obj: pointer): TObject =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsComponent*(obj: pointer): TComponent =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsControl*(obj: pointer): TControl =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsWinControl*(obj: pointer): TWinControl =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsMainMenu*(obj: pointer): TMainMenu =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsPopupMenu*(obj: pointer): TPopupMenu =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsMemo*(obj: pointer): TMemo =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsCheckBox*(obj: pointer): TCheckBox =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsRadioButton*(obj: pointer): TRadioButton =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsGroupBox*(obj: pointer): TGroupBox =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsLabel*(obj: pointer): TLabel =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsListBox*(obj: pointer): TListBox =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsComboBox*(obj: pointer): TComboBox =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsPanel*(obj: pointer): TPanel =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsImage*(obj: pointer): TImage =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsLinkLabel*(obj: pointer): TLinkLabel =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsSpeedButton*(obj: pointer): TSpeedButton =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsSplitter*(obj: pointer): TSplitter =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsRadioGroup*(obj: pointer): TRadioGroup =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsStaticText*(obj: pointer): TStaticText =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsColorBox*(obj: pointer): TColorBox =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsColorListBox*(obj: pointer): TColorListBox =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsTrayIcon*(obj: pointer): TTrayIcon =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsOpenDialog*(obj: pointer): TOpenDialog =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsSaveDialog*(obj: pointer): TSaveDialog =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsColorDialog*(obj: pointer): TColorDialog =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsFontDialog*(obj: pointer): TFontDialog =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsPrintDialog*(obj: pointer): TPrintDialog =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsOpenPictureDialog*(obj: pointer): TOpenPictureDialog =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsSavePictureDialog*(obj: pointer): TSavePictureDialog =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsSelectDirectoryDialog*(obj: pointer): TSelectDirectoryDialog =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsRichEdit*(obj: pointer): TRichEdit =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsTrackBar*(obj: pointer): TTrackBar =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsImageList*(obj: pointer): TImageList =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsUpDown*(obj: pointer): TUpDown =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsProgressBar*(obj: pointer): TProgressBar =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsDateTimePicker*(obj: pointer): TDateTimePicker =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsMonthCalendar*(obj: pointer): TMonthCalendar =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsListView*(obj: pointer): TListView =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsTreeView*(obj: pointer): TTreeView =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsStatusBar*(obj: pointer): TStatusBar =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsToolBar*(obj: pointer): TToolBar =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsBitBtn*(obj: pointer): TBitBtn =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsIcon*(obj: pointer): TIcon =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsBitmap*(obj: pointer): TBitmap =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsMemoryStream*(obj: pointer): TMemoryStream =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsFont*(obj: pointer): TFont =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsStrings*(obj: pointer): TStrings =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsStringList*(obj: pointer): TStringList =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsBrush*(obj: pointer): TBrush =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsPen*(obj: pointer): TPen =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsMenuItem*(obj: pointer): TMenuItem =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsPicture*(obj: pointer): TPicture =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsListColumns*(obj: pointer): TListColumns =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsListItems*(obj: pointer): TListItems =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsTreeNodes*(obj: pointer): TTreeNodes =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsListItem*(obj: pointer): TListItem =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsTreeNode*(obj: pointer): TTreeNode =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsPageControl*(obj: pointer): TPageControl =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsTabSheet*(obj: pointer): TTabSheet =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsButton*(obj: pointer): TButton =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsEdit*(obj: pointer): TEdit =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsScreen*(obj: pointer): TScreen =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsMouse*(obj: pointer): TMouse =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsListColumn*(obj: pointer): TListColumn =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsCollectionItem*(obj: pointer): TCollectionItem =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsStatusPanels*(obj: pointer): TStatusPanels =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsStatusPanel*(obj: pointer): TStatusPanel =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsSpinEdit*(obj: pointer): TSpinEdit =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsMiniWebview*(obj: pointer): TMiniWebview =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsCanvas*(obj: pointer): TCanvas =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsApplication*(obj: pointer): TApplication =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsGraphic*(obj: pointer): TGraphic =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsPngImage*(obj: pointer): TPngImage =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsJPEGImage*(obj: pointer): TJPEGImage =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsGIFImage*(obj: pointer): TGIFImage =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsActionList*(obj: pointer): TActionList =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsAction*(obj: pointer): TAction =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsToolButton*(obj: pointer): TToolButton =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsIniFile*(obj: pointer): TIniFile =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsRegistry*(obj: pointer): TRegistry =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsClipboard*(obj: pointer): TClipboard =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsMonitor*(obj: pointer): TMonitor =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsPaintBox*(obj: pointer): TPaintBox =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsTimer*(obj: pointer): TTimer =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsList*(obj: pointer): TList =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsForm*(obj: pointer): TForm =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsParaAttributes*(obj: pointer): TParaAttributes =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsTextAttributes*(obj: pointer): TTextAttributes =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsIconOptions*(obj: pointer): TIconOptions =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsException*(obj: pointer): Exception =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsScrollBar*(obj: pointer): TScrollBar =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsMaskEdit*(obj: pointer): TMaskEdit =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsShape*(obj: pointer): TShape =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsBevel*(obj: pointer): TBevel =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsScrollBox*(obj: pointer): TScrollBox =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsCheckListBox*(obj: pointer): TCheckListBox =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsGauge*(obj: pointer): TGauge =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsImageButton*(obj: pointer): TImageButton =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsFindDialog*(obj: pointer): TFindDialog =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsReplaceDialog*(obj: pointer): TReplaceDialog =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsPrinterSetupDialog*(obj: pointer): TPrinterSetupDialog =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsPageSetupDialog*(obj: pointer): TPageSetupDialog =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsDragObject*(obj: pointer): TDragObject =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsDragDockObject*(obj: pointer): TDragDockObject =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsStringGrid*(obj: pointer): TStringGrid =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsDrawGrid*(obj: pointer): TDrawGrid =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsValueListEditor*(obj: pointer): TValueListEditor =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsHeaderControl*(obj: pointer): THeaderControl =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsHeaderSection*(obj: pointer): THeaderSection =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsHeaderSections*(obj: pointer): THeaderSections =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsLabeledEdit*(obj: pointer): TLabeledEdit =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsBoundLabel*(obj: pointer): TBoundLabel =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsFlowPanel*(obj: pointer): TFlowPanel =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsCoolBar*(obj: pointer): TCoolBar =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsCoolBands*(obj: pointer): TCoolBands =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsCoolBand*(obj: pointer): TCoolBand =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsCollection*(obj: pointer): TCollection =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsPrinter*(obj: pointer): TPrinter =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsTaskDialog*(obj: pointer): TTaskDialog =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsTaskDialogButtons*(obj: pointer): TTaskDialogButtons =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsTaskDialogButtonItem*(obj: pointer): TTaskDialogButtonItem =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsTaskDialogRadioButtonItem*(obj: pointer): TTaskDialogRadioButtonItem =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsTaskDialogBaseButtonItem*(obj: pointer): TTaskDialogBaseButtonItem =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsComboBoxEx*(obj: pointer): TComboBoxEx =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsComboExItems*(obj: pointer): TComboExItems =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsComboExItem*(obj: pointer): TComboExItem =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsFrame*(obj: pointer): TFrame =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsControlScrollBar*(obj: pointer): TControlScrollBar =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsSizeConstraints*(obj: pointer): TSizeConstraints =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsXButton*(obj: pointer): TXButton =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsAnchorSide*(obj: pointer): TAnchorSide =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsControlBorderSpacing*(obj: pointer): TControlBorderSpacing =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsControlChildSizing*(obj: pointer): TControlChildSizing =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsCheckGroup*(obj: pointer): TCheckGroup =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsToggleBox*(obj: pointer): TToggleBox =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsGridColumnTitle*(obj: pointer): TGridColumnTitle =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsGridColumn*(obj: pointer): TGridColumn =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
-proc AsGridColumns*(obj: pointer): TGridColumns =
-  if obj == nil:
-    return nil
-  new(result)
-  result.Instance = obj
-
+template defaultPointerAs =
+  if obj == nil:
+    return nil
+  new(result)
+  result.Instance = obj
+
+proc AsObject*(obj: pointer): TObject = defaultPointerAs
+proc AsComponent*(obj: pointer): TComponent = defaultPointerAs
+proc AsControl*(obj: pointer): TControl = defaultPointerAs
+proc AsWinControl*(obj: pointer): TWinControl = defaultPointerAs
+proc AsMainMenu*(obj: pointer): TMainMenu = defaultPointerAs
+proc AsPopupMenu*(obj: pointer): TPopupMenu = defaultPointerAs
+proc AsMemo*(obj: pointer): TMemo = defaultPointerAs
+proc AsCheckBox*(obj: pointer): TCheckBox = defaultPointerAs
+proc AsRadioButton*(obj: pointer): TRadioButton = defaultPointerAs
+proc AsGroupBox*(obj: pointer): TGroupBox = defaultPointerAs
+proc AsLabel*(obj: pointer): TLabel = defaultPointerAs
+proc AsListBox*(obj: pointer): TListBox = defaultPointerAs
+proc AsComboBox*(obj: pointer): TComboBox = defaultPointerAs
+proc AsPanel*(obj: pointer): TPanel = defaultPointerAs
+proc AsImage*(obj: pointer): TImage = defaultPointerAs
+proc AsLinkLabel*(obj: pointer): TLinkLabel = defaultPointerAs
+proc AsSpeedButton*(obj: pointer): TSpeedButton = defaultPointerAs
+proc AsSplitter*(obj: pointer): TSplitter = defaultPointerAs
+proc AsRadioGroup*(obj: pointer): TRadioGroup = defaultPointerAs
+proc AsStaticText*(obj: pointer): TStaticText = defaultPointerAs
+proc AsColorBox*(obj: pointer): TColorBox = defaultPointerAs
+proc AsColorListBox*(obj: pointer): TColorListBox = defaultPointerAs
+proc AsTrayIcon*(obj: pointer): TTrayIcon = defaultPointerAs
+proc AsOpenDialog*(obj: pointer): TOpenDialog = defaultPointerAs
+proc AsSaveDialog*(obj: pointer): TSaveDialog = defaultPointerAs
+proc AsColorDialog*(obj: pointer): TColorDialog = defaultPointerAs
+proc AsFontDialog*(obj: pointer): TFontDialog = defaultPointerAs
+proc AsPrintDialog*(obj: pointer): TPrintDialog = defaultPointerAs
+proc AsOpenPictureDialog*(obj: pointer): TOpenPictureDialog = defaultPointerAs
+proc AsSavePictureDialog*(obj: pointer): TSavePictureDialog = defaultPointerAs
+proc AsSelectDirectoryDialog*(obj: pointer): TSelectDirectoryDialog = defaultPointerAs
+proc AsRichEdit*(obj: pointer): TRichEdit = defaultPointerAs
+proc AsTrackBar*(obj: pointer): TTrackBar = defaultPointerAs
+proc AsImageList*(obj: pointer): TImageList = defaultPointerAs
+proc AsUpDown*(obj: pointer): TUpDown = defaultPointerAs
+proc AsProgressBar*(obj: pointer): TProgressBar = defaultPointerAs
+proc AsDateTimePicker*(obj: pointer): TDateTimePicker = defaultPointerAs
+proc AsMonthCalendar*(obj: pointer): TMonthCalendar = defaultPointerAs
+proc AsListView*(obj: pointer): TListView = defaultPointerAs
+proc AsTreeView*(obj: pointer): TTreeView = defaultPointerAs
+proc AsStatusBar*(obj: pointer): TStatusBar = defaultPointerAs
+proc AsToolBar*(obj: pointer): TToolBar = defaultPointerAs
+proc AsBitBtn*(obj: pointer): TBitBtn = defaultPointerAs
+proc AsIcon*(obj: pointer): TIcon = defaultPointerAs
+proc AsBitmap*(obj: pointer): TBitmap = defaultPointerAs
+proc AsMemoryStream*(obj: pointer): TMemoryStream = defaultPointerAs
+proc AsFont*(obj: pointer): TFont = defaultPointerAs
+proc AsStrings*(obj: pointer): TStrings = defaultPointerAs
+proc AsStringList*(obj: pointer): TStringList = defaultPointerAs
+proc AsBrush*(obj: pointer): TBrush = defaultPointerAs
+proc AsPen*(obj: pointer): TPen = defaultPointerAs
+proc AsMenuItem*(obj: pointer): TMenuItem = defaultPointerAs
+proc AsPicture*(obj: pointer): TPicture = defaultPointerAs
+proc AsListColumns*(obj: pointer): TListColumns = defaultPointerAs
+proc AsListItems*(obj: pointer): TListItems = defaultPointerAs
+proc AsTreeNodes*(obj: pointer): TTreeNodes = defaultPointerAs
+proc AsListItem*(obj: pointer): TListItem = defaultPointerAs
+proc AsTreeNode*(obj: pointer): TTreeNode = defaultPointerAs
+proc AsPageControl*(obj: pointer): TPageControl = defaultPointerAs
+proc AsTabSheet*(obj: pointer): TTabSheet = defaultPointerAs
+proc AsButton*(obj: pointer): TButton = defaultPointerAs
+proc AsEdit*(obj: pointer): TEdit = defaultPointerAs
+proc AsScreen*(obj: pointer): TScreen = defaultPointerAs
+proc AsMouse*(obj: pointer): TMouse = defaultPointerAs
+proc AsListColumn*(obj: pointer): TListColumn = defaultPointerAs
+proc AsCollectionItem*(obj: pointer): TCollectionItem = defaultPointerAs
+proc AsStatusPanels*(obj: pointer): TStatusPanels = defaultPointerAs
+proc AsStatusPanel*(obj: pointer): TStatusPanel = defaultPointerAs
+proc AsSpinEdit*(obj: pointer): TSpinEdit = defaultPointerAs
+proc AsMiniWebview*(obj: pointer): TMiniWebview = defaultPointerAs
+proc AsCanvas*(obj: pointer): TCanvas = defaultPointerAs
+proc AsApplication*(obj: pointer): TApplication = defaultPointerAs
+proc AsGraphic*(obj: pointer): TGraphic = defaultPointerAs
+proc AsPngImage*(obj: pointer): TPngImage = defaultPointerAs
+proc AsJPEGImage*(obj: pointer): TJPEGImage = defaultPointerAs
+proc AsGIFImage*(obj: pointer): TGIFImage = defaultPointerAs
+proc AsActionList*(obj: pointer): TActionList = defaultPointerAs
+proc AsAction*(obj: pointer): TAction = defaultPointerAs
+proc AsToolButton*(obj: pointer): TToolButton = defaultPointerAs
+proc AsIniFile*(obj: pointer): TIniFile = defaultPointerAs
+proc AsRegistry*(obj: pointer): TRegistry = defaultPointerAs
+proc AsClipboard*(obj: pointer): TClipboard = defaultPointerAs
+proc AsMonitor*(obj: pointer): TMonitor = defaultPointerAs
+proc AsPaintBox*(obj: pointer): TPaintBox = defaultPointerAs
+proc AsTimer*(obj: pointer): TTimer = defaultPointerAs
+proc AsList*(obj: pointer): TList = defaultPointerAs
+proc AsForm*(obj: pointer): TForm = defaultPointerAs
+proc AsParaAttributes*(obj: pointer): TParaAttributes = defaultPointerAs
+proc AsTextAttributes*(obj: pointer): TTextAttributes = defaultPointerAs
+proc AsIconOptions*(obj: pointer): TIconOptions = defaultPointerAs
+proc AsException*(obj: pointer): Exception = defaultPointerAs
+proc AsScrollBar*(obj: pointer): TScrollBar = defaultPointerAs
+proc AsMaskEdit*(obj: pointer): TMaskEdit = defaultPointerAs
+proc AsShape*(obj: pointer): TShape = defaultPointerAs
+proc AsBevel*(obj: pointer): TBevel = defaultPointerAs
+proc AsScrollBox*(obj: pointer): TScrollBox = defaultPointerAs
+proc AsCheckListBox*(obj: pointer): TCheckListBox = defaultPointerAs
+proc AsGauge*(obj: pointer): TGauge = defaultPointerAs
+proc AsImageButton*(obj: pointer): TImageButton = defaultPointerAs
+proc AsFindDialog*(obj: pointer): TFindDialog = defaultPointerAs
+proc AsReplaceDialog*(obj: pointer): TReplaceDialog = defaultPointerAs
+proc AsPrinterSetupDialog*(obj: pointer): TPrinterSetupDialog = defaultPointerAs
+proc AsPageSetupDialog*(obj: pointer): TPageSetupDialog = defaultPointerAs
+proc AsDragObject*(obj: pointer): TDragObject = defaultPointerAs
+proc AsDragDockObject*(obj: pointer): TDragDockObject = defaultPointerAs
+proc AsStringGrid*(obj: pointer): TStringGrid = defaultPointerAs
+proc AsDrawGrid*(obj: pointer): TDrawGrid = defaultPointerAs
+proc AsValueListEditor*(obj: pointer): TValueListEditor = defaultPointerAs
+proc AsHeaderControl*(obj: pointer): THeaderControl = defaultPointerAs
+proc AsHeaderSection*(obj: pointer): THeaderSection = defaultPointerAs
+proc AsHeaderSections*(obj: pointer): THeaderSections = defaultPointerAs
+proc AsLabeledEdit*(obj: pointer): TLabeledEdit = defaultPointerAs
+proc AsBoundLabel*(obj: pointer): TBoundLabel = defaultPointerAs
+proc AsFlowPanel*(obj: pointer): TFlowPanel = defaultPointerAs
+proc AsCoolBar*(obj: pointer): TCoolBar = defaultPointerAs
+proc AsCoolBands*(obj: pointer): TCoolBands = defaultPointerAs
+proc AsCoolBand*(obj: pointer): TCoolBand = defaultPointerAs
+proc AsCollection*(obj: pointer): TCollection = defaultPointerAs
+proc AsPrinter*(obj: pointer): TPrinter = defaultPointerAs
+proc AsTaskDialog*(obj: pointer): TTaskDialog = defaultPointerAs
+proc AsTaskDialogButtons*(obj: pointer): TTaskDialogButtons = defaultPointerAs
+proc AsTaskDialogButtonItem*(obj: pointer): TTaskDialogButtonItem = defaultPointerAs
+proc AsTaskDialogRadioButtonItem*(obj: pointer): TTaskDialogRadioButtonItem = defaultPointerAs
+proc AsTaskDialogBaseButtonItem*(obj: pointer): TTaskDialogBaseButtonItem = defaultPointerAs
+proc AsComboBoxEx*(obj: pointer): TComboBoxEx = defaultPointerAs
+proc AsComboExItems*(obj: pointer): TComboExItems = defaultPointerAs
+proc AsComboExItem*(obj: pointer): TComboExItem = defaultPointerAs
+proc AsFrame*(obj: pointer): TFrame = defaultPointerAs
+proc AsControlScrollBar*(obj: pointer): TControlScrollBar = defaultPointerAs
+proc AsSizeConstraints*(obj: pointer): TSizeConstraints = defaultPointerAs
+proc AsXButton*(obj: pointer): TXButton = defaultPointerAs
+proc AsAnchorSide*(obj: pointer): TAnchorSide = defaultPointerAs
+proc AsControlBorderSpacing*(obj: pointer): TControlBorderSpacing = defaultPointerAs
+proc AsControlChildSizing*(obj: pointer): TControlChildSizing = defaultPointerAs
+proc AsCheckGroup*(obj: pointer): TCheckGroup = defaultPointerAs
+proc AsToggleBox*(obj: pointer): TToggleBox = defaultPointerAs
+proc AsGridColumnTitle*(obj: pointer): TGridColumnTitle = defaultPointerAs
+proc AsGridColumn*(obj: pointer): TGridColumn = defaultPointerAs
+proc AsGridColumns*(obj: pointer): TGridColumns = defaultPointerAs
+
+template defaultFree(pName) =
+  if (this != nil) and (this.Instance != nil):
+     pName(this.Instance)
+     this.Instance = nil
 
 #------------------------- TObject -------------------------
 
-proc Free*(this: TObject)  =
-  if (this != nil) and (this.Instance != nil):
-     Object_Free(this.Instance)
-     this.Instance = nil
+proc Free*(this: TObject)  = defaultFree: Object_Free
 
 proc NewObject*(): TObject =
    new(result, Free)
    result.Instance = Object_Create()
-
-
 proc Instance*(this: TObject): pointer =
   if this != nil:
     return this.Instance
@@ -1174,22 +484,16 @@ proc GetHashCode*(this: TObject): int32 {.inline.} =
 proc ToString*(this: TObject): string {.inline.} =
   return $Object_ToString(this.Instance)
 
-proc TObjectClass*(): TClass =
-  return Object_StaticClassType()
+proc TObjectClass*(): TClass = Object_StaticClassType()
 
 
 #------------------------- TComponent -------------------------
 
-proc Free*(this: TComponent) =
-  if (this != nil) and (this.Instance != nil):
-     Component_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TComponent) = defaultFree: Component_Free
 
 proc NewComponent*(AOwner: TComponent): TComponent =
    new(result, Free)
    result.Instance = Component_Create(CheckPtr(AOwner))
-
-
 
 proc FindComponent*(this: TComponent, AName: string): TComponent {.inline.} =
   return AsComponent(Component_FindComponent(this.Instance, AName))
@@ -1251,22 +555,16 @@ proc `Tag=`*(this: TComponent, AValue: int) {.inline.} =
 proc Components*(this: TComponent, AIndex: int32): TComponent {.inline.} =
   return AsComponent(Component_GetComponents(this.Instance, AIndex))
 
-proc TComponentClass*(): TClass =
-  return Component_StaticClassType()
+proc TComponentClass*(): TClass = Component_StaticClassType()
 
 
 #------------------------- TControl -------------------------
 
-proc Free*(this: TControl) =
-  if (this != nil) and (this.Instance != nil):
-     Control_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TControl) = defaultFree: Control_Free
 
 proc NewControl*(AOwner: TComponent): TControl =
    new(result)
    result.Instance = Control_Create(CheckPtr(AOwner))
-
-
 
 proc BringToFront*(this: TControl) {.inline.} =
   Control_BringToFront(this.Instance)
@@ -1562,22 +860,16 @@ proc Components*(this: TControl, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TControl, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(Control_GetAnchorSide(this.Instance, AKind))
 
-proc TControlClass*(): TClass =
-  return Control_StaticClassType()
+proc TControlClass*(): TClass = Control_StaticClassType()
 
 
 #------------------------- TWinControl -------------------------
 
-proc Free*(this: TWinControl) =
-  if (this != nil) and (this.Instance != nil):
-     WinControl_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TWinControl) = defaultFree: WinControl_Free
 
 proc NewWinControl*(AOwner: TComponent): TWinControl =
    new(result)
    result.Instance = WinControl_Create(CheckPtr(AOwner))
-
-
 
 proc CanFocus*(this: TWinControl): bool {.inline.} =
   return WinControl_CanFocus(this.Instance)
@@ -1993,22 +1285,16 @@ proc Components*(this: TWinControl, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TWinControl, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(WinControl_GetAnchorSide(this.Instance, AKind))
 
-proc TWinControlClass*(): TClass =
-  return WinControl_StaticClassType()
+proc TWinControlClass*(): TClass = WinControl_StaticClassType()
 
 
 #------------------------- TMainMenu -------------------------
 
-proc Free*(this: TMainMenu) =
-  if (this != nil) and (this.Instance != nil):
-     MainMenu_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TMainMenu) = defaultFree: MainMenu_Free
 
 proc NewMainMenu*(AOwner: TComponent): TMainMenu =
    new(result)
    result.Instance = MainMenu_Create(CheckPtr(AOwner))
-
-
 
 proc FindComponent*(this: TMainMenu, AName: string): TComponent =
   return AsComponent(MainMenu_FindComponent(this.Instance, AName))
@@ -2103,22 +1389,16 @@ proc `Tag=`*(this: TMainMenu, AValue: int) {.inline.} =
 proc Components*(this: TMainMenu, AIndex: int32): TComponent {.inline.} =
   return AsComponent(MainMenu_GetComponents(this.Instance, AIndex))
 
-proc TMainMenuClass*(): TClass =
-  return MainMenu_StaticClassType()
+proc TMainMenuClass*(): TClass = MainMenu_StaticClassType()
 
 
 #------------------------- TPopupMenu -------------------------
 
-proc Free*(this: TPopupMenu) =
-  if (this != nil) and (this.Instance != nil):
-     PopupMenu_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TPopupMenu) = defaultFree: PopupMenu_Free
 
 proc NewPopupMenu*(AOwner: TComponent): TPopupMenu =
    new(result)
    result.Instance = PopupMenu_Create(CheckPtr(AOwner))
-
-
 
 proc CloseMenu*(this: TPopupMenu) {.inline.} =
   PopupMenu_CloseMenu(this.Instance)
@@ -2234,22 +1514,16 @@ proc `Tag=`*(this: TPopupMenu, AValue: int) {.inline.} =
 proc Components*(this: TPopupMenu, AIndex: int32): TComponent {.inline.} =
   return AsComponent(PopupMenu_GetComponents(this.Instance, AIndex))
 
-proc TPopupMenuClass*(): TClass =
-  return PopupMenu_StaticClassType()
+proc TPopupMenuClass*(): TClass = PopupMenu_StaticClassType()
 
 
 #------------------------- TMemo -------------------------
 
-proc Free*(this: TMemo) =
-  if (this != nil) and (this.Instance != nil):
-     Memo_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TMemo) = defaultFree: Memo_Free
 
 proc NewMemo*(AOwner: TComponent): TMemo =
    new(result)
    result.Instance = Memo_Create(CheckPtr(AOwner))
-
-
 
 proc Append*(this: TMemo, Value: string) {.inline.} =
   Memo_Append(this.Instance, Value)
@@ -2905,22 +2179,16 @@ proc Components*(this: TMemo, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TMemo, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(Memo_GetAnchorSide(this.Instance, AKind))
 
-proc TMemoClass*(): TClass =
-  return Memo_StaticClassType()
+proc TMemoClass*(): TClass = Memo_StaticClassType()
 
 
 #------------------------- TCheckBox -------------------------
 
-proc Free*(this: TCheckBox) =
-  if (this != nil) and (this.Instance != nil):
-     CheckBox_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TCheckBox) = defaultFree: CheckBox_Free
 
 proc NewCheckBox*(AOwner: TComponent): TCheckBox =
    new(result)
    result.Instance = CheckBox_Create(CheckPtr(AOwner))
-
-
 
 proc CanFocus*(this: TCheckBox): bool =
   return CheckBox_CanFocus(this.Instance)
@@ -3468,22 +2736,16 @@ proc Components*(this: TCheckBox, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TCheckBox, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(CheckBox_GetAnchorSide(this.Instance, AKind))
 
-proc TCheckBoxClass*(): TClass =
-  return CheckBox_StaticClassType()
+proc TCheckBoxClass*(): TClass = CheckBox_StaticClassType()
 
 
 #------------------------- TRadioButton -------------------------
 
-proc Free*(this: TRadioButton) =
-  if (this != nil) and (this.Instance != nil):
-     RadioButton_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TRadioButton) = defaultFree: RadioButton_Free
 
 proc NewRadioButton*(AOwner: TComponent): TRadioButton =
    new(result)
    result.Instance = RadioButton_Create(CheckPtr(AOwner))
-
-
 
 proc CanFocus*(this: TRadioButton): bool =
   return RadioButton_CanFocus(this.Instance)
@@ -4019,22 +3281,16 @@ proc Components*(this: TRadioButton, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TRadioButton, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(RadioButton_GetAnchorSide(this.Instance, AKind))
 
-proc TRadioButtonClass*(): TClass =
-  return RadioButton_StaticClassType()
+proc TRadioButtonClass*(): TClass = RadioButton_StaticClassType()
 
 
 #------------------------- TGroupBox -------------------------
 
-proc Free*(this: TGroupBox) =
-  if (this != nil) and (this.Instance != nil):
-     GroupBox_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TGroupBox) = defaultFree: GroupBox_Free
 
 proc NewGroupBox*(AOwner: TComponent): TGroupBox =
    new(result)
    result.Instance = GroupBox_Create(CheckPtr(AOwner))
-
-
 
 proc CanFocus*(this: TGroupBox): bool =
   return GroupBox_CanFocus(this.Instance)
@@ -4567,22 +3823,16 @@ proc Components*(this: TGroupBox, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TGroupBox, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(GroupBox_GetAnchorSide(this.Instance, AKind))
 
-proc TGroupBoxClass*(): TClass =
-  return GroupBox_StaticClassType()
+proc TGroupBoxClass*(): TClass = GroupBox_StaticClassType()
 
 
 #------------------------- TLabel -------------------------
 
-proc Free*(this: TLabel) =
-  if (this != nil) and (this.Instance != nil):
-     Label_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TLabel) = defaultFree: Label_Free
 
 proc NewLabel*(AOwner: TComponent): TLabel =
    new(result)
    result.Instance = Label_Create(CheckPtr(AOwner))
-
-
 
 proc BringToFront*(this: TLabel) =
   Label_BringToFront(this.Instance)
@@ -5022,22 +4272,16 @@ proc Components*(this: TLabel, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TLabel, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(Label_GetAnchorSide(this.Instance, AKind))
 
-proc TLabelClass*(): TClass =
-  return Label_StaticClassType()
+proc TLabelClass*(): TClass = Label_StaticClassType()
 
 
 #------------------------- TListBox -------------------------
 
-proc Free*(this: TListBox) =
-  if (this != nil) and (this.Instance != nil):
-     ListBox_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TListBox) = defaultFree: ListBox_Free
 
 proc NewListBox*(AOwner: TComponent): TListBox =
    new(result)
    result.Instance = ListBox_Create(CheckPtr(AOwner))
-
-
 
 proc AddItem*(this: TListBox, Item: string, AObject: TObject) {.inline.} =
   ListBox_AddItem(this.Instance, Item, CheckPtr(AObject))
@@ -5669,22 +4913,16 @@ proc Components*(this: TListBox, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TListBox, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(ListBox_GetAnchorSide(this.Instance, AKind))
 
-proc TListBoxClass*(): TClass =
-  return ListBox_StaticClassType()
+proc TListBoxClass*(): TClass = ListBox_StaticClassType()
 
 
 #------------------------- TComboBox -------------------------
 
-proc Free*(this: TComboBox) =
-  if (this != nil) and (this.Instance != nil):
-     ComboBox_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TComboBox) = defaultFree: ComboBox_Free
 
 proc NewComboBox*(AOwner: TComponent): TComboBox =
    new(result)
    result.Instance = ComboBox_Create(CheckPtr(AOwner))
-
-
 
 proc AddItem*(this: TComboBox, Item: string, AObject: TObject) {.inline.} =
   ComboBox_AddItem(this.Instance, Item, CheckPtr(AObject))
@@ -6313,22 +5551,16 @@ proc Components*(this: TComboBox, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TComboBox, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(ComboBox_GetAnchorSide(this.Instance, AKind))
 
-proc TComboBoxClass*(): TClass =
-  return ComboBox_StaticClassType()
+proc TComboBoxClass*(): TClass = ComboBox_StaticClassType()
 
 
 #------------------------- TPanel -------------------------
 
-proc Free*(this: TPanel) =
-  if (this != nil) and (this.Instance != nil):
-     Panel_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TPanel) = defaultFree: Panel_Free
 
 proc NewPanel*(AOwner: TComponent): TPanel =
    new(result)
    result.Instance = Panel_Create(CheckPtr(AOwner))
-
-
 
 proc CanFocus*(this: TPanel): bool =
   return Panel_CanFocus(this.Instance)
@@ -6912,22 +6144,16 @@ proc Components*(this: TPanel, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TPanel, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(Panel_GetAnchorSide(this.Instance, AKind))
 
-proc TPanelClass*(): TClass =
-  return Panel_StaticClassType()
+proc TPanelClass*(): TClass = Panel_StaticClassType()
 
 
 #------------------------- TImage -------------------------
 
-proc Free*(this: TImage) =
-  if (this != nil) and (this.Instance != nil):
-     Image_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TImage) = defaultFree: Image_Free
 
 proc NewImage*(AOwner: TComponent): TImage =
    new(result)
    result.Instance = Image_Create(CheckPtr(AOwner))
-
-
 
 proc BringToFront*(this: TImage) =
   Image_BringToFront(this.Instance)
@@ -7346,22 +6572,16 @@ proc Components*(this: TImage, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TImage, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(Image_GetAnchorSide(this.Instance, AKind))
 
-proc TImageClass*(): TClass =
-  return Image_StaticClassType()
+proc TImageClass*(): TClass = Image_StaticClassType()
 
 
 #------------------------- TLinkLabel -------------------------
 
-proc Free*(this: TLinkLabel) =
-  if (this != nil) and (this.Instance != nil):
-     LinkLabel_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TLinkLabel) = defaultFree: LinkLabel_Free
 
 proc NewLinkLabel*(AOwner: TComponent): TLinkLabel =
    new(result)
    result.Instance = LinkLabel_Create(CheckPtr(AOwner))
-
-
 
 proc Invalidate*(this: TLinkLabel) =
   LinkLabel_Invalidate(this.Instance)
@@ -7762,22 +6982,16 @@ proc Components*(this: TLinkLabel, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TLinkLabel, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(LinkLabel_GetAnchorSide(this.Instance, AKind))
 
-proc TLinkLabelClass*(): TClass =
-  return LinkLabel_StaticClassType()
+proc TLinkLabelClass*(): TClass = LinkLabel_StaticClassType()
 
 
 #------------------------- TSpeedButton -------------------------
 
-proc Free*(this: TSpeedButton) =
-  if (this != nil) and (this.Instance != nil):
-     SpeedButton_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TSpeedButton) = defaultFree: SpeedButton_Free
 
 proc NewSpeedButton*(AOwner: TComponent): TSpeedButton =
    new(result)
    result.Instance = SpeedButton_Create(CheckPtr(AOwner))
-
-
 
 proc Click*(this: TSpeedButton) {.inline.} =
   SpeedButton_Click(this.Instance)
@@ -8205,22 +7419,16 @@ proc Components*(this: TSpeedButton, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TSpeedButton, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(SpeedButton_GetAnchorSide(this.Instance, AKind))
 
-proc TSpeedButtonClass*(): TClass =
-  return SpeedButton_StaticClassType()
+proc TSpeedButtonClass*(): TClass = SpeedButton_StaticClassType()
 
 
 #------------------------- TSplitter -------------------------
 
-proc Free*(this: TSplitter) =
-  if (this != nil) and (this.Instance != nil):
-     Splitter_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TSplitter) = defaultFree: Splitter_Free
 
 proc NewSplitter*(AOwner: TComponent): TSplitter =
    new(result)
    result.Instance = Splitter_Create(CheckPtr(AOwner))
-
-
 
 proc BringToFront*(this: TSplitter) =
   Splitter_BringToFront(this.Instance)
@@ -8546,22 +7754,16 @@ proc Components*(this: TSplitter, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TSplitter, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(Splitter_GetAnchorSide(this.Instance, AKind))
 
-proc TSplitterClass*(): TClass =
-  return Splitter_StaticClassType()
+proc TSplitterClass*(): TClass = Splitter_StaticClassType()
 
 
 #------------------------- TRadioGroup -------------------------
 
-proc Free*(this: TRadioGroup) =
-  if (this != nil) and (this.Instance != nil):
-     RadioGroup_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TRadioGroup) = defaultFree: RadioGroup_Free
 
 proc NewRadioGroup*(AOwner: TComponent): TRadioGroup =
    new(result)
    result.Instance = RadioGroup_Create(CheckPtr(AOwner))
-
-
 
 proc FlipChildren*(this: TRadioGroup, AllLevels: bool) =
   RadioGroup_FlipChildren(this.Instance, AllLevels)
@@ -9067,22 +8269,16 @@ proc Components*(this: TRadioGroup, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TRadioGroup, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(RadioGroup_GetAnchorSide(this.Instance, AKind))
 
-proc TRadioGroupClass*(): TClass =
-  return RadioGroup_StaticClassType()
+proc TRadioGroupClass*(): TClass = RadioGroup_StaticClassType()
 
 
 #------------------------- TStaticText -------------------------
 
-proc Free*(this: TStaticText) =
-  if (this != nil) and (this.Instance != nil):
-     StaticText_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TStaticText) = defaultFree: StaticText_Free
 
 proc NewStaticText*(AOwner: TComponent): TStaticText =
    new(result)
    result.Instance = StaticText_Create(CheckPtr(AOwner))
-
-
 
 proc CanFocus*(this: TStaticText): bool =
   return StaticText_CanFocus(this.Instance)
@@ -9627,22 +8823,16 @@ proc Components*(this: TStaticText, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TStaticText, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(StaticText_GetAnchorSide(this.Instance, AKind))
 
-proc TStaticTextClass*(): TClass =
-  return StaticText_StaticClassType()
+proc TStaticTextClass*(): TClass = StaticText_StaticClassType()
 
 
 #------------------------- TColorBox -------------------------
 
-proc Free*(this: TColorBox) =
-  if (this != nil) and (this.Instance != nil):
-     ColorBox_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TColorBox) = defaultFree: ColorBox_Free
 
 proc NewColorBox*(AOwner: TComponent): TColorBox =
    new(result)
    result.Instance = ColorBox_Create(CheckPtr(AOwner))
-
-
 
 proc AddItem*(this: TColorBox, Item: string, AObject: TObject) {.inline.} =
   ColorBox_AddItem(this.Instance, Item, CheckPtr(AObject))
@@ -10250,22 +9440,16 @@ proc Components*(this: TColorBox, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TColorBox, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(ColorBox_GetAnchorSide(this.Instance, AKind))
 
-proc TColorBoxClass*(): TClass =
-  return ColorBox_StaticClassType()
+proc TColorBoxClass*(): TClass = ColorBox_StaticClassType()
 
 
 #------------------------- TColorListBox -------------------------
 
-proc Free*(this: TColorListBox) =
-  if (this != nil) and (this.Instance != nil):
-     ColorListBox_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TColorListBox) = defaultFree: ColorListBox_Free
 
 proc NewColorListBox*(AOwner: TComponent): TColorListBox =
    new(result)
    result.Instance = ColorListBox_Create(CheckPtr(AOwner))
-
-
 
 proc AddItem*(this: TColorListBox, Item: string, AObject: TObject) {.inline.} =
   ColorListBox_AddItem(this.Instance, Item, CheckPtr(AObject))
@@ -10855,22 +10039,16 @@ proc Components*(this: TColorListBox, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TColorListBox, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(ColorListBox_GetAnchorSide(this.Instance, AKind))
 
-proc TColorListBoxClass*(): TClass =
-  return ColorListBox_StaticClassType()
+proc TColorListBoxClass*(): TClass = ColorListBox_StaticClassType()
 
 
 #------------------------- TTrayIcon -------------------------
 
-proc Free*(this: TTrayIcon) =
-  if (this != nil) and (this.Instance != nil):
-     TrayIcon_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TTrayIcon) = defaultFree: TrayIcon_Free
 
 proc NewTrayIcon*(AOwner: TComponent): TTrayIcon =
    new(result)
    result.Instance = TrayIcon_Create(CheckPtr(AOwner))
-
-
 
 proc ShowBalloonHint*(this: TTrayIcon) {.inline.} =
   TrayIcon_ShowBalloonHint(this.Instance)
@@ -11004,22 +10182,16 @@ proc `Tag=`*(this: TTrayIcon, AValue: int) {.inline.} =
 proc Components*(this: TTrayIcon, AIndex: int32): TComponent {.inline.} =
   return AsComponent(TrayIcon_GetComponents(this.Instance, AIndex))
 
-proc TTrayIconClass*(): TClass =
-  return TrayIcon_StaticClassType()
+proc TTrayIconClass*(): TClass = TrayIcon_StaticClassType()
 
 
 #------------------------- TOpenDialog -------------------------
 
-proc Free*(this: TOpenDialog) =
-  if (this != nil) and (this.Instance != nil):
-     OpenDialog_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TOpenDialog) = defaultFree: OpenDialog_Free
 
 proc NewOpenDialog*(AOwner: TComponent): TOpenDialog =
    new(result)
    result.Instance = OpenDialog_Create(CheckPtr(AOwner))
-
-
 
 proc Execute*(this: TOpenDialog): bool {.inline.} =
   return OpenDialog_Execute(this.Instance)
@@ -11138,22 +10310,16 @@ proc `Tag=`*(this: TOpenDialog, AValue: int) {.inline.} =
 proc Components*(this: TOpenDialog, AIndex: int32): TComponent {.inline.} =
   return AsComponent(OpenDialog_GetComponents(this.Instance, AIndex))
 
-proc TOpenDialogClass*(): TClass =
-  return OpenDialog_StaticClassType()
+proc TOpenDialogClass*(): TClass = OpenDialog_StaticClassType()
 
 
 #------------------------- TSaveDialog -------------------------
 
-proc Free*(this: TSaveDialog) =
-  if (this != nil) and (this.Instance != nil):
-     SaveDialog_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TSaveDialog) = defaultFree: SaveDialog_Free
 
 proc NewSaveDialog*(AOwner: TComponent): TSaveDialog =
    new(result)
    result.Instance = SaveDialog_Create(CheckPtr(AOwner))
-
-
 
 proc Execute*(this: TSaveDialog): bool {.inline.} =
   return SaveDialog_Execute(this.Instance)
@@ -11272,22 +10438,16 @@ proc `Tag=`*(this: TSaveDialog, AValue: int) {.inline.} =
 proc Components*(this: TSaveDialog, AIndex: int32): TComponent {.inline.} =
   return AsComponent(SaveDialog_GetComponents(this.Instance, AIndex))
 
-proc TSaveDialogClass*(): TClass =
-  return SaveDialog_StaticClassType()
+proc TSaveDialogClass*(): TClass = SaveDialog_StaticClassType()
 
 
 #------------------------- TColorDialog -------------------------
 
-proc Free*(this: TColorDialog) =
-  if (this != nil) and (this.Instance != nil):
-     ColorDialog_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TColorDialog) = defaultFree: ColorDialog_Free
 
 proc NewColorDialog*(AOwner: TComponent): TColorDialog =
    new(result)
    result.Instance = ColorDialog_Create(CheckPtr(AOwner))
-
-
 
 proc Execute*(this: TColorDialog): bool {.inline.} =
   return ColorDialog_Execute(this.Instance)
@@ -11367,22 +10527,16 @@ proc `Tag=`*(this: TColorDialog, AValue: int) {.inline.} =
 proc Components*(this: TColorDialog, AIndex: int32): TComponent {.inline.} =
   return AsComponent(ColorDialog_GetComponents(this.Instance, AIndex))
 
-proc TColorDialogClass*(): TClass =
-  return ColorDialog_StaticClassType()
+proc TColorDialogClass*(): TClass = ColorDialog_StaticClassType()
 
 
 #------------------------- TFontDialog -------------------------
 
-proc Free*(this: TFontDialog) =
-  if (this != nil) and (this.Instance != nil):
-     FontDialog_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TFontDialog) = defaultFree: FontDialog_Free
 
 proc NewFontDialog*(AOwner: TComponent): TFontDialog =
    new(result)
    result.Instance = FontDialog_Create(CheckPtr(AOwner))
-
-
 
 proc Execute*(this: TFontDialog): bool {.inline.} =
   return FontDialog_Execute(this.Instance)
@@ -11468,22 +10622,16 @@ proc `Tag=`*(this: TFontDialog, AValue: int) {.inline.} =
 proc Components*(this: TFontDialog, AIndex: int32): TComponent {.inline.} =
   return AsComponent(FontDialog_GetComponents(this.Instance, AIndex))
 
-proc TFontDialogClass*(): TClass =
-  return FontDialog_StaticClassType()
+proc TFontDialogClass*(): TClass = FontDialog_StaticClassType()
 
 
 #------------------------- TPrintDialog -------------------------
 
-proc Free*(this: TPrintDialog) =
-  if (this != nil) and (this.Instance != nil):
-     PrintDialog_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TPrintDialog) = defaultFree: PrintDialog_Free
 
 proc NewPrintDialog*(AOwner: TComponent): TPrintDialog =
    new(result)
    result.Instance = PrintDialog_Create(CheckPtr(AOwner))
-
-
 
 proc Execute*(this: TPrintDialog): bool {.inline.} =
   return PrintDialog_Execute(this.Instance)
@@ -11611,22 +10759,16 @@ proc `Tag=`*(this: TPrintDialog, AValue: int) {.inline.} =
 proc Components*(this: TPrintDialog, AIndex: int32): TComponent {.inline.} =
   return AsComponent(PrintDialog_GetComponents(this.Instance, AIndex))
 
-proc TPrintDialogClass*(): TClass =
-  return PrintDialog_StaticClassType()
+proc TPrintDialogClass*(): TClass = PrintDialog_StaticClassType()
 
 
 #------------------------- TOpenPictureDialog -------------------------
 
-proc Free*(this: TOpenPictureDialog) =
-  if (this != nil) and (this.Instance != nil):
-     OpenPictureDialog_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TOpenPictureDialog) = defaultFree: OpenPictureDialog_Free
 
 proc NewOpenPictureDialog*(AOwner: TComponent): TOpenPictureDialog =
    new(result)
    result.Instance = OpenPictureDialog_Create(CheckPtr(AOwner))
-
-
 
 proc Execute*(this: TOpenPictureDialog): bool {.inline.} =
   return OpenPictureDialog_Execute(this.Instance)
@@ -11745,22 +10887,16 @@ proc `Tag=`*(this: TOpenPictureDialog, AValue: int) {.inline.} =
 proc Components*(this: TOpenPictureDialog, AIndex: int32): TComponent {.inline.} =
   return AsComponent(OpenPictureDialog_GetComponents(this.Instance, AIndex))
 
-proc TOpenPictureDialogClass*(): TClass =
-  return OpenPictureDialog_StaticClassType()
+proc TOpenPictureDialogClass*(): TClass = OpenPictureDialog_StaticClassType()
 
 
 #------------------------- TSavePictureDialog -------------------------
 
-proc Free*(this: TSavePictureDialog) =
-  if (this != nil) and (this.Instance != nil):
-     SavePictureDialog_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TSavePictureDialog) = defaultFree: SavePictureDialog_Free
 
 proc NewSavePictureDialog*(AOwner: TComponent): TSavePictureDialog =
    new(result)
    result.Instance = SavePictureDialog_Create(CheckPtr(AOwner))
-
-
 
 proc Execute*(this: TSavePictureDialog): bool {.inline.} =
   return SavePictureDialog_Execute(this.Instance)
@@ -11879,22 +11015,16 @@ proc `Tag=`*(this: TSavePictureDialog, AValue: int) {.inline.} =
 proc Components*(this: TSavePictureDialog, AIndex: int32): TComponent {.inline.} =
   return AsComponent(SavePictureDialog_GetComponents(this.Instance, AIndex))
 
-proc TSavePictureDialogClass*(): TClass =
-  return SavePictureDialog_StaticClassType()
+proc TSavePictureDialogClass*(): TClass = SavePictureDialog_StaticClassType()
 
 
 #------------------------- TSelectDirectoryDialog -------------------------
 
-proc Free*(this: TSelectDirectoryDialog) =
-  if (this != nil) and (this.Instance != nil):
-     SelectDirectoryDialog_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TSelectDirectoryDialog) = defaultFree: SelectDirectoryDialog_Free
 
 proc NewSelectDirectoryDialog*(AOwner: TComponent): TSelectDirectoryDialog =
    new(result)
    result.Instance = SelectDirectoryDialog_Create(CheckPtr(AOwner))
-
-
 
 proc Execute*(this: TSelectDirectoryDialog): bool {.inline.} =
   return SelectDirectoryDialog_Execute(this.Instance)
@@ -12013,22 +11143,16 @@ proc `Tag=`*(this: TSelectDirectoryDialog, AValue: int) {.inline.} =
 proc Components*(this: TSelectDirectoryDialog, AIndex: int32): TComponent {.inline.} =
   return AsComponent(SelectDirectoryDialog_GetComponents(this.Instance, AIndex))
 
-proc TSelectDirectoryDialogClass*(): TClass =
-  return SelectDirectoryDialog_StaticClassType()
+proc TSelectDirectoryDialogClass*(): TClass = SelectDirectoryDialog_StaticClassType()
 
 
 #------------------------- TRichEdit -------------------------
 
-proc Free*(this: TRichEdit) =
-  if (this != nil) and (this.Instance != nil):
-     RichEdit_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TRichEdit) = defaultFree: RichEdit_Free
 
 proc NewRichEdit*(AOwner: TComponent): TRichEdit =
    new(result)
    result.Instance = RichEdit_Create(CheckPtr(AOwner))
-
-
 
 proc Clear*(this: TRichEdit) {.inline.} =
   RichEdit_Clear(this.Instance)
@@ -12714,22 +11838,16 @@ proc Components*(this: TRichEdit, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TRichEdit, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(RichEdit_GetAnchorSide(this.Instance, AKind))
 
-proc TRichEditClass*(): TClass =
-  return RichEdit_StaticClassType()
+proc TRichEditClass*(): TClass = RichEdit_StaticClassType()
 
 
 #------------------------- TTrackBar -------------------------
 
-proc Free*(this: TTrackBar) =
-  if (this != nil) and (this.Instance != nil):
-     TrackBar_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TTrackBar) = defaultFree: TrackBar_Free
 
 proc NewTrackBar*(AOwner: TComponent): TTrackBar =
    new(result)
    result.Instance = TrackBar_Create(CheckPtr(AOwner))
-
-
 
 proc SetTick*(this: TTrackBar, Value: int32) {.inline.} =
   TrackBar_SetTick(this.Instance, Value)
@@ -13280,22 +12398,16 @@ proc Components*(this: TTrackBar, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TTrackBar, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(TrackBar_GetAnchorSide(this.Instance, AKind))
 
-proc TTrackBarClass*(): TClass =
-  return TrackBar_StaticClassType()
+proc TTrackBarClass*(): TClass = TrackBar_StaticClassType()
 
 
 #------------------------- TImageList -------------------------
 
-proc Free*(this: TImageList) =
-  if (this != nil) and (this.Instance != nil):
-     ImageList_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TImageList) = defaultFree: ImageList_Free
 
 proc NewImageList*(AOwner: TComponent): TImageList =
    new(result)
    result.Instance = ImageList_Create(CheckPtr(AOwner))
-
-
 
 proc GetHotSpot*(this: TImageList): TPoint {.inline.} =
   ImageList_GetHotSpot(this.Instance, result)
@@ -13477,8 +12589,7 @@ proc `Tag=`*(this: TImageList, AValue: int) {.inline.} =
 proc Components*(this: TImageList, AIndex: int32): TComponent {.inline.} =
   return AsComponent(ImageList_GetComponents(this.Instance, AIndex))
 
-proc TImageListClass*(): TClass =
-  return ImageList_StaticClassType()
+proc TImageListClass*(): TClass = ImageList_StaticClassType()
 
 
 proc Draw1*(this: TImageList, Canvas: TCanvas, X: int32, Y: int32, Index: int32, Enabled: bool) {.inline.} =
@@ -13492,16 +12603,11 @@ proc GetIcon1*(this: TImageList, Index: int32, Image: TIcon) {.inline.} =
 
 #------------------------- TUpDown -------------------------
 
-proc Free*(this: TUpDown) =
-  if (this != nil) and (this.Instance != nil):
-     UpDown_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TUpDown) = defaultFree: UpDown_Free
 
 proc NewUpDown*(AOwner: TComponent): TUpDown =
    new(result)
    result.Instance = UpDown_Create(CheckPtr(AOwner))
-
-
 
 proc CanFocus*(this: TUpDown): bool =
   return UpDown_CanFocus(this.Instance)
@@ -13995,22 +13101,16 @@ proc Components*(this: TUpDown, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TUpDown, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(UpDown_GetAnchorSide(this.Instance, AKind))
 
-proc TUpDownClass*(): TClass =
-  return UpDown_StaticClassType()
+proc TUpDownClass*(): TClass = UpDown_StaticClassType()
 
 
 #------------------------- TProgressBar -------------------------
 
-proc Free*(this: TProgressBar) =
-  if (this != nil) and (this.Instance != nil):
-     ProgressBar_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TProgressBar) = defaultFree: ProgressBar_Free
 
 proc NewProgressBar*(AOwner: TComponent): TProgressBar =
    new(result)
    result.Instance = ProgressBar_Create(CheckPtr(AOwner))
-
-
 
 proc StepIt*(this: TProgressBar) {.inline.} =
   ProgressBar_StepIt(this.Instance)
@@ -14543,22 +13643,16 @@ proc Components*(this: TProgressBar, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TProgressBar, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(ProgressBar_GetAnchorSide(this.Instance, AKind))
 
-proc TProgressBarClass*(): TClass =
-  return ProgressBar_StaticClassType()
+proc TProgressBarClass*(): TClass = ProgressBar_StaticClassType()
 
 
 #------------------------- TDateTimePicker -------------------------
 
-proc Free*(this: TDateTimePicker) =
-  if (this != nil) and (this.Instance != nil):
-     DateTimePicker_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TDateTimePicker) = defaultFree: DateTimePicker_Free
 
 proc NewDateTimePicker*(AOwner: TComponent): TDateTimePicker =
    new(result)
    result.Instance = DateTimePicker_Create(CheckPtr(AOwner))
-
-
 
 proc CanFocus*(this: TDateTimePicker): bool =
   return DateTimePicker_CanFocus(this.Instance)
@@ -15091,22 +14185,16 @@ proc Components*(this: TDateTimePicker, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TDateTimePicker, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(DateTimePicker_GetAnchorSide(this.Instance, AKind))
 
-proc TDateTimePickerClass*(): TClass =
-  return DateTimePicker_StaticClassType()
+proc TDateTimePickerClass*(): TClass = DateTimePicker_StaticClassType()
 
 
 #------------------------- TMonthCalendar -------------------------
 
-proc Free*(this: TMonthCalendar) =
-  if (this != nil) and (this.Instance != nil):
-     MonthCalendar_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TMonthCalendar) = defaultFree: MonthCalendar_Free
 
 proc NewMonthCalendar*(AOwner: TComponent): TMonthCalendar =
    new(result)
    result.Instance = MonthCalendar_Create(CheckPtr(AOwner))
-
-
 
 proc CanFocus*(this: TMonthCalendar): bool =
   return MonthCalendar_CanFocus(this.Instance)
@@ -15615,22 +14703,16 @@ proc Components*(this: TMonthCalendar, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TMonthCalendar, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(MonthCalendar_GetAnchorSide(this.Instance, AKind))
 
-proc TMonthCalendarClass*(): TClass =
-  return MonthCalendar_StaticClassType()
+proc TMonthCalendarClass*(): TClass = MonthCalendar_StaticClassType()
 
 
 #------------------------- TListView -------------------------
 
-proc Free*(this: TListView) =
-  if (this != nil) and (this.Instance != nil):
-     ListView_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TListView) = defaultFree: ListView_Free
 
 proc NewListView*(AOwner: TComponent): TListView =
    new(result)
    result.Instance = ListView_Create(CheckPtr(AOwner))
-
-
 
 proc AddItem*(this: TListView, Item: string, AObject: TObject) {.inline.} =
   ListView_AddItem(this.Instance, Item, CheckPtr(AObject))
@@ -16478,22 +15560,16 @@ proc Components*(this: TListView, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TListView, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(ListView_GetAnchorSide(this.Instance, AKind))
 
-proc TListViewClass*(): TClass =
-  return ListView_StaticClassType()
+proc TListViewClass*(): TClass = ListView_StaticClassType()
 
 
 #------------------------- TTreeView -------------------------
 
-proc Free*(this: TTreeView) =
-  if (this != nil) and (this.Instance != nil):
-     TreeView_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TTreeView) = defaultFree: TreeView_Free
 
 proc NewTreeView*(AOwner: TComponent): TTreeView =
    new(result)
    result.Instance = TreeView_Create(CheckPtr(AOwner))
-
-
 
 proc AlphaSort*(this: TTreeView, ARecurse: bool): bool {.inline.} =
   return TreeView_AlphaSort(this.Instance, ARecurse)
@@ -17323,22 +16399,16 @@ proc Components*(this: TTreeView, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TTreeView, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(TreeView_GetAnchorSide(this.Instance, AKind))
 
-proc TTreeViewClass*(): TClass =
-  return TreeView_StaticClassType()
+proc TTreeViewClass*(): TClass = TreeView_StaticClassType()
 
 
 #------------------------- TStatusBar -------------------------
 
-proc Free*(this: TStatusBar) =
-  if (this != nil) and (this.Instance != nil):
-     StatusBar_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TStatusBar) = defaultFree: StatusBar_Free
 
 proc NewStatusBar*(AOwner: TComponent): TStatusBar =
    new(result)
    result.Instance = StatusBar_Create(CheckPtr(AOwner))
-
-
 
 proc FlipChildren*(this: TStatusBar, AllLevels: bool) =
   StatusBar_FlipChildren(this.Instance, AllLevels)
@@ -17898,22 +16968,16 @@ proc Components*(this: TStatusBar, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TStatusBar, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(StatusBar_GetAnchorSide(this.Instance, AKind))
 
-proc TStatusBarClass*(): TClass =
-  return StatusBar_StaticClassType()
+proc TStatusBarClass*(): TClass = StatusBar_StaticClassType()
 
 
 #------------------------- TToolBar -------------------------
 
-proc Free*(this: TToolBar) =
-  if (this != nil) and (this.Instance != nil):
-     ToolBar_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TToolBar) = defaultFree: ToolBar_Free
 
 proc NewToolBar*(AOwner: TComponent): TToolBar =
    new(result)
    result.Instance = ToolBar_Create(CheckPtr(AOwner))
-
-
 
 proc FlipChildren*(this: TToolBar, AllLevels: bool) =
   ToolBar_FlipChildren(this.Instance, AllLevels)
@@ -18539,22 +17603,16 @@ proc Components*(this: TToolBar, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TToolBar, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(ToolBar_GetAnchorSide(this.Instance, AKind))
 
-proc TToolBarClass*(): TClass =
-  return ToolBar_StaticClassType()
+proc TToolBarClass*(): TClass = ToolBar_StaticClassType()
 
 
 #------------------------- TBitBtn -------------------------
 
-proc Free*(this: TBitBtn) =
-  if (this != nil) and (this.Instance != nil):
-     BitBtn_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TBitBtn) = defaultFree: BitBtn_Free
 
 proc NewBitBtn*(AOwner: TComponent): TBitBtn =
    new(result)
    result.Instance = BitBtn_Create(CheckPtr(AOwner))
-
-
 
 proc Click*(this: TBitBtn) {.inline.} =
   BitBtn_Click(this.Instance)
@@ -19108,22 +18166,16 @@ proc Components*(this: TBitBtn, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TBitBtn, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(BitBtn_GetAnchorSide(this.Instance, AKind))
 
-proc TBitBtnClass*(): TClass =
-  return BitBtn_StaticClassType()
+proc TBitBtnClass*(): TClass = BitBtn_StaticClassType()
 
 
 #------------------------- TIcon -------------------------
 
-proc Free*(this: TIcon) =
-  if (this != nil) and (this.Instance != nil):
-     Icon_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TIcon) = defaultFree: Icon_Free
 
 proc NewIcon*(): TIcon =
    new(result, Free)
    result.Instance = Icon_Create()
-
-
 
 proc Assign*(this: TIcon, Source: pointer) {.inline.} =
   Icon_Assign(this.Instance, Source)
@@ -19224,22 +18276,16 @@ proc `Width=`*(this: TIcon, AValue: int32) {.inline.} =
 proc `OnChange=`*(this: TIcon, AEventId: TNotifyEvent) {.inline.} =
   Icon_SetOnChange(this.Instance, AEventId)
 
-proc TIconClass*(): TClass =
-  return Icon_StaticClassType()
+proc TIconClass*(): TClass = Icon_StaticClassType()
 
 
 #------------------------- TBitmap -------------------------
 
-proc Free*(this: TBitmap) =
-  if (this != nil) and (this.Instance != nil):
-     Bitmap_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TBitmap) = defaultFree: Bitmap_Free
 
 proc NewBitmap*(): TBitmap =
    new(result, Free)
    result.Instance = Bitmap_Create()
-
-
 
 proc Assign*(this: TBitmap, Source: pointer) {.inline.} =
   Bitmap_Assign(this.Instance, Source)
@@ -19373,8 +18419,7 @@ proc `OnChange=`*(this: TBitmap, AEventId: TNotifyEvent) {.inline.} =
 proc ScanLine*(this: TBitmap, Row: int32): pointer {.inline.} =
   return Bitmap_GetScanLine(this.Instance, Row)
 
-proc TBitmapClass*(): TClass =
-  return Bitmap_StaticClassType()
+proc TBitmapClass*(): TClass = Bitmap_StaticClassType()
 
 
 proc Clear*(this: TBitmap) {.inline.} =
@@ -19391,16 +18436,11 @@ proc LoadFromDevice*(this: TBitmap, ADc: HDC) {.inline.} =
 
 #------------------------- TMemoryStream -------------------------
 
-proc Free*(this: TMemoryStream) =
-  if (this != nil) and (this.Instance != nil):
-     MemoryStream_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TMemoryStream) = defaultFree: MemoryStream_Free
 
 proc NewMemoryStream*(): TMemoryStream =
    new(result, Free)
    result.Instance = MemoryStream_Create()
-
-
 
 proc Clear*(this: TMemoryStream) {.inline.} =
   MemoryStream_Clear(this.Instance)
@@ -19459,8 +18499,7 @@ proc Size*(this: TMemoryStream): int64 {.inline.} =
 proc `Size=`*(this: TMemoryStream, AValue: var int64) {.inline.} =
   MemoryStream_SetSize(this.Instance, AValue)
 
-proc TMemoryStreamClass*(): TClass =
-  return MemoryStream_StaticClassType()
+proc TMemoryStreamClass*(): TClass = MemoryStream_StaticClassType()
 
 
 proc Write*(this: TMemoryStream, Buffer: pointer, Count: int32): int32 {.inline.} =
@@ -19471,16 +18510,11 @@ proc Read*(this: TMemoryStream, Buffer: pointer, Count: int32): int32 {.inline.}
 
 #------------------------- TFont -------------------------
 
-proc Free*(this: TFont) =
-  if (this != nil) and (this.Instance != nil):
-     Font_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TFont) = defaultFree: Font_Free
 
 proc NewFont*(): TFont =
    new(result, Free)
    result.Instance = Font_Create()
-
-
 
 proc Assign*(this: TFont, Source: pointer) {.inline.} =
   Font_Assign(this.Instance, Source)
@@ -19581,22 +18615,16 @@ proc `Quality=`*(this: TFont, AValue: TFontQuality) {.inline.} =
 proc `OnChange=`*(this: TFont, AEventId: TNotifyEvent) {.inline.} =
   Font_SetOnChange(this.Instance, AEventId)
 
-proc TFontClass*(): TClass =
-  return Font_StaticClassType()
+proc TFontClass*(): TClass = Font_StaticClassType()
 
 
 #------------------------- TStrings -------------------------
 
-proc Free*(this: TStrings) =
-  if (this != nil) and (this.Instance != nil):
-     Strings_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TStrings) = defaultFree: Strings_Free
 
 proc NewStrings*(): TStrings =
    new(result, Free)
    result.Instance = Strings_Create()
-
-
 
 proc Add*(this: TStrings, S: string): int32 {.inline.} =
   return Strings_Add(this.Instance, S)
@@ -19733,22 +18761,16 @@ proc Strings*(this: TStrings, Index: int32): string {.inline.} =
 proc `Strings=`*(this: TStrings, Index: int32, AValue: string) {.inline.} =
   Strings_SetStrings(this.Instance, Index, AValue)
 
-proc TStringsClass*(): TClass =
-  return Strings_StaticClassType()
+proc TStringsClass*(): TClass = Strings_StaticClassType()
 
 
 #------------------------- TStringList -------------------------
 
-proc Free*(this: TStringList) =
-  if (this != nil) and (this.Instance != nil):
-     StringList_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TStringList) = defaultFree: StringList_Free
 
 proc NewStringList*(): TStringList =
    new(result, Free)
    result.Instance = StringList_Create()
-
-
 
 proc Add*(this: TStringList, S: string): int32 {.inline.} =
   return StringList_Add(this.Instance, S)
@@ -19897,22 +18919,16 @@ proc Strings*(this: TStringList, Index: int32): string {.inline.} =
 proc `Strings=`*(this: TStringList, Index: int32, AValue: string) {.inline.} =
   StringList_SetStrings(this.Instance, Index, AValue)
 
-proc TStringListClass*(): TClass =
-  return StringList_StaticClassType()
+proc TStringListClass*(): TClass = StringList_StaticClassType()
 
 
 #------------------------- TBrush -------------------------
 
-proc Free*(this: TBrush) =
-  if (this != nil) and (this.Instance != nil):
-     Brush_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TBrush) = defaultFree: Brush_Free
 
 proc NewBrush*(): TBrush =
    new(result, Free)
    result.Instance = Brush_Create()
-
-
 
 proc Assign*(this: TBrush, Source: pointer) {.inline.} =
   Brush_Assign(this.Instance, Source)
@@ -19968,22 +18984,16 @@ proc `Style=`*(this: TBrush, AValue: TBrushStyle) {.inline.} =
 proc `OnChange=`*(this: TBrush, AEventId: TNotifyEvent) {.inline.} =
   Brush_SetOnChange(this.Instance, AEventId)
 
-proc TBrushClass*(): TClass =
-  return Brush_StaticClassType()
+proc TBrushClass*(): TClass = Brush_StaticClassType()
 
 
 #------------------------- TPen -------------------------
 
-proc Free*(this: TPen) =
-  if (this != nil) and (this.Instance != nil):
-     Pen_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TPen) = defaultFree: Pen_Free
 
 proc NewPen*(): TPen =
    new(result, Free)
    result.Instance = Pen_Create()
-
-
 
 proc Assign*(this: TPen, Source: pointer) {.inline.} =
   Pen_Assign(this.Instance, Source)
@@ -20045,22 +19055,16 @@ proc `Width=`*(this: TPen, AValue: int32) {.inline.} =
 proc `OnChange=`*(this: TPen, AEventId: TNotifyEvent) {.inline.} =
   Pen_SetOnChange(this.Instance, AEventId)
 
-proc TPenClass*(): TClass =
-  return Pen_StaticClassType()
+proc TPenClass*(): TClass = Pen_StaticClassType()
 
 
 #------------------------- TMenuItem -------------------------
 
-proc Free*(this: TMenuItem) =
-  if (this != nil) and (this.Instance != nil):
-     MenuItem_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TMenuItem) = defaultFree: MenuItem_Free
 
 proc NewMenuItem*(AOwner: TComponent): TMenuItem =
    new(result)
    result.Instance = MenuItem_Create(CheckPtr(AOwner))
-
-
 
 proc Insert*(this: TMenuItem, Index: int32, Item: TMenuItem) {.inline.} =
   MenuItem_Insert(this.Instance, Index, CheckPtr(Item))
@@ -20236,22 +19240,16 @@ proc Items*(this: TMenuItem, Index: int32): TMenuItem {.inline.} =
 proc Components*(this: TMenuItem, AIndex: int32): TComponent {.inline.} =
   return AsComponent(MenuItem_GetComponents(this.Instance, AIndex))
 
-proc TMenuItemClass*(): TClass =
-  return MenuItem_StaticClassType()
+proc TMenuItemClass*(): TClass = MenuItem_StaticClassType()
 
 
 #------------------------- TPicture -------------------------
 
-proc Free*(this: TPicture) =
-  if (this != nil) and (this.Instance != nil):
-     Picture_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TPicture) = defaultFree: Picture_Free
 
 proc NewPicture*(): TPicture =
    new(result, Free)
    result.Instance = Picture_Create()
-
-
 
 proc LoadFromFile*(this: TPicture, Filename: string) {.inline.} =
   Picture_LoadFromFile(this.Instance, Filename)
@@ -20319,22 +19317,16 @@ proc Width*(this: TPicture): int32 {.inline.} =
 proc `OnChange=`*(this: TPicture, AEventId: TNotifyEvent) {.inline.} =
   Picture_SetOnChange(this.Instance, AEventId)
 
-proc TPictureClass*(): TClass =
-  return Picture_StaticClassType()
+proc TPictureClass*(): TClass = Picture_StaticClassType()
 
 
 #------------------------- TListColumns -------------------------
 
-proc Free*(this: TListColumns) =
-  if (this != nil) and (this.Instance != nil):
-     ListColumns_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TListColumns) = defaultFree: ListColumns_Free
 
 proc NewListColumns*(AOwner: TListView): TListColumns =
    new(result, Free)
    result.Instance = ListColumns_Create(CheckPtr(AOwner))
-
-
 
 proc Add*(this: TListColumns): TListColumn {.inline.} =
   return AsListColumn(ListColumns_Add(this.Instance))
@@ -20396,22 +19388,16 @@ proc Items*(this: TListColumns, Index: int32): TListColumn {.inline.} =
 proc `Items=`*(this: TListColumns, Index: int32, AValue: TListColumn) {.inline.} =
   ListColumns_SetItems(this.Instance, Index, CheckPtr(AValue))
 
-proc TListColumnsClass*(): TClass =
-  return ListColumns_StaticClassType()
+proc TListColumnsClass*(): TClass = ListColumns_StaticClassType()
 
 
 #------------------------- TListItems -------------------------
 
-proc Free*(this: TListItems) =
-  if (this != nil) and (this.Instance != nil):
-     ListItems_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TListItems) = defaultFree: ListItems_Free
 
 proc NewListItems*(AOwner: TListView): TListItems =
    new(result, Free)
    result.Instance = ListItems_Create(CheckPtr(AOwner))
-
-
 
 proc Add*(this: TListItems): TListItem {.inline.} =
   return AsListItem(ListItems_Add(this.Instance))
@@ -20476,22 +19462,16 @@ proc Item*(this: TListItems, Index: int32): TListItem {.inline.} =
 proc `Item=`*(this: TListItems, Index: int32, AValue: TListItem) {.inline.} =
   ListItems_SetItem(this.Instance, Index, CheckPtr(AValue))
 
-proc TListItemsClass*(): TClass =
-  return ListItems_StaticClassType()
+proc TListItemsClass*(): TClass = ListItems_StaticClassType()
 
 
 #------------------------- TTreeNodes -------------------------
 
-proc Free*(this: TTreeNodes) =
-  if (this != nil) and (this.Instance != nil):
-     TreeNodes_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TTreeNodes) = defaultFree: TreeNodes_Free
 
 proc NewTreeNodes*(AOwner: TTreeView): TTreeNodes =
    new(result, Free)
    result.Instance = TreeNodes_Create(CheckPtr(AOwner))
-
-
 
 proc AddChildFirst*(this: TTreeNodes, Parent: TTreeNode, S: string): TTreeNode {.inline.} =
   return AsTreeNode(TreeNodes_AddChildFirst(this.Instance, CheckPtr(Parent), S))
@@ -20580,22 +19560,16 @@ proc Owner*(this: TTreeNodes): TTreeView {.inline.} =
 proc Item*(this: TTreeNodes, Index: int32): TTreeNode {.inline.} =
   return AsTreeNode(TreeNodes_GetItem(this.Instance, Index))
 
-proc TTreeNodesClass*(): TClass =
-  return TreeNodes_StaticClassType()
+proc TTreeNodesClass*(): TClass = TreeNodes_StaticClassType()
 
 
 #------------------------- TListItem -------------------------
 
-proc Free*(this: TListItem) =
-  if (this != nil) and (this.Instance != nil):
-     ListItem_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TListItem) = defaultFree: ListItem_Free
 
 proc NewListItem*(AOwner: TListItems): TListItem =
    new(result, Free)
    result.Instance = ListItem_Create(CheckPtr(AOwner))
-
-
 
 proc DisplayRectSubItem*(this: TListItem, subItem: int32, Code: TDisplayCode): TRect {.inline.} =
   ListItem_DisplayRectSubItem(this.Instance, subItem, Code, result)
@@ -20732,22 +19706,16 @@ proc SubItemImages*(this: TListItem, Index: int32): int32 {.inline.} =
 proc `SubItemImages=`*(this: TListItem, Index: int32, AValue: int32) {.inline.} =
   ListItem_SetSubItemImages(this.Instance, Index, AValue)
 
-proc TListItemClass*(): TClass =
-  return ListItem_StaticClassType()
+proc TListItemClass*(): TClass = ListItem_StaticClassType()
 
 
 #------------------------- TTreeNode -------------------------
 
-proc Free*(this: TTreeNode) =
-  if (this != nil) and (this.Instance != nil):
-     TreeNode_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TTreeNode) = defaultFree: TreeNode_Free
 
 proc NewTreeNode*(AOwner: TTreeNodes): TTreeNode =
    new(result, Free)
    result.Instance = TreeNode_Create(CheckPtr(AOwner))
-
-
 
 proc Assign*(this: TTreeNode, Source: pointer) {.inline.} =
   TreeNode_Assign(this.Instance, Source)
@@ -20905,22 +19873,16 @@ proc Item*(this: TTreeNode, Index: int32): TTreeNode {.inline.} =
 proc `Item=`*(this: TTreeNode, Index: int32, AValue: TTreeNode) {.inline.} =
   TreeNode_SetItem(this.Instance, Index, CheckPtr(AValue))
 
-proc TTreeNodeClass*(): TClass =
-  return TreeNode_StaticClassType()
+proc TTreeNodeClass*(): TClass = TreeNode_StaticClassType()
 
 
 #------------------------- TPageControl -------------------------
 
-proc Free*(this: TPageControl) =
-  if (this != nil) and (this.Instance != nil):
-     PageControl_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TPageControl) = defaultFree: PageControl_Free
 
 proc NewPageControl*(AOwner: TComponent): TPageControl =
    new(result)
    result.Instance = PageControl_Create(CheckPtr(AOwner))
-
-
 
 proc SelectNextPage*(this: TPageControl, GoForward: bool, CheckTabVisible: bool) {.inline.} =
   PageControl_SelectNextPage(this.Instance, GoForward, CheckTabVisible)
@@ -21495,22 +20457,16 @@ proc Components*(this: TPageControl, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TPageControl, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(PageControl_GetAnchorSide(this.Instance, AKind))
 
-proc TPageControlClass*(): TClass =
-  return PageControl_StaticClassType()
+proc TPageControlClass*(): TClass = PageControl_StaticClassType()
 
 
 #------------------------- TTabSheet -------------------------
 
-proc Free*(this: TTabSheet) =
-  if (this != nil) and (this.Instance != nil):
-     TabSheet_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TTabSheet) = defaultFree: TabSheet_Free
 
 proc NewTabSheet*(AOwner: TComponent): TTabSheet =
    new(result)
    result.Instance = TabSheet_Create(CheckPtr(AOwner))
-
-
 
 proc CanFocus*(this: TTabSheet): bool =
   return TabSheet_CanFocus(this.Instance)
@@ -22031,22 +20987,16 @@ proc Components*(this: TTabSheet, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TTabSheet, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(TabSheet_GetAnchorSide(this.Instance, AKind))
 
-proc TTabSheetClass*(): TClass =
-  return TabSheet_StaticClassType()
+proc TTabSheetClass*(): TClass = TabSheet_StaticClassType()
 
 
 #------------------------- TButton -------------------------
 
-proc Free*(this: TButton) =
-  if (this != nil) and (this.Instance != nil):
-     Button_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TButton) = defaultFree: Button_Free
 
 proc NewButton*(AOwner: TComponent): TButton =
    new(result)
    result.Instance = Button_Create(CheckPtr(AOwner))
-
-
 
 proc Click*(this: TButton) {.inline.} =
   Button_Click(this.Instance)
@@ -22576,22 +21526,16 @@ proc Components*(this: TButton, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TButton, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(Button_GetAnchorSide(this.Instance, AKind))
 
-proc TButtonClass*(): TClass =
-  return Button_StaticClassType()
+proc TButtonClass*(): TClass = Button_StaticClassType()
 
 
 #------------------------- TEdit -------------------------
 
-proc Free*(this: TEdit) =
-  if (this != nil) and (this.Instance != nil):
-     Edit_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TEdit) = defaultFree: Edit_Free
 
 proc NewEdit*(AOwner: TComponent): TEdit =
    new(result)
    result.Instance = Edit_Create(CheckPtr(AOwner))
-
-
 
 proc Clear*(this: TEdit) {.inline.} =
   Edit_Clear(this.Instance)
@@ -23232,22 +22176,16 @@ proc Components*(this: TEdit, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TEdit, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(Edit_GetAnchorSide(this.Instance, AKind))
 
-proc TEditClass*(): TClass =
-  return Edit_StaticClassType()
+proc TEditClass*(): TClass = Edit_StaticClassType()
 
 
 #------------------------- TScreen -------------------------
 
-proc Free*(this: TScreen) =
-  if (this != nil) and (this.Instance != nil):
-     Screen_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TScreen) = defaultFree: Screen_Free
 
 proc NewScreen*(AOwner: TComponent): TScreen =
    new(result)
    result.Instance = Screen_Create(CheckPtr(AOwner))
-
-
 
 proc FindComponent*(this: TScreen, AName: string): TComponent =
   return AsComponent(Screen_FindComponent(this.Instance, AName))
@@ -23390,22 +22328,16 @@ proc Forms*(this: TScreen, Index: int32): TForm {.inline.} =
 proc Components*(this: TScreen, AIndex: int32): TComponent {.inline.} =
   return AsComponent(Screen_GetComponents(this.Instance, AIndex))
 
-proc TScreenClass*(): TClass =
-  return Screen_StaticClassType()
+proc TScreenClass*(): TClass = Screen_StaticClassType()
 
 
 #------------------------- TMouse -------------------------
 
-proc Free*(this: TMouse) =
-  if (this != nil) and (this.Instance != nil):
-     Mouse_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TMouse) = defaultFree: Mouse_Free
 
 proc NewMouse*(): TMouse =
    new(result, Free)
    result.Instance = Mouse_Create()
-
-
 
 proc ClassType*(this: TMouse): TClass =
   return Mouse_ClassType(this.Instance)
@@ -23446,22 +22378,16 @@ proc IsDragging*(this: TMouse): bool {.inline.} =
 proc WheelScrollLines*(this: TMouse): int32 {.inline.} =
   return Mouse_GetWheelScrollLines(this.Instance)
 
-proc TMouseClass*(): TClass =
-  return Mouse_StaticClassType()
+proc TMouseClass*(): TClass = Mouse_StaticClassType()
 
 
 #------------------------- TListColumn -------------------------
 
-proc Free*(this: TListColumn) =
-  if (this != nil) and (this.Instance != nil):
-     ListColumn_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TListColumn) = defaultFree: ListColumn_Free
 
 proc NewListColumn*(AOwner: TCollection): TListColumn =
    new(result, Free)
    result.Instance = ListColumn_Create(CheckPtr(AOwner))
-
-
 
 proc Assign*(this: TListColumn, Source: pointer) {.inline.} =
   ListColumn_Assign(this.Instance, Source)
@@ -23562,22 +22488,16 @@ proc DisplayName*(this: TListColumn): string {.inline.} =
 proc `DisplayName=`*(this: TListColumn, AValue: string) {.inline.} =
   ListColumn_SetDisplayName(this.Instance, AValue)
 
-proc TListColumnClass*(): TClass =
-  return ListColumn_StaticClassType()
+proc TListColumnClass*(): TClass = ListColumn_StaticClassType()
 
 
 #------------------------- TCollectionItem -------------------------
 
-proc Free*(this: TCollectionItem) =
-  if (this != nil) and (this.Instance != nil):
-     CollectionItem_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TCollectionItem) = defaultFree: CollectionItem_Free
 
 proc NewCollectionItem*(AOwner: TCollection): TCollectionItem =
    new(result, Free)
    result.Instance = CollectionItem_Create(CheckPtr(AOwner))
-
-
 
 proc GetNamePath*(this: TCollectionItem): string {.inline.} =
   return $CollectionItem_GetNamePath(this.Instance)
@@ -23624,22 +22544,16 @@ proc DisplayName*(this: TCollectionItem): string {.inline.} =
 proc `DisplayName=`*(this: TCollectionItem, AValue: string) {.inline.} =
   CollectionItem_SetDisplayName(this.Instance, AValue)
 
-proc TCollectionItemClass*(): TClass =
-  return CollectionItem_StaticClassType()
+proc TCollectionItemClass*(): TClass = CollectionItem_StaticClassType()
 
 
 #------------------------- TStatusPanels -------------------------
 
-proc Free*(this: TStatusPanels) =
-  if (this != nil) and (this.Instance != nil):
-     StatusPanels_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TStatusPanels) = defaultFree: StatusPanels_Free
 
 proc NewStatusPanels*(AOwner: TStatusBar): TStatusPanels =
    new(result, Free)
    result.Instance = StatusPanels_Create(CheckPtr(AOwner))
-
-
 
 proc Add*(this: TStatusPanels): TStatusPanel {.inline.} =
   return AsStatusPanel(StatusPanels_Add(this.Instance))
@@ -23707,22 +22621,16 @@ proc Items*(this: TStatusPanels, Index: int32): TStatusPanel {.inline.} =
 proc `Items=`*(this: TStatusPanels, Index: int32, AValue: TStatusPanel) {.inline.} =
   StatusPanels_SetItems(this.Instance, Index, CheckPtr(AValue))
 
-proc TStatusPanelsClass*(): TClass =
-  return StatusPanels_StaticClassType()
+proc TStatusPanelsClass*(): TClass = StatusPanels_StaticClassType()
 
 
 #------------------------- TStatusPanel -------------------------
 
-proc Free*(this: TStatusPanel) =
-  if (this != nil) and (this.Instance != nil):
-     StatusPanel_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TStatusPanel) = defaultFree: StatusPanel_Free
 
 proc NewStatusPanel*(AOwner: TCollection): TStatusPanel =
    new(result, Free)
    result.Instance = StatusPanel_Create(CheckPtr(AOwner))
-
-
 
 proc Assign*(this: TStatusPanel, Source: pointer) {.inline.} =
   StatusPanel_Assign(this.Instance, Source)
@@ -23799,22 +22707,16 @@ proc DisplayName*(this: TStatusPanel): string {.inline.} =
 proc `DisplayName=`*(this: TStatusPanel, AValue: string) {.inline.} =
   StatusPanel_SetDisplayName(this.Instance, AValue)
 
-proc TStatusPanelClass*(): TClass =
-  return StatusPanel_StaticClassType()
+proc TStatusPanelClass*(): TClass = StatusPanel_StaticClassType()
 
 
 #------------------------- TSpinEdit -------------------------
 
-proc Free*(this: TSpinEdit) =
-  if (this != nil) and (this.Instance != nil):
-     SpinEdit_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TSpinEdit) = defaultFree: SpinEdit_Free
 
 proc NewSpinEdit*(AOwner: TComponent): TSpinEdit =
    new(result)
    result.Instance = SpinEdit_Create(CheckPtr(AOwner))
-
-
 
 proc Clear*(this: TSpinEdit) {.inline.} =
   SpinEdit_Clear(this.Instance)
@@ -24410,22 +23312,16 @@ proc Components*(this: TSpinEdit, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TSpinEdit, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(SpinEdit_GetAnchorSide(this.Instance, AKind))
 
-proc TSpinEditClass*(): TClass =
-  return SpinEdit_StaticClassType()
+proc TSpinEditClass*(): TClass = SpinEdit_StaticClassType()
 
 
 #------------------------- TMiniWebview -------------------------
 
-proc Free*(this: TMiniWebview) =
-  if (this != nil) and (this.Instance != nil):
-     MiniWebview_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TMiniWebview) = defaultFree: MiniWebview_Free
 
 proc NewMiniWebview*(AOwner: TComponent): TMiniWebview =
    new(result)
    result.Instance = MiniWebview_Create(CheckPtr(AOwner))
-
-
 
 proc Navigate*(this: TMiniWebview, AURL: string) {.inline.} =
   MiniWebview_Navigate(this.Instance, AURL)
@@ -24877,22 +23773,16 @@ proc Components*(this: TMiniWebview, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TMiniWebview, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(MiniWebview_GetAnchorSide(this.Instance, AKind))
 
-proc TMiniWebviewClass*(): TClass =
-  return MiniWebview_StaticClassType()
+proc TMiniWebviewClass*(): TClass = MiniWebview_StaticClassType()
 
 
 #------------------------- TCanvas -------------------------
 
-proc Free*(this: TCanvas) =
-  if (this != nil) and (this.Instance != nil):
-     Canvas_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TCanvas) = defaultFree: Canvas_Free
 
 proc NewCanvas*(): TCanvas =
    new(result, Free)
    result.Instance = Canvas_Create()
-
-
 
 proc Arc*(this: TCanvas, X1: int32, Y1: int32, X2: int32, Y2: int32, X3: int32, Y3: int32, X4: int32, Y4: int32) {.inline.} =
   Canvas_Arc(this.Instance, X1, Y1, X2, Y2, X3, Y3, X4, Y4)
@@ -25011,8 +23901,7 @@ proc `OnChange=`*(this: TCanvas, AEventId: TNotifyEvent) {.inline.} =
 proc `OnChanging=`*(this: TCanvas, AEventId: TNotifyEvent) {.inline.} =
   Canvas_SetOnChanging(this.Instance, AEventId)
 
-proc TCanvasClass*(): TClass =
-  return Canvas_StaticClassType()
+proc TCanvasClass*(): TClass = Canvas_StaticClassType()
 
 
 proc BrushCopy*(this: TCanvas, Dest: var TRect, Bitmap: TBitmap, Source: var TRect, Color: TColor) {.inline.} =
@@ -25064,16 +23953,11 @@ proc `Pixels=`*(this: TCanvas, X: int32, Y: int32, AColor: TColor) {.inline.} =
 
 #------------------------- TApplication -------------------------
 
-proc Free*(this: TApplication) =
-  if (this != nil) and (this.Instance != nil):
-     Application_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TApplication) = defaultFree: Application_Free
 
 proc NewApplication*(AOwner: TComponent): TApplication =
    new(result)
    result.Instance = Application_Create(CheckPtr(AOwner))
-
-
 
 proc ActivateHint*(this: TApplication, CursorPos: var TPoint) {.inline.} =
   Application_ActivateHint(this.Instance, CursorPos)
@@ -25312,8 +24196,7 @@ proc `Tag=`*(this: TApplication, AValue: int) {.inline.} =
 proc Components*(this: TApplication, AIndex: int32): TComponent {.inline.} =
   return AsComponent(Application_GetComponents(this.Instance, AIndex))
 
-proc TApplicationClass*(): TClass =
-  return Application_StaticClassType()
+proc TApplicationClass*(): TClass = Application_StaticClassType()
 
 
 proc Initialize*(this: TApplication) {.inline.} =
@@ -25331,16 +24214,11 @@ proc Run*(this: TApplication) {.inline.} =
 
 #------------------------- TGraphic -------------------------
 
-proc Free*(this: TGraphic) =
-  if (this != nil) and (this.Instance != nil):
-     Graphic_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TGraphic) = defaultFree: Graphic_Free
 
 proc NewGraphic*(): TGraphic =
    new(result, Free)
    result.Instance = Graphic_Create()
-
-
 
 proc Equals*(this: TGraphic, Obj: TObject): bool =
   return Graphic_Equals(this.Instance, CheckPtr(Obj))
@@ -25423,22 +24301,16 @@ proc `Width=`*(this: TGraphic, AValue: int32) {.inline.} =
 proc `OnChange=`*(this: TGraphic, AEventId: TNotifyEvent) {.inline.} =
   Graphic_SetOnChange(this.Instance, AEventId)
 
-proc TGraphicClass*(): TClass =
-  return Graphic_StaticClassType()
+proc TGraphicClass*(): TClass = Graphic_StaticClassType()
 
 
 #------------------------- TPngImage -------------------------
 
-proc Free*(this: TPngImage) =
-  if (this != nil) and (this.Instance != nil):
-     PngImage_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TPngImage) = defaultFree: PngImage_Free
 
 proc NewPngImage*(): TPngImage =
    new(result, Free)
    result.Instance = PngImage_Create()
-
-
 
 proc Assign*(this: TPngImage, Source: pointer) {.inline.} =
   PngImage_Assign(this.Instance, Source)
@@ -25527,22 +24399,16 @@ proc `Transparent=`*(this: TPngImage, AValue: bool) {.inline.} =
 proc `OnChange=`*(this: TPngImage, AEventId: TNotifyEvent) {.inline.} =
   PngImage_SetOnChange(this.Instance, AEventId)
 
-proc TPngImageClass*(): TClass =
-  return PngImage_StaticClassType()
+proc TPngImageClass*(): TClass = PngImage_StaticClassType()
 
 
 #------------------------- TJPEGImage -------------------------
 
-proc Free*(this: TJPEGImage) =
-  if (this != nil) and (this.Instance != nil):
-     JPEGImage_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TJPEGImage) = defaultFree: JPEGImage_Free
 
 proc NewJPEGImage*(): TJPEGImage =
    new(result, Free)
    result.Instance = JPEGImage_Create()
-
-
 
 proc Assign*(this: TJPEGImage, Source: pointer) {.inline.} =
   JPEGImage_Assign(this.Instance, Source)
@@ -25643,22 +24509,16 @@ proc `Width=`*(this: TJPEGImage, AValue: int32) {.inline.} =
 proc `OnChange=`*(this: TJPEGImage, AEventId: TNotifyEvent) {.inline.} =
   JPEGImage_SetOnChange(this.Instance, AEventId)
 
-proc TJPEGImageClass*(): TClass =
-  return JPEGImage_StaticClassType()
+proc TJPEGImageClass*(): TClass = JPEGImage_StaticClassType()
 
 
 #------------------------- TGIFImage -------------------------
 
-proc Free*(this: TGIFImage) =
-  if (this != nil) and (this.Instance != nil):
-     GIFImage_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TGIFImage) = defaultFree: GIFImage_Free
 
 proc NewGIFImage*(): TGIFImage =
    new(result, Free)
    result.Instance = GIFImage_Create()
-
-
 
 proc SaveToStream*(this: TGIFImage, Stream: TObject) {.inline.} =
   GIFImage_SaveToStream(this.Instance, CheckPtr(Stream))
@@ -25747,22 +24607,16 @@ proc `Width=`*(this: TGIFImage, AValue: int32) {.inline.} =
 proc `OnChange=`*(this: TGIFImage, AEventId: TNotifyEvent) {.inline.} =
   GIFImage_SetOnChange(this.Instance, AEventId)
 
-proc TGIFImageClass*(): TClass =
-  return GIFImage_StaticClassType()
+proc TGIFImageClass*(): TClass = GIFImage_StaticClassType()
 
 
 #------------------------- TActionList -------------------------
 
-proc Free*(this: TActionList) =
-  if (this != nil) and (this.Instance != nil):
-     ActionList_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TActionList) = defaultFree: ActionList_Free
 
 proc NewActionList*(AOwner: TComponent): TActionList =
    new(result)
    result.Instance = ActionList_Create(CheckPtr(AOwner))
-
-
 
 proc FindComponent*(this: TActionList, AName: string): TComponent =
   return AsComponent(ActionList_FindComponent(this.Instance, AName))
@@ -25839,22 +24693,16 @@ proc `Tag=`*(this: TActionList, AValue: int) {.inline.} =
 proc Components*(this: TActionList, AIndex: int32): TComponent {.inline.} =
   return AsComponent(ActionList_GetComponents(this.Instance, AIndex))
 
-proc TActionListClass*(): TClass =
-  return ActionList_StaticClassType()
+proc TActionListClass*(): TClass = ActionList_StaticClassType()
 
 
 #------------------------- TAction -------------------------
 
-proc Free*(this: TAction) =
-  if (this != nil) and (this.Instance != nil):
-     Action_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TAction) = defaultFree: Action_Free
 
 proc NewAction*(AOwner: TComponent): TAction =
    new(result)
    result.Instance = Action_Create(CheckPtr(AOwner))
-
-
 
 proc Execute*(this: TAction): bool {.inline.} =
   return Action_Execute(this.Instance)
@@ -25988,22 +24836,16 @@ proc `Tag=`*(this: TAction, AValue: int) {.inline.} =
 proc Components*(this: TAction, AIndex: int32): TComponent {.inline.} =
   return AsComponent(Action_GetComponents(this.Instance, AIndex))
 
-proc TActionClass*(): TClass =
-  return Action_StaticClassType()
+proc TActionClass*(): TClass = Action_StaticClassType()
 
 
 #------------------------- TToolButton -------------------------
 
-proc Free*(this: TToolButton) =
-  if (this != nil) and (this.Instance != nil):
-     ToolButton_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TToolButton) = defaultFree: ToolButton_Free
 
 proc NewToolButton*(AOwner: TComponent): TToolButton =
    new(result)
    result.Instance = ToolButton_Create(CheckPtr(AOwner))
-
-
 
 proc CheckMenuDropdown*(this: TToolButton): bool {.inline.} =
   return ToolButton_CheckMenuDropdown(this.Instance)
@@ -26440,22 +25282,16 @@ proc Components*(this: TToolButton, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TToolButton, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(ToolButton_GetAnchorSide(this.Instance, AKind))
 
-proc TToolButtonClass*(): TClass =
-  return ToolButton_StaticClassType()
+proc TToolButtonClass*(): TClass = ToolButton_StaticClassType()
 
 
 #------------------------- TIniFile -------------------------
 
-proc Free*(this: TIniFile) =
-  if (this != nil) and (this.Instance != nil):
-     IniFile_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TIniFile) = defaultFree: IniFile_Free
 
 proc NewIniFile*(AFileName: string): TIniFile =
    new(result, Free)
    result.Instance = IniFile_Create(AFileName)
-
-
 
 proc ReadString*(this: TIniFile, Section: string, Ident: string, Default: string): string {.inline.} =
   return $IniFile_ReadString(this.Instance, Section, Ident, Default)
@@ -26544,22 +25380,16 @@ proc ToString*(this: TIniFile): string =
 proc FileName*(this: TIniFile): string {.inline.} =
   return $IniFile_GetFileName(this.Instance)
 
-proc TIniFileClass*(): TClass =
-  return IniFile_StaticClassType()
+proc TIniFileClass*(): TClass = IniFile_StaticClassType()
 
 
 #------------------------- TRegistry -------------------------
 
-proc Free*(this: TRegistry) =
-  if (this != nil) and (this.Instance != nil):
-     Registry_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TRegistry) = defaultFree: Registry_Free
 
 proc NewRegistry*(AAccess: uint32): TRegistry =
    new(result, Free)
    result.Instance = Registry_Create(AAccess)
-
-
 
 proc CloseKey*(this: TRegistry) {.inline.} =
   Registry_CloseKey(this.Instance)
@@ -26708,22 +25538,16 @@ proc Access*(this: TRegistry): uint32 {.inline.} =
 proc `Access=`*(this: TRegistry, AValue: uint32) {.inline.} =
   Registry_SetAccess(this.Instance, AValue)
 
-proc TRegistryClass*(): TClass =
-  return Registry_StaticClassType()
+proc TRegistryClass*(): TClass = Registry_StaticClassType()
 
 
 #------------------------- TClipboard -------------------------
 
-proc Free*(this: TClipboard) =
-  if (this != nil) and (this.Instance != nil):
-     Clipboard_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TClipboard) = defaultFree: Clipboard_Free
 
 proc NewClipboard*(): TClipboard =
    new(result, Free)
    result.Instance = Clipboard_Create()
-
-
 
 proc Assign*(this: TClipboard, Source: pointer) {.inline.} =
   Clipboard_Assign(this.Instance, Source)
@@ -26782,8 +25606,7 @@ proc FormatCount*(this: TClipboard): int32 {.inline.} =
 proc Formats*(this: TClipboard, Index: int32): uint16 {.inline.} =
   return Clipboard_GetFormats(this.Instance, Index)
 
-proc TClipboardClass*(): TClass =
-  return Clipboard_StaticClassType()
+proc TClipboardClass*(): TClass = Clipboard_StaticClassType()
 
 
 proc `Clipboard=`*(this: TClipboard): TClipboard {.inline.} =
@@ -26791,16 +25614,11 @@ proc `Clipboard=`*(this: TClipboard): TClipboard {.inline.} =
 
 #------------------------- TMonitor -------------------------
 
-proc Free*(this: TMonitor) =
-  if (this != nil) and (this.Instance != nil):
-     Monitor_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TMonitor) = defaultFree: Monitor_Free
 
 proc NewMonitor*(): TMonitor =
    new(result, Free)
    result.Instance = Monitor_Create()
-
-
 
 proc ClassType*(this: TMonitor): TClass =
   return Monitor_ClassType(this.Instance)
@@ -26853,22 +25671,16 @@ proc Primary*(this: TMonitor): bool {.inline.} =
 proc PixelsPerInch*(this: TMonitor): int32 {.inline.} =
   return Monitor_GetPixelsPerInch(this.Instance)
 
-proc TMonitorClass*(): TClass =
-  return Monitor_StaticClassType()
+proc TMonitorClass*(): TClass = Monitor_StaticClassType()
 
 
 #------------------------- TPaintBox -------------------------
 
-proc Free*(this: TPaintBox) =
-  if (this != nil) and (this.Instance != nil):
-     PaintBox_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TPaintBox) = defaultFree: PaintBox_Free
 
 proc NewPaintBox*(AOwner: TComponent): TPaintBox =
    new(result)
    result.Instance = PaintBox_Create(CheckPtr(AOwner))
-
-
 
 proc BringToFront*(this: TPaintBox) =
   PaintBox_BringToFront(this.Instance)
@@ -27248,22 +26060,16 @@ proc Components*(this: TPaintBox, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TPaintBox, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(PaintBox_GetAnchorSide(this.Instance, AKind))
 
-proc TPaintBoxClass*(): TClass =
-  return PaintBox_StaticClassType()
+proc TPaintBoxClass*(): TClass = PaintBox_StaticClassType()
 
 
 #------------------------- TTimer -------------------------
 
-proc Free*(this: TTimer) =
-  if (this != nil) and (this.Instance != nil):
-     Timer_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TTimer) = defaultFree: Timer_Free
 
 proc NewTimer*(AOwner: TComponent): TTimer =
    new(result)
    result.Instance = Timer_Create(CheckPtr(AOwner))
-
-
 
 proc FindComponent*(this: TTimer, AName: string): TComponent =
   return AsComponent(Timer_FindComponent(this.Instance, AName))
@@ -27340,22 +26146,16 @@ proc `Tag=`*(this: TTimer, AValue: int) {.inline.} =
 proc Components*(this: TTimer, AIndex: int32): TComponent {.inline.} =
   return AsComponent(Timer_GetComponents(this.Instance, AIndex))
 
-proc TTimerClass*(): TClass =
-  return Timer_StaticClassType()
+proc TTimerClass*(): TClass = Timer_StaticClassType()
 
 
 #------------------------- TList -------------------------
 
-proc Free*(this: TList) =
-  if (this != nil) and (this.Instance != nil):
-     List_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TList) = defaultFree: List_Free
 
 proc NewList*(): TList =
    new(result, Free)
    result.Instance = List_Create()
-
-
 
 proc Add*(this: TList, Item: pointer): int32 {.inline.} =
   return List_Add(this.Instance, Item)
@@ -27420,22 +26220,16 @@ proc Items*(this: TList, Index: int32): pointer {.inline.} =
 proc `Items=`*(this: TList, Index: int32, AValue: pointer) {.inline.} =
   List_SetItems(this.Instance, Index, AValue)
 
-proc TListClass*(): TClass =
-  return List_StaticClassType()
+proc TListClass*(): TClass = List_StaticClassType()
 
 
 #------------------------- TForm -------------------------
 
-proc Free*(this: TForm) =
-  if (this != nil) and (this.Instance != nil):
-     Form_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TForm) = defaultFree: Form_Free
 
 proc NewForm*(AOwner: TComponent): TForm =
    new(result)
    result.Instance = Form_Create(CheckPtr(AOwner))
-
-
 
 proc Close*(this: TForm) {.inline.} =
   Form_Close(this.Instance)
@@ -28142,8 +26936,7 @@ proc Components*(this: TForm, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TForm, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(Form_GetAnchorSide(this.Instance, AKind))
 
-proc TFormClass*(): TClass =
-  return Form_StaticClassType()
+proc TFormClass*(): TClass = Form_StaticClassType()
 
 
 proc Create2*(this: TForm, AInitScale: bool): TForm {.inline.} =
@@ -28251,8 +27044,7 @@ proc Tab*(this: TParaAttributes, Index: int8): int32 {.inline.} =
 proc `Tab=`*(this: TParaAttributes, Index: int8, AValue: int32) {.inline.} =
   ParaAttributes_SetTab(this.Instance, Index, AValue)
 
-proc TParaAttributesClass*(): TClass =
-  return ParaAttributes_StaticClassType()
+proc TParaAttributesClass*(): TClass = ParaAttributes_StaticClassType()
 
 
 #------------------------- TTextAttributes -------------------------
@@ -28327,8 +27119,7 @@ proc Height*(this: TTextAttributes): int32 {.inline.} =
 proc `Height=`*(this: TTextAttributes, AValue: int32) {.inline.} =
   TextAttributes_SetHeight(this.Instance, AValue)
 
-proc TTextAttributesClass*(): TClass =
-  return TextAttributes_StaticClassType()
+proc TTextAttributesClass*(): TClass = TextAttributes_StaticClassType()
 
 
 #------------------------- TIconOptions -------------------------
@@ -28373,8 +27164,7 @@ proc AutoArrange*(this: TIconOptions): bool {.inline.} =
 proc `AutoArrange=`*(this: TIconOptions, AValue: bool) {.inline.} =
   IconOptions_SetAutoArrange(this.Instance, AValue)
 
-proc TIconOptionsClass*(): TClass =
-  return IconOptions_StaticClassType()
+proc TIconOptionsClass*(): TClass = IconOptions_StaticClassType()
 
 
 #------------------------- Exception -------------------------
@@ -28407,22 +27197,16 @@ proc Message*(this: Exception): string {.inline.} =
 proc `Message=`*(this: Exception, AValue: string) {.inline.} =
   Exception_SetMessage(this.Instance, AValue)
 
-proc ExceptionClass*(): TClass =
-  return Exception_StaticClassType()
+proc ExceptionClass*(): TClass = Exception_StaticClassType()
 
 
 #------------------------- TScrollBar -------------------------
 
-proc Free*(this: TScrollBar) =
-  if (this != nil) and (this.Instance != nil):
-     ScrollBar_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TScrollBar) = defaultFree: ScrollBar_Free
 
 proc NewScrollBar*(AOwner: TComponent): TScrollBar =
    new(result)
    result.Instance = ScrollBar_Create(CheckPtr(AOwner))
-
-
 
 proc SetParams*(this: TScrollBar, APosition: int32, AMin: int32, AMax: int32) {.inline.} =
   ScrollBar_SetParams(this.Instance, APosition, AMin, AMax)
@@ -28937,22 +27721,16 @@ proc Components*(this: TScrollBar, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TScrollBar, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(ScrollBar_GetAnchorSide(this.Instance, AKind))
 
-proc TScrollBarClass*(): TClass =
-  return ScrollBar_StaticClassType()
+proc TScrollBarClass*(): TClass = ScrollBar_StaticClassType()
 
 
 #------------------------- TMaskEdit -------------------------
 
-proc Free*(this: TMaskEdit) =
-  if (this != nil) and (this.Instance != nil):
-     MaskEdit_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TMaskEdit) = defaultFree: MaskEdit_Free
 
 proc NewMaskEdit*(AOwner: TComponent): TMaskEdit =
    new(result)
    result.Instance = MaskEdit_Create(CheckPtr(AOwner))
-
-
 
 proc ValidateEdit*(this: TMaskEdit) {.inline.} =
   MaskEdit_ValidateEdit(this.Instance)
@@ -29596,22 +28374,16 @@ proc Components*(this: TMaskEdit, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TMaskEdit, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(MaskEdit_GetAnchorSide(this.Instance, AKind))
 
-proc TMaskEditClass*(): TClass =
-  return MaskEdit_StaticClassType()
+proc TMaskEditClass*(): TClass = MaskEdit_StaticClassType()
 
 
 #------------------------- TShape -------------------------
 
-proc Free*(this: TShape) =
-  if (this != nil) and (this.Instance != nil):
-     Shape_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TShape) = defaultFree: Shape_Free
 
 proc NewShape*(AOwner: TComponent): TShape =
    new(result)
    result.Instance = Shape_Create(CheckPtr(AOwner))
-
-
 
 proc BringToFront*(this: TShape) =
   Shape_BringToFront(this.Instance)
@@ -29973,22 +28745,16 @@ proc Components*(this: TShape, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TShape, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(Shape_GetAnchorSide(this.Instance, AKind))
 
-proc TShapeClass*(): TClass =
-  return Shape_StaticClassType()
+proc TShapeClass*(): TClass = Shape_StaticClassType()
 
 
 #------------------------- TBevel -------------------------
 
-proc Free*(this: TBevel) =
-  if (this != nil) and (this.Instance != nil):
-     Bevel_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TBevel) = defaultFree: Bevel_Free
 
 proc NewBevel*(AOwner: TComponent): TBevel =
    new(result)
    result.Instance = Bevel_Create(CheckPtr(AOwner))
-
-
 
 proc BringToFront*(this: TBevel) =
   Bevel_BringToFront(this.Instance)
@@ -30302,22 +29068,16 @@ proc Components*(this: TBevel, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TBevel, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(Bevel_GetAnchorSide(this.Instance, AKind))
 
-proc TBevelClass*(): TClass =
-  return Bevel_StaticClassType()
+proc TBevelClass*(): TClass = Bevel_StaticClassType()
 
 
 #------------------------- TScrollBox -------------------------
 
-proc Free*(this: TScrollBox) =
-  if (this != nil) and (this.Instance != nil):
-     ScrollBox_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TScrollBox) = defaultFree: ScrollBox_Free
 
 proc NewScrollBox*(AOwner: TComponent): TScrollBox =
    new(result)
    result.Instance = ScrollBox_Create(CheckPtr(AOwner))
-
-
 
 proc ScrollInView*(this: TScrollBox, AControl: TControl) {.inline.} =
   ScrollBox_ScrollInView(this.Instance, CheckPtr(AControl))
@@ -30886,22 +29646,16 @@ proc Components*(this: TScrollBox, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TScrollBox, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(ScrollBox_GetAnchorSide(this.Instance, AKind))
 
-proc TScrollBoxClass*(): TClass =
-  return ScrollBox_StaticClassType()
+proc TScrollBoxClass*(): TClass = ScrollBox_StaticClassType()
 
 
 #------------------------- TCheckListBox -------------------------
 
-proc Free*(this: TCheckListBox) =
-  if (this != nil) and (this.Instance != nil):
-     CheckListBox_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TCheckListBox) = defaultFree: CheckListBox_Free
 
 proc NewCheckListBox*(AOwner: TComponent): TCheckListBox =
    new(result)
    result.Instance = CheckListBox_Create(CheckPtr(AOwner))
-
-
 
 proc CheckAll*(this: TCheckListBox, AState: TCheckBoxState, AllowGrayed: bool, AllowDisabled: bool) {.inline.} =
   CheckListBox_CheckAll(this.Instance, AState, AllowGrayed, AllowDisabled)
@@ -31542,22 +30296,16 @@ proc Components*(this: TCheckListBox, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TCheckListBox, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(CheckListBox_GetAnchorSide(this.Instance, AKind))
 
-proc TCheckListBoxClass*(): TClass =
-  return CheckListBox_StaticClassType()
+proc TCheckListBoxClass*(): TClass = CheckListBox_StaticClassType()
 
 
 #------------------------- TGauge -------------------------
 
-proc Free*(this: TGauge) =
-  if (this != nil) and (this.Instance != nil):
-     Gauge_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TGauge) = defaultFree: Gauge_Free
 
 proc NewGauge*(AOwner: TComponent): TGauge =
    new(result)
    result.Instance = Gauge_Create(CheckPtr(AOwner))
-
-
 
 proc AddProgress*(this: TGauge, Value: int32) {.inline.} =
   Gauge_AddProgress(this.Instance, Value)
@@ -31937,22 +30685,16 @@ proc Components*(this: TGauge, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TGauge, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(Gauge_GetAnchorSide(this.Instance, AKind))
 
-proc TGaugeClass*(): TClass =
-  return Gauge_StaticClassType()
+proc TGaugeClass*(): TClass = Gauge_StaticClassType()
 
 
 #------------------------- TImageButton -------------------------
 
-proc Free*(this: TImageButton) =
-  if (this != nil) and (this.Instance != nil):
-     ImageButton_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TImageButton) = defaultFree: ImageButton_Free
 
 proc NewImageButton*(AOwner: TComponent): TImageButton =
    new(result)
    result.Instance = ImageButton_Create(CheckPtr(AOwner))
-
-
 
 proc Click*(this: TImageButton) {.inline.} =
   ImageButton_Click(this.Instance)
@@ -32365,22 +31107,16 @@ proc Components*(this: TImageButton, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TImageButton, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(ImageButton_GetAnchorSide(this.Instance, AKind))
 
-proc TImageButtonClass*(): TClass =
-  return ImageButton_StaticClassType()
+proc TImageButtonClass*(): TClass = ImageButton_StaticClassType()
 
 
 #------------------------- TFindDialog -------------------------
 
-proc Free*(this: TFindDialog) =
-  if (this != nil) and (this.Instance != nil):
-     FindDialog_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TFindDialog) = defaultFree: FindDialog_Free
 
 proc NewFindDialog*(AOwner: TComponent): TFindDialog =
    new(result)
    result.Instance = FindDialog_Create(CheckPtr(AOwner))
-
-
 
 proc CloseDialog*(this: TFindDialog) {.inline.} =
   FindDialog_CloseDialog(this.Instance)
@@ -32490,22 +31226,16 @@ proc `Tag=`*(this: TFindDialog, AValue: int) {.inline.} =
 proc Components*(this: TFindDialog, AIndex: int32): TComponent {.inline.} =
   return AsComponent(FindDialog_GetComponents(this.Instance, AIndex))
 
-proc TFindDialogClass*(): TClass =
-  return FindDialog_StaticClassType()
+proc TFindDialogClass*(): TClass = FindDialog_StaticClassType()
 
 
 #------------------------- TReplaceDialog -------------------------
 
-proc Free*(this: TReplaceDialog) =
-  if (this != nil) and (this.Instance != nil):
-     ReplaceDialog_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TReplaceDialog) = defaultFree: ReplaceDialog_Free
 
 proc NewReplaceDialog*(AOwner: TComponent): TReplaceDialog =
    new(result)
    result.Instance = ReplaceDialog_Create(CheckPtr(AOwner))
-
-
 
 proc CloseDialog*(this: TReplaceDialog) {.inline.} =
   ReplaceDialog_CloseDialog(this.Instance)
@@ -32624,22 +31354,16 @@ proc `Tag=`*(this: TReplaceDialog, AValue: int) {.inline.} =
 proc Components*(this: TReplaceDialog, AIndex: int32): TComponent {.inline.} =
   return AsComponent(ReplaceDialog_GetComponents(this.Instance, AIndex))
 
-proc TReplaceDialogClass*(): TClass =
-  return ReplaceDialog_StaticClassType()
+proc TReplaceDialogClass*(): TClass = ReplaceDialog_StaticClassType()
 
 
 #------------------------- TPrinterSetupDialog -------------------------
 
-proc Free*(this: TPrinterSetupDialog) =
-  if (this != nil) and (this.Instance != nil):
-     PrinterSetupDialog_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TPrinterSetupDialog) = defaultFree: PrinterSetupDialog_Free
 
 proc NewPrinterSetupDialog*(AOwner: TComponent): TPrinterSetupDialog =
    new(result)
    result.Instance = PrinterSetupDialog_Create(CheckPtr(AOwner))
-
-
 
 proc Execute*(this: TPrinterSetupDialog): bool {.inline.} =
   return PrinterSetupDialog_Execute(this.Instance)
@@ -32713,22 +31437,16 @@ proc `Tag=`*(this: TPrinterSetupDialog, AValue: int) {.inline.} =
 proc Components*(this: TPrinterSetupDialog, AIndex: int32): TComponent {.inline.} =
   return AsComponent(PrinterSetupDialog_GetComponents(this.Instance, AIndex))
 
-proc TPrinterSetupDialogClass*(): TClass =
-  return PrinterSetupDialog_StaticClassType()
+proc TPrinterSetupDialogClass*(): TClass = PrinterSetupDialog_StaticClassType()
 
 
 #------------------------- TPageSetupDialog -------------------------
 
-proc Free*(this: TPageSetupDialog) =
-  if (this != nil) and (this.Instance != nil):
-     PageSetupDialog_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TPageSetupDialog) = defaultFree: PageSetupDialog_Free
 
 proc NewPageSetupDialog*(AOwner: TComponent): TPageSetupDialog =
    new(result)
    result.Instance = PageSetupDialog_Create(CheckPtr(AOwner))
-
-
 
 proc Execute*(this: TPageSetupDialog): bool {.inline.} =
   return PageSetupDialog_Execute(this.Instance)
@@ -32847,22 +31565,16 @@ proc `Tag=`*(this: TPageSetupDialog, AValue: int) {.inline.} =
 proc Components*(this: TPageSetupDialog, AIndex: int32): TComponent {.inline.} =
   return AsComponent(PageSetupDialog_GetComponents(this.Instance, AIndex))
 
-proc TPageSetupDialogClass*(): TClass =
-  return PageSetupDialog_StaticClassType()
+proc TPageSetupDialogClass*(): TClass = PageSetupDialog_StaticClassType()
 
 
 #------------------------- TDragObject -------------------------
 
-proc Free*(this: TDragObject) =
-  if (this != nil) and (this.Instance != nil):
-     DragObject_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TDragObject) = defaultFree: DragObject_Free
 
 proc NewDragObject*(AOwner: TControl): TDragObject =
    new(result, Free)
    result.Instance = DragObject_Create(CheckPtr(AOwner))
-
-
 
 proc Assign*(this: TDragObject, Source: TDragObject) {.inline.} =
   DragObject_Assign(this.Instance, CheckPtr(Source))
@@ -32921,22 +31633,16 @@ proc `DragTargetPos=`*(this: TDragObject, AValue: var TPoint) {.inline.} =
 proc Dropped*(this: TDragObject): bool {.inline.} =
   return DragObject_GetDropped(this.Instance)
 
-proc TDragObjectClass*(): TClass =
-  return DragObject_StaticClassType()
+proc TDragObjectClass*(): TClass = DragObject_StaticClassType()
 
 
 #------------------------- TDragDockObject -------------------------
 
-proc Free*(this: TDragDockObject) =
-  if (this != nil) and (this.Instance != nil):
-     DragDockObject_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TDragDockObject) = defaultFree: DragDockObject_Free
 
 proc NewDragDockObject*(AOwner: TControl): TDragDockObject =
    new(result, Free)
    result.Instance = DragDockObject_Create(CheckPtr(AOwner))
-
-
 
 proc Assign*(this: TDragDockObject, Source: TDragObject) {.inline.} =
   DragDockObject_Assign(this.Instance, CheckPtr(Source))
@@ -33025,22 +31731,16 @@ proc `DragTargetPos=`*(this: TDragDockObject, AValue: var TPoint) {.inline.} =
 proc Dropped*(this: TDragDockObject): bool {.inline.} =
   return DragDockObject_GetDropped(this.Instance)
 
-proc TDragDockObjectClass*(): TClass =
-  return DragDockObject_StaticClassType()
+proc TDragDockObjectClass*(): TClass = DragDockObject_StaticClassType()
 
 
 #------------------------- TStringGrid -------------------------
 
-proc Free*(this: TStringGrid) =
-  if (this != nil) and (this.Instance != nil):
-     StringGrid_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TStringGrid) = defaultFree: StringGrid_Free
 
 proc NewStringGrid*(AOwner: TComponent): TStringGrid =
    new(result)
    result.Instance = StringGrid_Create(CheckPtr(AOwner))
-
-
 
 proc DeleteColRow*(this: TStringGrid, IsColumn: bool, index: int32) {.inline.} =
   StringGrid_DeleteColRow(this.Instance, IsColumn, index)
@@ -34113,22 +32813,16 @@ proc Components*(this: TStringGrid, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TStringGrid, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(StringGrid_GetAnchorSide(this.Instance, AKind))
 
-proc TStringGridClass*(): TClass =
-  return StringGrid_StaticClassType()
+proc TStringGridClass*(): TClass = StringGrid_StaticClassType()
 
 
 #------------------------- TDrawGrid -------------------------
 
-proc Free*(this: TDrawGrid) =
-  if (this != nil) and (this.Instance != nil):
-     DrawGrid_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TDrawGrid) = defaultFree: DrawGrid_Free
 
 proc NewDrawGrid*(AOwner: TComponent): TDrawGrid =
    new(result)
    result.Instance = DrawGrid_Create(CheckPtr(AOwner))
-
-
 
 proc CellRect*(this: TDrawGrid, ACol: int32, ARow: int32): TRect {.inline.} =
   DrawGrid_CellRect(this.Instance, ACol, ARow, result)
@@ -34823,22 +33517,16 @@ proc Components*(this: TDrawGrid, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TDrawGrid, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(DrawGrid_GetAnchorSide(this.Instance, AKind))
 
-proc TDrawGridClass*(): TClass =
-  return DrawGrid_StaticClassType()
+proc TDrawGridClass*(): TClass = DrawGrid_StaticClassType()
 
 
 #------------------------- TValueListEditor -------------------------
 
-proc Free*(this: TValueListEditor) =
-  if (this != nil) and (this.Instance != nil):
-     ValueListEditor_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TValueListEditor) = defaultFree: ValueListEditor_Free
 
 proc NewValueListEditor*(AOwner: TComponent): TValueListEditor =
    new(result)
    result.Instance = ValueListEditor_Create(CheckPtr(AOwner))
-
-
 
 proc DeleteRow*(this: TValueListEditor, ARow: int32) {.inline.} =
   ValueListEditor_DeleteRow(this.Instance, ARow)
@@ -35548,22 +34236,16 @@ proc Components*(this: TValueListEditor, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TValueListEditor, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(ValueListEditor_GetAnchorSide(this.Instance, AKind))
 
-proc TValueListEditorClass*(): TClass =
-  return ValueListEditor_StaticClassType()
+proc TValueListEditorClass*(): TClass = ValueListEditor_StaticClassType()
 
 
 #------------------------- THeaderControl -------------------------
 
-proc Free*(this: THeaderControl) =
-  if (this != nil) and (this.Instance != nil):
-     HeaderControl_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: THeaderControl) = defaultFree: HeaderControl_Free
 
 proc NewHeaderControl*(AOwner: TComponent): THeaderControl =
    new(result)
    result.Instance = HeaderControl_Create(CheckPtr(AOwner))
-
-
 
 proc FlipChildren*(this: THeaderControl, AllLevels: bool) =
   HeaderControl_FlipChildren(this.Instance, AllLevels)
@@ -36084,22 +34766,16 @@ proc Components*(this: THeaderControl, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: THeaderControl, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(HeaderControl_GetAnchorSide(this.Instance, AKind))
 
-proc THeaderControlClass*(): TClass =
-  return HeaderControl_StaticClassType()
+proc THeaderControlClass*(): TClass = HeaderControl_StaticClassType()
 
 
 #------------------------- THeaderSection -------------------------
 
-proc Free*(this: THeaderSection) =
-  if (this != nil) and (this.Instance != nil):
-     HeaderSection_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: THeaderSection) = defaultFree: HeaderSection_Free
 
 proc NewHeaderSection*(AOwner: TCollection): THeaderSection =
    new(result, Free)
    result.Instance = HeaderSection_Create(CheckPtr(AOwner))
-
-
 
 proc Assign*(this: THeaderSection, Source: pointer) {.inline.} =
   HeaderSection_Assign(this.Instance, Source)
@@ -36188,22 +34864,16 @@ proc DisplayName*(this: THeaderSection): string {.inline.} =
 proc `DisplayName=`*(this: THeaderSection, AValue: string) {.inline.} =
   HeaderSection_SetDisplayName(this.Instance, AValue)
 
-proc THeaderSectionClass*(): TClass =
-  return HeaderSection_StaticClassType()
+proc THeaderSectionClass*(): TClass = HeaderSection_StaticClassType()
 
 
 #------------------------- THeaderSections -------------------------
 
-proc Free*(this: THeaderSections) =
-  if (this != nil) and (this.Instance != nil):
-     HeaderSections_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: THeaderSections) = defaultFree: HeaderSections_Free
 
 proc NewHeaderSections*(AOwner: THeaderControl): THeaderSections =
    new(result, Free)
    result.Instance = HeaderSections_Create(CheckPtr(AOwner))
-
-
 
 proc Add*(this: THeaderSections): THeaderSection {.inline.} =
   return AsHeaderSection(HeaderSections_Add(this.Instance))
@@ -36268,22 +34938,16 @@ proc Items*(this: THeaderSections, Index: int32): THeaderSection {.inline.} =
 proc `Items=`*(this: THeaderSections, Index: int32, AValue: THeaderSection) {.inline.} =
   HeaderSections_SetItems(this.Instance, Index, CheckPtr(AValue))
 
-proc THeaderSectionsClass*(): TClass =
-  return HeaderSections_StaticClassType()
+proc THeaderSectionsClass*(): TClass = HeaderSections_StaticClassType()
 
 
 #------------------------- TLabeledEdit -------------------------
 
-proc Free*(this: TLabeledEdit) =
-  if (this != nil) and (this.Instance != nil):
-     LabeledEdit_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TLabeledEdit) = defaultFree: LabeledEdit_Free
 
 proc NewLabeledEdit*(AOwner: TComponent): TLabeledEdit =
    new(result)
    result.Instance = LabeledEdit_Create(CheckPtr(AOwner))
-
-
 
 proc SetBounds*(this: TLabeledEdit, ALeft: int32, ATop: int32, AWidth: int32, AHeight: int32) =
   LabeledEdit_SetBounds(this.Instance, ALeft, ATop, AWidth, AHeight)
@@ -36930,22 +35594,16 @@ proc Components*(this: TLabeledEdit, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TLabeledEdit, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(LabeledEdit_GetAnchorSide(this.Instance, AKind))
 
-proc TLabeledEditClass*(): TClass =
-  return LabeledEdit_StaticClassType()
+proc TLabeledEditClass*(): TClass = LabeledEdit_StaticClassType()
 
 
 #------------------------- TBoundLabel -------------------------
 
-proc Free*(this: TBoundLabel) =
-  if (this != nil) and (this.Instance != nil):
-     BoundLabel_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TBoundLabel) = defaultFree: BoundLabel_Free
 
 proc NewBoundLabel*(AOwner: TComponent): TBoundLabel =
    new(result)
    result.Instance = BoundLabel_Create(CheckPtr(AOwner))
-
-
 
 proc BringToFront*(this: TBoundLabel) =
   BoundLabel_BringToFront(this.Instance)
@@ -37334,22 +35992,16 @@ proc Components*(this: TBoundLabel, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TBoundLabel, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(BoundLabel_GetAnchorSide(this.Instance, AKind))
 
-proc TBoundLabelClass*(): TClass =
-  return BoundLabel_StaticClassType()
+proc TBoundLabelClass*(): TClass = BoundLabel_StaticClassType()
 
 
 #------------------------- TFlowPanel -------------------------
 
-proc Free*(this: TFlowPanel) =
-  if (this != nil) and (this.Instance != nil):
-     FlowPanel_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TFlowPanel) = defaultFree: FlowPanel_Free
 
 proc NewFlowPanel*(AOwner: TComponent): TFlowPanel =
    new(result)
    result.Instance = FlowPanel_Create(CheckPtr(AOwner))
-
-
 
 proc GetControlIndex*(this: TFlowPanel, AControl: TControl): int32 {.inline.} =
   return FlowPanel_GetControlIndex(this.Instance, CheckPtr(AControl))
@@ -37939,22 +36591,16 @@ proc Components*(this: TFlowPanel, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TFlowPanel, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(FlowPanel_GetAnchorSide(this.Instance, AKind))
 
-proc TFlowPanelClass*(): TClass =
-  return FlowPanel_StaticClassType()
+proc TFlowPanelClass*(): TClass = FlowPanel_StaticClassType()
 
 
 #------------------------- TCoolBar -------------------------
 
-proc Free*(this: TCoolBar) =
-  if (this != nil) and (this.Instance != nil):
-     CoolBar_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TCoolBar) = defaultFree: CoolBar_Free
 
 proc NewCoolBar*(AOwner: TComponent): TCoolBar =
    new(result)
    result.Instance = CoolBar_Create(CheckPtr(AOwner))
-
-
 
 proc FlipChildren*(this: TCoolBar, AllLevels: bool) =
   CoolBar_FlipChildren(this.Instance, AllLevels)
@@ -38559,22 +37205,16 @@ proc Components*(this: TCoolBar, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TCoolBar, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(CoolBar_GetAnchorSide(this.Instance, AKind))
 
-proc TCoolBarClass*(): TClass =
-  return CoolBar_StaticClassType()
+proc TCoolBarClass*(): TClass = CoolBar_StaticClassType()
 
 
 #------------------------- TCoolBands -------------------------
 
-proc Free*(this: TCoolBands) =
-  if (this != nil) and (this.Instance != nil):
-     CoolBands_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TCoolBands) = defaultFree: CoolBands_Free
 
 proc NewCoolBands*(AOwner: TCoolBar): TCoolBands =
    new(result, Free)
    result.Instance = CoolBands_Create(CheckPtr(AOwner))
-
-
 
 proc Add*(this: TCoolBands): TCoolBand {.inline.} =
   return AsCoolBand(CoolBands_Add(this.Instance))
@@ -38639,22 +37279,16 @@ proc Items*(this: TCoolBands, Index: int32): TCoolBand {.inline.} =
 proc `Items=`*(this: TCoolBands, Index: int32, AValue: TCoolBand) {.inline.} =
   CoolBands_SetItems(this.Instance, Index, CheckPtr(AValue))
 
-proc TCoolBandsClass*(): TClass =
-  return CoolBands_StaticClassType()
+proc TCoolBandsClass*(): TClass = CoolBands_StaticClassType()
 
 
 #------------------------- TCoolBand -------------------------
 
-proc Free*(this: TCoolBand) =
-  if (this != nil) and (this.Instance != nil):
-     CoolBand_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TCoolBand) = defaultFree: CoolBand_Free
 
 proc NewCoolBand*(AOwner: TCollection): TCoolBand =
    new(result, Free)
    result.Instance = CoolBand_Create(CheckPtr(AOwner))
-
-
 
 proc Assign*(this: TCoolBand, Source: pointer) {.inline.} =
   CoolBand_Assign(this.Instance, Source)
@@ -38800,22 +37434,16 @@ proc DisplayName*(this: TCoolBand): string {.inline.} =
 proc `DisplayName=`*(this: TCoolBand, AValue: string) {.inline.} =
   CoolBand_SetDisplayName(this.Instance, AValue)
 
-proc TCoolBandClass*(): TClass =
-  return CoolBand_StaticClassType()
+proc TCoolBandClass*(): TClass = CoolBand_StaticClassType()
 
 
 #------------------------- TCollection -------------------------
 
-proc Free*(this: TCollection) =
-  if (this != nil) and (this.Instance != nil):
-     Collection_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TCollection) = defaultFree: Collection_Free
 
 proc NewCollection*(AOwner: pointer): TCollection =
    new(result, Free)
    result.Instance = Collection_Create(AOwner)
-
-
 
 proc Owner*(this: TCollection): pointer {.inline.} =
   return Collection_Owner(this.Instance)
@@ -38877,22 +37505,16 @@ proc Items*(this: TCollection, Index: int32): TCollectionItem {.inline.} =
 proc `Items=`*(this: TCollection, Index: int32, AValue: TCollectionItem) {.inline.} =
   Collection_SetItems(this.Instance, Index, CheckPtr(AValue))
 
-proc TCollectionClass*(): TClass =
-  return Collection_StaticClassType()
+proc TCollectionClass*(): TClass = Collection_StaticClassType()
 
 
 #------------------------- TPrinter -------------------------
 
-proc Free*(this: TPrinter) =
-  if (this != nil) and (this.Instance != nil):
-     Printer_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TPrinter) = defaultFree: Printer_Free
 
 proc NewPrinter*(): TPrinter =
    new(result, Free)
    result.Instance = Printer_Create()
-
-
 
 proc Abort*(this: TPrinter) {.inline.} =
   Printer_Abort(this.Instance)
@@ -38978,8 +37600,7 @@ proc Title*(this: TPrinter): string {.inline.} =
 proc `Title=`*(this: TPrinter, AValue: string) {.inline.} =
   Printer_SetTitle(this.Instance, AValue)
 
-proc TPrinterClass*(): TClass =
-  return Printer_StaticClassType()
+proc TPrinterClass*(): TClass = Printer_StaticClassType()
 
 
 proc `Printer=`*(this: TPrinter, aName: string) {.inline.} =
@@ -38987,16 +37608,11 @@ proc `Printer=`*(this: TPrinter, aName: string) {.inline.} =
 
 #------------------------- TTaskDialog -------------------------
 
-proc Free*(this: TTaskDialog) =
-  if (this != nil) and (this.Instance != nil):
-     TaskDialog_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TTaskDialog) = defaultFree: TaskDialog_Free
 
 proc NewTaskDialog*(AOwner: TComponent): TTaskDialog =
    new(result)
    result.Instance = TaskDialog_Create(CheckPtr(AOwner))
-
-
 
 proc Execute*(this: TTaskDialog): bool {.inline.} =
   return TaskDialog_Execute(this.Instance)
@@ -39163,8 +37779,7 @@ proc `Tag=`*(this: TTaskDialog, AValue: int) {.inline.} =
 proc Components*(this: TTaskDialog, AIndex: int32): TComponent {.inline.} =
   return AsComponent(TaskDialog_GetComponents(this.Instance, AIndex))
 
-proc TTaskDialogClass*(): TClass =
-  return TaskDialog_StaticClassType()
+proc TTaskDialogClass*(): TClass = TaskDialog_StaticClassType()
 
 
 #------------------------- TTaskDialogButtons -------------------------
@@ -39239,22 +37854,16 @@ proc Items*(this: TTaskDialogButtons, Index: int32): TTaskDialogBaseButtonItem {
 proc `Items=`*(this: TTaskDialogButtons, Index: int32, AValue: TTaskDialogBaseButtonItem) {.inline.} =
   TaskDialogButtons_SetItems(this.Instance, Index, CheckPtr(AValue))
 
-proc TTaskDialogButtonsClass*(): TClass =
-  return TaskDialogButtons_StaticClassType()
+proc TTaskDialogButtonsClass*(): TClass = TaskDialogButtons_StaticClassType()
 
 
 #------------------------- TTaskDialogButtonItem -------------------------
 
-proc Free*(this: TTaskDialogButtonItem) =
-  if (this != nil) and (this.Instance != nil):
-     TaskDialogButtonItem_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TTaskDialogButtonItem) = defaultFree: TaskDialogButtonItem_Free
 
 proc NewTaskDialogButtonItem*(AOwner: TCollection): TTaskDialogButtonItem =
    new(result, Free)
    result.Instance = TaskDialogButtonItem_Create(CheckPtr(AOwner))
-
-
 
 proc GetNamePath*(this: TTaskDialogButtonItem): string {.inline.} =
   return $TaskDialogButtonItem_GetNamePath(this.Instance)
@@ -39319,22 +37928,16 @@ proc DisplayName*(this: TTaskDialogButtonItem): string {.inline.} =
 proc `DisplayName=`*(this: TTaskDialogButtonItem, AValue: string) {.inline.} =
   TaskDialogButtonItem_SetDisplayName(this.Instance, AValue)
 
-proc TTaskDialogButtonItemClass*(): TClass =
-  return TaskDialogButtonItem_StaticClassType()
+proc TTaskDialogButtonItemClass*(): TClass = TaskDialogButtonItem_StaticClassType()
 
 
 #------------------------- TTaskDialogRadioButtonItem -------------------------
 
-proc Free*(this: TTaskDialogRadioButtonItem) =
-  if (this != nil) and (this.Instance != nil):
-     TaskDialogRadioButtonItem_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TTaskDialogRadioButtonItem) = defaultFree: TaskDialogRadioButtonItem_Free
 
 proc NewTaskDialogRadioButtonItem*(AOwner: TCollection): TTaskDialogRadioButtonItem =
    new(result, Free)
    result.Instance = TaskDialogRadioButtonItem_Create(CheckPtr(AOwner))
-
-
 
 proc GetNamePath*(this: TTaskDialogRadioButtonItem): string {.inline.} =
   return $TaskDialogRadioButtonItem_GetNamePath(this.Instance)
@@ -39399,22 +38002,16 @@ proc DisplayName*(this: TTaskDialogRadioButtonItem): string {.inline.} =
 proc `DisplayName=`*(this: TTaskDialogRadioButtonItem, AValue: string) {.inline.} =
   TaskDialogRadioButtonItem_SetDisplayName(this.Instance, AValue)
 
-proc TTaskDialogRadioButtonItemClass*(): TClass =
-  return TaskDialogRadioButtonItem_StaticClassType()
+proc TTaskDialogRadioButtonItemClass*(): TClass = TaskDialogRadioButtonItem_StaticClassType()
 
 
 #------------------------- TTaskDialogBaseButtonItem -------------------------
 
-proc Free*(this: TTaskDialogBaseButtonItem) =
-  if (this != nil) and (this.Instance != nil):
-     TaskDialogBaseButtonItem_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TTaskDialogBaseButtonItem) = defaultFree: TaskDialogBaseButtonItem_Free
 
 proc NewTaskDialogBaseButtonItem*(AOwner: TCollection): TTaskDialogBaseButtonItem =
    new(result, Free)
    result.Instance = TaskDialogBaseButtonItem_Create(CheckPtr(AOwner))
-
-
 
 proc GetNamePath*(this: TTaskDialogBaseButtonItem): string {.inline.} =
   return $TaskDialogBaseButtonItem_GetNamePath(this.Instance)
@@ -39479,22 +38076,16 @@ proc DisplayName*(this: TTaskDialogBaseButtonItem): string {.inline.} =
 proc `DisplayName=`*(this: TTaskDialogBaseButtonItem, AValue: string) {.inline.} =
   TaskDialogBaseButtonItem_SetDisplayName(this.Instance, AValue)
 
-proc TTaskDialogBaseButtonItemClass*(): TClass =
-  return TaskDialogBaseButtonItem_StaticClassType()
+proc TTaskDialogBaseButtonItemClass*(): TClass = TaskDialogBaseButtonItem_StaticClassType()
 
 
 #------------------------- TComboBoxEx -------------------------
 
-proc Free*(this: TComboBoxEx) =
-  if (this != nil) and (this.Instance != nil):
-     ComboBoxEx_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TComboBoxEx) = defaultFree: ComboBoxEx_Free
 
 proc NewComboBoxEx*(AOwner: TComponent): TComboBoxEx =
    new(result)
    result.Instance = ComboBoxEx_Create(CheckPtr(AOwner))
-
-
 
 proc Focused*(this: TComboBoxEx): bool =
   return ComboBoxEx_Focused(this.Instance)
@@ -40120,8 +38711,7 @@ proc Components*(this: TComboBoxEx, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TComboBoxEx, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(ComboBoxEx_GetAnchorSide(this.Instance, AKind))
 
-proc TComboBoxExClass*(): TClass =
-  return ComboBoxEx_StaticClassType()
+proc TComboBoxExClass*(): TClass = ComboBoxEx_StaticClassType()
 
 
 #------------------------- TComboExItems -------------------------
@@ -40187,8 +38777,7 @@ proc Count*(this: TComboExItems): int32 {.inline.} =
 proc ComboItems*(this: TComboExItems, Index: int32): TComboExItem {.inline.} =
   return AsComboExItem(ComboExItems_GetComboItems(this.Instance, Index))
 
-proc TComboExItemsClass*(): TClass =
-  return ComboExItems_StaticClassType()
+proc TComboExItemsClass*(): TClass = ComboExItems_StaticClassType()
 
 
 #------------------------- TComboExItem -------------------------
@@ -40269,22 +38858,16 @@ proc DisplayName*(this: TComboExItem): string {.inline.} =
 proc `DisplayName=`*(this: TComboExItem, AValue: string) {.inline.} =
   ComboExItem_SetDisplayName(this.Instance, AValue)
 
-proc TComboExItemClass*(): TClass =
-  return ComboExItem_StaticClassType()
+proc TComboExItemClass*(): TClass = ComboExItem_StaticClassType()
 
 
 #------------------------- TFrame -------------------------
 
-proc Free*(this: TFrame) =
-  if (this != nil) and (this.Instance != nil):
-     Frame_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TFrame) = defaultFree: Frame_Free
 
 proc NewFrame*(AOwner: TComponent): TFrame =
    new(result)
    result.Instance = Frame_Create(CheckPtr(AOwner))
-
-
 
 proc ScrollInView*(this: TFrame, AControl: TControl) {.inline.} =
   Frame_ScrollInView(this.Instance, CheckPtr(AControl))
@@ -40850,8 +39433,7 @@ proc Components*(this: TFrame, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TFrame, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(Frame_GetAnchorSide(this.Instance, AKind))
 
-proc TFrameClass*(): TClass =
-  return Frame_StaticClassType()
+proc TFrameClass*(): TClass = Frame_StaticClassType()
 
 
 #------------------------- TControlScrollBar -------------------------
@@ -40926,8 +39508,7 @@ proc Visible*(this: TControlScrollBar): bool {.inline.} =
 proc `Visible=`*(this: TControlScrollBar, AValue: bool) {.inline.} =
   ControlScrollBar_SetVisible(this.Instance, AValue)
 
-proc TControlScrollBarClass*(): TClass =
-  return ControlScrollBar_StaticClassType()
+proc TControlScrollBarClass*(): TClass = ControlScrollBar_StaticClassType()
 
 
 #------------------------- TSizeConstraints -------------------------
@@ -40987,22 +39568,16 @@ proc MinWidth*(this: TSizeConstraints): TConstraintSize {.inline.} =
 proc `MinWidth=`*(this: TSizeConstraints, AValue: TConstraintSize) {.inline.} =
   SizeConstraints_SetMinWidth(this.Instance, AValue)
 
-proc TSizeConstraintsClass*(): TClass =
-  return SizeConstraints_StaticClassType()
+proc TSizeConstraintsClass*(): TClass = SizeConstraints_StaticClassType()
 
 
 #------------------------- TXButton -------------------------
 
-proc Free*(this: TXButton) =
-  if (this != nil) and (this.Instance != nil):
-     XButton_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TXButton) = defaultFree: XButton_Free
 
 proc NewXButton*(AOwner: TComponent): TXButton =
    new(result)
    result.Instance = XButton_Create(CheckPtr(AOwner))
-
-
 
 proc BringToFront*(this: TXButton) =
   XButton_BringToFront(this.Instance)
@@ -41415,8 +39990,7 @@ proc Components*(this: TXButton, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TXButton, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(XButton_GetAnchorSide(this.Instance, AKind))
 
-proc TXButtonClass*(): TClass =
-  return XButton_StaticClassType()
+proc TXButtonClass*(): TClass = XButton_StaticClassType()
 
 
 #------------------------- TAnchorSide -------------------------
@@ -41464,8 +40038,7 @@ proc Side*(this: TAnchorSide): TAnchorSideReference {.inline.} =
 proc `Side=`*(this: TAnchorSide, AValue: TAnchorSideReference) {.inline.} =
   AnchorSide_SetSide(this.Instance, AValue)
 
-proc TAnchorSideClass*(): TClass =
-  return AnchorSide_StaticClassType()
+proc TAnchorSideClass*(): TClass = AnchorSide_StaticClassType()
 
 
 #------------------------- TControlBorderSpacing -------------------------
@@ -41588,8 +40161,7 @@ proc Space*(this: TControlBorderSpacing, Kind: TAnchorKind): int32 {.inline.} =
 proc `Space=`*(this: TControlBorderSpacing, Kind: TAnchorKind, AValue: int32) {.inline.} =
   ControlBorderSpacing_SetSpace(this.Instance, Kind, AValue)
 
-proc TControlBorderSpacingClass*(): TClass =
-  return ControlBorderSpacing_StaticClassType()
+proc TControlBorderSpacingClass*(): TClass = ControlBorderSpacing_StaticClassType()
 
 
 #------------------------- TControlChildSizing -------------------------
@@ -41688,22 +40260,16 @@ proc ControlsPerLine*(this: TControlChildSizing): int32 {.inline.} =
 proc `ControlsPerLine=`*(this: TControlChildSizing, AValue: int32) {.inline.} =
   ControlChildSizing_SetControlsPerLine(this.Instance, AValue)
 
-proc TControlChildSizingClass*(): TClass =
-  return ControlChildSizing_StaticClassType()
+proc TControlChildSizingClass*(): TClass = ControlChildSizing_StaticClassType()
 
 
 #------------------------- TCheckGroup -------------------------
 
-proc Free*(this: TCheckGroup) =
-  if (this != nil) and (this.Instance != nil):
-     CheckGroup_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TCheckGroup) = defaultFree: CheckGroup_Free
 
 proc NewCheckGroup*(AOwner: TComponent): TCheckGroup =
    new(result)
    result.Instance = CheckGroup_Create(CheckPtr(AOwner))
-
-
 
 proc FlipChildren*(this: TCheckGroup, AllLevels: bool) =
   CheckGroup_FlipChildren(this.Instance, AllLevels)
@@ -42278,22 +40844,16 @@ proc Components*(this: TCheckGroup, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TCheckGroup, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(CheckGroup_GetAnchorSide(this.Instance, AKind))
 
-proc TCheckGroupClass*(): TClass =
-  return CheckGroup_StaticClassType()
+proc TCheckGroupClass*(): TClass = CheckGroup_StaticClassType()
 
 
 #------------------------- TToggleBox -------------------------
 
-proc Free*(this: TToggleBox) =
-  if (this != nil) and (this.Instance != nil):
-     ToggleBox_Free(this.Instance)
-     this.TObject.Instance = nil
+proc Free*(this: TToggleBox) = defaultFree: ToggleBox_Free
 
 proc NewToggleBox*(AOwner: TComponent): TToggleBox =
    new(result)
    result.Instance = ToggleBox_Create(CheckPtr(AOwner))
-
-
 
 proc CanFocus*(this: TToggleBox): bool =
   return ToggleBox_CanFocus(this.Instance)
@@ -42832,8 +41392,7 @@ proc Components*(this: TToggleBox, AIndex: int32): TComponent {.inline.} =
 proc AnchorSide*(this: TToggleBox, AKind: TAnchorKind): TAnchorSide {.inline.} =
   return AsAnchorSide(ToggleBox_GetAnchorSide(this.Instance, AKind))
 
-proc TToggleBoxClass*(): TClass =
-  return ToggleBox_StaticClassType()
+proc TToggleBoxClass*(): TClass = ToggleBox_StaticClassType()
 
 
 #------------------------- TGridColumnTitle -------------------------
@@ -42929,8 +41488,7 @@ proc PrefixOption*(this: TGridColumnTitle): TPrefixOption {.inline.} =
 proc `PrefixOption=`*(this: TGridColumnTitle, AValue: TPrefixOption) {.inline.} =
   GridColumnTitle_SetPrefixOption(this.Instance, AValue)
 
-proc TGridColumnTitleClass*(): TClass =
-  return GridColumnTitle_StaticClassType()
+proc TGridColumnTitleClass*(): TClass = GridColumnTitle_StaticClassType()
 
 
 #------------------------- TGridColumn -------------------------
@@ -43104,8 +41662,7 @@ proc DisplayName*(this: TGridColumn): string {.inline.} =
 proc `DisplayName=`*(this: TGridColumn, AValue: string) {.inline.} =
   GridColumn_SetDisplayName(this.Instance, AValue)
 
-proc TGridColumnClass*(): TClass =
-  return GridColumn_StaticClassType()
+proc TGridColumnClass*(): TClass = GridColumn_StaticClassType()
 
 
 #------------------------- TGridColumns -------------------------
@@ -43192,8 +41749,7 @@ proc Items*(this: TGridColumns, Index: int32): TGridColumn {.inline.} =
 proc `Items=`*(this: TGridColumns, Index: int32, AValue: TGridColumn) {.inline.} =
   GridColumns_SetItems(this.Instance, Index, CheckPtr(AValue))
 
-proc TGridColumnsClass*(): TClass =
-  return GridColumns_StaticClassType()
+proc TGridColumnsClass*(): TClass = GridColumns_StaticClassType()
 
 
 

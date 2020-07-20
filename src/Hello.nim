@@ -14,10 +14,12 @@ import strutils, vcl, types, fns, typeinfo#, macros
 # macro lclClass(class: untyped, parent: untyped): untyped =
 #   result = newStmtList() 
 #   result.add parseExpr($class & "= ref object of" & $parent)
+ 
   
 ## 如何实现反射填充ref object的字段？？  
+## 
 
-type
+type 
   TMainForm = ref object of TForm
     memo: TMemo
     edit: TEdit
