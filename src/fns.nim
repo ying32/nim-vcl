@@ -18,17 +18,34 @@ proc GetFPStringArrayMember*(p: pointer, index: int): string =
 proc SelectDirectory*(Directory: var string, Options: TSelectDirOpts, HelpCtx: int32): bool =
   var ps1: cstring = Directory
   result = DSelectDirectory1(ps1, Options, HelpCtx)
-  Directory = $ps1
+  if result:
+    Directory = $ps1
 
 proc SelectDirectory*(Caption: string, Root: string, AShowHidden: bool, Directory: var string): bool =
   var ps4: cstring = Directory
   result = DSelectDirectory2(Caption, Root, AShowHidden, ps4)
-  Directory = $ps4
+  if result:
+    Directory = $ps4
 
 proc InputQuery*(ACaption: string, APrompt: string, Value: string, AOut: var string): bool =
   var ps4: cstring = AOut
   result = DInputQuery(ACaption, APrompt, Value, ps4)
-  AOut = $ps4
+  if result:
+    AOut = $ps4
+
+proc GetLibResourceItem*(AIndex: int32): TResItem =
+  DGetLibResourceItem(AIndex, result)
+
+proc StringToGUID*(AGUIDStr: string): TGUID =
+  DStringToGUID(AGUIDStr, result)
+
+proc CreateGUID*(): TGUID =
+  DCreateGUID(result)
+
+when defined(linux):
+  proc GdkWindow_GetXId*(AW: PGdkWindow): TXId =
+    GdkWindow_GetXId(AW, result)
+
 
 
 proc LibStringEncoding*(): TStringEncoding =
@@ -136,23 +153,15 @@ proc SetPropertyValue*(Instance: TObject, PropName: string, Value: string) =
 proc SetPropertySecValue*(Instance: TObject, PropName: string, SecPropName: string, Value: string) =
   DSetPropertySecValue(CheckPtr(Instance), PropName, SecPropName, Value)
 
-proc GUIDToString*(AGUID: var TGUID): string =
-  return $DGUIDToString(AGUID)
-
-proc StringToGUID*(AGUIDStr: string, AGUID: var TGUID) =
-  DStringToGUID(AGUIDStr, AGUID)
-
-proc CreateGUID*(AGUID: var TGUID) =
-  DCreateGUID(AGUID)
+proc GUIDToString*(AGUID: TGUID): string =
+  var ps0 = AGUID
+  return $DGUIDToString(ps0)
 
 proc LibAbout*(): string =
   return $DLibAbout()
 
 proc GetLibResourceCount*(): int32 =
   return DGetLibResourceCount()
-
-proc GetLibResourceItem*(AIndex: int32, AResult: var TResItem) =
-  DGetLibResourceItem(AIndex, AResult)
 
 proc ModifyLibResource*(APtr: pointer, AValue: string) =
   DModifyLibResource(APtr, AValue)
@@ -166,8 +175,9 @@ proc InitGoDll*(AMainThreadId: TThreadID) =
 proc FindControl*(AHandle: HWND): TWinControl =
   return DFindControl(AHandle).AsWinControl
 
-proc FindLCLControl*(AScreenPos: var TPoint): TControl =
-  return DFindLCLControl(AScreenPos).AsControl
+proc FindLCLControl*(AScreenPos: TPoint): TControl =
+  var ps0 = AScreenPos
+  return DFindLCLControl(ps0).AsControl
 
 proc FindOwnerControl*(Handle: HWND): TWinControl =
   return DFindOwnerControl(Handle).AsWinControl
@@ -191,10 +201,6 @@ when defined(linux):
 when defined(linux):
   proc GdkWindow_FromForm*(AForm: TForm): PGdkWindow =
     return GdkWindow_FromForm(CheckPtr(AForm))
-
-when defined(linux):
-  proc GdkWindow_GetXId*(AW: PGdkWindow, AXId: var TXId) =
-    GdkWindow_GetXId(AW, AXId)
 
 when defined(linux):
   proc GtkWidget_Window*(Ah: HWND): PGdkWindow =

@@ -100,6 +100,8 @@ echo "测试"
 echo("libInfo: \r\n", LibAbout())
 echo("start gui")
 echo cast[uint](Application.Instance)
+let guid = CreateGUID()
+echo("guid: ", GUIDToString(guid))
 
 
 Application.Title = "Nim: LCL Application"

@@ -23913,9 +23913,10 @@ proc BrushCopy*(this: TCanvas, Dest: TRect, Bitmap: TBitmap, Source: TRect, Colo
   var ps3 = Source
   Canvas_BrushCopy(this.Instance, ps1, CheckPtr(Bitmap), ps3, Color)
 
-proc CopyRect*(this: TCanvas, Dest: TRect, Canvas: TCanvas, Source: var TRect)  =
+proc CopyRect*(this: TCanvas, Dest: TRect, Canvas: TCanvas, Source: TRect)  =
   var ps1 = Dest
-  Canvas_CopyRect(this.Instance, ps1, CheckPtr(Canvas), Source)
+  var ps3 = Source
+  Canvas_CopyRect(this.Instance, ps1, CheckPtr(Canvas), ps3)
 
 proc Draw*(this: TCanvas, X: int32, Y: int32, Graphic: TGraphic)  =
   Canvas_Draw1(this.Instance, X, Y, CheckPtr(Graphic))
@@ -23923,14 +23924,17 @@ proc Draw*(this: TCanvas, X: int32, Y: int32, Graphic: TGraphic)  =
 proc Draw*(this: TCanvas, X: int32, Y: int32, Graphic: TGraphic, Opacity: int8)  =
   Canvas_Draw2(this.Instance, X, Y, CheckPtr(Graphic), Opacity)
 
-proc DrawFocusRect*(this: TCanvas, ARect: var TRect)  =
-  Canvas_DrawFocusRect(this.Instance, ARect)
+proc DrawFocusRect*(this: TCanvas, ARect: TRect)  =
+  var ps1 = ARect
+  Canvas_DrawFocusRect(this.Instance, ps1)
 
-proc FillRect*(this: TCanvas, Rect: var TRect)  =
-  Canvas_FillRect(this.Instance, Rect)
+proc FillRect*(this: TCanvas, Rect: TRect)  =
+  var ps1 = Rect
+  Canvas_FillRect(this.Instance, ps1)
 
-proc FrameRect*(this: TCanvas, Rect: var TRect)  =
-  Canvas_FrameRect(this.Instance, Rect)
+proc FrameRect*(this: TCanvas, Rect: TRect)  =
+  var ps1 = Rect
+  Canvas_FrameRect(this.Instance, ps1)
 
 proc StretchDraw*(this: TCanvas, Rect: TRect, Graphic: TGraphic)  =
   var ps1 = Rect
