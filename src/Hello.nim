@@ -163,11 +163,15 @@ btn2.OnClick = onBtn2Click
 
 # ResForm，不使用重定义类型的方式
 form2 = Application.CreateForm()
-ResFormLoadFromFile("./Form1.gfm", form2)
-# 这里测试直接查找form2的按钮
-let obj = form2.FindComponent("Button1")
-if obj != nil:
-  cast[TButton](obj).OnClick = onButton1Click
+when defined(windows):
+  # 已经打包到资源中了
+  #
+  ResFormLoadFromResourceName(GetMainInstance(), "TFORM2", form2)
+  #ResFormLoadFromFile("./Form1.gfm", form2)
+  # 这里测试直接查找form2的按钮
+  let obj = form2.FindComponent("Button1")
+  if obj != nil:
+    cast[TButton](obj).OnClick = onButton1Click
 
 # openfiledialog
 let btnOpenForm2 = NewButton(mainForm)
