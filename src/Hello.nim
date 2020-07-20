@@ -80,10 +80,24 @@ proc onFormMouseMove(sender: pointer, shift: TShiftState, x: int32, y: int32) =
 # 打开文件对话框测试
 proc onBtn2Click(sender: pointer) =
   if mainform.dlgOpen.Execute:
-    mainForm.edit.Text = mainform.dlgOpen.FileName
+    let fName = mainform.dlgOpen.FileName
+    mainForm.edit.Text = fName
+    mainForm.memo.Lines.LoadFromFile(fName)
+
 ###########################################################################
 
- 
+echo "测试"
+
+# proc TestFunc1(p: var TPoint) =
+  # echo p.x, ",", p.y 
+
+# proc TestFunc2(p: TPoint) = 
+  # TestFunc1(p.unsafeAddr)
+# let p = TPoint(x:1, y:1)
+# TestFunc1(p)
+# TestFunc2(TPoint(x:13, y:21))
+
+echo("libInfo: \r\n", LibAbout())
 echo("start gui")
 echo cast[uint](Application.Instance)
 
@@ -136,6 +150,7 @@ mainForm.edit.Width = 500
 mainform.dlgOpen = NewOpenDialog(mainForm)
 # 测试集合类型
 mainform.dlgOpen.Options = mainform.dlgOpen.Options + {ofAllowMultiSelect, ofViewDetail, ofAutoPreview}
+mainForm.dlgOpen.Filter = "Nim Source|*.nim|C Source|*.c;*.h"
 
 # button
 let btn2 = NewButton(mainForm)
@@ -148,7 +163,7 @@ btn2.OnClick = onBtn2Click
 
 # ResForm，不使用重定义类型的方式
 form2 = Application.CreateForm()
-LoadResFormFile("./Form1.gfm", form2)
+ResFormLoadFromFile("./Form1.gfm", form2)
 # 这里测试直接查找form2的按钮
 let obj = form2.FindComponent("Button1")
 if obj != nil:

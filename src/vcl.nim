@@ -3,6 +3,7 @@
    Author: ying32
    https://github.com/ying32  
 ]#
+#{.experimental: "codeReordering".}
 
 
 import liblcl, types
@@ -12595,13 +12596,13 @@ proc Components*(this: TImageList, AIndex: int32): TComponent  =
 proc TImageListClass*(): TClass = ImageList_StaticClassType()
 
 
-proc Draw1*(this: TImageList, Canvas: TCanvas, X: int32, Y: int32, Index: int32, Enabled: bool)  =
+proc Draw*(this: TImageList, Canvas: TCanvas, X: int32, Y: int32, Index: int32, Enabled: bool)  =
   ImageList_Draw1(this.Instance, CheckPtr(Canvas), X, Y, Index, Enabled)
 
-proc DrawOverlay1*(this: TImageList, Canvas: TCanvas, X: int32, Y: int32, ImageIndex: int32, Overlay: uint8, Enabled: bool)  =
+proc DrawOverlay*(this: TImageList, Canvas: TCanvas, X: int32, Y: int32, ImageIndex: int32, Overlay: uint8, Enabled: bool)  =
   ImageList_DrawOverlay1(this.Instance, CheckPtr(Canvas), X, Y, ImageIndex, Overlay, Enabled)
 
-proc GetIcon1*(this: TImageList, Index: int32, Image: TIcon)  =
+proc GetIcon*(this: TImageList, Index: int32, Image: TIcon)  =
   ImageList_GetIcon1(this.Instance, Index, CheckPtr(Image))
 
 #------------------------- TUpDown -------------------------
@@ -23907,16 +23908,19 @@ proc `OnChanging=`*(this: TCanvas, AEventId: TNotifyEvent)  =
 proc TCanvasClass*(): TClass = Canvas_StaticClassType()
 
 
-proc BrushCopy*(this: TCanvas, Dest: var TRect, Bitmap: TBitmap, Source: var TRect, Color: TColor)  =
-  Canvas_BrushCopy(this.Instance, Dest, CheckPtr(Bitmap), Source, Color)
+proc BrushCopy*(this: TCanvas, Dest: TRect, Bitmap: TBitmap, Source: TRect, Color: TColor)  =
+  var ps1 = Dest
+  var ps3 = Source
+  Canvas_BrushCopy(this.Instance, ps1, CheckPtr(Bitmap), ps3, Color)
 
-proc CopyRect*(this: TCanvas, Dest: var TRect, Canvas: TCanvas, Source: var TRect)  =
-  Canvas_CopyRect(this.Instance, Dest, CheckPtr(Canvas), Source)
+proc CopyRect*(this: TCanvas, Dest: TRect, Canvas: TCanvas, Source: var TRect)  =
+  var ps1 = Dest
+  Canvas_CopyRect(this.Instance, ps1, CheckPtr(Canvas), Source)
 
-proc Draw1*(this: TCanvas, X: int32, Y: int32, Graphic: TGraphic)  =
+proc Draw*(this: TCanvas, X: int32, Y: int32, Graphic: TGraphic)  =
   Canvas_Draw1(this.Instance, X, Y, CheckPtr(Graphic))
 
-proc Draw2*(this: TCanvas, X: int32, Y: int32, Graphic: TGraphic, Opacity: int8)  =
+proc Draw*(this: TCanvas, X: int32, Y: int32, Graphic: TGraphic, Opacity: int8)  =
   Canvas_Draw2(this.Instance, X, Y, CheckPtr(Graphic), Opacity)
 
 proc DrawFocusRect*(this: TCanvas, ARect: var TRect)  =
@@ -23928,13 +23932,15 @@ proc FillRect*(this: TCanvas, Rect: var TRect)  =
 proc FrameRect*(this: TCanvas, Rect: var TRect)  =
   Canvas_FrameRect(this.Instance, Rect)
 
-proc StretchDraw*(this: TCanvas, Rect: var TRect, Graphic: TGraphic)  =
-  Canvas_StretchDraw(this.Instance, Rect, CheckPtr(Graphic))
+proc StretchDraw*(this: TCanvas, Rect: TRect, Graphic: TGraphic)  =
+  var ps1 = Rect
+  Canvas_StretchDraw(this.Instance, ps1, CheckPtr(Graphic))
 
-proc TextRect1*(this: TCanvas, Rect: var TRect, X: int32, Y: int32, Text: string)  =
-  Canvas_TextRect1(this.Instance, Rect, X, Y, Text)
+proc TextRect*(this: TCanvas, Rect: TRect, X: int32, Y: int32, Text: string)  =
+  var ps1 = Rect
+  Canvas_TextRect1(this.Instance, ps1, X, Y, Text)
 
-proc TextRect2*(this: TCanvas, Rect: var TRect, Text: string, AOutStr: var string, TextFormat: TTextFormat): int32 =
+proc TextRect*(this: TCanvas, Rect: var TRect, Text: string, AOutStr: var string, TextFormat: TTextFormat): int32 =
   var outstr: cstring
   result = Canvas_TextRect2(this.Instance, Rect, Text, outstr, TextFormat)
   AOutStr = $outstr
@@ -26942,7 +26948,7 @@ proc AnchorSide*(this: TForm, AKind: TAnchorKind): TAnchorSide  =
 proc TFormClass*(): TClass = Form_StaticClassType()
 
 
-proc Create2*(this: TForm, AInitScale: bool): TForm  =
+proc Create*(this: TForm, AInitScale: bool): TForm  =
   return AsForm(Form_Create2(this.Instance, AInitScale))
 
 proc EnabledMaximize*(this: TForm, AValue: bool)  =
