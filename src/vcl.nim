@@ -1137,21 +1137,21 @@ proc AsGridColumns*(obj: pointer): TGridColumns =
 
 #------------------------- TObject -------------------------
 
-proc NewObject*(): TObject =
-   new(result)
-   result.Instance = Object_Create()
-
 proc Free*(this: TObject)  =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Object_Free(this.Instance)
      this.Instance = nil
+
+proc NewObject*(): TObject =
+   new(result, Free)
+   result.Instance = Object_Create()
+
 
 proc Instance*(this: TObject): pointer =
   if this != nil:
     return this.Instance
   else:
     return nil
-
 
 proc ClassType*(this: TObject): TClass {.inline.} =
   return Object_ClassType(this.Instance)
@@ -1180,14 +1180,14 @@ proc TObjectClass*(): TClass =
 
 #------------------------- TComponent -------------------------
 
-proc NewComponent*(AOwner: TComponent): TComponent =
-   new(result)
-   result.Instance = Component_Create(CheckPtr(AOwner))
-
 proc Free*(this: TComponent) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Component_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewComponent*(AOwner: TComponent): TComponent =
+   new(result, Free)
+   result.Instance = Component_Create(CheckPtr(AOwner))
 
 
 
@@ -1257,14 +1257,14 @@ proc TComponentClass*(): TClass =
 
 #------------------------- TControl -------------------------
 
+proc Free*(this: TControl) =
+  if (this != nil) and (this.Instance != nil):
+     Control_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewControl*(AOwner: TComponent): TControl =
    new(result)
    result.Instance = Control_Create(CheckPtr(AOwner))
-
-proc Free*(this: TControl) =
-  if this != nil:
-     Control_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -1568,14 +1568,14 @@ proc TControlClass*(): TClass =
 
 #------------------------- TWinControl -------------------------
 
+proc Free*(this: TWinControl) =
+  if (this != nil) and (this.Instance != nil):
+     WinControl_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewWinControl*(AOwner: TComponent): TWinControl =
    new(result)
    result.Instance = WinControl_Create(CheckPtr(AOwner))
-
-proc Free*(this: TWinControl) =
-  if this != nil:
-     WinControl_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -1999,14 +1999,14 @@ proc TWinControlClass*(): TClass =
 
 #------------------------- TMainMenu -------------------------
 
+proc Free*(this: TMainMenu) =
+  if (this != nil) and (this.Instance != nil):
+     MainMenu_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewMainMenu*(AOwner: TComponent): TMainMenu =
    new(result)
    result.Instance = MainMenu_Create(CheckPtr(AOwner))
-
-proc Free*(this: TMainMenu) =
-  if this != nil:
-     MainMenu_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -2109,14 +2109,14 @@ proc TMainMenuClass*(): TClass =
 
 #------------------------- TPopupMenu -------------------------
 
+proc Free*(this: TPopupMenu) =
+  if (this != nil) and (this.Instance != nil):
+     PopupMenu_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewPopupMenu*(AOwner: TComponent): TPopupMenu =
    new(result)
    result.Instance = PopupMenu_Create(CheckPtr(AOwner))
-
-proc Free*(this: TPopupMenu) =
-  if this != nil:
-     PopupMenu_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -2240,14 +2240,14 @@ proc TPopupMenuClass*(): TClass =
 
 #------------------------- TMemo -------------------------
 
+proc Free*(this: TMemo) =
+  if (this != nil) and (this.Instance != nil):
+     Memo_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewMemo*(AOwner: TComponent): TMemo =
    new(result)
    result.Instance = Memo_Create(CheckPtr(AOwner))
-
-proc Free*(this: TMemo) =
-  if this != nil:
-     Memo_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -2911,14 +2911,14 @@ proc TMemoClass*(): TClass =
 
 #------------------------- TCheckBox -------------------------
 
+proc Free*(this: TCheckBox) =
+  if (this != nil) and (this.Instance != nil):
+     CheckBox_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewCheckBox*(AOwner: TComponent): TCheckBox =
    new(result)
    result.Instance = CheckBox_Create(CheckPtr(AOwner))
-
-proc Free*(this: TCheckBox) =
-  if this != nil:
-     CheckBox_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -3474,14 +3474,14 @@ proc TCheckBoxClass*(): TClass =
 
 #------------------------- TRadioButton -------------------------
 
+proc Free*(this: TRadioButton) =
+  if (this != nil) and (this.Instance != nil):
+     RadioButton_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewRadioButton*(AOwner: TComponent): TRadioButton =
    new(result)
    result.Instance = RadioButton_Create(CheckPtr(AOwner))
-
-proc Free*(this: TRadioButton) =
-  if this != nil:
-     RadioButton_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -4025,14 +4025,14 @@ proc TRadioButtonClass*(): TClass =
 
 #------------------------- TGroupBox -------------------------
 
+proc Free*(this: TGroupBox) =
+  if (this != nil) and (this.Instance != nil):
+     GroupBox_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewGroupBox*(AOwner: TComponent): TGroupBox =
    new(result)
    result.Instance = GroupBox_Create(CheckPtr(AOwner))
-
-proc Free*(this: TGroupBox) =
-  if this != nil:
-     GroupBox_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -4573,14 +4573,14 @@ proc TGroupBoxClass*(): TClass =
 
 #------------------------- TLabel -------------------------
 
+proc Free*(this: TLabel) =
+  if (this != nil) and (this.Instance != nil):
+     Label_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewLabel*(AOwner: TComponent): TLabel =
    new(result)
    result.Instance = Label_Create(CheckPtr(AOwner))
-
-proc Free*(this: TLabel) =
-  if this != nil:
-     Label_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -5028,14 +5028,14 @@ proc TLabelClass*(): TClass =
 
 #------------------------- TListBox -------------------------
 
+proc Free*(this: TListBox) =
+  if (this != nil) and (this.Instance != nil):
+     ListBox_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewListBox*(AOwner: TComponent): TListBox =
    new(result)
    result.Instance = ListBox_Create(CheckPtr(AOwner))
-
-proc Free*(this: TListBox) =
-  if this != nil:
-     ListBox_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -5675,14 +5675,14 @@ proc TListBoxClass*(): TClass =
 
 #------------------------- TComboBox -------------------------
 
+proc Free*(this: TComboBox) =
+  if (this != nil) and (this.Instance != nil):
+     ComboBox_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewComboBox*(AOwner: TComponent): TComboBox =
    new(result)
    result.Instance = ComboBox_Create(CheckPtr(AOwner))
-
-proc Free*(this: TComboBox) =
-  if this != nil:
-     ComboBox_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -6319,14 +6319,14 @@ proc TComboBoxClass*(): TClass =
 
 #------------------------- TPanel -------------------------
 
+proc Free*(this: TPanel) =
+  if (this != nil) and (this.Instance != nil):
+     Panel_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewPanel*(AOwner: TComponent): TPanel =
    new(result)
    result.Instance = Panel_Create(CheckPtr(AOwner))
-
-proc Free*(this: TPanel) =
-  if this != nil:
-     Panel_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -6918,14 +6918,14 @@ proc TPanelClass*(): TClass =
 
 #------------------------- TImage -------------------------
 
+proc Free*(this: TImage) =
+  if (this != nil) and (this.Instance != nil):
+     Image_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewImage*(AOwner: TComponent): TImage =
    new(result)
    result.Instance = Image_Create(CheckPtr(AOwner))
-
-proc Free*(this: TImage) =
-  if this != nil:
-     Image_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -7352,14 +7352,14 @@ proc TImageClass*(): TClass =
 
 #------------------------- TLinkLabel -------------------------
 
+proc Free*(this: TLinkLabel) =
+  if (this != nil) and (this.Instance != nil):
+     LinkLabel_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewLinkLabel*(AOwner: TComponent): TLinkLabel =
    new(result)
    result.Instance = LinkLabel_Create(CheckPtr(AOwner))
-
-proc Free*(this: TLinkLabel) =
-  if this != nil:
-     LinkLabel_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -7768,14 +7768,14 @@ proc TLinkLabelClass*(): TClass =
 
 #------------------------- TSpeedButton -------------------------
 
+proc Free*(this: TSpeedButton) =
+  if (this != nil) and (this.Instance != nil):
+     SpeedButton_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewSpeedButton*(AOwner: TComponent): TSpeedButton =
    new(result)
    result.Instance = SpeedButton_Create(CheckPtr(AOwner))
-
-proc Free*(this: TSpeedButton) =
-  if this != nil:
-     SpeedButton_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -8211,14 +8211,14 @@ proc TSpeedButtonClass*(): TClass =
 
 #------------------------- TSplitter -------------------------
 
+proc Free*(this: TSplitter) =
+  if (this != nil) and (this.Instance != nil):
+     Splitter_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewSplitter*(AOwner: TComponent): TSplitter =
    new(result)
    result.Instance = Splitter_Create(CheckPtr(AOwner))
-
-proc Free*(this: TSplitter) =
-  if this != nil:
-     Splitter_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -8552,14 +8552,14 @@ proc TSplitterClass*(): TClass =
 
 #------------------------- TRadioGroup -------------------------
 
+proc Free*(this: TRadioGroup) =
+  if (this != nil) and (this.Instance != nil):
+     RadioGroup_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewRadioGroup*(AOwner: TComponent): TRadioGroup =
    new(result)
    result.Instance = RadioGroup_Create(CheckPtr(AOwner))
-
-proc Free*(this: TRadioGroup) =
-  if this != nil:
-     RadioGroup_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -9073,14 +9073,14 @@ proc TRadioGroupClass*(): TClass =
 
 #------------------------- TStaticText -------------------------
 
+proc Free*(this: TStaticText) =
+  if (this != nil) and (this.Instance != nil):
+     StaticText_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewStaticText*(AOwner: TComponent): TStaticText =
    new(result)
    result.Instance = StaticText_Create(CheckPtr(AOwner))
-
-proc Free*(this: TStaticText) =
-  if this != nil:
-     StaticText_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -9633,14 +9633,14 @@ proc TStaticTextClass*(): TClass =
 
 #------------------------- TColorBox -------------------------
 
+proc Free*(this: TColorBox) =
+  if (this != nil) and (this.Instance != nil):
+     ColorBox_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewColorBox*(AOwner: TComponent): TColorBox =
    new(result)
    result.Instance = ColorBox_Create(CheckPtr(AOwner))
-
-proc Free*(this: TColorBox) =
-  if this != nil:
-     ColorBox_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -10256,14 +10256,14 @@ proc TColorBoxClass*(): TClass =
 
 #------------------------- TColorListBox -------------------------
 
+proc Free*(this: TColorListBox) =
+  if (this != nil) and (this.Instance != nil):
+     ColorListBox_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewColorListBox*(AOwner: TComponent): TColorListBox =
    new(result)
    result.Instance = ColorListBox_Create(CheckPtr(AOwner))
-
-proc Free*(this: TColorListBox) =
-  if this != nil:
-     ColorListBox_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -10861,14 +10861,14 @@ proc TColorListBoxClass*(): TClass =
 
 #------------------------- TTrayIcon -------------------------
 
+proc Free*(this: TTrayIcon) =
+  if (this != nil) and (this.Instance != nil):
+     TrayIcon_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewTrayIcon*(AOwner: TComponent): TTrayIcon =
    new(result)
    result.Instance = TrayIcon_Create(CheckPtr(AOwner))
-
-proc Free*(this: TTrayIcon) =
-  if this != nil:
-     TrayIcon_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -11010,14 +11010,14 @@ proc TTrayIconClass*(): TClass =
 
 #------------------------- TOpenDialog -------------------------
 
+proc Free*(this: TOpenDialog) =
+  if (this != nil) and (this.Instance != nil):
+     OpenDialog_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewOpenDialog*(AOwner: TComponent): TOpenDialog =
    new(result)
    result.Instance = OpenDialog_Create(CheckPtr(AOwner))
-
-proc Free*(this: TOpenDialog) =
-  if this != nil:
-     OpenDialog_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -11144,14 +11144,14 @@ proc TOpenDialogClass*(): TClass =
 
 #------------------------- TSaveDialog -------------------------
 
+proc Free*(this: TSaveDialog) =
+  if (this != nil) and (this.Instance != nil):
+     SaveDialog_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewSaveDialog*(AOwner: TComponent): TSaveDialog =
    new(result)
    result.Instance = SaveDialog_Create(CheckPtr(AOwner))
-
-proc Free*(this: TSaveDialog) =
-  if this != nil:
-     SaveDialog_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -11278,14 +11278,14 @@ proc TSaveDialogClass*(): TClass =
 
 #------------------------- TColorDialog -------------------------
 
+proc Free*(this: TColorDialog) =
+  if (this != nil) and (this.Instance != nil):
+     ColorDialog_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewColorDialog*(AOwner: TComponent): TColorDialog =
    new(result)
    result.Instance = ColorDialog_Create(CheckPtr(AOwner))
-
-proc Free*(this: TColorDialog) =
-  if this != nil:
-     ColorDialog_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -11373,14 +11373,14 @@ proc TColorDialogClass*(): TClass =
 
 #------------------------- TFontDialog -------------------------
 
+proc Free*(this: TFontDialog) =
+  if (this != nil) and (this.Instance != nil):
+     FontDialog_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewFontDialog*(AOwner: TComponent): TFontDialog =
    new(result)
    result.Instance = FontDialog_Create(CheckPtr(AOwner))
-
-proc Free*(this: TFontDialog) =
-  if this != nil:
-     FontDialog_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -11474,14 +11474,14 @@ proc TFontDialogClass*(): TClass =
 
 #------------------------- TPrintDialog -------------------------
 
+proc Free*(this: TPrintDialog) =
+  if (this != nil) and (this.Instance != nil):
+     PrintDialog_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewPrintDialog*(AOwner: TComponent): TPrintDialog =
    new(result)
    result.Instance = PrintDialog_Create(CheckPtr(AOwner))
-
-proc Free*(this: TPrintDialog) =
-  if this != nil:
-     PrintDialog_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -11617,14 +11617,14 @@ proc TPrintDialogClass*(): TClass =
 
 #------------------------- TOpenPictureDialog -------------------------
 
+proc Free*(this: TOpenPictureDialog) =
+  if (this != nil) and (this.Instance != nil):
+     OpenPictureDialog_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewOpenPictureDialog*(AOwner: TComponent): TOpenPictureDialog =
    new(result)
    result.Instance = OpenPictureDialog_Create(CheckPtr(AOwner))
-
-proc Free*(this: TOpenPictureDialog) =
-  if this != nil:
-     OpenPictureDialog_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -11751,14 +11751,14 @@ proc TOpenPictureDialogClass*(): TClass =
 
 #------------------------- TSavePictureDialog -------------------------
 
+proc Free*(this: TSavePictureDialog) =
+  if (this != nil) and (this.Instance != nil):
+     SavePictureDialog_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewSavePictureDialog*(AOwner: TComponent): TSavePictureDialog =
    new(result)
    result.Instance = SavePictureDialog_Create(CheckPtr(AOwner))
-
-proc Free*(this: TSavePictureDialog) =
-  if this != nil:
-     SavePictureDialog_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -11885,14 +11885,14 @@ proc TSavePictureDialogClass*(): TClass =
 
 #------------------------- TSelectDirectoryDialog -------------------------
 
+proc Free*(this: TSelectDirectoryDialog) =
+  if (this != nil) and (this.Instance != nil):
+     SelectDirectoryDialog_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewSelectDirectoryDialog*(AOwner: TComponent): TSelectDirectoryDialog =
    new(result)
    result.Instance = SelectDirectoryDialog_Create(CheckPtr(AOwner))
-
-proc Free*(this: TSelectDirectoryDialog) =
-  if this != nil:
-     SelectDirectoryDialog_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -12019,14 +12019,14 @@ proc TSelectDirectoryDialogClass*(): TClass =
 
 #------------------------- TRichEdit -------------------------
 
+proc Free*(this: TRichEdit) =
+  if (this != nil) and (this.Instance != nil):
+     RichEdit_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewRichEdit*(AOwner: TComponent): TRichEdit =
    new(result)
    result.Instance = RichEdit_Create(CheckPtr(AOwner))
-
-proc Free*(this: TRichEdit) =
-  if this != nil:
-     RichEdit_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -12720,14 +12720,14 @@ proc TRichEditClass*(): TClass =
 
 #------------------------- TTrackBar -------------------------
 
+proc Free*(this: TTrackBar) =
+  if (this != nil) and (this.Instance != nil):
+     TrackBar_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewTrackBar*(AOwner: TComponent): TTrackBar =
    new(result)
    result.Instance = TrackBar_Create(CheckPtr(AOwner))
-
-proc Free*(this: TTrackBar) =
-  if this != nil:
-     TrackBar_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -13286,14 +13286,14 @@ proc TTrackBarClass*(): TClass =
 
 #------------------------- TImageList -------------------------
 
+proc Free*(this: TImageList) =
+  if (this != nil) and (this.Instance != nil):
+     ImageList_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewImageList*(AOwner: TComponent): TImageList =
    new(result)
    result.Instance = ImageList_Create(CheckPtr(AOwner))
-
-proc Free*(this: TImageList) =
-  if this != nil:
-     ImageList_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -13492,14 +13492,14 @@ proc GetIcon1*(this: TImageList, Index: int32, Image: TIcon) {.inline.} =
 
 #------------------------- TUpDown -------------------------
 
+proc Free*(this: TUpDown) =
+  if (this != nil) and (this.Instance != nil):
+     UpDown_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewUpDown*(AOwner: TComponent): TUpDown =
    new(result)
    result.Instance = UpDown_Create(CheckPtr(AOwner))
-
-proc Free*(this: TUpDown) =
-  if this != nil:
-     UpDown_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -14001,14 +14001,14 @@ proc TUpDownClass*(): TClass =
 
 #------------------------- TProgressBar -------------------------
 
+proc Free*(this: TProgressBar) =
+  if (this != nil) and (this.Instance != nil):
+     ProgressBar_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewProgressBar*(AOwner: TComponent): TProgressBar =
    new(result)
    result.Instance = ProgressBar_Create(CheckPtr(AOwner))
-
-proc Free*(this: TProgressBar) =
-  if this != nil:
-     ProgressBar_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -14549,14 +14549,14 @@ proc TProgressBarClass*(): TClass =
 
 #------------------------- TDateTimePicker -------------------------
 
+proc Free*(this: TDateTimePicker) =
+  if (this != nil) and (this.Instance != nil):
+     DateTimePicker_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewDateTimePicker*(AOwner: TComponent): TDateTimePicker =
    new(result)
    result.Instance = DateTimePicker_Create(CheckPtr(AOwner))
-
-proc Free*(this: TDateTimePicker) =
-  if this != nil:
-     DateTimePicker_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -15097,14 +15097,14 @@ proc TDateTimePickerClass*(): TClass =
 
 #------------------------- TMonthCalendar -------------------------
 
+proc Free*(this: TMonthCalendar) =
+  if (this != nil) and (this.Instance != nil):
+     MonthCalendar_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewMonthCalendar*(AOwner: TComponent): TMonthCalendar =
    new(result)
    result.Instance = MonthCalendar_Create(CheckPtr(AOwner))
-
-proc Free*(this: TMonthCalendar) =
-  if this != nil:
-     MonthCalendar_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -15621,14 +15621,14 @@ proc TMonthCalendarClass*(): TClass =
 
 #------------------------- TListView -------------------------
 
+proc Free*(this: TListView) =
+  if (this != nil) and (this.Instance != nil):
+     ListView_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewListView*(AOwner: TComponent): TListView =
    new(result)
    result.Instance = ListView_Create(CheckPtr(AOwner))
-
-proc Free*(this: TListView) =
-  if this != nil:
-     ListView_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -16484,14 +16484,14 @@ proc TListViewClass*(): TClass =
 
 #------------------------- TTreeView -------------------------
 
+proc Free*(this: TTreeView) =
+  if (this != nil) and (this.Instance != nil):
+     TreeView_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewTreeView*(AOwner: TComponent): TTreeView =
    new(result)
    result.Instance = TreeView_Create(CheckPtr(AOwner))
-
-proc Free*(this: TTreeView) =
-  if this != nil:
-     TreeView_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -17329,14 +17329,14 @@ proc TTreeViewClass*(): TClass =
 
 #------------------------- TStatusBar -------------------------
 
+proc Free*(this: TStatusBar) =
+  if (this != nil) and (this.Instance != nil):
+     StatusBar_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewStatusBar*(AOwner: TComponent): TStatusBar =
    new(result)
    result.Instance = StatusBar_Create(CheckPtr(AOwner))
-
-proc Free*(this: TStatusBar) =
-  if this != nil:
-     StatusBar_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -17904,14 +17904,14 @@ proc TStatusBarClass*(): TClass =
 
 #------------------------- TToolBar -------------------------
 
+proc Free*(this: TToolBar) =
+  if (this != nil) and (this.Instance != nil):
+     ToolBar_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewToolBar*(AOwner: TComponent): TToolBar =
    new(result)
    result.Instance = ToolBar_Create(CheckPtr(AOwner))
-
-proc Free*(this: TToolBar) =
-  if this != nil:
-     ToolBar_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -18545,14 +18545,14 @@ proc TToolBarClass*(): TClass =
 
 #------------------------- TBitBtn -------------------------
 
+proc Free*(this: TBitBtn) =
+  if (this != nil) and (this.Instance != nil):
+     BitBtn_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewBitBtn*(AOwner: TComponent): TBitBtn =
    new(result)
    result.Instance = BitBtn_Create(CheckPtr(AOwner))
-
-proc Free*(this: TBitBtn) =
-  if this != nil:
-     BitBtn_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -19114,14 +19114,14 @@ proc TBitBtnClass*(): TClass =
 
 #------------------------- TIcon -------------------------
 
-proc NewIcon*(): TIcon =
-   new(result)
-   result.Instance = Icon_Create()
-
 proc Free*(this: TIcon) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Icon_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewIcon*(): TIcon =
+   new(result, Free)
+   result.Instance = Icon_Create()
 
 
 
@@ -19230,14 +19230,14 @@ proc TIconClass*(): TClass =
 
 #------------------------- TBitmap -------------------------
 
-proc NewBitmap*(): TBitmap =
-   new(result)
-   result.Instance = Bitmap_Create()
-
 proc Free*(this: TBitmap) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Bitmap_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewBitmap*(): TBitmap =
+   new(result, Free)
+   result.Instance = Bitmap_Create()
 
 
 
@@ -19391,14 +19391,14 @@ proc LoadFromDevice*(this: TBitmap, ADc: HDC) {.inline.} =
 
 #------------------------- TMemoryStream -------------------------
 
-proc NewMemoryStream*(): TMemoryStream =
-   new(result)
-   result.Instance = MemoryStream_Create()
-
 proc Free*(this: TMemoryStream) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      MemoryStream_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewMemoryStream*(): TMemoryStream =
+   new(result, Free)
+   result.Instance = MemoryStream_Create()
 
 
 
@@ -19471,14 +19471,14 @@ proc Read*(this: TMemoryStream, Buffer: pointer, Count: int32): int32 {.inline.}
 
 #------------------------- TFont -------------------------
 
-proc NewFont*(): TFont =
-   new(result)
-   result.Instance = Font_Create()
-
 proc Free*(this: TFont) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Font_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewFont*(): TFont =
+   new(result, Free)
+   result.Instance = Font_Create()
 
 
 
@@ -19587,14 +19587,14 @@ proc TFontClass*(): TClass =
 
 #------------------------- TStrings -------------------------
 
-proc NewStrings*(): TStrings =
-   new(result)
-   result.Instance = Strings_Create()
-
 proc Free*(this: TStrings) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Strings_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewStrings*(): TStrings =
+   new(result, Free)
+   result.Instance = Strings_Create()
 
 
 
@@ -19739,14 +19739,14 @@ proc TStringsClass*(): TClass =
 
 #------------------------- TStringList -------------------------
 
-proc NewStringList*(): TStringList =
-   new(result)
-   result.Instance = StringList_Create()
-
 proc Free*(this: TStringList) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      StringList_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewStringList*(): TStringList =
+   new(result, Free)
+   result.Instance = StringList_Create()
 
 
 
@@ -19903,14 +19903,14 @@ proc TStringListClass*(): TClass =
 
 #------------------------- TBrush -------------------------
 
-proc NewBrush*(): TBrush =
-   new(result)
-   result.Instance = Brush_Create()
-
 proc Free*(this: TBrush) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Brush_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewBrush*(): TBrush =
+   new(result, Free)
+   result.Instance = Brush_Create()
 
 
 
@@ -19974,14 +19974,14 @@ proc TBrushClass*(): TClass =
 
 #------------------------- TPen -------------------------
 
-proc NewPen*(): TPen =
-   new(result)
-   result.Instance = Pen_Create()
-
 proc Free*(this: TPen) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Pen_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewPen*(): TPen =
+   new(result, Free)
+   result.Instance = Pen_Create()
 
 
 
@@ -20051,14 +20051,14 @@ proc TPenClass*(): TClass =
 
 #------------------------- TMenuItem -------------------------
 
+proc Free*(this: TMenuItem) =
+  if (this != nil) and (this.Instance != nil):
+     MenuItem_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewMenuItem*(AOwner: TComponent): TMenuItem =
    new(result)
    result.Instance = MenuItem_Create(CheckPtr(AOwner))
-
-proc Free*(this: TMenuItem) =
-  if this != nil:
-     MenuItem_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -20242,14 +20242,14 @@ proc TMenuItemClass*(): TClass =
 
 #------------------------- TPicture -------------------------
 
-proc NewPicture*(): TPicture =
-   new(result)
-   result.Instance = Picture_Create()
-
 proc Free*(this: TPicture) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Picture_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewPicture*(): TPicture =
+   new(result, Free)
+   result.Instance = Picture_Create()
 
 
 
@@ -20325,14 +20325,14 @@ proc TPictureClass*(): TClass =
 
 #------------------------- TListColumns -------------------------
 
-proc NewListColumns*(AOwner: TListView): TListColumns =
-   new(result)
-   result.Instance = ListColumns_Create(CheckPtr(AOwner))
-
 proc Free*(this: TListColumns) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      ListColumns_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewListColumns*(AOwner: TListView): TListColumns =
+   new(result, Free)
+   result.Instance = ListColumns_Create(CheckPtr(AOwner))
 
 
 
@@ -20402,14 +20402,14 @@ proc TListColumnsClass*(): TClass =
 
 #------------------------- TListItems -------------------------
 
-proc NewListItems*(AOwner: TListView): TListItems =
-   new(result)
-   result.Instance = ListItems_Create(CheckPtr(AOwner))
-
 proc Free*(this: TListItems) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      ListItems_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewListItems*(AOwner: TListView): TListItems =
+   new(result, Free)
+   result.Instance = ListItems_Create(CheckPtr(AOwner))
 
 
 
@@ -20482,14 +20482,14 @@ proc TListItemsClass*(): TClass =
 
 #------------------------- TTreeNodes -------------------------
 
-proc NewTreeNodes*(AOwner: TTreeView): TTreeNodes =
-   new(result)
-   result.Instance = TreeNodes_Create(CheckPtr(AOwner))
-
 proc Free*(this: TTreeNodes) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      TreeNodes_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewTreeNodes*(AOwner: TTreeView): TTreeNodes =
+   new(result, Free)
+   result.Instance = TreeNodes_Create(CheckPtr(AOwner))
 
 
 
@@ -20586,14 +20586,14 @@ proc TTreeNodesClass*(): TClass =
 
 #------------------------- TListItem -------------------------
 
-proc NewListItem*(AOwner: TListItems): TListItem =
-   new(result)
-   result.Instance = ListItem_Create(CheckPtr(AOwner))
-
 proc Free*(this: TListItem) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      ListItem_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewListItem*(AOwner: TListItems): TListItem =
+   new(result, Free)
+   result.Instance = ListItem_Create(CheckPtr(AOwner))
 
 
 
@@ -20738,14 +20738,14 @@ proc TListItemClass*(): TClass =
 
 #------------------------- TTreeNode -------------------------
 
-proc NewTreeNode*(AOwner: TTreeNodes): TTreeNode =
-   new(result)
-   result.Instance = TreeNode_Create(CheckPtr(AOwner))
-
 proc Free*(this: TTreeNode) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      TreeNode_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewTreeNode*(AOwner: TTreeNodes): TTreeNode =
+   new(result, Free)
+   result.Instance = TreeNode_Create(CheckPtr(AOwner))
 
 
 
@@ -20911,14 +20911,14 @@ proc TTreeNodeClass*(): TClass =
 
 #------------------------- TPageControl -------------------------
 
+proc Free*(this: TPageControl) =
+  if (this != nil) and (this.Instance != nil):
+     PageControl_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewPageControl*(AOwner: TComponent): TPageControl =
    new(result)
    result.Instance = PageControl_Create(CheckPtr(AOwner))
-
-proc Free*(this: TPageControl) =
-  if this != nil:
-     PageControl_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -21501,14 +21501,14 @@ proc TPageControlClass*(): TClass =
 
 #------------------------- TTabSheet -------------------------
 
+proc Free*(this: TTabSheet) =
+  if (this != nil) and (this.Instance != nil):
+     TabSheet_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewTabSheet*(AOwner: TComponent): TTabSheet =
    new(result)
    result.Instance = TabSheet_Create(CheckPtr(AOwner))
-
-proc Free*(this: TTabSheet) =
-  if this != nil:
-     TabSheet_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -22037,14 +22037,14 @@ proc TTabSheetClass*(): TClass =
 
 #------------------------- TButton -------------------------
 
+proc Free*(this: TButton) =
+  if (this != nil) and (this.Instance != nil):
+     Button_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewButton*(AOwner: TComponent): TButton =
    new(result)
    result.Instance = Button_Create(CheckPtr(AOwner))
-
-proc Free*(this: TButton) =
-  if this != nil:
-     Button_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -22582,14 +22582,14 @@ proc TButtonClass*(): TClass =
 
 #------------------------- TEdit -------------------------
 
+proc Free*(this: TEdit) =
+  if (this != nil) and (this.Instance != nil):
+     Edit_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewEdit*(AOwner: TComponent): TEdit =
    new(result)
    result.Instance = Edit_Create(CheckPtr(AOwner))
-
-proc Free*(this: TEdit) =
-  if this != nil:
-     Edit_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -23238,14 +23238,14 @@ proc TEditClass*(): TClass =
 
 #------------------------- TScreen -------------------------
 
+proc Free*(this: TScreen) =
+  if (this != nil) and (this.Instance != nil):
+     Screen_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewScreen*(AOwner: TComponent): TScreen =
    new(result)
    result.Instance = Screen_Create(CheckPtr(AOwner))
-
-proc Free*(this: TScreen) =
-  if this != nil:
-     Screen_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -23396,14 +23396,14 @@ proc TScreenClass*(): TClass =
 
 #------------------------- TMouse -------------------------
 
-proc NewMouse*(): TMouse =
-   new(result)
-   result.Instance = Mouse_Create()
-
 proc Free*(this: TMouse) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Mouse_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewMouse*(): TMouse =
+   new(result, Free)
+   result.Instance = Mouse_Create()
 
 
 
@@ -23452,14 +23452,14 @@ proc TMouseClass*(): TClass =
 
 #------------------------- TListColumn -------------------------
 
-proc NewListColumn*(AOwner: TCollection): TListColumn =
-   new(result)
-   result.Instance = ListColumn_Create(CheckPtr(AOwner))
-
 proc Free*(this: TListColumn) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      ListColumn_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewListColumn*(AOwner: TCollection): TListColumn =
+   new(result, Free)
+   result.Instance = ListColumn_Create(CheckPtr(AOwner))
 
 
 
@@ -23568,14 +23568,14 @@ proc TListColumnClass*(): TClass =
 
 #------------------------- TCollectionItem -------------------------
 
-proc NewCollectionItem*(AOwner: TCollection): TCollectionItem =
-   new(result)
-   result.Instance = CollectionItem_Create(CheckPtr(AOwner))
-
 proc Free*(this: TCollectionItem) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      CollectionItem_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewCollectionItem*(AOwner: TCollection): TCollectionItem =
+   new(result, Free)
+   result.Instance = CollectionItem_Create(CheckPtr(AOwner))
 
 
 
@@ -23630,14 +23630,14 @@ proc TCollectionItemClass*(): TClass =
 
 #------------------------- TStatusPanels -------------------------
 
-proc NewStatusPanels*(AOwner: TStatusBar): TStatusPanels =
-   new(result)
-   result.Instance = StatusPanels_Create(CheckPtr(AOwner))
-
 proc Free*(this: TStatusPanels) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      StatusPanels_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewStatusPanels*(AOwner: TStatusBar): TStatusPanels =
+   new(result, Free)
+   result.Instance = StatusPanels_Create(CheckPtr(AOwner))
 
 
 
@@ -23713,14 +23713,14 @@ proc TStatusPanelsClass*(): TClass =
 
 #------------------------- TStatusPanel -------------------------
 
-proc NewStatusPanel*(AOwner: TCollection): TStatusPanel =
-   new(result)
-   result.Instance = StatusPanel_Create(CheckPtr(AOwner))
-
 proc Free*(this: TStatusPanel) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      StatusPanel_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewStatusPanel*(AOwner: TCollection): TStatusPanel =
+   new(result, Free)
+   result.Instance = StatusPanel_Create(CheckPtr(AOwner))
 
 
 
@@ -23805,14 +23805,14 @@ proc TStatusPanelClass*(): TClass =
 
 #------------------------- TSpinEdit -------------------------
 
+proc Free*(this: TSpinEdit) =
+  if (this != nil) and (this.Instance != nil):
+     SpinEdit_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewSpinEdit*(AOwner: TComponent): TSpinEdit =
    new(result)
    result.Instance = SpinEdit_Create(CheckPtr(AOwner))
-
-proc Free*(this: TSpinEdit) =
-  if this != nil:
-     SpinEdit_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -24416,14 +24416,14 @@ proc TSpinEditClass*(): TClass =
 
 #------------------------- TMiniWebview -------------------------
 
+proc Free*(this: TMiniWebview) =
+  if (this != nil) and (this.Instance != nil):
+     MiniWebview_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewMiniWebview*(AOwner: TComponent): TMiniWebview =
    new(result)
    result.Instance = MiniWebview_Create(CheckPtr(AOwner))
-
-proc Free*(this: TMiniWebview) =
-  if this != nil:
-     MiniWebview_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -24883,14 +24883,14 @@ proc TMiniWebviewClass*(): TClass =
 
 #------------------------- TCanvas -------------------------
 
-proc NewCanvas*(): TCanvas =
-   new(result)
-   result.Instance = Canvas_Create()
-
 proc Free*(this: TCanvas) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Canvas_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewCanvas*(): TCanvas =
+   new(result, Free)
+   result.Instance = Canvas_Create()
 
 
 
@@ -25064,14 +25064,14 @@ proc `Pixels=`*(this: TCanvas, X: int32, Y: int32, AColor: TColor) {.inline.} =
 
 #------------------------- TApplication -------------------------
 
+proc Free*(this: TApplication) =
+  if (this != nil) and (this.Instance != nil):
+     Application_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewApplication*(AOwner: TComponent): TApplication =
    new(result)
    result.Instance = Application_Create(CheckPtr(AOwner))
-
-proc Free*(this: TApplication) =
-  if this != nil:
-     Application_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -25331,14 +25331,14 @@ proc Run*(this: TApplication) {.inline.} =
 
 #------------------------- TGraphic -------------------------
 
-proc NewGraphic*(): TGraphic =
-   new(result)
-   result.Instance = Graphic_Create()
-
 proc Free*(this: TGraphic) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Graphic_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewGraphic*(): TGraphic =
+   new(result, Free)
+   result.Instance = Graphic_Create()
 
 
 
@@ -25429,14 +25429,14 @@ proc TGraphicClass*(): TClass =
 
 #------------------------- TPngImage -------------------------
 
-proc NewPngImage*(): TPngImage =
-   new(result)
-   result.Instance = PngImage_Create()
-
 proc Free*(this: TPngImage) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      PngImage_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewPngImage*(): TPngImage =
+   new(result, Free)
+   result.Instance = PngImage_Create()
 
 
 
@@ -25533,14 +25533,14 @@ proc TPngImageClass*(): TClass =
 
 #------------------------- TJPEGImage -------------------------
 
-proc NewJPEGImage*(): TJPEGImage =
-   new(result)
-   result.Instance = JPEGImage_Create()
-
 proc Free*(this: TJPEGImage) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      JPEGImage_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewJPEGImage*(): TJPEGImage =
+   new(result, Free)
+   result.Instance = JPEGImage_Create()
 
 
 
@@ -25649,14 +25649,14 @@ proc TJPEGImageClass*(): TClass =
 
 #------------------------- TGIFImage -------------------------
 
-proc NewGIFImage*(): TGIFImage =
-   new(result)
-   result.Instance = GIFImage_Create()
-
 proc Free*(this: TGIFImage) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      GIFImage_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewGIFImage*(): TGIFImage =
+   new(result, Free)
+   result.Instance = GIFImage_Create()
 
 
 
@@ -25753,14 +25753,14 @@ proc TGIFImageClass*(): TClass =
 
 #------------------------- TActionList -------------------------
 
+proc Free*(this: TActionList) =
+  if (this != nil) and (this.Instance != nil):
+     ActionList_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewActionList*(AOwner: TComponent): TActionList =
    new(result)
    result.Instance = ActionList_Create(CheckPtr(AOwner))
-
-proc Free*(this: TActionList) =
-  if this != nil:
-     ActionList_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -25845,14 +25845,14 @@ proc TActionListClass*(): TClass =
 
 #------------------------- TAction -------------------------
 
+proc Free*(this: TAction) =
+  if (this != nil) and (this.Instance != nil):
+     Action_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewAction*(AOwner: TComponent): TAction =
    new(result)
    result.Instance = Action_Create(CheckPtr(AOwner))
-
-proc Free*(this: TAction) =
-  if this != nil:
-     Action_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -25994,14 +25994,14 @@ proc TActionClass*(): TClass =
 
 #------------------------- TToolButton -------------------------
 
+proc Free*(this: TToolButton) =
+  if (this != nil) and (this.Instance != nil):
+     ToolButton_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewToolButton*(AOwner: TComponent): TToolButton =
    new(result)
    result.Instance = ToolButton_Create(CheckPtr(AOwner))
-
-proc Free*(this: TToolButton) =
-  if this != nil:
-     ToolButton_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -26446,14 +26446,14 @@ proc TToolButtonClass*(): TClass =
 
 #------------------------- TIniFile -------------------------
 
-proc NewIniFile*(AFileName: string): TIniFile =
-   new(result)
-   result.Instance = IniFile_Create(AFileName)
-
 proc Free*(this: TIniFile) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      IniFile_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewIniFile*(AFileName: string): TIniFile =
+   new(result, Free)
+   result.Instance = IniFile_Create(AFileName)
 
 
 
@@ -26550,14 +26550,14 @@ proc TIniFileClass*(): TClass =
 
 #------------------------- TRegistry -------------------------
 
-proc NewRegistry*(AAccess: uint32): TRegistry =
-   new(result)
-   result.Instance = Registry_Create(AAccess)
-
 proc Free*(this: TRegistry) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Registry_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewRegistry*(AAccess: uint32): TRegistry =
+   new(result, Free)
+   result.Instance = Registry_Create(AAccess)
 
 
 
@@ -26714,14 +26714,14 @@ proc TRegistryClass*(): TClass =
 
 #------------------------- TClipboard -------------------------
 
-proc NewClipboard*(): TClipboard =
-   new(result)
-   result.Instance = Clipboard_Create()
-
 proc Free*(this: TClipboard) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Clipboard_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewClipboard*(): TClipboard =
+   new(result, Free)
+   result.Instance = Clipboard_Create()
 
 
 
@@ -26791,14 +26791,14 @@ proc `Clipboard=`*(this: TClipboard): TClipboard {.inline.} =
 
 #------------------------- TMonitor -------------------------
 
-proc NewMonitor*(): TMonitor =
-   new(result)
-   result.Instance = Monitor_Create()
-
 proc Free*(this: TMonitor) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Monitor_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewMonitor*(): TMonitor =
+   new(result, Free)
+   result.Instance = Monitor_Create()
 
 
 
@@ -26859,14 +26859,14 @@ proc TMonitorClass*(): TClass =
 
 #------------------------- TPaintBox -------------------------
 
+proc Free*(this: TPaintBox) =
+  if (this != nil) and (this.Instance != nil):
+     PaintBox_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewPaintBox*(AOwner: TComponent): TPaintBox =
    new(result)
    result.Instance = PaintBox_Create(CheckPtr(AOwner))
-
-proc Free*(this: TPaintBox) =
-  if this != nil:
-     PaintBox_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -27254,14 +27254,14 @@ proc TPaintBoxClass*(): TClass =
 
 #------------------------- TTimer -------------------------
 
+proc Free*(this: TTimer) =
+  if (this != nil) and (this.Instance != nil):
+     Timer_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewTimer*(AOwner: TComponent): TTimer =
    new(result)
    result.Instance = Timer_Create(CheckPtr(AOwner))
-
-proc Free*(this: TTimer) =
-  if this != nil:
-     Timer_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -27346,14 +27346,14 @@ proc TTimerClass*(): TClass =
 
 #------------------------- TList -------------------------
 
-proc NewList*(): TList =
-   new(result)
-   result.Instance = List_Create()
-
 proc Free*(this: TList) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      List_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewList*(): TList =
+   new(result, Free)
+   result.Instance = List_Create()
 
 
 
@@ -27426,14 +27426,14 @@ proc TListClass*(): TClass =
 
 #------------------------- TForm -------------------------
 
+proc Free*(this: TForm) =
+  if (this != nil) and (this.Instance != nil):
+     Form_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewForm*(AOwner: TComponent): TForm =
    new(result)
    result.Instance = Form_Create(CheckPtr(AOwner))
-
-proc Free*(this: TForm) =
-  if this != nil:
-     Form_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -28413,14 +28413,14 @@ proc ExceptionClass*(): TClass =
 
 #------------------------- TScrollBar -------------------------
 
+proc Free*(this: TScrollBar) =
+  if (this != nil) and (this.Instance != nil):
+     ScrollBar_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewScrollBar*(AOwner: TComponent): TScrollBar =
    new(result)
    result.Instance = ScrollBar_Create(CheckPtr(AOwner))
-
-proc Free*(this: TScrollBar) =
-  if this != nil:
-     ScrollBar_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -28943,14 +28943,14 @@ proc TScrollBarClass*(): TClass =
 
 #------------------------- TMaskEdit -------------------------
 
+proc Free*(this: TMaskEdit) =
+  if (this != nil) and (this.Instance != nil):
+     MaskEdit_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewMaskEdit*(AOwner: TComponent): TMaskEdit =
    new(result)
    result.Instance = MaskEdit_Create(CheckPtr(AOwner))
-
-proc Free*(this: TMaskEdit) =
-  if this != nil:
-     MaskEdit_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -29602,14 +29602,14 @@ proc TMaskEditClass*(): TClass =
 
 #------------------------- TShape -------------------------
 
+proc Free*(this: TShape) =
+  if (this != nil) and (this.Instance != nil):
+     Shape_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewShape*(AOwner: TComponent): TShape =
    new(result)
    result.Instance = Shape_Create(CheckPtr(AOwner))
-
-proc Free*(this: TShape) =
-  if this != nil:
-     Shape_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -29979,14 +29979,14 @@ proc TShapeClass*(): TClass =
 
 #------------------------- TBevel -------------------------
 
+proc Free*(this: TBevel) =
+  if (this != nil) and (this.Instance != nil):
+     Bevel_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewBevel*(AOwner: TComponent): TBevel =
    new(result)
    result.Instance = Bevel_Create(CheckPtr(AOwner))
-
-proc Free*(this: TBevel) =
-  if this != nil:
-     Bevel_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -30308,14 +30308,14 @@ proc TBevelClass*(): TClass =
 
 #------------------------- TScrollBox -------------------------
 
+proc Free*(this: TScrollBox) =
+  if (this != nil) and (this.Instance != nil):
+     ScrollBox_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewScrollBox*(AOwner: TComponent): TScrollBox =
    new(result)
    result.Instance = ScrollBox_Create(CheckPtr(AOwner))
-
-proc Free*(this: TScrollBox) =
-  if this != nil:
-     ScrollBox_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -30892,14 +30892,14 @@ proc TScrollBoxClass*(): TClass =
 
 #------------------------- TCheckListBox -------------------------
 
+proc Free*(this: TCheckListBox) =
+  if (this != nil) and (this.Instance != nil):
+     CheckListBox_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewCheckListBox*(AOwner: TComponent): TCheckListBox =
    new(result)
    result.Instance = CheckListBox_Create(CheckPtr(AOwner))
-
-proc Free*(this: TCheckListBox) =
-  if this != nil:
-     CheckListBox_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -31548,14 +31548,14 @@ proc TCheckListBoxClass*(): TClass =
 
 #------------------------- TGauge -------------------------
 
+proc Free*(this: TGauge) =
+  if (this != nil) and (this.Instance != nil):
+     Gauge_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewGauge*(AOwner: TComponent): TGauge =
    new(result)
    result.Instance = Gauge_Create(CheckPtr(AOwner))
-
-proc Free*(this: TGauge) =
-  if this != nil:
-     Gauge_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -31943,14 +31943,14 @@ proc TGaugeClass*(): TClass =
 
 #------------------------- TImageButton -------------------------
 
+proc Free*(this: TImageButton) =
+  if (this != nil) and (this.Instance != nil):
+     ImageButton_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewImageButton*(AOwner: TComponent): TImageButton =
    new(result)
    result.Instance = ImageButton_Create(CheckPtr(AOwner))
-
-proc Free*(this: TImageButton) =
-  if this != nil:
-     ImageButton_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -32371,14 +32371,14 @@ proc TImageButtonClass*(): TClass =
 
 #------------------------- TFindDialog -------------------------
 
+proc Free*(this: TFindDialog) =
+  if (this != nil) and (this.Instance != nil):
+     FindDialog_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewFindDialog*(AOwner: TComponent): TFindDialog =
    new(result)
    result.Instance = FindDialog_Create(CheckPtr(AOwner))
-
-proc Free*(this: TFindDialog) =
-  if this != nil:
-     FindDialog_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -32496,14 +32496,14 @@ proc TFindDialogClass*(): TClass =
 
 #------------------------- TReplaceDialog -------------------------
 
+proc Free*(this: TReplaceDialog) =
+  if (this != nil) and (this.Instance != nil):
+     ReplaceDialog_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewReplaceDialog*(AOwner: TComponent): TReplaceDialog =
    new(result)
    result.Instance = ReplaceDialog_Create(CheckPtr(AOwner))
-
-proc Free*(this: TReplaceDialog) =
-  if this != nil:
-     ReplaceDialog_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -32630,14 +32630,14 @@ proc TReplaceDialogClass*(): TClass =
 
 #------------------------- TPrinterSetupDialog -------------------------
 
+proc Free*(this: TPrinterSetupDialog) =
+  if (this != nil) and (this.Instance != nil):
+     PrinterSetupDialog_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewPrinterSetupDialog*(AOwner: TComponent): TPrinterSetupDialog =
    new(result)
    result.Instance = PrinterSetupDialog_Create(CheckPtr(AOwner))
-
-proc Free*(this: TPrinterSetupDialog) =
-  if this != nil:
-     PrinterSetupDialog_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -32719,14 +32719,14 @@ proc TPrinterSetupDialogClass*(): TClass =
 
 #------------------------- TPageSetupDialog -------------------------
 
+proc Free*(this: TPageSetupDialog) =
+  if (this != nil) and (this.Instance != nil):
+     PageSetupDialog_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewPageSetupDialog*(AOwner: TComponent): TPageSetupDialog =
    new(result)
    result.Instance = PageSetupDialog_Create(CheckPtr(AOwner))
-
-proc Free*(this: TPageSetupDialog) =
-  if this != nil:
-     PageSetupDialog_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -32853,14 +32853,14 @@ proc TPageSetupDialogClass*(): TClass =
 
 #------------------------- TDragObject -------------------------
 
-proc NewDragObject*(AOwner: TControl): TDragObject =
-   new(result)
-   result.Instance = DragObject_Create(CheckPtr(AOwner))
-
 proc Free*(this: TDragObject) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      DragObject_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewDragObject*(AOwner: TControl): TDragObject =
+   new(result, Free)
+   result.Instance = DragObject_Create(CheckPtr(AOwner))
 
 
 
@@ -32927,14 +32927,14 @@ proc TDragObjectClass*(): TClass =
 
 #------------------------- TDragDockObject -------------------------
 
-proc NewDragDockObject*(AOwner: TControl): TDragDockObject =
-   new(result)
-   result.Instance = DragDockObject_Create(CheckPtr(AOwner))
-
 proc Free*(this: TDragDockObject) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      DragDockObject_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewDragDockObject*(AOwner: TControl): TDragDockObject =
+   new(result, Free)
+   result.Instance = DragDockObject_Create(CheckPtr(AOwner))
 
 
 
@@ -33031,14 +33031,14 @@ proc TDragDockObjectClass*(): TClass =
 
 #------------------------- TStringGrid -------------------------
 
+proc Free*(this: TStringGrid) =
+  if (this != nil) and (this.Instance != nil):
+     StringGrid_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewStringGrid*(AOwner: TComponent): TStringGrid =
    new(result)
    result.Instance = StringGrid_Create(CheckPtr(AOwner))
-
-proc Free*(this: TStringGrid) =
-  if this != nil:
-     StringGrid_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -34119,14 +34119,14 @@ proc TStringGridClass*(): TClass =
 
 #------------------------- TDrawGrid -------------------------
 
+proc Free*(this: TDrawGrid) =
+  if (this != nil) and (this.Instance != nil):
+     DrawGrid_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewDrawGrid*(AOwner: TComponent): TDrawGrid =
    new(result)
    result.Instance = DrawGrid_Create(CheckPtr(AOwner))
-
-proc Free*(this: TDrawGrid) =
-  if this != nil:
-     DrawGrid_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -34829,14 +34829,14 @@ proc TDrawGridClass*(): TClass =
 
 #------------------------- TValueListEditor -------------------------
 
+proc Free*(this: TValueListEditor) =
+  if (this != nil) and (this.Instance != nil):
+     ValueListEditor_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewValueListEditor*(AOwner: TComponent): TValueListEditor =
    new(result)
    result.Instance = ValueListEditor_Create(CheckPtr(AOwner))
-
-proc Free*(this: TValueListEditor) =
-  if this != nil:
-     ValueListEditor_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -35554,14 +35554,14 @@ proc TValueListEditorClass*(): TClass =
 
 #------------------------- THeaderControl -------------------------
 
+proc Free*(this: THeaderControl) =
+  if (this != nil) and (this.Instance != nil):
+     HeaderControl_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewHeaderControl*(AOwner: TComponent): THeaderControl =
    new(result)
    result.Instance = HeaderControl_Create(CheckPtr(AOwner))
-
-proc Free*(this: THeaderControl) =
-  if this != nil:
-     HeaderControl_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -36090,14 +36090,14 @@ proc THeaderControlClass*(): TClass =
 
 #------------------------- THeaderSection -------------------------
 
-proc NewHeaderSection*(AOwner: TCollection): THeaderSection =
-   new(result)
-   result.Instance = HeaderSection_Create(CheckPtr(AOwner))
-
 proc Free*(this: THeaderSection) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      HeaderSection_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewHeaderSection*(AOwner: TCollection): THeaderSection =
+   new(result, Free)
+   result.Instance = HeaderSection_Create(CheckPtr(AOwner))
 
 
 
@@ -36194,14 +36194,14 @@ proc THeaderSectionClass*(): TClass =
 
 #------------------------- THeaderSections -------------------------
 
-proc NewHeaderSections*(AOwner: THeaderControl): THeaderSections =
-   new(result)
-   result.Instance = HeaderSections_Create(CheckPtr(AOwner))
-
 proc Free*(this: THeaderSections) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      HeaderSections_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewHeaderSections*(AOwner: THeaderControl): THeaderSections =
+   new(result, Free)
+   result.Instance = HeaderSections_Create(CheckPtr(AOwner))
 
 
 
@@ -36274,14 +36274,14 @@ proc THeaderSectionsClass*(): TClass =
 
 #------------------------- TLabeledEdit -------------------------
 
+proc Free*(this: TLabeledEdit) =
+  if (this != nil) and (this.Instance != nil):
+     LabeledEdit_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewLabeledEdit*(AOwner: TComponent): TLabeledEdit =
    new(result)
    result.Instance = LabeledEdit_Create(CheckPtr(AOwner))
-
-proc Free*(this: TLabeledEdit) =
-  if this != nil:
-     LabeledEdit_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -36936,14 +36936,14 @@ proc TLabeledEditClass*(): TClass =
 
 #------------------------- TBoundLabel -------------------------
 
+proc Free*(this: TBoundLabel) =
+  if (this != nil) and (this.Instance != nil):
+     BoundLabel_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewBoundLabel*(AOwner: TComponent): TBoundLabel =
    new(result)
    result.Instance = BoundLabel_Create(CheckPtr(AOwner))
-
-proc Free*(this: TBoundLabel) =
-  if this != nil:
-     BoundLabel_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -37340,14 +37340,14 @@ proc TBoundLabelClass*(): TClass =
 
 #------------------------- TFlowPanel -------------------------
 
+proc Free*(this: TFlowPanel) =
+  if (this != nil) and (this.Instance != nil):
+     FlowPanel_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewFlowPanel*(AOwner: TComponent): TFlowPanel =
    new(result)
    result.Instance = FlowPanel_Create(CheckPtr(AOwner))
-
-proc Free*(this: TFlowPanel) =
-  if this != nil:
-     FlowPanel_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -37945,14 +37945,14 @@ proc TFlowPanelClass*(): TClass =
 
 #------------------------- TCoolBar -------------------------
 
+proc Free*(this: TCoolBar) =
+  if (this != nil) and (this.Instance != nil):
+     CoolBar_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewCoolBar*(AOwner: TComponent): TCoolBar =
    new(result)
    result.Instance = CoolBar_Create(CheckPtr(AOwner))
-
-proc Free*(this: TCoolBar) =
-  if this != nil:
-     CoolBar_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -38565,14 +38565,14 @@ proc TCoolBarClass*(): TClass =
 
 #------------------------- TCoolBands -------------------------
 
-proc NewCoolBands*(AOwner: TCoolBar): TCoolBands =
-   new(result)
-   result.Instance = CoolBands_Create(CheckPtr(AOwner))
-
 proc Free*(this: TCoolBands) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      CoolBands_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewCoolBands*(AOwner: TCoolBar): TCoolBands =
+   new(result, Free)
+   result.Instance = CoolBands_Create(CheckPtr(AOwner))
 
 
 
@@ -38645,14 +38645,14 @@ proc TCoolBandsClass*(): TClass =
 
 #------------------------- TCoolBand -------------------------
 
-proc NewCoolBand*(AOwner: TCollection): TCoolBand =
-   new(result)
-   result.Instance = CoolBand_Create(CheckPtr(AOwner))
-
 proc Free*(this: TCoolBand) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      CoolBand_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewCoolBand*(AOwner: TCollection): TCoolBand =
+   new(result, Free)
+   result.Instance = CoolBand_Create(CheckPtr(AOwner))
 
 
 
@@ -38806,14 +38806,14 @@ proc TCoolBandClass*(): TClass =
 
 #------------------------- TCollection -------------------------
 
-proc NewCollection*(AOwner: pointer): TCollection =
-   new(result)
-   result.Instance = Collection_Create(AOwner)
-
 proc Free*(this: TCollection) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Collection_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewCollection*(AOwner: pointer): TCollection =
+   new(result, Free)
+   result.Instance = Collection_Create(AOwner)
 
 
 
@@ -38883,14 +38883,14 @@ proc TCollectionClass*(): TClass =
 
 #------------------------- TPrinter -------------------------
 
-proc NewPrinter*(): TPrinter =
-   new(result)
-   result.Instance = Printer_Create()
-
 proc Free*(this: TPrinter) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      Printer_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewPrinter*(): TPrinter =
+   new(result, Free)
+   result.Instance = Printer_Create()
 
 
 
@@ -38987,14 +38987,14 @@ proc `Printer=`*(this: TPrinter, aName: string) {.inline.} =
 
 #------------------------- TTaskDialog -------------------------
 
+proc Free*(this: TTaskDialog) =
+  if (this != nil) and (this.Instance != nil):
+     TaskDialog_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewTaskDialog*(AOwner: TComponent): TTaskDialog =
    new(result)
    result.Instance = TaskDialog_Create(CheckPtr(AOwner))
-
-proc Free*(this: TTaskDialog) =
-  if this != nil:
-     TaskDialog_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -39245,14 +39245,14 @@ proc TTaskDialogButtonsClass*(): TClass =
 
 #------------------------- TTaskDialogButtonItem -------------------------
 
-proc NewTaskDialogButtonItem*(AOwner: TCollection): TTaskDialogButtonItem =
-   new(result)
-   result.Instance = TaskDialogButtonItem_Create(CheckPtr(AOwner))
-
 proc Free*(this: TTaskDialogButtonItem) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      TaskDialogButtonItem_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewTaskDialogButtonItem*(AOwner: TCollection): TTaskDialogButtonItem =
+   new(result, Free)
+   result.Instance = TaskDialogButtonItem_Create(CheckPtr(AOwner))
 
 
 
@@ -39325,14 +39325,14 @@ proc TTaskDialogButtonItemClass*(): TClass =
 
 #------------------------- TTaskDialogRadioButtonItem -------------------------
 
-proc NewTaskDialogRadioButtonItem*(AOwner: TCollection): TTaskDialogRadioButtonItem =
-   new(result)
-   result.Instance = TaskDialogRadioButtonItem_Create(CheckPtr(AOwner))
-
 proc Free*(this: TTaskDialogRadioButtonItem) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      TaskDialogRadioButtonItem_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewTaskDialogRadioButtonItem*(AOwner: TCollection): TTaskDialogRadioButtonItem =
+   new(result, Free)
+   result.Instance = TaskDialogRadioButtonItem_Create(CheckPtr(AOwner))
 
 
 
@@ -39405,14 +39405,14 @@ proc TTaskDialogRadioButtonItemClass*(): TClass =
 
 #------------------------- TTaskDialogBaseButtonItem -------------------------
 
-proc NewTaskDialogBaseButtonItem*(AOwner: TCollection): TTaskDialogBaseButtonItem =
-   new(result)
-   result.Instance = TaskDialogBaseButtonItem_Create(CheckPtr(AOwner))
-
 proc Free*(this: TTaskDialogBaseButtonItem) =
-  if this != nil:
+  if (this != nil) and (this.Instance != nil):
      TaskDialogBaseButtonItem_Free(this.Instance)
      this.TObject.Instance = nil
+
+proc NewTaskDialogBaseButtonItem*(AOwner: TCollection): TTaskDialogBaseButtonItem =
+   new(result, Free)
+   result.Instance = TaskDialogBaseButtonItem_Create(CheckPtr(AOwner))
 
 
 
@@ -39485,14 +39485,14 @@ proc TTaskDialogBaseButtonItemClass*(): TClass =
 
 #------------------------- TComboBoxEx -------------------------
 
+proc Free*(this: TComboBoxEx) =
+  if (this != nil) and (this.Instance != nil):
+     ComboBoxEx_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewComboBoxEx*(AOwner: TComponent): TComboBoxEx =
    new(result)
    result.Instance = ComboBoxEx_Create(CheckPtr(AOwner))
-
-proc Free*(this: TComboBoxEx) =
-  if this != nil:
-     ComboBoxEx_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -40275,14 +40275,14 @@ proc TComboExItemClass*(): TClass =
 
 #------------------------- TFrame -------------------------
 
+proc Free*(this: TFrame) =
+  if (this != nil) and (this.Instance != nil):
+     Frame_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewFrame*(AOwner: TComponent): TFrame =
    new(result)
    result.Instance = Frame_Create(CheckPtr(AOwner))
-
-proc Free*(this: TFrame) =
-  if this != nil:
-     Frame_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -40993,14 +40993,14 @@ proc TSizeConstraintsClass*(): TClass =
 
 #------------------------- TXButton -------------------------
 
+proc Free*(this: TXButton) =
+  if (this != nil) and (this.Instance != nil):
+     XButton_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewXButton*(AOwner: TComponent): TXButton =
    new(result)
    result.Instance = XButton_Create(CheckPtr(AOwner))
-
-proc Free*(this: TXButton) =
-  if this != nil:
-     XButton_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -41694,14 +41694,14 @@ proc TControlChildSizingClass*(): TClass =
 
 #------------------------- TCheckGroup -------------------------
 
+proc Free*(this: TCheckGroup) =
+  if (this != nil) and (this.Instance != nil):
+     CheckGroup_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewCheckGroup*(AOwner: TComponent): TCheckGroup =
    new(result)
    result.Instance = CheckGroup_Create(CheckPtr(AOwner))
-
-proc Free*(this: TCheckGroup) =
-  if this != nil:
-     CheckGroup_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 
@@ -42284,14 +42284,14 @@ proc TCheckGroupClass*(): TClass =
 
 #------------------------- TToggleBox -------------------------
 
+proc Free*(this: TToggleBox) =
+  if (this != nil) and (this.Instance != nil):
+     ToggleBox_Free(this.Instance)
+     this.TObject.Instance = nil
+
 proc NewToggleBox*(AOwner: TComponent): TToggleBox =
    new(result)
    result.Instance = ToggleBox_Create(CheckPtr(AOwner))
-
-proc Free*(this: TToggleBox) =
-  if this != nil:
-     ToggleBox_Free(this.Instance)
-     this.TObject.Instance = nil
 
 
 

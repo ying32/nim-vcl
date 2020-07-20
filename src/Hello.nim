@@ -7,8 +7,15 @@ when defined(gcc) and defined(windows):
   else:  
     {.link: "appres_amd64.o".}
 
-import strutils, vcl, types, fns
+import strutils, vcl, types, fns, typeinfo#, macros
 
+## 如何实现这种的??????
+## TMainForm = lclClass(TForm)
+# macro lclClass(class: untyped, parent: untyped): untyped =
+#   result = newStmtList() 
+#   result.add parseExpr($class & "= ref object of" & $parent)
+  
+## 如何实现反射填充ref object的字段？？  
 
 type
   TMainForm = ref object of TForm
@@ -18,16 +25,38 @@ type
     dlgOpen: TOpenDialog
     # dlgColor: TColorDialog
 
+type
+  TTest1 = ref object
+  Test2 = object
+     val: int
+
+proc Free(obj: TTest1) =
+  echo "调用了释放"
+
 var 
   mainForm: TMainForm
   form2: TForm
 
 # 单击事件测试
 proc onButton1Click(sender: pointer) =
-  let btn = AsButton(sender)
+  let btn = sender.AsButton  #AsButton(sender)
+  var test1: TTest1
+  new(test1, Free)
+  
+  #invokeNew
+  # var test2 = Test2(val:1)
+  # var x3 = toAny(test2)
+  # echo test2.val
+  # for key, val in fields(x3):
+  #   echo key, "  " ,typedesc val, ", " #cast[ptr int](val)[]
+  #   cast[ptr int](val.value)[] = int(4)
+    
+  echo typedesc(test1)
+
   if mainForm.edit != nil:
     mainForm.edit.Text = btn.Caption
   ShowMessage("Hello Nim! Hello 世界！")  
+  # GC_fullCollect()   
   # ShowMessageFmt("Hello Nim! Hello 世界！ $1", "xxx")
 
 
@@ -63,6 +92,12 @@ Application.Initialize
 
 # mainForm，使用lazarus风格的
 Application.CreateForm(mainForm)
+
+
+# echo typeof(mainForm) is TObject
+# for key, val in mainForm.toAny.fields:
+#   echo "key:", key, "val:", val
+
 
 mainForm.Position = poScreenCenter
 mainForm.Caption = "Nim: LCL Form"
