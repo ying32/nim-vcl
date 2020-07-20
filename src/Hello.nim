@@ -54,6 +54,8 @@ proc onBtn2Click(sender: pointer) =
 
  
 echo("start gui")
+echo cast[uint](Application.Instance)
+
 
 Application.Title = "Nim: LCL Application"
 Application.MainFormOnTaskBar =true
