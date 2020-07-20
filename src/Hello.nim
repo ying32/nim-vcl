@@ -33,7 +33,7 @@ type
      val: int
 
 proc Free(obj: TTest1) =
-  echo "调用了释放"
+  echo "调用了释放" 
 
 var 
   mainForm: TMainForm
