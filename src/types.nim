@@ -1616,7 +1616,7 @@ when defined(linux):
     PGtkFixed* = pointer
 
 
-when defined(macos):
+when defined(macosx):
   type
     MyNSWindow* = pointer
 

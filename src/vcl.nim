@@ -25319,9 +25319,9 @@ proc TApplicationClass*(): TClass =
 method Initialize*(this: TApplication) {.base.} =
   Application_Initialize(this.FInstance)
 
-method CreateForm*[T](this: TApplication, form: var T) {.base.} =
-    new(form)
-    form.FInstance = Application_CreateForm(this.FInstance, false)
+method CreateForm*[T](this: TApplication, x: var T) {.base.} =
+    new(x)
+    x.FInstance = Application_CreateForm(this.FInstance, false)
 
 method CreateForm*(this: TApplication): TForm {.base.} =
   AsForm(Application_CreateForm(this.FInstance, false))

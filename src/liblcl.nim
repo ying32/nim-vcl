@@ -103,7 +103,7 @@ when defined(linux):
   proc GdkWindow_GetXId*(AW: PGdkWindow, AXId: var TXId) {.importc: "GdkWindow_GetXId", dynlib: dllname.}
 when defined(linux):
   proc GtkWidget_Window*(Ah: HWND): PGdkWindow {.importc: "GtkWidget_Window", dynlib: dllname.}
-when defined(macos):
+when defined(macosx):
   proc NSWindow_FromForm*(AForm: pointer): MyNSWindow {.importc: "NSWindow_FromForm", dynlib: dllname.}
 proc ResFormLoadFromResourceName*(AInstance: uint, AResName: cstring, ARoot: pointer) {.importc: "ResFormLoadFromResourceName", dynlib: dllname.}
 proc ResFormLoadFromFile*(AFileName: cstring, ARoot: pointer) {.importc: "ResFormLoadFromFile", dynlib: dllname.}
