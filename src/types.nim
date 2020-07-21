@@ -1171,7 +1171,7 @@ type
     goDontScrollPartCell, # clicking partially visible cells will not scroll
     goCellHints, # show individual cell hints
     goTruncCellHints, # show cell hints if cell text is too long
-    goCellEllipsis, # show &#34;...&#34; if cell text is too long
+    goCellEllipsis, # show "..." if cell text is too long
     goAutoAddRowsSkipContentCheck, # BB Also add a row (if AutoAddRows in Options) if last row is empty
     goRowHighlight, # Highlight the current Row
 
@@ -1426,7 +1426,7 @@ type
 
   TTreeViewExpandSignType* = enum
     tvestTheme, # use themed sign
-    tvestPlusMinus, # use &#43;/- sign
+    tvestPlusMinus, # use +/- sign
     tvestArrow, # use blank arrow
     tvestArrowFill, # use filled arrow
 
@@ -1488,7 +1488,7 @@ type
 
   TControlChildrenLayout* = enum
     cclNone,
-    cclLeftToRightThenTopToBottom, # if BiDiMode &lt;&gt; bdLeftToRight then it becomes RightToLeft
+    cclLeftToRightThenTopToBottom, # if BiDiMode <> bdLeftToRight then it becomes RightToLeft
     cclTopToBottomThenLeftToRight,
 
   TColumnLayout* = enum
@@ -2040,7 +2040,7 @@ const
   vkDelete* = 0x2E # 46
   vkHelp* = 0x2F # 47
 
-  # vk0 thru vk9 are the same as ASCII &#39;0&#39; thru &#39;9&#39; (0x30 - 0x39)
+  # vk0 thru vk9 are the same as ASCII '0' thru '9' (0x30 - 0x39)
   vk0* = 0x30 # 48
   vk1* = 0x31 # 49
   vk2* = 0x32 # 50
@@ -2052,7 +2052,7 @@ const
   vk8* = 0x38 # 56
   vk9* = 0x39 # 57
 
-  # vkA thru vkZ are the same as ASCII &#39;A&#39; thru &#39;Z&#39; (0x41 - 0x5A)
+  # vkA thru vkZ are the same as ASCII 'A' thru 'Z' (0x41 - 0x5A)
   vkA* = 0x41 # 65
   vkB* = 0x42 # 66
   vkC* = 0x43 # 67

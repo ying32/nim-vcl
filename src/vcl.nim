@@ -500,7 +500,7 @@ proc NewComponent*(AOwner: TComponent): TComponent =
    result.Instance = Component_Create(CheckPtr(AOwner))
 
 proc FindComponent*(this: TComponent, AName: string): TComponent  =
-  return AsComponent(Component_FindComponent(this.Instance, AName))
+  return Component_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TComponent): string  =
   return $Component_GetNamePath(this.Instance)
@@ -542,7 +542,7 @@ proc `ComponentIndex=`*(this: TComponent, AValue: int32)  =
   Component_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TComponent): TComponent  =
-  return AsComponent(Component_GetOwner(this.Instance))
+  return Component_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TComponent): string  =
   return $Component_GetName(this.Instance)
@@ -557,7 +557,7 @@ proc `Tag=`*(this: TComponent, AValue: int)  =
   Component_SetTag(this.Instance, AValue)
 
 proc Components*(this: TComponent, AIndex: int32): TComponent  =
-  return AsComponent(Component_GetComponents(this.Instance, AIndex))
+  return Component_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TComponentClass*(): TClass = Component_StaticClassType()
 
@@ -628,7 +628,7 @@ proc SetTextBuf*(this: TControl, Buffer: string)  =
   Control_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TControl, AName: string): TComponent =
-  return AsComponent(Control_FindComponent(this.Instance, AName))
+  return Control_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TControl): string =
   return $Control_GetNamePath(this.Instance)
@@ -682,7 +682,7 @@ proc `Enabled=`*(this: TControl, AValue: bool)  =
   Control_SetEnabled(this.Instance, AValue)
 
 proc Action*(this: TControl): TAction  =
-  return AsAction(Control_GetAction(this.Instance))
+  return Control_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TControl, AValue: TAction)  =
   Control_SetAction(this.Instance, CheckPtr(AValue))
@@ -730,7 +730,7 @@ proc `ClientWidth=`*(this: TControl, AValue: int32)  =
   Control_SetClientWidth(this.Instance, AValue)
 
 proc Constraints*(this: TControl): TSizeConstraints  =
-  return AsSizeConstraints(Control_GetConstraints(this.Instance))
+  return Control_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TControl, AValue: TSizeConstraints)  =
   Control_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -763,7 +763,7 @@ proc `Visible=`*(this: TControl, AValue: bool)  =
   Control_SetVisible(this.Instance, AValue)
 
 proc Parent*(this: TControl): TWinControl  =
-  return AsWinControl(Control_GetParent(this.Instance))
+  return Control_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TControl, AValue: TWinControl)  =
   Control_SetParent(this.Instance, CheckPtr(AValue))
@@ -814,7 +814,7 @@ proc `ComponentIndex=`*(this: TControl, AValue: int32)  =
   Control_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TControl): TComponent  =
-  return AsComponent(Control_GetOwner(this.Instance))
+  return Control_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TControl): string  =
   return $Control_GetName(this.Instance)
@@ -829,40 +829,40 @@ proc `Tag=`*(this: TControl, AValue: int)  =
   Control_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TControl): TAnchorSide  =
-  return AsAnchorSide(Control_GetAnchorSideLeft(this.Instance))
+  return Control_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TControl, AValue: TAnchorSide)  =
   Control_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TControl): TAnchorSide  =
-  return AsAnchorSide(Control_GetAnchorSideTop(this.Instance))
+  return Control_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TControl, AValue: TAnchorSide)  =
   Control_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TControl): TAnchorSide  =
-  return AsAnchorSide(Control_GetAnchorSideRight(this.Instance))
+  return Control_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TControl, AValue: TAnchorSide)  =
   Control_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TControl): TAnchorSide  =
-  return AsAnchorSide(Control_GetAnchorSideBottom(this.Instance))
+  return Control_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TControl, AValue: TAnchorSide)  =
   Control_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TControl): TControlBorderSpacing  =
-  return AsControlBorderSpacing(Control_GetBorderSpacing(this.Instance))
+  return Control_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TControl, AValue: TControlBorderSpacing)  =
   Control_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Components*(this: TControl, AIndex: int32): TComponent  =
-  return AsComponent(Control_GetComponents(this.Instance, AIndex))
+  return Control_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TControl, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(Control_GetAnchorSide(this.Instance, AKind))
+  return Control_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TControlClass*(): TClass = Control_StaticClassType()
 
@@ -882,7 +882,7 @@ proc ContainsControl*(this: TWinControl, Control: TControl): bool  =
   return WinControl_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TWinControl, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl  =
-  return AsControl(WinControl_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return WinControl_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TWinControl)  =
   WinControl_DisableAlign(this.Instance)
@@ -891,7 +891,7 @@ proc EnableAlign*(this: TWinControl)  =
   WinControl_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TWinControl, ControlName: string): TControl  =
-  return AsControl(WinControl_FindChildControl(this.Instance, ControlName))
+  return WinControl_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TWinControl, AllLevels: bool)  =
   WinControl_FlipChildren(this.Instance, AllLevels)
@@ -978,7 +978,7 @@ proc SetTextBuf*(this: TWinControl, Buffer: string) =
   WinControl_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TWinControl, AName: string): TComponent =
-  return AsComponent(WinControl_FindComponent(this.Instance, AName))
+  return WinControl_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TWinControl): string =
   return $WinControl_GetNamePath(this.Instance)
@@ -1047,7 +1047,7 @@ proc VisibleDockClientCount*(this: TWinControl): int32  =
   return WinControl_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TWinControl): TBrush  =
-  return AsBrush(WinControl_GetBrush(this.Instance))
+  return WinControl_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TWinControl): int32  =
   return WinControl_GetControlCount(this.Instance)
@@ -1095,7 +1095,7 @@ proc `Enabled=`*(this: TWinControl, AValue: bool)  =
   WinControl_SetEnabled(this.Instance, AValue)
 
 proc Action*(this: TWinControl): TAction  =
-  return AsAction(WinControl_GetAction(this.Instance))
+  return WinControl_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TWinControl, AValue: TAction)  =
   WinControl_SetAction(this.Instance, CheckPtr(AValue))
@@ -1143,7 +1143,7 @@ proc `ClientWidth=`*(this: TWinControl, AValue: int32)  =
   WinControl_SetClientWidth(this.Instance, AValue)
 
 proc Constraints*(this: TWinControl): TSizeConstraints  =
-  return AsSizeConstraints(WinControl_GetConstraints(this.Instance))
+  return WinControl_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TWinControl, AValue: TSizeConstraints)  =
   WinControl_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -1176,7 +1176,7 @@ proc `Visible=`*(this: TWinControl, AValue: bool)  =
   WinControl_SetVisible(this.Instance, AValue)
 
 proc Parent*(this: TWinControl): TWinControl  =
-  return AsWinControl(WinControl_GetParent(this.Instance))
+  return WinControl_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TWinControl, AValue: TWinControl)  =
   WinControl_SetParent(this.Instance, CheckPtr(AValue))
@@ -1227,7 +1227,7 @@ proc `ComponentIndex=`*(this: TWinControl, AValue: int32)  =
   WinControl_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TWinControl): TComponent  =
-  return AsComponent(WinControl_GetOwner(this.Instance))
+  return WinControl_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TWinControl): string  =
   return $WinControl_GetName(this.Instance)
@@ -1242,52 +1242,52 @@ proc `Tag=`*(this: TWinControl, AValue: int)  =
   WinControl_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TWinControl): TAnchorSide  =
-  return AsAnchorSide(WinControl_GetAnchorSideLeft(this.Instance))
+  return WinControl_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TWinControl, AValue: TAnchorSide)  =
   WinControl_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TWinControl): TAnchorSide  =
-  return AsAnchorSide(WinControl_GetAnchorSideTop(this.Instance))
+  return WinControl_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TWinControl, AValue: TAnchorSide)  =
   WinControl_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TWinControl): TAnchorSide  =
-  return AsAnchorSide(WinControl_GetAnchorSideRight(this.Instance))
+  return WinControl_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TWinControl, AValue: TAnchorSide)  =
   WinControl_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TWinControl): TAnchorSide  =
-  return AsAnchorSide(WinControl_GetAnchorSideBottom(this.Instance))
+  return WinControl_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TWinControl, AValue: TAnchorSide)  =
   WinControl_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TWinControl): TControlChildSizing  =
-  return AsControlChildSizing(WinControl_GetChildSizing(this.Instance))
+  return WinControl_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TWinControl, AValue: TControlChildSizing)  =
   WinControl_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TWinControl): TControlBorderSpacing  =
-  return AsControlBorderSpacing(WinControl_GetBorderSpacing(this.Instance))
+  return WinControl_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TWinControl, AValue: TControlBorderSpacing)  =
   WinControl_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TWinControl, Index: int32): TControl  =
-  return AsControl(WinControl_GetDockClients(this.Instance, Index))
+  return WinControl_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TWinControl, Index: int32): TControl  =
-  return AsControl(WinControl_GetControls(this.Instance, Index))
+  return WinControl_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TWinControl, AIndex: int32): TComponent  =
-  return AsComponent(WinControl_GetComponents(this.Instance, AIndex))
+  return WinControl_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TWinControl, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(WinControl_GetAnchorSide(this.Instance, AKind))
+  return WinControl_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TWinControlClass*(): TClass = WinControl_StaticClassType()
 
@@ -1301,7 +1301,7 @@ proc NewMainMenu*(AOwner: TComponent): TMainMenu =
    result.Instance = MainMenu_Create(CheckPtr(AOwner))
 
 proc FindComponent*(this: TMainMenu, AName: string): TComponent =
-  return AsComponent(MainMenu_FindComponent(this.Instance, AName))
+  return MainMenu_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TMainMenu): string =
   return $MainMenu_GetNamePath(this.Instance)
@@ -1346,7 +1346,7 @@ proc `BiDiMode=`*(this: TMainMenu, AValue: TBiDiMode)  =
   MainMenu_SetBiDiMode(this.Instance, AValue)
 
 proc Images*(this: TMainMenu): TImageList  =
-  return AsImageList(MainMenu_GetImages(this.Instance))
+  return MainMenu_GetImages(this.Instance).AsImageList
 
 proc `Images=`*(this: TMainMenu, AValue: TImageList)  =
   MainMenu_SetImages(this.Instance, CheckPtr(AValue))
@@ -1364,7 +1364,7 @@ proc Handle*(this: TMainMenu): HMENU  =
   return MainMenu_GetHandle(this.Instance)
 
 proc Items*(this: TMainMenu): TMenuItem  =
-  return AsMenuItem(MainMenu_GetItems(this.Instance))
+  return MainMenu_GetItems(this.Instance).AsMenuItem
 
 proc ComponentCount*(this: TMainMenu): int32  =
   return MainMenu_GetComponentCount(this.Instance)
@@ -1376,7 +1376,7 @@ proc `ComponentIndex=`*(this: TMainMenu, AValue: int32)  =
   MainMenu_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TMainMenu): TComponent  =
-  return AsComponent(MainMenu_GetOwner(this.Instance))
+  return MainMenu_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TMainMenu): string  =
   return $MainMenu_GetName(this.Instance)
@@ -1391,7 +1391,7 @@ proc `Tag=`*(this: TMainMenu, AValue: int)  =
   MainMenu_SetTag(this.Instance, AValue)
 
 proc Components*(this: TMainMenu, AIndex: int32): TComponent  =
-  return AsComponent(MainMenu_GetComponents(this.Instance, AIndex))
+  return MainMenu_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TMainMenuClass*(): TClass = MainMenu_StaticClassType()
 
@@ -1411,7 +1411,7 @@ proc Popup*(this: TPopupMenu, X: int32, Y: int32)  =
   PopupMenu_Popup(this.Instance, X, Y)
 
 proc FindComponent*(this: TPopupMenu, AName: string): TComponent =
-  return AsComponent(PopupMenu_FindComponent(this.Instance, AName))
+  return PopupMenu_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TPopupMenu): string =
   return $PopupMenu_GetNamePath(this.Instance)
@@ -1450,7 +1450,7 @@ proc `ImagesWidth=`*(this: TPopupMenu, AValue: int32)  =
   PopupMenu_SetImagesWidth(this.Instance, AValue)
 
 proc PopupComponent*(this: TPopupMenu): TComponent  =
-  return AsComponent(PopupMenu_GetPopupComponent(this.Instance))
+  return PopupMenu_GetPopupComponent(this.Instance).AsComponent
 
 proc `PopupComponent=`*(this: TPopupMenu, AValue: TComponent)  =
   PopupMenu_SetPopupComponent(this.Instance, CheckPtr(AValue))
@@ -1471,7 +1471,7 @@ proc `BiDiMode=`*(this: TPopupMenu, AValue: TBiDiMode)  =
   PopupMenu_SetBiDiMode(this.Instance, AValue)
 
 proc Images*(this: TPopupMenu): TImageList  =
-  return AsImageList(PopupMenu_GetImages(this.Instance))
+  return PopupMenu_GetImages(this.Instance).AsImageList
 
 proc `Images=`*(this: TPopupMenu, AValue: TImageList)  =
   PopupMenu_SetImages(this.Instance, CheckPtr(AValue))
@@ -1489,7 +1489,7 @@ proc Handle*(this: TPopupMenu): HMENU  =
   return PopupMenu_GetHandle(this.Instance)
 
 proc Items*(this: TPopupMenu): TMenuItem  =
-  return AsMenuItem(PopupMenu_GetItems(this.Instance))
+  return PopupMenu_GetItems(this.Instance).AsMenuItem
 
 proc ComponentCount*(this: TPopupMenu): int32  =
   return PopupMenu_GetComponentCount(this.Instance)
@@ -1501,7 +1501,7 @@ proc `ComponentIndex=`*(this: TPopupMenu, AValue: int32)  =
   PopupMenu_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TPopupMenu): TComponent  =
-  return AsComponent(PopupMenu_GetOwner(this.Instance))
+  return PopupMenu_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TPopupMenu): string  =
   return $PopupMenu_GetName(this.Instance)
@@ -1516,7 +1516,7 @@ proc `Tag=`*(this: TPopupMenu, AValue: int)  =
   PopupMenu_SetTag(this.Instance, AValue)
 
 proc Components*(this: TPopupMenu, AIndex: int32): TComponent  =
-  return AsComponent(PopupMenu_GetComponents(this.Instance, AIndex))
+  return PopupMenu_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TPopupMenuClass*(): TClass = PopupMenu_StaticClassType()
 
@@ -1560,7 +1560,7 @@ proc ContainsControl*(this: TMemo, Control: TControl): bool =
   return Memo_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TMemo, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(Memo_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return Memo_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TMemo) =
   Memo_DisableAlign(this.Instance)
@@ -1569,7 +1569,7 @@ proc EnableAlign*(this: TMemo) =
   Memo_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TMemo, ControlName: string): TControl =
-  return AsControl(Memo_FindChildControl(this.Instance, ControlName))
+  return Memo_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TMemo, AllLevels: bool) =
   Memo_FlipChildren(this.Instance, AllLevels)
@@ -1656,7 +1656,7 @@ proc SetTextBuf*(this: TMemo, Buffer: string) =
   Memo_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TMemo, AName: string): TComponent =
-  return AsComponent(Memo_FindComponent(this.Instance, AName))
+  return Memo_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TMemo): string =
   return $Memo_GetNamePath(this.Instance)
@@ -1746,7 +1746,7 @@ proc `Color=`*(this: TMemo, AValue: TColor)  =
   Memo_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TMemo): TSizeConstraints  =
-  return AsSizeConstraints(Memo_GetConstraints(this.Instance))
+  return Memo_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TMemo, AValue: TSizeConstraints)  =
   Memo_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -1782,7 +1782,7 @@ proc `Enabled=`*(this: TMemo, AValue: bool)  =
   Memo_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TMemo): TFont  =
-  return AsFont(Memo_GetFont(this.Instance))
+  return Memo_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TMemo, AValue: TFont)  =
   Memo_SetFont(this.Instance, CheckPtr(AValue))
@@ -1794,7 +1794,7 @@ proc `HideSelection=`*(this: TMemo, AValue: bool)  =
   Memo_SetHideSelection(this.Instance, AValue)
 
 proc Lines*(this: TMemo): TStrings  =
-  return AsStrings(Memo_GetLines(this.Instance))
+  return Memo_GetLines(this.Instance).AsStrings
 
 proc `Lines=`*(this: TMemo, AValue: TStrings)  =
   Memo_SetLines(this.Instance, CheckPtr(AValue))
@@ -1830,7 +1830,7 @@ proc `ParentShowHint=`*(this: TMemo, AValue: bool)  =
   Memo_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TMemo): TPopupMenu  =
-  return AsPopupMenu(Memo_GetPopupMenu(this.Instance))
+  return Memo_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TMemo, AValue: TPopupMenu)  =
   Memo_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -2001,7 +2001,7 @@ proc VisibleDockClientCount*(this: TMemo): int32  =
   return Memo_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TMemo): TBrush  =
-  return AsBrush(Memo_GetBrush(this.Instance))
+  return Memo_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TMemo): int32  =
   return Memo_GetControlCount(this.Instance)
@@ -2025,7 +2025,7 @@ proc `UseDockManager=`*(this: TMemo, AValue: bool)  =
   Memo_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TMemo): TAction  =
-  return AsAction(Memo_GetAction(this.Instance))
+  return Memo_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TMemo, AValue: TAction)  =
   Memo_SetAction(this.Instance, CheckPtr(AValue))
@@ -2070,7 +2070,7 @@ proc Floating*(this: TMemo): bool  =
   return Memo_GetFloating(this.Instance)
 
 proc Parent*(this: TMemo): TWinControl  =
-  return AsWinControl(Memo_GetParent(this.Instance))
+  return Memo_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TMemo, AValue: TWinControl)  =
   Memo_SetParent(this.Instance, CheckPtr(AValue))
@@ -2121,7 +2121,7 @@ proc `ComponentIndex=`*(this: TMemo, AValue: int32)  =
   Memo_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TMemo): TComponent  =
-  return AsComponent(Memo_GetOwner(this.Instance))
+  return Memo_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TMemo): string  =
   return $Memo_GetName(this.Instance)
@@ -2136,52 +2136,52 @@ proc `Tag=`*(this: TMemo, AValue: int)  =
   Memo_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TMemo): TAnchorSide  =
-  return AsAnchorSide(Memo_GetAnchorSideLeft(this.Instance))
+  return Memo_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TMemo, AValue: TAnchorSide)  =
   Memo_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TMemo): TAnchorSide  =
-  return AsAnchorSide(Memo_GetAnchorSideTop(this.Instance))
+  return Memo_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TMemo, AValue: TAnchorSide)  =
   Memo_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TMemo): TAnchorSide  =
-  return AsAnchorSide(Memo_GetAnchorSideRight(this.Instance))
+  return Memo_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TMemo, AValue: TAnchorSide)  =
   Memo_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TMemo): TAnchorSide  =
-  return AsAnchorSide(Memo_GetAnchorSideBottom(this.Instance))
+  return Memo_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TMemo, AValue: TAnchorSide)  =
   Memo_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TMemo): TControlChildSizing  =
-  return AsControlChildSizing(Memo_GetChildSizing(this.Instance))
+  return Memo_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TMemo, AValue: TControlChildSizing)  =
   Memo_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TMemo): TControlBorderSpacing  =
-  return AsControlBorderSpacing(Memo_GetBorderSpacing(this.Instance))
+  return Memo_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TMemo, AValue: TControlBorderSpacing)  =
   Memo_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TMemo, Index: int32): TControl  =
-  return AsControl(Memo_GetDockClients(this.Instance, Index))
+  return Memo_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TMemo, Index: int32): TControl  =
-  return AsControl(Memo_GetControls(this.Instance, Index))
+  return Memo_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TMemo, AIndex: int32): TComponent  =
-  return AsComponent(Memo_GetComponents(this.Instance, AIndex))
+  return Memo_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TMemo, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(Memo_GetAnchorSide(this.Instance, AKind))
+  return Memo_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TMemoClass*(): TClass = Memo_StaticClassType()
 
@@ -2201,7 +2201,7 @@ proc ContainsControl*(this: TCheckBox, Control: TControl): bool =
   return CheckBox_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TCheckBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(CheckBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return CheckBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TCheckBox) =
   CheckBox_DisableAlign(this.Instance)
@@ -2210,7 +2210,7 @@ proc EnableAlign*(this: TCheckBox) =
   CheckBox_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TCheckBox, ControlName: string): TControl =
-  return AsControl(CheckBox_FindChildControl(this.Instance, ControlName))
+  return CheckBox_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TCheckBox, AllLevels: bool) =
   CheckBox_FlipChildren(this.Instance, AllLevels)
@@ -2297,7 +2297,7 @@ proc SetTextBuf*(this: TCheckBox, Buffer: string) =
   CheckBox_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TCheckBox, AName: string): TComponent =
-  return AsComponent(CheckBox_FindComponent(this.Instance, AName))
+  return CheckBox_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TCheckBox): string =
   return $CheckBox_GetNamePath(this.Instance)
@@ -2348,7 +2348,7 @@ proc `OnChange=`*(this: TCheckBox, AEventId: TNotifyEvent)  =
   CheckBox_SetOnChange(this.Instance, AEventId)
 
 proc Action*(this: TCheckBox): TAction  =
-  return AsAction(CheckBox_GetAction(this.Instance))
+  return CheckBox_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TCheckBox, AValue: TAction)  =
   CheckBox_SetAction(this.Instance, CheckPtr(AValue))
@@ -2402,7 +2402,7 @@ proc `Color=`*(this: TCheckBox, AValue: TColor)  =
   CheckBox_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TCheckBox): TSizeConstraints  =
-  return AsSizeConstraints(CheckBox_GetConstraints(this.Instance))
+  return CheckBox_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TCheckBox, AValue: TSizeConstraints)  =
   CheckBox_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -2438,7 +2438,7 @@ proc `Enabled=`*(this: TCheckBox, AValue: bool)  =
   CheckBox_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TCheckBox): TFont  =
-  return AsFont(CheckBox_GetFont(this.Instance))
+  return CheckBox_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TCheckBox, AValue: TFont)  =
   CheckBox_SetFont(this.Instance, CheckPtr(AValue))
@@ -2468,7 +2468,7 @@ proc `ParentShowHint=`*(this: TCheckBox, AValue: bool)  =
   CheckBox_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TCheckBox): TPopupMenu  =
-  return AsPopupMenu(CheckBox_GetPopupMenu(this.Instance))
+  return CheckBox_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TCheckBox, AValue: TPopupMenu)  =
   CheckBox_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -2564,7 +2564,7 @@ proc VisibleDockClientCount*(this: TCheckBox): int32  =
   return CheckBox_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TCheckBox): TBrush  =
-  return AsBrush(CheckBox_GetBrush(this.Instance))
+  return CheckBox_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TCheckBox): int32  =
   return CheckBox_GetControlCount(this.Instance)
@@ -2627,7 +2627,7 @@ proc Floating*(this: TCheckBox): bool  =
   return CheckBox_GetFloating(this.Instance)
 
 proc Parent*(this: TCheckBox): TWinControl  =
-  return AsWinControl(CheckBox_GetParent(this.Instance))
+  return CheckBox_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TCheckBox, AValue: TWinControl)  =
   CheckBox_SetParent(this.Instance, CheckPtr(AValue))
@@ -2678,7 +2678,7 @@ proc `ComponentIndex=`*(this: TCheckBox, AValue: int32)  =
   CheckBox_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TCheckBox): TComponent  =
-  return AsComponent(CheckBox_GetOwner(this.Instance))
+  return CheckBox_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TCheckBox): string  =
   return $CheckBox_GetName(this.Instance)
@@ -2693,52 +2693,52 @@ proc `Tag=`*(this: TCheckBox, AValue: int)  =
   CheckBox_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TCheckBox): TAnchorSide  =
-  return AsAnchorSide(CheckBox_GetAnchorSideLeft(this.Instance))
+  return CheckBox_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TCheckBox, AValue: TAnchorSide)  =
   CheckBox_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TCheckBox): TAnchorSide  =
-  return AsAnchorSide(CheckBox_GetAnchorSideTop(this.Instance))
+  return CheckBox_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TCheckBox, AValue: TAnchorSide)  =
   CheckBox_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TCheckBox): TAnchorSide  =
-  return AsAnchorSide(CheckBox_GetAnchorSideRight(this.Instance))
+  return CheckBox_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TCheckBox, AValue: TAnchorSide)  =
   CheckBox_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TCheckBox): TAnchorSide  =
-  return AsAnchorSide(CheckBox_GetAnchorSideBottom(this.Instance))
+  return CheckBox_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TCheckBox, AValue: TAnchorSide)  =
   CheckBox_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TCheckBox): TControlChildSizing  =
-  return AsControlChildSizing(CheckBox_GetChildSizing(this.Instance))
+  return CheckBox_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TCheckBox, AValue: TControlChildSizing)  =
   CheckBox_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TCheckBox): TControlBorderSpacing  =
-  return AsControlBorderSpacing(CheckBox_GetBorderSpacing(this.Instance))
+  return CheckBox_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TCheckBox, AValue: TControlBorderSpacing)  =
   CheckBox_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TCheckBox, Index: int32): TControl  =
-  return AsControl(CheckBox_GetDockClients(this.Instance, Index))
+  return CheckBox_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TCheckBox, Index: int32): TControl  =
-  return AsControl(CheckBox_GetControls(this.Instance, Index))
+  return CheckBox_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TCheckBox, AIndex: int32): TComponent  =
-  return AsComponent(CheckBox_GetComponents(this.Instance, AIndex))
+  return CheckBox_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TCheckBox, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(CheckBox_GetAnchorSide(this.Instance, AKind))
+  return CheckBox_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TCheckBoxClass*(): TClass = CheckBox_StaticClassType()
 
@@ -2758,7 +2758,7 @@ proc ContainsControl*(this: TRadioButton, Control: TControl): bool =
   return RadioButton_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TRadioButton, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(RadioButton_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return RadioButton_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TRadioButton) =
   RadioButton_DisableAlign(this.Instance)
@@ -2767,7 +2767,7 @@ proc EnableAlign*(this: TRadioButton) =
   RadioButton_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TRadioButton, ControlName: string): TControl =
-  return AsControl(RadioButton_FindChildControl(this.Instance, ControlName))
+  return RadioButton_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TRadioButton, AllLevels: bool) =
   RadioButton_FlipChildren(this.Instance, AllLevels)
@@ -2854,7 +2854,7 @@ proc SetTextBuf*(this: TRadioButton, Buffer: string) =
   RadioButton_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TRadioButton, AName: string): TComponent =
-  return AsComponent(RadioButton_FindComponent(this.Instance, AName))
+  return RadioButton_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TRadioButton): string =
   return $RadioButton_GetNamePath(this.Instance)
@@ -2905,7 +2905,7 @@ proc `OnChange=`*(this: TRadioButton, AEventId: TNotifyEvent)  =
   RadioButton_SetOnChange(this.Instance, AEventId)
 
 proc Action*(this: TRadioButton): TAction  =
-  return AsAction(RadioButton_GetAction(this.Instance))
+  return RadioButton_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TRadioButton, AValue: TAction)  =
   RadioButton_SetAction(this.Instance, CheckPtr(AValue))
@@ -2953,7 +2953,7 @@ proc `Color=`*(this: TRadioButton, AValue: TColor)  =
   RadioButton_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TRadioButton): TSizeConstraints  =
-  return AsSizeConstraints(RadioButton_GetConstraints(this.Instance))
+  return RadioButton_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TRadioButton, AValue: TSizeConstraints)  =
   RadioButton_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -2989,7 +2989,7 @@ proc `Enabled=`*(this: TRadioButton, AValue: bool)  =
   RadioButton_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TRadioButton): TFont  =
-  return AsFont(RadioButton_GetFont(this.Instance))
+  return RadioButton_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TRadioButton, AValue: TFont)  =
   RadioButton_SetFont(this.Instance, CheckPtr(AValue))
@@ -3019,7 +3019,7 @@ proc `ParentShowHint=`*(this: TRadioButton, AValue: bool)  =
   RadioButton_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TRadioButton): TPopupMenu  =
-  return AsPopupMenu(RadioButton_GetPopupMenu(this.Instance))
+  return RadioButton_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TRadioButton, AValue: TPopupMenu)  =
   RadioButton_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -3109,7 +3109,7 @@ proc VisibleDockClientCount*(this: TRadioButton): int32  =
   return RadioButton_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TRadioButton): TBrush  =
-  return AsBrush(RadioButton_GetBrush(this.Instance))
+  return RadioButton_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TRadioButton): int32  =
   return RadioButton_GetControlCount(this.Instance)
@@ -3172,7 +3172,7 @@ proc Floating*(this: TRadioButton): bool  =
   return RadioButton_GetFloating(this.Instance)
 
 proc Parent*(this: TRadioButton): TWinControl  =
-  return AsWinControl(RadioButton_GetParent(this.Instance))
+  return RadioButton_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TRadioButton, AValue: TWinControl)  =
   RadioButton_SetParent(this.Instance, CheckPtr(AValue))
@@ -3223,7 +3223,7 @@ proc `ComponentIndex=`*(this: TRadioButton, AValue: int32)  =
   RadioButton_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TRadioButton): TComponent  =
-  return AsComponent(RadioButton_GetOwner(this.Instance))
+  return RadioButton_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TRadioButton): string  =
   return $RadioButton_GetName(this.Instance)
@@ -3238,52 +3238,52 @@ proc `Tag=`*(this: TRadioButton, AValue: int)  =
   RadioButton_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TRadioButton): TAnchorSide  =
-  return AsAnchorSide(RadioButton_GetAnchorSideLeft(this.Instance))
+  return RadioButton_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TRadioButton, AValue: TAnchorSide)  =
   RadioButton_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TRadioButton): TAnchorSide  =
-  return AsAnchorSide(RadioButton_GetAnchorSideTop(this.Instance))
+  return RadioButton_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TRadioButton, AValue: TAnchorSide)  =
   RadioButton_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TRadioButton): TAnchorSide  =
-  return AsAnchorSide(RadioButton_GetAnchorSideRight(this.Instance))
+  return RadioButton_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TRadioButton, AValue: TAnchorSide)  =
   RadioButton_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TRadioButton): TAnchorSide  =
-  return AsAnchorSide(RadioButton_GetAnchorSideBottom(this.Instance))
+  return RadioButton_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TRadioButton, AValue: TAnchorSide)  =
   RadioButton_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TRadioButton): TControlChildSizing  =
-  return AsControlChildSizing(RadioButton_GetChildSizing(this.Instance))
+  return RadioButton_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TRadioButton, AValue: TControlChildSizing)  =
   RadioButton_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TRadioButton): TControlBorderSpacing  =
-  return AsControlBorderSpacing(RadioButton_GetBorderSpacing(this.Instance))
+  return RadioButton_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TRadioButton, AValue: TControlBorderSpacing)  =
   RadioButton_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TRadioButton, Index: int32): TControl  =
-  return AsControl(RadioButton_GetDockClients(this.Instance, Index))
+  return RadioButton_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TRadioButton, Index: int32): TControl  =
-  return AsControl(RadioButton_GetControls(this.Instance, Index))
+  return RadioButton_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TRadioButton, AIndex: int32): TComponent  =
-  return AsComponent(RadioButton_GetComponents(this.Instance, AIndex))
+  return RadioButton_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TRadioButton, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(RadioButton_GetAnchorSide(this.Instance, AKind))
+  return RadioButton_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TRadioButtonClass*(): TClass = RadioButton_StaticClassType()
 
@@ -3303,7 +3303,7 @@ proc ContainsControl*(this: TGroupBox, Control: TControl): bool =
   return GroupBox_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TGroupBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(GroupBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return GroupBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TGroupBox) =
   GroupBox_DisableAlign(this.Instance)
@@ -3312,7 +3312,7 @@ proc EnableAlign*(this: TGroupBox) =
   GroupBox_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TGroupBox, ControlName: string): TControl =
-  return AsControl(GroupBox_FindChildControl(this.Instance, ControlName))
+  return GroupBox_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TGroupBox, AllLevels: bool) =
   GroupBox_FlipChildren(this.Instance, AllLevels)
@@ -3399,7 +3399,7 @@ proc SetTextBuf*(this: TGroupBox, Buffer: string) =
   GroupBox_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TGroupBox, AName: string): TComponent =
-  return AsComponent(GroupBox_FindComponent(this.Instance, AName))
+  return GroupBox_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TGroupBox): string =
   return $GroupBox_GetNamePath(this.Instance)
@@ -3477,7 +3477,7 @@ proc `Color=`*(this: TGroupBox, AValue: TColor)  =
   GroupBox_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TGroupBox): TSizeConstraints  =
-  return AsSizeConstraints(GroupBox_GetConstraints(this.Instance))
+  return GroupBox_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TGroupBox, AValue: TSizeConstraints)  =
   GroupBox_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -3519,7 +3519,7 @@ proc `Enabled=`*(this: TGroupBox, AValue: bool)  =
   GroupBox_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TGroupBox): TFont  =
-  return AsFont(GroupBox_GetFont(this.Instance))
+  return GroupBox_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TGroupBox, AValue: TFont)  =
   GroupBox_SetFont(this.Instance, CheckPtr(AValue))
@@ -3549,7 +3549,7 @@ proc `ParentShowHint=`*(this: TGroupBox, AValue: bool)  =
   GroupBox_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TGroupBox): TPopupMenu  =
-  return AsPopupMenu(GroupBox_GetPopupMenu(this.Instance))
+  return GroupBox_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TGroupBox, AValue: TPopupMenu)  =
   GroupBox_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -3645,7 +3645,7 @@ proc VisibleDockClientCount*(this: TGroupBox): int32  =
   return GroupBox_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TGroupBox): TBrush  =
-  return AsBrush(GroupBox_GetBrush(this.Instance))
+  return GroupBox_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TGroupBox): int32  =
   return GroupBox_GetControlCount(this.Instance)
@@ -3669,7 +3669,7 @@ proc `UseDockManager=`*(this: TGroupBox, AValue: bool)  =
   GroupBox_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TGroupBox): TAction  =
-  return AsAction(GroupBox_GetAction(this.Instance))
+  return GroupBox_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TGroupBox, AValue: TAction)  =
   GroupBox_SetAction(this.Instance, CheckPtr(AValue))
@@ -3714,7 +3714,7 @@ proc Floating*(this: TGroupBox): bool  =
   return GroupBox_GetFloating(this.Instance)
 
 proc Parent*(this: TGroupBox): TWinControl  =
-  return AsWinControl(GroupBox_GetParent(this.Instance))
+  return GroupBox_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TGroupBox, AValue: TWinControl)  =
   GroupBox_SetParent(this.Instance, CheckPtr(AValue))
@@ -3765,7 +3765,7 @@ proc `ComponentIndex=`*(this: TGroupBox, AValue: int32)  =
   GroupBox_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TGroupBox): TComponent  =
-  return AsComponent(GroupBox_GetOwner(this.Instance))
+  return GroupBox_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TGroupBox): string  =
   return $GroupBox_GetName(this.Instance)
@@ -3780,52 +3780,52 @@ proc `Tag=`*(this: TGroupBox, AValue: int)  =
   GroupBox_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TGroupBox): TAnchorSide  =
-  return AsAnchorSide(GroupBox_GetAnchorSideLeft(this.Instance))
+  return GroupBox_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TGroupBox, AValue: TAnchorSide)  =
   GroupBox_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TGroupBox): TAnchorSide  =
-  return AsAnchorSide(GroupBox_GetAnchorSideTop(this.Instance))
+  return GroupBox_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TGroupBox, AValue: TAnchorSide)  =
   GroupBox_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TGroupBox): TAnchorSide  =
-  return AsAnchorSide(GroupBox_GetAnchorSideRight(this.Instance))
+  return GroupBox_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TGroupBox, AValue: TAnchorSide)  =
   GroupBox_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TGroupBox): TAnchorSide  =
-  return AsAnchorSide(GroupBox_GetAnchorSideBottom(this.Instance))
+  return GroupBox_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TGroupBox, AValue: TAnchorSide)  =
   GroupBox_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TGroupBox): TControlChildSizing  =
-  return AsControlChildSizing(GroupBox_GetChildSizing(this.Instance))
+  return GroupBox_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TGroupBox, AValue: TControlChildSizing)  =
   GroupBox_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TGroupBox): TControlBorderSpacing  =
-  return AsControlBorderSpacing(GroupBox_GetBorderSpacing(this.Instance))
+  return GroupBox_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TGroupBox, AValue: TControlBorderSpacing)  =
   GroupBox_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TGroupBox, Index: int32): TControl  =
-  return AsControl(GroupBox_GetDockClients(this.Instance, Index))
+  return GroupBox_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TGroupBox, Index: int32): TControl  =
-  return AsControl(GroupBox_GetControls(this.Instance, Index))
+  return GroupBox_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TGroupBox, AIndex: int32): TComponent  =
-  return AsComponent(GroupBox_GetComponents(this.Instance, AIndex))
+  return GroupBox_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TGroupBox, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(GroupBox_GetAnchorSide(this.Instance, AKind))
+  return GroupBox_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TGroupBoxClass*(): TClass = GroupBox_StaticClassType()
 
@@ -3896,7 +3896,7 @@ proc SetTextBuf*(this: TLabel, Buffer: string) =
   Label_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TLabel, AName: string): TComponent =
-  return AsComponent(Label_FindComponent(this.Instance, AName))
+  return Label_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TLabel): string =
   return $Label_GetNamePath(this.Instance)
@@ -3992,7 +3992,7 @@ proc `Color=`*(this: TLabel, AValue: TColor)  =
   Label_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TLabel): TSizeConstraints  =
-  return AsSizeConstraints(Label_GetConstraints(this.Instance))
+  return Label_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TLabel, AValue: TSizeConstraints)  =
   Label_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -4022,13 +4022,13 @@ proc `Enabled=`*(this: TLabel, AValue: bool)  =
   Label_SetEnabled(this.Instance, AValue)
 
 proc FocusControl*(this: TLabel): TWinControl  =
-  return AsWinControl(Label_GetFocusControl(this.Instance))
+  return Label_GetFocusControl(this.Instance).AsWinControl
 
 proc `FocusControl=`*(this: TLabel, AValue: TWinControl)  =
   Label_SetFocusControl(this.Instance, CheckPtr(AValue))
 
 proc Font*(this: TLabel): TFont  =
-  return AsFont(Label_GetFont(this.Instance))
+  return Label_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TLabel, AValue: TFont)  =
   Label_SetFont(this.Instance, CheckPtr(AValue))
@@ -4052,7 +4052,7 @@ proc `ParentShowHint=`*(this: TLabel, AValue: bool)  =
   Label_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TLabel): TPopupMenu  =
-  return AsPopupMenu(Label_GetPopupMenu(this.Instance))
+  return Label_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TLabel, AValue: TPopupMenu)  =
   Label_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -4127,10 +4127,10 @@ proc `OnMouseLeave=`*(this: TLabel, AEventId: TNotifyEvent)  =
   Label_SetOnMouseLeave(this.Instance, AEventId)
 
 proc Canvas*(this: TLabel): TCanvas  =
-  return AsCanvas(Label_GetCanvas(this.Instance))
+  return Label_GetCanvas(this.Instance).AsCanvas
 
 proc Action*(this: TLabel): TAction  =
-  return AsAction(Label_GetAction(this.Instance))
+  return Label_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TLabel, AValue: TAction)  =
   Label_SetAction(this.Instance, CheckPtr(AValue))
@@ -4175,7 +4175,7 @@ proc Floating*(this: TLabel): bool  =
   return Label_GetFloating(this.Instance)
 
 proc Parent*(this: TLabel): TWinControl  =
-  return AsWinControl(Label_GetParent(this.Instance))
+  return Label_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TLabel, AValue: TWinControl)  =
   Label_SetParent(this.Instance, CheckPtr(AValue))
@@ -4226,7 +4226,7 @@ proc `ComponentIndex=`*(this: TLabel, AValue: int32)  =
   Label_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TLabel): TComponent  =
-  return AsComponent(Label_GetOwner(this.Instance))
+  return Label_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TLabel): string  =
   return $Label_GetName(this.Instance)
@@ -4241,40 +4241,40 @@ proc `Tag=`*(this: TLabel, AValue: int)  =
   Label_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TLabel): TAnchorSide  =
-  return AsAnchorSide(Label_GetAnchorSideLeft(this.Instance))
+  return Label_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TLabel, AValue: TAnchorSide)  =
   Label_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TLabel): TAnchorSide  =
-  return AsAnchorSide(Label_GetAnchorSideTop(this.Instance))
+  return Label_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TLabel, AValue: TAnchorSide)  =
   Label_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TLabel): TAnchorSide  =
-  return AsAnchorSide(Label_GetAnchorSideRight(this.Instance))
+  return Label_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TLabel, AValue: TAnchorSide)  =
   Label_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TLabel): TAnchorSide  =
-  return AsAnchorSide(Label_GetAnchorSideBottom(this.Instance))
+  return Label_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TLabel, AValue: TAnchorSide)  =
   Label_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TLabel): TControlBorderSpacing  =
-  return AsControlBorderSpacing(Label_GetBorderSpacing(this.Instance))
+  return Label_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TLabel, AValue: TControlBorderSpacing)  =
   Label_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Components*(this: TLabel, AIndex: int32): TComponent  =
-  return AsComponent(Label_GetComponents(this.Instance, AIndex))
+  return Label_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TLabel, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(Label_GetAnchorSide(this.Instance, AKind))
+  return Label_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TLabelClass*(): TClass = Label_StaticClassType()
 
@@ -4315,7 +4315,7 @@ proc ContainsControl*(this: TListBox, Control: TControl): bool =
   return ListBox_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TListBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(ListBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return ListBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TListBox) =
   ListBox_DisableAlign(this.Instance)
@@ -4324,7 +4324,7 @@ proc EnableAlign*(this: TListBox) =
   ListBox_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TListBox, ControlName: string): TControl =
-  return AsControl(ListBox_FindChildControl(this.Instance, ControlName))
+  return ListBox_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TListBox, AllLevels: bool) =
   ListBox_FlipChildren(this.Instance, AllLevels)
@@ -4411,7 +4411,7 @@ proc SetTextBuf*(this: TListBox, Buffer: string) =
   ListBox_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TListBox, AName: string): TComponent =
-  return AsComponent(ListBox_FindComponent(this.Instance, AName))
+  return ListBox_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TListBox): string =
   return $ListBox_GetNamePath(this.Instance)
@@ -4519,7 +4519,7 @@ proc `Columns=`*(this: TListBox, AValue: int32)  =
   ListBox_SetColumns(this.Instance, AValue)
 
 proc Constraints*(this: TListBox): TSizeConstraints  =
-  return AsSizeConstraints(ListBox_GetConstraints(this.Instance))
+  return ListBox_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TListBox, AValue: TSizeConstraints)  =
   ListBox_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -4561,7 +4561,7 @@ proc `ExtendedSelect=`*(this: TListBox, AValue: bool)  =
   ListBox_SetExtendedSelect(this.Instance, AValue)
 
 proc Font*(this: TListBox): TFont  =
-  return AsFont(ListBox_GetFont(this.Instance))
+  return ListBox_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TListBox, AValue: TFont)  =
   ListBox_SetFont(this.Instance, CheckPtr(AValue))
@@ -4573,7 +4573,7 @@ proc `ItemHeight=`*(this: TListBox, AValue: int32)  =
   ListBox_SetItemHeight(this.Instance, AValue)
 
 proc Items*(this: TListBox): TStrings  =
-  return AsStrings(ListBox_GetItems(this.Instance))
+  return ListBox_GetItems(this.Instance).AsStrings
 
 proc `Items=`*(this: TListBox, AValue: TStrings)  =
   ListBox_SetItems(this.Instance, CheckPtr(AValue))
@@ -4609,7 +4609,7 @@ proc `ParentShowHint=`*(this: TListBox, AValue: bool)  =
   ListBox_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TListBox): TPopupMenu  =
-  return AsPopupMenu(ListBox_GetPopupMenu(this.Instance))
+  return ListBox_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TListBox, AValue: TPopupMenu)  =
   ListBox_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -4699,7 +4699,7 @@ proc `OnMouseUp=`*(this: TListBox, AEventId: TMouseEvent)  =
   ListBox_SetOnMouseUp(this.Instance, AEventId)
 
 proc Canvas*(this: TListBox): TCanvas  =
-  return AsCanvas(ListBox_GetCanvas(this.Instance))
+  return ListBox_GetCanvas(this.Instance).AsCanvas
 
 proc Count*(this: TListBox): int32  =
   return ListBox_GetCount(this.Instance)
@@ -4729,7 +4729,7 @@ proc VisibleDockClientCount*(this: TListBox): int32  =
   return ListBox_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TListBox): TBrush  =
-  return AsBrush(ListBox_GetBrush(this.Instance))
+  return ListBox_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TListBox): int32  =
   return ListBox_GetControlCount(this.Instance)
@@ -4753,7 +4753,7 @@ proc `UseDockManager=`*(this: TListBox, AValue: bool)  =
   ListBox_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TListBox): TAction  =
-  return AsAction(ListBox_GetAction(this.Instance))
+  return ListBox_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TListBox, AValue: TAction)  =
   ListBox_SetAction(this.Instance, CheckPtr(AValue))
@@ -4798,7 +4798,7 @@ proc Floating*(this: TListBox): bool  =
   return ListBox_GetFloating(this.Instance)
 
 proc Parent*(this: TListBox): TWinControl  =
-  return AsWinControl(ListBox_GetParent(this.Instance))
+  return ListBox_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TListBox, AValue: TWinControl)  =
   ListBox_SetParent(this.Instance, CheckPtr(AValue))
@@ -4849,7 +4849,7 @@ proc `ComponentIndex=`*(this: TListBox, AValue: int32)  =
   ListBox_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TListBox): TComponent  =
-  return AsComponent(ListBox_GetOwner(this.Instance))
+  return ListBox_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TListBox): string  =
   return $ListBox_GetName(this.Instance)
@@ -4864,37 +4864,37 @@ proc `Tag=`*(this: TListBox, AValue: int)  =
   ListBox_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TListBox): TAnchorSide  =
-  return AsAnchorSide(ListBox_GetAnchorSideLeft(this.Instance))
+  return ListBox_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TListBox, AValue: TAnchorSide)  =
   ListBox_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TListBox): TAnchorSide  =
-  return AsAnchorSide(ListBox_GetAnchorSideTop(this.Instance))
+  return ListBox_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TListBox, AValue: TAnchorSide)  =
   ListBox_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TListBox): TAnchorSide  =
-  return AsAnchorSide(ListBox_GetAnchorSideRight(this.Instance))
+  return ListBox_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TListBox, AValue: TAnchorSide)  =
   ListBox_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TListBox): TAnchorSide  =
-  return AsAnchorSide(ListBox_GetAnchorSideBottom(this.Instance))
+  return ListBox_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TListBox, AValue: TAnchorSide)  =
   ListBox_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TListBox): TControlChildSizing  =
-  return AsControlChildSizing(ListBox_GetChildSizing(this.Instance))
+  return ListBox_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TListBox, AValue: TControlChildSizing)  =
   ListBox_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TListBox): TControlBorderSpacing  =
-  return AsControlBorderSpacing(ListBox_GetBorderSpacing(this.Instance))
+  return ListBox_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TListBox, AValue: TControlBorderSpacing)  =
   ListBox_SetBorderSpacing(this.Instance, CheckPtr(AValue))
@@ -4906,16 +4906,16 @@ proc `Selected=`*(this: TListBox, Index: int32, AValue: bool)  =
   ListBox_SetSelected(this.Instance, Index, AValue)
 
 proc DockClients*(this: TListBox, Index: int32): TControl  =
-  return AsControl(ListBox_GetDockClients(this.Instance, Index))
+  return ListBox_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TListBox, Index: int32): TControl  =
-  return AsControl(ListBox_GetControls(this.Instance, Index))
+  return ListBox_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TListBox, AIndex: int32): TComponent  =
-  return AsComponent(ListBox_GetComponents(this.Instance, AIndex))
+  return ListBox_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TListBox, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(ListBox_GetAnchorSide(this.Instance, AKind))
+  return ListBox_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TListBoxClass*(): TClass = ListBox_StaticClassType()
 
@@ -4953,7 +4953,7 @@ proc ContainsControl*(this: TComboBox, Control: TControl): bool =
   return ComboBox_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TComboBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(ComboBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return ComboBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TComboBox) =
   ComboBox_DisableAlign(this.Instance)
@@ -4962,7 +4962,7 @@ proc EnableAlign*(this: TComboBox) =
   ComboBox_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TComboBox, ControlName: string): TControl =
-  return AsControl(ComboBox_FindChildControl(this.Instance, ControlName))
+  return ComboBox_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TComboBox, AllLevels: bool) =
   ComboBox_FlipChildren(this.Instance, AllLevels)
@@ -5046,7 +5046,7 @@ proc SetTextBuf*(this: TComboBox, Buffer: string) =
   ComboBox_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TComboBox, AName: string): TComponent =
-  return AsComponent(ComboBox_FindComponent(this.Instance, AName))
+  return ComboBox_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TComboBox): string =
   return $ComboBox_GetNamePath(this.Instance)
@@ -5142,7 +5142,7 @@ proc `Color=`*(this: TComboBox, AValue: TColor)  =
   ComboBox_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TComboBox): TSizeConstraints  =
-  return AsSizeConstraints(ComboBox_GetConstraints(this.Instance))
+  return ComboBox_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TComboBox, AValue: TSizeConstraints)  =
   ComboBox_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -5184,7 +5184,7 @@ proc `Enabled=`*(this: TComboBox, AValue: bool)  =
   ComboBox_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TComboBox): TFont  =
-  return AsFont(ComboBox_GetFont(this.Instance))
+  return ComboBox_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TComboBox, AValue: TFont)  =
   ComboBox_SetFont(this.Instance, CheckPtr(AValue))
@@ -5232,7 +5232,7 @@ proc `ParentShowHint=`*(this: TComboBox, AValue: bool)  =
   ComboBox_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TComboBox): TPopupMenu  =
-  return AsPopupMenu(ComboBox_GetPopupMenu(this.Instance))
+  return ComboBox_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TComboBox, AValue: TPopupMenu)  =
   ComboBox_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -5325,7 +5325,7 @@ proc `OnSelect=`*(this: TComboBox, AEventId: TNotifyEvent)  =
   ComboBox_SetOnSelect(this.Instance, AEventId)
 
 proc Items*(this: TComboBox): TStrings  =
-  return AsStrings(ComboBox_GetItems(this.Instance))
+  return ComboBox_GetItems(this.Instance).AsStrings
 
 proc `Items=`*(this: TComboBox, AValue: TStrings)  =
   ComboBox_SetItems(this.Instance, CheckPtr(AValue))
@@ -5337,7 +5337,7 @@ proc `SelText=`*(this: TComboBox, AValue: string)  =
   ComboBox_SetSelText(this.Instance, AValue)
 
 proc Canvas*(this: TComboBox): TCanvas  =
-  return AsCanvas(ComboBox_GetCanvas(this.Instance))
+  return ComboBox_GetCanvas(this.Instance).AsCanvas
 
 proc DroppedDown*(this: TComboBox): bool  =
   return ComboBox_GetDroppedDown(this.Instance)
@@ -5373,7 +5373,7 @@ proc VisibleDockClientCount*(this: TComboBox): int32  =
   return ComboBox_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TComboBox): TBrush  =
-  return AsBrush(ComboBox_GetBrush(this.Instance))
+  return ComboBox_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TComboBox): int32  =
   return ComboBox_GetControlCount(this.Instance)
@@ -5397,7 +5397,7 @@ proc `UseDockManager=`*(this: TComboBox, AValue: bool)  =
   ComboBox_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TComboBox): TAction  =
-  return AsAction(ComboBox_GetAction(this.Instance))
+  return ComboBox_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TComboBox, AValue: TAction)  =
   ComboBox_SetAction(this.Instance, CheckPtr(AValue))
@@ -5442,7 +5442,7 @@ proc Floating*(this: TComboBox): bool  =
   return ComboBox_GetFloating(this.Instance)
 
 proc Parent*(this: TComboBox): TWinControl  =
-  return AsWinControl(ComboBox_GetParent(this.Instance))
+  return ComboBox_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TComboBox, AValue: TWinControl)  =
   ComboBox_SetParent(this.Instance, CheckPtr(AValue))
@@ -5493,7 +5493,7 @@ proc `ComponentIndex=`*(this: TComboBox, AValue: int32)  =
   ComboBox_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TComboBox): TComponent  =
-  return AsComponent(ComboBox_GetOwner(this.Instance))
+  return ComboBox_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TComboBox): string  =
   return $ComboBox_GetName(this.Instance)
@@ -5508,52 +5508,52 @@ proc `Tag=`*(this: TComboBox, AValue: int)  =
   ComboBox_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TComboBox): TAnchorSide  =
-  return AsAnchorSide(ComboBox_GetAnchorSideLeft(this.Instance))
+  return ComboBox_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TComboBox, AValue: TAnchorSide)  =
   ComboBox_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TComboBox): TAnchorSide  =
-  return AsAnchorSide(ComboBox_GetAnchorSideTop(this.Instance))
+  return ComboBox_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TComboBox, AValue: TAnchorSide)  =
   ComboBox_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TComboBox): TAnchorSide  =
-  return AsAnchorSide(ComboBox_GetAnchorSideRight(this.Instance))
+  return ComboBox_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TComboBox, AValue: TAnchorSide)  =
   ComboBox_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TComboBox): TAnchorSide  =
-  return AsAnchorSide(ComboBox_GetAnchorSideBottom(this.Instance))
+  return ComboBox_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TComboBox, AValue: TAnchorSide)  =
   ComboBox_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TComboBox): TControlChildSizing  =
-  return AsControlChildSizing(ComboBox_GetChildSizing(this.Instance))
+  return ComboBox_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TComboBox, AValue: TControlChildSizing)  =
   ComboBox_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TComboBox): TControlBorderSpacing  =
-  return AsControlBorderSpacing(ComboBox_GetBorderSpacing(this.Instance))
+  return ComboBox_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TComboBox, AValue: TControlBorderSpacing)  =
   ComboBox_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TComboBox, Index: int32): TControl  =
-  return AsControl(ComboBox_GetDockClients(this.Instance, Index))
+  return ComboBox_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TComboBox, Index: int32): TControl  =
-  return AsControl(ComboBox_GetControls(this.Instance, Index))
+  return ComboBox_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TComboBox, AIndex: int32): TComponent  =
-  return AsComponent(ComboBox_GetComponents(this.Instance, AIndex))
+  return ComboBox_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TComboBox, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(ComboBox_GetAnchorSide(this.Instance, AKind))
+  return ComboBox_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TComboBoxClass*(): TClass = ComboBox_StaticClassType()
 
@@ -5573,7 +5573,7 @@ proc ContainsControl*(this: TPanel, Control: TControl): bool =
   return Panel_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TPanel, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(Panel_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return Panel_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TPanel) =
   Panel_DisableAlign(this.Instance)
@@ -5582,7 +5582,7 @@ proc EnableAlign*(this: TPanel) =
   Panel_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TPanel, ControlName: string): TControl =
-  return AsControl(Panel_FindChildControl(this.Instance, ControlName))
+  return Panel_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TPanel, AllLevels: bool) =
   Panel_FlipChildren(this.Instance, AllLevels)
@@ -5669,7 +5669,7 @@ proc SetTextBuf*(this: TPanel, Buffer: string) =
   Panel_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TPanel, AName: string): TComponent =
-  return AsComponent(Panel_FindComponent(this.Instance, AName))
+  return Panel_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TPanel): string =
   return $Panel_GetNamePath(this.Instance)
@@ -5783,7 +5783,7 @@ proc `Color=`*(this: TPanel, AValue: TColor)  =
   Panel_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TPanel): TSizeConstraints  =
-  return AsSizeConstraints(Panel_GetConstraints(this.Instance))
+  return Panel_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TPanel, AValue: TSizeConstraints)  =
   Panel_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -5837,7 +5837,7 @@ proc `FullRepaint=`*(this: TPanel, AValue: bool)  =
   Panel_SetFullRepaint(this.Instance, AValue)
 
 proc Font*(this: TPanel): TFont  =
-  return AsFont(Panel_GetFont(this.Instance))
+  return Panel_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TPanel, AValue: TFont)  =
   Panel_SetFont(this.Instance, CheckPtr(AValue))
@@ -5873,7 +5873,7 @@ proc `ParentShowHint=`*(this: TPanel, AValue: bool)  =
   Panel_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TPanel): TPopupMenu  =
-  return AsPopupMenu(Panel_GetPopupMenu(this.Instance))
+  return Panel_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TPanel, AValue: TPopupMenu)  =
   Panel_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -5972,7 +5972,7 @@ proc VisibleDockClientCount*(this: TPanel): int32  =
   return Panel_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TPanel): TBrush  =
-  return AsBrush(Panel_GetBrush(this.Instance))
+  return Panel_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TPanel): int32  =
   return Panel_GetControlCount(this.Instance)
@@ -5990,7 +5990,7 @@ proc Showing*(this: TPanel): bool  =
   return Panel_GetShowing(this.Instance)
 
 proc Action*(this: TPanel): TAction  =
-  return AsAction(Panel_GetAction(this.Instance))
+  return Panel_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TPanel, AValue: TAction)  =
   Panel_SetAction(this.Instance, CheckPtr(AValue))
@@ -6035,7 +6035,7 @@ proc Floating*(this: TPanel): bool  =
   return Panel_GetFloating(this.Instance)
 
 proc Parent*(this: TPanel): TWinControl  =
-  return AsWinControl(Panel_GetParent(this.Instance))
+  return Panel_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TPanel, AValue: TWinControl)  =
   Panel_SetParent(this.Instance, CheckPtr(AValue))
@@ -6086,7 +6086,7 @@ proc `ComponentIndex=`*(this: TPanel, AValue: int32)  =
   Panel_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TPanel): TComponent  =
-  return AsComponent(Panel_GetOwner(this.Instance))
+  return Panel_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TPanel): string  =
   return $Panel_GetName(this.Instance)
@@ -6101,52 +6101,52 @@ proc `Tag=`*(this: TPanel, AValue: int)  =
   Panel_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TPanel): TAnchorSide  =
-  return AsAnchorSide(Panel_GetAnchorSideLeft(this.Instance))
+  return Panel_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TPanel, AValue: TAnchorSide)  =
   Panel_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TPanel): TAnchorSide  =
-  return AsAnchorSide(Panel_GetAnchorSideTop(this.Instance))
+  return Panel_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TPanel, AValue: TAnchorSide)  =
   Panel_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TPanel): TAnchorSide  =
-  return AsAnchorSide(Panel_GetAnchorSideRight(this.Instance))
+  return Panel_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TPanel, AValue: TAnchorSide)  =
   Panel_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TPanel): TAnchorSide  =
-  return AsAnchorSide(Panel_GetAnchorSideBottom(this.Instance))
+  return Panel_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TPanel, AValue: TAnchorSide)  =
   Panel_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TPanel): TControlChildSizing  =
-  return AsControlChildSizing(Panel_GetChildSizing(this.Instance))
+  return Panel_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TPanel, AValue: TControlChildSizing)  =
   Panel_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TPanel): TControlBorderSpacing  =
-  return AsControlBorderSpacing(Panel_GetBorderSpacing(this.Instance))
+  return Panel_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TPanel, AValue: TControlBorderSpacing)  =
   Panel_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TPanel, Index: int32): TControl  =
-  return AsControl(Panel_GetDockClients(this.Instance, Index))
+  return Panel_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TPanel, Index: int32): TControl  =
-  return AsControl(Panel_GetControls(this.Instance, Index))
+  return Panel_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TPanel, AIndex: int32): TComponent  =
-  return AsComponent(Panel_GetComponents(this.Instance, AIndex))
+  return Panel_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TPanel, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(Panel_GetAnchorSide(this.Instance, AKind))
+  return Panel_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TPanelClass*(): TClass = Panel_StaticClassType()
 
@@ -6217,7 +6217,7 @@ proc SetTextBuf*(this: TImage, Buffer: string) =
   Image_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TImage, AName: string): TComponent =
-  return AsComponent(Image_FindComponent(this.Instance, AName))
+  return Image_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TImage): string =
   return $Image_GetNamePath(this.Instance)
@@ -6295,7 +6295,7 @@ proc `StretchOutEnabled=`*(this: TImage, AValue: bool)  =
   Image_SetStretchOutEnabled(this.Instance, AValue)
 
 proc Canvas*(this: TImage): TCanvas  =
-  return AsCanvas(Image_GetCanvas(this.Instance))
+  return Image_GetCanvas(this.Instance).AsCanvas
 
 proc Align*(this: TImage): TAlign  =
   return Image_GetAlign(this.Instance)
@@ -6322,7 +6322,7 @@ proc `Center=`*(this: TImage, AValue: bool)  =
   Image_SetCenter(this.Instance, AValue)
 
 proc Constraints*(this: TImage): TSizeConstraints  =
-  return AsSizeConstraints(Image_GetConstraints(this.Instance))
+  return Image_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TImage, AValue: TSizeConstraints)  =
   Image_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -6352,13 +6352,13 @@ proc `ParentShowHint=`*(this: TImage, AValue: bool)  =
   Image_SetParentShowHint(this.Instance, AValue)
 
 proc Picture*(this: TImage): TPicture  =
-  return AsPicture(Image_GetPicture(this.Instance))
+  return Image_GetPicture(this.Instance).AsPicture
 
 proc `Picture=`*(this: TImage, AValue: TPicture)  =
   Image_SetPicture(this.Instance, CheckPtr(AValue))
 
 proc PopupMenu*(this: TImage): TPopupMenu  =
-  return AsPopupMenu(Image_GetPopupMenu(this.Instance))
+  return Image_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TImage, AValue: TPopupMenu)  =
   Image_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -6424,7 +6424,7 @@ proc `OnMouseUp=`*(this: TImage, AEventId: TMouseEvent)  =
   Image_SetOnMouseUp(this.Instance, AEventId)
 
 proc Action*(this: TImage): TAction  =
-  return AsAction(Image_GetAction(this.Instance))
+  return Image_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TImage, AValue: TAction)  =
   Image_SetAction(this.Instance, CheckPtr(AValue))
@@ -6475,7 +6475,7 @@ proc Floating*(this: TImage): bool  =
   return Image_GetFloating(this.Instance)
 
 proc Parent*(this: TImage): TWinControl  =
-  return AsWinControl(Image_GetParent(this.Instance))
+  return Image_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TImage, AValue: TWinControl)  =
   Image_SetParent(this.Instance, CheckPtr(AValue))
@@ -6526,7 +6526,7 @@ proc `ComponentIndex=`*(this: TImage, AValue: int32)  =
   Image_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TImage): TComponent  =
-  return AsComponent(Image_GetOwner(this.Instance))
+  return Image_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TImage): string  =
   return $Image_GetName(this.Instance)
@@ -6541,40 +6541,40 @@ proc `Tag=`*(this: TImage, AValue: int)  =
   Image_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TImage): TAnchorSide  =
-  return AsAnchorSide(Image_GetAnchorSideLeft(this.Instance))
+  return Image_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TImage, AValue: TAnchorSide)  =
   Image_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TImage): TAnchorSide  =
-  return AsAnchorSide(Image_GetAnchorSideTop(this.Instance))
+  return Image_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TImage, AValue: TAnchorSide)  =
   Image_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TImage): TAnchorSide  =
-  return AsAnchorSide(Image_GetAnchorSideRight(this.Instance))
+  return Image_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TImage, AValue: TAnchorSide)  =
   Image_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TImage): TAnchorSide  =
-  return AsAnchorSide(Image_GetAnchorSideBottom(this.Instance))
+  return Image_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TImage, AValue: TAnchorSide)  =
   Image_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TImage): TControlBorderSpacing  =
-  return AsControlBorderSpacing(Image_GetBorderSpacing(this.Instance))
+  return Image_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TImage, AValue: TControlBorderSpacing)  =
   Image_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Components*(this: TImage, AIndex: int32): TComponent  =
-  return AsComponent(Image_GetComponents(this.Instance, AIndex))
+  return Image_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TImage, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(Image_GetAnchorSide(this.Instance, AKind))
+  return Image_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TImageClass*(): TClass = Image_StaticClassType()
 
@@ -6645,7 +6645,7 @@ proc SetTextBuf*(this: TLinkLabel, Buffer: string) =
   LinkLabel_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TLinkLabel, AName: string): TComponent =
-  return AsComponent(LinkLabel_FindComponent(this.Instance, AName))
+  return LinkLabel_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TLinkLabel): string =
   return $LinkLabel_GetNamePath(this.Instance)
@@ -6729,7 +6729,7 @@ proc `Color=`*(this: TLinkLabel, AValue: TColor)  =
   LinkLabel_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TLinkLabel): TSizeConstraints  =
-  return AsSizeConstraints(LinkLabel_GetConstraints(this.Instance))
+  return LinkLabel_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TLinkLabel, AValue: TSizeConstraints)  =
   LinkLabel_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -6759,7 +6759,7 @@ proc `Enabled=`*(this: TLinkLabel, AValue: bool)  =
   LinkLabel_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TLinkLabel): TFont  =
-  return AsFont(LinkLabel_GetFont(this.Instance))
+  return LinkLabel_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TLinkLabel, AValue: TFont)  =
   LinkLabel_SetFont(this.Instance, CheckPtr(AValue))
@@ -6783,7 +6783,7 @@ proc `ParentShowHint=`*(this: TLinkLabel, AValue: bool)  =
   LinkLabel_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TLinkLabel): TPopupMenu  =
-  return AsPopupMenu(LinkLabel_GetPopupMenu(this.Instance))
+  return LinkLabel_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TLinkLabel, AValue: TPopupMenu)  =
   LinkLabel_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -6840,7 +6840,7 @@ proc MouseInClient*(this: TLinkLabel): bool  =
   return LinkLabel_GetMouseInClient(this.Instance)
 
 proc Action*(this: TLinkLabel): TAction  =
-  return AsAction(LinkLabel_GetAction(this.Instance))
+  return LinkLabel_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TLinkLabel, AValue: TAction)  =
   LinkLabel_SetAction(this.Instance, CheckPtr(AValue))
@@ -6891,7 +6891,7 @@ proc Floating*(this: TLinkLabel): bool  =
   return LinkLabel_GetFloating(this.Instance)
 
 proc Parent*(this: TLinkLabel): TWinControl  =
-  return AsWinControl(LinkLabel_GetParent(this.Instance))
+  return LinkLabel_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TLinkLabel, AValue: TWinControl)  =
   LinkLabel_SetParent(this.Instance, CheckPtr(AValue))
@@ -6936,7 +6936,7 @@ proc `ComponentIndex=`*(this: TLinkLabel, AValue: int32)  =
   LinkLabel_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TLinkLabel): TComponent  =
-  return AsComponent(LinkLabel_GetOwner(this.Instance))
+  return LinkLabel_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TLinkLabel): string  =
   return $LinkLabel_GetName(this.Instance)
@@ -6951,40 +6951,40 @@ proc `Tag=`*(this: TLinkLabel, AValue: int)  =
   LinkLabel_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TLinkLabel): TAnchorSide  =
-  return AsAnchorSide(LinkLabel_GetAnchorSideLeft(this.Instance))
+  return LinkLabel_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TLinkLabel, AValue: TAnchorSide)  =
   LinkLabel_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TLinkLabel): TAnchorSide  =
-  return AsAnchorSide(LinkLabel_GetAnchorSideTop(this.Instance))
+  return LinkLabel_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TLinkLabel, AValue: TAnchorSide)  =
   LinkLabel_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TLinkLabel): TAnchorSide  =
-  return AsAnchorSide(LinkLabel_GetAnchorSideRight(this.Instance))
+  return LinkLabel_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TLinkLabel, AValue: TAnchorSide)  =
   LinkLabel_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TLinkLabel): TAnchorSide  =
-  return AsAnchorSide(LinkLabel_GetAnchorSideBottom(this.Instance))
+  return LinkLabel_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TLinkLabel, AValue: TAnchorSide)  =
   LinkLabel_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TLinkLabel): TControlBorderSpacing  =
-  return AsControlBorderSpacing(LinkLabel_GetBorderSpacing(this.Instance))
+  return LinkLabel_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TLinkLabel, AValue: TControlBorderSpacing)  =
   LinkLabel_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Components*(this: TLinkLabel, AIndex: int32): TComponent  =
-  return AsComponent(LinkLabel_GetComponents(this.Instance, AIndex))
+  return LinkLabel_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TLinkLabel, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(LinkLabel_GetAnchorSide(this.Instance, AKind))
+  return LinkLabel_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TLinkLabelClass*(): TClass = LinkLabel_StaticClassType()
 
@@ -7058,7 +7058,7 @@ proc SetTextBuf*(this: TSpeedButton, Buffer: string) =
   SpeedButton_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TSpeedButton, AName: string): TComponent =
-  return AsComponent(SpeedButton_FindComponent(this.Instance, AName))
+  return SpeedButton_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TSpeedButton): string =
   return $SpeedButton_GetNamePath(this.Instance)
@@ -7112,7 +7112,7 @@ proc `ImageIndex=`*(this: TSpeedButton, AValue: int32)  =
   SpeedButton_SetImageIndex(this.Instance, AValue)
 
 proc Images*(this: TSpeedButton): TImageList  =
-  return AsImageList(SpeedButton_GetImages(this.Instance))
+  return SpeedButton_GetImages(this.Instance).AsImageList
 
 proc `Images=`*(this: TSpeedButton, AValue: TImageList)  =
   SpeedButton_SetImages(this.Instance, CheckPtr(AValue))
@@ -7130,7 +7130,7 @@ proc `ShowCaption=`*(this: TSpeedButton, AValue: bool)  =
   SpeedButton_SetShowCaption(this.Instance, AValue)
 
 proc Action*(this: TSpeedButton): TAction  =
-  return AsAction(SpeedButton_GetAction(this.Instance))
+  return SpeedButton_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TSpeedButton, AValue: TAction)  =
   SpeedButton_SetAction(this.Instance, CheckPtr(AValue))
@@ -7160,7 +7160,7 @@ proc `BiDiMode=`*(this: TSpeedButton, AValue: TBiDiMode)  =
   SpeedButton_SetBiDiMode(this.Instance, AValue)
 
 proc Constraints*(this: TSpeedButton): TSizeConstraints  =
-  return AsSizeConstraints(SpeedButton_GetConstraints(this.Instance))
+  return SpeedButton_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TSpeedButton, AValue: TSizeConstraints)  =
   SpeedButton_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -7196,13 +7196,13 @@ proc `Flat=`*(this: TSpeedButton, AValue: bool)  =
   SpeedButton_SetFlat(this.Instance, AValue)
 
 proc Font*(this: TSpeedButton): TFont  =
-  return AsFont(SpeedButton_GetFont(this.Instance))
+  return SpeedButton_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TSpeedButton, AValue: TFont)  =
   SpeedButton_SetFont(this.Instance, CheckPtr(AValue))
 
 proc Glyph*(this: TSpeedButton): TBitmap  =
-  return AsBitmap(SpeedButton_GetGlyph(this.Instance))
+  return SpeedButton_GetGlyph(this.Instance).AsBitmap
 
 proc `Glyph=`*(this: TSpeedButton, AValue: TBitmap)  =
   SpeedButton_SetGlyph(this.Instance, CheckPtr(AValue))
@@ -7232,7 +7232,7 @@ proc `ParentShowHint=`*(this: TSpeedButton, AValue: bool)  =
   SpeedButton_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TSpeedButton): TPopupMenu  =
-  return AsPopupMenu(SpeedButton_GetPopupMenu(this.Instance))
+  return SpeedButton_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TSpeedButton, AValue: TPopupMenu)  =
   SpeedButton_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -7322,7 +7322,7 @@ proc Floating*(this: TSpeedButton): bool  =
   return SpeedButton_GetFloating(this.Instance)
 
 proc Parent*(this: TSpeedButton): TWinControl  =
-  return AsWinControl(SpeedButton_GetParent(this.Instance))
+  return SpeedButton_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TSpeedButton, AValue: TWinControl)  =
   SpeedButton_SetParent(this.Instance, CheckPtr(AValue))
@@ -7373,7 +7373,7 @@ proc `ComponentIndex=`*(this: TSpeedButton, AValue: int32)  =
   SpeedButton_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TSpeedButton): TComponent  =
-  return AsComponent(SpeedButton_GetOwner(this.Instance))
+  return SpeedButton_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TSpeedButton): string  =
   return $SpeedButton_GetName(this.Instance)
@@ -7388,40 +7388,40 @@ proc `Tag=`*(this: TSpeedButton, AValue: int)  =
   SpeedButton_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TSpeedButton): TAnchorSide  =
-  return AsAnchorSide(SpeedButton_GetAnchorSideLeft(this.Instance))
+  return SpeedButton_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TSpeedButton, AValue: TAnchorSide)  =
   SpeedButton_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TSpeedButton): TAnchorSide  =
-  return AsAnchorSide(SpeedButton_GetAnchorSideTop(this.Instance))
+  return SpeedButton_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TSpeedButton, AValue: TAnchorSide)  =
   SpeedButton_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TSpeedButton): TAnchorSide  =
-  return AsAnchorSide(SpeedButton_GetAnchorSideRight(this.Instance))
+  return SpeedButton_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TSpeedButton, AValue: TAnchorSide)  =
   SpeedButton_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TSpeedButton): TAnchorSide  =
-  return AsAnchorSide(SpeedButton_GetAnchorSideBottom(this.Instance))
+  return SpeedButton_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TSpeedButton, AValue: TAnchorSide)  =
   SpeedButton_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TSpeedButton): TControlBorderSpacing  =
-  return AsControlBorderSpacing(SpeedButton_GetBorderSpacing(this.Instance))
+  return SpeedButton_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TSpeedButton, AValue: TControlBorderSpacing)  =
   SpeedButton_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Components*(this: TSpeedButton, AIndex: int32): TComponent  =
-  return AsComponent(SpeedButton_GetComponents(this.Instance, AIndex))
+  return SpeedButton_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TSpeedButton, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(SpeedButton_GetAnchorSide(this.Instance, AKind))
+  return SpeedButton_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TSpeedButtonClass*(): TClass = SpeedButton_StaticClassType()
 
@@ -7492,7 +7492,7 @@ proc SetTextBuf*(this: TSplitter, Buffer: string) =
   Splitter_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TSplitter, AName: string): TComponent =
-  return AsComponent(Splitter_FindComponent(this.Instance, AName))
+  return Splitter_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TSplitter): string =
   return $Splitter_GetNamePath(this.Instance)
@@ -7546,7 +7546,7 @@ proc `ResizeAnchor=`*(this: TSplitter, AValue: TAnchorKind)  =
   Splitter_SetResizeAnchor(this.Instance, AValue)
 
 proc Canvas*(this: TSplitter): TCanvas  =
-  return AsCanvas(Splitter_GetCanvas(this.Instance))
+  return Splitter_GetCanvas(this.Instance).AsCanvas
 
 proc Align*(this: TSplitter): TAlign  =
   return Splitter_GetAlign(this.Instance)
@@ -7567,7 +7567,7 @@ proc `Cursor=`*(this: TSplitter, AValue: TCursor)  =
   Splitter_SetCursor(this.Instance, AValue)
 
 proc Constraints*(this: TSplitter): TSizeConstraints  =
-  return AsSizeConstraints(Splitter_GetConstraints(this.Instance))
+  return Splitter_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TSplitter, AValue: TSizeConstraints)  =
   Splitter_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -7606,7 +7606,7 @@ proc `Enabled=`*(this: TSplitter, AValue: bool)  =
   Splitter_SetEnabled(this.Instance, AValue)
 
 proc Action*(this: TSplitter): TAction  =
-  return AsAction(Splitter_GetAction(this.Instance))
+  return Splitter_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TSplitter, AValue: TAction)  =
   Splitter_SetAction(this.Instance, CheckPtr(AValue))
@@ -7669,7 +7669,7 @@ proc `ShowHint=`*(this: TSplitter, AValue: bool)  =
   Splitter_SetShowHint(this.Instance, AValue)
 
 proc Parent*(this: TSplitter): TWinControl  =
-  return AsWinControl(Splitter_GetParent(this.Instance))
+  return Splitter_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TSplitter, AValue: TWinControl)  =
   Splitter_SetParent(this.Instance, CheckPtr(AValue))
@@ -7708,7 +7708,7 @@ proc `ComponentIndex=`*(this: TSplitter, AValue: int32)  =
   Splitter_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TSplitter): TComponent  =
-  return AsComponent(Splitter_GetOwner(this.Instance))
+  return Splitter_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TSplitter): string  =
   return $Splitter_GetName(this.Instance)
@@ -7723,40 +7723,40 @@ proc `Tag=`*(this: TSplitter, AValue: int)  =
   Splitter_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TSplitter): TAnchorSide  =
-  return AsAnchorSide(Splitter_GetAnchorSideLeft(this.Instance))
+  return Splitter_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TSplitter, AValue: TAnchorSide)  =
   Splitter_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TSplitter): TAnchorSide  =
-  return AsAnchorSide(Splitter_GetAnchorSideTop(this.Instance))
+  return Splitter_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TSplitter, AValue: TAnchorSide)  =
   Splitter_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TSplitter): TAnchorSide  =
-  return AsAnchorSide(Splitter_GetAnchorSideRight(this.Instance))
+  return Splitter_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TSplitter, AValue: TAnchorSide)  =
   Splitter_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TSplitter): TAnchorSide  =
-  return AsAnchorSide(Splitter_GetAnchorSideBottom(this.Instance))
+  return Splitter_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TSplitter, AValue: TAnchorSide)  =
   Splitter_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TSplitter): TControlBorderSpacing  =
-  return AsControlBorderSpacing(Splitter_GetBorderSpacing(this.Instance))
+  return Splitter_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TSplitter, AValue: TControlBorderSpacing)  =
   Splitter_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Components*(this: TSplitter, AIndex: int32): TComponent  =
-  return AsComponent(Splitter_GetComponents(this.Instance, AIndex))
+  return Splitter_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TSplitter, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(Splitter_GetAnchorSide(this.Instance, AKind))
+  return Splitter_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TSplitterClass*(): TClass = Splitter_StaticClassType()
 
@@ -7779,7 +7779,7 @@ proc ContainsControl*(this: TRadioGroup, Control: TControl): bool =
   return RadioGroup_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TRadioGroup, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(RadioGroup_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return RadioGroup_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TRadioGroup) =
   RadioGroup_DisableAlign(this.Instance)
@@ -7788,7 +7788,7 @@ proc EnableAlign*(this: TRadioGroup) =
   RadioGroup_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TRadioGroup, ControlName: string): TControl =
-  return AsControl(RadioGroup_FindChildControl(this.Instance, ControlName))
+  return RadioGroup_FindChildControl(this.Instance, ControlName).AsControl
 
 proc Focused*(this: TRadioGroup): bool =
   return RadioGroup_Focused(this.Instance)
@@ -7872,7 +7872,7 @@ proc SetTextBuf*(this: TRadioGroup, Buffer: string) =
   RadioGroup_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TRadioGroup, AName: string): TComponent =
-  return AsComponent(RadioGroup_FindComponent(this.Instance, AName))
+  return RadioGroup_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TRadioGroup): string =
   return $RadioGroup_GetNamePath(this.Instance)
@@ -7980,7 +7980,7 @@ proc `Enabled=`*(this: TRadioGroup, AValue: bool)  =
   RadioGroup_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TRadioGroup): TFont  =
-  return AsFont(RadioGroup_GetFont(this.Instance))
+  return RadioGroup_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TRadioGroup, AValue: TFont)  =
   RadioGroup_SetFont(this.Instance, CheckPtr(AValue))
@@ -7992,13 +7992,13 @@ proc `ItemIndex=`*(this: TRadioGroup, AValue: int32)  =
   RadioGroup_SetItemIndex(this.Instance, AValue)
 
 proc Items*(this: TRadioGroup): TStrings  =
-  return AsStrings(RadioGroup_GetItems(this.Instance))
+  return RadioGroup_GetItems(this.Instance).AsStrings
 
 proc `Items=`*(this: TRadioGroup, AValue: TStrings)  =
   RadioGroup_SetItems(this.Instance, CheckPtr(AValue))
 
 proc Constraints*(this: TRadioGroup): TSizeConstraints  =
-  return AsSizeConstraints(RadioGroup_GetConstraints(this.Instance))
+  return RadioGroup_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TRadioGroup, AValue: TSizeConstraints)  =
   RadioGroup_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -8028,7 +8028,7 @@ proc `ParentShowHint=`*(this: TRadioGroup, AValue: bool)  =
   RadioGroup_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TRadioGroup): TPopupMenu  =
-  return AsPopupMenu(RadioGroup_GetPopupMenu(this.Instance))
+  return RadioGroup_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TRadioGroup, AValue: TPopupMenu)  =
   RadioGroup_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -8091,7 +8091,7 @@ proc VisibleDockClientCount*(this: TRadioGroup): int32  =
   return RadioGroup_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TRadioGroup): TBrush  =
-  return AsBrush(RadioGroup_GetBrush(this.Instance))
+  return RadioGroup_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TRadioGroup): int32  =
   return RadioGroup_GetControlCount(this.Instance)
@@ -8115,7 +8115,7 @@ proc `UseDockManager=`*(this: TRadioGroup, AValue: bool)  =
   RadioGroup_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TRadioGroup): TAction  =
-  return AsAction(RadioGroup_GetAction(this.Instance))
+  return RadioGroup_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TRadioGroup, AValue: TAction)  =
   RadioGroup_SetAction(this.Instance, CheckPtr(AValue))
@@ -8160,7 +8160,7 @@ proc Floating*(this: TRadioGroup): bool  =
   return RadioGroup_GetFloating(this.Instance)
 
 proc Parent*(this: TRadioGroup): TWinControl  =
-  return AsWinControl(RadioGroup_GetParent(this.Instance))
+  return RadioGroup_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TRadioGroup, AValue: TWinControl)  =
   RadioGroup_SetParent(this.Instance, CheckPtr(AValue))
@@ -8211,7 +8211,7 @@ proc `ComponentIndex=`*(this: TRadioGroup, AValue: int32)  =
   RadioGroup_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TRadioGroup): TComponent  =
-  return AsComponent(RadioGroup_GetOwner(this.Instance))
+  return RadioGroup_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TRadioGroup): string  =
   return $RadioGroup_GetName(this.Instance)
@@ -8226,52 +8226,52 @@ proc `Tag=`*(this: TRadioGroup, AValue: int)  =
   RadioGroup_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TRadioGroup): TAnchorSide  =
-  return AsAnchorSide(RadioGroup_GetAnchorSideLeft(this.Instance))
+  return RadioGroup_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TRadioGroup, AValue: TAnchorSide)  =
   RadioGroup_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TRadioGroup): TAnchorSide  =
-  return AsAnchorSide(RadioGroup_GetAnchorSideTop(this.Instance))
+  return RadioGroup_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TRadioGroup, AValue: TAnchorSide)  =
   RadioGroup_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TRadioGroup): TAnchorSide  =
-  return AsAnchorSide(RadioGroup_GetAnchorSideRight(this.Instance))
+  return RadioGroup_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TRadioGroup, AValue: TAnchorSide)  =
   RadioGroup_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TRadioGroup): TAnchorSide  =
-  return AsAnchorSide(RadioGroup_GetAnchorSideBottom(this.Instance))
+  return RadioGroup_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TRadioGroup, AValue: TAnchorSide)  =
   RadioGroup_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TRadioGroup): TControlChildSizing  =
-  return AsControlChildSizing(RadioGroup_GetChildSizing(this.Instance))
+  return RadioGroup_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TRadioGroup, AValue: TControlChildSizing)  =
   RadioGroup_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TRadioGroup): TControlBorderSpacing  =
-  return AsControlBorderSpacing(RadioGroup_GetBorderSpacing(this.Instance))
+  return RadioGroup_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TRadioGroup, AValue: TControlBorderSpacing)  =
   RadioGroup_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TRadioGroup, Index: int32): TControl  =
-  return AsControl(RadioGroup_GetDockClients(this.Instance, Index))
+  return RadioGroup_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TRadioGroup, Index: int32): TControl  =
-  return AsControl(RadioGroup_GetControls(this.Instance, Index))
+  return RadioGroup_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TRadioGroup, AIndex: int32): TComponent  =
-  return AsComponent(RadioGroup_GetComponents(this.Instance, AIndex))
+  return RadioGroup_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TRadioGroup, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(RadioGroup_GetAnchorSide(this.Instance, AKind))
+  return RadioGroup_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TRadioGroupClass*(): TClass = RadioGroup_StaticClassType()
 
@@ -8291,7 +8291,7 @@ proc ContainsControl*(this: TStaticText, Control: TControl): bool =
   return StaticText_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TStaticText, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(StaticText_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return StaticText_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TStaticText) =
   StaticText_DisableAlign(this.Instance)
@@ -8300,7 +8300,7 @@ proc EnableAlign*(this: TStaticText) =
   StaticText_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TStaticText, ControlName: string): TControl =
-  return AsControl(StaticText_FindChildControl(this.Instance, ControlName))
+  return StaticText_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TStaticText, AllLevels: bool) =
   StaticText_FlipChildren(this.Instance, AllLevels)
@@ -8387,7 +8387,7 @@ proc SetTextBuf*(this: TStaticText, Buffer: string) =
   StaticText_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TStaticText, AName: string): TComponent =
-  return AsComponent(StaticText_FindComponent(this.Instance, AName))
+  return StaticText_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TStaticText): string =
   return $StaticText_GetNamePath(this.Instance)
@@ -8483,7 +8483,7 @@ proc `Color=`*(this: TStaticText, AValue: TColor)  =
   StaticText_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TStaticText): TSizeConstraints  =
-  return AsSizeConstraints(StaticText_GetConstraints(this.Instance))
+  return StaticText_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TStaticText, AValue: TSizeConstraints)  =
   StaticText_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -8519,13 +8519,13 @@ proc `Enabled=`*(this: TStaticText, AValue: bool)  =
   StaticText_SetEnabled(this.Instance, AValue)
 
 proc FocusControl*(this: TStaticText): TWinControl  =
-  return AsWinControl(StaticText_GetFocusControl(this.Instance))
+  return StaticText_GetFocusControl(this.Instance).AsWinControl
 
 proc `FocusControl=`*(this: TStaticText, AValue: TWinControl)  =
   StaticText_SetFocusControl(this.Instance, CheckPtr(AValue))
 
 proc Font*(this: TStaticText): TFont  =
-  return AsFont(StaticText_GetFont(this.Instance))
+  return StaticText_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TStaticText, AValue: TFont)  =
   StaticText_SetFont(this.Instance, CheckPtr(AValue))
@@ -8555,7 +8555,7 @@ proc `ParentShowHint=`*(this: TStaticText, AValue: bool)  =
   StaticText_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TStaticText): TPopupMenu  =
-  return AsPopupMenu(StaticText_GetPopupMenu(this.Instance))
+  return StaticText_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TStaticText, AValue: TPopupMenu)  =
   StaticText_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -8645,7 +8645,7 @@ proc VisibleDockClientCount*(this: TStaticText): int32  =
   return StaticText_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TStaticText): TBrush  =
-  return AsBrush(StaticText_GetBrush(this.Instance))
+  return StaticText_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TStaticText): int32  =
   return StaticText_GetControlCount(this.Instance)
@@ -8669,7 +8669,7 @@ proc `UseDockManager=`*(this: TStaticText, AValue: bool)  =
   StaticText_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TStaticText): TAction  =
-  return AsAction(StaticText_GetAction(this.Instance))
+  return StaticText_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TStaticText, AValue: TAction)  =
   StaticText_SetAction(this.Instance, CheckPtr(AValue))
@@ -8714,7 +8714,7 @@ proc Floating*(this: TStaticText): bool  =
   return StaticText_GetFloating(this.Instance)
 
 proc Parent*(this: TStaticText): TWinControl  =
-  return AsWinControl(StaticText_GetParent(this.Instance))
+  return StaticText_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TStaticText, AValue: TWinControl)  =
   StaticText_SetParent(this.Instance, CheckPtr(AValue))
@@ -8765,7 +8765,7 @@ proc `ComponentIndex=`*(this: TStaticText, AValue: int32)  =
   StaticText_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TStaticText): TComponent  =
-  return AsComponent(StaticText_GetOwner(this.Instance))
+  return StaticText_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TStaticText): string  =
   return $StaticText_GetName(this.Instance)
@@ -8780,52 +8780,52 @@ proc `Tag=`*(this: TStaticText, AValue: int)  =
   StaticText_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TStaticText): TAnchorSide  =
-  return AsAnchorSide(StaticText_GetAnchorSideLeft(this.Instance))
+  return StaticText_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TStaticText, AValue: TAnchorSide)  =
   StaticText_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TStaticText): TAnchorSide  =
-  return AsAnchorSide(StaticText_GetAnchorSideTop(this.Instance))
+  return StaticText_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TStaticText, AValue: TAnchorSide)  =
   StaticText_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TStaticText): TAnchorSide  =
-  return AsAnchorSide(StaticText_GetAnchorSideRight(this.Instance))
+  return StaticText_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TStaticText, AValue: TAnchorSide)  =
   StaticText_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TStaticText): TAnchorSide  =
-  return AsAnchorSide(StaticText_GetAnchorSideBottom(this.Instance))
+  return StaticText_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TStaticText, AValue: TAnchorSide)  =
   StaticText_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TStaticText): TControlChildSizing  =
-  return AsControlChildSizing(StaticText_GetChildSizing(this.Instance))
+  return StaticText_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TStaticText, AValue: TControlChildSizing)  =
   StaticText_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TStaticText): TControlBorderSpacing  =
-  return AsControlBorderSpacing(StaticText_GetBorderSpacing(this.Instance))
+  return StaticText_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TStaticText, AValue: TControlBorderSpacing)  =
   StaticText_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TStaticText, Index: int32): TControl  =
-  return AsControl(StaticText_GetDockClients(this.Instance, Index))
+  return StaticText_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TStaticText, Index: int32): TControl  =
-  return AsControl(StaticText_GetControls(this.Instance, Index))
+  return StaticText_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TStaticText, AIndex: int32): TComponent  =
-  return AsComponent(StaticText_GetComponents(this.Instance, AIndex))
+  return StaticText_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TStaticText, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(StaticText_GetAnchorSide(this.Instance, AKind))
+  return StaticText_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TStaticTextClass*(): TClass = StaticText_StaticClassType()
 
@@ -8863,7 +8863,7 @@ proc ContainsControl*(this: TColorBox, Control: TControl): bool =
   return ColorBox_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TColorBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(ColorBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return ColorBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TColorBox) =
   ColorBox_DisableAlign(this.Instance)
@@ -8872,7 +8872,7 @@ proc EnableAlign*(this: TColorBox) =
   ColorBox_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TColorBox, ControlName: string): TControl =
-  return AsControl(ColorBox_FindChildControl(this.Instance, ControlName))
+  return ColorBox_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TColorBox, AllLevels: bool) =
   ColorBox_FlipChildren(this.Instance, AllLevels)
@@ -8956,7 +8956,7 @@ proc SetTextBuf*(this: TColorBox, Buffer: string) =
   ColorBox_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TColorBox, AName: string): TComponent =
-  return AsComponent(ColorBox_FindComponent(this.Instance, AName))
+  return ColorBox_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TColorBox): string =
   return $ColorBox_GetNamePath(this.Instance)
@@ -9064,7 +9064,7 @@ proc `Color=`*(this: TColorBox, AValue: TColor)  =
   ColorBox_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TColorBox): TSizeConstraints  =
-  return AsSizeConstraints(ColorBox_GetConstraints(this.Instance))
+  return ColorBox_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TColorBox, AValue: TSizeConstraints)  =
   ColorBox_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -9088,7 +9088,7 @@ proc `Enabled=`*(this: TColorBox, AValue: bool)  =
   ColorBox_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TColorBox): TFont  =
-  return AsFont(ColorBox_GetFont(this.Instance))
+  return ColorBox_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TColorBox, AValue: TFont)  =
   ColorBox_SetFont(this.Instance, CheckPtr(AValue))
@@ -9124,7 +9124,7 @@ proc `ParentShowHint=`*(this: TColorBox, AValue: bool)  =
   ColorBox_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TColorBox): TPopupMenu  =
-  return AsPopupMenu(ColorBox_GetPopupMenu(this.Instance))
+  return ColorBox_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TColorBox, AValue: TPopupMenu)  =
   ColorBox_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -9208,7 +9208,7 @@ proc `SelText=`*(this: TColorBox, AValue: string)  =
   ColorBox_SetSelText(this.Instance, AValue)
 
 proc Canvas*(this: TColorBox): TCanvas  =
-  return AsCanvas(ColorBox_GetCanvas(this.Instance))
+  return ColorBox_GetCanvas(this.Instance).AsCanvas
 
 proc DroppedDown*(this: TColorBox): bool  =
   return ColorBox_GetDroppedDown(this.Instance)
@@ -9217,7 +9217,7 @@ proc `DroppedDown=`*(this: TColorBox, AValue: bool)  =
   ColorBox_SetDroppedDown(this.Instance, AValue)
 
 proc Items*(this: TColorBox): TStrings  =
-  return AsStrings(ColorBox_GetItems(this.Instance))
+  return ColorBox_GetItems(this.Instance).AsStrings
 
 proc `Items=`*(this: TColorBox, AValue: TStrings)  =
   ColorBox_SetItems(this.Instance, CheckPtr(AValue))
@@ -9256,7 +9256,7 @@ proc VisibleDockClientCount*(this: TColorBox): int32  =
   return ColorBox_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TColorBox): TBrush  =
-  return AsBrush(ColorBox_GetBrush(this.Instance))
+  return ColorBox_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TColorBox): int32  =
   return ColorBox_GetControlCount(this.Instance)
@@ -9280,7 +9280,7 @@ proc `UseDockManager=`*(this: TColorBox, AValue: bool)  =
   ColorBox_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TColorBox): TAction  =
-  return AsAction(ColorBox_GetAction(this.Instance))
+  return ColorBox_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TColorBox, AValue: TAction)  =
   ColorBox_SetAction(this.Instance, CheckPtr(AValue))
@@ -9325,7 +9325,7 @@ proc Floating*(this: TColorBox): bool  =
   return ColorBox_GetFloating(this.Instance)
 
 proc Parent*(this: TColorBox): TWinControl  =
-  return AsWinControl(ColorBox_GetParent(this.Instance))
+  return ColorBox_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TColorBox, AValue: TWinControl)  =
   ColorBox_SetParent(this.Instance, CheckPtr(AValue))
@@ -9376,7 +9376,7 @@ proc `ComponentIndex=`*(this: TColorBox, AValue: int32)  =
   ColorBox_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TColorBox): TComponent  =
-  return AsComponent(ColorBox_GetOwner(this.Instance))
+  return ColorBox_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TColorBox): string  =
   return $ColorBox_GetName(this.Instance)
@@ -9391,37 +9391,37 @@ proc `Tag=`*(this: TColorBox, AValue: int)  =
   ColorBox_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TColorBox): TAnchorSide  =
-  return AsAnchorSide(ColorBox_GetAnchorSideLeft(this.Instance))
+  return ColorBox_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TColorBox, AValue: TAnchorSide)  =
   ColorBox_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TColorBox): TAnchorSide  =
-  return AsAnchorSide(ColorBox_GetAnchorSideTop(this.Instance))
+  return ColorBox_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TColorBox, AValue: TAnchorSide)  =
   ColorBox_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TColorBox): TAnchorSide  =
-  return AsAnchorSide(ColorBox_GetAnchorSideRight(this.Instance))
+  return ColorBox_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TColorBox, AValue: TAnchorSide)  =
   ColorBox_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TColorBox): TAnchorSide  =
-  return AsAnchorSide(ColorBox_GetAnchorSideBottom(this.Instance))
+  return ColorBox_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TColorBox, AValue: TAnchorSide)  =
   ColorBox_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TColorBox): TControlChildSizing  =
-  return AsControlChildSizing(ColorBox_GetChildSizing(this.Instance))
+  return ColorBox_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TColorBox, AValue: TControlChildSizing)  =
   ColorBox_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TColorBox): TControlBorderSpacing  =
-  return AsControlBorderSpacing(ColorBox_GetBorderSpacing(this.Instance))
+  return ColorBox_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TColorBox, AValue: TControlBorderSpacing)  =
   ColorBox_SetBorderSpacing(this.Instance, CheckPtr(AValue))
@@ -9433,16 +9433,16 @@ proc ColorNames*(this: TColorBox, Index: int32): string  =
   return $ColorBox_GetColorNames(this.Instance, Index)
 
 proc DockClients*(this: TColorBox, Index: int32): TControl  =
-  return AsControl(ColorBox_GetDockClients(this.Instance, Index))
+  return ColorBox_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TColorBox, Index: int32): TControl  =
-  return AsControl(ColorBox_GetControls(this.Instance, Index))
+  return ColorBox_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TColorBox, AIndex: int32): TComponent  =
-  return AsComponent(ColorBox_GetComponents(this.Instance, AIndex))
+  return ColorBox_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TColorBox, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(ColorBox_GetAnchorSide(this.Instance, AKind))
+  return ColorBox_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TColorBoxClass*(): TClass = ColorBox_StaticClassType()
 
@@ -9483,7 +9483,7 @@ proc ContainsControl*(this: TColorListBox, Control: TControl): bool =
   return ColorListBox_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TColorListBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(ColorListBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return ColorListBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TColorListBox) =
   ColorListBox_DisableAlign(this.Instance)
@@ -9492,7 +9492,7 @@ proc EnableAlign*(this: TColorListBox) =
   ColorListBox_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TColorListBox, ControlName: string): TControl =
-  return AsControl(ColorListBox_FindChildControl(this.Instance, ControlName))
+  return ColorListBox_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TColorListBox, AllLevels: bool) =
   ColorListBox_FlipChildren(this.Instance, AllLevels)
@@ -9579,7 +9579,7 @@ proc SetTextBuf*(this: TColorListBox, Buffer: string) =
   ColorListBox_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TColorListBox, AName: string): TComponent =
-  return AsComponent(ColorListBox_FindComponent(this.Instance, AName))
+  return ColorListBox_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TColorListBox): string =
   return $ColorListBox_GetNamePath(this.Instance)
@@ -9675,7 +9675,7 @@ proc `Color=`*(this: TColorListBox, AValue: TColor)  =
   ColorListBox_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TColorListBox): TSizeConstraints  =
-  return AsSizeConstraints(ColorListBox_GetConstraints(this.Instance))
+  return ColorListBox_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TColorListBox, AValue: TSizeConstraints)  =
   ColorListBox_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -9693,7 +9693,7 @@ proc `Enabled=`*(this: TColorListBox, AValue: bool)  =
   ColorListBox_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TColorListBox): TFont  =
-  return AsFont(ColorListBox_GetFont(this.Instance))
+  return ColorListBox_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TColorListBox, AValue: TFont)  =
   ColorListBox_SetFont(this.Instance, CheckPtr(AValue))
@@ -9729,7 +9729,7 @@ proc `ParentShowHint=`*(this: TColorListBox, AValue: bool)  =
   ColorListBox_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TColorListBox): TPopupMenu  =
-  return AsPopupMenu(ColorListBox_GetPopupMenu(this.Instance))
+  return ColorListBox_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TColorListBox, AValue: TPopupMenu)  =
   ColorListBox_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -9807,13 +9807,13 @@ proc `OnMouseUp=`*(this: TColorListBox, AEventId: TMouseEvent)  =
   ColorListBox_SetOnMouseUp(this.Instance, AEventId)
 
 proc Canvas*(this: TColorListBox): TCanvas  =
-  return AsCanvas(ColorListBox_GetCanvas(this.Instance))
+  return ColorListBox_GetCanvas(this.Instance).AsCanvas
 
 proc Count*(this: TColorListBox): int32  =
   return ColorListBox_GetCount(this.Instance)
 
 proc Items*(this: TColorListBox): TStrings  =
-  return AsStrings(ColorListBox_GetItems(this.Instance))
+  return ColorListBox_GetItems(this.Instance).AsStrings
 
 proc `Items=`*(this: TColorListBox, AValue: TStrings)  =
   ColorListBox_SetItems(this.Instance, CheckPtr(AValue))
@@ -9855,7 +9855,7 @@ proc VisibleDockClientCount*(this: TColorListBox): int32  =
   return ColorListBox_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TColorListBox): TBrush  =
-  return AsBrush(ColorListBox_GetBrush(this.Instance))
+  return ColorListBox_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TColorListBox): int32  =
   return ColorListBox_GetControlCount(this.Instance)
@@ -9879,7 +9879,7 @@ proc `UseDockManager=`*(this: TColorListBox, AValue: bool)  =
   ColorListBox_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TColorListBox): TAction  =
-  return AsAction(ColorListBox_GetAction(this.Instance))
+  return ColorListBox_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TColorListBox, AValue: TAction)  =
   ColorListBox_SetAction(this.Instance, CheckPtr(AValue))
@@ -9924,7 +9924,7 @@ proc Floating*(this: TColorListBox): bool  =
   return ColorListBox_GetFloating(this.Instance)
 
 proc Parent*(this: TColorListBox): TWinControl  =
-  return AsWinControl(ColorListBox_GetParent(this.Instance))
+  return ColorListBox_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TColorListBox, AValue: TWinControl)  =
   ColorListBox_SetParent(this.Instance, CheckPtr(AValue))
@@ -9975,7 +9975,7 @@ proc `ComponentIndex=`*(this: TColorListBox, AValue: int32)  =
   ColorListBox_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TColorListBox): TComponent  =
-  return AsComponent(ColorListBox_GetOwner(this.Instance))
+  return ColorListBox_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TColorListBox): string  =
   return $ColorListBox_GetName(this.Instance)
@@ -9990,37 +9990,37 @@ proc `Tag=`*(this: TColorListBox, AValue: int)  =
   ColorListBox_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TColorListBox): TAnchorSide  =
-  return AsAnchorSide(ColorListBox_GetAnchorSideLeft(this.Instance))
+  return ColorListBox_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TColorListBox, AValue: TAnchorSide)  =
   ColorListBox_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TColorListBox): TAnchorSide  =
-  return AsAnchorSide(ColorListBox_GetAnchorSideTop(this.Instance))
+  return ColorListBox_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TColorListBox, AValue: TAnchorSide)  =
   ColorListBox_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TColorListBox): TAnchorSide  =
-  return AsAnchorSide(ColorListBox_GetAnchorSideRight(this.Instance))
+  return ColorListBox_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TColorListBox, AValue: TAnchorSide)  =
   ColorListBox_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TColorListBox): TAnchorSide  =
-  return AsAnchorSide(ColorListBox_GetAnchorSideBottom(this.Instance))
+  return ColorListBox_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TColorListBox, AValue: TAnchorSide)  =
   ColorListBox_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TColorListBox): TControlChildSizing  =
-  return AsControlChildSizing(ColorListBox_GetChildSizing(this.Instance))
+  return ColorListBox_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TColorListBox, AValue: TControlChildSizing)  =
   ColorListBox_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TColorListBox): TControlBorderSpacing  =
-  return AsControlBorderSpacing(ColorListBox_GetBorderSpacing(this.Instance))
+  return ColorListBox_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TColorListBox, AValue: TControlBorderSpacing)  =
   ColorListBox_SetBorderSpacing(this.Instance, CheckPtr(AValue))
@@ -10032,16 +10032,16 @@ proc ColorNames*(this: TColorListBox, Index: int32): string  =
   return $ColorListBox_GetColorNames(this.Instance, Index)
 
 proc DockClients*(this: TColorListBox, Index: int32): TControl  =
-  return AsControl(ColorListBox_GetDockClients(this.Instance, Index))
+  return ColorListBox_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TColorListBox, Index: int32): TControl  =
-  return AsControl(ColorListBox_GetControls(this.Instance, Index))
+  return ColorListBox_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TColorListBox, AIndex: int32): TComponent  =
-  return AsComponent(ColorListBox_GetComponents(this.Instance, AIndex))
+  return ColorListBox_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TColorListBox, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(ColorListBox_GetAnchorSide(this.Instance, AKind))
+  return ColorListBox_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TColorListBoxClass*(): TClass = ColorListBox_StaticClassType()
 
@@ -10058,7 +10058,7 @@ proc ShowBalloonHint*(this: TTrayIcon)  =
   TrayIcon_ShowBalloonHint(this.Instance)
 
 proc FindComponent*(this: TTrayIcon, AName: string): TComponent =
-  return AsComponent(TrayIcon_FindComponent(this.Instance, AName))
+  return TrayIcon_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TTrayIcon): string =
   return $TrayIcon_GetNamePath(this.Instance)
@@ -10127,13 +10127,13 @@ proc `BalloonFlags=`*(this: TTrayIcon, AValue: TBalloonFlags)  =
   TrayIcon_SetBalloonFlags(this.Instance, AValue)
 
 proc Icon*(this: TTrayIcon): TIcon  =
-  return AsIcon(TrayIcon_GetIcon(this.Instance))
+  return TrayIcon_GetIcon(this.Instance).AsIcon
 
 proc `Icon=`*(this: TTrayIcon, AValue: TIcon)  =
   TrayIcon_SetIcon(this.Instance, CheckPtr(AValue))
 
 proc PopupMenu*(this: TTrayIcon): TPopupMenu  =
-  return AsPopupMenu(TrayIcon_GetPopupMenu(this.Instance))
+  return TrayIcon_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TTrayIcon, AValue: TPopupMenu)  =
   TrayIcon_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -10169,7 +10169,7 @@ proc `ComponentIndex=`*(this: TTrayIcon, AValue: int32)  =
   TrayIcon_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TTrayIcon): TComponent  =
-  return AsComponent(TrayIcon_GetOwner(this.Instance))
+  return TrayIcon_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TTrayIcon): string  =
   return $TrayIcon_GetName(this.Instance)
@@ -10184,7 +10184,7 @@ proc `Tag=`*(this: TTrayIcon, AValue: int)  =
   TrayIcon_SetTag(this.Instance, AValue)
 
 proc Components*(this: TTrayIcon, AIndex: int32): TComponent  =
-  return AsComponent(TrayIcon_GetComponents(this.Instance, AIndex))
+  return TrayIcon_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TTrayIconClass*(): TClass = TrayIcon_StaticClassType()
 
@@ -10201,7 +10201,7 @@ proc Execute*(this: TOpenDialog): bool  =
   return OpenDialog_Execute(this.Instance)
 
 proc FindComponent*(this: TOpenDialog, AName: string): TComponent =
-  return AsComponent(OpenDialog_FindComponent(this.Instance, AName))
+  return OpenDialog_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TOpenDialog): string =
   return $OpenDialog_GetNamePath(this.Instance)
@@ -10234,7 +10234,7 @@ proc ToString*(this: TOpenDialog): string =
   return $OpenDialog_ToString(this.Instance)
 
 proc Files*(this: TOpenDialog): TStrings  =
-  return AsStrings(OpenDialog_GetFiles(this.Instance))
+  return OpenDialog_GetFiles(this.Instance).AsStrings
 
 proc DefaultExt*(this: TOpenDialog): string  =
   return $OpenDialog_GetDefaultExt(this.Instance)
@@ -10297,7 +10297,7 @@ proc `ComponentIndex=`*(this: TOpenDialog, AValue: int32)  =
   OpenDialog_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TOpenDialog): TComponent  =
-  return AsComponent(OpenDialog_GetOwner(this.Instance))
+  return OpenDialog_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TOpenDialog): string  =
   return $OpenDialog_GetName(this.Instance)
@@ -10312,7 +10312,7 @@ proc `Tag=`*(this: TOpenDialog, AValue: int)  =
   OpenDialog_SetTag(this.Instance, AValue)
 
 proc Components*(this: TOpenDialog, AIndex: int32): TComponent  =
-  return AsComponent(OpenDialog_GetComponents(this.Instance, AIndex))
+  return OpenDialog_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TOpenDialogClass*(): TClass = OpenDialog_StaticClassType()
 
@@ -10329,7 +10329,7 @@ proc Execute*(this: TSaveDialog): bool  =
   return SaveDialog_Execute(this.Instance)
 
 proc FindComponent*(this: TSaveDialog, AName: string): TComponent =
-  return AsComponent(SaveDialog_FindComponent(this.Instance, AName))
+  return SaveDialog_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TSaveDialog): string =
   return $SaveDialog_GetNamePath(this.Instance)
@@ -10362,7 +10362,7 @@ proc ToString*(this: TSaveDialog): string =
   return $SaveDialog_ToString(this.Instance)
 
 proc Files*(this: TSaveDialog): TStrings  =
-  return AsStrings(SaveDialog_GetFiles(this.Instance))
+  return SaveDialog_GetFiles(this.Instance).AsStrings
 
 proc DefaultExt*(this: TSaveDialog): string  =
   return $SaveDialog_GetDefaultExt(this.Instance)
@@ -10425,7 +10425,7 @@ proc `ComponentIndex=`*(this: TSaveDialog, AValue: int32)  =
   SaveDialog_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TSaveDialog): TComponent  =
-  return AsComponent(SaveDialog_GetOwner(this.Instance))
+  return SaveDialog_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TSaveDialog): string  =
   return $SaveDialog_GetName(this.Instance)
@@ -10440,7 +10440,7 @@ proc `Tag=`*(this: TSaveDialog, AValue: int)  =
   SaveDialog_SetTag(this.Instance, AValue)
 
 proc Components*(this: TSaveDialog, AIndex: int32): TComponent  =
-  return AsComponent(SaveDialog_GetComponents(this.Instance, AIndex))
+  return SaveDialog_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TSaveDialogClass*(): TClass = SaveDialog_StaticClassType()
 
@@ -10457,7 +10457,7 @@ proc Execute*(this: TColorDialog): bool  =
   return ColorDialog_Execute(this.Instance)
 
 proc FindComponent*(this: TColorDialog, AName: string): TComponent =
-  return AsComponent(ColorDialog_FindComponent(this.Instance, AName))
+  return ColorDialog_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TColorDialog): string =
   return $ColorDialog_GetNamePath(this.Instance)
@@ -10514,7 +10514,7 @@ proc `ComponentIndex=`*(this: TColorDialog, AValue: int32)  =
   ColorDialog_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TColorDialog): TComponent  =
-  return AsComponent(ColorDialog_GetOwner(this.Instance))
+  return ColorDialog_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TColorDialog): string  =
   return $ColorDialog_GetName(this.Instance)
@@ -10529,7 +10529,7 @@ proc `Tag=`*(this: TColorDialog, AValue: int)  =
   ColorDialog_SetTag(this.Instance, AValue)
 
 proc Components*(this: TColorDialog, AIndex: int32): TComponent  =
-  return AsComponent(ColorDialog_GetComponents(this.Instance, AIndex))
+  return ColorDialog_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TColorDialogClass*(): TClass = ColorDialog_StaticClassType()
 
@@ -10546,7 +10546,7 @@ proc Execute*(this: TFontDialog): bool  =
   return FontDialog_Execute(this.Instance)
 
 proc FindComponent*(this: TFontDialog, AName: string): TComponent =
-  return AsComponent(FontDialog_FindComponent(this.Instance, AName))
+  return FontDialog_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TFontDialog): string =
   return $FontDialog_GetNamePath(this.Instance)
@@ -10579,7 +10579,7 @@ proc ToString*(this: TFontDialog): string =
   return $FontDialog_ToString(this.Instance)
 
 proc Font*(this: TFontDialog): TFont  =
-  return AsFont(FontDialog_GetFont(this.Instance))
+  return FontDialog_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TFontDialog, AValue: TFont)  =
   FontDialog_SetFont(this.Instance, CheckPtr(AValue))
@@ -10609,7 +10609,7 @@ proc `ComponentIndex=`*(this: TFontDialog, AValue: int32)  =
   FontDialog_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TFontDialog): TComponent  =
-  return AsComponent(FontDialog_GetOwner(this.Instance))
+  return FontDialog_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TFontDialog): string  =
   return $FontDialog_GetName(this.Instance)
@@ -10624,7 +10624,7 @@ proc `Tag=`*(this: TFontDialog, AValue: int)  =
   FontDialog_SetTag(this.Instance, AValue)
 
 proc Components*(this: TFontDialog, AIndex: int32): TComponent  =
-  return AsComponent(FontDialog_GetComponents(this.Instance, AIndex))
+  return FontDialog_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TFontDialogClass*(): TClass = FontDialog_StaticClassType()
 
@@ -10641,7 +10641,7 @@ proc Execute*(this: TPrintDialog): bool  =
   return PrintDialog_Execute(this.Instance)
 
 proc FindComponent*(this: TPrintDialog, AName: string): TComponent =
-  return AsComponent(PrintDialog_FindComponent(this.Instance, AName))
+  return PrintDialog_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TPrintDialog): string =
   return $PrintDialog_GetNamePath(this.Instance)
@@ -10746,7 +10746,7 @@ proc `ComponentIndex=`*(this: TPrintDialog, AValue: int32)  =
   PrintDialog_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TPrintDialog): TComponent  =
-  return AsComponent(PrintDialog_GetOwner(this.Instance))
+  return PrintDialog_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TPrintDialog): string  =
   return $PrintDialog_GetName(this.Instance)
@@ -10761,7 +10761,7 @@ proc `Tag=`*(this: TPrintDialog, AValue: int)  =
   PrintDialog_SetTag(this.Instance, AValue)
 
 proc Components*(this: TPrintDialog, AIndex: int32): TComponent  =
-  return AsComponent(PrintDialog_GetComponents(this.Instance, AIndex))
+  return PrintDialog_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TPrintDialogClass*(): TClass = PrintDialog_StaticClassType()
 
@@ -10778,7 +10778,7 @@ proc Execute*(this: TOpenPictureDialog): bool  =
   return OpenPictureDialog_Execute(this.Instance)
 
 proc FindComponent*(this: TOpenPictureDialog, AName: string): TComponent =
-  return AsComponent(OpenPictureDialog_FindComponent(this.Instance, AName))
+  return OpenPictureDialog_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TOpenPictureDialog): string =
   return $OpenPictureDialog_GetNamePath(this.Instance)
@@ -10817,7 +10817,7 @@ proc `Filter=`*(this: TOpenPictureDialog, AValue: string)  =
   OpenPictureDialog_SetFilter(this.Instance, AValue)
 
 proc Files*(this: TOpenPictureDialog): TStrings  =
-  return AsStrings(OpenPictureDialog_GetFiles(this.Instance))
+  return OpenPictureDialog_GetFiles(this.Instance).AsStrings
 
 proc DefaultExt*(this: TOpenPictureDialog): string  =
   return $OpenPictureDialog_GetDefaultExt(this.Instance)
@@ -10874,7 +10874,7 @@ proc `ComponentIndex=`*(this: TOpenPictureDialog, AValue: int32)  =
   OpenPictureDialog_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TOpenPictureDialog): TComponent  =
-  return AsComponent(OpenPictureDialog_GetOwner(this.Instance))
+  return OpenPictureDialog_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TOpenPictureDialog): string  =
   return $OpenPictureDialog_GetName(this.Instance)
@@ -10889,7 +10889,7 @@ proc `Tag=`*(this: TOpenPictureDialog, AValue: int)  =
   OpenPictureDialog_SetTag(this.Instance, AValue)
 
 proc Components*(this: TOpenPictureDialog, AIndex: int32): TComponent  =
-  return AsComponent(OpenPictureDialog_GetComponents(this.Instance, AIndex))
+  return OpenPictureDialog_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TOpenPictureDialogClass*(): TClass = OpenPictureDialog_StaticClassType()
 
@@ -10906,7 +10906,7 @@ proc Execute*(this: TSavePictureDialog): bool  =
   return SavePictureDialog_Execute(this.Instance)
 
 proc FindComponent*(this: TSavePictureDialog, AName: string): TComponent =
-  return AsComponent(SavePictureDialog_FindComponent(this.Instance, AName))
+  return SavePictureDialog_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TSavePictureDialog): string =
   return $SavePictureDialog_GetNamePath(this.Instance)
@@ -10945,7 +10945,7 @@ proc `Filter=`*(this: TSavePictureDialog, AValue: string)  =
   SavePictureDialog_SetFilter(this.Instance, AValue)
 
 proc Files*(this: TSavePictureDialog): TStrings  =
-  return AsStrings(SavePictureDialog_GetFiles(this.Instance))
+  return SavePictureDialog_GetFiles(this.Instance).AsStrings
 
 proc DefaultExt*(this: TSavePictureDialog): string  =
   return $SavePictureDialog_GetDefaultExt(this.Instance)
@@ -11002,7 +11002,7 @@ proc `ComponentIndex=`*(this: TSavePictureDialog, AValue: int32)  =
   SavePictureDialog_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TSavePictureDialog): TComponent  =
-  return AsComponent(SavePictureDialog_GetOwner(this.Instance))
+  return SavePictureDialog_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TSavePictureDialog): string  =
   return $SavePictureDialog_GetName(this.Instance)
@@ -11017,7 +11017,7 @@ proc `Tag=`*(this: TSavePictureDialog, AValue: int)  =
   SavePictureDialog_SetTag(this.Instance, AValue)
 
 proc Components*(this: TSavePictureDialog, AIndex: int32): TComponent  =
-  return AsComponent(SavePictureDialog_GetComponents(this.Instance, AIndex))
+  return SavePictureDialog_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TSavePictureDialogClass*(): TClass = SavePictureDialog_StaticClassType()
 
@@ -11034,7 +11034,7 @@ proc Execute*(this: TSelectDirectoryDialog): bool  =
   return SelectDirectoryDialog_Execute(this.Instance)
 
 proc FindComponent*(this: TSelectDirectoryDialog, AName: string): TComponent =
-  return AsComponent(SelectDirectoryDialog_FindComponent(this.Instance, AName))
+  return SelectDirectoryDialog_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TSelectDirectoryDialog): string =
   return $SelectDirectoryDialog_GetNamePath(this.Instance)
@@ -11067,7 +11067,7 @@ proc ToString*(this: TSelectDirectoryDialog): string =
   return $SelectDirectoryDialog_ToString(this.Instance)
 
 proc Files*(this: TSelectDirectoryDialog): TStrings  =
-  return AsStrings(SelectDirectoryDialog_GetFiles(this.Instance))
+  return SelectDirectoryDialog_GetFiles(this.Instance).AsStrings
 
 proc DefaultExt*(this: TSelectDirectoryDialog): string  =
   return $SelectDirectoryDialog_GetDefaultExt(this.Instance)
@@ -11130,7 +11130,7 @@ proc `ComponentIndex=`*(this: TSelectDirectoryDialog, AValue: int32)  =
   SelectDirectoryDialog_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TSelectDirectoryDialog): TComponent  =
-  return AsComponent(SelectDirectoryDialog_GetOwner(this.Instance))
+  return SelectDirectoryDialog_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TSelectDirectoryDialog): string  =
   return $SelectDirectoryDialog_GetName(this.Instance)
@@ -11145,7 +11145,7 @@ proc `Tag=`*(this: TSelectDirectoryDialog, AValue: int)  =
   SelectDirectoryDialog_SetTag(this.Instance, AValue)
 
 proc Components*(this: TSelectDirectoryDialog, AIndex: int32): TComponent  =
-  return AsComponent(SelectDirectoryDialog_GetComponents(this.Instance, AIndex))
+  return SelectDirectoryDialog_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TSelectDirectoryDialogClass*(): TClass = SelectDirectoryDialog_StaticClassType()
 
@@ -11189,7 +11189,7 @@ proc ContainsControl*(this: TRichEdit, Control: TControl): bool =
   return RichEdit_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TRichEdit, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(RichEdit_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return RichEdit_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TRichEdit) =
   RichEdit_DisableAlign(this.Instance)
@@ -11198,7 +11198,7 @@ proc EnableAlign*(this: TRichEdit) =
   RichEdit_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TRichEdit, ControlName: string): TControl =
-  return AsControl(RichEdit_FindChildControl(this.Instance, ControlName))
+  return RichEdit_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TRichEdit, AllLevels: bool) =
   RichEdit_FlipChildren(this.Instance, AllLevels)
@@ -11285,7 +11285,7 @@ proc SetTextBuf*(this: TRichEdit, Buffer: string) =
   RichEdit_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TRichEdit, AName: string): TComponent =
-  return AsComponent(RichEdit_FindComponent(this.Instance, AName))
+  return RichEdit_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TRichEdit): string =
   return $RichEdit_GetNamePath(this.Instance)
@@ -11399,7 +11399,7 @@ proc `Enabled=`*(this: TRichEdit, AValue: bool)  =
   RichEdit_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TRichEdit): TFont  =
-  return AsFont(RichEdit_GetFont(this.Instance))
+  return RichEdit_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TRichEdit, AValue: TFont)  =
   RichEdit_SetFont(this.Instance, CheckPtr(AValue))
@@ -11411,13 +11411,13 @@ proc `HideSelection=`*(this: TRichEdit, AValue: bool)  =
   RichEdit_SetHideSelection(this.Instance, AValue)
 
 proc Constraints*(this: TRichEdit): TSizeConstraints  =
-  return AsSizeConstraints(RichEdit_GetConstraints(this.Instance))
+  return RichEdit_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TRichEdit, AValue: TSizeConstraints)  =
   RichEdit_SetConstraints(this.Instance, CheckPtr(AValue))
 
 proc Lines*(this: TRichEdit): TStrings  =
-  return AsStrings(RichEdit_GetLines(this.Instance))
+  return RichEdit_GetLines(this.Instance).AsStrings
 
 proc `Lines=`*(this: TRichEdit, AValue: TStrings)  =
   RichEdit_SetLines(this.Instance, CheckPtr(AValue))
@@ -11447,7 +11447,7 @@ proc `ParentShowHint=`*(this: TRichEdit, AValue: bool)  =
   RichEdit_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TRichEdit): TPopupMenu  =
-  return AsPopupMenu(RichEdit_GetPopupMenu(this.Instance))
+  return RichEdit_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TRichEdit, AValue: TPopupMenu)  =
   RichEdit_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -11573,19 +11573,19 @@ proc `OnMouseWheelUp=`*(this: TRichEdit, AEventId: TMouseWheelUpDownEvent)  =
   RichEdit_SetOnMouseWheelUp(this.Instance, AEventId)
 
 proc DefAttributes*(this: TRichEdit): TTextAttributes  =
-  return AsTextAttributes(RichEdit_GetDefAttributes(this.Instance))
+  return RichEdit_GetDefAttributes(this.Instance).AsTextAttributes
 
 proc `DefAttributes=`*(this: TRichEdit, AValue: TTextAttributes)  =
   RichEdit_SetDefAttributes(this.Instance, CheckPtr(AValue))
 
 proc SelAttributes*(this: TRichEdit): TTextAttributes  =
-  return AsTextAttributes(RichEdit_GetSelAttributes(this.Instance))
+  return RichEdit_GetSelAttributes(this.Instance).AsTextAttributes
 
 proc `SelAttributes=`*(this: TRichEdit, AValue: TTextAttributes)  =
   RichEdit_SetSelAttributes(this.Instance, CheckPtr(AValue))
 
 proc Paragraph*(this: TRichEdit): TParaAttributes  =
-  return AsParaAttributes(RichEdit_GetParagraph(this.Instance))
+  return RichEdit_GetParagraph(this.Instance).AsParaAttributes
 
 proc CaretPos*(this: TRichEdit): TPoint  =
   RichEdit_GetCaretPos(this.Instance, result)
@@ -11654,7 +11654,7 @@ proc VisibleDockClientCount*(this: TRichEdit): int32  =
   return RichEdit_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TRichEdit): TBrush  =
-  return AsBrush(RichEdit_GetBrush(this.Instance))
+  return RichEdit_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TRichEdit): int32  =
   return RichEdit_GetControlCount(this.Instance)
@@ -11684,7 +11684,7 @@ proc `UseDockManager=`*(this: TRichEdit, AValue: bool)  =
   RichEdit_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TRichEdit): TAction  =
-  return AsAction(RichEdit_GetAction(this.Instance))
+  return RichEdit_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TRichEdit, AValue: TAction)  =
   RichEdit_SetAction(this.Instance, CheckPtr(AValue))
@@ -11729,7 +11729,7 @@ proc Floating*(this: TRichEdit): bool  =
   return RichEdit_GetFloating(this.Instance)
 
 proc Parent*(this: TRichEdit): TWinControl  =
-  return AsWinControl(RichEdit_GetParent(this.Instance))
+  return RichEdit_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TRichEdit, AValue: TWinControl)  =
   RichEdit_SetParent(this.Instance, CheckPtr(AValue))
@@ -11780,7 +11780,7 @@ proc `ComponentIndex=`*(this: TRichEdit, AValue: int32)  =
   RichEdit_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TRichEdit): TComponent  =
-  return AsComponent(RichEdit_GetOwner(this.Instance))
+  return RichEdit_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TRichEdit): string  =
   return $RichEdit_GetName(this.Instance)
@@ -11795,52 +11795,52 @@ proc `Tag=`*(this: TRichEdit, AValue: int)  =
   RichEdit_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TRichEdit): TAnchorSide  =
-  return AsAnchorSide(RichEdit_GetAnchorSideLeft(this.Instance))
+  return RichEdit_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TRichEdit, AValue: TAnchorSide)  =
   RichEdit_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TRichEdit): TAnchorSide  =
-  return AsAnchorSide(RichEdit_GetAnchorSideTop(this.Instance))
+  return RichEdit_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TRichEdit, AValue: TAnchorSide)  =
   RichEdit_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TRichEdit): TAnchorSide  =
-  return AsAnchorSide(RichEdit_GetAnchorSideRight(this.Instance))
+  return RichEdit_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TRichEdit, AValue: TAnchorSide)  =
   RichEdit_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TRichEdit): TAnchorSide  =
-  return AsAnchorSide(RichEdit_GetAnchorSideBottom(this.Instance))
+  return RichEdit_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TRichEdit, AValue: TAnchorSide)  =
   RichEdit_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TRichEdit): TControlChildSizing  =
-  return AsControlChildSizing(RichEdit_GetChildSizing(this.Instance))
+  return RichEdit_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TRichEdit, AValue: TControlChildSizing)  =
   RichEdit_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TRichEdit): TControlBorderSpacing  =
-  return AsControlBorderSpacing(RichEdit_GetBorderSpacing(this.Instance))
+  return RichEdit_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TRichEdit, AValue: TControlBorderSpacing)  =
   RichEdit_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TRichEdit, Index: int32): TControl  =
-  return AsControl(RichEdit_GetDockClients(this.Instance, Index))
+  return RichEdit_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TRichEdit, Index: int32): TControl  =
-  return AsControl(RichEdit_GetControls(this.Instance, Index))
+  return RichEdit_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TRichEdit, AIndex: int32): TComponent  =
-  return AsComponent(RichEdit_GetComponents(this.Instance, AIndex))
+  return RichEdit_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TRichEdit, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(RichEdit_GetAnchorSide(this.Instance, AKind))
+  return RichEdit_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TRichEditClass*(): TClass = RichEdit_StaticClassType()
 
@@ -11863,7 +11863,7 @@ proc ContainsControl*(this: TTrackBar, Control: TControl): bool =
   return TrackBar_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TTrackBar, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(TrackBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return TrackBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TTrackBar) =
   TrackBar_DisableAlign(this.Instance)
@@ -11872,7 +11872,7 @@ proc EnableAlign*(this: TTrackBar) =
   TrackBar_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TTrackBar, ControlName: string): TControl =
-  return AsControl(TrackBar_FindChildControl(this.Instance, ControlName))
+  return TrackBar_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TTrackBar, AllLevels: bool) =
   TrackBar_FlipChildren(this.Instance, AllLevels)
@@ -11959,7 +11959,7 @@ proc SetTextBuf*(this: TTrackBar, Buffer: string) =
   TrackBar_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TTrackBar, AName: string): TComponent =
-  return AsComponent(TrackBar_FindComponent(this.Instance, AName))
+  return TrackBar_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TTrackBar): string =
   return $TrackBar_GetNamePath(this.Instance)
@@ -12049,7 +12049,7 @@ proc `Enabled=`*(this: TTrackBar, AValue: bool)  =
   TrackBar_SetEnabled(this.Instance, AValue)
 
 proc Constraints*(this: TTrackBar): TSizeConstraints  =
-  return AsSizeConstraints(TrackBar_GetConstraints(this.Instance))
+  return TrackBar_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TTrackBar, AValue: TSizeConstraints)  =
   TrackBar_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -12097,7 +12097,7 @@ proc `PageSize=`*(this: TTrackBar, AValue: int32)  =
   TrackBar_SetPageSize(this.Instance, AValue)
 
 proc PopupMenu*(this: TTrackBar): TPopupMenu  =
-  return AsPopupMenu(TrackBar_GetPopupMenu(this.Instance))
+  return TrackBar_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TTrackBar, AValue: TPopupMenu)  =
   TrackBar_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -12214,7 +12214,7 @@ proc VisibleDockClientCount*(this: TTrackBar): int32  =
   return TrackBar_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TTrackBar): TBrush  =
-  return AsBrush(TrackBar_GetBrush(this.Instance))
+  return TrackBar_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TTrackBar): int32  =
   return TrackBar_GetControlCount(this.Instance)
@@ -12238,7 +12238,7 @@ proc `UseDockManager=`*(this: TTrackBar, AValue: bool)  =
   TrackBar_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TTrackBar): TAction  =
-  return AsAction(TrackBar_GetAction(this.Instance))
+  return TrackBar_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TTrackBar, AValue: TAction)  =
   TrackBar_SetAction(this.Instance, CheckPtr(AValue))
@@ -12289,7 +12289,7 @@ proc Floating*(this: TTrackBar): bool  =
   return TrackBar_GetFloating(this.Instance)
 
 proc Parent*(this: TTrackBar): TWinControl  =
-  return AsWinControl(TrackBar_GetParent(this.Instance))
+  return TrackBar_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TTrackBar, AValue: TWinControl)  =
   TrackBar_SetParent(this.Instance, CheckPtr(AValue))
@@ -12340,7 +12340,7 @@ proc `ComponentIndex=`*(this: TTrackBar, AValue: int32)  =
   TrackBar_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TTrackBar): TComponent  =
-  return AsComponent(TrackBar_GetOwner(this.Instance))
+  return TrackBar_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TTrackBar): string  =
   return $TrackBar_GetName(this.Instance)
@@ -12355,52 +12355,52 @@ proc `Tag=`*(this: TTrackBar, AValue: int)  =
   TrackBar_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TTrackBar): TAnchorSide  =
-  return AsAnchorSide(TrackBar_GetAnchorSideLeft(this.Instance))
+  return TrackBar_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TTrackBar, AValue: TAnchorSide)  =
   TrackBar_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TTrackBar): TAnchorSide  =
-  return AsAnchorSide(TrackBar_GetAnchorSideTop(this.Instance))
+  return TrackBar_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TTrackBar, AValue: TAnchorSide)  =
   TrackBar_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TTrackBar): TAnchorSide  =
-  return AsAnchorSide(TrackBar_GetAnchorSideRight(this.Instance))
+  return TrackBar_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TTrackBar, AValue: TAnchorSide)  =
   TrackBar_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TTrackBar): TAnchorSide  =
-  return AsAnchorSide(TrackBar_GetAnchorSideBottom(this.Instance))
+  return TrackBar_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TTrackBar, AValue: TAnchorSide)  =
   TrackBar_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TTrackBar): TControlChildSizing  =
-  return AsControlChildSizing(TrackBar_GetChildSizing(this.Instance))
+  return TrackBar_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TTrackBar, AValue: TControlChildSizing)  =
   TrackBar_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TTrackBar): TControlBorderSpacing  =
-  return AsControlBorderSpacing(TrackBar_GetBorderSpacing(this.Instance))
+  return TrackBar_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TTrackBar, AValue: TControlBorderSpacing)  =
   TrackBar_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TTrackBar, Index: int32): TControl  =
-  return AsControl(TrackBar_GetDockClients(this.Instance, Index))
+  return TrackBar_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TTrackBar, Index: int32): TControl  =
-  return AsControl(TrackBar_GetControls(this.Instance, Index))
+  return TrackBar_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TTrackBar, AIndex: int32): TComponent  =
-  return AsComponent(TrackBar_GetComponents(this.Instance, AIndex))
+  return TrackBar_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TTrackBar, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(TrackBar_GetAnchorSide(this.Instance, AKind))
+  return TrackBar_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TTrackBarClass*(): TClass = TrackBar_StaticClassType()
 
@@ -12468,7 +12468,7 @@ proc EndUpdate*(this: TImageList)  =
   ImageList_EndUpdate(this.Instance)
 
 proc FindComponent*(this: TImageList, AName: string): TComponent =
-  return AsComponent(ImageList_FindComponent(this.Instance, AName))
+  return ImageList_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TImageList): string =
   return $ImageList_GetNamePath(this.Instance)
@@ -12576,7 +12576,7 @@ proc `ComponentIndex=`*(this: TImageList, AValue: int32)  =
   ImageList_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TImageList): TComponent  =
-  return AsComponent(ImageList_GetOwner(this.Instance))
+  return ImageList_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TImageList): string  =
   return $ImageList_GetName(this.Instance)
@@ -12591,7 +12591,7 @@ proc `Tag=`*(this: TImageList, AValue: int)  =
   ImageList_SetTag(this.Instance, AValue)
 
 proc Components*(this: TImageList, AIndex: int32): TComponent  =
-  return AsComponent(ImageList_GetComponents(this.Instance, AIndex))
+  return ImageList_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TImageListClass*(): TClass = ImageList_StaticClassType()
 
@@ -12620,7 +12620,7 @@ proc ContainsControl*(this: TUpDown, Control: TControl): bool =
   return UpDown_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TUpDown, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(UpDown_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return UpDown_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TUpDown) =
   UpDown_DisableAlign(this.Instance)
@@ -12629,7 +12629,7 @@ proc EnableAlign*(this: TUpDown) =
   UpDown_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TUpDown, ControlName: string): TControl =
-  return AsControl(UpDown_FindChildControl(this.Instance, ControlName))
+  return UpDown_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TUpDown, AllLevels: bool) =
   UpDown_FlipChildren(this.Instance, AllLevels)
@@ -12716,7 +12716,7 @@ proc SetTextBuf*(this: TUpDown, Buffer: string) =
   UpDown_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TUpDown, AName: string): TComponent =
-  return AsComponent(UpDown_FindComponent(this.Instance, AName))
+  return UpDown_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TUpDown): string =
   return $UpDown_GetNamePath(this.Instance)
@@ -12806,7 +12806,7 @@ proc `Increment=`*(this: TUpDown, AValue: int32)  =
   UpDown_SetIncrement(this.Instance, AValue)
 
 proc Constraints*(this: TUpDown): TSizeConstraints  =
-  return AsSizeConstraints(UpDown_GetConstraints(this.Instance))
+  return UpDown_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TUpDown, AValue: TSizeConstraints)  =
   UpDown_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -12830,7 +12830,7 @@ proc `ParentShowHint=`*(this: TUpDown, AValue: bool)  =
   UpDown_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TUpDown): TPopupMenu  =
-  return AsPopupMenu(UpDown_GetPopupMenu(this.Instance))
+  return UpDown_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TUpDown, AValue: TPopupMenu)  =
   UpDown_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -12917,7 +12917,7 @@ proc VisibleDockClientCount*(this: TUpDown): int32  =
   return UpDown_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TUpDown): TBrush  =
-  return AsBrush(UpDown_GetBrush(this.Instance))
+  return UpDown_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TUpDown): int32  =
   return UpDown_GetControlCount(this.Instance)
@@ -12941,7 +12941,7 @@ proc `UseDockManager=`*(this: TUpDown, AValue: bool)  =
   UpDown_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TUpDown): TAction  =
-  return AsAction(UpDown_GetAction(this.Instance))
+  return UpDown_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TUpDown, AValue: TAction)  =
   UpDown_SetAction(this.Instance, CheckPtr(AValue))
@@ -12998,7 +12998,7 @@ proc Floating*(this: TUpDown): bool  =
   return UpDown_GetFloating(this.Instance)
 
 proc Parent*(this: TUpDown): TWinControl  =
-  return AsWinControl(UpDown_GetParent(this.Instance))
+  return UpDown_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TUpDown, AValue: TWinControl)  =
   UpDown_SetParent(this.Instance, CheckPtr(AValue))
@@ -13043,7 +13043,7 @@ proc `ComponentIndex=`*(this: TUpDown, AValue: int32)  =
   UpDown_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TUpDown): TComponent  =
-  return AsComponent(UpDown_GetOwner(this.Instance))
+  return UpDown_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TUpDown): string  =
   return $UpDown_GetName(this.Instance)
@@ -13058,52 +13058,52 @@ proc `Tag=`*(this: TUpDown, AValue: int)  =
   UpDown_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TUpDown): TAnchorSide  =
-  return AsAnchorSide(UpDown_GetAnchorSideLeft(this.Instance))
+  return UpDown_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TUpDown, AValue: TAnchorSide)  =
   UpDown_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TUpDown): TAnchorSide  =
-  return AsAnchorSide(UpDown_GetAnchorSideTop(this.Instance))
+  return UpDown_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TUpDown, AValue: TAnchorSide)  =
   UpDown_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TUpDown): TAnchorSide  =
-  return AsAnchorSide(UpDown_GetAnchorSideRight(this.Instance))
+  return UpDown_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TUpDown, AValue: TAnchorSide)  =
   UpDown_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TUpDown): TAnchorSide  =
-  return AsAnchorSide(UpDown_GetAnchorSideBottom(this.Instance))
+  return UpDown_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TUpDown, AValue: TAnchorSide)  =
   UpDown_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TUpDown): TControlChildSizing  =
-  return AsControlChildSizing(UpDown_GetChildSizing(this.Instance))
+  return UpDown_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TUpDown, AValue: TControlChildSizing)  =
   UpDown_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TUpDown): TControlBorderSpacing  =
-  return AsControlBorderSpacing(UpDown_GetBorderSpacing(this.Instance))
+  return UpDown_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TUpDown, AValue: TControlBorderSpacing)  =
   UpDown_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TUpDown, Index: int32): TControl  =
-  return AsControl(UpDown_GetDockClients(this.Instance, Index))
+  return UpDown_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TUpDown, Index: int32): TControl  =
-  return AsControl(UpDown_GetControls(this.Instance, Index))
+  return UpDown_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TUpDown, AIndex: int32): TComponent  =
-  return AsComponent(UpDown_GetComponents(this.Instance, AIndex))
+  return UpDown_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TUpDown, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(UpDown_GetAnchorSide(this.Instance, AKind))
+  return UpDown_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TUpDownClass*(): TClass = UpDown_StaticClassType()
 
@@ -13129,7 +13129,7 @@ proc ContainsControl*(this: TProgressBar, Control: TControl): bool =
   return ProgressBar_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TProgressBar, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(ProgressBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return ProgressBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TProgressBar) =
   ProgressBar_DisableAlign(this.Instance)
@@ -13138,7 +13138,7 @@ proc EnableAlign*(this: TProgressBar) =
   ProgressBar_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TProgressBar, ControlName: string): TControl =
-  return AsControl(ProgressBar_FindChildControl(this.Instance, ControlName))
+  return ProgressBar_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TProgressBar, AllLevels: bool) =
   ProgressBar_FlipChildren(this.Instance, AllLevels)
@@ -13225,7 +13225,7 @@ proc SetTextBuf*(this: TProgressBar, Buffer: string) =
   ProgressBar_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TProgressBar, AName: string): TComponent =
-  return AsComponent(ProgressBar_FindComponent(this.Instance, AName))
+  return ProgressBar_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TProgressBar): string =
   return $ProgressBar_GetNamePath(this.Instance)
@@ -13327,7 +13327,7 @@ proc `Hint=`*(this: TProgressBar, AValue: string)  =
   ProgressBar_SetHint(this.Instance, AValue)
 
 proc Constraints*(this: TProgressBar): TSizeConstraints  =
-  return AsSizeConstraints(ProgressBar_GetConstraints(this.Instance))
+  return ProgressBar_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TProgressBar, AValue: TSizeConstraints)  =
   ProgressBar_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -13363,7 +13363,7 @@ proc `ParentShowHint=`*(this: TProgressBar, AValue: bool)  =
   ProgressBar_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TProgressBar): TPopupMenu  =
-  return AsPopupMenu(ProgressBar_GetPopupMenu(this.Instance))
+  return ProgressBar_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TProgressBar, AValue: TPopupMenu)  =
   ProgressBar_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -13465,7 +13465,7 @@ proc VisibleDockClientCount*(this: TProgressBar): int32  =
   return ProgressBar_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TProgressBar): TBrush  =
-  return AsBrush(ProgressBar_GetBrush(this.Instance))
+  return ProgressBar_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TProgressBar): int32  =
   return ProgressBar_GetControlCount(this.Instance)
@@ -13489,7 +13489,7 @@ proc `UseDockManager=`*(this: TProgressBar, AValue: bool)  =
   ProgressBar_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TProgressBar): TAction  =
-  return AsAction(ProgressBar_GetAction(this.Instance))
+  return ProgressBar_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TProgressBar, AValue: TAction)  =
   ProgressBar_SetAction(this.Instance, CheckPtr(AValue))
@@ -13540,7 +13540,7 @@ proc Floating*(this: TProgressBar): bool  =
   return ProgressBar_GetFloating(this.Instance)
 
 proc Parent*(this: TProgressBar): TWinControl  =
-  return AsWinControl(ProgressBar_GetParent(this.Instance))
+  return ProgressBar_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TProgressBar, AValue: TWinControl)  =
   ProgressBar_SetParent(this.Instance, CheckPtr(AValue))
@@ -13585,7 +13585,7 @@ proc `ComponentIndex=`*(this: TProgressBar, AValue: int32)  =
   ProgressBar_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TProgressBar): TComponent  =
-  return AsComponent(ProgressBar_GetOwner(this.Instance))
+  return ProgressBar_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TProgressBar): string  =
   return $ProgressBar_GetName(this.Instance)
@@ -13600,52 +13600,52 @@ proc `Tag=`*(this: TProgressBar, AValue: int)  =
   ProgressBar_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TProgressBar): TAnchorSide  =
-  return AsAnchorSide(ProgressBar_GetAnchorSideLeft(this.Instance))
+  return ProgressBar_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TProgressBar, AValue: TAnchorSide)  =
   ProgressBar_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TProgressBar): TAnchorSide  =
-  return AsAnchorSide(ProgressBar_GetAnchorSideTop(this.Instance))
+  return ProgressBar_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TProgressBar, AValue: TAnchorSide)  =
   ProgressBar_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TProgressBar): TAnchorSide  =
-  return AsAnchorSide(ProgressBar_GetAnchorSideRight(this.Instance))
+  return ProgressBar_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TProgressBar, AValue: TAnchorSide)  =
   ProgressBar_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TProgressBar): TAnchorSide  =
-  return AsAnchorSide(ProgressBar_GetAnchorSideBottom(this.Instance))
+  return ProgressBar_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TProgressBar, AValue: TAnchorSide)  =
   ProgressBar_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TProgressBar): TControlChildSizing  =
-  return AsControlChildSizing(ProgressBar_GetChildSizing(this.Instance))
+  return ProgressBar_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TProgressBar, AValue: TControlChildSizing)  =
   ProgressBar_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TProgressBar): TControlBorderSpacing  =
-  return AsControlBorderSpacing(ProgressBar_GetBorderSpacing(this.Instance))
+  return ProgressBar_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TProgressBar, AValue: TControlBorderSpacing)  =
   ProgressBar_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TProgressBar, Index: int32): TControl  =
-  return AsControl(ProgressBar_GetDockClients(this.Instance, Index))
+  return ProgressBar_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TProgressBar, Index: int32): TControl  =
-  return AsControl(ProgressBar_GetControls(this.Instance, Index))
+  return ProgressBar_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TProgressBar, AIndex: int32): TComponent  =
-  return AsComponent(ProgressBar_GetComponents(this.Instance, AIndex))
+  return ProgressBar_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TProgressBar, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(ProgressBar_GetAnchorSide(this.Instance, AKind))
+  return ProgressBar_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TProgressBarClass*(): TClass = ProgressBar_StaticClassType()
 
@@ -13665,7 +13665,7 @@ proc ContainsControl*(this: TDateTimePicker, Control: TControl): bool =
   return DateTimePicker_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TDateTimePicker, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(DateTimePicker_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return DateTimePicker_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TDateTimePicker) =
   DateTimePicker_DisableAlign(this.Instance)
@@ -13674,7 +13674,7 @@ proc EnableAlign*(this: TDateTimePicker) =
   DateTimePicker_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TDateTimePicker, ControlName: string): TControl =
-  return AsControl(DateTimePicker_FindChildControl(this.Instance, ControlName))
+  return DateTimePicker_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TDateTimePicker, AllLevels: bool) =
   DateTimePicker_FlipChildren(this.Instance, AllLevels)
@@ -13761,7 +13761,7 @@ proc SetTextBuf*(this: TDateTimePicker, Buffer: string) =
   DateTimePicker_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TDateTimePicker, AName: string): TComponent =
-  return AsComponent(DateTimePicker_FindComponent(this.Instance, AName))
+  return DateTimePicker_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TDateTimePicker): string =
   return $DateTimePicker_GetNamePath(this.Instance)
@@ -13842,7 +13842,7 @@ proc `CalAlignment=`*(this: TDateTimePicker, AValue: TDTCalAlignment)  =
   DateTimePicker_SetCalAlignment(this.Instance, AValue)
 
 proc Constraints*(this: TDateTimePicker): TSizeConstraints  =
-  return AsSizeConstraints(DateTimePicker_GetConstraints(this.Instance))
+  return DateTimePicker_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TDateTimePicker, AValue: TSizeConstraints)  =
   DateTimePicker_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -13890,7 +13890,7 @@ proc `Enabled=`*(this: TDateTimePicker, AValue: bool)  =
   DateTimePicker_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TDateTimePicker): TFont  =
-  return AsFont(DateTimePicker_GetFont(this.Instance))
+  return DateTimePicker_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TDateTimePicker, AValue: TFont)  =
   DateTimePicker_SetFont(this.Instance, CheckPtr(AValue))
@@ -13932,7 +13932,7 @@ proc `ParentShowHint=`*(this: TDateTimePicker, AValue: bool)  =
   DateTimePicker_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TDateTimePicker): TPopupMenu  =
-  return AsPopupMenu(DateTimePicker_GetPopupMenu(this.Instance))
+  return DateTimePicker_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TDateTimePicker, AValue: TPopupMenu)  =
   DateTimePicker_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -14007,7 +14007,7 @@ proc VisibleDockClientCount*(this: TDateTimePicker): int32  =
   return DateTimePicker_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TDateTimePicker): TBrush  =
-  return AsBrush(DateTimePicker_GetBrush(this.Instance))
+  return DateTimePicker_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TDateTimePicker): int32  =
   return DateTimePicker_GetControlCount(this.Instance)
@@ -14031,7 +14031,7 @@ proc `UseDockManager=`*(this: TDateTimePicker, AValue: bool)  =
   DateTimePicker_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TDateTimePicker): TAction  =
-  return AsAction(DateTimePicker_GetAction(this.Instance))
+  return DateTimePicker_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TDateTimePicker, AValue: TAction)  =
   DateTimePicker_SetAction(this.Instance, CheckPtr(AValue))
@@ -14076,7 +14076,7 @@ proc Floating*(this: TDateTimePicker): bool  =
   return DateTimePicker_GetFloating(this.Instance)
 
 proc Parent*(this: TDateTimePicker): TWinControl  =
-  return AsWinControl(DateTimePicker_GetParent(this.Instance))
+  return DateTimePicker_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TDateTimePicker, AValue: TWinControl)  =
   DateTimePicker_SetParent(this.Instance, CheckPtr(AValue))
@@ -14127,7 +14127,7 @@ proc `ComponentIndex=`*(this: TDateTimePicker, AValue: int32)  =
   DateTimePicker_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TDateTimePicker): TComponent  =
-  return AsComponent(DateTimePicker_GetOwner(this.Instance))
+  return DateTimePicker_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TDateTimePicker): string  =
   return $DateTimePicker_GetName(this.Instance)
@@ -14142,52 +14142,52 @@ proc `Tag=`*(this: TDateTimePicker, AValue: int)  =
   DateTimePicker_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TDateTimePicker): TAnchorSide  =
-  return AsAnchorSide(DateTimePicker_GetAnchorSideLeft(this.Instance))
+  return DateTimePicker_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TDateTimePicker, AValue: TAnchorSide)  =
   DateTimePicker_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TDateTimePicker): TAnchorSide  =
-  return AsAnchorSide(DateTimePicker_GetAnchorSideTop(this.Instance))
+  return DateTimePicker_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TDateTimePicker, AValue: TAnchorSide)  =
   DateTimePicker_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TDateTimePicker): TAnchorSide  =
-  return AsAnchorSide(DateTimePicker_GetAnchorSideRight(this.Instance))
+  return DateTimePicker_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TDateTimePicker, AValue: TAnchorSide)  =
   DateTimePicker_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TDateTimePicker): TAnchorSide  =
-  return AsAnchorSide(DateTimePicker_GetAnchorSideBottom(this.Instance))
+  return DateTimePicker_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TDateTimePicker, AValue: TAnchorSide)  =
   DateTimePicker_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TDateTimePicker): TControlChildSizing  =
-  return AsControlChildSizing(DateTimePicker_GetChildSizing(this.Instance))
+  return DateTimePicker_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TDateTimePicker, AValue: TControlChildSizing)  =
   DateTimePicker_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TDateTimePicker): TControlBorderSpacing  =
-  return AsControlBorderSpacing(DateTimePicker_GetBorderSpacing(this.Instance))
+  return DateTimePicker_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TDateTimePicker, AValue: TControlBorderSpacing)  =
   DateTimePicker_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TDateTimePicker, Index: int32): TControl  =
-  return AsControl(DateTimePicker_GetDockClients(this.Instance, Index))
+  return DateTimePicker_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TDateTimePicker, Index: int32): TControl  =
-  return AsControl(DateTimePicker_GetControls(this.Instance, Index))
+  return DateTimePicker_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TDateTimePicker, AIndex: int32): TComponent  =
-  return AsComponent(DateTimePicker_GetComponents(this.Instance, AIndex))
+  return DateTimePicker_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TDateTimePicker, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(DateTimePicker_GetAnchorSide(this.Instance, AKind))
+  return DateTimePicker_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TDateTimePickerClass*(): TClass = DateTimePicker_StaticClassType()
 
@@ -14207,7 +14207,7 @@ proc ContainsControl*(this: TMonthCalendar, Control: TControl): bool =
   return MonthCalendar_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TMonthCalendar, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(MonthCalendar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return MonthCalendar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TMonthCalendar) =
   MonthCalendar_DisableAlign(this.Instance)
@@ -14216,7 +14216,7 @@ proc EnableAlign*(this: TMonthCalendar) =
   MonthCalendar_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TMonthCalendar, ControlName: string): TControl =
-  return AsControl(MonthCalendar_FindChildControl(this.Instance, ControlName))
+  return MonthCalendar_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TMonthCalendar, AllLevels: bool) =
   MonthCalendar_FlipChildren(this.Instance, AllLevels)
@@ -14303,7 +14303,7 @@ proc SetTextBuf*(this: TMonthCalendar, Buffer: string) =
   MonthCalendar_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TMonthCalendar, AName: string): TComponent =
-  return AsComponent(MonthCalendar_FindComponent(this.Instance, AName))
+  return MonthCalendar_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TMonthCalendar): string =
   return $MonthCalendar_GetNamePath(this.Instance)
@@ -14381,7 +14381,7 @@ proc `BiDiMode=`*(this: TMonthCalendar, AValue: TBiDiMode)  =
   MonthCalendar_SetBiDiMode(this.Instance, AValue)
 
 proc Constraints*(this: TMonthCalendar): TSizeConstraints  =
-  return AsSizeConstraints(MonthCalendar_GetConstraints(this.Instance))
+  return MonthCalendar_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TMonthCalendar, AValue: TSizeConstraints)  =
   MonthCalendar_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -14423,7 +14423,7 @@ proc `Enabled=`*(this: TMonthCalendar, AValue: bool)  =
   MonthCalendar_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TMonthCalendar): TFont  =
-  return AsFont(MonthCalendar_GetFont(this.Instance))
+  return MonthCalendar_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TMonthCalendar, AValue: TFont)  =
   MonthCalendar_SetFont(this.Instance, CheckPtr(AValue))
@@ -14435,7 +14435,7 @@ proc `ParentDoubleBuffered=`*(this: TMonthCalendar, AValue: bool)  =
   MonthCalendar_SetParentDoubleBuffered(this.Instance, AValue)
 
 proc PopupMenu*(this: TMonthCalendar): TPopupMenu  =
-  return AsPopupMenu(MonthCalendar_GetPopupMenu(this.Instance))
+  return MonthCalendar_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TMonthCalendar, AValue: TPopupMenu)  =
   MonthCalendar_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -14525,7 +14525,7 @@ proc VisibleDockClientCount*(this: TMonthCalendar): int32  =
   return MonthCalendar_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TMonthCalendar): TBrush  =
-  return AsBrush(MonthCalendar_GetBrush(this.Instance))
+  return MonthCalendar_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TMonthCalendar): int32  =
   return MonthCalendar_GetControlCount(this.Instance)
@@ -14549,7 +14549,7 @@ proc `UseDockManager=`*(this: TMonthCalendar, AValue: bool)  =
   MonthCalendar_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TMonthCalendar): TAction  =
-  return AsAction(MonthCalendar_GetAction(this.Instance))
+  return MonthCalendar_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TMonthCalendar, AValue: TAction)  =
   MonthCalendar_SetAction(this.Instance, CheckPtr(AValue))
@@ -14594,7 +14594,7 @@ proc Floating*(this: TMonthCalendar): bool  =
   return MonthCalendar_GetFloating(this.Instance)
 
 proc Parent*(this: TMonthCalendar): TWinControl  =
-  return AsWinControl(MonthCalendar_GetParent(this.Instance))
+  return MonthCalendar_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TMonthCalendar, AValue: TWinControl)  =
   MonthCalendar_SetParent(this.Instance, CheckPtr(AValue))
@@ -14645,7 +14645,7 @@ proc `ComponentIndex=`*(this: TMonthCalendar, AValue: int32)  =
   MonthCalendar_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TMonthCalendar): TComponent  =
-  return AsComponent(MonthCalendar_GetOwner(this.Instance))
+  return MonthCalendar_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TMonthCalendar): string  =
   return $MonthCalendar_GetName(this.Instance)
@@ -14660,52 +14660,52 @@ proc `Tag=`*(this: TMonthCalendar, AValue: int)  =
   MonthCalendar_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TMonthCalendar): TAnchorSide  =
-  return AsAnchorSide(MonthCalendar_GetAnchorSideLeft(this.Instance))
+  return MonthCalendar_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TMonthCalendar, AValue: TAnchorSide)  =
   MonthCalendar_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TMonthCalendar): TAnchorSide  =
-  return AsAnchorSide(MonthCalendar_GetAnchorSideTop(this.Instance))
+  return MonthCalendar_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TMonthCalendar, AValue: TAnchorSide)  =
   MonthCalendar_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TMonthCalendar): TAnchorSide  =
-  return AsAnchorSide(MonthCalendar_GetAnchorSideRight(this.Instance))
+  return MonthCalendar_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TMonthCalendar, AValue: TAnchorSide)  =
   MonthCalendar_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TMonthCalendar): TAnchorSide  =
-  return AsAnchorSide(MonthCalendar_GetAnchorSideBottom(this.Instance))
+  return MonthCalendar_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TMonthCalendar, AValue: TAnchorSide)  =
   MonthCalendar_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TMonthCalendar): TControlChildSizing  =
-  return AsControlChildSizing(MonthCalendar_GetChildSizing(this.Instance))
+  return MonthCalendar_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TMonthCalendar, AValue: TControlChildSizing)  =
   MonthCalendar_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TMonthCalendar): TControlBorderSpacing  =
-  return AsControlBorderSpacing(MonthCalendar_GetBorderSpacing(this.Instance))
+  return MonthCalendar_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TMonthCalendar, AValue: TControlBorderSpacing)  =
   MonthCalendar_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TMonthCalendar, Index: int32): TControl  =
-  return AsControl(MonthCalendar_GetDockClients(this.Instance, Index))
+  return MonthCalendar_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TMonthCalendar, Index: int32): TControl  =
-  return AsControl(MonthCalendar_GetControls(this.Instance, Index))
+  return MonthCalendar_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TMonthCalendar, AIndex: int32): TComponent  =
-  return AsComponent(MonthCalendar_GetComponents(this.Instance, AIndex))
+  return MonthCalendar_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TMonthCalendar, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(MonthCalendar_GetAnchorSide(this.Instance, AKind))
+  return MonthCalendar_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TMonthCalendarClass*(): TClass = MonthCalendar_StaticClassType()
 
@@ -14749,7 +14749,7 @@ proc ContainsControl*(this: TListView, Control: TControl): bool =
   return ListView_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TListView, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(ListView_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return ListView_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TListView) =
   ListView_DisableAlign(this.Instance)
@@ -14758,7 +14758,7 @@ proc EnableAlign*(this: TListView) =
   ListView_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TListView, ControlName: string): TControl =
-  return AsControl(ListView_FindChildControl(this.Instance, ControlName))
+  return ListView_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TListView, AllLevels: bool) =
   ListView_FlipChildren(this.Instance, AllLevels)
@@ -14845,7 +14845,7 @@ proc SetTextBuf*(this: TListView, Buffer: string) =
   ListView_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TListView, AName: string): TComponent =
-  return AsComponent(ListView_FindComponent(this.Instance, AName))
+  return ListView_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TListView): string =
   return $ListView_GetNamePath(this.Instance)
@@ -14953,7 +14953,7 @@ proc `ScrollBars=`*(this: TListView, AValue: TScrollStyle)  =
   ListView_SetScrollBars(this.Instance, AValue)
 
 proc Action*(this: TListView): TAction  =
-  return AsAction(ListView_GetAction(this.Instance))
+  return ListView_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TListView, AValue: TAction)  =
   ListView_SetAction(this.Instance, CheckPtr(AValue))
@@ -15007,7 +15007,7 @@ proc `Color=`*(this: TListView, AValue: TColor)  =
   ListView_SetColor(this.Instance, AValue)
 
 proc Columns*(this: TListView): TListColumns  =
-  return AsListColumns(ListView_GetColumns(this.Instance))
+  return ListView_GetColumns(this.Instance).AsListColumns
 
 proc `Columns=`*(this: TListView, AValue: TListColumns)  =
   ListView_SetColumns(this.Instance, CheckPtr(AValue))
@@ -15019,7 +15019,7 @@ proc `ColumnClick=`*(this: TListView, AValue: bool)  =
   ListView_SetColumnClick(this.Instance, AValue)
 
 proc Constraints*(this: TListView): TSizeConstraints  =
-  return AsSizeConstraints(ListView_GetConstraints(this.Instance))
+  return ListView_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TListView, AValue: TSizeConstraints)  =
   ListView_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -15055,7 +15055,7 @@ proc `Enabled=`*(this: TListView, AValue: bool)  =
   ListView_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TListView): TFont  =
-  return AsFont(ListView_GetFont(this.Instance))
+  return ListView_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TListView, AValue: TFont)  =
   ListView_SetFont(this.Instance, CheckPtr(AValue))
@@ -15091,19 +15091,19 @@ proc `HotTrack=`*(this: TListView, AValue: bool)  =
   ListView_SetHotTrack(this.Instance, AValue)
 
 proc IconOptions*(this: TListView): TIconOptions  =
-  return AsIconOptions(ListView_GetIconOptions(this.Instance))
+  return ListView_GetIconOptions(this.Instance).AsIconOptions
 
 proc `IconOptions=`*(this: TListView, AValue: TIconOptions)  =
   ListView_SetIconOptions(this.Instance, CheckPtr(AValue))
 
 proc Items*(this: TListView): TListItems  =
-  return AsListItems(ListView_GetItems(this.Instance))
+  return ListView_GetItems(this.Instance).AsListItems
 
 proc `Items=`*(this: TListView, AValue: TListItems)  =
   ListView_SetItems(this.Instance, CheckPtr(AValue))
 
 proc LargeImages*(this: TListView): TImageList  =
-  return AsImageList(ListView_GetLargeImages(this.Instance))
+  return ListView_GetLargeImages(this.Instance).AsImageList
 
 proc `LargeImages=`*(this: TListView, AValue: TImageList)  =
   ListView_SetLargeImages(this.Instance, CheckPtr(AValue))
@@ -15163,7 +15163,7 @@ proc `ParentShowHint=`*(this: TListView, AValue: bool)  =
   ListView_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TListView): TPopupMenu  =
-  return AsPopupMenu(ListView_GetPopupMenu(this.Instance))
+  return ListView_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TListView, AValue: TPopupMenu)  =
   ListView_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -15181,7 +15181,7 @@ proc `ShowHint=`*(this: TListView, AValue: bool)  =
   ListView_SetShowHint(this.Instance, AValue)
 
 proc SmallImages*(this: TListView): TImageList  =
-  return AsImageList(ListView_GetSmallImages(this.Instance))
+  return ListView_GetSmallImages(this.Instance).AsImageList
 
 proc `SmallImages=`*(this: TListView, AValue: TImageList)  =
   ListView_SetSmallImages(this.Instance, CheckPtr(AValue))
@@ -15193,7 +15193,7 @@ proc `SortType=`*(this: TListView, AValue: TSortType)  =
   ListView_SetSortType(this.Instance, AValue)
 
 proc StateImages*(this: TListView): TImageList  =
-  return AsImageList(ListView_GetStateImages(this.Instance))
+  return ListView_GetStateImages(this.Instance).AsImageList
 
 proc `StateImages=`*(this: TListView, AValue: TImageList)  =
   ListView_SetStateImages(this.Instance, CheckPtr(AValue))
@@ -15334,16 +15334,16 @@ proc `OnStartDock=`*(this: TListView, AEventId: TStartDockEvent)  =
   ListView_SetOnStartDock(this.Instance, AEventId)
 
 proc Canvas*(this: TListView): TCanvas  =
-  return AsCanvas(ListView_GetCanvas(this.Instance))
+  return ListView_GetCanvas(this.Instance).AsCanvas
 
 proc DropTarget*(this: TListView): TListItem  =
-  return AsListItem(ListView_GetDropTarget(this.Instance))
+  return ListView_GetDropTarget(this.Instance).AsListItem
 
 proc `DropTarget=`*(this: TListView, AValue: TListItem)  =
   ListView_SetDropTarget(this.Instance, CheckPtr(AValue))
 
 proc ItemFocused*(this: TListView): TListItem  =
-  return AsListItem(ListView_GetItemFocused(this.Instance))
+  return ListView_GetItemFocused(this.Instance).AsListItem
 
 proc `ItemFocused=`*(this: TListView, AValue: TListItem)  =
   ListView_SetItemFocused(this.Instance, CheckPtr(AValue))
@@ -15352,13 +15352,13 @@ proc SelCount*(this: TListView): int32  =
   return ListView_GetSelCount(this.Instance)
 
 proc Selected*(this: TListView): TListItem  =
-  return AsListItem(ListView_GetSelected(this.Instance))
+  return ListView_GetSelected(this.Instance).AsListItem
 
 proc `Selected=`*(this: TListView, AValue: TListItem)  =
   ListView_SetSelected(this.Instance, CheckPtr(AValue))
 
 proc TopItem*(this: TListView): TListItem  =
-  return AsListItem(ListView_GetTopItem(this.Instance))
+  return ListView_GetTopItem(this.Instance).AsListItem
 
 proc VisibleRowCount*(this: TListView): int32  =
   return ListView_GetVisibleRowCount(this.Instance)
@@ -15385,7 +15385,7 @@ proc VisibleDockClientCount*(this: TListView): int32  =
   return ListView_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TListView): TBrush  =
-  return AsBrush(ListView_GetBrush(this.Instance))
+  return ListView_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TListView): int32  =
   return ListView_GetControlCount(this.Instance)
@@ -15448,7 +15448,7 @@ proc Floating*(this: TListView): bool  =
   return ListView_GetFloating(this.Instance)
 
 proc Parent*(this: TListView): TWinControl  =
-  return AsWinControl(ListView_GetParent(this.Instance))
+  return ListView_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TListView, AValue: TWinControl)  =
   ListView_SetParent(this.Instance, CheckPtr(AValue))
@@ -15499,7 +15499,7 @@ proc `ComponentIndex=`*(this: TListView, AValue: int32)  =
   ListView_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TListView): TComponent  =
-  return AsComponent(ListView_GetOwner(this.Instance))
+  return ListView_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TListView): string  =
   return $ListView_GetName(this.Instance)
@@ -15514,55 +15514,55 @@ proc `Tag=`*(this: TListView, AValue: int)  =
   ListView_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TListView): TAnchorSide  =
-  return AsAnchorSide(ListView_GetAnchorSideLeft(this.Instance))
+  return ListView_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TListView, AValue: TAnchorSide)  =
   ListView_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TListView): TAnchorSide  =
-  return AsAnchorSide(ListView_GetAnchorSideTop(this.Instance))
+  return ListView_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TListView, AValue: TAnchorSide)  =
   ListView_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TListView): TAnchorSide  =
-  return AsAnchorSide(ListView_GetAnchorSideRight(this.Instance))
+  return ListView_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TListView, AValue: TAnchorSide)  =
   ListView_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TListView): TAnchorSide  =
-  return AsAnchorSide(ListView_GetAnchorSideBottom(this.Instance))
+  return ListView_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TListView, AValue: TAnchorSide)  =
   ListView_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TListView): TControlChildSizing  =
-  return AsControlChildSizing(ListView_GetChildSizing(this.Instance))
+  return ListView_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TListView, AValue: TControlChildSizing)  =
   ListView_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TListView): TControlBorderSpacing  =
-  return AsControlBorderSpacing(ListView_GetBorderSpacing(this.Instance))
+  return ListView_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TListView, AValue: TControlBorderSpacing)  =
   ListView_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Column*(this: TListView, Index: int32): TListColumn  =
-  return AsListColumn(ListView_GetColumn(this.Instance, Index))
+  return ListView_GetColumn(this.Instance, Index).AsListColumn
 
 proc DockClients*(this: TListView, Index: int32): TControl  =
-  return AsControl(ListView_GetDockClients(this.Instance, Index))
+  return ListView_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TListView, Index: int32): TControl  =
-  return AsControl(ListView_GetControls(this.Instance, Index))
+  return ListView_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TListView, AIndex: int32): TComponent  =
-  return AsComponent(ListView_GetComponents(this.Instance, AIndex))
+  return ListView_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TListView, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(ListView_GetAnchorSide(this.Instance, AKind))
+  return ListView_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TListViewClass*(): TClass = ListView_StaticClassType()
 
@@ -15585,7 +15585,7 @@ proc FullExpand*(this: TTreeView)  =
   TreeView_FullExpand(this.Instance)
 
 proc GetNodeAt*(this: TTreeView, X: int32, Y: int32): TTreeNode  =
-  return AsTreeNode(TreeView_GetNodeAt(this.Instance, X, Y))
+  return TreeView_GetNodeAt(this.Instance, X, Y).AsTreeNode
 
 proc IsEditing*(this: TTreeView): bool  =
   return TreeView_IsEditing(this.Instance)
@@ -15615,7 +15615,7 @@ proc ContainsControl*(this: TTreeView, Control: TControl): bool =
   return TreeView_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TTreeView, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(TreeView_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return TreeView_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TTreeView) =
   TreeView_DisableAlign(this.Instance)
@@ -15624,7 +15624,7 @@ proc EnableAlign*(this: TTreeView) =
   TreeView_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TTreeView, ControlName: string): TControl =
-  return AsControl(TreeView_FindChildControl(this.Instance, ControlName))
+  return TreeView_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TTreeView, AllLevels: bool) =
   TreeView_FlipChildren(this.Instance, AllLevels)
@@ -15711,7 +15711,7 @@ proc SetTextBuf*(this: TTreeView, Buffer: string) =
   TreeView_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TTreeView, AName: string): TComponent =
-  return AsComponent(TreeView_FindComponent(this.Instance, AName))
+  return TreeView_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TTreeView): string =
   return $TreeView_GetNamePath(this.Instance)
@@ -15897,7 +15897,7 @@ proc `Color=`*(this: TTreeView, AValue: TColor)  =
   TreeView_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TTreeView): TSizeConstraints  =
-  return AsSizeConstraints(TreeView_GetConstraints(this.Instance))
+  return TreeView_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TTreeView, AValue: TSizeConstraints)  =
   TreeView_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -15933,7 +15933,7 @@ proc `Enabled=`*(this: TTreeView, AValue: bool)  =
   TreeView_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TTreeView): TFont  =
-  return AsFont(TreeView_GetFont(this.Instance))
+  return TreeView_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TTreeView, AValue: TFont)  =
   TreeView_SetFont(this.Instance, CheckPtr(AValue))
@@ -15951,7 +15951,7 @@ proc `HotTrack=`*(this: TTreeView, AValue: bool)  =
   TreeView_SetHotTrack(this.Instance, AValue)
 
 proc Images*(this: TTreeView): TImageList  =
-  return AsImageList(TreeView_GetImages(this.Instance))
+  return TreeView_GetImages(this.Instance).AsImageList
 
 proc `Images=`*(this: TTreeView, AValue: TImageList)  =
   TreeView_SetImages(this.Instance, CheckPtr(AValue))
@@ -15999,7 +15999,7 @@ proc `ParentShowHint=`*(this: TTreeView, AValue: bool)  =
   TreeView_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TTreeView): TPopupMenu  =
-  return AsPopupMenu(TreeView_GetPopupMenu(this.Instance))
+  return TreeView_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TTreeView, AValue: TPopupMenu)  =
   TreeView_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -16053,7 +16053,7 @@ proc `SortType=`*(this: TTreeView, AValue: TSortType)  =
   TreeView_SetSortType(this.Instance, AValue)
 
 proc StateImages*(this: TTreeView): TImageList  =
-  return AsImageList(TreeView_GetStateImages(this.Instance))
+  return TreeView_GetStateImages(this.Instance).AsImageList
 
 proc `StateImages=`*(this: TTreeView, AValue: TImageList)  =
   TreeView_SetStateImages(this.Instance, CheckPtr(AValue))
@@ -16173,28 +16173,28 @@ proc `OnMouseUp=`*(this: TTreeView, AEventId: TMouseEvent)  =
   TreeView_SetOnMouseUp(this.Instance, AEventId)
 
 proc Items*(this: TTreeView): TTreeNodes  =
-  return AsTreeNodes(TreeView_GetItems(this.Instance))
+  return TreeView_GetItems(this.Instance).AsTreeNodes
 
 proc `Items=`*(this: TTreeView, AValue: TTreeNodes)  =
   TreeView_SetItems(this.Instance, CheckPtr(AValue))
 
 proc Canvas*(this: TTreeView): TCanvas  =
-  return AsCanvas(TreeView_GetCanvas(this.Instance))
+  return TreeView_GetCanvas(this.Instance).AsCanvas
 
 proc DropTarget*(this: TTreeView): TTreeNode  =
-  return AsTreeNode(TreeView_GetDropTarget(this.Instance))
+  return TreeView_GetDropTarget(this.Instance).AsTreeNode
 
 proc `DropTarget=`*(this: TTreeView, AValue: TTreeNode)  =
   TreeView_SetDropTarget(this.Instance, CheckPtr(AValue))
 
 proc Selected*(this: TTreeView): TTreeNode  =
-  return AsTreeNode(TreeView_GetSelected(this.Instance))
+  return TreeView_GetSelected(this.Instance).AsTreeNode
 
 proc `Selected=`*(this: TTreeView, AValue: TTreeNode)  =
   TreeView_SetSelected(this.Instance, CheckPtr(AValue))
 
 proc TopItem*(this: TTreeView): TTreeNode  =
-  return AsTreeNode(TreeView_GetTopItem(this.Instance))
+  return TreeView_GetTopItem(this.Instance).AsTreeNode
 
 proc `TopItem=`*(this: TTreeView, AValue: TTreeNode)  =
   TreeView_SetTopItem(this.Instance, CheckPtr(AValue))
@@ -16218,7 +16218,7 @@ proc VisibleDockClientCount*(this: TTreeView): int32  =
   return TreeView_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TTreeView): TBrush  =
-  return AsBrush(TreeView_GetBrush(this.Instance))
+  return TreeView_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TTreeView): int32  =
   return TreeView_GetControlCount(this.Instance)
@@ -16242,7 +16242,7 @@ proc `UseDockManager=`*(this: TTreeView, AValue: bool)  =
   TreeView_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TTreeView): TAction  =
-  return AsAction(TreeView_GetAction(this.Instance))
+  return TreeView_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TTreeView, AValue: TAction)  =
   TreeView_SetAction(this.Instance, CheckPtr(AValue))
@@ -16287,7 +16287,7 @@ proc Floating*(this: TTreeView): bool  =
   return TreeView_GetFloating(this.Instance)
 
 proc Parent*(this: TTreeView): TWinControl  =
-  return AsWinControl(TreeView_GetParent(this.Instance))
+  return TreeView_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TTreeView, AValue: TWinControl)  =
   TreeView_SetParent(this.Instance, CheckPtr(AValue))
@@ -16338,7 +16338,7 @@ proc `ComponentIndex=`*(this: TTreeView, AValue: int32)  =
   TreeView_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TTreeView): TComponent  =
-  return AsComponent(TreeView_GetOwner(this.Instance))
+  return TreeView_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TTreeView): string  =
   return $TreeView_GetName(this.Instance)
@@ -16353,55 +16353,55 @@ proc `Tag=`*(this: TTreeView, AValue: int)  =
   TreeView_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TTreeView): TAnchorSide  =
-  return AsAnchorSide(TreeView_GetAnchorSideLeft(this.Instance))
+  return TreeView_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TTreeView, AValue: TAnchorSide)  =
   TreeView_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TTreeView): TAnchorSide  =
-  return AsAnchorSide(TreeView_GetAnchorSideTop(this.Instance))
+  return TreeView_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TTreeView, AValue: TAnchorSide)  =
   TreeView_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TTreeView): TAnchorSide  =
-  return AsAnchorSide(TreeView_GetAnchorSideRight(this.Instance))
+  return TreeView_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TTreeView, AValue: TAnchorSide)  =
   TreeView_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TTreeView): TAnchorSide  =
-  return AsAnchorSide(TreeView_GetAnchorSideBottom(this.Instance))
+  return TreeView_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TTreeView, AValue: TAnchorSide)  =
   TreeView_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TTreeView): TControlChildSizing  =
-  return AsControlChildSizing(TreeView_GetChildSizing(this.Instance))
+  return TreeView_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TTreeView, AValue: TControlChildSizing)  =
   TreeView_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TTreeView): TControlBorderSpacing  =
-  return AsControlBorderSpacing(TreeView_GetBorderSpacing(this.Instance))
+  return TreeView_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TTreeView, AValue: TControlBorderSpacing)  =
   TreeView_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Selections*(this: TTreeView, Index: int32): TTreeNode  =
-  return AsTreeNode(TreeView_GetSelections(this.Instance, Index))
+  return TreeView_GetSelections(this.Instance, Index).AsTreeNode
 
 proc DockClients*(this: TTreeView, Index: int32): TControl  =
-  return AsControl(TreeView_GetDockClients(this.Instance, Index))
+  return TreeView_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TTreeView, Index: int32): TControl  =
-  return AsControl(TreeView_GetControls(this.Instance, Index))
+  return TreeView_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TTreeView, AIndex: int32): TComponent  =
-  return AsComponent(TreeView_GetComponents(this.Instance, AIndex))
+  return TreeView_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TTreeView, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(TreeView_GetAnchorSide(this.Instance, AKind))
+  return TreeView_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TTreeViewClass*(): TClass = TreeView_StaticClassType()
 
@@ -16427,7 +16427,7 @@ proc ContainsControl*(this: TStatusBar, Control: TControl): bool =
   return StatusBar_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TStatusBar, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(StatusBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return StatusBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TStatusBar) =
   StatusBar_DisableAlign(this.Instance)
@@ -16436,7 +16436,7 @@ proc EnableAlign*(this: TStatusBar) =
   StatusBar_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TStatusBar, ControlName: string): TControl =
-  return AsControl(StatusBar_FindChildControl(this.Instance, ControlName))
+  return StatusBar_FindChildControl(this.Instance, ControlName).AsControl
 
 proc Focused*(this: TStatusBar): bool =
   return StatusBar_Focused(this.Instance)
@@ -16517,7 +16517,7 @@ proc SetTextBuf*(this: TStatusBar, Buffer: string) =
   StatusBar_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TStatusBar, AName: string): TComponent =
-  return AsComponent(StatusBar_FindComponent(this.Instance, AName))
+  return StatusBar_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TStatusBar): string =
   return $StatusBar_GetNamePath(this.Instance)
@@ -16565,7 +16565,7 @@ proc AnchorClient*(this: TStatusBar, ASpace: int32) =
   StatusBar_AnchorClient(this.Instance, ASpace)
 
 proc Action*(this: TStatusBar): TAction  =
-  return AsAction(StatusBar_GetAction(this.Instance))
+  return StatusBar_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TStatusBar, AValue: TAction)  =
   StatusBar_SetAction(this.Instance, CheckPtr(AValue))
@@ -16637,19 +16637,19 @@ proc `Enabled=`*(this: TStatusBar, AValue: bool)  =
   StatusBar_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TStatusBar): TFont  =
-  return AsFont(StatusBar_GetFont(this.Instance))
+  return StatusBar_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TStatusBar, AValue: TFont)  =
   StatusBar_SetFont(this.Instance, CheckPtr(AValue))
 
 proc Constraints*(this: TStatusBar): TSizeConstraints  =
-  return AsSizeConstraints(StatusBar_GetConstraints(this.Instance))
+  return StatusBar_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TStatusBar, AValue: TSizeConstraints)  =
   StatusBar_SetConstraints(this.Instance, CheckPtr(AValue))
 
 proc Panels*(this: TStatusBar): TStatusPanels  =
-  return AsStatusPanels(StatusBar_GetPanels(this.Instance))
+  return StatusBar_GetPanels(this.Instance).AsStatusPanels
 
 proc `Panels=`*(this: TStatusBar, AValue: TStatusPanels)  =
   StatusBar_SetPanels(this.Instance, CheckPtr(AValue))
@@ -16679,7 +16679,7 @@ proc `ParentShowHint=`*(this: TStatusBar, AValue: bool)  =
   StatusBar_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TStatusBar): TPopupMenu  =
-  return AsPopupMenu(StatusBar_GetPopupMenu(this.Instance))
+  return StatusBar_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TStatusBar, AValue: TPopupMenu)  =
   StatusBar_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -16766,7 +16766,7 @@ proc `OnStartDock=`*(this: TStatusBar, AEventId: TStartDockEvent)  =
   StatusBar_SetOnStartDock(this.Instance, AEventId)
 
 proc Canvas*(this: TStatusBar): TCanvas  =
-  return AsCanvas(StatusBar_GetCanvas(this.Instance))
+  return StatusBar_GetCanvas(this.Instance).AsCanvas
 
 proc DockClientCount*(this: TStatusBar): int32  =
   return StatusBar_GetDockClientCount(this.Instance)
@@ -16784,7 +16784,7 @@ proc VisibleDockClientCount*(this: TStatusBar): int32  =
   return StatusBar_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TStatusBar): TBrush  =
-  return AsBrush(StatusBar_GetBrush(this.Instance))
+  return StatusBar_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TStatusBar): int32  =
   return StatusBar_GetControlCount(this.Instance)
@@ -16859,7 +16859,7 @@ proc Floating*(this: TStatusBar): bool  =
   return StatusBar_GetFloating(this.Instance)
 
 proc Parent*(this: TStatusBar): TWinControl  =
-  return AsWinControl(StatusBar_GetParent(this.Instance))
+  return StatusBar_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TStatusBar, AValue: TWinControl)  =
   StatusBar_SetParent(this.Instance, CheckPtr(AValue))
@@ -16910,7 +16910,7 @@ proc `ComponentIndex=`*(this: TStatusBar, AValue: int32)  =
   StatusBar_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TStatusBar): TComponent  =
-  return AsComponent(StatusBar_GetOwner(this.Instance))
+  return StatusBar_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TStatusBar): string  =
   return $StatusBar_GetName(this.Instance)
@@ -16925,52 +16925,52 @@ proc `Tag=`*(this: TStatusBar, AValue: int)  =
   StatusBar_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TStatusBar): TAnchorSide  =
-  return AsAnchorSide(StatusBar_GetAnchorSideLeft(this.Instance))
+  return StatusBar_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TStatusBar, AValue: TAnchorSide)  =
   StatusBar_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TStatusBar): TAnchorSide  =
-  return AsAnchorSide(StatusBar_GetAnchorSideTop(this.Instance))
+  return StatusBar_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TStatusBar, AValue: TAnchorSide)  =
   StatusBar_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TStatusBar): TAnchorSide  =
-  return AsAnchorSide(StatusBar_GetAnchorSideRight(this.Instance))
+  return StatusBar_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TStatusBar, AValue: TAnchorSide)  =
   StatusBar_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TStatusBar): TAnchorSide  =
-  return AsAnchorSide(StatusBar_GetAnchorSideBottom(this.Instance))
+  return StatusBar_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TStatusBar, AValue: TAnchorSide)  =
   StatusBar_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TStatusBar): TControlChildSizing  =
-  return AsControlChildSizing(StatusBar_GetChildSizing(this.Instance))
+  return StatusBar_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TStatusBar, AValue: TControlChildSizing)  =
   StatusBar_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TStatusBar): TControlBorderSpacing  =
-  return AsControlBorderSpacing(StatusBar_GetBorderSpacing(this.Instance))
+  return StatusBar_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TStatusBar, AValue: TControlBorderSpacing)  =
   StatusBar_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TStatusBar, Index: int32): TControl  =
-  return AsControl(StatusBar_GetDockClients(this.Instance, Index))
+  return StatusBar_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TStatusBar, Index: int32): TControl  =
-  return AsControl(StatusBar_GetControls(this.Instance, Index))
+  return StatusBar_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TStatusBar, AIndex: int32): TComponent  =
-  return AsComponent(StatusBar_GetComponents(this.Instance, AIndex))
+  return StatusBar_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TStatusBar, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(StatusBar_GetAnchorSide(this.Instance, AKind))
+  return StatusBar_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TStatusBarClass*(): TClass = StatusBar_StaticClassType()
 
@@ -16993,7 +16993,7 @@ proc ContainsControl*(this: TToolBar, Control: TControl): bool =
   return ToolBar_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TToolBar, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(ToolBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return ToolBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TToolBar) =
   ToolBar_DisableAlign(this.Instance)
@@ -17002,7 +17002,7 @@ proc EnableAlign*(this: TToolBar) =
   ToolBar_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TToolBar, ControlName: string): TControl =
-  return AsControl(ToolBar_FindChildControl(this.Instance, ControlName))
+  return ToolBar_FindChildControl(this.Instance, ControlName).AsControl
 
 proc Focused*(this: TToolBar): bool =
   return ToolBar_Focused(this.Instance)
@@ -17086,7 +17086,7 @@ proc SetTextBuf*(this: TToolBar, Buffer: string) =
   ToolBar_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TToolBar, AName: string): TComponent =
-  return AsComponent(ToolBar_FindComponent(this.Instance, AName))
+  return ToolBar_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TToolBar): string =
   return $ToolBar_GetNamePath(this.Instance)
@@ -17137,7 +17137,7 @@ proc ButtonCount*(this: TToolBar): int32  =
   return ToolBar_GetButtonCount(this.Instance)
 
 proc Canvas*(this: TToolBar): TCanvas  =
-  return AsCanvas(ToolBar_GetCanvas(this.Instance))
+  return ToolBar_GetCanvas(this.Instance).AsCanvas
 
 proc RowCount*(this: TToolBar): int32  =
   return ToolBar_GetRowCount(this.Instance)
@@ -17191,7 +17191,7 @@ proc `Color=`*(this: TToolBar, AValue: TColor)  =
   ToolBar_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TToolBar): TSizeConstraints  =
-  return AsSizeConstraints(ToolBar_GetConstraints(this.Instance))
+  return ToolBar_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TToolBar, AValue: TSizeConstraints)  =
   ToolBar_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -17257,7 +17257,7 @@ proc `Flat=`*(this: TToolBar, AValue: bool)  =
   ToolBar_SetFlat(this.Instance, AValue)
 
 proc Font*(this: TToolBar): TFont  =
-  return AsFont(ToolBar_GetFont(this.Instance))
+  return ToolBar_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TToolBar, AValue: TFont)  =
   ToolBar_SetFont(this.Instance, CheckPtr(AValue))
@@ -17269,13 +17269,13 @@ proc `Height=`*(this: TToolBar, AValue: int32)  =
   ToolBar_SetHeight(this.Instance, AValue)
 
 proc HotImages*(this: TToolBar): TImageList  =
-  return AsImageList(ToolBar_GetHotImages(this.Instance))
+  return ToolBar_GetHotImages(this.Instance).AsImageList
 
 proc `HotImages=`*(this: TToolBar, AValue: TImageList)  =
   ToolBar_SetHotImages(this.Instance, CheckPtr(AValue))
 
 proc Images*(this: TToolBar): TImageList  =
-  return AsImageList(ToolBar_GetImages(this.Instance))
+  return ToolBar_GetImages(this.Instance).AsImageList
 
 proc `Images=`*(this: TToolBar, AValue: TImageList)  =
   ToolBar_SetImages(this.Instance, CheckPtr(AValue))
@@ -17317,7 +17317,7 @@ proc `ParentShowHint=`*(this: TToolBar, AValue: bool)  =
   ToolBar_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TToolBar): TPopupMenu  =
-  return AsPopupMenu(ToolBar_GetPopupMenu(this.Instance))
+  return ToolBar_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TToolBar, AValue: TPopupMenu)  =
   ToolBar_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -17422,7 +17422,7 @@ proc VisibleDockClientCount*(this: TToolBar): int32  =
   return ToolBar_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TToolBar): TBrush  =
-  return AsBrush(ToolBar_GetBrush(this.Instance))
+  return ToolBar_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TToolBar): int32  =
   return ToolBar_GetControlCount(this.Instance)
@@ -17446,7 +17446,7 @@ proc `UseDockManager=`*(this: TToolBar, AValue: bool)  =
   ToolBar_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TToolBar): TAction  =
-  return AsAction(ToolBar_GetAction(this.Instance))
+  return ToolBar_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TToolBar, AValue: TAction)  =
   ToolBar_SetAction(this.Instance, CheckPtr(AValue))
@@ -17497,7 +17497,7 @@ proc Floating*(this: TToolBar): bool  =
   return ToolBar_GetFloating(this.Instance)
 
 proc Parent*(this: TToolBar): TWinControl  =
-  return AsWinControl(ToolBar_GetParent(this.Instance))
+  return ToolBar_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TToolBar, AValue: TWinControl)  =
   ToolBar_SetParent(this.Instance, CheckPtr(AValue))
@@ -17542,7 +17542,7 @@ proc `ComponentIndex=`*(this: TToolBar, AValue: int32)  =
   ToolBar_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TToolBar): TComponent  =
-  return AsComponent(ToolBar_GetOwner(this.Instance))
+  return ToolBar_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TToolBar): string  =
   return $ToolBar_GetName(this.Instance)
@@ -17557,55 +17557,55 @@ proc `Tag=`*(this: TToolBar, AValue: int)  =
   ToolBar_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TToolBar): TAnchorSide  =
-  return AsAnchorSide(ToolBar_GetAnchorSideLeft(this.Instance))
+  return ToolBar_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TToolBar, AValue: TAnchorSide)  =
   ToolBar_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TToolBar): TAnchorSide  =
-  return AsAnchorSide(ToolBar_GetAnchorSideTop(this.Instance))
+  return ToolBar_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TToolBar, AValue: TAnchorSide)  =
   ToolBar_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TToolBar): TAnchorSide  =
-  return AsAnchorSide(ToolBar_GetAnchorSideRight(this.Instance))
+  return ToolBar_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TToolBar, AValue: TAnchorSide)  =
   ToolBar_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TToolBar): TAnchorSide  =
-  return AsAnchorSide(ToolBar_GetAnchorSideBottom(this.Instance))
+  return ToolBar_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TToolBar, AValue: TAnchorSide)  =
   ToolBar_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TToolBar): TControlChildSizing  =
-  return AsControlChildSizing(ToolBar_GetChildSizing(this.Instance))
+  return ToolBar_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TToolBar, AValue: TControlChildSizing)  =
   ToolBar_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TToolBar): TControlBorderSpacing  =
-  return AsControlBorderSpacing(ToolBar_GetBorderSpacing(this.Instance))
+  return ToolBar_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TToolBar, AValue: TControlBorderSpacing)  =
   ToolBar_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Buttons*(this: TToolBar, Index: int32): TToolButton  =
-  return AsToolButton(ToolBar_GetButtons(this.Instance, Index))
+  return ToolBar_GetButtons(this.Instance, Index).AsToolButton
 
 proc DockClients*(this: TToolBar, Index: int32): TControl  =
-  return AsControl(ToolBar_GetDockClients(this.Instance, Index))
+  return ToolBar_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TToolBar, Index: int32): TControl  =
-  return AsControl(ToolBar_GetControls(this.Instance, Index))
+  return ToolBar_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TToolBar, AIndex: int32): TComponent  =
-  return AsComponent(ToolBar_GetComponents(this.Instance, AIndex))
+  return ToolBar_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TToolBar, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(ToolBar_GetAnchorSide(this.Instance, AKind))
+  return ToolBar_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TToolBarClass*(): TClass = ToolBar_StaticClassType()
 
@@ -17628,7 +17628,7 @@ proc ContainsControl*(this: TBitBtn, Control: TControl): bool =
   return BitBtn_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TBitBtn, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(BitBtn_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return BitBtn_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TBitBtn) =
   BitBtn_DisableAlign(this.Instance)
@@ -17637,7 +17637,7 @@ proc EnableAlign*(this: TBitBtn) =
   BitBtn_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TBitBtn, ControlName: string): TControl =
-  return AsControl(BitBtn_FindChildControl(this.Instance, ControlName))
+  return BitBtn_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TBitBtn, AllLevels: bool) =
   BitBtn_FlipChildren(this.Instance, AllLevels)
@@ -17724,7 +17724,7 @@ proc SetTextBuf*(this: TBitBtn, Buffer: string) =
   BitBtn_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TBitBtn, AName: string): TComponent =
-  return AsComponent(BitBtn_FindComponent(this.Instance, AName))
+  return BitBtn_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TBitBtn): string =
   return $BitBtn_GetNamePath(this.Instance)
@@ -17790,7 +17790,7 @@ proc `ImageWidth=`*(this: TBitBtn, AValue: int32)  =
   BitBtn_SetImageWidth(this.Instance, AValue)
 
 proc Action*(this: TBitBtn): TAction  =
-  return AsAction(BitBtn_GetAction(this.Instance))
+  return BitBtn_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TBitBtn, AValue: TAction)  =
   BitBtn_SetAction(this.Instance, CheckPtr(AValue))
@@ -17826,7 +17826,7 @@ proc `Caption=`*(this: TBitBtn, AValue: string)  =
   BitBtn_SetCaption(this.Instance, AValue)
 
 proc Constraints*(this: TBitBtn): TSizeConstraints  =
-  return AsSizeConstraints(BitBtn_GetConstraints(this.Instance))
+  return BitBtn_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TBitBtn, AValue: TSizeConstraints)  =
   BitBtn_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -17850,13 +17850,13 @@ proc `Enabled=`*(this: TBitBtn, AValue: bool)  =
   BitBtn_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TBitBtn): TFont  =
-  return AsFont(BitBtn_GetFont(this.Instance))
+  return BitBtn_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TBitBtn, AValue: TFont)  =
   BitBtn_SetFont(this.Instance, CheckPtr(AValue))
 
 proc Glyph*(this: TBitBtn): TBitmap  =
-  return AsBitmap(BitBtn_GetGlyph(this.Instance))
+  return BitBtn_GetGlyph(this.Instance).AsBitmap
 
 proc `Glyph=`*(this: TBitBtn, AValue: TBitmap)  =
   BitBtn_SetGlyph(this.Instance, CheckPtr(AValue))
@@ -17898,7 +17898,7 @@ proc `ParentShowHint=`*(this: TBitBtn, AValue: bool)  =
   BitBtn_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TBitBtn): TPopupMenu  =
-  return AsPopupMenu(BitBtn_GetPopupMenu(this.Instance))
+  return BitBtn_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TBitBtn, AValue: TPopupMenu)  =
   BitBtn_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -17994,7 +17994,7 @@ proc VisibleDockClientCount*(this: TBitBtn): int32  =
   return BitBtn_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TBitBtn): TBrush  =
-  return AsBrush(BitBtn_GetBrush(this.Instance))
+  return BitBtn_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TBitBtn): int32  =
   return BitBtn_GetControlCount(this.Instance)
@@ -18057,7 +18057,7 @@ proc Floating*(this: TBitBtn): bool  =
   return BitBtn_GetFloating(this.Instance)
 
 proc Parent*(this: TBitBtn): TWinControl  =
-  return AsWinControl(BitBtn_GetParent(this.Instance))
+  return BitBtn_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TBitBtn, AValue: TWinControl)  =
   BitBtn_SetParent(this.Instance, CheckPtr(AValue))
@@ -18108,7 +18108,7 @@ proc `ComponentIndex=`*(this: TBitBtn, AValue: int32)  =
   BitBtn_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TBitBtn): TComponent  =
-  return AsComponent(BitBtn_GetOwner(this.Instance))
+  return BitBtn_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TBitBtn): string  =
   return $BitBtn_GetName(this.Instance)
@@ -18123,52 +18123,52 @@ proc `Tag=`*(this: TBitBtn, AValue: int)  =
   BitBtn_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TBitBtn): TAnchorSide  =
-  return AsAnchorSide(BitBtn_GetAnchorSideLeft(this.Instance))
+  return BitBtn_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TBitBtn, AValue: TAnchorSide)  =
   BitBtn_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TBitBtn): TAnchorSide  =
-  return AsAnchorSide(BitBtn_GetAnchorSideTop(this.Instance))
+  return BitBtn_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TBitBtn, AValue: TAnchorSide)  =
   BitBtn_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TBitBtn): TAnchorSide  =
-  return AsAnchorSide(BitBtn_GetAnchorSideRight(this.Instance))
+  return BitBtn_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TBitBtn, AValue: TAnchorSide)  =
   BitBtn_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TBitBtn): TAnchorSide  =
-  return AsAnchorSide(BitBtn_GetAnchorSideBottom(this.Instance))
+  return BitBtn_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TBitBtn, AValue: TAnchorSide)  =
   BitBtn_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TBitBtn): TControlChildSizing  =
-  return AsControlChildSizing(BitBtn_GetChildSizing(this.Instance))
+  return BitBtn_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TBitBtn, AValue: TControlChildSizing)  =
   BitBtn_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TBitBtn): TControlBorderSpacing  =
-  return AsControlBorderSpacing(BitBtn_GetBorderSpacing(this.Instance))
+  return BitBtn_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TBitBtn, AValue: TControlBorderSpacing)  =
   BitBtn_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TBitBtn, Index: int32): TControl  =
-  return AsControl(BitBtn_GetDockClients(this.Instance, Index))
+  return BitBtn_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TBitBtn, Index: int32): TControl  =
-  return AsControl(BitBtn_GetControls(this.Instance, Index))
+  return BitBtn_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TBitBtn, AIndex: int32): TComponent  =
-  return AsComponent(BitBtn_GetComponents(this.Instance, AIndex))
+  return BitBtn_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TBitBtn, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(BitBtn_GetAnchorSide(this.Instance, AKind))
+  return BitBtn_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TBitBtnClass*(): TClass = BitBtn_StaticClassType()
 
@@ -18346,7 +18346,7 @@ proc ToString*(this: TBitmap): string =
   return $Bitmap_ToString(this.Instance)
 
 proc Canvas*(this: TBitmap): TCanvas  =
-  return AsCanvas(Bitmap_GetCanvas(this.Instance))
+  return Bitmap_GetCanvas(this.Instance).AsCanvas
 
 proc Handle*(this: TBitmap): HBITMAP  =
   return Bitmap_GetHandle(this.Instance)
@@ -18742,7 +18742,7 @@ proc `Text=`*(this: TStrings, AValue: string)  =
   Strings_SetText(this.Instance, AValue)
 
 proc Objects*(this: TStrings, Index: int32): TObject  =
-  return AsObject(Strings_GetObjects(this.Instance, Index))
+  return Strings_GetObjects(this.Instance, Index).AsObject
 
 proc `Objects=`*(this: TStrings, Index: int32, AValue: TObject)  =
   Strings_SetObjects(this.Instance, Index, CheckPtr(AValue))
@@ -18900,7 +18900,7 @@ proc `Text=`*(this: TStringList, AValue: string)  =
   StringList_SetText(this.Instance, AValue)
 
 proc Objects*(this: TStringList, Index: int32): TObject  =
-  return AsObject(StringList_GetObjects(this.Instance, Index))
+  return StringList_GetObjects(this.Instance, Index).AsObject
 
 proc `Objects=`*(this: TStringList, Index: int32, AValue: TObject)  =
   StringList_SetObjects(this.Instance, Index, CheckPtr(AValue))
@@ -18962,7 +18962,7 @@ proc ToString*(this: TBrush): string =
   return $Brush_ToString(this.Instance)
 
 proc Bitmap*(this: TBrush): TBitmap  =
-  return AsBitmap(Brush_GetBitmap(this.Instance))
+  return Brush_GetBitmap(this.Instance).AsBitmap
 
 proc `Bitmap=`*(this: TBrush, AValue: TBitmap)  =
   Brush_SetBitmap(this.Instance, CheckPtr(AValue))
@@ -19092,7 +19092,7 @@ proc Add*(this: TMenuItem, Item: TMenuItem)  =
   MenuItem_Add(this.Instance, CheckPtr(Item))
 
 proc FindComponent*(this: TMenuItem, AName: string): TComponent =
-  return AsComponent(MenuItem_FindComponent(this.Instance, AName))
+  return MenuItem_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TMenuItem): string =
   return $MenuItem_GetNamePath(this.Instance)
@@ -19128,10 +19128,10 @@ proc Count*(this: TMenuItem): int32  =
   return MenuItem_GetCount(this.Instance)
 
 proc Parent*(this: TMenuItem): TMenuItem  =
-  return AsMenuItem(MenuItem_GetParent(this.Instance))
+  return MenuItem_GetParent(this.Instance).AsMenuItem
 
 proc Action*(this: TMenuItem): TAction  =
-  return AsAction(MenuItem_GetAction(this.Instance))
+  return MenuItem_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TMenuItem, AValue: TAction)  =
   MenuItem_SetAction(this.Instance, CheckPtr(AValue))
@@ -19143,7 +19143,7 @@ proc `AutoCheck=`*(this: TMenuItem, AValue: bool)  =
   MenuItem_SetAutoCheck(this.Instance, AValue)
 
 proc Bitmap*(this: TMenuItem): TBitmap  =
-  return AsBitmap(MenuItem_GetBitmap(this.Instance))
+  return MenuItem_GetBitmap(this.Instance).AsBitmap
 
 proc `Bitmap=`*(this: TMenuItem, AValue: TBitmap)  =
   MenuItem_SetBitmap(this.Instance, CheckPtr(AValue))
@@ -19224,7 +19224,7 @@ proc `ComponentIndex=`*(this: TMenuItem, AValue: int32)  =
   MenuItem_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TMenuItem): TComponent  =
-  return AsComponent(MenuItem_GetOwner(this.Instance))
+  return MenuItem_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TMenuItem): string  =
   return $MenuItem_GetName(this.Instance)
@@ -19239,10 +19239,10 @@ proc `Tag=`*(this: TMenuItem, AValue: int)  =
   MenuItem_SetTag(this.Instance, AValue)
 
 proc Items*(this: TMenuItem, Index: int32): TMenuItem  =
-  return AsMenuItem(MenuItem_GetItems(this.Instance, Index))
+  return MenuItem_GetItems(this.Instance, Index).AsMenuItem
 
 proc Components*(this: TMenuItem, AIndex: int32): TComponent  =
-  return AsComponent(MenuItem_GetComponents(this.Instance, AIndex))
+  return MenuItem_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TMenuItemClass*(): TClass = MenuItem_StaticClassType()
 
@@ -19295,13 +19295,13 @@ proc ToString*(this: TPicture): string =
   return $Picture_ToString(this.Instance)
 
 proc Bitmap*(this: TPicture): TBitmap  =
-  return AsBitmap(Picture_GetBitmap(this.Instance))
+  return Picture_GetBitmap(this.Instance).AsBitmap
 
 proc `Bitmap=`*(this: TPicture, AValue: TBitmap)  =
   Picture_SetBitmap(this.Instance, CheckPtr(AValue))
 
 proc Graphic*(this: TPicture): TGraphic  =
-  return AsGraphic(Picture_GetGraphic(this.Instance))
+  return Picture_GetGraphic(this.Instance).AsGraphic
 
 proc `Graphic=`*(this: TPicture, AValue: TGraphic)  =
   Picture_SetGraphic(this.Instance, CheckPtr(AValue))
@@ -19310,7 +19310,7 @@ proc Height*(this: TPicture): int32  =
   return Picture_GetHeight(this.Instance)
 
 proc Icon*(this: TPicture): TIcon  =
-  return AsIcon(Picture_GetIcon(this.Instance))
+  return Picture_GetIcon(this.Instance).AsIcon
 
 proc `Icon=`*(this: TPicture, AValue: TIcon)  =
   Picture_SetIcon(this.Instance, CheckPtr(AValue))
@@ -19333,10 +19333,10 @@ proc NewListColumns*(AOwner: TListView): TListColumns =
    result.Instance = ListColumns_Create(CheckPtr(AOwner))
 
 proc Add*(this: TListColumns): TListColumn  =
-  return AsListColumn(ListColumns_Add(this.Instance))
+  return ListColumns_Add(this.Instance).AsListColumn
 
 proc Owner*(this: TListColumns): TListView  =
-  return AsListView(ListColumns_Owner(this.Instance))
+  return ListColumns_Owner(this.Instance).AsListView
 
 proc Assign*(this: TListColumns, Source: pointer)  =
   ListColumns_Assign(this.Instance, Source)
@@ -19354,13 +19354,13 @@ proc EndUpdate*(this: TListColumns)  =
   ListColumns_EndUpdate(this.Instance)
 
 proc FindItemID*(this: TListColumns, ID: int32): TCollectionItem  =
-  return AsCollectionItem(ListColumns_FindItemID(this.Instance, ID))
+  return ListColumns_FindItemID(this.Instance, ID).AsCollectionItem
 
 proc GetNamePath*(this: TListColumns): string  =
   return $ListColumns_GetNamePath(this.Instance)
 
 proc Insert*(this: TListColumns, Index: int32): TCollectionItem  =
-  return AsCollectionItem(ListColumns_Insert(this.Instance, Index))
+  return ListColumns_Insert(this.Instance, Index).AsCollectionItem
 
 proc ClassType*(this: TListColumns): TClass =
   return ListColumns_ClassType(this.Instance)
@@ -19387,7 +19387,7 @@ proc Count*(this: TListColumns): int32  =
   return ListColumns_GetCount(this.Instance)
 
 proc Items*(this: TListColumns, Index: int32): TListColumn  =
-  return AsListColumn(ListColumns_GetItems(this.Instance, Index))
+  return ListColumns_GetItems(this.Instance, Index).AsListColumn
 
 proc `Items=`*(this: TListColumns, Index: int32, AValue: TListColumn)  =
   ListColumns_SetItems(this.Instance, Index, CheckPtr(AValue))
@@ -19404,7 +19404,7 @@ proc NewListItems*(AOwner: TListView): TListItems =
    result.Instance = ListItems_Create(CheckPtr(AOwner))
 
 proc Add*(this: TListItems): TListItem  =
-  return AsListItem(ListItems_Add(this.Instance))
+  return ListItems_Add(this.Instance).AsListItem
 
 proc Assign*(this: TListItems, Source: pointer)  =
   ListItems_Assign(this.Instance, Source)
@@ -19425,7 +19425,7 @@ proc IndexOf*(this: TListItems, Value: TListItem): int32  =
   return ListItems_IndexOf(this.Instance, CheckPtr(Value))
 
 proc Insert*(this: TListItems, Index: int32): TListItem  =
-  return AsListItem(ListItems_Insert(this.Instance, Index))
+  return ListItems_Insert(this.Instance, Index).AsListItem
 
 proc GetNamePath*(this: TListItems): string  =
   return $ListItems_GetNamePath(this.Instance)
@@ -19458,10 +19458,10 @@ proc `Count=`*(this: TListItems, AValue: int32)  =
   ListItems_SetCount(this.Instance, AValue)
 
 proc Owner*(this: TListItems): TListView  =
-  return AsListView(ListItems_GetOwner(this.Instance))
+  return ListItems_GetOwner(this.Instance).AsListView
 
 proc Item*(this: TListItems, Index: int32): TListItem  =
-  return AsListItem(ListItems_GetItem(this.Instance, Index))
+  return ListItems_GetItem(this.Instance, Index).AsListItem
 
 proc `Item=`*(this: TListItems, Index: int32, AValue: TListItem)  =
   ListItems_SetItem(this.Instance, Index, CheckPtr(AValue))
@@ -19478,31 +19478,31 @@ proc NewTreeNodes*(AOwner: TTreeView): TTreeNodes =
    result.Instance = TreeNodes_Create(CheckPtr(AOwner))
 
 proc AddChildFirst*(this: TTreeNodes, Parent: TTreeNode, S: string): TTreeNode  =
-  return AsTreeNode(TreeNodes_AddChildFirst(this.Instance, CheckPtr(Parent), S))
+  return TreeNodes_AddChildFirst(this.Instance, CheckPtr(Parent), S).AsTreeNode
 
 proc AddChild*(this: TTreeNodes, Parent: TTreeNode, S: string): TTreeNode  =
-  return AsTreeNode(TreeNodes_AddChild(this.Instance, CheckPtr(Parent), S))
+  return TreeNodes_AddChild(this.Instance, CheckPtr(Parent), S).AsTreeNode
 
 proc AddChildObjectFirst*(this: TTreeNodes, Parent: TTreeNode, S: string, Ptr: pointer): TTreeNode  =
-  return AsTreeNode(TreeNodes_AddChildObjectFirst(this.Instance, CheckPtr(Parent), S, Ptr))
+  return TreeNodes_AddChildObjectFirst(this.Instance, CheckPtr(Parent), S, Ptr).AsTreeNode
 
 proc AddChildObject*(this: TTreeNodes, Parent: TTreeNode, S: string, Ptr: pointer): TTreeNode  =
-  return AsTreeNode(TreeNodes_AddChildObject(this.Instance, CheckPtr(Parent), S, Ptr))
+  return TreeNodes_AddChildObject(this.Instance, CheckPtr(Parent), S, Ptr).AsTreeNode
 
 proc AddObjectFirst*(this: TTreeNodes, Sibling: TTreeNode, S: string, Ptr: pointer): TTreeNode  =
-  return AsTreeNode(TreeNodes_AddObjectFirst(this.Instance, CheckPtr(Sibling), S, Ptr))
+  return TreeNodes_AddObjectFirst(this.Instance, CheckPtr(Sibling), S, Ptr).AsTreeNode
 
 proc AddObject*(this: TTreeNodes, Sibling: TTreeNode, S: string, Ptr: pointer): TTreeNode  =
-  return AsTreeNode(TreeNodes_AddObject(this.Instance, CheckPtr(Sibling), S, Ptr))
+  return TreeNodes_AddObject(this.Instance, CheckPtr(Sibling), S, Ptr).AsTreeNode
 
 proc AddNode*(this: TTreeNodes, Node: TTreeNode, Relative: TTreeNode, S: string, Ptr: pointer, Method: TNodeAttachMode): TTreeNode  =
-  return AsTreeNode(TreeNodes_AddNode(this.Instance, CheckPtr(Node), CheckPtr(Relative), S, Ptr, Method))
+  return TreeNodes_AddNode(this.Instance, CheckPtr(Node), CheckPtr(Relative), S, Ptr, Method).AsTreeNode
 
 proc AddFirst*(this: TTreeNodes, Sibling: TTreeNode, S: string): TTreeNode  =
-  return AsTreeNode(TreeNodes_AddFirst(this.Instance, CheckPtr(Sibling), S))
+  return TreeNodes_AddFirst(this.Instance, CheckPtr(Sibling), S).AsTreeNode
 
 proc Add*(this: TTreeNodes, Sibling: TTreeNode, S: string): TTreeNode  =
-  return AsTreeNode(TreeNodes_Add(this.Instance, CheckPtr(Sibling), S))
+  return TreeNodes_Add(this.Instance, CheckPtr(Sibling), S).AsTreeNode
 
 proc Assign*(this: TTreeNodes, Source: pointer)  =
   TreeNodes_Assign(this.Instance, Source)
@@ -19520,13 +19520,13 @@ proc EndUpdate*(this: TTreeNodes)  =
   TreeNodes_EndUpdate(this.Instance)
 
 proc GetFirstNode*(this: TTreeNodes): TTreeNode  =
-  return AsTreeNode(TreeNodes_GetFirstNode(this.Instance))
+  return TreeNodes_GetFirstNode(this.Instance).AsTreeNode
 
 proc Insert*(this: TTreeNodes, Sibling: TTreeNode, S: string): TTreeNode  =
-  return AsTreeNode(TreeNodes_Insert(this.Instance, CheckPtr(Sibling), S))
+  return TreeNodes_Insert(this.Instance, CheckPtr(Sibling), S).AsTreeNode
 
 proc InsertObject*(this: TTreeNodes, Sibling: TTreeNode, S: string, Ptr: pointer): TTreeNode  =
-  return AsTreeNode(TreeNodes_InsertObject(this.Instance, CheckPtr(Sibling), S, Ptr))
+  return TreeNodes_InsertObject(this.Instance, CheckPtr(Sibling), S, Ptr).AsTreeNode
 
 proc CustomSort*(this: TTreeNodes, SortProc: PFNTVCOMPARE, Data: int, ARecurse: bool): bool  =
   return TreeNodes_CustomSort(this.Instance, SortProc, Data, ARecurse)
@@ -19559,10 +19559,10 @@ proc Count*(this: TTreeNodes): int32  =
   return TreeNodes_GetCount(this.Instance)
 
 proc Owner*(this: TTreeNodes): TTreeView  =
-  return AsTreeView(TreeNodes_GetOwner(this.Instance))
+  return TreeNodes_GetOwner(this.Instance).AsTreeView
 
 proc Item*(this: TTreeNodes, Index: int32): TTreeNode  =
-  return AsTreeNode(TreeNodes_GetItem(this.Instance, Index))
+  return TreeNodes_GetItem(this.Instance, Index).AsTreeNode
 
 proc TTreeNodesClass*(): TClass = TreeNodes_StaticClassType()
 
@@ -19669,10 +19669,10 @@ proc `Left=`*(this: TListItem, AValue: int32)  =
   ListItem_SetLeft(this.Instance, AValue)
 
 proc ListView*(this: TListItem): TListView  =
-  return AsListView(ListItem_GetListView(this.Instance))
+  return ListItem_GetListView(this.Instance).AsListView
 
 proc Owner*(this: TListItem): TListItems  =
-  return AsListItems(ListItem_GetOwner(this.Instance))
+  return ListItem_GetOwner(this.Instance).AsListItems
 
 proc Position*(this: TListItem): TPoint  =
   ListItem_GetPosition(this.Instance, result)
@@ -19693,7 +19693,7 @@ proc `StateIndex=`*(this: TListItem, AValue: int32)  =
   ListItem_SetStateIndex(this.Instance, AValue)
 
 proc SubItems*(this: TListItem): TStrings  =
-  return AsStrings(ListItem_GetSubItems(this.Instance))
+  return ListItem_GetSubItems(this.Instance).AsStrings
 
 proc `SubItems=`*(this: TListItem, AValue: TStrings)  =
   ListItem_SetSubItems(this.Instance, CheckPtr(AValue))
@@ -19845,10 +19845,10 @@ proc Level*(this: TTreeNode): int32  =
   return TreeNode_GetLevel(this.Instance)
 
 proc Owner*(this: TTreeNode): TTreeNodes  =
-  return AsTreeNodes(TreeNode_GetOwner(this.Instance))
+  return TreeNode_GetOwner(this.Instance).AsTreeNodes
 
 proc Parent*(this: TTreeNode): TTreeNode  =
-  return AsTreeNode(TreeNode_GetParent(this.Instance))
+  return TreeNode_GetParent(this.Instance).AsTreeNode
 
 proc SelectedIndex*(this: TTreeNode): int32  =
   return TreeNode_GetSelectedIndex(this.Instance)
@@ -19869,10 +19869,10 @@ proc `Text=`*(this: TTreeNode, AValue: string)  =
   TreeNode_SetText(this.Instance, AValue)
 
 proc TreeView*(this: TTreeNode): TTreeView  =
-  return AsTreeView(TreeNode_GetTreeView(this.Instance))
+  return TreeNode_GetTreeView(this.Instance).AsTreeView
 
 proc Item*(this: TTreeNode, Index: int32): TTreeNode  =
-  return AsTreeNode(TreeNode_GetItem(this.Instance, Index))
+  return TreeNode_GetItem(this.Instance, Index).AsTreeNode
 
 proc `Item=`*(this: TTreeNode, Index: int32, AValue: TTreeNode)  =
   TreeNode_SetItem(this.Instance, Index, CheckPtr(AValue))
@@ -19901,7 +19901,7 @@ proc ContainsControl*(this: TPageControl, Control: TControl): bool =
   return PageControl_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TPageControl, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(PageControl_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return PageControl_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TPageControl) =
   PageControl_DisableAlign(this.Instance)
@@ -19910,7 +19910,7 @@ proc EnableAlign*(this: TPageControl) =
   PageControl_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TPageControl, ControlName: string): TControl =
-  return AsControl(PageControl_FindChildControl(this.Instance, ControlName))
+  return PageControl_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TPageControl, AllLevels: bool) =
   PageControl_FlipChildren(this.Instance, AllLevels)
@@ -19997,7 +19997,7 @@ proc SetTextBuf*(this: TPageControl, Buffer: string) =
   PageControl_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TPageControl, AName: string): TComponent =
-  return AsComponent(PageControl_FindComponent(this.Instance, AName))
+  return PageControl_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TPageControl): string =
   return $PageControl_GetNamePath(this.Instance)
@@ -20078,7 +20078,7 @@ proc `BiDiMode=`*(this: TPageControl, AValue: TBiDiMode)  =
   PageControl_SetBiDiMode(this.Instance, AValue)
 
 proc Constraints*(this: TPageControl): TSizeConstraints  =
-  return AsSizeConstraints(PageControl_GetConstraints(this.Instance))
+  return PageControl_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TPageControl, AValue: TSizeConstraints)  =
   PageControl_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -20120,13 +20120,13 @@ proc `Enabled=`*(this: TPageControl, AValue: bool)  =
   PageControl_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TPageControl): TFont  =
-  return AsFont(PageControl_GetFont(this.Instance))
+  return PageControl_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TPageControl, AValue: TFont)  =
   PageControl_SetFont(this.Instance, CheckPtr(AValue))
 
 proc Images*(this: TPageControl): TImageList  =
-  return AsImageList(PageControl_GetImages(this.Instance))
+  return PageControl_GetImages(this.Instance).AsImageList
 
 proc `Images=`*(this: TPageControl, AValue: TImageList)  =
   PageControl_SetImages(this.Instance, CheckPtr(AValue))
@@ -20156,7 +20156,7 @@ proc `ParentShowHint=`*(this: TPageControl, AValue: bool)  =
   PageControl_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TPageControl): TPopupMenu  =
-  return AsPopupMenu(PageControl_GetPopupMenu(this.Instance))
+  return PageControl_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TPageControl, AValue: TPopupMenu)  =
   PageControl_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -20276,7 +20276,7 @@ proc VisibleDockClientCount*(this: TPageControl): int32  =
   return PageControl_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TPageControl): TBrush  =
-  return AsBrush(PageControl_GetBrush(this.Instance))
+  return PageControl_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TPageControl): int32  =
   return PageControl_GetControlCount(this.Instance)
@@ -20300,7 +20300,7 @@ proc `UseDockManager=`*(this: TPageControl, AValue: bool)  =
   PageControl_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TPageControl): TAction  =
-  return AsAction(PageControl_GetAction(this.Instance))
+  return PageControl_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TPageControl, AValue: TAction)  =
   PageControl_SetAction(this.Instance, CheckPtr(AValue))
@@ -20345,7 +20345,7 @@ proc Floating*(this: TPageControl): bool  =
   return PageControl_GetFloating(this.Instance)
 
 proc Parent*(this: TPageControl): TWinControl  =
-  return AsWinControl(PageControl_GetParent(this.Instance))
+  return PageControl_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TPageControl, AValue: TWinControl)  =
   PageControl_SetParent(this.Instance, CheckPtr(AValue))
@@ -20396,7 +20396,7 @@ proc `ComponentIndex=`*(this: TPageControl, AValue: int32)  =
   PageControl_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TPageControl): TComponent  =
-  return AsComponent(PageControl_GetOwner(this.Instance))
+  return PageControl_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TPageControl): string  =
   return $PageControl_GetName(this.Instance)
@@ -20411,55 +20411,55 @@ proc `Tag=`*(this: TPageControl, AValue: int)  =
   PageControl_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TPageControl): TAnchorSide  =
-  return AsAnchorSide(PageControl_GetAnchorSideLeft(this.Instance))
+  return PageControl_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TPageControl, AValue: TAnchorSide)  =
   PageControl_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TPageControl): TAnchorSide  =
-  return AsAnchorSide(PageControl_GetAnchorSideTop(this.Instance))
+  return PageControl_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TPageControl, AValue: TAnchorSide)  =
   PageControl_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TPageControl): TAnchorSide  =
-  return AsAnchorSide(PageControl_GetAnchorSideRight(this.Instance))
+  return PageControl_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TPageControl, AValue: TAnchorSide)  =
   PageControl_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TPageControl): TAnchorSide  =
-  return AsAnchorSide(PageControl_GetAnchorSideBottom(this.Instance))
+  return PageControl_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TPageControl, AValue: TAnchorSide)  =
   PageControl_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TPageControl): TControlChildSizing  =
-  return AsControlChildSizing(PageControl_GetChildSizing(this.Instance))
+  return PageControl_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TPageControl, AValue: TControlChildSizing)  =
   PageControl_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TPageControl): TControlBorderSpacing  =
-  return AsControlBorderSpacing(PageControl_GetBorderSpacing(this.Instance))
+  return PageControl_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TPageControl, AValue: TControlBorderSpacing)  =
   PageControl_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Pages*(this: TPageControl, Index: int32): TTabSheet  =
-  return AsTabSheet(PageControl_GetPages(this.Instance, Index))
+  return PageControl_GetPages(this.Instance, Index).AsTabSheet
 
 proc DockClients*(this: TPageControl, Index: int32): TControl  =
-  return AsControl(PageControl_GetDockClients(this.Instance, Index))
+  return PageControl_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TPageControl, Index: int32): TControl  =
-  return AsControl(PageControl_GetControls(this.Instance, Index))
+  return PageControl_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TPageControl, AIndex: int32): TComponent  =
-  return AsComponent(PageControl_GetComponents(this.Instance, AIndex))
+  return PageControl_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TPageControl, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(PageControl_GetAnchorSide(this.Instance, AKind))
+  return PageControl_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TPageControlClass*(): TClass = PageControl_StaticClassType()
 
@@ -20479,7 +20479,7 @@ proc ContainsControl*(this: TTabSheet, Control: TControl): bool =
   return TabSheet_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TTabSheet, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(TabSheet_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return TabSheet_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TTabSheet) =
   TabSheet_DisableAlign(this.Instance)
@@ -20488,7 +20488,7 @@ proc EnableAlign*(this: TTabSheet) =
   TabSheet_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TTabSheet, ControlName: string): TControl =
-  return AsControl(TabSheet_FindChildControl(this.Instance, ControlName))
+  return TabSheet_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TTabSheet, AllLevels: bool) =
   TabSheet_FlipChildren(this.Instance, AllLevels)
@@ -20575,7 +20575,7 @@ proc SetTextBuf*(this: TTabSheet, Buffer: string) =
   TabSheet_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TTabSheet, AName: string): TComponent =
-  return AsComponent(TabSheet_FindComponent(this.Instance, AName))
+  return TabSheet_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TTabSheet): string =
   return $TabSheet_GetNamePath(this.Instance)
@@ -20623,7 +20623,7 @@ proc AnchorClient*(this: TTabSheet, ASpace: int32) =
   TabSheet_AnchorClient(this.Instance, ASpace)
 
 proc PageControl*(this: TTabSheet): TPageControl  =
-  return AsPageControl(TabSheet_GetPageControl(this.Instance))
+  return TabSheet_GetPageControl(this.Instance).AsPageControl
 
 proc `PageControl=`*(this: TTabSheet, AValue: TPageControl)  =
   TabSheet_SetPageControl(this.Instance, CheckPtr(AValue))
@@ -20656,7 +20656,7 @@ proc `Enabled=`*(this: TTabSheet, AValue: bool)  =
   TabSheet_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TTabSheet): TFont  =
-  return AsFont(TabSheet_GetFont(this.Instance))
+  return TabSheet_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TTabSheet, AValue: TFont)  =
   TabSheet_SetFont(this.Instance, CheckPtr(AValue))
@@ -20680,7 +20680,7 @@ proc `Left=`*(this: TTabSheet, AValue: int32)  =
   TabSheet_SetLeft(this.Instance, AValue)
 
 proc Constraints*(this: TTabSheet): TSizeConstraints  =
-  return AsSizeConstraints(TabSheet_GetConstraints(this.Instance))
+  return TabSheet_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TTabSheet, AValue: TSizeConstraints)  =
   TabSheet_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -20710,7 +20710,7 @@ proc `ParentShowHint=`*(this: TTabSheet, AValue: bool)  =
   TabSheet_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TTabSheet): TPopupMenu  =
-  return AsPopupMenu(TabSheet_GetPopupMenu(this.Instance))
+  return TabSheet_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TTabSheet, AValue: TPopupMenu)  =
   TabSheet_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -20803,7 +20803,7 @@ proc VisibleDockClientCount*(this: TTabSheet): int32  =
   return TabSheet_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TTabSheet): TBrush  =
-  return AsBrush(TabSheet_GetBrush(this.Instance))
+  return TabSheet_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TTabSheet): int32  =
   return TabSheet_GetControlCount(this.Instance)
@@ -20839,7 +20839,7 @@ proc `UseDockManager=`*(this: TTabSheet, AValue: bool)  =
   TabSheet_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TTabSheet): TAction  =
-  return AsAction(TabSheet_GetAction(this.Instance))
+  return TabSheet_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TTabSheet, AValue: TAction)  =
   TabSheet_SetAction(this.Instance, CheckPtr(AValue))
@@ -20902,7 +20902,7 @@ proc Floating*(this: TTabSheet): bool  =
   return TabSheet_GetFloating(this.Instance)
 
 proc Parent*(this: TTabSheet): TWinControl  =
-  return AsWinControl(TabSheet_GetParent(this.Instance))
+  return TabSheet_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TTabSheet, AValue: TWinControl)  =
   TabSheet_SetParent(this.Instance, CheckPtr(AValue))
@@ -20929,7 +20929,7 @@ proc `ComponentIndex=`*(this: TTabSheet, AValue: int32)  =
   TabSheet_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TTabSheet): TComponent  =
-  return AsComponent(TabSheet_GetOwner(this.Instance))
+  return TabSheet_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TTabSheet): string  =
   return $TabSheet_GetName(this.Instance)
@@ -20944,52 +20944,52 @@ proc `Tag=`*(this: TTabSheet, AValue: int)  =
   TabSheet_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TTabSheet): TAnchorSide  =
-  return AsAnchorSide(TabSheet_GetAnchorSideLeft(this.Instance))
+  return TabSheet_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TTabSheet, AValue: TAnchorSide)  =
   TabSheet_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TTabSheet): TAnchorSide  =
-  return AsAnchorSide(TabSheet_GetAnchorSideTop(this.Instance))
+  return TabSheet_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TTabSheet, AValue: TAnchorSide)  =
   TabSheet_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TTabSheet): TAnchorSide  =
-  return AsAnchorSide(TabSheet_GetAnchorSideRight(this.Instance))
+  return TabSheet_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TTabSheet, AValue: TAnchorSide)  =
   TabSheet_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TTabSheet): TAnchorSide  =
-  return AsAnchorSide(TabSheet_GetAnchorSideBottom(this.Instance))
+  return TabSheet_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TTabSheet, AValue: TAnchorSide)  =
   TabSheet_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TTabSheet): TControlChildSizing  =
-  return AsControlChildSizing(TabSheet_GetChildSizing(this.Instance))
+  return TabSheet_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TTabSheet, AValue: TControlChildSizing)  =
   TabSheet_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TTabSheet): TControlBorderSpacing  =
-  return AsControlBorderSpacing(TabSheet_GetBorderSpacing(this.Instance))
+  return TabSheet_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TTabSheet, AValue: TControlBorderSpacing)  =
   TabSheet_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TTabSheet, Index: int32): TControl  =
-  return AsControl(TabSheet_GetDockClients(this.Instance, Index))
+  return TabSheet_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TTabSheet, Index: int32): TControl  =
-  return AsControl(TabSheet_GetControls(this.Instance, Index))
+  return TabSheet_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TTabSheet, AIndex: int32): TComponent  =
-  return AsComponent(TabSheet_GetComponents(this.Instance, AIndex))
+  return TabSheet_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TTabSheet, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(TabSheet_GetAnchorSide(this.Instance, AKind))
+  return TabSheet_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TTabSheetClass*(): TClass = TabSheet_StaticClassType()
 
@@ -21012,7 +21012,7 @@ proc ContainsControl*(this: TButton, Control: TControl): bool =
   return Button_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TButton, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(Button_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return Button_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TButton) =
   Button_DisableAlign(this.Instance)
@@ -21021,7 +21021,7 @@ proc EnableAlign*(this: TButton) =
   Button_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TButton, ControlName: string): TControl =
-  return AsControl(Button_FindChildControl(this.Instance, ControlName))
+  return Button_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TButton, AllLevels: bool) =
   Button_FlipChildren(this.Instance, AllLevels)
@@ -21108,7 +21108,7 @@ proc SetTextBuf*(this: TButton, Buffer: string) =
   Button_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TButton, AName: string): TComponent =
-  return AsComponent(Button_FindComponent(this.Instance, AName))
+  return Button_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TButton): string =
   return $Button_GetNamePath(this.Instance)
@@ -21156,7 +21156,7 @@ proc AnchorClient*(this: TButton, ASpace: int32) =
   Button_AnchorClient(this.Instance, ASpace)
 
 proc Action*(this: TButton): TAction  =
-  return AsAction(Button_GetAction(this.Instance))
+  return Button_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TButton, AValue: TAction)  =
   Button_SetAction(this.Instance, CheckPtr(AValue))
@@ -21192,7 +21192,7 @@ proc `Caption=`*(this: TButton, AValue: string)  =
   Button_SetCaption(this.Instance, AValue)
 
 proc Constraints*(this: TButton): TSizeConstraints  =
-  return AsSizeConstraints(Button_GetConstraints(this.Instance))
+  return Button_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TButton, AValue: TSizeConstraints)  =
   Button_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -21234,7 +21234,7 @@ proc `Enabled=`*(this: TButton, AValue: bool)  =
   Button_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TButton): TFont  =
-  return AsFont(Button_GetFont(this.Instance))
+  return Button_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TButton, AValue: TFont)  =
   Button_SetFont(this.Instance, CheckPtr(AValue))
@@ -21264,7 +21264,7 @@ proc `ParentShowHint=`*(this: TButton, AValue: bool)  =
   Button_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TButton): TPopupMenu  =
-  return AsPopupMenu(Button_GetPopupMenu(this.Instance))
+  return Button_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TButton, AValue: TPopupMenu)  =
   Button_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -21354,7 +21354,7 @@ proc VisibleDockClientCount*(this: TButton): int32  =
   return Button_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TButton): TBrush  =
-  return AsBrush(Button_GetBrush(this.Instance))
+  return Button_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TButton): int32  =
   return Button_GetControlCount(this.Instance)
@@ -21417,7 +21417,7 @@ proc Floating*(this: TButton): bool  =
   return Button_GetFloating(this.Instance)
 
 proc Parent*(this: TButton): TWinControl  =
-  return AsWinControl(Button_GetParent(this.Instance))
+  return Button_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TButton, AValue: TWinControl)  =
   Button_SetParent(this.Instance, CheckPtr(AValue))
@@ -21468,7 +21468,7 @@ proc `ComponentIndex=`*(this: TButton, AValue: int32)  =
   Button_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TButton): TComponent  =
-  return AsComponent(Button_GetOwner(this.Instance))
+  return Button_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TButton): string  =
   return $Button_GetName(this.Instance)
@@ -21483,52 +21483,52 @@ proc `Tag=`*(this: TButton, AValue: int)  =
   Button_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TButton): TAnchorSide  =
-  return AsAnchorSide(Button_GetAnchorSideLeft(this.Instance))
+  return Button_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TButton, AValue: TAnchorSide)  =
   Button_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TButton): TAnchorSide  =
-  return AsAnchorSide(Button_GetAnchorSideTop(this.Instance))
+  return Button_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TButton, AValue: TAnchorSide)  =
   Button_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TButton): TAnchorSide  =
-  return AsAnchorSide(Button_GetAnchorSideRight(this.Instance))
+  return Button_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TButton, AValue: TAnchorSide)  =
   Button_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TButton): TAnchorSide  =
-  return AsAnchorSide(Button_GetAnchorSideBottom(this.Instance))
+  return Button_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TButton, AValue: TAnchorSide)  =
   Button_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TButton): TControlChildSizing  =
-  return AsControlChildSizing(Button_GetChildSizing(this.Instance))
+  return Button_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TButton, AValue: TControlChildSizing)  =
   Button_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TButton): TControlBorderSpacing  =
-  return AsControlBorderSpacing(Button_GetBorderSpacing(this.Instance))
+  return Button_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TButton, AValue: TControlBorderSpacing)  =
   Button_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TButton, Index: int32): TControl  =
-  return AsControl(Button_GetDockClients(this.Instance, Index))
+  return Button_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TButton, Index: int32): TControl  =
-  return AsControl(Button_GetControls(this.Instance, Index))
+  return Button_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TButton, AIndex: int32): TComponent  =
-  return AsComponent(Button_GetComponents(this.Instance, AIndex))
+  return Button_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TButton, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(Button_GetAnchorSide(this.Instance, AKind))
+  return Button_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TButtonClass*(): TClass = Button_StaticClassType()
 
@@ -21569,7 +21569,7 @@ proc ContainsControl*(this: TEdit, Control: TControl): bool =
   return Edit_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TEdit, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(Edit_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return Edit_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TEdit) =
   Edit_DisableAlign(this.Instance)
@@ -21578,7 +21578,7 @@ proc EnableAlign*(this: TEdit) =
   Edit_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TEdit, ControlName: string): TControl =
-  return AsControl(Edit_FindChildControl(this.Instance, ControlName))
+  return Edit_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TEdit, AllLevels: bool) =
   Edit_FlipChildren(this.Instance, AllLevels)
@@ -21665,7 +21665,7 @@ proc SetTextBuf*(this: TEdit, Buffer: string) =
   Edit_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TEdit, AName: string): TComponent =
-  return AsComponent(Edit_FindComponent(this.Instance, AName))
+  return Edit_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TEdit): string =
   return $Edit_GetNamePath(this.Instance)
@@ -21767,7 +21767,7 @@ proc `Color=`*(this: TEdit, AValue: TColor)  =
   Edit_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TEdit): TSizeConstraints  =
-  return AsSizeConstraints(Edit_GetConstraints(this.Instance))
+  return Edit_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TEdit, AValue: TSizeConstraints)  =
   Edit_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -21803,7 +21803,7 @@ proc `Enabled=`*(this: TEdit, AValue: bool)  =
   Edit_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TEdit): TFont  =
-  return AsFont(Edit_GetFont(this.Instance))
+  return Edit_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TEdit, AValue: TFont)  =
   Edit_SetFont(this.Instance, CheckPtr(AValue))
@@ -21857,7 +21857,7 @@ proc `PasswordChar=`*(this: TEdit, AValue: Char)  =
   Edit_SetPasswordChar(this.Instance, AValue)
 
 proc PopupMenu*(this: TEdit): TPopupMenu  =
-  return AsPopupMenu(Edit_GetPopupMenu(this.Instance))
+  return Edit_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TEdit, AValue: TPopupMenu)  =
   Edit_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -21998,7 +21998,7 @@ proc VisibleDockClientCount*(this: TEdit): int32  =
   return Edit_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TEdit): TBrush  =
-  return AsBrush(Edit_GetBrush(this.Instance))
+  return Edit_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TEdit): int32  =
   return Edit_GetControlCount(this.Instance)
@@ -22022,7 +22022,7 @@ proc `UseDockManager=`*(this: TEdit, AValue: bool)  =
   Edit_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TEdit): TAction  =
-  return AsAction(Edit_GetAction(this.Instance))
+  return Edit_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TEdit, AValue: TAction)  =
   Edit_SetAction(this.Instance, CheckPtr(AValue))
@@ -22067,7 +22067,7 @@ proc Floating*(this: TEdit): bool  =
   return Edit_GetFloating(this.Instance)
 
 proc Parent*(this: TEdit): TWinControl  =
-  return AsWinControl(Edit_GetParent(this.Instance))
+  return Edit_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TEdit, AValue: TWinControl)  =
   Edit_SetParent(this.Instance, CheckPtr(AValue))
@@ -22118,7 +22118,7 @@ proc `ComponentIndex=`*(this: TEdit, AValue: int32)  =
   Edit_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TEdit): TComponent  =
-  return AsComponent(Edit_GetOwner(this.Instance))
+  return Edit_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TEdit): string  =
   return $Edit_GetName(this.Instance)
@@ -22133,52 +22133,52 @@ proc `Tag=`*(this: TEdit, AValue: int)  =
   Edit_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TEdit): TAnchorSide  =
-  return AsAnchorSide(Edit_GetAnchorSideLeft(this.Instance))
+  return Edit_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TEdit, AValue: TAnchorSide)  =
   Edit_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TEdit): TAnchorSide  =
-  return AsAnchorSide(Edit_GetAnchorSideTop(this.Instance))
+  return Edit_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TEdit, AValue: TAnchorSide)  =
   Edit_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TEdit): TAnchorSide  =
-  return AsAnchorSide(Edit_GetAnchorSideRight(this.Instance))
+  return Edit_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TEdit, AValue: TAnchorSide)  =
   Edit_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TEdit): TAnchorSide  =
-  return AsAnchorSide(Edit_GetAnchorSideBottom(this.Instance))
+  return Edit_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TEdit, AValue: TAnchorSide)  =
   Edit_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TEdit): TControlChildSizing  =
-  return AsControlChildSizing(Edit_GetChildSizing(this.Instance))
+  return Edit_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TEdit, AValue: TControlChildSizing)  =
   Edit_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TEdit): TControlBorderSpacing  =
-  return AsControlBorderSpacing(Edit_GetBorderSpacing(this.Instance))
+  return Edit_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TEdit, AValue: TControlBorderSpacing)  =
   Edit_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TEdit, Index: int32): TControl  =
-  return AsControl(Edit_GetDockClients(this.Instance, Index))
+  return Edit_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TEdit, Index: int32): TControl  =
-  return AsControl(Edit_GetControls(this.Instance, Index))
+  return Edit_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TEdit, AIndex: int32): TComponent  =
-  return AsComponent(Edit_GetComponents(this.Instance, AIndex))
+  return Edit_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TEdit, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(Edit_GetAnchorSide(this.Instance, AKind))
+  return Edit_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TEditClass*(): TClass = Edit_StaticClassType()
 
@@ -22192,7 +22192,7 @@ proc NewScreen*(AOwner: TComponent): TScreen =
    result.Instance = Screen_Create(CheckPtr(AOwner))
 
 proc FindComponent*(this: TScreen, AName: string): TComponent =
-  return AsComponent(Screen_FindComponent(this.Instance, AName))
+  return Screen_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TScreen): string =
   return $Screen_GetNamePath(this.Instance)
@@ -22225,10 +22225,10 @@ proc ToString*(this: TScreen): string =
   return $Screen_ToString(this.Instance)
 
 proc ActiveControl*(this: TScreen): TWinControl  =
-  return AsWinControl(Screen_GetActiveControl(this.Instance))
+  return Screen_GetActiveControl(this.Instance).AsWinControl
 
 proc ActiveForm*(this: TScreen): TForm  =
-  return AsForm(Screen_GetActiveForm(this.Instance))
+  return Screen_GetActiveForm(this.Instance).AsForm
 
 proc CustomFormCount*(this: TScreen): int32  =
   return Screen_GetCustomFormCount(this.Instance)
@@ -22240,7 +22240,7 @@ proc `Cursor=`*(this: TScreen, AValue: TCursor)  =
   Screen_SetCursor(this.Instance, AValue)
 
 proc FocusedForm*(this: TScreen): TForm  =
-  return AsForm(Screen_GetFocusedForm(this.Instance))
+  return Screen_GetFocusedForm(this.Instance).AsForm
 
 proc MonitorCount*(this: TScreen): int32  =
   return Screen_GetMonitorCount(this.Instance)
@@ -22276,7 +22276,7 @@ proc WorkAreaWidth*(this: TScreen): int32  =
   return Screen_GetWorkAreaWidth(this.Instance)
 
 proc Fonts*(this: TScreen): TStrings  =
-  return AsStrings(Screen_GetFonts(this.Instance))
+  return Screen_GetFonts(this.Instance).AsStrings
 
 proc FormCount*(this: TScreen): int32  =
   return Screen_GetFormCount(this.Instance)
@@ -22288,7 +22288,7 @@ proc PixelsPerInch*(this: TScreen): int32  =
   return Screen_GetPixelsPerInch(this.Instance)
 
 proc PrimaryMonitor*(this: TScreen): TMonitor  =
-  return AsMonitor(Screen_GetPrimaryMonitor(this.Instance))
+  return Screen_GetPrimaryMonitor(this.Instance).AsMonitor
 
 proc Width*(this: TScreen): int32  =
   return Screen_GetWidth(this.Instance)
@@ -22303,7 +22303,7 @@ proc `ComponentIndex=`*(this: TScreen, AValue: int32)  =
   Screen_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TScreen): TComponent  =
-  return AsComponent(Screen_GetOwner(this.Instance))
+  return Screen_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TScreen): string  =
   return $Screen_GetName(this.Instance)
@@ -22324,13 +22324,13 @@ proc `Cursors=`*(this: TScreen, Index: int32, AValue: HICON)  =
   Screen_SetCursors(this.Instance, Index, AValue)
 
 proc Monitors*(this: TScreen, Index: int32): TMonitor  =
-  return AsMonitor(Screen_GetMonitors(this.Instance, Index))
+  return Screen_GetMonitors(this.Instance, Index).AsMonitor
 
 proc Forms*(this: TScreen, Index: int32): TForm  =
-  return AsForm(Screen_GetForms(this.Instance, Index))
+  return Screen_GetForms(this.Instance, Index).AsForm
 
 proc Components*(this: TScreen, AIndex: int32): TComponent  =
-  return AsComponent(Screen_GetComponents(this.Instance, AIndex))
+  return Screen_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TScreenClass*(): TClass = Screen_StaticClassType()
 
@@ -22475,7 +22475,7 @@ proc `Width=`*(this: TListColumn, AValue: int32)  =
   ListColumn_SetWidth(this.Instance, AValue)
 
 proc Collection*(this: TListColumn): TCollection  =
-  return AsCollection(ListColumn_GetCollection(this.Instance))
+  return ListColumn_GetCollection(this.Instance).AsCollection
 
 proc `Collection=`*(this: TListColumn, AValue: TCollection)  =
   ListColumn_SetCollection(this.Instance, CheckPtr(AValue))
@@ -22531,7 +22531,7 @@ proc ToString*(this: TCollectionItem): string =
   return $CollectionItem_ToString(this.Instance)
 
 proc Collection*(this: TCollectionItem): TCollection  =
-  return AsCollection(CollectionItem_GetCollection(this.Instance))
+  return CollectionItem_GetCollection(this.Instance).AsCollection
 
 proc `Collection=`*(this: TCollectionItem, AValue: TCollection)  =
   CollectionItem_SetCollection(this.Instance, CheckPtr(AValue))
@@ -22560,10 +22560,10 @@ proc NewStatusPanels*(AOwner: TStatusBar): TStatusPanels =
    result.Instance = StatusPanels_Create(CheckPtr(AOwner))
 
 proc Add*(this: TStatusPanels): TStatusPanel  =
-  return AsStatusPanel(StatusPanels_Add(this.Instance))
+  return StatusPanels_Add(this.Instance).AsStatusPanel
 
 proc Insert*(this: TStatusPanels, Index: int32): TStatusPanel  =
-  return AsStatusPanel(StatusPanels_Insert(this.Instance, Index))
+  return StatusPanels_Insert(this.Instance, Index).AsStatusPanel
 
 proc Owner*(this: TStatusPanels): pointer  =
   return StatusPanels_Owner(this.Instance)
@@ -22584,7 +22584,7 @@ proc EndUpdate*(this: TStatusPanels)  =
   StatusPanels_EndUpdate(this.Instance)
 
 proc FindItemID*(this: TStatusPanels, ID: int32): TCollectionItem  =
-  return AsCollectionItem(StatusPanels_FindItemID(this.Instance, ID))
+  return StatusPanels_FindItemID(this.Instance, ID).AsCollectionItem
 
 proc GetNamePath*(this: TStatusPanels): string  =
   return $StatusPanels_GetNamePath(this.Instance)
@@ -22620,7 +22620,7 @@ proc Count*(this: TStatusPanels): int32  =
   return StatusPanels_GetCount(this.Instance)
 
 proc Items*(this: TStatusPanels, Index: int32): TStatusPanel  =
-  return AsStatusPanel(StatusPanels_GetItems(this.Instance, Index))
+  return StatusPanels_GetItems(this.Instance, Index).AsStatusPanel
 
 proc `Items=`*(this: TStatusPanels, Index: int32, AValue: TStatusPanel)  =
   StatusPanels_SetItems(this.Instance, Index, CheckPtr(AValue))
@@ -22694,7 +22694,7 @@ proc `Width=`*(this: TStatusPanel, AValue: int32)  =
   StatusPanel_SetWidth(this.Instance, AValue)
 
 proc Collection*(this: TStatusPanel): TCollection  =
-  return AsCollection(StatusPanel_GetCollection(this.Instance))
+  return StatusPanel_GetCollection(this.Instance).AsCollection
 
 proc `Collection=`*(this: TStatusPanel, AValue: TCollection)  =
   StatusPanel_SetCollection(this.Instance, CheckPtr(AValue))
@@ -22750,7 +22750,7 @@ proc ContainsControl*(this: TSpinEdit, Control: TControl): bool =
   return SpinEdit_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TSpinEdit, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(SpinEdit_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return SpinEdit_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TSpinEdit) =
   SpinEdit_DisableAlign(this.Instance)
@@ -22759,7 +22759,7 @@ proc EnableAlign*(this: TSpinEdit) =
   SpinEdit_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TSpinEdit, ControlName: string): TControl =
-  return AsControl(SpinEdit_FindChildControl(this.Instance, ControlName))
+  return SpinEdit_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TSpinEdit, AllLevels: bool) =
   SpinEdit_FlipChildren(this.Instance, AllLevels)
@@ -22846,7 +22846,7 @@ proc SetTextBuf*(this: TSpinEdit, Buffer: string) =
   SpinEdit_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TSpinEdit, AName: string): TComponent =
-  return AsComponent(SpinEdit_FindComponent(this.Instance, AName))
+  return SpinEdit_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TSpinEdit): string =
   return $SpinEdit_GetNamePath(this.Instance)
@@ -22918,7 +22918,7 @@ proc `Color=`*(this: TSpinEdit, AValue: TColor)  =
   SpinEdit_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TSpinEdit): TSizeConstraints  =
-  return AsSizeConstraints(SpinEdit_GetConstraints(this.Instance))
+  return SpinEdit_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TSpinEdit, AValue: TSizeConstraints)  =
   SpinEdit_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -22930,7 +22930,7 @@ proc `Enabled=`*(this: TSpinEdit, AValue: bool)  =
   SpinEdit_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TSpinEdit): TFont  =
-  return AsFont(SpinEdit_GetFont(this.Instance))
+  return SpinEdit_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TSpinEdit, AValue: TFont)  =
   SpinEdit_SetFont(this.Instance, CheckPtr(AValue))
@@ -22978,7 +22978,7 @@ proc `ParentShowHint=`*(this: TSpinEdit, AValue: bool)  =
   SpinEdit_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TSpinEdit): TPopupMenu  =
-  return AsPopupMenu(SpinEdit_GetPopupMenu(this.Instance))
+  return SpinEdit_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TSpinEdit, AValue: TPopupMenu)  =
   SpinEdit_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -23116,7 +23116,7 @@ proc VisibleDockClientCount*(this: TSpinEdit): int32  =
   return SpinEdit_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TSpinEdit): TBrush  =
-  return AsBrush(SpinEdit_GetBrush(this.Instance))
+  return SpinEdit_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TSpinEdit): int32  =
   return SpinEdit_GetControlCount(this.Instance)
@@ -23146,7 +23146,7 @@ proc `UseDockManager=`*(this: TSpinEdit, AValue: bool)  =
   SpinEdit_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TSpinEdit): TAction  =
-  return AsAction(SpinEdit_GetAction(this.Instance))
+  return SpinEdit_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TSpinEdit, AValue: TAction)  =
   SpinEdit_SetAction(this.Instance, CheckPtr(AValue))
@@ -23203,7 +23203,7 @@ proc Floating*(this: TSpinEdit): bool  =
   return SpinEdit_GetFloating(this.Instance)
 
 proc Parent*(this: TSpinEdit): TWinControl  =
-  return AsWinControl(SpinEdit_GetParent(this.Instance))
+  return SpinEdit_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TSpinEdit, AValue: TWinControl)  =
   SpinEdit_SetParent(this.Instance, CheckPtr(AValue))
@@ -23254,7 +23254,7 @@ proc `ComponentIndex=`*(this: TSpinEdit, AValue: int32)  =
   SpinEdit_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TSpinEdit): TComponent  =
-  return AsComponent(SpinEdit_GetOwner(this.Instance))
+  return SpinEdit_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TSpinEdit): string  =
   return $SpinEdit_GetName(this.Instance)
@@ -23269,52 +23269,52 @@ proc `Tag=`*(this: TSpinEdit, AValue: int)  =
   SpinEdit_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TSpinEdit): TAnchorSide  =
-  return AsAnchorSide(SpinEdit_GetAnchorSideLeft(this.Instance))
+  return SpinEdit_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TSpinEdit, AValue: TAnchorSide)  =
   SpinEdit_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TSpinEdit): TAnchorSide  =
-  return AsAnchorSide(SpinEdit_GetAnchorSideTop(this.Instance))
+  return SpinEdit_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TSpinEdit, AValue: TAnchorSide)  =
   SpinEdit_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TSpinEdit): TAnchorSide  =
-  return AsAnchorSide(SpinEdit_GetAnchorSideRight(this.Instance))
+  return SpinEdit_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TSpinEdit, AValue: TAnchorSide)  =
   SpinEdit_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TSpinEdit): TAnchorSide  =
-  return AsAnchorSide(SpinEdit_GetAnchorSideBottom(this.Instance))
+  return SpinEdit_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TSpinEdit, AValue: TAnchorSide)  =
   SpinEdit_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TSpinEdit): TControlChildSizing  =
-  return AsControlChildSizing(SpinEdit_GetChildSizing(this.Instance))
+  return SpinEdit_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TSpinEdit, AValue: TControlChildSizing)  =
   SpinEdit_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TSpinEdit): TControlBorderSpacing  =
-  return AsControlBorderSpacing(SpinEdit_GetBorderSpacing(this.Instance))
+  return SpinEdit_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TSpinEdit, AValue: TControlBorderSpacing)  =
   SpinEdit_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TSpinEdit, Index: int32): TControl  =
-  return AsControl(SpinEdit_GetDockClients(this.Instance, Index))
+  return SpinEdit_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TSpinEdit, Index: int32): TControl  =
-  return AsControl(SpinEdit_GetControls(this.Instance, Index))
+  return SpinEdit_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TSpinEdit, AIndex: int32): TComponent  =
-  return AsComponent(SpinEdit_GetComponents(this.Instance, AIndex))
+  return SpinEdit_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TSpinEdit, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(SpinEdit_GetAnchorSide(this.Instance, AKind))
+  return SpinEdit_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TSpinEditClass*(): TClass = SpinEdit_StaticClassType()
 
@@ -23367,7 +23367,7 @@ proc ContainsControl*(this: TMiniWebview, Control: TControl): bool =
   return MiniWebview_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TMiniWebview, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(MiniWebview_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return MiniWebview_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TMiniWebview) =
   MiniWebview_DisableAlign(this.Instance)
@@ -23376,7 +23376,7 @@ proc EnableAlign*(this: TMiniWebview) =
   MiniWebview_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TMiniWebview, ControlName: string): TControl =
-  return AsControl(MiniWebview_FindChildControl(this.Instance, ControlName))
+  return MiniWebview_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TMiniWebview, AllLevels: bool) =
   MiniWebview_FlipChildren(this.Instance, AllLevels)
@@ -23457,7 +23457,7 @@ proc SetTextBuf*(this: TMiniWebview, Buffer: string) =
   MiniWebview_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TMiniWebview, AName: string): TComponent =
-  return AsComponent(MiniWebview_FindComponent(this.Instance, AName))
+  return MiniWebview_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TMiniWebview): string =
   return $MiniWebview_GetNamePath(this.Instance)
@@ -23520,7 +23520,7 @@ proc `Anchors=`*(this: TMiniWebview, AValue: TAnchors)  =
   MiniWebview_SetAnchors(this.Instance, AValue)
 
 proc Constraints*(this: TMiniWebview): TSizeConstraints  =
-  return AsSizeConstraints(MiniWebview_GetConstraints(this.Instance))
+  return MiniWebview_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TMiniWebview, AValue: TSizeConstraints)  =
   MiniWebview_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -23565,7 +23565,7 @@ proc VisibleDockClientCount*(this: TMiniWebview): int32  =
   return MiniWebview_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TMiniWebview): TBrush  =
-  return AsBrush(MiniWebview_GetBrush(this.Instance))
+  return MiniWebview_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TMiniWebview): int32  =
   return MiniWebview_GetControlCount(this.Instance)
@@ -23607,7 +23607,7 @@ proc `UseDockManager=`*(this: TMiniWebview, AValue: bool)  =
   MiniWebview_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TMiniWebview): TAction  =
-  return AsAction(MiniWebview_GetAction(this.Instance))
+  return MiniWebview_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TMiniWebview, AValue: TAction)  =
   MiniWebview_SetAction(this.Instance, CheckPtr(AValue))
@@ -23664,7 +23664,7 @@ proc `ShowHint=`*(this: TMiniWebview, AValue: bool)  =
   MiniWebview_SetShowHint(this.Instance, AValue)
 
 proc Parent*(this: TMiniWebview): TWinControl  =
-  return AsWinControl(MiniWebview_GetParent(this.Instance))
+  return MiniWebview_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TMiniWebview, AValue: TWinControl)  =
   MiniWebview_SetParent(this.Instance, CheckPtr(AValue))
@@ -23715,7 +23715,7 @@ proc `ComponentIndex=`*(this: TMiniWebview, AValue: int32)  =
   MiniWebview_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TMiniWebview): TComponent  =
-  return AsComponent(MiniWebview_GetOwner(this.Instance))
+  return MiniWebview_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TMiniWebview): string  =
   return $MiniWebview_GetName(this.Instance)
@@ -23730,52 +23730,52 @@ proc `Tag=`*(this: TMiniWebview, AValue: int)  =
   MiniWebview_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TMiniWebview): TAnchorSide  =
-  return AsAnchorSide(MiniWebview_GetAnchorSideLeft(this.Instance))
+  return MiniWebview_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TMiniWebview, AValue: TAnchorSide)  =
   MiniWebview_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TMiniWebview): TAnchorSide  =
-  return AsAnchorSide(MiniWebview_GetAnchorSideTop(this.Instance))
+  return MiniWebview_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TMiniWebview, AValue: TAnchorSide)  =
   MiniWebview_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TMiniWebview): TAnchorSide  =
-  return AsAnchorSide(MiniWebview_GetAnchorSideRight(this.Instance))
+  return MiniWebview_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TMiniWebview, AValue: TAnchorSide)  =
   MiniWebview_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TMiniWebview): TAnchorSide  =
-  return AsAnchorSide(MiniWebview_GetAnchorSideBottom(this.Instance))
+  return MiniWebview_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TMiniWebview, AValue: TAnchorSide)  =
   MiniWebview_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TMiniWebview): TControlChildSizing  =
-  return AsControlChildSizing(MiniWebview_GetChildSizing(this.Instance))
+  return MiniWebview_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TMiniWebview, AValue: TControlChildSizing)  =
   MiniWebview_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TMiniWebview): TControlBorderSpacing  =
-  return AsControlBorderSpacing(MiniWebview_GetBorderSpacing(this.Instance))
+  return MiniWebview_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TMiniWebview, AValue: TControlBorderSpacing)  =
   MiniWebview_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TMiniWebview, Index: int32): TControl  =
-  return AsControl(MiniWebview_GetDockClients(this.Instance, Index))
+  return MiniWebview_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TMiniWebview, Index: int32): TControl  =
-  return AsControl(MiniWebview_GetControls(this.Instance, Index))
+  return MiniWebview_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TMiniWebview, AIndex: int32): TComponent  =
-  return AsComponent(MiniWebview_GetComponents(this.Instance, AIndex))
+  return MiniWebview_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TMiniWebview, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(MiniWebview_GetAnchorSide(this.Instance, AKind))
+  return MiniWebview_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TMiniWebviewClass*(): TClass = MiniWebview_StaticClassType()
 
@@ -23876,7 +23876,7 @@ proc `Handle=`*(this: TCanvas, AValue: HDC)  =
   Canvas_SetHandle(this.Instance, AValue)
 
 proc Brush*(this: TCanvas): TBrush  =
-  return AsBrush(Canvas_GetBrush(this.Instance))
+  return Canvas_GetBrush(this.Instance).AsBrush
 
 proc `Brush=`*(this: TCanvas, AValue: TBrush)  =
   Canvas_SetBrush(this.Instance, CheckPtr(AValue))
@@ -23888,13 +23888,13 @@ proc `CopyMode=`*(this: TCanvas, AValue: int32)  =
   Canvas_SetCopyMode(this.Instance, AValue)
 
 proc Font*(this: TCanvas): TFont  =
-  return AsFont(Canvas_GetFont(this.Instance))
+  return Canvas_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TCanvas, AValue: TFont)  =
   Canvas_SetFont(this.Instance, CheckPtr(AValue))
 
 proc Pen*(this: TCanvas): TPen  =
-  return AsPen(Canvas_GetPen(this.Instance))
+  return Canvas_GetPen(this.Instance).AsPen
 
 proc `Pen=`*(this: TCanvas, AValue: TPen)  =
   Canvas_SetPen(this.Instance, CheckPtr(AValue))
@@ -24012,7 +24012,7 @@ proc MessageBox*(this: TApplication, Text: string, Caption: string, Flags: int32
   return Application_MessageBox(this.Instance, Text, Caption, Flags)
 
 proc FindComponent*(this: TApplication, AName: string): TComponent =
-  return AsComponent(Application_FindComponent(this.Instance, AName))
+  return Application_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TApplication): string =
   return $Application_GetNamePath(this.Instance)
@@ -24111,13 +24111,13 @@ proc `HintShortPause=`*(this: TApplication, AValue: int32)  =
   Application_SetHintShortPause(this.Instance, AValue)
 
 proc Icon*(this: TApplication): TIcon  =
-  return AsIcon(Application_GetIcon(this.Instance))
+  return Application_GetIcon(this.Instance).AsIcon
 
 proc `Icon=`*(this: TApplication, AValue: TIcon)  =
   Application_SetIcon(this.Instance, CheckPtr(AValue))
 
 proc MainForm*(this: TApplication): TForm  =
-  return AsForm(Application_GetMainForm(this.Instance))
+  return Application_GetMainForm(this.Instance).AsForm
 
 proc MainFormHandle*(this: TApplication): HWND  =
   return Application_GetMainFormHandle(this.Instance)
@@ -24192,7 +24192,7 @@ proc `ComponentIndex=`*(this: TApplication, AValue: int32)  =
   Application_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TApplication): TComponent  =
-  return AsComponent(Application_GetOwner(this.Instance))
+  return Application_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TApplication): string  =
   return $Application_GetName(this.Instance)
@@ -24207,7 +24207,7 @@ proc `Tag=`*(this: TApplication, AValue: int)  =
   Application_SetTag(this.Instance, AValue)
 
 proc Components*(this: TApplication, AIndex: int32): TComponent  =
-  return AsComponent(Application_GetComponents(this.Instance, AIndex))
+  return Application_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TApplicationClass*(): TClass = Application_StaticClassType()
 
@@ -24374,7 +24374,7 @@ proc ToString*(this: TPngImage): string =
   return $PngImage_ToString(this.Instance)
 
 proc Canvas*(this: TPngImage): TCanvas  =
-  return AsCanvas(PngImage_GetCanvas(this.Instance))
+  return PngImage_GetCanvas(this.Instance).AsCanvas
 
 proc Width*(this: TPngImage): int32  =
   return PngImage_GetWidth(this.Instance)
@@ -24478,7 +24478,7 @@ proc `Performance=`*(this: TJPEGImage, AValue: TJPEGPerformance)  =
   JPEGImage_SetPerformance(this.Instance, AValue)
 
 proc Canvas*(this: TJPEGImage): TCanvas  =
-  return AsCanvas(JPEGImage_GetCanvas(this.Instance))
+  return JPEGImage_GetCanvas(this.Instance).AsCanvas
 
 proc Empty*(this: TJPEGImage): bool  =
   return JPEGImage_GetEmpty(this.Instance)
@@ -24632,7 +24632,7 @@ proc NewActionList*(AOwner: TComponent): TActionList =
    result.Instance = ActionList_Create(CheckPtr(AOwner))
 
 proc FindComponent*(this: TActionList, AName: string): TComponent =
-  return AsComponent(ActionList_FindComponent(this.Instance, AName))
+  return ActionList_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TActionList): string =
   return $ActionList_GetNamePath(this.Instance)
@@ -24665,7 +24665,7 @@ proc ToString*(this: TActionList): string =
   return $ActionList_ToString(this.Instance)
 
 proc Images*(this: TActionList): TImageList  =
-  return AsImageList(ActionList_GetImages(this.Instance))
+  return ActionList_GetImages(this.Instance).AsImageList
 
 proc `Images=`*(this: TActionList, AValue: TImageList)  =
   ActionList_SetImages(this.Instance, CheckPtr(AValue))
@@ -24689,7 +24689,7 @@ proc `ComponentIndex=`*(this: TActionList, AValue: int32)  =
   ActionList_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TActionList): TComponent  =
-  return AsComponent(ActionList_GetOwner(this.Instance))
+  return ActionList_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TActionList): string  =
   return $ActionList_GetName(this.Instance)
@@ -24704,7 +24704,7 @@ proc `Tag=`*(this: TActionList, AValue: int)  =
   ActionList_SetTag(this.Instance, AValue)
 
 proc Components*(this: TActionList, AIndex: int32): TComponent  =
-  return AsComponent(ActionList_GetComponents(this.Instance, AIndex))
+  return ActionList_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TActionListClass*(): TClass = ActionList_StaticClassType()
 
@@ -24727,7 +24727,7 @@ proc HasParent*(this: TAction): bool =
   return Action_HasParent(this.Instance)
 
 proc FindComponent*(this: TAction, AName: string): TComponent =
-  return AsComponent(Action_FindComponent(this.Instance, AName))
+  return Action_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TAction): string =
   return $Action_GetNamePath(this.Instance)
@@ -24832,7 +24832,7 @@ proc `ComponentIndex=`*(this: TAction, AValue: int32)  =
   Action_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TAction): TComponent  =
-  return AsComponent(Action_GetOwner(this.Instance))
+  return Action_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TAction): string  =
   return $Action_GetName(this.Instance)
@@ -24847,7 +24847,7 @@ proc `Tag=`*(this: TAction, AValue: int)  =
   Action_SetTag(this.Instance, AValue)
 
 proc Components*(this: TAction, AIndex: int32): TComponent  =
-  return AsComponent(Action_GetComponents(this.Instance, AIndex))
+  return Action_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TActionClass*(): TClass = Action_StaticClassType()
 
@@ -24924,7 +24924,7 @@ proc SetTextBuf*(this: TToolButton, Buffer: string) =
   ToolButton_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TToolButton, AName: string): TComponent =
-  return AsComponent(ToolButton_FindComponent(this.Instance, AName))
+  return ToolButton_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TToolButton): string =
   return $ToolButton_GetNamePath(this.Instance)
@@ -24975,7 +24975,7 @@ proc Index*(this: TToolButton): int32  =
   return ToolButton_GetIndex(this.Instance)
 
 proc Action*(this: TToolButton): TAction  =
-  return AsAction(ToolButton_GetAction(this.Instance))
+  return ToolButton_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TToolButton, AValue: TAction)  =
   ToolButton_SetAction(this.Instance, CheckPtr(AValue))
@@ -25023,7 +25023,7 @@ proc `DragMode=`*(this: TToolButton, AValue: TDragMode)  =
   ToolButton_SetDragMode(this.Instance, AValue)
 
 proc DropdownMenu*(this: TToolButton): TPopupMenu  =
-  return AsPopupMenu(ToolButton_GetDropdownMenu(this.Instance))
+  return ToolButton_GetDropdownMenu(this.Instance).AsPopupMenu
 
 proc `DropdownMenu=`*(this: TToolButton, AValue: TPopupMenu)  =
   ToolButton_SetDropdownMenu(this.Instance, CheckPtr(AValue))
@@ -25071,7 +25071,7 @@ proc `ParentShowHint=`*(this: TToolButton, AValue: bool)  =
   ToolButton_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TToolButton): TPopupMenu  =
-  return AsPopupMenu(ToolButton_GetPopupMenu(this.Instance))
+  return ToolButton_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TToolButton, AValue: TPopupMenu)  =
   ToolButton_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -25185,7 +25185,7 @@ proc `ClientWidth=`*(this: TToolButton, AValue: int32)  =
   ToolButton_SetClientWidth(this.Instance, AValue)
 
 proc Constraints*(this: TToolButton): TSizeConstraints  =
-  return AsSizeConstraints(ToolButton_GetConstraints(this.Instance))
+  return ToolButton_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TToolButton, AValue: TSizeConstraints)  =
   ToolButton_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -25206,7 +25206,7 @@ proc Floating*(this: TToolButton): bool  =
   return ToolButton_GetFloating(this.Instance)
 
 proc Parent*(this: TToolButton): TWinControl  =
-  return AsWinControl(ToolButton_GetParent(this.Instance))
+  return ToolButton_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TToolButton, AValue: TWinControl)  =
   ToolButton_SetParent(this.Instance, CheckPtr(AValue))
@@ -25245,7 +25245,7 @@ proc `ComponentIndex=`*(this: TToolButton, AValue: int32)  =
   ToolButton_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TToolButton): TComponent  =
-  return AsComponent(ToolButton_GetOwner(this.Instance))
+  return ToolButton_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TToolButton): string  =
   return $ToolButton_GetName(this.Instance)
@@ -25260,40 +25260,40 @@ proc `Tag=`*(this: TToolButton, AValue: int)  =
   ToolButton_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TToolButton): TAnchorSide  =
-  return AsAnchorSide(ToolButton_GetAnchorSideLeft(this.Instance))
+  return ToolButton_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TToolButton, AValue: TAnchorSide)  =
   ToolButton_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TToolButton): TAnchorSide  =
-  return AsAnchorSide(ToolButton_GetAnchorSideTop(this.Instance))
+  return ToolButton_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TToolButton, AValue: TAnchorSide)  =
   ToolButton_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TToolButton): TAnchorSide  =
-  return AsAnchorSide(ToolButton_GetAnchorSideRight(this.Instance))
+  return ToolButton_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TToolButton, AValue: TAnchorSide)  =
   ToolButton_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TToolButton): TAnchorSide  =
-  return AsAnchorSide(ToolButton_GetAnchorSideBottom(this.Instance))
+  return ToolButton_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TToolButton, AValue: TAnchorSide)  =
   ToolButton_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TToolButton): TControlBorderSpacing  =
-  return AsControlBorderSpacing(ToolButton_GetBorderSpacing(this.Instance))
+  return ToolButton_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TToolButton, AValue: TControlBorderSpacing)  =
   ToolButton_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Components*(this: TToolButton, AIndex: int32): TComponent  =
-  return AsComponent(ToolButton_GetComponents(this.Instance, AIndex))
+  return ToolButton_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TToolButton, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(ToolButton_GetAnchorSide(this.Instance, AKind))
+  return ToolButton_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TToolButtonClass*(): TClass = ToolButton_StaticClassType()
 
@@ -25623,7 +25623,7 @@ proc TClipboardClass*(): TClass = Clipboard_StaticClassType()
 
 
 proc `Clipboard=`*(this: TClipboard): TClipboard  =
-  return AsClipboard(Clipboard_SetClipboard(this.Instance))
+  return Clipboard_SetClipboard(this.Instance).AsClipboard
 
 #------------------------- TMonitor -------------------------
 
@@ -25753,7 +25753,7 @@ proc SetTextBuf*(this: TPaintBox, Buffer: string) =
   PaintBox_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TPaintBox, AName: string): TComponent =
-  return AsComponent(PaintBox_FindComponent(this.Instance, AName))
+  return PaintBox_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TPaintBox): string =
   return $PaintBox_GetNamePath(this.Instance)
@@ -25801,7 +25801,7 @@ proc AnchorClient*(this: TPaintBox, ASpace: int32) =
   PaintBox_AnchorClient(this.Instance, ASpace)
 
 proc Canvas*(this: TPaintBox): TCanvas  =
-  return AsCanvas(PaintBox_GetCanvas(this.Instance))
+  return PaintBox_GetCanvas(this.Instance).AsCanvas
 
 proc Align*(this: TPaintBox): TAlign  =
   return PaintBox_GetAlign(this.Instance)
@@ -25822,7 +25822,7 @@ proc `Color=`*(this: TPaintBox, AValue: TColor)  =
   PaintBox_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TPaintBox): TSizeConstraints  =
-  return AsSizeConstraints(PaintBox_GetConstraints(this.Instance))
+  return PaintBox_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TPaintBox, AValue: TSizeConstraints)  =
   PaintBox_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -25846,7 +25846,7 @@ proc `Enabled=`*(this: TPaintBox, AValue: bool)  =
   PaintBox_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TPaintBox): TFont  =
-  return AsFont(PaintBox_GetFont(this.Instance))
+  return PaintBox_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TPaintBox, AValue: TFont)  =
   PaintBox_SetFont(this.Instance, CheckPtr(AValue))
@@ -25870,7 +25870,7 @@ proc `ParentShowHint=`*(this: TPaintBox, AValue: bool)  =
   PaintBox_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TPaintBox): TPopupMenu  =
-  return AsPopupMenu(PaintBox_GetPopupMenu(this.Instance))
+  return PaintBox_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TPaintBox, AValue: TPopupMenu)  =
   PaintBox_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -25921,7 +25921,7 @@ proc `OnPaint=`*(this: TPaintBox, AEventId: TNotifyEvent)  =
   PaintBox_SetOnPaint(this.Instance, AEventId)
 
 proc Action*(this: TPaintBox): TAction  =
-  return AsAction(PaintBox_GetAction(this.Instance))
+  return PaintBox_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TPaintBox, AValue: TAction)  =
   PaintBox_SetAction(this.Instance, CheckPtr(AValue))
@@ -25972,7 +25972,7 @@ proc Floating*(this: TPaintBox): bool  =
   return PaintBox_GetFloating(this.Instance)
 
 proc Parent*(this: TPaintBox): TWinControl  =
-  return AsWinControl(PaintBox_GetParent(this.Instance))
+  return PaintBox_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TPaintBox, AValue: TWinControl)  =
   PaintBox_SetParent(this.Instance, CheckPtr(AValue))
@@ -26023,7 +26023,7 @@ proc `ComponentIndex=`*(this: TPaintBox, AValue: int32)  =
   PaintBox_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TPaintBox): TComponent  =
-  return AsComponent(PaintBox_GetOwner(this.Instance))
+  return PaintBox_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TPaintBox): string  =
   return $PaintBox_GetName(this.Instance)
@@ -26038,40 +26038,40 @@ proc `Tag=`*(this: TPaintBox, AValue: int)  =
   PaintBox_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TPaintBox): TAnchorSide  =
-  return AsAnchorSide(PaintBox_GetAnchorSideLeft(this.Instance))
+  return PaintBox_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TPaintBox, AValue: TAnchorSide)  =
   PaintBox_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TPaintBox): TAnchorSide  =
-  return AsAnchorSide(PaintBox_GetAnchorSideTop(this.Instance))
+  return PaintBox_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TPaintBox, AValue: TAnchorSide)  =
   PaintBox_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TPaintBox): TAnchorSide  =
-  return AsAnchorSide(PaintBox_GetAnchorSideRight(this.Instance))
+  return PaintBox_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TPaintBox, AValue: TAnchorSide)  =
   PaintBox_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TPaintBox): TAnchorSide  =
-  return AsAnchorSide(PaintBox_GetAnchorSideBottom(this.Instance))
+  return PaintBox_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TPaintBox, AValue: TAnchorSide)  =
   PaintBox_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TPaintBox): TControlBorderSpacing  =
-  return AsControlBorderSpacing(PaintBox_GetBorderSpacing(this.Instance))
+  return PaintBox_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TPaintBox, AValue: TControlBorderSpacing)  =
   PaintBox_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Components*(this: TPaintBox, AIndex: int32): TComponent  =
-  return AsComponent(PaintBox_GetComponents(this.Instance, AIndex))
+  return PaintBox_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TPaintBox, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(PaintBox_GetAnchorSide(this.Instance, AKind))
+  return PaintBox_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TPaintBoxClass*(): TClass = PaintBox_StaticClassType()
 
@@ -26085,7 +26085,7 @@ proc NewTimer*(AOwner: TComponent): TTimer =
    result.Instance = Timer_Create(CheckPtr(AOwner))
 
 proc FindComponent*(this: TTimer, AName: string): TComponent =
-  return AsComponent(Timer_FindComponent(this.Instance, AName))
+  return Timer_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TTimer): string =
   return $Timer_GetNamePath(this.Instance)
@@ -26142,7 +26142,7 @@ proc `ComponentIndex=`*(this: TTimer, AValue: int32)  =
   Timer_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TTimer): TComponent  =
-  return AsComponent(Timer_GetOwner(this.Instance))
+  return Timer_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TTimer): string  =
   return $Timer_GetName(this.Instance)
@@ -26157,7 +26157,7 @@ proc `Tag=`*(this: TTimer, AValue: int)  =
   Timer_SetTag(this.Instance, AValue)
 
 proc Components*(this: TTimer, AIndex: int32): TComponent  =
-  return AsComponent(Timer_GetComponents(this.Instance, AIndex))
+  return Timer_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TTimerClass*(): TClass = Timer_StaticClassType()
 
@@ -26180,7 +26180,7 @@ proc Delete*(this: TList, Index: int32)  =
   List_Delete(this.Instance, Index)
 
 proc Expand*(this: TList): TList  =
-  return AsList(List_Expand(this.Instance))
+  return List_Expand(this.Instance).AsList
 
 proc IndexOf*(this: TList, Item: pointer): int32  =
   return List_IndexOf(this.Instance, Item)
@@ -26272,7 +26272,7 @@ proc ContainsControl*(this: TForm, Control: TControl): bool =
   return Form_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TForm, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(Form_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return Form_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TForm) =
   Form_DisableAlign(this.Instance)
@@ -26281,7 +26281,7 @@ proc EnableAlign*(this: TForm) =
   Form_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TForm, ControlName: string): TControl =
-  return AsControl(Form_FindChildControl(this.Instance, ControlName))
+  return Form_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TForm, AllLevels: bool) =
   Form_FlipChildren(this.Instance, AllLevels)
@@ -26359,7 +26359,7 @@ proc SetTextBuf*(this: TForm, Buffer: string) =
   Form_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TForm, AName: string): TComponent =
-  return AsComponent(Form_FindComponent(this.Instance, AName))
+  return Form_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TForm): string =
   return $Form_GetNamePath(this.Instance)
@@ -26422,13 +26422,13 @@ proc `ShowInTaskBar=`*(this: TForm, AValue: TShowInTaskbar)  =
   Form_SetShowInTaskBar(this.Instance, AValue)
 
 proc Action*(this: TForm): TAction  =
-  return AsAction(Form_GetAction(this.Instance))
+  return Form_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TForm, AValue: TAction)  =
   Form_SetAction(this.Instance, CheckPtr(AValue))
 
 proc ActiveControl*(this: TForm): TWinControl  =
-  return AsWinControl(Form_GetActiveControl(this.Instance))
+  return Form_GetActiveControl(this.Instance).AsWinControl
 
 proc `ActiveControl=`*(this: TForm, AValue: TWinControl)  =
   Form_SetActiveControl(this.Instance, CheckPtr(AValue))
@@ -26518,7 +26518,7 @@ proc `Color=`*(this: TForm, AValue: TColor)  =
   Form_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TForm): TSizeConstraints  =
-  return AsSizeConstraints(Form_GetConstraints(this.Instance))
+  return Form_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TForm, AValue: TSizeConstraints)  =
   Form_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -26572,7 +26572,7 @@ proc `ParentFont=`*(this: TForm, AValue: bool)  =
   Form_SetParentFont(this.Instance, AValue)
 
 proc Font*(this: TForm): TFont  =
-  return AsFont(Form_GetFont(this.Instance))
+  return Form_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TForm, AValue: TFont)  =
   Form_SetFont(this.Instance, CheckPtr(AValue))
@@ -26590,13 +26590,13 @@ proc `Height=`*(this: TForm, AValue: int32)  =
   Form_SetHeight(this.Instance, AValue)
 
 proc HorzScrollBar*(this: TForm): TControlScrollBar  =
-  return AsControlScrollBar(Form_GetHorzScrollBar(this.Instance))
+  return Form_GetHorzScrollBar(this.Instance).AsControlScrollBar
 
 proc `HorzScrollBar=`*(this: TForm, AValue: TControlScrollBar)  =
   Form_SetHorzScrollBar(this.Instance, CheckPtr(AValue))
 
 proc Icon*(this: TForm): TIcon  =
-  return AsIcon(Form_GetIcon(this.Instance))
+  return Form_GetIcon(this.Instance).AsIcon
 
 proc `Icon=`*(this: TForm, AValue: TIcon)  =
   Form_SetIcon(this.Instance, CheckPtr(AValue))
@@ -26608,7 +26608,7 @@ proc `KeyPreview=`*(this: TForm, AValue: bool)  =
   Form_SetKeyPreview(this.Instance, AValue)
 
 proc Menu*(this: TForm): TMainMenu  =
-  return AsMainMenu(Form_GetMenu(this.Instance))
+  return Form_GetMenu(this.Instance).AsMainMenu
 
 proc `Menu=`*(this: TForm, AValue: TMainMenu)  =
   Form_SetMenu(this.Instance, CheckPtr(AValue))
@@ -26620,7 +26620,7 @@ proc `PixelsPerInch=`*(this: TForm, AValue: int32)  =
   Form_SetPixelsPerInch(this.Instance, AValue)
 
 proc PopupMenu*(this: TForm): TPopupMenu  =
-  return AsPopupMenu(Form_GetPopupMenu(this.Instance))
+  return Form_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TForm, AValue: TPopupMenu)  =
   Form_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -26644,7 +26644,7 @@ proc `ShowHint=`*(this: TForm, AValue: bool)  =
   Form_SetShowHint(this.Instance, AValue)
 
 proc VertScrollBar*(this: TForm): TControlScrollBar  =
-  return AsControlScrollBar(Form_GetVertScrollBar(this.Instance))
+  return Form_GetVertScrollBar(this.Instance).AsControlScrollBar
 
 proc `VertScrollBar=`*(this: TForm, AValue: TControlScrollBar)  =
   Form_SetVertScrollBar(this.Instance, CheckPtr(AValue))
@@ -26764,7 +26764,7 @@ proc `OnUnDock=`*(this: TForm, AEventId: TUnDockEvent)  =
   Form_SetOnUnDock(this.Instance, AEventId)
 
 proc Canvas*(this: TForm): TCanvas  =
-  return AsCanvas(Form_GetCanvas(this.Instance))
+  return Form_GetCanvas(this.Instance).AsCanvas
 
 proc ModalResult*(this: TForm): TModalResult  =
   return Form_GetModalResult(this.Instance)
@@ -26773,7 +26773,7 @@ proc `ModalResult=`*(this: TForm, AValue: TModalResult)  =
   Form_SetModalResult(this.Instance, AValue)
 
 proc Monitor*(this: TForm): TMonitor  =
-  return AsMonitor(Form_GetMonitor(this.Instance))
+  return Form_GetMonitor(this.Instance).AsMonitor
 
 proc Left*(this: TForm): int32  =
   return Form_GetLeft(this.Instance)
@@ -26797,7 +26797,7 @@ proc VisibleDockClientCount*(this: TForm): int32  =
   return Form_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TForm): TBrush  =
-  return AsBrush(Form_GetBrush(this.Instance))
+  return Form_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TForm): int32  =
   return Form_GetControlCount(this.Instance)
@@ -26860,7 +26860,7 @@ proc Floating*(this: TForm): bool  =
   return Form_GetFloating(this.Instance)
 
 proc Parent*(this: TForm): TWinControl  =
-  return AsWinControl(Form_GetParent(this.Instance))
+  return Form_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TForm, AValue: TWinControl)  =
   Form_SetParent(this.Instance, CheckPtr(AValue))
@@ -26887,7 +26887,7 @@ proc `ComponentIndex=`*(this: TForm, AValue: int32)  =
   Form_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TForm): TComponent  =
-  return AsComponent(Form_GetOwner(this.Instance))
+  return Form_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TForm): string  =
   return $Form_GetName(this.Instance)
@@ -26902,58 +26902,58 @@ proc `Tag=`*(this: TForm, AValue: int)  =
   Form_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TForm): TAnchorSide  =
-  return AsAnchorSide(Form_GetAnchorSideLeft(this.Instance))
+  return Form_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TForm, AValue: TAnchorSide)  =
   Form_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TForm): TAnchorSide  =
-  return AsAnchorSide(Form_GetAnchorSideTop(this.Instance))
+  return Form_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TForm, AValue: TAnchorSide)  =
   Form_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TForm): TAnchorSide  =
-  return AsAnchorSide(Form_GetAnchorSideRight(this.Instance))
+  return Form_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TForm, AValue: TAnchorSide)  =
   Form_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TForm): TAnchorSide  =
-  return AsAnchorSide(Form_GetAnchorSideBottom(this.Instance))
+  return Form_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TForm, AValue: TAnchorSide)  =
   Form_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TForm): TControlChildSizing  =
-  return AsControlChildSizing(Form_GetChildSizing(this.Instance))
+  return Form_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TForm, AValue: TControlChildSizing)  =
   Form_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TForm): TControlBorderSpacing  =
-  return AsControlBorderSpacing(Form_GetBorderSpacing(this.Instance))
+  return Form_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TForm, AValue: TControlBorderSpacing)  =
   Form_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TForm, Index: int32): TControl  =
-  return AsControl(Form_GetDockClients(this.Instance, Index))
+  return Form_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TForm, Index: int32): TControl  =
-  return AsControl(Form_GetControls(this.Instance, Index))
+  return Form_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TForm, AIndex: int32): TComponent  =
-  return AsComponent(Form_GetComponents(this.Instance, AIndex))
+  return Form_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TForm, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(Form_GetAnchorSide(this.Instance, AKind))
+  return Form_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TFormClass*(): TClass = Form_StaticClassType()
 
 
 proc Create*(this: TForm, AInitScale: bool): TForm  =
-  return AsForm(Form_Create2(this.Instance, AInitScale))
+  return Form_Create2(this.Instance, AInitScale).AsForm
 
 proc EnabledMaximize*(this: TForm, AValue: bool)  =
   Form_EnabledMaximize(this.Instance, AValue)
@@ -27231,7 +27231,7 @@ proc ContainsControl*(this: TScrollBar, Control: TControl): bool =
   return ScrollBar_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TScrollBar, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(ScrollBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return ScrollBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TScrollBar) =
   ScrollBar_DisableAlign(this.Instance)
@@ -27240,7 +27240,7 @@ proc EnableAlign*(this: TScrollBar) =
   ScrollBar_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TScrollBar, ControlName: string): TControl =
-  return AsControl(ScrollBar_FindChildControl(this.Instance, ControlName))
+  return ScrollBar_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TScrollBar, AllLevels: bool) =
   ScrollBar_FlipChildren(this.Instance, AllLevels)
@@ -27327,7 +27327,7 @@ proc SetTextBuf*(this: TScrollBar, Buffer: string) =
   ScrollBar_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TScrollBar, AName: string): TComponent =
-  return AsComponent(ScrollBar_FindComponent(this.Instance, AName))
+  return ScrollBar_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TScrollBar): string =
   return $ScrollBar_GetNamePath(this.Instance)
@@ -27393,7 +27393,7 @@ proc `BiDiMode=`*(this: TScrollBar, AValue: TBiDiMode)  =
   ScrollBar_SetBiDiMode(this.Instance, AValue)
 
 proc Constraints*(this: TScrollBar): TSizeConstraints  =
-  return AsSizeConstraints(ScrollBar_GetConstraints(this.Instance))
+  return ScrollBar_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TScrollBar, AValue: TSizeConstraints)  =
   ScrollBar_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -27465,7 +27465,7 @@ proc `ParentShowHint=`*(this: TScrollBar, AValue: bool)  =
   ScrollBar_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TScrollBar): TPopupMenu  =
-  return AsPopupMenu(ScrollBar_GetPopupMenu(this.Instance))
+  return ScrollBar_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TScrollBar, AValue: TPopupMenu)  =
   ScrollBar_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -27552,7 +27552,7 @@ proc VisibleDockClientCount*(this: TScrollBar): int32  =
   return ScrollBar_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TScrollBar): TBrush  =
-  return AsBrush(ScrollBar_GetBrush(this.Instance))
+  return ScrollBar_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TScrollBar): int32  =
   return ScrollBar_GetControlCount(this.Instance)
@@ -27576,7 +27576,7 @@ proc `UseDockManager=`*(this: TScrollBar, AValue: bool)  =
   ScrollBar_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TScrollBar): TAction  =
-  return AsAction(ScrollBar_GetAction(this.Instance))
+  return ScrollBar_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TScrollBar, AValue: TAction)  =
   ScrollBar_SetAction(this.Instance, CheckPtr(AValue))
@@ -27621,7 +27621,7 @@ proc Floating*(this: TScrollBar): bool  =
   return ScrollBar_GetFloating(this.Instance)
 
 proc Parent*(this: TScrollBar): TWinControl  =
-  return AsWinControl(ScrollBar_GetParent(this.Instance))
+  return ScrollBar_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TScrollBar, AValue: TWinControl)  =
   ScrollBar_SetParent(this.Instance, CheckPtr(AValue))
@@ -27672,7 +27672,7 @@ proc `ComponentIndex=`*(this: TScrollBar, AValue: int32)  =
   ScrollBar_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TScrollBar): TComponent  =
-  return AsComponent(ScrollBar_GetOwner(this.Instance))
+  return ScrollBar_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TScrollBar): string  =
   return $ScrollBar_GetName(this.Instance)
@@ -27687,52 +27687,52 @@ proc `Tag=`*(this: TScrollBar, AValue: int)  =
   ScrollBar_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TScrollBar): TAnchorSide  =
-  return AsAnchorSide(ScrollBar_GetAnchorSideLeft(this.Instance))
+  return ScrollBar_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TScrollBar, AValue: TAnchorSide)  =
   ScrollBar_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TScrollBar): TAnchorSide  =
-  return AsAnchorSide(ScrollBar_GetAnchorSideTop(this.Instance))
+  return ScrollBar_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TScrollBar, AValue: TAnchorSide)  =
   ScrollBar_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TScrollBar): TAnchorSide  =
-  return AsAnchorSide(ScrollBar_GetAnchorSideRight(this.Instance))
+  return ScrollBar_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TScrollBar, AValue: TAnchorSide)  =
   ScrollBar_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TScrollBar): TAnchorSide  =
-  return AsAnchorSide(ScrollBar_GetAnchorSideBottom(this.Instance))
+  return ScrollBar_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TScrollBar, AValue: TAnchorSide)  =
   ScrollBar_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TScrollBar): TControlChildSizing  =
-  return AsControlChildSizing(ScrollBar_GetChildSizing(this.Instance))
+  return ScrollBar_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TScrollBar, AValue: TControlChildSizing)  =
   ScrollBar_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TScrollBar): TControlBorderSpacing  =
-  return AsControlBorderSpacing(ScrollBar_GetBorderSpacing(this.Instance))
+  return ScrollBar_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TScrollBar, AValue: TControlBorderSpacing)  =
   ScrollBar_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TScrollBar, Index: int32): TControl  =
-  return AsControl(ScrollBar_GetDockClients(this.Instance, Index))
+  return ScrollBar_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TScrollBar, Index: int32): TControl  =
-  return AsControl(ScrollBar_GetControls(this.Instance, Index))
+  return ScrollBar_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TScrollBar, AIndex: int32): TComponent  =
-  return AsComponent(ScrollBar_GetComponents(this.Instance, AIndex))
+  return ScrollBar_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TScrollBar, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(ScrollBar_GetAnchorSide(this.Instance, AKind))
+  return ScrollBar_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TScrollBarClass*(): TClass = ScrollBar_StaticClassType()
 
@@ -27779,7 +27779,7 @@ proc ContainsControl*(this: TMaskEdit, Control: TControl): bool =
   return MaskEdit_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TMaskEdit, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(MaskEdit_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return MaskEdit_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TMaskEdit) =
   MaskEdit_DisableAlign(this.Instance)
@@ -27788,7 +27788,7 @@ proc EnableAlign*(this: TMaskEdit) =
   MaskEdit_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TMaskEdit, ControlName: string): TControl =
-  return AsControl(MaskEdit_FindChildControl(this.Instance, ControlName))
+  return MaskEdit_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TMaskEdit, AllLevels: bool) =
   MaskEdit_FlipChildren(this.Instance, AllLevels)
@@ -27872,7 +27872,7 @@ proc SetTextBuf*(this: TMaskEdit, Buffer: string) =
   MaskEdit_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TMaskEdit, AName: string): TComponent =
-  return AsComponent(MaskEdit_FindComponent(this.Instance, AName))
+  return MaskEdit_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TMaskEdit): string =
   return $MaskEdit_GetNamePath(this.Instance)
@@ -27974,7 +27974,7 @@ proc `Color=`*(this: TMaskEdit, AValue: TColor)  =
   MaskEdit_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TMaskEdit): TSizeConstraints  =
-  return AsSizeConstraints(MaskEdit_GetConstraints(this.Instance))
+  return MaskEdit_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TMaskEdit, AValue: TSizeConstraints)  =
   MaskEdit_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -28010,7 +28010,7 @@ proc `Enabled=`*(this: TMaskEdit, AValue: bool)  =
   MaskEdit_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TMaskEdit): TFont  =
-  return AsFont(MaskEdit_GetFont(this.Instance))
+  return MaskEdit_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TMaskEdit, AValue: TFont)  =
   MaskEdit_SetFont(this.Instance, CheckPtr(AValue))
@@ -28052,7 +28052,7 @@ proc `PasswordChar=`*(this: TMaskEdit, AValue: Char)  =
   MaskEdit_SetPasswordChar(this.Instance, AValue)
 
 proc PopupMenu*(this: TMaskEdit): TPopupMenu  =
-  return AsPopupMenu(MaskEdit_GetPopupMenu(this.Instance))
+  return MaskEdit_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TMaskEdit, AValue: TPopupMenu)  =
   MaskEdit_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -28205,7 +28205,7 @@ proc VisibleDockClientCount*(this: TMaskEdit): int32  =
   return MaskEdit_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TMaskEdit): TBrush  =
-  return AsBrush(MaskEdit_GetBrush(this.Instance))
+  return MaskEdit_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TMaskEdit): int32  =
   return MaskEdit_GetControlCount(this.Instance)
@@ -28229,7 +28229,7 @@ proc `UseDockManager=`*(this: TMaskEdit, AValue: bool)  =
   MaskEdit_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TMaskEdit): TAction  =
-  return AsAction(MaskEdit_GetAction(this.Instance))
+  return MaskEdit_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TMaskEdit, AValue: TAction)  =
   MaskEdit_SetAction(this.Instance, CheckPtr(AValue))
@@ -28274,7 +28274,7 @@ proc Floating*(this: TMaskEdit): bool  =
   return MaskEdit_GetFloating(this.Instance)
 
 proc Parent*(this: TMaskEdit): TWinControl  =
-  return AsWinControl(MaskEdit_GetParent(this.Instance))
+  return MaskEdit_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TMaskEdit, AValue: TWinControl)  =
   MaskEdit_SetParent(this.Instance, CheckPtr(AValue))
@@ -28325,7 +28325,7 @@ proc `ComponentIndex=`*(this: TMaskEdit, AValue: int32)  =
   MaskEdit_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TMaskEdit): TComponent  =
-  return AsComponent(MaskEdit_GetOwner(this.Instance))
+  return MaskEdit_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TMaskEdit): string  =
   return $MaskEdit_GetName(this.Instance)
@@ -28340,52 +28340,52 @@ proc `Tag=`*(this: TMaskEdit, AValue: int)  =
   MaskEdit_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TMaskEdit): TAnchorSide  =
-  return AsAnchorSide(MaskEdit_GetAnchorSideLeft(this.Instance))
+  return MaskEdit_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TMaskEdit, AValue: TAnchorSide)  =
   MaskEdit_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TMaskEdit): TAnchorSide  =
-  return AsAnchorSide(MaskEdit_GetAnchorSideTop(this.Instance))
+  return MaskEdit_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TMaskEdit, AValue: TAnchorSide)  =
   MaskEdit_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TMaskEdit): TAnchorSide  =
-  return AsAnchorSide(MaskEdit_GetAnchorSideRight(this.Instance))
+  return MaskEdit_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TMaskEdit, AValue: TAnchorSide)  =
   MaskEdit_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TMaskEdit): TAnchorSide  =
-  return AsAnchorSide(MaskEdit_GetAnchorSideBottom(this.Instance))
+  return MaskEdit_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TMaskEdit, AValue: TAnchorSide)  =
   MaskEdit_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TMaskEdit): TControlChildSizing  =
-  return AsControlChildSizing(MaskEdit_GetChildSizing(this.Instance))
+  return MaskEdit_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TMaskEdit, AValue: TControlChildSizing)  =
   MaskEdit_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TMaskEdit): TControlBorderSpacing  =
-  return AsControlBorderSpacing(MaskEdit_GetBorderSpacing(this.Instance))
+  return MaskEdit_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TMaskEdit, AValue: TControlBorderSpacing)  =
   MaskEdit_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TMaskEdit, Index: int32): TControl  =
-  return AsControl(MaskEdit_GetDockClients(this.Instance, Index))
+  return MaskEdit_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TMaskEdit, Index: int32): TControl  =
-  return AsControl(MaskEdit_GetControls(this.Instance, Index))
+  return MaskEdit_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TMaskEdit, AIndex: int32): TComponent  =
-  return AsComponent(MaskEdit_GetComponents(this.Instance, AIndex))
+  return MaskEdit_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TMaskEdit, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(MaskEdit_GetAnchorSide(this.Instance, AKind))
+  return MaskEdit_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TMaskEditClass*(): TClass = MaskEdit_StaticClassType()
 
@@ -28456,7 +28456,7 @@ proc SetTextBuf*(this: TShape, Buffer: string) =
   Shape_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TShape, AName: string): TComponent =
-  return AsComponent(Shape_FindComponent(this.Instance, AName))
+  return Shape_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TShape): string =
   return $Shape_GetNamePath(this.Instance)
@@ -28516,7 +28516,7 @@ proc `Anchors=`*(this: TShape, AValue: TAnchors)  =
   Shape_SetAnchors(this.Instance, AValue)
 
 proc Brush*(this: TShape): TBrush  =
-  return AsBrush(Shape_GetBrush(this.Instance))
+  return Shape_GetBrush(this.Instance).AsBrush
 
 proc `Brush=`*(this: TShape, AValue: TBrush)  =
   Shape_SetBrush(this.Instance, CheckPtr(AValue))
@@ -28546,7 +28546,7 @@ proc `Enabled=`*(this: TShape, AValue: bool)  =
   Shape_SetEnabled(this.Instance, AValue)
 
 proc Constraints*(this: TShape): TSizeConstraints  =
-  return AsSizeConstraints(Shape_GetConstraints(this.Instance))
+  return Shape_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TShape, AValue: TSizeConstraints)  =
   Shape_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -28558,7 +28558,7 @@ proc `ParentShowHint=`*(this: TShape, AValue: bool)  =
   Shape_SetParentShowHint(this.Instance, AValue)
 
 proc Pen*(this: TShape): TPen  =
-  return AsPen(Shape_GetPen(this.Instance))
+  return Shape_GetPen(this.Instance).AsPen
 
 proc `Pen=`*(this: TShape, AValue: TPen)  =
   Shape_SetPen(this.Instance, CheckPtr(AValue))
@@ -28606,7 +28606,7 @@ proc `OnMouseUp=`*(this: TShape, AEventId: TMouseEvent)  =
   Shape_SetOnMouseUp(this.Instance, AEventId)
 
 proc Action*(this: TShape): TAction  =
-  return AsAction(Shape_GetAction(this.Instance))
+  return Shape_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TShape, AValue: TAction)  =
   Shape_SetAction(this.Instance, CheckPtr(AValue))
@@ -28657,7 +28657,7 @@ proc Floating*(this: TShape): bool  =
   return Shape_GetFloating(this.Instance)
 
 proc Parent*(this: TShape): TWinControl  =
-  return AsWinControl(Shape_GetParent(this.Instance))
+  return Shape_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TShape, AValue: TWinControl)  =
   Shape_SetParent(this.Instance, CheckPtr(AValue))
@@ -28708,7 +28708,7 @@ proc `ComponentIndex=`*(this: TShape, AValue: int32)  =
   Shape_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TShape): TComponent  =
-  return AsComponent(Shape_GetOwner(this.Instance))
+  return Shape_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TShape): string  =
   return $Shape_GetName(this.Instance)
@@ -28723,40 +28723,40 @@ proc `Tag=`*(this: TShape, AValue: int)  =
   Shape_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TShape): TAnchorSide  =
-  return AsAnchorSide(Shape_GetAnchorSideLeft(this.Instance))
+  return Shape_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TShape, AValue: TAnchorSide)  =
   Shape_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TShape): TAnchorSide  =
-  return AsAnchorSide(Shape_GetAnchorSideTop(this.Instance))
+  return Shape_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TShape, AValue: TAnchorSide)  =
   Shape_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TShape): TAnchorSide  =
-  return AsAnchorSide(Shape_GetAnchorSideRight(this.Instance))
+  return Shape_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TShape, AValue: TAnchorSide)  =
   Shape_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TShape): TAnchorSide  =
-  return AsAnchorSide(Shape_GetAnchorSideBottom(this.Instance))
+  return Shape_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TShape, AValue: TAnchorSide)  =
   Shape_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TShape): TControlBorderSpacing  =
-  return AsControlBorderSpacing(Shape_GetBorderSpacing(this.Instance))
+  return Shape_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TShape, AValue: TControlBorderSpacing)  =
   Shape_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Components*(this: TShape, AIndex: int32): TComponent  =
-  return AsComponent(Shape_GetComponents(this.Instance, AIndex))
+  return Shape_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TShape, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(Shape_GetAnchorSide(this.Instance, AKind))
+  return Shape_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TShapeClass*(): TClass = Shape_StaticClassType()
 
@@ -28827,7 +28827,7 @@ proc SetTextBuf*(this: TBevel, Buffer: string) =
   Bevel_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TBevel, AName: string): TComponent =
-  return AsComponent(Bevel_FindComponent(this.Instance, AName))
+  return Bevel_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TBevel): string =
   return $Bevel_GetNamePath(this.Instance)
@@ -28887,7 +28887,7 @@ proc `Anchors=`*(this: TBevel, AValue: TAnchors)  =
   Bevel_SetAnchors(this.Instance, AValue)
 
 proc Constraints*(this: TBevel): TSizeConstraints  =
-  return AsSizeConstraints(Bevel_GetConstraints(this.Instance))
+  return Bevel_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TBevel, AValue: TSizeConstraints)  =
   Bevel_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -28929,7 +28929,7 @@ proc `Enabled=`*(this: TBevel, AValue: bool)  =
   Bevel_SetEnabled(this.Instance, AValue)
 
 proc Action*(this: TBevel): TAction  =
-  return AsAction(Bevel_GetAction(this.Instance))
+  return Bevel_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TBevel, AValue: TAction)  =
   Bevel_SetAction(this.Instance, CheckPtr(AValue))
@@ -28980,7 +28980,7 @@ proc Floating*(this: TBevel): bool  =
   return Bevel_GetFloating(this.Instance)
 
 proc Parent*(this: TBevel): TWinControl  =
-  return AsWinControl(Bevel_GetParent(this.Instance))
+  return Bevel_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TBevel, AValue: TWinControl)  =
   Bevel_SetParent(this.Instance, CheckPtr(AValue))
@@ -29031,7 +29031,7 @@ proc `ComponentIndex=`*(this: TBevel, AValue: int32)  =
   Bevel_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TBevel): TComponent  =
-  return AsComponent(Bevel_GetOwner(this.Instance))
+  return Bevel_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TBevel): string  =
   return $Bevel_GetName(this.Instance)
@@ -29046,40 +29046,40 @@ proc `Tag=`*(this: TBevel, AValue: int)  =
   Bevel_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TBevel): TAnchorSide  =
-  return AsAnchorSide(Bevel_GetAnchorSideLeft(this.Instance))
+  return Bevel_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TBevel, AValue: TAnchorSide)  =
   Bevel_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TBevel): TAnchorSide  =
-  return AsAnchorSide(Bevel_GetAnchorSideTop(this.Instance))
+  return Bevel_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TBevel, AValue: TAnchorSide)  =
   Bevel_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TBevel): TAnchorSide  =
-  return AsAnchorSide(Bevel_GetAnchorSideRight(this.Instance))
+  return Bevel_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TBevel, AValue: TAnchorSide)  =
   Bevel_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TBevel): TAnchorSide  =
-  return AsAnchorSide(Bevel_GetAnchorSideBottom(this.Instance))
+  return Bevel_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TBevel, AValue: TAnchorSide)  =
   Bevel_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TBevel): TControlBorderSpacing  =
-  return AsControlBorderSpacing(Bevel_GetBorderSpacing(this.Instance))
+  return Bevel_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TBevel, AValue: TControlBorderSpacing)  =
   Bevel_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Components*(this: TBevel, AIndex: int32): TComponent  =
-  return AsComponent(Bevel_GetComponents(this.Instance, AIndex))
+  return Bevel_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TBevel, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(Bevel_GetAnchorSide(this.Instance, AKind))
+  return Bevel_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TBevelClass*(): TClass = Bevel_StaticClassType()
 
@@ -29102,7 +29102,7 @@ proc ContainsControl*(this: TScrollBox, Control: TControl): bool =
   return ScrollBox_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TScrollBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(ScrollBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return ScrollBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TScrollBox) =
   ScrollBox_DisableAlign(this.Instance)
@@ -29111,7 +29111,7 @@ proc EnableAlign*(this: TScrollBox) =
   ScrollBox_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TScrollBox, ControlName: string): TControl =
-  return AsControl(ScrollBox_FindChildControl(this.Instance, ControlName))
+  return ScrollBox_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TScrollBox, AllLevels: bool) =
   ScrollBox_FlipChildren(this.Instance, AllLevels)
@@ -29198,7 +29198,7 @@ proc SetTextBuf*(this: TScrollBox, Buffer: string) =
   ScrollBox_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TScrollBox, AName: string): TComponent =
-  return AsComponent(ScrollBox_FindComponent(this.Instance, AName))
+  return ScrollBox_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TScrollBox): string =
   return $ScrollBox_GetNamePath(this.Instance)
@@ -29282,7 +29282,7 @@ proc `BorderStyle=`*(this: TScrollBox, AValue: TBorderStyle)  =
   ScrollBox_SetBorderStyle(this.Instance, AValue)
 
 proc Constraints*(this: TScrollBox): TSizeConstraints  =
-  return AsSizeConstraints(ScrollBox_GetConstraints(this.Instance))
+  return ScrollBox_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TScrollBox, AValue: TSizeConstraints)  =
   ScrollBox_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -29330,7 +29330,7 @@ proc `Color=`*(this: TScrollBox, AValue: TColor)  =
   ScrollBox_SetColor(this.Instance, AValue)
 
 proc Font*(this: TScrollBox): TFont  =
-  return AsFont(ScrollBox_GetFont(this.Instance))
+  return ScrollBox_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TScrollBox, AValue: TFont)  =
   ScrollBox_SetFont(this.Instance, CheckPtr(AValue))
@@ -29366,7 +29366,7 @@ proc `ParentShowHint=`*(this: TScrollBox, AValue: bool)  =
   ScrollBox_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TScrollBox): TPopupMenu  =
-  return AsPopupMenu(ScrollBox_GetPopupMenu(this.Instance))
+  return ScrollBox_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TScrollBox, AValue: TPopupMenu)  =
   ScrollBox_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -29456,13 +29456,13 @@ proc `OnAlignPosition=`*(this: TScrollBox, AEventId: TAlignPositionEvent)  =
   ScrollBox_SetOnAlignPosition(this.Instance, AEventId)
 
 proc HorzScrollBar*(this: TScrollBox): TControlScrollBar  =
-  return AsControlScrollBar(ScrollBox_GetHorzScrollBar(this.Instance))
+  return ScrollBox_GetHorzScrollBar(this.Instance).AsControlScrollBar
 
 proc `HorzScrollBar=`*(this: TScrollBox, AValue: TControlScrollBar)  =
   ScrollBox_SetHorzScrollBar(this.Instance, CheckPtr(AValue))
 
 proc VertScrollBar*(this: TScrollBox): TControlScrollBar  =
-  return AsControlScrollBar(ScrollBox_GetVertScrollBar(this.Instance))
+  return ScrollBox_GetVertScrollBar(this.Instance).AsControlScrollBar
 
 proc `VertScrollBar=`*(this: TScrollBox, AValue: TControlScrollBar)  =
   ScrollBox_SetVertScrollBar(this.Instance, CheckPtr(AValue))
@@ -29477,7 +29477,7 @@ proc VisibleDockClientCount*(this: TScrollBox): int32  =
   return ScrollBox_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TScrollBox): TBrush  =
-  return AsBrush(ScrollBox_GetBrush(this.Instance))
+  return ScrollBox_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TScrollBox): int32  =
   return ScrollBox_GetControlCount(this.Instance)
@@ -29501,7 +29501,7 @@ proc `UseDockManager=`*(this: TScrollBox, AValue: bool)  =
   ScrollBox_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TScrollBox): TAction  =
-  return AsAction(ScrollBox_GetAction(this.Instance))
+  return ScrollBox_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TScrollBox, AValue: TAction)  =
   ScrollBox_SetAction(this.Instance, CheckPtr(AValue))
@@ -29546,7 +29546,7 @@ proc Floating*(this: TScrollBox): bool  =
   return ScrollBox_GetFloating(this.Instance)
 
 proc Parent*(this: TScrollBox): TWinControl  =
-  return AsWinControl(ScrollBox_GetParent(this.Instance))
+  return ScrollBox_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TScrollBox, AValue: TWinControl)  =
   ScrollBox_SetParent(this.Instance, CheckPtr(AValue))
@@ -29597,7 +29597,7 @@ proc `ComponentIndex=`*(this: TScrollBox, AValue: int32)  =
   ScrollBox_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TScrollBox): TComponent  =
-  return AsComponent(ScrollBox_GetOwner(this.Instance))
+  return ScrollBox_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TScrollBox): string  =
   return $ScrollBox_GetName(this.Instance)
@@ -29612,52 +29612,52 @@ proc `Tag=`*(this: TScrollBox, AValue: int)  =
   ScrollBox_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TScrollBox): TAnchorSide  =
-  return AsAnchorSide(ScrollBox_GetAnchorSideLeft(this.Instance))
+  return ScrollBox_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TScrollBox, AValue: TAnchorSide)  =
   ScrollBox_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TScrollBox): TAnchorSide  =
-  return AsAnchorSide(ScrollBox_GetAnchorSideTop(this.Instance))
+  return ScrollBox_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TScrollBox, AValue: TAnchorSide)  =
   ScrollBox_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TScrollBox): TAnchorSide  =
-  return AsAnchorSide(ScrollBox_GetAnchorSideRight(this.Instance))
+  return ScrollBox_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TScrollBox, AValue: TAnchorSide)  =
   ScrollBox_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TScrollBox): TAnchorSide  =
-  return AsAnchorSide(ScrollBox_GetAnchorSideBottom(this.Instance))
+  return ScrollBox_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TScrollBox, AValue: TAnchorSide)  =
   ScrollBox_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TScrollBox): TControlChildSizing  =
-  return AsControlChildSizing(ScrollBox_GetChildSizing(this.Instance))
+  return ScrollBox_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TScrollBox, AValue: TControlChildSizing)  =
   ScrollBox_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TScrollBox): TControlBorderSpacing  =
-  return AsControlBorderSpacing(ScrollBox_GetBorderSpacing(this.Instance))
+  return ScrollBox_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TScrollBox, AValue: TControlBorderSpacing)  =
   ScrollBox_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TScrollBox, Index: int32): TControl  =
-  return AsControl(ScrollBox_GetDockClients(this.Instance, Index))
+  return ScrollBox_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TScrollBox, Index: int32): TControl  =
-  return AsControl(ScrollBox_GetControls(this.Instance, Index))
+  return ScrollBox_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TScrollBox, AIndex: int32): TComponent  =
-  return AsComponent(ScrollBox_GetComponents(this.Instance, AIndex))
+  return ScrollBox_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TScrollBox, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(ScrollBox_GetAnchorSide(this.Instance, AKind))
+  return ScrollBox_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TScrollBoxClass*(): TClass = ScrollBox_StaticClassType()
 
@@ -29701,7 +29701,7 @@ proc ContainsControl*(this: TCheckListBox, Control: TControl): bool =
   return CheckListBox_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TCheckListBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(CheckListBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return CheckListBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TCheckListBox) =
   CheckListBox_DisableAlign(this.Instance)
@@ -29710,7 +29710,7 @@ proc EnableAlign*(this: TCheckListBox) =
   CheckListBox_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TCheckListBox, ControlName: string): TControl =
-  return AsControl(CheckListBox_FindChildControl(this.Instance, ControlName))
+  return CheckListBox_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TCheckListBox, AllLevels: bool) =
   CheckListBox_FlipChildren(this.Instance, AllLevels)
@@ -29797,7 +29797,7 @@ proc SetTextBuf*(this: TCheckListBox, Buffer: string) =
   CheckListBox_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TCheckListBox, AName: string): TComponent =
-  return AsComponent(CheckListBox_FindComponent(this.Instance, AName))
+  return CheckListBox_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TCheckListBox): string =
   return $CheckListBox_GetNamePath(this.Instance)
@@ -29890,7 +29890,7 @@ proc `Columns=`*(this: TCheckListBox, AValue: int32)  =
   CheckListBox_SetColumns(this.Instance, AValue)
 
 proc Constraints*(this: TCheckListBox): TSizeConstraints  =
-  return AsSizeConstraints(CheckListBox_GetConstraints(this.Instance))
+  return CheckListBox_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TCheckListBox, AValue: TSizeConstraints)  =
   CheckListBox_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -29920,7 +29920,7 @@ proc `Enabled=`*(this: TCheckListBox, AValue: bool)  =
   CheckListBox_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TCheckListBox): TFont  =
-  return AsFont(CheckListBox_GetFont(this.Instance))
+  return CheckListBox_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TCheckListBox, AValue: TFont)  =
   CheckListBox_SetFont(this.Instance, CheckPtr(AValue))
@@ -29932,7 +29932,7 @@ proc `ItemHeight=`*(this: TCheckListBox, AValue: int32)  =
   CheckListBox_SetItemHeight(this.Instance, AValue)
 
 proc Items*(this: TCheckListBox): TStrings  =
-  return AsStrings(CheckListBox_GetItems(this.Instance))
+  return CheckListBox_GetItems(this.Instance).AsStrings
 
 proc `Items=`*(this: TCheckListBox, AValue: TStrings)  =
   CheckListBox_SetItems(this.Instance, CheckPtr(AValue))
@@ -29962,7 +29962,7 @@ proc `ParentShowHint=`*(this: TCheckListBox, AValue: bool)  =
   CheckListBox_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TCheckListBox): TPopupMenu  =
-  return AsPopupMenu(CheckListBox_GetPopupMenu(this.Instance))
+  return CheckListBox_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TCheckListBox, AValue: TPopupMenu)  =
   CheckListBox_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -30055,7 +30055,7 @@ proc `OnMouseUp=`*(this: TCheckListBox, AEventId: TMouseEvent)  =
   CheckListBox_SetOnMouseUp(this.Instance, AEventId)
 
 proc Canvas*(this: TCheckListBox): TCanvas  =
-  return AsCanvas(CheckListBox_GetCanvas(this.Instance))
+  return CheckListBox_GetCanvas(this.Instance).AsCanvas
 
 proc Count*(this: TCheckListBox): int32  =
   return CheckListBox_GetCount(this.Instance)
@@ -30097,7 +30097,7 @@ proc VisibleDockClientCount*(this: TCheckListBox): int32  =
   return CheckListBox_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TCheckListBox): TBrush  =
-  return AsBrush(CheckListBox_GetBrush(this.Instance))
+  return CheckListBox_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TCheckListBox): int32  =
   return CheckListBox_GetControlCount(this.Instance)
@@ -30121,7 +30121,7 @@ proc `UseDockManager=`*(this: TCheckListBox, AValue: bool)  =
   CheckListBox_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TCheckListBox): TAction  =
-  return AsAction(CheckListBox_GetAction(this.Instance))
+  return CheckListBox_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TCheckListBox, AValue: TAction)  =
   CheckListBox_SetAction(this.Instance, CheckPtr(AValue))
@@ -30166,7 +30166,7 @@ proc Floating*(this: TCheckListBox): bool  =
   return CheckListBox_GetFloating(this.Instance)
 
 proc Parent*(this: TCheckListBox): TWinControl  =
-  return AsWinControl(CheckListBox_GetParent(this.Instance))
+  return CheckListBox_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TCheckListBox, AValue: TWinControl)  =
   CheckListBox_SetParent(this.Instance, CheckPtr(AValue))
@@ -30217,7 +30217,7 @@ proc `ComponentIndex=`*(this: TCheckListBox, AValue: int32)  =
   CheckListBox_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TCheckListBox): TComponent  =
-  return AsComponent(CheckListBox_GetOwner(this.Instance))
+  return CheckListBox_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TCheckListBox): string  =
   return $CheckListBox_GetName(this.Instance)
@@ -30232,37 +30232,37 @@ proc `Tag=`*(this: TCheckListBox, AValue: int)  =
   CheckListBox_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TCheckListBox): TAnchorSide  =
-  return AsAnchorSide(CheckListBox_GetAnchorSideLeft(this.Instance))
+  return CheckListBox_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TCheckListBox, AValue: TAnchorSide)  =
   CheckListBox_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TCheckListBox): TAnchorSide  =
-  return AsAnchorSide(CheckListBox_GetAnchorSideTop(this.Instance))
+  return CheckListBox_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TCheckListBox, AValue: TAnchorSide)  =
   CheckListBox_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TCheckListBox): TAnchorSide  =
-  return AsAnchorSide(CheckListBox_GetAnchorSideRight(this.Instance))
+  return CheckListBox_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TCheckListBox, AValue: TAnchorSide)  =
   CheckListBox_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TCheckListBox): TAnchorSide  =
-  return AsAnchorSide(CheckListBox_GetAnchorSideBottom(this.Instance))
+  return CheckListBox_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TCheckListBox, AValue: TAnchorSide)  =
   CheckListBox_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TCheckListBox): TControlChildSizing  =
-  return AsControlChildSizing(CheckListBox_GetChildSizing(this.Instance))
+  return CheckListBox_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TCheckListBox, AValue: TControlChildSizing)  =
   CheckListBox_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TCheckListBox): TControlBorderSpacing  =
-  return AsControlBorderSpacing(CheckListBox_GetBorderSpacing(this.Instance))
+  return CheckListBox_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TCheckListBox, AValue: TControlBorderSpacing)  =
   CheckListBox_SetBorderSpacing(this.Instance, CheckPtr(AValue))
@@ -30298,16 +30298,16 @@ proc `Selected=`*(this: TCheckListBox, Index: int32, AValue: bool)  =
   CheckListBox_SetSelected(this.Instance, Index, AValue)
 
 proc DockClients*(this: TCheckListBox, Index: int32): TControl  =
-  return AsControl(CheckListBox_GetDockClients(this.Instance, Index))
+  return CheckListBox_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TCheckListBox, Index: int32): TControl  =
-  return AsControl(CheckListBox_GetControls(this.Instance, Index))
+  return CheckListBox_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TCheckListBox, AIndex: int32): TComponent  =
-  return AsComponent(CheckListBox_GetComponents(this.Instance, AIndex))
+  return CheckListBox_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TCheckListBox, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(CheckListBox_GetAnchorSide(this.Instance, AKind))
+  return CheckListBox_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TCheckListBoxClass*(): TClass = CheckListBox_StaticClassType()
 
@@ -30381,7 +30381,7 @@ proc SetTextBuf*(this: TGauge, Buffer: string) =
   Gauge_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TGauge, AName: string): TComponent =
-  return AsComponent(Gauge_FindComponent(this.Instance, AName))
+  return Gauge_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TGauge): string =
   return $Gauge_GetNamePath(this.Instance)
@@ -30462,7 +30462,7 @@ proc `Color=`*(this: TGauge, AValue: TColor)  =
   Gauge_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TGauge): TSizeConstraints  =
-  return AsSizeConstraints(Gauge_GetConstraints(this.Instance))
+  return Gauge_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TGauge, AValue: TSizeConstraints)  =
   Gauge_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -30480,7 +30480,7 @@ proc `ForeColor=`*(this: TGauge, AValue: TColor)  =
   Gauge_SetForeColor(this.Instance, AValue)
 
 proc Font*(this: TGauge): TFont  =
-  return AsFont(Gauge_GetFont(this.Instance))
+  return Gauge_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TGauge, AValue: TFont)  =
   Gauge_SetFont(this.Instance, CheckPtr(AValue))
@@ -30516,7 +30516,7 @@ proc `ParentShowHint=`*(this: TGauge, AValue: bool)  =
   Gauge_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TGauge): TPopupMenu  =
-  return AsPopupMenu(Gauge_GetPopupMenu(this.Instance))
+  return Gauge_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TGauge, AValue: TPopupMenu)  =
   Gauge_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -30546,7 +30546,7 @@ proc `Visible=`*(this: TGauge, AValue: bool)  =
   Gauge_SetVisible(this.Instance, AValue)
 
 proc Action*(this: TGauge): TAction  =
-  return AsAction(Gauge_GetAction(this.Instance))
+  return Gauge_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TGauge, AValue: TAction)  =
   Gauge_SetAction(this.Instance, CheckPtr(AValue))
@@ -30597,7 +30597,7 @@ proc Floating*(this: TGauge): bool  =
   return Gauge_GetFloating(this.Instance)
 
 proc Parent*(this: TGauge): TWinControl  =
-  return AsWinControl(Gauge_GetParent(this.Instance))
+  return Gauge_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TGauge, AValue: TWinControl)  =
   Gauge_SetParent(this.Instance, CheckPtr(AValue))
@@ -30648,7 +30648,7 @@ proc `ComponentIndex=`*(this: TGauge, AValue: int32)  =
   Gauge_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TGauge): TComponent  =
-  return AsComponent(Gauge_GetOwner(this.Instance))
+  return Gauge_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TGauge): string  =
   return $Gauge_GetName(this.Instance)
@@ -30663,40 +30663,40 @@ proc `Tag=`*(this: TGauge, AValue: int)  =
   Gauge_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TGauge): TAnchorSide  =
-  return AsAnchorSide(Gauge_GetAnchorSideLeft(this.Instance))
+  return Gauge_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TGauge, AValue: TAnchorSide)  =
   Gauge_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TGauge): TAnchorSide  =
-  return AsAnchorSide(Gauge_GetAnchorSideTop(this.Instance))
+  return Gauge_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TGauge, AValue: TAnchorSide)  =
   Gauge_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TGauge): TAnchorSide  =
-  return AsAnchorSide(Gauge_GetAnchorSideRight(this.Instance))
+  return Gauge_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TGauge, AValue: TAnchorSide)  =
   Gauge_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TGauge): TAnchorSide  =
-  return AsAnchorSide(Gauge_GetAnchorSideBottom(this.Instance))
+  return Gauge_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TGauge, AValue: TAnchorSide)  =
   Gauge_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TGauge): TControlBorderSpacing  =
-  return AsControlBorderSpacing(Gauge_GetBorderSpacing(this.Instance))
+  return Gauge_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TGauge, AValue: TControlBorderSpacing)  =
   Gauge_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Components*(this: TGauge, AIndex: int32): TComponent  =
-  return AsComponent(Gauge_GetComponents(this.Instance, AIndex))
+  return Gauge_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TGauge, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(Gauge_GetAnchorSide(this.Instance, AKind))
+  return Gauge_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TGaugeClass*(): TClass = Gauge_StaticClassType()
 
@@ -30770,7 +30770,7 @@ proc SetTextBuf*(this: TImageButton, Buffer: string) =
   ImageButton_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TImageButton, AName: string): TComponent =
-  return AsComponent(ImageButton_FindComponent(this.Instance, AName))
+  return ImageButton_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TImageButton): string =
   return $ImageButton_GetNamePath(this.Instance)
@@ -30818,7 +30818,7 @@ proc AnchorClient*(this: TImageButton, ASpace: int32) =
   ImageButton_AnchorClient(this.Instance, ASpace)
 
 proc Action*(this: TImageButton): TAction  =
-  return AsAction(ImageButton_GetAction(this.Instance))
+  return ImageButton_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TImageButton, AValue: TAction)  =
   ImageButton_SetAction(this.Instance, CheckPtr(AValue))
@@ -30842,7 +30842,7 @@ proc `AutoSize=`*(this: TImageButton, AValue: bool)  =
   ImageButton_SetAutoSize(this.Instance, AValue)
 
 proc Constraints*(this: TImageButton): TSizeConstraints  =
-  return AsSizeConstraints(ImageButton_GetConstraints(this.Instance))
+  return ImageButton_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TImageButton, AValue: TSizeConstraints)  =
   ImageButton_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -30878,7 +30878,7 @@ proc `Enabled=`*(this: TImageButton, AValue: bool)  =
   ImageButton_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TImageButton): TFont  =
-  return AsFont(ImageButton_GetFont(this.Instance))
+  return ImageButton_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TImageButton, AValue: TFont)  =
   ImageButton_SetFont(this.Instance, CheckPtr(AValue))
@@ -30908,13 +30908,13 @@ proc `ParentFont=`*(this: TImageButton, AValue: bool)  =
   ImageButton_SetParentFont(this.Instance, AValue)
 
 proc Picture*(this: TImageButton): TPicture  =
-  return AsPicture(ImageButton_GetPicture(this.Instance))
+  return ImageButton_GetPicture(this.Instance).AsPicture
 
 proc `Picture=`*(this: TImageButton, AValue: TPicture)  =
   ImageButton_SetPicture(this.Instance, CheckPtr(AValue))
 
 proc PopupMenu*(this: TImageButton): TPopupMenu  =
-  return AsPopupMenu(ImageButton_GetPopupMenu(this.Instance))
+  return ImageButton_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TImageButton, AValue: TPopupMenu)  =
   ImageButton_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -31019,7 +31019,7 @@ proc Floating*(this: TImageButton): bool  =
   return ImageButton_GetFloating(this.Instance)
 
 proc Parent*(this: TImageButton): TWinControl  =
-  return AsWinControl(ImageButton_GetParent(this.Instance))
+  return ImageButton_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TImageButton, AValue: TWinControl)  =
   ImageButton_SetParent(this.Instance, CheckPtr(AValue))
@@ -31070,7 +31070,7 @@ proc `ComponentIndex=`*(this: TImageButton, AValue: int32)  =
   ImageButton_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TImageButton): TComponent  =
-  return AsComponent(ImageButton_GetOwner(this.Instance))
+  return ImageButton_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TImageButton): string  =
   return $ImageButton_GetName(this.Instance)
@@ -31085,40 +31085,40 @@ proc `Tag=`*(this: TImageButton, AValue: int)  =
   ImageButton_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TImageButton): TAnchorSide  =
-  return AsAnchorSide(ImageButton_GetAnchorSideLeft(this.Instance))
+  return ImageButton_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TImageButton, AValue: TAnchorSide)  =
   ImageButton_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TImageButton): TAnchorSide  =
-  return AsAnchorSide(ImageButton_GetAnchorSideTop(this.Instance))
+  return ImageButton_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TImageButton, AValue: TAnchorSide)  =
   ImageButton_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TImageButton): TAnchorSide  =
-  return AsAnchorSide(ImageButton_GetAnchorSideRight(this.Instance))
+  return ImageButton_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TImageButton, AValue: TAnchorSide)  =
   ImageButton_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TImageButton): TAnchorSide  =
-  return AsAnchorSide(ImageButton_GetAnchorSideBottom(this.Instance))
+  return ImageButton_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TImageButton, AValue: TAnchorSide)  =
   ImageButton_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TImageButton): TControlBorderSpacing  =
-  return AsControlBorderSpacing(ImageButton_GetBorderSpacing(this.Instance))
+  return ImageButton_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TImageButton, AValue: TControlBorderSpacing)  =
   ImageButton_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Components*(this: TImageButton, AIndex: int32): TComponent  =
-  return AsComponent(ImageButton_GetComponents(this.Instance, AIndex))
+  return ImageButton_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TImageButton, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(ImageButton_GetAnchorSide(this.Instance, AKind))
+  return ImageButton_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TImageButtonClass*(): TClass = ImageButton_StaticClassType()
 
@@ -31138,7 +31138,7 @@ proc Execute*(this: TFindDialog): bool  =
   return FindDialog_Execute(this.Instance)
 
 proc FindComponent*(this: TFindDialog, AName: string): TComponent =
-  return AsComponent(FindDialog_FindComponent(this.Instance, AName))
+  return FindDialog_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TFindDialog): string =
   return $FindDialog_GetNamePath(this.Instance)
@@ -31222,7 +31222,7 @@ proc `ComponentIndex=`*(this: TFindDialog, AValue: int32)  =
   FindDialog_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TFindDialog): TComponent  =
-  return AsComponent(FindDialog_GetOwner(this.Instance))
+  return FindDialog_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TFindDialog): string  =
   return $FindDialog_GetName(this.Instance)
@@ -31237,7 +31237,7 @@ proc `Tag=`*(this: TFindDialog, AValue: int)  =
   FindDialog_SetTag(this.Instance, AValue)
 
 proc Components*(this: TFindDialog, AIndex: int32): TComponent  =
-  return AsComponent(FindDialog_GetComponents(this.Instance, AIndex))
+  return FindDialog_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TFindDialogClass*(): TClass = FindDialog_StaticClassType()
 
@@ -31257,7 +31257,7 @@ proc Execute*(this: TReplaceDialog): bool  =
   return ReplaceDialog_Execute(this.Instance)
 
 proc FindComponent*(this: TReplaceDialog, AName: string): TComponent =
-  return AsComponent(ReplaceDialog_FindComponent(this.Instance, AName))
+  return ReplaceDialog_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TReplaceDialog): string =
   return $ReplaceDialog_GetNamePath(this.Instance)
@@ -31350,7 +31350,7 @@ proc `ComponentIndex=`*(this: TReplaceDialog, AValue: int32)  =
   ReplaceDialog_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TReplaceDialog): TComponent  =
-  return AsComponent(ReplaceDialog_GetOwner(this.Instance))
+  return ReplaceDialog_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TReplaceDialog): string  =
   return $ReplaceDialog_GetName(this.Instance)
@@ -31365,7 +31365,7 @@ proc `Tag=`*(this: TReplaceDialog, AValue: int)  =
   ReplaceDialog_SetTag(this.Instance, AValue)
 
 proc Components*(this: TReplaceDialog, AIndex: int32): TComponent  =
-  return AsComponent(ReplaceDialog_GetComponents(this.Instance, AIndex))
+  return ReplaceDialog_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TReplaceDialogClass*(): TClass = ReplaceDialog_StaticClassType()
 
@@ -31382,7 +31382,7 @@ proc Execute*(this: TPrinterSetupDialog): bool  =
   return PrinterSetupDialog_Execute(this.Instance)
 
 proc FindComponent*(this: TPrinterSetupDialog, AName: string): TComponent =
-  return AsComponent(PrinterSetupDialog_FindComponent(this.Instance, AName))
+  return PrinterSetupDialog_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TPrinterSetupDialog): string =
   return $PrinterSetupDialog_GetNamePath(this.Instance)
@@ -31433,7 +31433,7 @@ proc `ComponentIndex=`*(this: TPrinterSetupDialog, AValue: int32)  =
   PrinterSetupDialog_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TPrinterSetupDialog): TComponent  =
-  return AsComponent(PrinterSetupDialog_GetOwner(this.Instance))
+  return PrinterSetupDialog_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TPrinterSetupDialog): string  =
   return $PrinterSetupDialog_GetName(this.Instance)
@@ -31448,7 +31448,7 @@ proc `Tag=`*(this: TPrinterSetupDialog, AValue: int)  =
   PrinterSetupDialog_SetTag(this.Instance, AValue)
 
 proc Components*(this: TPrinterSetupDialog, AIndex: int32): TComponent  =
-  return AsComponent(PrinterSetupDialog_GetComponents(this.Instance, AIndex))
+  return PrinterSetupDialog_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TPrinterSetupDialogClass*(): TClass = PrinterSetupDialog_StaticClassType()
 
@@ -31465,7 +31465,7 @@ proc Execute*(this: TPageSetupDialog): bool  =
   return PageSetupDialog_Execute(this.Instance)
 
 proc FindComponent*(this: TPageSetupDialog, AName: string): TComponent =
-  return AsComponent(PageSetupDialog_FindComponent(this.Instance, AName))
+  return PageSetupDialog_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TPageSetupDialog): string =
   return $PageSetupDialog_GetNamePath(this.Instance)
@@ -31561,7 +31561,7 @@ proc `ComponentIndex=`*(this: TPageSetupDialog, AValue: int32)  =
   PageSetupDialog_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TPageSetupDialog): TComponent  =
-  return AsComponent(PageSetupDialog_GetOwner(this.Instance))
+  return PageSetupDialog_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TPageSetupDialog): string  =
   return $PageSetupDialog_GetName(this.Instance)
@@ -31576,7 +31576,7 @@ proc `Tag=`*(this: TPageSetupDialog, AValue: int)  =
   PageSetupDialog_SetTag(this.Instance, AValue)
 
 proc Components*(this: TPageSetupDialog, AIndex: int32): TComponent  =
-  return AsComponent(PageSetupDialog_GetComponents(this.Instance, AIndex))
+  return PageSetupDialog_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TPageSetupDialogClass*(): TClass = PageSetupDialog_StaticClassType()
 
@@ -31697,7 +31697,7 @@ proc DropAlign*(this: TDragDockObject): TAlign  =
   return DragDockObject_GetDropAlign(this.Instance)
 
 proc DropOnControl*(this: TDragDockObject): TControl  =
-  return AsControl(DragDockObject_GetDropOnControl(this.Instance))
+  return DragDockObject_GetDropOnControl(this.Instance).AsControl
 
 proc EraseDockRect*(this: TDragDockObject): TRect  =
   DragDockObject_GetEraseDockRect(this.Instance, result)
@@ -31712,7 +31712,7 @@ proc `Floating=`*(this: TDragDockObject, AValue: bool)  =
   DragDockObject_SetFloating(this.Instance, AValue)
 
 proc Control*(this: TDragDockObject): TControl  =
-  return AsControl(DragDockObject_GetControl(this.Instance))
+  return DragDockObject_GetControl(this.Instance).AsControl
 
 proc `Control=`*(this: TDragDockObject, AValue: TControl)  =
   DragDockObject_SetControl(this.Instance, CheckPtr(AValue))
@@ -31777,7 +31777,7 @@ proc SortColRow*(this: TStringGrid, IsColumn: bool, Index: int32, FromIndex: int
   StringGrid_SortColRow(this.Instance, IsColumn, Index, FromIndex, ToIndex)
 
 proc EditorByStyle*(this: TStringGrid, Style: TColumnButtonStyle): TWinControl  =
-  return AsWinControl(StringGrid_EditorByStyle(this.Instance, Style))
+  return StringGrid_EditorByStyle(this.Instance, Style).AsWinControl
 
 proc EditorKeyDown*(this: TStringGrid, Sender: TObject, Key: var uint16, Shift: TShiftState)  =
   StringGrid_EditorKeyDown(this.Instance, CheckPtr(Sender), Key, Shift)
@@ -31858,7 +31858,7 @@ proc ContainsControl*(this: TStringGrid, Control: TControl): bool =
   return StringGrid_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TStringGrid, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(StringGrid_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return StringGrid_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TStringGrid) =
   StringGrid_DisableAlign(this.Instance)
@@ -31867,7 +31867,7 @@ proc EnableAlign*(this: TStringGrid) =
   StringGrid_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TStringGrid, ControlName: string): TControl =
-  return AsControl(StringGrid_FindChildControl(this.Instance, ControlName))
+  return StringGrid_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TStringGrid, AllLevels: bool) =
   StringGrid_FlipChildren(this.Instance, AllLevels)
@@ -31954,7 +31954,7 @@ proc SetTextBuf*(this: TStringGrid, Buffer: string) =
   StringGrid_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TStringGrid, AName: string): TComponent =
-  return AsComponent(StringGrid_FindComponent(this.Instance, AName))
+  return StringGrid_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TStringGrid): string =
   return $StringGrid_GetNamePath(this.Instance)
@@ -32008,7 +32008,7 @@ proc `SelectedColor=`*(this: TStringGrid, AValue: TColor)  =
   StringGrid_SetSelectedColor(this.Instance, AValue)
 
 proc SelectedColumn*(this: TStringGrid): TGridColumn  =
-  return AsGridColumn(StringGrid_GetSelectedColumn(this.Instance))
+  return StringGrid_GetSelectedColumn(this.Instance).AsGridColumn
 
 proc StrictSort*(this: TStringGrid): bool  =
   return StringGrid_GetStrictSort(this.Instance)
@@ -32059,7 +32059,7 @@ proc `GridLineStyle=`*(this: TStringGrid, AValue: TPenStyle)  =
   StringGrid_SetGridLineStyle(this.Instance, AValue)
 
 proc Editor*(this: TStringGrid): TWinControl  =
-  return AsWinControl(StringGrid_GetEditor(this.Instance))
+  return StringGrid_GetEditor(this.Instance).AsWinControl
 
 proc `Editor=`*(this: TStringGrid, AValue: TWinControl)  =
   StringGrid_SetEditor(this.Instance, CheckPtr(AValue))
@@ -32185,7 +32185,7 @@ proc `ColumnClickSorts=`*(this: TStringGrid, AValue: bool)  =
   StringGrid_SetColumnClickSorts(this.Instance, AValue)
 
 proc Columns*(this: TStringGrid): TGridColumns  =
-  return AsGridColumns(StringGrid_GetColumns(this.Instance))
+  return StringGrid_GetColumns(this.Instance).AsGridColumns
 
 proc `Columns=`*(this: TStringGrid, AValue: TGridColumns)  =
   StringGrid_SetColumns(this.Instance, CheckPtr(AValue))
@@ -32251,13 +32251,13 @@ proc `TabAdvance=`*(this: TStringGrid, AValue: TAutoAdvance)  =
   StringGrid_SetTabAdvance(this.Instance, AValue)
 
 proc TitleFont*(this: TStringGrid): TFont  =
-  return AsFont(StringGrid_GetTitleFont(this.Instance))
+  return StringGrid_GetTitleFont(this.Instance).AsFont
 
 proc `TitleFont=`*(this: TStringGrid, AValue: TFont)  =
   StringGrid_SetTitleFont(this.Instance, CheckPtr(AValue))
 
 proc TitleImageList*(this: TStringGrid): TImageList  =
-  return AsImageList(StringGrid_GetTitleImageList(this.Instance))
+  return StringGrid_GetTitleImageList(this.Instance).AsImageList
 
 proc `TitleImageList=`*(this: TStringGrid, AValue: TImageList)  =
   StringGrid_SetTitleImageList(this.Instance, CheckPtr(AValue))
@@ -32311,7 +32311,7 @@ proc `ColCount=`*(this: TStringGrid, AValue: int32)  =
   StringGrid_SetColCount(this.Instance, AValue)
 
 proc Constraints*(this: TStringGrid): TSizeConstraints  =
-  return AsSizeConstraints(StringGrid_GetConstraints(this.Instance))
+  return StringGrid_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TStringGrid, AValue: TSizeConstraints)  =
   StringGrid_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -32389,7 +32389,7 @@ proc `FixedRows=`*(this: TStringGrid, AValue: int32)  =
   StringGrid_SetFixedRows(this.Instance, AValue)
 
 proc Font*(this: TStringGrid): TFont  =
-  return AsFont(StringGrid_GetFont(this.Instance))
+  return StringGrid_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TStringGrid, AValue: TFont)  =
   StringGrid_SetFont(this.Instance, CheckPtr(AValue))
@@ -32431,7 +32431,7 @@ proc `ParentShowHint=`*(this: TStringGrid, AValue: bool)  =
   StringGrid_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TStringGrid): TPopupMenu  =
-  return AsPopupMenu(StringGrid_GetPopupMenu(this.Instance))
+  return StringGrid_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TStringGrid, AValue: TPopupMenu)  =
   StringGrid_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -32545,7 +32545,7 @@ proc `OnTopLeftChanged=`*(this: TStringGrid, AEventId: TNotifyEvent)  =
   StringGrid_SetOnTopLeftChanged(this.Instance, AEventId)
 
 proc Canvas*(this: TStringGrid): TCanvas  =
-  return AsCanvas(StringGrid_GetCanvas(this.Instance))
+  return StringGrid_GetCanvas(this.Instance).AsCanvas
 
 proc Col*(this: TStringGrid): int32  =
   return StringGrid_GetCol(this.Instance)
@@ -32605,7 +32605,7 @@ proc VisibleDockClientCount*(this: TStringGrid): int32  =
   return StringGrid_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TStringGrid): TBrush  =
-  return AsBrush(StringGrid_GetBrush(this.Instance))
+  return StringGrid_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TStringGrid): int32  =
   return StringGrid_GetControlCount(this.Instance)
@@ -32629,7 +32629,7 @@ proc `UseDockManager=`*(this: TStringGrid, AValue: bool)  =
   StringGrid_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TStringGrid): TAction  =
-  return AsAction(StringGrid_GetAction(this.Instance))
+  return StringGrid_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TStringGrid, AValue: TAction)  =
   StringGrid_SetAction(this.Instance, CheckPtr(AValue))
@@ -32674,7 +32674,7 @@ proc Floating*(this: TStringGrid): bool  =
   return StringGrid_GetFloating(this.Instance)
 
 proc Parent*(this: TStringGrid): TWinControl  =
-  return AsWinControl(StringGrid_GetParent(this.Instance))
+  return StringGrid_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TStringGrid, AValue: TWinControl)  =
   StringGrid_SetParent(this.Instance, CheckPtr(AValue))
@@ -32725,7 +32725,7 @@ proc `ComponentIndex=`*(this: TStringGrid, AValue: int32)  =
   StringGrid_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TStringGrid): TComponent  =
-  return AsComponent(StringGrid_GetOwner(this.Instance))
+  return StringGrid_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TStringGrid): string  =
   return $StringGrid_GetName(this.Instance)
@@ -32740,37 +32740,37 @@ proc `Tag=`*(this: TStringGrid, AValue: int)  =
   StringGrid_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TStringGrid): TAnchorSide  =
-  return AsAnchorSide(StringGrid_GetAnchorSideLeft(this.Instance))
+  return StringGrid_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TStringGrid, AValue: TAnchorSide)  =
   StringGrid_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TStringGrid): TAnchorSide  =
-  return AsAnchorSide(StringGrid_GetAnchorSideTop(this.Instance))
+  return StringGrid_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TStringGrid, AValue: TAnchorSide)  =
   StringGrid_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TStringGrid): TAnchorSide  =
-  return AsAnchorSide(StringGrid_GetAnchorSideRight(this.Instance))
+  return StringGrid_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TStringGrid, AValue: TAnchorSide)  =
   StringGrid_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TStringGrid): TAnchorSide  =
-  return AsAnchorSide(StringGrid_GetAnchorSideBottom(this.Instance))
+  return StringGrid_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TStringGrid, AValue: TAnchorSide)  =
   StringGrid_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TStringGrid): TControlChildSizing  =
-  return AsControlChildSizing(StringGrid_GetChildSizing(this.Instance))
+  return StringGrid_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TStringGrid, AValue: TControlChildSizing)  =
   StringGrid_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TStringGrid): TControlBorderSpacing  =
-  return AsControlBorderSpacing(StringGrid_GetBorderSpacing(this.Instance))
+  return StringGrid_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TStringGrid, AValue: TControlBorderSpacing)  =
   StringGrid_SetBorderSpacing(this.Instance, CheckPtr(AValue))
@@ -32785,19 +32785,19 @@ proc `Cells=`*(this: TStringGrid, ACol: int32, ARow: int32, AValue: string)  =
   StringGrid_SetCells(this.Instance, ACol, ARow, AValue)
 
 proc Cols*(this: TStringGrid, Index: int32): TStrings  =
-  return AsStrings(StringGrid_GetCols(this.Instance, Index))
+  return StringGrid_GetCols(this.Instance, Index).AsStrings
 
 proc `Cols=`*(this: TStringGrid, Index: int32, AValue: TStrings)  =
   StringGrid_SetCols(this.Instance, Index, CheckPtr(AValue))
 
 proc Objects*(this: TStringGrid, ACol: int32, ARow: int32): TObject  =
-  return AsObject(StringGrid_GetObjects(this.Instance, ACol, ARow))
+  return StringGrid_GetObjects(this.Instance, ACol, ARow).AsObject
 
 proc `Objects=`*(this: TStringGrid, ACol: int32, ARow: int32, AValue: TObject)  =
   StringGrid_SetObjects(this.Instance, ACol, ARow, CheckPtr(AValue))
 
 proc Rows*(this: TStringGrid, Index: int32): TStrings  =
-  return AsStrings(StringGrid_GetRows(this.Instance, Index))
+  return StringGrid_GetRows(this.Instance, Index).AsStrings
 
 proc `Rows=`*(this: TStringGrid, Index: int32, AValue: TStrings)  =
   StringGrid_SetRows(this.Instance, Index, CheckPtr(AValue))
@@ -32815,16 +32815,16 @@ proc `RowHeights=`*(this: TStringGrid, Index: int32, AValue: int32)  =
   StringGrid_SetRowHeights(this.Instance, Index, AValue)
 
 proc DockClients*(this: TStringGrid, Index: int32): TControl  =
-  return AsControl(StringGrid_GetDockClients(this.Instance, Index))
+  return StringGrid_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TStringGrid, Index: int32): TControl  =
-  return AsControl(StringGrid_GetControls(this.Instance, Index))
+  return StringGrid_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TStringGrid, AIndex: int32): TComponent  =
-  return AsComponent(StringGrid_GetComponents(this.Instance, AIndex))
+  return StringGrid_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TStringGrid, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(StringGrid_GetAnchorSide(this.Instance, AKind))
+  return StringGrid_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TStringGridClass*(): TClass = StringGrid_StaticClassType()
 
@@ -32853,7 +32853,7 @@ proc ContainsControl*(this: TDrawGrid, Control: TControl): bool =
   return DrawGrid_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TDrawGrid, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(DrawGrid_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return DrawGrid_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TDrawGrid) =
   DrawGrid_DisableAlign(this.Instance)
@@ -32862,7 +32862,7 @@ proc EnableAlign*(this: TDrawGrid) =
   DrawGrid_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TDrawGrid, ControlName: string): TControl =
-  return AsControl(DrawGrid_FindChildControl(this.Instance, ControlName))
+  return DrawGrid_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TDrawGrid, AllLevels: bool) =
   DrawGrid_FlipChildren(this.Instance, AllLevels)
@@ -32949,7 +32949,7 @@ proc SetTextBuf*(this: TDrawGrid, Buffer: string) =
   DrawGrid_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TDrawGrid, AName: string): TComponent =
-  return AsComponent(DrawGrid_FindComponent(this.Instance, AName))
+  return DrawGrid_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TDrawGrid): string =
   return $DrawGrid_GetNamePath(this.Instance)
@@ -33036,7 +33036,7 @@ proc `ColCount=`*(this: TDrawGrid, AValue: int32)  =
   DrawGrid_SetColCount(this.Instance, AValue)
 
 proc Constraints*(this: TDrawGrid): TSizeConstraints  =
-  return AsSizeConstraints(DrawGrid_GetConstraints(this.Instance))
+  return DrawGrid_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TDrawGrid, AValue: TSizeConstraints)  =
   DrawGrid_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -33114,7 +33114,7 @@ proc `FixedRows=`*(this: TDrawGrid, AValue: int32)  =
   DrawGrid_SetFixedRows(this.Instance, AValue)
 
 proc Font*(this: TDrawGrid): TFont  =
-  return AsFont(DrawGrid_GetFont(this.Instance))
+  return DrawGrid_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TDrawGrid, AValue: TFont)  =
   DrawGrid_SetFont(this.Instance, CheckPtr(AValue))
@@ -33156,7 +33156,7 @@ proc `ParentShowHint=`*(this: TDrawGrid, AValue: bool)  =
   DrawGrid_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TDrawGrid): TPopupMenu  =
-  return AsPopupMenu(DrawGrid_GetPopupMenu(this.Instance))
+  return DrawGrid_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TDrawGrid, AValue: TPopupMenu)  =
   DrawGrid_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -33270,7 +33270,7 @@ proc `OnTopLeftChanged=`*(this: TDrawGrid, AEventId: TNotifyEvent)  =
   DrawGrid_SetOnTopLeftChanged(this.Instance, AEventId)
 
 proc Canvas*(this: TDrawGrid): TCanvas  =
-  return AsCanvas(DrawGrid_GetCanvas(this.Instance))
+  return DrawGrid_GetCanvas(this.Instance).AsCanvas
 
 proc Col*(this: TDrawGrid): int32  =
   return DrawGrid_GetCol(this.Instance)
@@ -33336,7 +33336,7 @@ proc VisibleDockClientCount*(this: TDrawGrid): int32  =
   return DrawGrid_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TDrawGrid): TBrush  =
-  return AsBrush(DrawGrid_GetBrush(this.Instance))
+  return DrawGrid_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TDrawGrid): int32  =
   return DrawGrid_GetControlCount(this.Instance)
@@ -33360,7 +33360,7 @@ proc `UseDockManager=`*(this: TDrawGrid, AValue: bool)  =
   DrawGrid_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TDrawGrid): TAction  =
-  return AsAction(DrawGrid_GetAction(this.Instance))
+  return DrawGrid_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TDrawGrid, AValue: TAction)  =
   DrawGrid_SetAction(this.Instance, CheckPtr(AValue))
@@ -33405,7 +33405,7 @@ proc Floating*(this: TDrawGrid): bool  =
   return DrawGrid_GetFloating(this.Instance)
 
 proc Parent*(this: TDrawGrid): TWinControl  =
-  return AsWinControl(DrawGrid_GetParent(this.Instance))
+  return DrawGrid_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TDrawGrid, AValue: TWinControl)  =
   DrawGrid_SetParent(this.Instance, CheckPtr(AValue))
@@ -33456,7 +33456,7 @@ proc `ComponentIndex=`*(this: TDrawGrid, AValue: int32)  =
   DrawGrid_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TDrawGrid): TComponent  =
-  return AsComponent(DrawGrid_GetOwner(this.Instance))
+  return DrawGrid_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TDrawGrid): string  =
   return $DrawGrid_GetName(this.Instance)
@@ -33471,37 +33471,37 @@ proc `Tag=`*(this: TDrawGrid, AValue: int)  =
   DrawGrid_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TDrawGrid): TAnchorSide  =
-  return AsAnchorSide(DrawGrid_GetAnchorSideLeft(this.Instance))
+  return DrawGrid_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TDrawGrid, AValue: TAnchorSide)  =
   DrawGrid_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TDrawGrid): TAnchorSide  =
-  return AsAnchorSide(DrawGrid_GetAnchorSideTop(this.Instance))
+  return DrawGrid_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TDrawGrid, AValue: TAnchorSide)  =
   DrawGrid_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TDrawGrid): TAnchorSide  =
-  return AsAnchorSide(DrawGrid_GetAnchorSideRight(this.Instance))
+  return DrawGrid_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TDrawGrid, AValue: TAnchorSide)  =
   DrawGrid_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TDrawGrid): TAnchorSide  =
-  return AsAnchorSide(DrawGrid_GetAnchorSideBottom(this.Instance))
+  return DrawGrid_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TDrawGrid, AValue: TAnchorSide)  =
   DrawGrid_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TDrawGrid): TControlChildSizing  =
-  return AsControlChildSizing(DrawGrid_GetChildSizing(this.Instance))
+  return DrawGrid_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TDrawGrid, AValue: TControlChildSizing)  =
   DrawGrid_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TDrawGrid): TControlBorderSpacing  =
-  return AsControlBorderSpacing(DrawGrid_GetBorderSpacing(this.Instance))
+  return DrawGrid_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TDrawGrid, AValue: TControlBorderSpacing)  =
   DrawGrid_SetBorderSpacing(this.Instance, CheckPtr(AValue))
@@ -33519,16 +33519,16 @@ proc `RowHeights=`*(this: TDrawGrid, Index: int32, AValue: int32)  =
   DrawGrid_SetRowHeights(this.Instance, Index, AValue)
 
 proc DockClients*(this: TDrawGrid, Index: int32): TControl  =
-  return AsControl(DrawGrid_GetDockClients(this.Instance, Index))
+  return DrawGrid_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TDrawGrid, Index: int32): TControl  =
-  return AsControl(DrawGrid_GetControls(this.Instance, Index))
+  return DrawGrid_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TDrawGrid, AIndex: int32): TComponent  =
-  return AsComponent(DrawGrid_GetComponents(this.Instance, AIndex))
+  return DrawGrid_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TDrawGrid, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(DrawGrid_GetAnchorSide(this.Instance, AKind))
+  return DrawGrid_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TDrawGridClass*(): TClass = DrawGrid_StaticClassType()
 
@@ -33563,7 +33563,7 @@ proc ContainsControl*(this: TValueListEditor, Control: TControl): bool =
   return ValueListEditor_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TValueListEditor, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(ValueListEditor_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return ValueListEditor_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TValueListEditor) =
   ValueListEditor_DisableAlign(this.Instance)
@@ -33572,7 +33572,7 @@ proc EnableAlign*(this: TValueListEditor) =
   ValueListEditor_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TValueListEditor, ControlName: string): TControl =
-  return AsControl(ValueListEditor_FindChildControl(this.Instance, ControlName))
+  return ValueListEditor_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TValueListEditor, AllLevels: bool) =
   ValueListEditor_FlipChildren(this.Instance, AllLevels)
@@ -33656,7 +33656,7 @@ proc SetTextBuf*(this: TValueListEditor, Buffer: string) =
   ValueListEditor_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TValueListEditor, AName: string): TComponent =
-  return AsComponent(ValueListEditor_FindComponent(this.Instance, AName))
+  return ValueListEditor_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TValueListEditor): string =
   return $ValueListEditor_GetNamePath(this.Instance)
@@ -33749,7 +33749,7 @@ proc `Color=`*(this: TValueListEditor, AValue: TColor)  =
   ValueListEditor_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TValueListEditor): TSizeConstraints  =
-  return AsSizeConstraints(ValueListEditor_GetConstraints(this.Instance))
+  return ValueListEditor_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TValueListEditor, AValue: TSizeConstraints)  =
   ValueListEditor_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -33821,7 +33821,7 @@ proc `FixedCols=`*(this: TValueListEditor, AValue: int32)  =
   ValueListEditor_SetFixedCols(this.Instance, AValue)
 
 proc Font*(this: TValueListEditor): TFont  =
-  return AsFont(ValueListEditor_GetFont(this.Instance))
+  return ValueListEditor_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TValueListEditor, AValue: TFont)  =
   ValueListEditor_SetFont(this.Instance, CheckPtr(AValue))
@@ -33863,7 +33863,7 @@ proc `ParentShowHint=`*(this: TValueListEditor, AValue: bool)  =
   ValueListEditor_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TValueListEditor): TPopupMenu  =
-  return AsPopupMenu(ValueListEditor_GetPopupMenu(this.Instance))
+  return ValueListEditor_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TValueListEditor, AValue: TPopupMenu)  =
   ValueListEditor_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -33881,7 +33881,7 @@ proc `ShowHint=`*(this: TValueListEditor, AValue: bool)  =
   ValueListEditor_SetShowHint(this.Instance, AValue)
 
 proc Strings*(this: TValueListEditor): TStrings  =
-  return AsStrings(ValueListEditor_GetStrings(this.Instance))
+  return ValueListEditor_GetStrings(this.Instance).AsStrings
 
 proc `Strings=`*(this: TValueListEditor, AValue: TStrings)  =
   ValueListEditor_SetStrings(this.Instance, CheckPtr(AValue))
@@ -33977,7 +33977,7 @@ proc `OnTopLeftChanged=`*(this: TValueListEditor, AEventId: TNotifyEvent)  =
   ValueListEditor_SetOnTopLeftChanged(this.Instance, AEventId)
 
 proc Canvas*(this: TValueListEditor): TCanvas  =
-  return AsCanvas(ValueListEditor_GetCanvas(this.Instance))
+  return ValueListEditor_GetCanvas(this.Instance).AsCanvas
 
 proc Col*(this: TValueListEditor): int32  =
   return ValueListEditor_GetCol(this.Instance)
@@ -34043,7 +34043,7 @@ proc VisibleDockClientCount*(this: TValueListEditor): int32  =
   return ValueListEditor_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TValueListEditor): TBrush  =
-  return AsBrush(ValueListEditor_GetBrush(this.Instance))
+  return ValueListEditor_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TValueListEditor): int32  =
   return ValueListEditor_GetControlCount(this.Instance)
@@ -34067,7 +34067,7 @@ proc `UseDockManager=`*(this: TValueListEditor, AValue: bool)  =
   ValueListEditor_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TValueListEditor): TAction  =
-  return AsAction(ValueListEditor_GetAction(this.Instance))
+  return ValueListEditor_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TValueListEditor, AValue: TAction)  =
   ValueListEditor_SetAction(this.Instance, CheckPtr(AValue))
@@ -34112,7 +34112,7 @@ proc Floating*(this: TValueListEditor): bool  =
   return ValueListEditor_GetFloating(this.Instance)
 
 proc Parent*(this: TValueListEditor): TWinControl  =
-  return AsWinControl(ValueListEditor_GetParent(this.Instance))
+  return ValueListEditor_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TValueListEditor, AValue: TWinControl)  =
   ValueListEditor_SetParent(this.Instance, CheckPtr(AValue))
@@ -34163,7 +34163,7 @@ proc `ComponentIndex=`*(this: TValueListEditor, AValue: int32)  =
   ValueListEditor_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TValueListEditor): TComponent  =
-  return AsComponent(ValueListEditor_GetOwner(this.Instance))
+  return ValueListEditor_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TValueListEditor): string  =
   return $ValueListEditor_GetName(this.Instance)
@@ -34178,37 +34178,37 @@ proc `Tag=`*(this: TValueListEditor, AValue: int)  =
   ValueListEditor_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TValueListEditor): TAnchorSide  =
-  return AsAnchorSide(ValueListEditor_GetAnchorSideLeft(this.Instance))
+  return ValueListEditor_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TValueListEditor, AValue: TAnchorSide)  =
   ValueListEditor_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TValueListEditor): TAnchorSide  =
-  return AsAnchorSide(ValueListEditor_GetAnchorSideTop(this.Instance))
+  return ValueListEditor_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TValueListEditor, AValue: TAnchorSide)  =
   ValueListEditor_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TValueListEditor): TAnchorSide  =
-  return AsAnchorSide(ValueListEditor_GetAnchorSideRight(this.Instance))
+  return ValueListEditor_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TValueListEditor, AValue: TAnchorSide)  =
   ValueListEditor_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TValueListEditor): TAnchorSide  =
-  return AsAnchorSide(ValueListEditor_GetAnchorSideBottom(this.Instance))
+  return ValueListEditor_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TValueListEditor, AValue: TAnchorSide)  =
   ValueListEditor_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TValueListEditor): TControlChildSizing  =
-  return AsControlChildSizing(ValueListEditor_GetChildSizing(this.Instance))
+  return ValueListEditor_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TValueListEditor, AValue: TControlChildSizing)  =
   ValueListEditor_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TValueListEditor): TControlBorderSpacing  =
-  return AsControlBorderSpacing(ValueListEditor_GetBorderSpacing(this.Instance))
+  return ValueListEditor_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TValueListEditor, AValue: TControlBorderSpacing)  =
   ValueListEditor_SetBorderSpacing(this.Instance, CheckPtr(AValue))
@@ -34238,16 +34238,16 @@ proc `RowHeights=`*(this: TValueListEditor, Index: int32, AValue: int32)  =
   ValueListEditor_SetRowHeights(this.Instance, Index, AValue)
 
 proc DockClients*(this: TValueListEditor, Index: int32): TControl  =
-  return AsControl(ValueListEditor_GetDockClients(this.Instance, Index))
+  return ValueListEditor_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TValueListEditor, Index: int32): TControl  =
-  return AsControl(ValueListEditor_GetControls(this.Instance, Index))
+  return ValueListEditor_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TValueListEditor, AIndex: int32): TComponent  =
-  return AsComponent(ValueListEditor_GetComponents(this.Instance, AIndex))
+  return ValueListEditor_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TValueListEditor, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(ValueListEditor_GetAnchorSide(this.Instance, AKind))
+  return ValueListEditor_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TValueListEditorClass*(): TClass = ValueListEditor_StaticClassType()
 
@@ -34270,7 +34270,7 @@ proc ContainsControl*(this: THeaderControl, Control: TControl): bool =
   return HeaderControl_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: THeaderControl, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(HeaderControl_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return HeaderControl_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: THeaderControl) =
   HeaderControl_DisableAlign(this.Instance)
@@ -34279,7 +34279,7 @@ proc EnableAlign*(this: THeaderControl) =
   HeaderControl_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: THeaderControl, ControlName: string): TControl =
-  return AsControl(HeaderControl_FindChildControl(this.Instance, ControlName))
+  return HeaderControl_FindChildControl(this.Instance, ControlName).AsControl
 
 proc Focused*(this: THeaderControl): bool =
   return HeaderControl_Focused(this.Instance)
@@ -34363,7 +34363,7 @@ proc SetTextBuf*(this: THeaderControl, Buffer: string) =
   HeaderControl_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: THeaderControl, AName: string): TComponent =
-  return AsComponent(HeaderControl_FindComponent(this.Instance, AName))
+  return HeaderControl_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: THeaderControl): string =
   return $HeaderControl_GetNamePath(this.Instance)
@@ -34459,25 +34459,25 @@ proc `Enabled=`*(this: THeaderControl, AValue: bool)  =
   HeaderControl_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: THeaderControl): TFont  =
-  return AsFont(HeaderControl_GetFont(this.Instance))
+  return HeaderControl_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: THeaderControl, AValue: TFont)  =
   HeaderControl_SetFont(this.Instance, CheckPtr(AValue))
 
 proc Images*(this: THeaderControl): TImageList  =
-  return AsImageList(HeaderControl_GetImages(this.Instance))
+  return HeaderControl_GetImages(this.Instance).AsImageList
 
 proc `Images=`*(this: THeaderControl, AValue: TImageList)  =
   HeaderControl_SetImages(this.Instance, CheckPtr(AValue))
 
 proc Constraints*(this: THeaderControl): TSizeConstraints  =
-  return AsSizeConstraints(HeaderControl_GetConstraints(this.Instance))
+  return HeaderControl_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: THeaderControl, AValue: TSizeConstraints)  =
   HeaderControl_SetConstraints(this.Instance, CheckPtr(AValue))
 
 proc Sections*(this: THeaderControl): THeaderSections  =
-  return AsHeaderSections(HeaderControl_GetSections(this.Instance))
+  return HeaderControl_GetSections(this.Instance).AsHeaderSections
 
 proc `Sections=`*(this: THeaderControl, AValue: THeaderSections)  =
   HeaderControl_SetSections(this.Instance, CheckPtr(AValue))
@@ -34507,7 +34507,7 @@ proc `ParentShowHint=`*(this: THeaderControl, AValue: bool)  =
   HeaderControl_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: THeaderControl): TPopupMenu  =
-  return AsPopupMenu(HeaderControl_GetPopupMenu(this.Instance))
+  return HeaderControl_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: THeaderControl, AValue: TPopupMenu)  =
   HeaderControl_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -34567,7 +34567,7 @@ proc `OnSectionEndDrag=`*(this: THeaderControl, AEventId: TNotifyEvent)  =
   HeaderControl_SetOnSectionEndDrag(this.Instance, AEventId)
 
 proc Canvas*(this: THeaderControl): TCanvas  =
-  return AsCanvas(HeaderControl_GetCanvas(this.Instance))
+  return HeaderControl_GetCanvas(this.Instance).AsCanvas
 
 proc DockClientCount*(this: THeaderControl): int32  =
   return HeaderControl_GetDockClientCount(this.Instance)
@@ -34585,7 +34585,7 @@ proc VisibleDockClientCount*(this: THeaderControl): int32  =
   return HeaderControl_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: THeaderControl): TBrush  =
-  return AsBrush(HeaderControl_GetBrush(this.Instance))
+  return HeaderControl_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: THeaderControl): int32  =
   return HeaderControl_GetControlCount(this.Instance)
@@ -34621,7 +34621,7 @@ proc `UseDockManager=`*(this: THeaderControl, AValue: bool)  =
   HeaderControl_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: THeaderControl): TAction  =
-  return AsAction(HeaderControl_GetAction(this.Instance))
+  return HeaderControl_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: THeaderControl, AValue: TAction)  =
   HeaderControl_SetAction(this.Instance, CheckPtr(AValue))
@@ -34666,7 +34666,7 @@ proc Floating*(this: THeaderControl): bool  =
   return HeaderControl_GetFloating(this.Instance)
 
 proc Parent*(this: THeaderControl): TWinControl  =
-  return AsWinControl(HeaderControl_GetParent(this.Instance))
+  return HeaderControl_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: THeaderControl, AValue: TWinControl)  =
   HeaderControl_SetParent(this.Instance, CheckPtr(AValue))
@@ -34717,7 +34717,7 @@ proc `ComponentIndex=`*(this: THeaderControl, AValue: int32)  =
   HeaderControl_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: THeaderControl): TComponent  =
-  return AsComponent(HeaderControl_GetOwner(this.Instance))
+  return HeaderControl_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: THeaderControl): string  =
   return $HeaderControl_GetName(this.Instance)
@@ -34732,52 +34732,52 @@ proc `Tag=`*(this: THeaderControl, AValue: int)  =
   HeaderControl_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: THeaderControl): TAnchorSide  =
-  return AsAnchorSide(HeaderControl_GetAnchorSideLeft(this.Instance))
+  return HeaderControl_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: THeaderControl, AValue: TAnchorSide)  =
   HeaderControl_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: THeaderControl): TAnchorSide  =
-  return AsAnchorSide(HeaderControl_GetAnchorSideTop(this.Instance))
+  return HeaderControl_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: THeaderControl, AValue: TAnchorSide)  =
   HeaderControl_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: THeaderControl): TAnchorSide  =
-  return AsAnchorSide(HeaderControl_GetAnchorSideRight(this.Instance))
+  return HeaderControl_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: THeaderControl, AValue: TAnchorSide)  =
   HeaderControl_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: THeaderControl): TAnchorSide  =
-  return AsAnchorSide(HeaderControl_GetAnchorSideBottom(this.Instance))
+  return HeaderControl_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: THeaderControl, AValue: TAnchorSide)  =
   HeaderControl_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: THeaderControl): TControlChildSizing  =
-  return AsControlChildSizing(HeaderControl_GetChildSizing(this.Instance))
+  return HeaderControl_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: THeaderControl, AValue: TControlChildSizing)  =
   HeaderControl_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: THeaderControl): TControlBorderSpacing  =
-  return AsControlBorderSpacing(HeaderControl_GetBorderSpacing(this.Instance))
+  return HeaderControl_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: THeaderControl, AValue: TControlBorderSpacing)  =
   HeaderControl_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: THeaderControl, Index: int32): TControl  =
-  return AsControl(HeaderControl_GetDockClients(this.Instance, Index))
+  return HeaderControl_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: THeaderControl, Index: int32): TControl  =
-  return AsControl(HeaderControl_GetControls(this.Instance, Index))
+  return HeaderControl_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: THeaderControl, AIndex: int32): TComponent  =
-  return AsComponent(HeaderControl_GetComponents(this.Instance, AIndex))
+  return HeaderControl_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: THeaderControl, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(HeaderControl_GetAnchorSide(this.Instance, AKind))
+  return HeaderControl_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc THeaderControlClass*(): TClass = HeaderControl_StaticClassType()
 
@@ -34860,7 +34860,7 @@ proc `Width=`*(this: THeaderSection, AValue: int32)  =
   HeaderSection_SetWidth(this.Instance, AValue)
 
 proc Collection*(this: THeaderSection): TCollection  =
-  return AsCollection(HeaderSection_GetCollection(this.Instance))
+  return HeaderSection_GetCollection(this.Instance).AsCollection
 
 proc `Collection=`*(this: THeaderSection, AValue: TCollection)  =
   HeaderSection_SetCollection(this.Instance, CheckPtr(AValue))
@@ -34889,13 +34889,13 @@ proc NewHeaderSections*(AOwner: THeaderControl): THeaderSections =
    result.Instance = HeaderSections_Create(CheckPtr(AOwner))
 
 proc Add*(this: THeaderSections): THeaderSection  =
-  return AsHeaderSection(HeaderSections_Add(this.Instance))
+  return HeaderSections_Add(this.Instance).AsHeaderSection
 
 proc AddItem*(this: THeaderSections, Item: THeaderSection, Index: int32): THeaderSection  =
-  return AsHeaderSection(HeaderSections_AddItem(this.Instance, CheckPtr(Item), Index))
+  return HeaderSections_AddItem(this.Instance, CheckPtr(Item), Index).AsHeaderSection
 
 proc Insert*(this: THeaderSections, Index: int32): THeaderSection  =
-  return AsHeaderSection(HeaderSections_Insert(this.Instance, Index))
+  return HeaderSections_Insert(this.Instance, Index).AsHeaderSection
 
 proc Owner*(this: THeaderSections): pointer  =
   return HeaderSections_Owner(this.Instance)
@@ -34916,7 +34916,7 @@ proc EndUpdate*(this: THeaderSections)  =
   HeaderSections_EndUpdate(this.Instance)
 
 proc FindItemID*(this: THeaderSections, ID: int32): TCollectionItem  =
-  return AsCollectionItem(HeaderSections_FindItemID(this.Instance, ID))
+  return HeaderSections_FindItemID(this.Instance, ID).AsCollectionItem
 
 proc GetNamePath*(this: THeaderSections): string  =
   return $HeaderSections_GetNamePath(this.Instance)
@@ -34946,7 +34946,7 @@ proc Count*(this: THeaderSections): int32  =
   return HeaderSections_GetCount(this.Instance)
 
 proc Items*(this: THeaderSections, Index: int32): THeaderSection  =
-  return AsHeaderSection(HeaderSections_GetItems(this.Instance, Index))
+  return HeaderSections_GetItems(this.Instance, Index).AsHeaderSection
 
 proc `Items=`*(this: THeaderSections, Index: int32, AValue: THeaderSection)  =
   HeaderSections_SetItems(this.Instance, Index, CheckPtr(AValue))
@@ -34993,7 +34993,7 @@ proc ContainsControl*(this: TLabeledEdit, Control: TControl): bool =
   return LabeledEdit_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TLabeledEdit, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(LabeledEdit_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return LabeledEdit_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TLabeledEdit) =
   LabeledEdit_DisableAlign(this.Instance)
@@ -35002,7 +35002,7 @@ proc EnableAlign*(this: TLabeledEdit) =
   LabeledEdit_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TLabeledEdit, ControlName: string): TControl =
-  return AsControl(LabeledEdit_FindChildControl(this.Instance, ControlName))
+  return LabeledEdit_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TLabeledEdit, AllLevels: bool) =
   LabeledEdit_FlipChildren(this.Instance, AllLevels)
@@ -35086,7 +35086,7 @@ proc SetTextBuf*(this: TLabeledEdit, Buffer: string) =
   LabeledEdit_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TLabeledEdit, AName: string): TComponent =
-  return AsComponent(LabeledEdit_FindComponent(this.Instance, AName))
+  return LabeledEdit_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TLabeledEdit): string =
   return $LabeledEdit_GetNamePath(this.Instance)
@@ -35182,7 +35182,7 @@ proc `Color=`*(this: TLabeledEdit, AValue: TColor)  =
   LabeledEdit_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TLabeledEdit): TSizeConstraints  =
-  return AsSizeConstraints(LabeledEdit_GetConstraints(this.Instance))
+  return LabeledEdit_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TLabeledEdit, AValue: TSizeConstraints)  =
   LabeledEdit_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -35206,7 +35206,7 @@ proc `DragMode=`*(this: TLabeledEdit, AValue: TDragMode)  =
   LabeledEdit_SetDragMode(this.Instance, AValue)
 
 proc EditLabel*(this: TLabeledEdit): TBoundLabel  =
-  return AsBoundLabel(LabeledEdit_GetEditLabel(this.Instance))
+  return LabeledEdit_GetEditLabel(this.Instance).AsBoundLabel
 
 proc Enabled*(this: TLabeledEdit): bool  =
   return LabeledEdit_GetEnabled(this.Instance)
@@ -35215,7 +35215,7 @@ proc `Enabled=`*(this: TLabeledEdit, AValue: bool)  =
   LabeledEdit_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TLabeledEdit): TFont  =
-  return AsFont(LabeledEdit_GetFont(this.Instance))
+  return LabeledEdit_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TLabeledEdit, AValue: TFont)  =
   LabeledEdit_SetFont(this.Instance, CheckPtr(AValue))
@@ -35281,7 +35281,7 @@ proc `PasswordChar=`*(this: TLabeledEdit, AValue: Char)  =
   LabeledEdit_SetPasswordChar(this.Instance, AValue)
 
 proc PopupMenu*(this: TLabeledEdit): TPopupMenu  =
-  return AsPopupMenu(LabeledEdit_GetPopupMenu(this.Instance))
+  return LabeledEdit_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TLabeledEdit, AValue: TPopupMenu)  =
   LabeledEdit_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -35419,7 +35419,7 @@ proc VisibleDockClientCount*(this: TLabeledEdit): int32  =
   return LabeledEdit_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TLabeledEdit): TBrush  =
-  return AsBrush(LabeledEdit_GetBrush(this.Instance))
+  return LabeledEdit_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TLabeledEdit): int32  =
   return LabeledEdit_GetControlCount(this.Instance)
@@ -35443,7 +35443,7 @@ proc `UseDockManager=`*(this: TLabeledEdit, AValue: bool)  =
   LabeledEdit_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TLabeledEdit): TAction  =
-  return AsAction(LabeledEdit_GetAction(this.Instance))
+  return LabeledEdit_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TLabeledEdit, AValue: TAction)  =
   LabeledEdit_SetAction(this.Instance, CheckPtr(AValue))
@@ -35494,7 +35494,7 @@ proc Floating*(this: TLabeledEdit): bool  =
   return LabeledEdit_GetFloating(this.Instance)
 
 proc Parent*(this: TLabeledEdit): TWinControl  =
-  return AsWinControl(LabeledEdit_GetParent(this.Instance))
+  return LabeledEdit_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TLabeledEdit, AValue: TWinControl)  =
   LabeledEdit_SetParent(this.Instance, CheckPtr(AValue))
@@ -35545,7 +35545,7 @@ proc `ComponentIndex=`*(this: TLabeledEdit, AValue: int32)  =
   LabeledEdit_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TLabeledEdit): TComponent  =
-  return AsComponent(LabeledEdit_GetOwner(this.Instance))
+  return LabeledEdit_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TLabeledEdit): string  =
   return $LabeledEdit_GetName(this.Instance)
@@ -35560,52 +35560,52 @@ proc `Tag=`*(this: TLabeledEdit, AValue: int)  =
   LabeledEdit_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TLabeledEdit): TAnchorSide  =
-  return AsAnchorSide(LabeledEdit_GetAnchorSideLeft(this.Instance))
+  return LabeledEdit_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TLabeledEdit, AValue: TAnchorSide)  =
   LabeledEdit_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TLabeledEdit): TAnchorSide  =
-  return AsAnchorSide(LabeledEdit_GetAnchorSideTop(this.Instance))
+  return LabeledEdit_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TLabeledEdit, AValue: TAnchorSide)  =
   LabeledEdit_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TLabeledEdit): TAnchorSide  =
-  return AsAnchorSide(LabeledEdit_GetAnchorSideRight(this.Instance))
+  return LabeledEdit_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TLabeledEdit, AValue: TAnchorSide)  =
   LabeledEdit_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TLabeledEdit): TAnchorSide  =
-  return AsAnchorSide(LabeledEdit_GetAnchorSideBottom(this.Instance))
+  return LabeledEdit_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TLabeledEdit, AValue: TAnchorSide)  =
   LabeledEdit_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TLabeledEdit): TControlChildSizing  =
-  return AsControlChildSizing(LabeledEdit_GetChildSizing(this.Instance))
+  return LabeledEdit_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TLabeledEdit, AValue: TControlChildSizing)  =
   LabeledEdit_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TLabeledEdit): TControlBorderSpacing  =
-  return AsControlBorderSpacing(LabeledEdit_GetBorderSpacing(this.Instance))
+  return LabeledEdit_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TLabeledEdit, AValue: TControlBorderSpacing)  =
   LabeledEdit_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TLabeledEdit, Index: int32): TControl  =
-  return AsControl(LabeledEdit_GetDockClients(this.Instance, Index))
+  return LabeledEdit_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TLabeledEdit, Index: int32): TControl  =
-  return AsControl(LabeledEdit_GetControls(this.Instance, Index))
+  return LabeledEdit_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TLabeledEdit, AIndex: int32): TComponent  =
-  return AsComponent(LabeledEdit_GetComponents(this.Instance, AIndex))
+  return LabeledEdit_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TLabeledEdit, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(LabeledEdit_GetAnchorSide(this.Instance, AKind))
+  return LabeledEdit_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TLabeledEditClass*(): TClass = LabeledEdit_StaticClassType()
 
@@ -35676,7 +35676,7 @@ proc SetTextBuf*(this: TBoundLabel, Buffer: string) =
   BoundLabel_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TBoundLabel, AName: string): TComponent =
-  return AsComponent(BoundLabel_FindComponent(this.Instance, AName))
+  return BoundLabel_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TBoundLabel): string =
   return $BoundLabel_GetNamePath(this.Instance)
@@ -35754,7 +35754,7 @@ proc `DragMode=`*(this: TBoundLabel, AValue: TDragMode)  =
   BoundLabel_SetDragMode(this.Instance, AValue)
 
 proc Font*(this: TBoundLabel): TFont  =
-  return AsFont(BoundLabel_GetFont(this.Instance))
+  return BoundLabel_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TBoundLabel, AValue: TFont)  =
   BoundLabel_SetFont(this.Instance, CheckPtr(AValue))
@@ -35787,7 +35787,7 @@ proc `ParentShowHint=`*(this: TBoundLabel, AValue: bool)  =
   BoundLabel_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TBoundLabel): TPopupMenu  =
-  return AsPopupMenu(BoundLabel_GetPopupMenu(this.Instance))
+  return BoundLabel_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TBoundLabel, AValue: TPopupMenu)  =
   BoundLabel_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -35850,7 +35850,7 @@ proc `OnMouseUp=`*(this: TBoundLabel, AEventId: TMouseEvent)  =
   BoundLabel_SetOnMouseUp(this.Instance, AEventId)
 
 proc Canvas*(this: TBoundLabel): TCanvas  =
-  return AsCanvas(BoundLabel_GetCanvas(this.Instance))
+  return BoundLabel_GetCanvas(this.Instance).AsCanvas
 
 proc Enabled*(this: TBoundLabel): bool  =
   return BoundLabel_GetEnabled(this.Instance)
@@ -35859,7 +35859,7 @@ proc `Enabled=`*(this: TBoundLabel, AValue: bool)  =
   BoundLabel_SetEnabled(this.Instance, AValue)
 
 proc Action*(this: TBoundLabel): TAction  =
-  return AsAction(BoundLabel_GetAction(this.Instance))
+  return BoundLabel_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TBoundLabel, AValue: TAction)  =
   BoundLabel_SetAction(this.Instance, CheckPtr(AValue))
@@ -35901,7 +35901,7 @@ proc `ClientWidth=`*(this: TBoundLabel, AValue: int32)  =
   BoundLabel_SetClientWidth(this.Instance, AValue)
 
 proc Constraints*(this: TBoundLabel): TSizeConstraints  =
-  return AsSizeConstraints(BoundLabel_GetConstraints(this.Instance))
+  return BoundLabel_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TBoundLabel, AValue: TSizeConstraints)  =
   BoundLabel_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -35928,7 +35928,7 @@ proc `Visible=`*(this: TBoundLabel, AValue: bool)  =
   BoundLabel_SetVisible(this.Instance, AValue)
 
 proc Parent*(this: TBoundLabel): TWinControl  =
-  return AsWinControl(BoundLabel_GetParent(this.Instance))
+  return BoundLabel_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TBoundLabel, AValue: TWinControl)  =
   BoundLabel_SetParent(this.Instance, CheckPtr(AValue))
@@ -35955,7 +35955,7 @@ proc `ComponentIndex=`*(this: TBoundLabel, AValue: int32)  =
   BoundLabel_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TBoundLabel): TComponent  =
-  return AsComponent(BoundLabel_GetOwner(this.Instance))
+  return BoundLabel_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TBoundLabel): string  =
   return $BoundLabel_GetName(this.Instance)
@@ -35970,40 +35970,40 @@ proc `Tag=`*(this: TBoundLabel, AValue: int)  =
   BoundLabel_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TBoundLabel): TAnchorSide  =
-  return AsAnchorSide(BoundLabel_GetAnchorSideLeft(this.Instance))
+  return BoundLabel_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TBoundLabel, AValue: TAnchorSide)  =
   BoundLabel_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TBoundLabel): TAnchorSide  =
-  return AsAnchorSide(BoundLabel_GetAnchorSideTop(this.Instance))
+  return BoundLabel_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TBoundLabel, AValue: TAnchorSide)  =
   BoundLabel_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TBoundLabel): TAnchorSide  =
-  return AsAnchorSide(BoundLabel_GetAnchorSideRight(this.Instance))
+  return BoundLabel_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TBoundLabel, AValue: TAnchorSide)  =
   BoundLabel_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TBoundLabel): TAnchorSide  =
-  return AsAnchorSide(BoundLabel_GetAnchorSideBottom(this.Instance))
+  return BoundLabel_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TBoundLabel, AValue: TAnchorSide)  =
   BoundLabel_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TBoundLabel): TControlBorderSpacing  =
-  return AsControlBorderSpacing(BoundLabel_GetBorderSpacing(this.Instance))
+  return BoundLabel_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TBoundLabel, AValue: TControlBorderSpacing)  =
   BoundLabel_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Components*(this: TBoundLabel, AIndex: int32): TComponent  =
-  return AsComponent(BoundLabel_GetComponents(this.Instance, AIndex))
+  return BoundLabel_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TBoundLabel, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(BoundLabel_GetAnchorSide(this.Instance, AKind))
+  return BoundLabel_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TBoundLabelClass*(): TClass = BoundLabel_StaticClassType()
 
@@ -36029,7 +36029,7 @@ proc ContainsControl*(this: TFlowPanel, Control: TControl): bool =
   return FlowPanel_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TFlowPanel, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(FlowPanel_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return FlowPanel_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TFlowPanel) =
   FlowPanel_DisableAlign(this.Instance)
@@ -36038,7 +36038,7 @@ proc EnableAlign*(this: TFlowPanel) =
   FlowPanel_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TFlowPanel, ControlName: string): TControl =
-  return AsControl(FlowPanel_FindChildControl(this.Instance, ControlName))
+  return FlowPanel_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TFlowPanel, AllLevels: bool) =
   FlowPanel_FlipChildren(this.Instance, AllLevels)
@@ -36125,7 +36125,7 @@ proc SetTextBuf*(this: TFlowPanel, Buffer: string) =
   FlowPanel_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TFlowPanel, AName: string): TComponent =
-  return AsComponent(FlowPanel_FindComponent(this.Instance, AName))
+  return FlowPanel_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TFlowPanel): string =
   return $FlowPanel_GetNamePath(this.Instance)
@@ -36233,7 +36233,7 @@ proc `Color=`*(this: TFlowPanel, AValue: TColor)  =
   FlowPanel_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TFlowPanel): TSizeConstraints  =
-  return AsSizeConstraints(FlowPanel_GetConstraints(this.Instance))
+  return FlowPanel_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TFlowPanel, AValue: TSizeConstraints)  =
   FlowPanel_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -36293,7 +36293,7 @@ proc `FullRepaint=`*(this: TFlowPanel, AValue: bool)  =
   FlowPanel_SetFullRepaint(this.Instance, AValue)
 
 proc Font*(this: TFlowPanel): TFont  =
-  return AsFont(FlowPanel_GetFont(this.Instance))
+  return FlowPanel_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TFlowPanel, AValue: TFont)  =
   FlowPanel_SetFont(this.Instance, CheckPtr(AValue))
@@ -36329,7 +36329,7 @@ proc `ParentShowHint=`*(this: TFlowPanel, AValue: bool)  =
   FlowPanel_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TFlowPanel): TPopupMenu  =
-  return AsPopupMenu(FlowPanel_GetPopupMenu(this.Instance))
+  return FlowPanel_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TFlowPanel, AValue: TPopupMenu)  =
   FlowPanel_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -36428,7 +36428,7 @@ proc VisibleDockClientCount*(this: TFlowPanel): int32  =
   return FlowPanel_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TFlowPanel): TBrush  =
-  return AsBrush(FlowPanel_GetBrush(this.Instance))
+  return FlowPanel_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TFlowPanel): int32  =
   return FlowPanel_GetControlCount(this.Instance)
@@ -36446,7 +36446,7 @@ proc Showing*(this: TFlowPanel): bool  =
   return FlowPanel_GetShowing(this.Instance)
 
 proc Action*(this: TFlowPanel): TAction  =
-  return AsAction(FlowPanel_GetAction(this.Instance))
+  return FlowPanel_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TFlowPanel, AValue: TAction)  =
   FlowPanel_SetAction(this.Instance, CheckPtr(AValue))
@@ -36491,7 +36491,7 @@ proc Floating*(this: TFlowPanel): bool  =
   return FlowPanel_GetFloating(this.Instance)
 
 proc Parent*(this: TFlowPanel): TWinControl  =
-  return AsWinControl(FlowPanel_GetParent(this.Instance))
+  return FlowPanel_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TFlowPanel, AValue: TWinControl)  =
   FlowPanel_SetParent(this.Instance, CheckPtr(AValue))
@@ -36542,7 +36542,7 @@ proc `ComponentIndex=`*(this: TFlowPanel, AValue: int32)  =
   FlowPanel_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TFlowPanel): TComponent  =
-  return AsComponent(FlowPanel_GetOwner(this.Instance))
+  return FlowPanel_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TFlowPanel): string  =
   return $FlowPanel_GetName(this.Instance)
@@ -36557,52 +36557,52 @@ proc `Tag=`*(this: TFlowPanel, AValue: int)  =
   FlowPanel_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TFlowPanel): TAnchorSide  =
-  return AsAnchorSide(FlowPanel_GetAnchorSideLeft(this.Instance))
+  return FlowPanel_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TFlowPanel, AValue: TAnchorSide)  =
   FlowPanel_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TFlowPanel): TAnchorSide  =
-  return AsAnchorSide(FlowPanel_GetAnchorSideTop(this.Instance))
+  return FlowPanel_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TFlowPanel, AValue: TAnchorSide)  =
   FlowPanel_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TFlowPanel): TAnchorSide  =
-  return AsAnchorSide(FlowPanel_GetAnchorSideRight(this.Instance))
+  return FlowPanel_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TFlowPanel, AValue: TAnchorSide)  =
   FlowPanel_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TFlowPanel): TAnchorSide  =
-  return AsAnchorSide(FlowPanel_GetAnchorSideBottom(this.Instance))
+  return FlowPanel_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TFlowPanel, AValue: TAnchorSide)  =
   FlowPanel_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TFlowPanel): TControlChildSizing  =
-  return AsControlChildSizing(FlowPanel_GetChildSizing(this.Instance))
+  return FlowPanel_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TFlowPanel, AValue: TControlChildSizing)  =
   FlowPanel_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TFlowPanel): TControlBorderSpacing  =
-  return AsControlBorderSpacing(FlowPanel_GetBorderSpacing(this.Instance))
+  return FlowPanel_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TFlowPanel, AValue: TControlBorderSpacing)  =
   FlowPanel_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TFlowPanel, Index: int32): TControl  =
-  return AsControl(FlowPanel_GetDockClients(this.Instance, Index))
+  return FlowPanel_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TFlowPanel, Index: int32): TControl  =
-  return AsControl(FlowPanel_GetControls(this.Instance, Index))
+  return FlowPanel_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TFlowPanel, AIndex: int32): TComponent  =
-  return AsComponent(FlowPanel_GetComponents(this.Instance, AIndex))
+  return FlowPanel_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TFlowPanel, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(FlowPanel_GetAnchorSide(this.Instance, AKind))
+  return FlowPanel_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TFlowPanelClass*(): TClass = FlowPanel_StaticClassType()
 
@@ -36625,7 +36625,7 @@ proc ContainsControl*(this: TCoolBar, Control: TControl): bool =
   return CoolBar_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TCoolBar, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(CoolBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return CoolBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TCoolBar) =
   CoolBar_DisableAlign(this.Instance)
@@ -36634,7 +36634,7 @@ proc EnableAlign*(this: TCoolBar) =
   CoolBar_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TCoolBar, ControlName: string): TControl =
-  return AsControl(CoolBar_FindChildControl(this.Instance, ControlName))
+  return CoolBar_FindChildControl(this.Instance, ControlName).AsControl
 
 proc Focused*(this: TCoolBar): bool =
   return CoolBar_Focused(this.Instance)
@@ -36715,7 +36715,7 @@ proc SetTextBuf*(this: TCoolBar, Buffer: string) =
   CoolBar_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TCoolBar, AName: string): TComponent =
-  return AsComponent(CoolBar_FindComponent(this.Instance, AName))
+  return CoolBar_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TCoolBar): string =
   return $CoolBar_GetNamePath(this.Instance)
@@ -36793,7 +36793,7 @@ proc `BandMaximize=`*(this: TCoolBar, AValue: TCoolBandMaximize)  =
   CoolBar_SetBandMaximize(this.Instance, AValue)
 
 proc Bands*(this: TCoolBar): TCoolBands  =
-  return AsCoolBands(CoolBar_GetBands(this.Instance))
+  return CoolBar_GetBands(this.Instance).AsCoolBands
 
 proc `Bands=`*(this: TCoolBar, AValue: TCoolBands)  =
   CoolBar_SetBands(this.Instance, CheckPtr(AValue))
@@ -36811,7 +36811,7 @@ proc `Color=`*(this: TCoolBar, AValue: TColor)  =
   CoolBar_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TCoolBar): TSizeConstraints  =
-  return AsSizeConstraints(CoolBar_GetConstraints(this.Instance))
+  return CoolBar_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TCoolBar, AValue: TSizeConstraints)  =
   CoolBar_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -36883,13 +36883,13 @@ proc `FixedOrder=`*(this: TCoolBar, AValue: bool)  =
   CoolBar_SetFixedOrder(this.Instance, AValue)
 
 proc Font*(this: TCoolBar): TFont  =
-  return AsFont(CoolBar_GetFont(this.Instance))
+  return CoolBar_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TCoolBar, AValue: TFont)  =
   CoolBar_SetFont(this.Instance, CheckPtr(AValue))
 
 proc Images*(this: TCoolBar): TImageList  =
-  return AsImageList(CoolBar_GetImages(this.Instance))
+  return CoolBar_GetImages(this.Instance).AsImageList
 
 proc `Images=`*(this: TCoolBar, AValue: TImageList)  =
   CoolBar_SetImages(this.Instance, CheckPtr(AValue))
@@ -36919,13 +36919,13 @@ proc `ParentShowHint=`*(this: TCoolBar, AValue: bool)  =
   CoolBar_SetParentShowHint(this.Instance, AValue)
 
 proc Bitmap*(this: TCoolBar): TBitmap  =
-  return AsBitmap(CoolBar_GetBitmap(this.Instance))
+  return CoolBar_GetBitmap(this.Instance).AsBitmap
 
 proc `Bitmap=`*(this: TCoolBar, AValue: TBitmap)  =
   CoolBar_SetBitmap(this.Instance, CheckPtr(AValue))
 
 proc PopupMenu*(this: TCoolBar): TPopupMenu  =
-  return AsPopupMenu(CoolBar_GetPopupMenu(this.Instance))
+  return CoolBar_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TCoolBar, AValue: TPopupMenu)  =
   CoolBar_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -37018,7 +37018,7 @@ proc VisibleDockClientCount*(this: TCoolBar): int32  =
   return CoolBar_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TCoolBar): TBrush  =
-  return AsBrush(CoolBar_GetBrush(this.Instance))
+  return CoolBar_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TCoolBar): int32  =
   return CoolBar_GetControlCount(this.Instance)
@@ -37054,7 +37054,7 @@ proc `UseDockManager=`*(this: TCoolBar, AValue: bool)  =
   CoolBar_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TCoolBar): TAction  =
-  return AsAction(CoolBar_GetAction(this.Instance))
+  return CoolBar_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TCoolBar, AValue: TAction)  =
   CoolBar_SetAction(this.Instance, CheckPtr(AValue))
@@ -37105,7 +37105,7 @@ proc Floating*(this: TCoolBar): bool  =
   return CoolBar_GetFloating(this.Instance)
 
 proc Parent*(this: TCoolBar): TWinControl  =
-  return AsWinControl(CoolBar_GetParent(this.Instance))
+  return CoolBar_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TCoolBar, AValue: TWinControl)  =
   CoolBar_SetParent(this.Instance, CheckPtr(AValue))
@@ -37156,7 +37156,7 @@ proc `ComponentIndex=`*(this: TCoolBar, AValue: int32)  =
   CoolBar_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TCoolBar): TComponent  =
-  return AsComponent(CoolBar_GetOwner(this.Instance))
+  return CoolBar_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TCoolBar): string  =
   return $CoolBar_GetName(this.Instance)
@@ -37171,52 +37171,52 @@ proc `Tag=`*(this: TCoolBar, AValue: int)  =
   CoolBar_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TCoolBar): TAnchorSide  =
-  return AsAnchorSide(CoolBar_GetAnchorSideLeft(this.Instance))
+  return CoolBar_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TCoolBar, AValue: TAnchorSide)  =
   CoolBar_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TCoolBar): TAnchorSide  =
-  return AsAnchorSide(CoolBar_GetAnchorSideTop(this.Instance))
+  return CoolBar_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TCoolBar, AValue: TAnchorSide)  =
   CoolBar_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TCoolBar): TAnchorSide  =
-  return AsAnchorSide(CoolBar_GetAnchorSideRight(this.Instance))
+  return CoolBar_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TCoolBar, AValue: TAnchorSide)  =
   CoolBar_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TCoolBar): TAnchorSide  =
-  return AsAnchorSide(CoolBar_GetAnchorSideBottom(this.Instance))
+  return CoolBar_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TCoolBar, AValue: TAnchorSide)  =
   CoolBar_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TCoolBar): TControlChildSizing  =
-  return AsControlChildSizing(CoolBar_GetChildSizing(this.Instance))
+  return CoolBar_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TCoolBar, AValue: TControlChildSizing)  =
   CoolBar_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TCoolBar): TControlBorderSpacing  =
-  return AsControlBorderSpacing(CoolBar_GetBorderSpacing(this.Instance))
+  return CoolBar_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TCoolBar, AValue: TControlBorderSpacing)  =
   CoolBar_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TCoolBar, Index: int32): TControl  =
-  return AsControl(CoolBar_GetDockClients(this.Instance, Index))
+  return CoolBar_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TCoolBar, Index: int32): TControl  =
-  return AsControl(CoolBar_GetControls(this.Instance, Index))
+  return CoolBar_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TCoolBar, AIndex: int32): TComponent  =
-  return AsComponent(CoolBar_GetComponents(this.Instance, AIndex))
+  return CoolBar_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TCoolBar, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(CoolBar_GetAnchorSide(this.Instance, AKind))
+  return CoolBar_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TCoolBarClass*(): TClass = CoolBar_StaticClassType()
 
@@ -37230,10 +37230,10 @@ proc NewCoolBands*(AOwner: TCoolBar): TCoolBands =
    result.Instance = CoolBands_Create(CheckPtr(AOwner))
 
 proc Add*(this: TCoolBands): TCoolBand  =
-  return AsCoolBand(CoolBands_Add(this.Instance))
+  return CoolBands_Add(this.Instance).AsCoolBand
 
 proc FindBand*(this: TCoolBands, AControl: TControl): TCoolBand  =
-  return AsCoolBand(CoolBands_FindBand(this.Instance, CheckPtr(AControl)))
+  return CoolBands_FindBand(this.Instance, CheckPtr(AControl)).AsCoolBand
 
 proc Owner*(this: TCoolBands): pointer  =
   return CoolBands_Owner(this.Instance)
@@ -37254,13 +37254,13 @@ proc EndUpdate*(this: TCoolBands)  =
   CoolBands_EndUpdate(this.Instance)
 
 proc FindItemID*(this: TCoolBands, ID: int32): TCollectionItem  =
-  return AsCollectionItem(CoolBands_FindItemID(this.Instance, ID))
+  return CoolBands_FindItemID(this.Instance, ID).AsCollectionItem
 
 proc GetNamePath*(this: TCoolBands): string  =
   return $CoolBands_GetNamePath(this.Instance)
 
 proc Insert*(this: TCoolBands, Index: int32): TCollectionItem  =
-  return AsCollectionItem(CoolBands_Insert(this.Instance, Index))
+  return CoolBands_Insert(this.Instance, Index).AsCollectionItem
 
 proc ClassType*(this: TCoolBands): TClass =
   return CoolBands_ClassType(this.Instance)
@@ -37287,7 +37287,7 @@ proc Count*(this: TCoolBands): int32  =
   return CoolBands_GetCount(this.Instance)
 
 proc Items*(this: TCoolBands, Index: int32): TCoolBand  =
-  return AsCoolBand(CoolBands_GetItems(this.Instance, Index))
+  return CoolBands_GetItems(this.Instance, Index).AsCoolBand
 
 proc `Items=`*(this: TCoolBands, Index: int32, AValue: TCoolBand)  =
   CoolBands_SetItems(this.Instance, Index, CheckPtr(AValue))
@@ -37334,7 +37334,7 @@ proc Height*(this: TCoolBand): int32  =
   return CoolBand_GetHeight(this.Instance)
 
 proc Bitmap*(this: TCoolBand): TBitmap  =
-  return AsBitmap(CoolBand_GetBitmap(this.Instance))
+  return CoolBand_GetBitmap(this.Instance).AsBitmap
 
 proc `Bitmap=`*(this: TCoolBand, AValue: TBitmap)  =
   CoolBand_SetBitmap(this.Instance, CheckPtr(AValue))
@@ -37358,7 +37358,7 @@ proc `Color=`*(this: TCoolBand, AValue: TColor)  =
   CoolBand_SetColor(this.Instance, AValue)
 
 proc Control*(this: TCoolBand): TWinControl  =
-  return AsWinControl(CoolBand_GetControl(this.Instance))
+  return CoolBand_GetControl(this.Instance).AsWinControl
 
 proc `Control=`*(this: TCoolBand, AValue: TWinControl)  =
   CoolBand_SetControl(this.Instance, CheckPtr(AValue))
@@ -37430,7 +37430,7 @@ proc `Width=`*(this: TCoolBand, AValue: int32)  =
   CoolBand_SetWidth(this.Instance, AValue)
 
 proc Collection*(this: TCoolBand): TCollection  =
-  return AsCollection(CoolBand_GetCollection(this.Instance))
+  return CoolBand_GetCollection(this.Instance).AsCollection
 
 proc `Collection=`*(this: TCoolBand, AValue: TCollection)  =
   CoolBand_SetCollection(this.Instance, CheckPtr(AValue))
@@ -37462,7 +37462,7 @@ proc Owner*(this: TCollection): pointer  =
   return Collection_Owner(this.Instance)
 
 proc Add*(this: TCollection): TCollectionItem  =
-  return AsCollectionItem(Collection_Add(this.Instance))
+  return Collection_Add(this.Instance).AsCollectionItem
 
 proc Assign*(this: TCollection, Source: pointer)  =
   Collection_Assign(this.Instance, Source)
@@ -37480,13 +37480,13 @@ proc EndUpdate*(this: TCollection)  =
   Collection_EndUpdate(this.Instance)
 
 proc FindItemID*(this: TCollection, ID: int32): TCollectionItem  =
-  return AsCollectionItem(Collection_FindItemID(this.Instance, ID))
+  return Collection_FindItemID(this.Instance, ID).AsCollectionItem
 
 proc GetNamePath*(this: TCollection): string  =
   return $Collection_GetNamePath(this.Instance)
 
 proc Insert*(this: TCollection, Index: int32): TCollectionItem  =
-  return AsCollectionItem(Collection_Insert(this.Instance, Index))
+  return Collection_Insert(this.Instance, Index).AsCollectionItem
 
 proc ClassType*(this: TCollection): TClass =
   return Collection_ClassType(this.Instance)
@@ -37513,7 +37513,7 @@ proc Count*(this: TCollection): int32  =
   return Collection_GetCount(this.Instance)
 
 proc Items*(this: TCollection, Index: int32): TCollectionItem  =
-  return AsCollectionItem(Collection_GetItems(this.Instance, Index))
+  return Collection_GetItems(this.Instance, Index).AsCollectionItem
 
 proc `Items=`*(this: TCollection, Index: int32, AValue: TCollectionItem)  =
   Collection_SetItems(this.Instance, Index, CheckPtr(AValue))
@@ -37569,7 +37569,7 @@ proc Aborted*(this: TPrinter): bool  =
   return Printer_GetAborted(this.Instance)
 
 proc Canvas*(this: TPrinter): TCanvas  =
-  return AsCanvas(Printer_GetCanvas(this.Instance))
+  return Printer_GetCanvas(this.Instance).AsCanvas
 
 proc Copies*(this: TPrinter): int32  =
   return Printer_GetCopies(this.Instance)
@@ -37578,7 +37578,7 @@ proc `Copies=`*(this: TPrinter, AValue: int32)  =
   Printer_SetCopies(this.Instance, AValue)
 
 proc Fonts*(this: TPrinter): TStrings  =
-  return AsStrings(Printer_GetFonts(this.Instance))
+  return Printer_GetFonts(this.Instance).AsStrings
 
 proc Orientation*(this: TPrinter): TPrinterOrientation  =
   return Printer_GetOrientation(this.Instance)
@@ -37605,7 +37605,7 @@ proc Printing*(this: TPrinter): bool  =
   return Printer_GetPrinting(this.Instance)
 
 proc Printers*(this: TPrinter): TStrings  =
-  return AsStrings(Printer_GetPrinters(this.Instance))
+  return Printer_GetPrinters(this.Instance).AsStrings
 
 proc Title*(this: TPrinter): string  =
   return $Printer_GetTitle(this.Instance)
@@ -37631,7 +37631,7 @@ proc Execute*(this: TTaskDialog): bool  =
   return TaskDialog_Execute(this.Instance)
 
 proc FindComponent*(this: TTaskDialog, AName: string): TComponent =
-  return AsComponent(TaskDialog_FindComponent(this.Instance, AName))
+  return TaskDialog_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TTaskDialog): string =
   return $TaskDialog_GetNamePath(this.Instance)
@@ -37664,7 +37664,7 @@ proc ToString*(this: TTaskDialog): string =
   return $TaskDialog_ToString(this.Instance)
 
 proc Buttons*(this: TTaskDialog): TTaskDialogButtons  =
-  return AsTaskDialogButtons(TaskDialog_GetButtons(this.Instance))
+  return TaskDialog_GetButtons(this.Instance).AsTaskDialogButtons
 
 proc `Buttons=`*(this: TTaskDialog, AValue: TTaskDialogButtons)  =
   TaskDialog_SetButtons(this.Instance, CheckPtr(AValue))
@@ -37724,7 +37724,7 @@ proc `MainIcon=`*(this: TTaskDialog, AValue: TTaskDialogIcon)  =
   TaskDialog_SetMainIcon(this.Instance, AValue)
 
 proc RadioButtons*(this: TTaskDialog): TTaskDialogButtons  =
-  return AsTaskDialogButtons(TaskDialog_GetRadioButtons(this.Instance))
+  return TaskDialog_GetRadioButtons(this.Instance).AsTaskDialogButtons
 
 proc `RadioButtons=`*(this: TTaskDialog, AValue: TTaskDialogButtons)  =
   TaskDialog_SetRadioButtons(this.Instance, CheckPtr(AValue))
@@ -37751,7 +37751,7 @@ proc `OnButtonClicked=`*(this: TTaskDialog, AEventId: TTaskDlgClickEvent)  =
   TaskDialog_SetOnButtonClicked(this.Instance, AEventId)
 
 proc Button*(this: TTaskDialog): TTaskDialogButtonItem  =
-  return AsTaskDialogButtonItem(TaskDialog_GetButton(this.Instance))
+  return TaskDialog_GetButton(this.Instance).AsTaskDialogButtonItem
 
 proc `Button=`*(this: TTaskDialog, AValue: TTaskDialogButtonItem)  =
   TaskDialog_SetButton(this.Instance, CheckPtr(AValue))
@@ -37763,7 +37763,7 @@ proc `ModalResult=`*(this: TTaskDialog, AValue: TModalResult)  =
   TaskDialog_SetModalResult(this.Instance, AValue)
 
 proc RadioButton*(this: TTaskDialog): TTaskDialogRadioButtonItem  =
-  return AsTaskDialogRadioButtonItem(TaskDialog_GetRadioButton(this.Instance))
+  return TaskDialog_GetRadioButton(this.Instance).AsTaskDialogRadioButtonItem
 
 proc ComponentCount*(this: TTaskDialog): int32  =
   return TaskDialog_GetComponentCount(this.Instance)
@@ -37775,7 +37775,7 @@ proc `ComponentIndex=`*(this: TTaskDialog, AValue: int32)  =
   TaskDialog_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TTaskDialog): TComponent  =
-  return AsComponent(TaskDialog_GetOwner(this.Instance))
+  return TaskDialog_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TTaskDialog): string  =
   return $TaskDialog_GetName(this.Instance)
@@ -37790,7 +37790,7 @@ proc `Tag=`*(this: TTaskDialog, AValue: int)  =
   TaskDialog_SetTag(this.Instance, AValue)
 
 proc Components*(this: TTaskDialog, AIndex: int32): TComponent  =
-  return AsComponent(TaskDialog_GetComponents(this.Instance, AIndex))
+  return TaskDialog_GetComponents(this.Instance, AIndex).AsComponent
 
 proc TTaskDialogClass*(): TClass = TaskDialog_StaticClassType()
 
@@ -37799,10 +37799,10 @@ proc TTaskDialogClass*(): TClass = TaskDialog_StaticClassType()
 
 
 proc Add*(this: TTaskDialogButtons): TTaskDialogBaseButtonItem  =
-  return AsTaskDialogBaseButtonItem(TaskDialogButtons_Add(this.Instance))
+  return TaskDialogButtons_Add(this.Instance).AsTaskDialogBaseButtonItem
 
 proc FindButton*(this: TTaskDialogButtons, AModalResult: TModalResult): TTaskDialogBaseButtonItem  =
-  return AsTaskDialogBaseButtonItem(TaskDialogButtons_FindButton(this.Instance, AModalResult))
+  return TaskDialogButtons_FindButton(this.Instance, AModalResult).AsTaskDialogBaseButtonItem
 
 proc Owner*(this: TTaskDialogButtons): pointer  =
   return TaskDialogButtons_Owner(this.Instance)
@@ -37823,13 +37823,13 @@ proc EndUpdate*(this: TTaskDialogButtons)  =
   TaskDialogButtons_EndUpdate(this.Instance)
 
 proc FindItemID*(this: TTaskDialogButtons, ID: int32): TCollectionItem  =
-  return AsCollectionItem(TaskDialogButtons_FindItemID(this.Instance, ID))
+  return TaskDialogButtons_FindItemID(this.Instance, ID).AsCollectionItem
 
 proc GetNamePath*(this: TTaskDialogButtons): string  =
   return $TaskDialogButtons_GetNamePath(this.Instance)
 
 proc Insert*(this: TTaskDialogButtons, Index: int32): TCollectionItem  =
-  return AsCollectionItem(TaskDialogButtons_Insert(this.Instance, Index))
+  return TaskDialogButtons_Insert(this.Instance, Index).AsCollectionItem
 
 proc ClassType*(this: TTaskDialogButtons): TClass =
   return TaskDialogButtons_ClassType(this.Instance)
@@ -37853,7 +37853,7 @@ proc ToString*(this: TTaskDialogButtons): string =
   return $TaskDialogButtons_ToString(this.Instance)
 
 proc DefaultButton*(this: TTaskDialogButtons): TTaskDialogBaseButtonItem  =
-  return AsTaskDialogBaseButtonItem(TaskDialogButtons_GetDefaultButton(this.Instance))
+  return TaskDialogButtons_GetDefaultButton(this.Instance).AsTaskDialogBaseButtonItem
 
 proc `DefaultButton=`*(this: TTaskDialogButtons, AValue: TTaskDialogBaseButtonItem)  =
   TaskDialogButtons_SetDefaultButton(this.Instance, CheckPtr(AValue))
@@ -37862,7 +37862,7 @@ proc Count*(this: TTaskDialogButtons): int32  =
   return TaskDialogButtons_GetCount(this.Instance)
 
 proc Items*(this: TTaskDialogButtons, Index: int32): TTaskDialogBaseButtonItem  =
-  return AsTaskDialogBaseButtonItem(TaskDialogButtons_GetItems(this.Instance, Index))
+  return TaskDialogButtons_GetItems(this.Instance, Index).AsTaskDialogBaseButtonItem
 
 proc `Items=`*(this: TTaskDialogButtons, Index: int32, AValue: TTaskDialogBaseButtonItem)  =
   TaskDialogButtons_SetItems(this.Instance, Index, CheckPtr(AValue))
@@ -37924,7 +37924,7 @@ proc `Default=`*(this: TTaskDialogButtonItem, AValue: bool)  =
   TaskDialogButtonItem_SetDefault(this.Instance, AValue)
 
 proc Collection*(this: TTaskDialogButtonItem): TCollection  =
-  return AsCollection(TaskDialogButtonItem_GetCollection(this.Instance))
+  return TaskDialogButtonItem_GetCollection(this.Instance).AsCollection
 
 proc `Collection=`*(this: TTaskDialogButtonItem, AValue: TCollection)  =
   TaskDialogButtonItem_SetCollection(this.Instance, CheckPtr(AValue))
@@ -37998,7 +37998,7 @@ proc `Default=`*(this: TTaskDialogRadioButtonItem, AValue: bool)  =
   TaskDialogRadioButtonItem_SetDefault(this.Instance, AValue)
 
 proc Collection*(this: TTaskDialogRadioButtonItem): TCollection  =
-  return AsCollection(TaskDialogRadioButtonItem_GetCollection(this.Instance))
+  return TaskDialogRadioButtonItem_GetCollection(this.Instance).AsCollection
 
 proc `Collection=`*(this: TTaskDialogRadioButtonItem, AValue: TCollection)  =
   TaskDialogRadioButtonItem_SetCollection(this.Instance, CheckPtr(AValue))
@@ -38072,7 +38072,7 @@ proc `Default=`*(this: TTaskDialogBaseButtonItem, AValue: bool)  =
   TaskDialogBaseButtonItem_SetDefault(this.Instance, AValue)
 
 proc Collection*(this: TTaskDialogBaseButtonItem): TCollection  =
-  return AsCollection(TaskDialogBaseButtonItem_GetCollection(this.Instance))
+  return TaskDialogBaseButtonItem_GetCollection(this.Instance).AsCollection
 
 proc `Collection=`*(this: TTaskDialogBaseButtonItem, AValue: TCollection)  =
   TaskDialogBaseButtonItem_SetCollection(this.Instance, CheckPtr(AValue))
@@ -38125,7 +38125,7 @@ proc ContainsControl*(this: TComboBoxEx, Control: TControl): bool =
   return ComboBoxEx_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TComboBoxEx, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(ComboBoxEx_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return ComboBoxEx_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TComboBoxEx) =
   ComboBoxEx_DisableAlign(this.Instance)
@@ -38134,7 +38134,7 @@ proc EnableAlign*(this: TComboBoxEx) =
   ComboBoxEx_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TComboBoxEx, ControlName: string): TControl =
-  return AsControl(ComboBoxEx_FindChildControl(this.Instance, ControlName))
+  return ComboBoxEx_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TComboBoxEx, AllLevels: bool) =
   ComboBoxEx_FlipChildren(this.Instance, AllLevels)
@@ -38218,7 +38218,7 @@ proc SetTextBuf*(this: TComboBoxEx, Buffer: string) =
   ComboBoxEx_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TComboBoxEx, AName: string): TComponent =
-  return AsComponent(ComboBoxEx_FindComponent(this.Instance, AName))
+  return ComboBoxEx_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TComboBoxEx): string =
   return $ComboBoxEx_GetNamePath(this.Instance)
@@ -38278,7 +38278,7 @@ proc `AutoCompleteOptions=`*(this: TComboBoxEx, AValue: TAutoCompleteOptions)  =
   ComboBoxEx_SetAutoCompleteOptions(this.Instance, AValue)
 
 proc ItemsEx*(this: TComboBoxEx): TComboExItems  =
-  return AsComboExItems(ComboBoxEx_GetItemsEx(this.Instance))
+  return ComboBoxEx_GetItemsEx(this.Instance).AsComboExItems
 
 proc `ItemsEx=`*(this: TComboBoxEx, AValue: TComboExItems)  =
   ComboBoxEx_SetItemsEx(this.Instance, CheckPtr(AValue))
@@ -38296,7 +38296,7 @@ proc `StyleEx=`*(this: TComboBoxEx, AValue: TComboBoxExStyles)  =
   ComboBoxEx_SetStyleEx(this.Instance, AValue)
 
 proc Action*(this: TComboBoxEx): TAction  =
-  return AsAction(ComboBoxEx_GetAction(this.Instance))
+  return ComboBoxEx_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TComboBoxEx, AValue: TAction)  =
   ComboBoxEx_SetAction(this.Instance, CheckPtr(AValue))
@@ -38320,7 +38320,7 @@ proc `Color=`*(this: TComboBoxEx, AValue: TColor)  =
   ComboBoxEx_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TComboBoxEx): TSizeConstraints  =
-  return AsSizeConstraints(ComboBoxEx_GetConstraints(this.Instance))
+  return ComboBoxEx_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TComboBoxEx, AValue: TSizeConstraints)  =
   ComboBoxEx_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -38356,7 +38356,7 @@ proc `Enabled=`*(this: TComboBoxEx, AValue: bool)  =
   ComboBoxEx_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TComboBoxEx): TFont  =
-  return AsFont(ComboBoxEx_GetFont(this.Instance))
+  return ComboBoxEx_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TComboBoxEx, AValue: TFont)  =
   ComboBoxEx_SetFont(this.Instance, CheckPtr(AValue))
@@ -38398,7 +38398,7 @@ proc `ParentShowHint=`*(this: TComboBoxEx, AValue: bool)  =
   ComboBoxEx_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TComboBoxEx): TPopupMenu  =
-  return AsPopupMenu(ComboBoxEx_GetPopupMenu(this.Instance))
+  return ComboBoxEx_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TComboBoxEx, AValue: TPopupMenu)  =
   ComboBoxEx_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -38482,7 +38482,7 @@ proc `OnStartDock=`*(this: TComboBoxEx, AEventId: TStartDockEvent)  =
   ComboBoxEx_SetOnStartDock(this.Instance, AEventId)
 
 proc Images*(this: TComboBoxEx): TImageList  =
-  return AsImageList(ComboBoxEx_GetImages(this.Instance))
+  return ComboBoxEx_GetImages(this.Instance).AsImageList
 
 proc `Images=`*(this: TComboBoxEx, AValue: TImageList)  =
   ComboBoxEx_SetImages(this.Instance, CheckPtr(AValue))
@@ -38500,7 +38500,7 @@ proc `SelText=`*(this: TComboBoxEx, AValue: string)  =
   ComboBoxEx_SetSelText(this.Instance, AValue)
 
 proc Canvas*(this: TComboBoxEx): TCanvas  =
-  return AsCanvas(ComboBoxEx_GetCanvas(this.Instance))
+  return ComboBoxEx_GetCanvas(this.Instance).AsCanvas
 
 proc DroppedDown*(this: TComboBoxEx): bool  =
   return ComboBoxEx_GetDroppedDown(this.Instance)
@@ -38509,7 +38509,7 @@ proc `DroppedDown=`*(this: TComboBoxEx, AValue: bool)  =
   ComboBoxEx_SetDroppedDown(this.Instance, AValue)
 
 proc Items*(this: TComboBoxEx): TStrings  =
-  return AsStrings(ComboBoxEx_GetItems(this.Instance))
+  return ComboBoxEx_GetItems(this.Instance).AsStrings
 
 proc `Items=`*(this: TComboBoxEx, AValue: TStrings)  =
   ComboBoxEx_SetItems(this.Instance, CheckPtr(AValue))
@@ -38548,7 +38548,7 @@ proc VisibleDockClientCount*(this: TComboBoxEx): int32  =
   return ComboBoxEx_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TComboBoxEx): TBrush  =
-  return AsBrush(ComboBoxEx_GetBrush(this.Instance))
+  return ComboBoxEx_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TComboBoxEx): int32  =
   return ComboBoxEx_GetControlCount(this.Instance)
@@ -38611,7 +38611,7 @@ proc Floating*(this: TComboBoxEx): bool  =
   return ComboBoxEx_GetFloating(this.Instance)
 
 proc Parent*(this: TComboBoxEx): TWinControl  =
-  return AsWinControl(ComboBoxEx_GetParent(this.Instance))
+  return ComboBoxEx_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TComboBoxEx, AValue: TWinControl)  =
   ComboBoxEx_SetParent(this.Instance, CheckPtr(AValue))
@@ -38662,7 +38662,7 @@ proc `ComponentIndex=`*(this: TComboBoxEx, AValue: int32)  =
   ComboBoxEx_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TComboBoxEx): TComponent  =
-  return AsComponent(ComboBoxEx_GetOwner(this.Instance))
+  return ComboBoxEx_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TComboBoxEx): string  =
   return $ComboBoxEx_GetName(this.Instance)
@@ -38677,52 +38677,52 @@ proc `Tag=`*(this: TComboBoxEx, AValue: int)  =
   ComboBoxEx_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TComboBoxEx): TAnchorSide  =
-  return AsAnchorSide(ComboBoxEx_GetAnchorSideLeft(this.Instance))
+  return ComboBoxEx_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TComboBoxEx, AValue: TAnchorSide)  =
   ComboBoxEx_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TComboBoxEx): TAnchorSide  =
-  return AsAnchorSide(ComboBoxEx_GetAnchorSideTop(this.Instance))
+  return ComboBoxEx_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TComboBoxEx, AValue: TAnchorSide)  =
   ComboBoxEx_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TComboBoxEx): TAnchorSide  =
-  return AsAnchorSide(ComboBoxEx_GetAnchorSideRight(this.Instance))
+  return ComboBoxEx_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TComboBoxEx, AValue: TAnchorSide)  =
   ComboBoxEx_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TComboBoxEx): TAnchorSide  =
-  return AsAnchorSide(ComboBoxEx_GetAnchorSideBottom(this.Instance))
+  return ComboBoxEx_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TComboBoxEx, AValue: TAnchorSide)  =
   ComboBoxEx_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TComboBoxEx): TControlChildSizing  =
-  return AsControlChildSizing(ComboBoxEx_GetChildSizing(this.Instance))
+  return ComboBoxEx_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TComboBoxEx, AValue: TControlChildSizing)  =
   ComboBoxEx_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TComboBoxEx): TControlBorderSpacing  =
-  return AsControlBorderSpacing(ComboBoxEx_GetBorderSpacing(this.Instance))
+  return ComboBoxEx_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TComboBoxEx, AValue: TControlBorderSpacing)  =
   ComboBoxEx_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TComboBoxEx, Index: int32): TControl  =
-  return AsControl(ComboBoxEx_GetDockClients(this.Instance, Index))
+  return ComboBoxEx_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TComboBoxEx, Index: int32): TControl  =
-  return AsControl(ComboBoxEx_GetControls(this.Instance, Index))
+  return ComboBoxEx_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TComboBoxEx, AIndex: int32): TComponent  =
-  return AsComponent(ComboBoxEx_GetComponents(this.Instance, AIndex))
+  return ComboBoxEx_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TComboBoxEx, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(ComboBoxEx_GetAnchorSide(this.Instance, AKind))
+  return ComboBoxEx_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TComboBoxExClass*(): TClass = ComboBoxEx_StaticClassType()
 
@@ -38731,13 +38731,13 @@ proc TComboBoxExClass*(): TClass = ComboBoxEx_StaticClassType()
 
 
 proc Add*(this: TComboExItems): TComboExItem  =
-  return AsComboExItem(ComboExItems_Add(this.Instance))
+  return ComboExItems_Add(this.Instance).AsComboExItem
 
 proc AddItem*(this: TComboExItems, Caption: string, ImageIndex: int32, SelectedImageIndex: int32, OverlayImageIndex: int32, Indent: int32, Data: pointer): TComboExItem  =
-  return AsComboExItem(ComboExItems_AddItem(this.Instance, Caption, ImageIndex, SelectedImageIndex, OverlayImageIndex, Indent, Data))
+  return ComboExItems_AddItem(this.Instance, Caption, ImageIndex, SelectedImageIndex, OverlayImageIndex, Indent, Data).AsComboExItem
 
 proc Insert*(this: TComboExItems, Index: int32): TComboExItem  =
-  return AsComboExItem(ComboExItems_Insert(this.Instance, Index))
+  return ComboExItems_Insert(this.Instance, Index).AsComboExItem
 
 proc Owner*(this: TComboExItems): pointer  =
   return ComboExItems_Owner(this.Instance)
@@ -38758,7 +38758,7 @@ proc EndUpdate*(this: TComboExItems)  =
   ComboExItems_EndUpdate(this.Instance)
 
 proc FindItemID*(this: TComboExItems, ID: int32): TCollectionItem  =
-  return AsCollectionItem(ComboExItems_FindItemID(this.Instance, ID))
+  return ComboExItems_FindItemID(this.Instance, ID).AsCollectionItem
 
 proc GetNamePath*(this: TComboExItems): string  =
   return $ComboExItems_GetNamePath(this.Instance)
@@ -38788,7 +38788,7 @@ proc Count*(this: TComboExItems): int32  =
   return ComboExItems_GetCount(this.Instance)
 
 proc ComboItems*(this: TComboExItems, Index: int32): TComboExItem  =
-  return AsComboExItem(ComboExItems_GetComboItems(this.Instance, Index))
+  return ComboExItems_GetComboItems(this.Instance, Index).AsComboExItem
 
 proc TComboExItemsClass*(): TClass = ComboExItems_StaticClassType()
 
@@ -38854,7 +38854,7 @@ proc `ImageIndex=`*(this: TComboExItem, AValue: int32)  =
   ComboExItem_SetImageIndex(this.Instance, AValue)
 
 proc Collection*(this: TComboExItem): TCollection  =
-  return AsCollection(ComboExItem_GetCollection(this.Instance))
+  return ComboExItem_GetCollection(this.Instance).AsCollection
 
 proc `Collection=`*(this: TComboExItem, AValue: TCollection)  =
   ComboExItem_SetCollection(this.Instance, CheckPtr(AValue))
@@ -38892,7 +38892,7 @@ proc ContainsControl*(this: TFrame, Control: TControl): bool =
   return Frame_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TFrame, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(Frame_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return Frame_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TFrame) =
   Frame_DisableAlign(this.Instance)
@@ -38901,7 +38901,7 @@ proc EnableAlign*(this: TFrame) =
   Frame_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TFrame, ControlName: string): TControl =
-  return AsControl(Frame_FindChildControl(this.Instance, ControlName))
+  return Frame_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TFrame, AllLevels: bool) =
   Frame_FlipChildren(this.Instance, AllLevels)
@@ -38988,7 +38988,7 @@ proc SetTextBuf*(this: TFrame, Buffer: string) =
   Frame_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TFrame, AName: string): TComponent =
-  return AsComponent(Frame_FindComponent(this.Instance, AName))
+  return Frame_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TFrame): string =
   return $Frame_GetNamePath(this.Instance)
@@ -39066,7 +39066,7 @@ proc `BiDiMode=`*(this: TFrame, AValue: TBiDiMode)  =
   Frame_SetBiDiMode(this.Instance, AValue)
 
 proc Constraints*(this: TFrame): TSizeConstraints  =
-  return AsSizeConstraints(Frame_GetConstraints(this.Instance))
+  return Frame_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TFrame, AValue: TSizeConstraints)  =
   Frame_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -39114,7 +39114,7 @@ proc `Color=`*(this: TFrame, AValue: TColor)  =
   Frame_SetColor(this.Instance, AValue)
 
 proc Font*(this: TFrame): TFont  =
-  return AsFont(Frame_GetFont(this.Instance))
+  return Frame_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TFrame, AValue: TFont)  =
   Frame_SetFont(this.Instance, CheckPtr(AValue))
@@ -39144,7 +39144,7 @@ proc `ParentShowHint=`*(this: TFrame, AValue: bool)  =
   Frame_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TFrame): TPopupMenu  =
-  return AsPopupMenu(Frame_GetPopupMenu(this.Instance))
+  return Frame_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TFrame, AValue: TPopupMenu)  =
   Frame_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -39243,13 +39243,13 @@ proc `OnUnDock=`*(this: TFrame, AEventId: TUnDockEvent)  =
   Frame_SetOnUnDock(this.Instance, AEventId)
 
 proc HorzScrollBar*(this: TFrame): TControlScrollBar  =
-  return AsControlScrollBar(Frame_GetHorzScrollBar(this.Instance))
+  return Frame_GetHorzScrollBar(this.Instance).AsControlScrollBar
 
 proc `HorzScrollBar=`*(this: TFrame, AValue: TControlScrollBar)  =
   Frame_SetHorzScrollBar(this.Instance, CheckPtr(AValue))
 
 proc VertScrollBar*(this: TFrame): TControlScrollBar  =
-  return AsControlScrollBar(Frame_GetVertScrollBar(this.Instance))
+  return Frame_GetVertScrollBar(this.Instance).AsControlScrollBar
 
 proc `VertScrollBar=`*(this: TFrame, AValue: TControlScrollBar)  =
   Frame_SetVertScrollBar(this.Instance, CheckPtr(AValue))
@@ -39264,7 +39264,7 @@ proc VisibleDockClientCount*(this: TFrame): int32  =
   return Frame_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TFrame): TBrush  =
-  return AsBrush(Frame_GetBrush(this.Instance))
+  return Frame_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TFrame): int32  =
   return Frame_GetControlCount(this.Instance)
@@ -39288,7 +39288,7 @@ proc `UseDockManager=`*(this: TFrame, AValue: bool)  =
   Frame_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TFrame): TAction  =
-  return AsAction(Frame_GetAction(this.Instance))
+  return Frame_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TFrame, AValue: TAction)  =
   Frame_SetAction(this.Instance, CheckPtr(AValue))
@@ -39333,7 +39333,7 @@ proc Floating*(this: TFrame): bool  =
   return Frame_GetFloating(this.Instance)
 
 proc Parent*(this: TFrame): TWinControl  =
-  return AsWinControl(Frame_GetParent(this.Instance))
+  return Frame_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TFrame, AValue: TWinControl)  =
   Frame_SetParent(this.Instance, CheckPtr(AValue))
@@ -39384,7 +39384,7 @@ proc `ComponentIndex=`*(this: TFrame, AValue: int32)  =
   Frame_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TFrame): TComponent  =
-  return AsComponent(Frame_GetOwner(this.Instance))
+  return Frame_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TFrame): string  =
   return $Frame_GetName(this.Instance)
@@ -39399,52 +39399,52 @@ proc `Tag=`*(this: TFrame, AValue: int)  =
   Frame_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TFrame): TAnchorSide  =
-  return AsAnchorSide(Frame_GetAnchorSideLeft(this.Instance))
+  return Frame_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TFrame, AValue: TAnchorSide)  =
   Frame_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TFrame): TAnchorSide  =
-  return AsAnchorSide(Frame_GetAnchorSideTop(this.Instance))
+  return Frame_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TFrame, AValue: TAnchorSide)  =
   Frame_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TFrame): TAnchorSide  =
-  return AsAnchorSide(Frame_GetAnchorSideRight(this.Instance))
+  return Frame_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TFrame, AValue: TAnchorSide)  =
   Frame_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TFrame): TAnchorSide  =
-  return AsAnchorSide(Frame_GetAnchorSideBottom(this.Instance))
+  return Frame_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TFrame, AValue: TAnchorSide)  =
   Frame_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TFrame): TControlChildSizing  =
-  return AsControlChildSizing(Frame_GetChildSizing(this.Instance))
+  return Frame_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TFrame, AValue: TControlChildSizing)  =
   Frame_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TFrame): TControlBorderSpacing  =
-  return AsControlBorderSpacing(Frame_GetBorderSpacing(this.Instance))
+  return Frame_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TFrame, AValue: TControlBorderSpacing)  =
   Frame_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TFrame, Index: int32): TControl  =
-  return AsControl(Frame_GetDockClients(this.Instance, Index))
+  return Frame_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TFrame, Index: int32): TControl  =
-  return AsControl(Frame_GetControls(this.Instance, Index))
+  return Frame_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TFrame, AIndex: int32): TComponent  =
-  return AsComponent(Frame_GetComponents(this.Instance, AIndex))
+  return Frame_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TFrame, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(Frame_GetAnchorSide(this.Instance, AKind))
+  return Frame_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TFrameClass*(): TClass = Frame_StaticClassType()
 
@@ -39650,7 +39650,7 @@ proc SetTextBuf*(this: TXButton, Buffer: string) =
   XButton_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TXButton, AName: string): TComponent =
-  return AsComponent(XButton_FindComponent(this.Instance, AName))
+  return XButton_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TXButton): string =
   return $XButton_GetNamePath(this.Instance)
@@ -39740,7 +39740,7 @@ proc `BorderColor=`*(this: TXButton, AValue: TColor)  =
   XButton_SetBorderColor(this.Instance, AValue)
 
 proc Picture*(this: TXButton): TPicture  =
-  return AsPicture(XButton_GetPicture(this.Instance))
+  return XButton_GetPicture(this.Instance).AsPicture
 
 proc `Picture=`*(this: TXButton, AValue: TPicture)  =
   XButton_SetPicture(this.Instance, CheckPtr(AValue))
@@ -39770,7 +39770,7 @@ proc `HoverFontColor=`*(this: TXButton, AValue: TColor)  =
   XButton_SetHoverFontColor(this.Instance, AValue)
 
 proc Action*(this: TXButton): TAction  =
-  return AsAction(XButton_GetAction(this.Instance))
+  return XButton_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TXButton, AValue: TAction)  =
   XButton_SetAction(this.Instance, CheckPtr(AValue))
@@ -39794,7 +39794,7 @@ proc `BiDiMode=`*(this: TXButton, AValue: TBiDiMode)  =
   XButton_SetBiDiMode(this.Instance, AValue)
 
 proc Constraints*(this: TXButton): TSizeConstraints  =
-  return AsSizeConstraints(XButton_GetConstraints(this.Instance))
+  return XButton_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TXButton, AValue: TSizeConstraints)  =
   XButton_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -39806,7 +39806,7 @@ proc `Enabled=`*(this: TXButton, AValue: bool)  =
   XButton_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TXButton): TFont  =
-  return AsFont(XButton_GetFont(this.Instance))
+  return XButton_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TXButton, AValue: TFont)  =
   XButton_SetFont(this.Instance, CheckPtr(AValue))
@@ -39824,7 +39824,7 @@ proc `ParentShowHint=`*(this: TXButton, AValue: bool)  =
   XButton_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TXButton): TPopupMenu  =
-  return AsPopupMenu(XButton_GetPopupMenu(this.Instance))
+  return XButton_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TXButton, AValue: TPopupMenu)  =
   XButton_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -39902,7 +39902,7 @@ proc Floating*(this: TXButton): bool  =
   return XButton_GetFloating(this.Instance)
 
 proc Parent*(this: TXButton): TWinControl  =
-  return AsWinControl(XButton_GetParent(this.Instance))
+  return XButton_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TXButton, AValue: TWinControl)  =
   XButton_SetParent(this.Instance, CheckPtr(AValue))
@@ -39953,7 +39953,7 @@ proc `ComponentIndex=`*(this: TXButton, AValue: int32)  =
   XButton_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TXButton): TComponent  =
-  return AsComponent(XButton_GetOwner(this.Instance))
+  return XButton_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TXButton): string  =
   return $XButton_GetName(this.Instance)
@@ -39968,40 +39968,40 @@ proc `Tag=`*(this: TXButton, AValue: int)  =
   XButton_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TXButton): TAnchorSide  =
-  return AsAnchorSide(XButton_GetAnchorSideLeft(this.Instance))
+  return XButton_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TXButton, AValue: TAnchorSide)  =
   XButton_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TXButton): TAnchorSide  =
-  return AsAnchorSide(XButton_GetAnchorSideTop(this.Instance))
+  return XButton_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TXButton, AValue: TAnchorSide)  =
   XButton_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TXButton): TAnchorSide  =
-  return AsAnchorSide(XButton_GetAnchorSideRight(this.Instance))
+  return XButton_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TXButton, AValue: TAnchorSide)  =
   XButton_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TXButton): TAnchorSide  =
-  return AsAnchorSide(XButton_GetAnchorSideBottom(this.Instance))
+  return XButton_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TXButton, AValue: TAnchorSide)  =
   XButton_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TXButton): TControlBorderSpacing  =
-  return AsControlBorderSpacing(XButton_GetBorderSpacing(this.Instance))
+  return XButton_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TXButton, AValue: TControlBorderSpacing)  =
   XButton_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc Components*(this: TXButton, AIndex: int32): TComponent  =
-  return AsComponent(XButton_GetComponents(this.Instance, AIndex))
+  return XButton_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TXButton, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(XButton_GetAnchorSide(this.Instance, AKind))
+  return XButton_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TXButtonClass*(): TClass = XButton_StaticClassType()
 
@@ -40037,10 +40037,10 @@ proc ToString*(this: TAnchorSide): string =
   return $AnchorSide_ToString(this.Instance)
 
 proc Owner*(this: TAnchorSide): TControl  =
-  return AsControl(AnchorSide_GetOwner(this.Instance))
+  return AnchorSide_GetOwner(this.Instance).AsControl
 
 proc Control*(this: TAnchorSide): TControl  =
-  return AsControl(AnchorSide_GetControl(this.Instance))
+  return AnchorSide_GetControl(this.Instance).AsControl
 
 proc `Control=`*(this: TAnchorSide, AValue: TControl)  =
   AnchorSide_SetControl(this.Instance, CheckPtr(AValue))
@@ -40085,7 +40085,7 @@ proc ToString*(this: TControlBorderSpacing): string =
   return $ControlBorderSpacing_ToString(this.Instance)
 
 proc Control*(this: TControlBorderSpacing): TControl  =
-  return AsControl(ControlBorderSpacing_GetControl(this.Instance))
+  return ControlBorderSpacing_GetControl(this.Instance).AsControl
 
 proc AroundLeft*(this: TControlBorderSpacing): int32  =
   return ControlBorderSpacing_GetAroundLeft(this.Instance)
@@ -40208,7 +40208,7 @@ proc ToString*(this: TControlChildSizing): string =
   return $ControlChildSizing_ToString(this.Instance)
 
 proc Control*(this: TControlChildSizing): TWinControl  =
-  return AsWinControl(ControlChildSizing_GetControl(this.Instance))
+  return ControlChildSizing_GetControl(this.Instance).AsWinControl
 
 proc `OnChange=`*(this: TControlChildSizing, AEventId: TNotifyEvent)  =
   ControlChildSizing_SetOnChange(this.Instance, AEventId)
@@ -40297,7 +40297,7 @@ proc ContainsControl*(this: TCheckGroup, Control: TControl): bool =
   return CheckGroup_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TCheckGroup, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(CheckGroup_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return CheckGroup_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TCheckGroup) =
   CheckGroup_DisableAlign(this.Instance)
@@ -40306,7 +40306,7 @@ proc EnableAlign*(this: TCheckGroup) =
   CheckGroup_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TCheckGroup, ControlName: string): TControl =
-  return AsControl(CheckGroup_FindChildControl(this.Instance, ControlName))
+  return CheckGroup_FindChildControl(this.Instance, ControlName).AsControl
 
 proc Focused*(this: TCheckGroup): bool =
   return CheckGroup_Focused(this.Instance)
@@ -40390,7 +40390,7 @@ proc SetTextBuf*(this: TCheckGroup, Buffer: string) =
   CheckGroup_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TCheckGroup, AName: string): TComponent =
-  return AsComponent(CheckGroup_FindComponent(this.Instance, AName))
+  return CheckGroup_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TCheckGroup): string =
   return $CheckGroup_GetNamePath(this.Instance)
@@ -40504,7 +40504,7 @@ proc `Columns=`*(this: TCheckGroup, AValue: int32)  =
   CheckGroup_SetColumns(this.Instance, AValue)
 
 proc Constraints*(this: TCheckGroup): TSizeConstraints  =
-  return AsSizeConstraints(CheckGroup_GetConstraints(this.Instance))
+  return CheckGroup_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TCheckGroup, AValue: TSizeConstraints)  =
   CheckGroup_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -40534,13 +40534,13 @@ proc `Enabled=`*(this: TCheckGroup, AValue: bool)  =
   CheckGroup_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TCheckGroup): TFont  =
-  return AsFont(CheckGroup_GetFont(this.Instance))
+  return CheckGroup_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TCheckGroup, AValue: TFont)  =
   CheckGroup_SetFont(this.Instance, CheckPtr(AValue))
 
 proc Items*(this: TCheckGroup): TStrings  =
-  return AsStrings(CheckGroup_GetItems(this.Instance))
+  return CheckGroup_GetItems(this.Instance).AsStrings
 
 proc `Items=`*(this: TCheckGroup, AValue: TStrings)  =
   CheckGroup_SetItems(this.Instance, CheckPtr(AValue))
@@ -40630,7 +40630,7 @@ proc `ParentShowHint=`*(this: TCheckGroup, AValue: bool)  =
   CheckGroup_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TCheckGroup): TPopupMenu  =
-  return AsPopupMenu(CheckGroup_GetPopupMenu(this.Instance))
+  return CheckGroup_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TCheckGroup, AValue: TPopupMenu)  =
   CheckGroup_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -40675,7 +40675,7 @@ proc VisibleDockClientCount*(this: TCheckGroup): int32  =
   return CheckGroup_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TCheckGroup): TBrush  =
-  return AsBrush(CheckGroup_GetBrush(this.Instance))
+  return CheckGroup_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TCheckGroup): int32  =
   return CheckGroup_GetControlCount(this.Instance)
@@ -40699,7 +40699,7 @@ proc `UseDockManager=`*(this: TCheckGroup, AValue: bool)  =
   CheckGroup_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TCheckGroup): TAction  =
-  return AsAction(CheckGroup_GetAction(this.Instance))
+  return CheckGroup_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TCheckGroup, AValue: TAction)  =
   CheckGroup_SetAction(this.Instance, CheckPtr(AValue))
@@ -40732,7 +40732,7 @@ proc Floating*(this: TCheckGroup): bool  =
   return CheckGroup_GetFloating(this.Instance)
 
 proc Parent*(this: TCheckGroup): TWinControl  =
-  return AsWinControl(CheckGroup_GetParent(this.Instance))
+  return CheckGroup_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TCheckGroup, AValue: TWinControl)  =
   CheckGroup_SetParent(this.Instance, CheckPtr(AValue))
@@ -40783,7 +40783,7 @@ proc `ComponentIndex=`*(this: TCheckGroup, AValue: int32)  =
   CheckGroup_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TCheckGroup): TComponent  =
-  return AsComponent(CheckGroup_GetOwner(this.Instance))
+  return CheckGroup_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TCheckGroup): string  =
   return $CheckGroup_GetName(this.Instance)
@@ -40798,37 +40798,37 @@ proc `Tag=`*(this: TCheckGroup, AValue: int)  =
   CheckGroup_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TCheckGroup): TAnchorSide  =
-  return AsAnchorSide(CheckGroup_GetAnchorSideLeft(this.Instance))
+  return CheckGroup_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TCheckGroup, AValue: TAnchorSide)  =
   CheckGroup_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TCheckGroup): TAnchorSide  =
-  return AsAnchorSide(CheckGroup_GetAnchorSideTop(this.Instance))
+  return CheckGroup_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TCheckGroup, AValue: TAnchorSide)  =
   CheckGroup_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TCheckGroup): TAnchorSide  =
-  return AsAnchorSide(CheckGroup_GetAnchorSideRight(this.Instance))
+  return CheckGroup_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TCheckGroup, AValue: TAnchorSide)  =
   CheckGroup_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TCheckGroup): TAnchorSide  =
-  return AsAnchorSide(CheckGroup_GetAnchorSideBottom(this.Instance))
+  return CheckGroup_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TCheckGroup, AValue: TAnchorSide)  =
   CheckGroup_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TCheckGroup): TControlChildSizing  =
-  return AsControlChildSizing(CheckGroup_GetChildSizing(this.Instance))
+  return CheckGroup_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TCheckGroup, AValue: TControlChildSizing)  =
   CheckGroup_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TCheckGroup): TControlBorderSpacing  =
-  return AsControlBorderSpacing(CheckGroup_GetBorderSpacing(this.Instance))
+  return CheckGroup_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TCheckGroup, AValue: TControlBorderSpacing)  =
   CheckGroup_SetBorderSpacing(this.Instance, CheckPtr(AValue))
@@ -40846,16 +40846,16 @@ proc `CheckEnabled=`*(this: TCheckGroup, Index: int32, AValue: bool)  =
   CheckGroup_SetCheckEnabled(this.Instance, Index, AValue)
 
 proc DockClients*(this: TCheckGroup, Index: int32): TControl  =
-  return AsControl(CheckGroup_GetDockClients(this.Instance, Index))
+  return CheckGroup_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TCheckGroup, Index: int32): TControl  =
-  return AsControl(CheckGroup_GetControls(this.Instance, Index))
+  return CheckGroup_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TCheckGroup, AIndex: int32): TComponent  =
-  return AsComponent(CheckGroup_GetComponents(this.Instance, AIndex))
+  return CheckGroup_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TCheckGroup, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(CheckGroup_GetAnchorSide(this.Instance, AKind))
+  return CheckGroup_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TCheckGroupClass*(): TClass = CheckGroup_StaticClassType()
 
@@ -40875,7 +40875,7 @@ proc ContainsControl*(this: TToggleBox, Control: TControl): bool =
   return ToggleBox_ContainsControl(this.Instance, CheckPtr(Control))
 
 proc ControlAtPos*(this: TToggleBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return AsControl(ToggleBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls))
+  return ToggleBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TToggleBox) =
   ToggleBox_DisableAlign(this.Instance)
@@ -40884,7 +40884,7 @@ proc EnableAlign*(this: TToggleBox) =
   ToggleBox_EnableAlign(this.Instance)
 
 proc FindChildControl*(this: TToggleBox, ControlName: string): TControl =
-  return AsControl(ToggleBox_FindChildControl(this.Instance, ControlName))
+  return ToggleBox_FindChildControl(this.Instance, ControlName).AsControl
 
 proc FlipChildren*(this: TToggleBox, AllLevels: bool) =
   ToggleBox_FlipChildren(this.Instance, AllLevels)
@@ -40971,7 +40971,7 @@ proc SetTextBuf*(this: TToggleBox, Buffer: string) =
   ToggleBox_SetTextBuf(this.Instance, Buffer)
 
 proc FindComponent*(this: TToggleBox, AName: string): TComponent =
-  return AsComponent(ToggleBox_FindComponent(this.Instance, AName))
+  return ToggleBox_FindComponent(this.Instance, AName).AsComponent
 
 proc GetNamePath*(this: TToggleBox): string =
   return $ToggleBox_GetNamePath(this.Instance)
@@ -41061,7 +41061,7 @@ proc `Color=`*(this: TToggleBox, AValue: TColor)  =
   ToggleBox_SetColor(this.Instance, AValue)
 
 proc Constraints*(this: TToggleBox): TSizeConstraints  =
-  return AsSizeConstraints(ToggleBox_GetConstraints(this.Instance))
+  return ToggleBox_GetConstraints(this.Instance).AsSizeConstraints
 
 proc `Constraints=`*(this: TToggleBox, AValue: TSizeConstraints)  =
   ToggleBox_SetConstraints(this.Instance, CheckPtr(AValue))
@@ -41097,7 +41097,7 @@ proc `Enabled=`*(this: TToggleBox, AValue: bool)  =
   ToggleBox_SetEnabled(this.Instance, AValue)
 
 proc Font*(this: TToggleBox): TFont  =
-  return AsFont(ToggleBox_GetFont(this.Instance))
+  return ToggleBox_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TToggleBox, AValue: TFont)  =
   ToggleBox_SetFont(this.Instance, CheckPtr(AValue))
@@ -41172,7 +41172,7 @@ proc `ParentShowHint=`*(this: TToggleBox, AValue: bool)  =
   ToggleBox_SetParentShowHint(this.Instance, AValue)
 
 proc PopupMenu*(this: TToggleBox): TPopupMenu  =
-  return AsPopupMenu(ToggleBox_GetPopupMenu(this.Instance))
+  return ToggleBox_GetPopupMenu(this.Instance).AsPopupMenu
 
 proc `PopupMenu=`*(this: TToggleBox, AValue: TPopupMenu)  =
   ToggleBox_SetPopupMenu(this.Instance, CheckPtr(AValue))
@@ -41223,7 +41223,7 @@ proc VisibleDockClientCount*(this: TToggleBox): int32  =
   return ToggleBox_GetVisibleDockClientCount(this.Instance)
 
 proc Brush*(this: TToggleBox): TBrush  =
-  return AsBrush(ToggleBox_GetBrush(this.Instance))
+  return ToggleBox_GetBrush(this.Instance).AsBrush
 
 proc ControlCount*(this: TToggleBox): int32  =
   return ToggleBox_GetControlCount(this.Instance)
@@ -41247,7 +41247,7 @@ proc `UseDockManager=`*(this: TToggleBox, AValue: bool)  =
   ToggleBox_SetUseDockManager(this.Instance, AValue)
 
 proc Action*(this: TToggleBox): TAction  =
-  return AsAction(ToggleBox_GetAction(this.Instance))
+  return ToggleBox_GetAction(this.Instance).AsAction
 
 proc `Action=`*(this: TToggleBox, AValue: TAction)  =
   ToggleBox_SetAction(this.Instance, CheckPtr(AValue))
@@ -41298,7 +41298,7 @@ proc Floating*(this: TToggleBox): bool  =
   return ToggleBox_GetFloating(this.Instance)
 
 proc Parent*(this: TToggleBox): TWinControl  =
-  return AsWinControl(ToggleBox_GetParent(this.Instance))
+  return ToggleBox_GetParent(this.Instance).AsWinControl
 
 proc `Parent=`*(this: TToggleBox, AValue: TWinControl)  =
   ToggleBox_SetParent(this.Instance, CheckPtr(AValue))
@@ -41343,7 +41343,7 @@ proc `ComponentIndex=`*(this: TToggleBox, AValue: int32)  =
   ToggleBox_SetComponentIndex(this.Instance, AValue)
 
 proc Owner*(this: TToggleBox): TComponent  =
-  return AsComponent(ToggleBox_GetOwner(this.Instance))
+  return ToggleBox_GetOwner(this.Instance).AsComponent
 
 proc Name*(this: TToggleBox): string  =
   return $ToggleBox_GetName(this.Instance)
@@ -41358,52 +41358,52 @@ proc `Tag=`*(this: TToggleBox, AValue: int)  =
   ToggleBox_SetTag(this.Instance, AValue)
 
 proc AnchorSideLeft*(this: TToggleBox): TAnchorSide  =
-  return AsAnchorSide(ToggleBox_GetAnchorSideLeft(this.Instance))
+  return ToggleBox_GetAnchorSideLeft(this.Instance).AsAnchorSide
 
 proc `AnchorSideLeft=`*(this: TToggleBox, AValue: TAnchorSide)  =
   ToggleBox_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideTop*(this: TToggleBox): TAnchorSide  =
-  return AsAnchorSide(ToggleBox_GetAnchorSideTop(this.Instance))
+  return ToggleBox_GetAnchorSideTop(this.Instance).AsAnchorSide
 
 proc `AnchorSideTop=`*(this: TToggleBox, AValue: TAnchorSide)  =
   ToggleBox_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideRight*(this: TToggleBox): TAnchorSide  =
-  return AsAnchorSide(ToggleBox_GetAnchorSideRight(this.Instance))
+  return ToggleBox_GetAnchorSideRight(this.Instance).AsAnchorSide
 
 proc `AnchorSideRight=`*(this: TToggleBox, AValue: TAnchorSide)  =
   ToggleBox_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
 
 proc AnchorSideBottom*(this: TToggleBox): TAnchorSide  =
-  return AsAnchorSide(ToggleBox_GetAnchorSideBottom(this.Instance))
+  return ToggleBox_GetAnchorSideBottom(this.Instance).AsAnchorSide
 
 proc `AnchorSideBottom=`*(this: TToggleBox, AValue: TAnchorSide)  =
   ToggleBox_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
 
 proc ChildSizing*(this: TToggleBox): TControlChildSizing  =
-  return AsControlChildSizing(ToggleBox_GetChildSizing(this.Instance))
+  return ToggleBox_GetChildSizing(this.Instance).AsControlChildSizing
 
 proc `ChildSizing=`*(this: TToggleBox, AValue: TControlChildSizing)  =
   ToggleBox_SetChildSizing(this.Instance, CheckPtr(AValue))
 
 proc BorderSpacing*(this: TToggleBox): TControlBorderSpacing  =
-  return AsControlBorderSpacing(ToggleBox_GetBorderSpacing(this.Instance))
+  return ToggleBox_GetBorderSpacing(this.Instance).AsControlBorderSpacing
 
 proc `BorderSpacing=`*(this: TToggleBox, AValue: TControlBorderSpacing)  =
   ToggleBox_SetBorderSpacing(this.Instance, CheckPtr(AValue))
 
 proc DockClients*(this: TToggleBox, Index: int32): TControl  =
-  return AsControl(ToggleBox_GetDockClients(this.Instance, Index))
+  return ToggleBox_GetDockClients(this.Instance, Index).AsControl
 
 proc Controls*(this: TToggleBox, Index: int32): TControl  =
-  return AsControl(ToggleBox_GetControls(this.Instance, Index))
+  return ToggleBox_GetControls(this.Instance, Index).AsControl
 
 proc Components*(this: TToggleBox, AIndex: int32): TComponent  =
-  return AsComponent(ToggleBox_GetComponents(this.Instance, AIndex))
+  return ToggleBox_GetComponents(this.Instance, AIndex).AsComponent
 
 proc AnchorSide*(this: TToggleBox, AKind: TAnchorKind): TAnchorSide  =
-  return AsAnchorSide(ToggleBox_GetAnchorSide(this.Instance, AKind))
+  return ToggleBox_GetAnchorSide(this.Instance, AKind).AsAnchorSide
 
 proc TToggleBoxClass*(): TClass = ToggleBox_StaticClassType()
 
@@ -41445,7 +41445,7 @@ proc ToString*(this: TGridColumnTitle): string =
   return $GridColumnTitle_ToString(this.Instance)
 
 proc Column*(this: TGridColumnTitle): TGridColumn  =
-  return AsGridColumn(GridColumnTitle_GetColumn(this.Instance))
+  return GridColumnTitle_GetColumn(this.Instance).AsGridColumn
 
 proc Alignment*(this: TGridColumnTitle): TAlignment  =
   return GridColumnTitle_GetAlignment(this.Instance)
@@ -41466,7 +41466,7 @@ proc `Color=`*(this: TGridColumnTitle, AValue: TColor)  =
   GridColumnTitle_SetColor(this.Instance, AValue)
 
 proc Font*(this: TGridColumnTitle): TFont  =
-  return AsFont(GridColumnTitle_GetFont(this.Instance))
+  return GridColumnTitle_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TGridColumnTitle, AValue: TFont)  =
   GridColumnTitle_SetFont(this.Instance, CheckPtr(AValue))
@@ -41538,7 +41538,7 @@ proc ToString*(this: TGridColumn): string =
   return $GridColumn_ToString(this.Instance)
 
 proc Grid*(this: TGridColumn): TStringGrid  =
-  return AsStringGrid(GridColumn_GetGrid(this.Instance))
+  return GridColumn_GetGrid(this.Instance).AsStringGrid
 
 proc DefaultWidth*(this: TGridColumn): int32  =
   return GridColumn_GetDefaultWidth(this.Instance)
@@ -41580,7 +41580,7 @@ proc `Expanded=`*(this: TGridColumn, AValue: bool)  =
   GridColumn_SetExpanded(this.Instance, AValue)
 
 proc Font*(this: TGridColumn): TFont  =
-  return AsFont(GridColumn_GetFont(this.Instance))
+  return GridColumn_GetFont(this.Instance).AsFont
 
 proc `Font=`*(this: TGridColumn, AValue: TFont)  =
   GridColumn_SetFont(this.Instance, CheckPtr(AValue))
@@ -41604,7 +41604,7 @@ proc `MaxSize=`*(this: TGridColumn, AValue: int32)  =
   GridColumn_SetMaxSize(this.Instance, AValue)
 
 proc PickList*(this: TGridColumn): TStrings  =
-  return AsStrings(GridColumn_GetPickList(this.Instance))
+  return GridColumn_GetPickList(this.Instance).AsStrings
 
 proc `PickList=`*(this: TGridColumn, AValue: TStrings)  =
   GridColumn_SetPickList(this.Instance, CheckPtr(AValue))
@@ -41628,7 +41628,7 @@ proc `Tag=`*(this: TGridColumn, AValue: int)  =
   GridColumn_SetTag(this.Instance, AValue)
 
 proc Title*(this: TGridColumn): TGridColumnTitle  =
-  return AsGridColumnTitle(GridColumn_GetTitle(this.Instance))
+  return GridColumn_GetTitle(this.Instance).AsGridColumnTitle
 
 proc `Title=`*(this: TGridColumn, AValue: TGridColumnTitle)  =
   GridColumn_SetTitle(this.Instance, CheckPtr(AValue))
@@ -41658,7 +41658,7 @@ proc `ValueUnchecked=`*(this: TGridColumn, AValue: string)  =
   GridColumn_SetValueUnchecked(this.Instance, AValue)
 
 proc Collection*(this: TGridColumn): TCollection  =
-  return AsCollection(GridColumn_GetCollection(this.Instance))
+  return GridColumn_GetCollection(this.Instance).AsCollection
 
 proc `Collection=`*(this: TGridColumn, AValue: TCollection)  =
   GridColumn_SetCollection(this.Instance, CheckPtr(AValue))
@@ -41682,7 +41682,7 @@ proc TGridColumnClass*(): TClass = GridColumn_StaticClassType()
 
 
 proc Add*(this: TGridColumns): TGridColumn  =
-  return AsGridColumn(GridColumns_Add(this.Instance))
+  return GridColumns_Add(this.Instance).AsGridColumn
 
 proc Clear*(this: TGridColumns)  =
   GridColumns_Clear(this.Instance)
@@ -41715,13 +41715,13 @@ proc EndUpdate*(this: TGridColumns)  =
   GridColumns_EndUpdate(this.Instance)
 
 proc FindItemID*(this: TGridColumns, ID: int32): TCollectionItem  =
-  return AsCollectionItem(GridColumns_FindItemID(this.Instance, ID))
+  return GridColumns_FindItemID(this.Instance, ID).AsCollectionItem
 
 proc GetNamePath*(this: TGridColumns): string  =
   return $GridColumns_GetNamePath(this.Instance)
 
 proc Insert*(this: TGridColumns, Index: int32): TCollectionItem  =
-  return AsCollectionItem(GridColumns_Insert(this.Instance, Index))
+  return GridColumns_Insert(this.Instance, Index).AsCollectionItem
 
 proc ClassType*(this: TGridColumns): TClass =
   return GridColumns_ClassType(this.Instance)
@@ -41745,7 +41745,7 @@ proc ToString*(this: TGridColumns): string =
   return $GridColumns_ToString(this.Instance)
 
 proc Grid*(this: TGridColumns): TStringGrid  =
-  return AsStringGrid(GridColumns_GetGrid(this.Instance))
+  return GridColumns_GetGrid(this.Instance).AsStringGrid
 
 proc VisibleCount*(this: TGridColumns): int32  =
   return GridColumns_GetVisibleCount(this.Instance)
@@ -41757,7 +41757,7 @@ proc Count*(this: TGridColumns): int32  =
   return GridColumns_GetCount(this.Instance)
 
 proc Items*(this: TGridColumns, Index: int32): TGridColumn  =
-  return AsGridColumn(GridColumns_GetItems(this.Instance, Index))
+  return GridColumns_GetItems(this.Instance, Index).AsGridColumn
 
 proc `Items=`*(this: TGridColumns, Index: int32, AValue: TGridColumn)  =
   GridColumns_SetItems(this.Instance, Index, CheckPtr(AValue))
