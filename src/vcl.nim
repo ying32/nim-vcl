@@ -508,8 +508,8 @@ proc GetNamePath*(this: TComponent): string  =
 proc HasParent*(this: TComponent): bool  =
   return Component_HasParent(this.Instance)
 
-proc Assign*(this: TComponent, Source: pointer)  =
-  Component_Assign(this.Instance, Source)
+proc Assign*(this: TComponent, Source: TObject)  =
+  Component_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TComponent): TClass =
   return Component_ClassType(this.Instance)
@@ -633,8 +633,8 @@ proc FindComponent*(this: TControl, AName: string): TComponent =
 proc GetNamePath*(this: TControl): string =
   return $Control_GetNamePath(this.Instance)
 
-proc Assign*(this: TControl, Source: pointer) =
-  Control_Assign(this.Instance, Source)
+proc Assign*(this: TControl, Source: TObject) =
+  Control_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TControl): TClass =
   return Control_ClassType(this.Instance)
@@ -983,8 +983,8 @@ proc FindComponent*(this: TWinControl, AName: string): TComponent =
 proc GetNamePath*(this: TWinControl): string =
   return $WinControl_GetNamePath(this.Instance)
 
-proc Assign*(this: TWinControl, Source: pointer) =
-  WinControl_Assign(this.Instance, Source)
+proc Assign*(this: TWinControl, Source: TObject) =
+  WinControl_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TWinControl): TClass =
   return WinControl_ClassType(this.Instance)
@@ -1309,8 +1309,8 @@ proc GetNamePath*(this: TMainMenu): string =
 proc HasParent*(this: TMainMenu): bool =
   return MainMenu_HasParent(this.Instance)
 
-proc Assign*(this: TMainMenu, Source: pointer) =
-  MainMenu_Assign(this.Instance, Source)
+proc Assign*(this: TMainMenu, Source: TObject) =
+  MainMenu_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TMainMenu): TClass =
   return MainMenu_ClassType(this.Instance)
@@ -1419,8 +1419,8 @@ proc GetNamePath*(this: TPopupMenu): string =
 proc HasParent*(this: TPopupMenu): bool =
   return PopupMenu_HasParent(this.Instance)
 
-proc Assign*(this: TPopupMenu, Source: pointer) =
-  PopupMenu_Assign(this.Instance, Source)
+proc Assign*(this: TPopupMenu, Source: TObject) =
+  PopupMenu_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TPopupMenu): TClass =
   return PopupMenu_ClassType(this.Instance)
@@ -1661,8 +1661,8 @@ proc FindComponent*(this: TMemo, AName: string): TComponent =
 proc GetNamePath*(this: TMemo): string =
   return $Memo_GetNamePath(this.Instance)
 
-proc Assign*(this: TMemo, Source: pointer) =
-  Memo_Assign(this.Instance, Source)
+proc Assign*(this: TMemo, Source: TObject) =
+  Memo_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TMemo): TClass =
   return Memo_ClassType(this.Instance)
@@ -2302,8 +2302,8 @@ proc FindComponent*(this: TCheckBox, AName: string): TComponent =
 proc GetNamePath*(this: TCheckBox): string =
   return $CheckBox_GetNamePath(this.Instance)
 
-proc Assign*(this: TCheckBox, Source: pointer) =
-  CheckBox_Assign(this.Instance, Source)
+proc Assign*(this: TCheckBox, Source: TObject) =
+  CheckBox_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TCheckBox): TClass =
   return CheckBox_ClassType(this.Instance)
@@ -2859,8 +2859,8 @@ proc FindComponent*(this: TRadioButton, AName: string): TComponent =
 proc GetNamePath*(this: TRadioButton): string =
   return $RadioButton_GetNamePath(this.Instance)
 
-proc Assign*(this: TRadioButton, Source: pointer) =
-  RadioButton_Assign(this.Instance, Source)
+proc Assign*(this: TRadioButton, Source: TObject) =
+  RadioButton_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TRadioButton): TClass =
   return RadioButton_ClassType(this.Instance)
@@ -3404,8 +3404,8 @@ proc FindComponent*(this: TGroupBox, AName: string): TComponent =
 proc GetNamePath*(this: TGroupBox): string =
   return $GroupBox_GetNamePath(this.Instance)
 
-proc Assign*(this: TGroupBox, Source: pointer) =
-  GroupBox_Assign(this.Instance, Source)
+proc Assign*(this: TGroupBox, Source: TObject) =
+  GroupBox_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TGroupBox): TClass =
   return GroupBox_ClassType(this.Instance)
@@ -3901,8 +3901,8 @@ proc FindComponent*(this: TLabel, AName: string): TComponent =
 proc GetNamePath*(this: TLabel): string =
   return $Label_GetNamePath(this.Instance)
 
-proc Assign*(this: TLabel, Source: pointer) =
-  Label_Assign(this.Instance, Source)
+proc Assign*(this: TLabel, Source: TObject) =
+  Label_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TLabel): TClass =
   return Label_ClassType(this.Instance)
@@ -4416,8 +4416,8 @@ proc FindComponent*(this: TListBox, AName: string): TComponent =
 proc GetNamePath*(this: TListBox): string =
   return $ListBox_GetNamePath(this.Instance)
 
-proc Assign*(this: TListBox, Source: pointer) =
-  ListBox_Assign(this.Instance, Source)
+proc Assign*(this: TListBox, Source: TObject) =
+  ListBox_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TListBox): TClass =
   return ListBox_ClassType(this.Instance)
@@ -5051,8 +5051,8 @@ proc FindComponent*(this: TComboBox, AName: string): TComponent =
 proc GetNamePath*(this: TComboBox): string =
   return $ComboBox_GetNamePath(this.Instance)
 
-proc Assign*(this: TComboBox, Source: pointer) =
-  ComboBox_Assign(this.Instance, Source)
+proc Assign*(this: TComboBox, Source: TObject) =
+  ComboBox_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TComboBox): TClass =
   return ComboBox_ClassType(this.Instance)
@@ -5674,8 +5674,8 @@ proc FindComponent*(this: TPanel, AName: string): TComponent =
 proc GetNamePath*(this: TPanel): string =
   return $Panel_GetNamePath(this.Instance)
 
-proc Assign*(this: TPanel, Source: pointer) =
-  Panel_Assign(this.Instance, Source)
+proc Assign*(this: TPanel, Source: TObject) =
+  Panel_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TPanel): TClass =
   return Panel_ClassType(this.Instance)
@@ -6222,8 +6222,8 @@ proc FindComponent*(this: TImage, AName: string): TComponent =
 proc GetNamePath*(this: TImage): string =
   return $Image_GetNamePath(this.Instance)
 
-proc Assign*(this: TImage, Source: pointer) =
-  Image_Assign(this.Instance, Source)
+proc Assign*(this: TImage, Source: TObject) =
+  Image_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TImage): TClass =
   return Image_ClassType(this.Instance)
@@ -6650,8 +6650,8 @@ proc FindComponent*(this: TLinkLabel, AName: string): TComponent =
 proc GetNamePath*(this: TLinkLabel): string =
   return $LinkLabel_GetNamePath(this.Instance)
 
-proc Assign*(this: TLinkLabel, Source: pointer) =
-  LinkLabel_Assign(this.Instance, Source)
+proc Assign*(this: TLinkLabel, Source: TObject) =
+  LinkLabel_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TLinkLabel): TClass =
   return LinkLabel_ClassType(this.Instance)
@@ -7063,8 +7063,8 @@ proc FindComponent*(this: TSpeedButton, AName: string): TComponent =
 proc GetNamePath*(this: TSpeedButton): string =
   return $SpeedButton_GetNamePath(this.Instance)
 
-proc Assign*(this: TSpeedButton, Source: pointer) =
-  SpeedButton_Assign(this.Instance, Source)
+proc Assign*(this: TSpeedButton, Source: TObject) =
+  SpeedButton_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TSpeedButton): TClass =
   return SpeedButton_ClassType(this.Instance)
@@ -7497,8 +7497,8 @@ proc FindComponent*(this: TSplitter, AName: string): TComponent =
 proc GetNamePath*(this: TSplitter): string =
   return $Splitter_GetNamePath(this.Instance)
 
-proc Assign*(this: TSplitter, Source: pointer) =
-  Splitter_Assign(this.Instance, Source)
+proc Assign*(this: TSplitter, Source: TObject) =
+  Splitter_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TSplitter): TClass =
   return Splitter_ClassType(this.Instance)
@@ -7877,8 +7877,8 @@ proc FindComponent*(this: TRadioGroup, AName: string): TComponent =
 proc GetNamePath*(this: TRadioGroup): string =
   return $RadioGroup_GetNamePath(this.Instance)
 
-proc Assign*(this: TRadioGroup, Source: pointer) =
-  RadioGroup_Assign(this.Instance, Source)
+proc Assign*(this: TRadioGroup, Source: TObject) =
+  RadioGroup_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TRadioGroup): TClass =
   return RadioGroup_ClassType(this.Instance)
@@ -8392,8 +8392,8 @@ proc FindComponent*(this: TStaticText, AName: string): TComponent =
 proc GetNamePath*(this: TStaticText): string =
   return $StaticText_GetNamePath(this.Instance)
 
-proc Assign*(this: TStaticText, Source: pointer) =
-  StaticText_Assign(this.Instance, Source)
+proc Assign*(this: TStaticText, Source: TObject) =
+  StaticText_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TStaticText): TClass =
   return StaticText_ClassType(this.Instance)
@@ -8961,8 +8961,8 @@ proc FindComponent*(this: TColorBox, AName: string): TComponent =
 proc GetNamePath*(this: TColorBox): string =
   return $ColorBox_GetNamePath(this.Instance)
 
-proc Assign*(this: TColorBox, Source: pointer) =
-  ColorBox_Assign(this.Instance, Source)
+proc Assign*(this: TColorBox, Source: TObject) =
+  ColorBox_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TColorBox): TClass =
   return ColorBox_ClassType(this.Instance)
@@ -9584,8 +9584,8 @@ proc FindComponent*(this: TColorListBox, AName: string): TComponent =
 proc GetNamePath*(this: TColorListBox): string =
   return $ColorListBox_GetNamePath(this.Instance)
 
-proc Assign*(this: TColorListBox, Source: pointer) =
-  ColorListBox_Assign(this.Instance, Source)
+proc Assign*(this: TColorListBox, Source: TObject) =
+  ColorListBox_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TColorListBox): TClass =
   return ColorListBox_ClassType(this.Instance)
@@ -10066,8 +10066,8 @@ proc GetNamePath*(this: TTrayIcon): string =
 proc HasParent*(this: TTrayIcon): bool =
   return TrayIcon_HasParent(this.Instance)
 
-proc Assign*(this: TTrayIcon, Source: pointer) =
-  TrayIcon_Assign(this.Instance, Source)
+proc Assign*(this: TTrayIcon, Source: TObject) =
+  TrayIcon_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TTrayIcon): TClass =
   return TrayIcon_ClassType(this.Instance)
@@ -10209,8 +10209,8 @@ proc GetNamePath*(this: TOpenDialog): string =
 proc HasParent*(this: TOpenDialog): bool =
   return OpenDialog_HasParent(this.Instance)
 
-proc Assign*(this: TOpenDialog, Source: pointer) =
-  OpenDialog_Assign(this.Instance, Source)
+proc Assign*(this: TOpenDialog, Source: TObject) =
+  OpenDialog_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TOpenDialog): TClass =
   return OpenDialog_ClassType(this.Instance)
@@ -10337,8 +10337,8 @@ proc GetNamePath*(this: TSaveDialog): string =
 proc HasParent*(this: TSaveDialog): bool =
   return SaveDialog_HasParent(this.Instance)
 
-proc Assign*(this: TSaveDialog, Source: pointer) =
-  SaveDialog_Assign(this.Instance, Source)
+proc Assign*(this: TSaveDialog, Source: TObject) =
+  SaveDialog_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TSaveDialog): TClass =
   return SaveDialog_ClassType(this.Instance)
@@ -10465,8 +10465,8 @@ proc GetNamePath*(this: TColorDialog): string =
 proc HasParent*(this: TColorDialog): bool =
   return ColorDialog_HasParent(this.Instance)
 
-proc Assign*(this: TColorDialog, Source: pointer) =
-  ColorDialog_Assign(this.Instance, Source)
+proc Assign*(this: TColorDialog, Source: TObject) =
+  ColorDialog_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TColorDialog): TClass =
   return ColorDialog_ClassType(this.Instance)
@@ -10554,8 +10554,8 @@ proc GetNamePath*(this: TFontDialog): string =
 proc HasParent*(this: TFontDialog): bool =
   return FontDialog_HasParent(this.Instance)
 
-proc Assign*(this: TFontDialog, Source: pointer) =
-  FontDialog_Assign(this.Instance, Source)
+proc Assign*(this: TFontDialog, Source: TObject) =
+  FontDialog_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TFontDialog): TClass =
   return FontDialog_ClassType(this.Instance)
@@ -10649,8 +10649,8 @@ proc GetNamePath*(this: TPrintDialog): string =
 proc HasParent*(this: TPrintDialog): bool =
   return PrintDialog_HasParent(this.Instance)
 
-proc Assign*(this: TPrintDialog, Source: pointer) =
-  PrintDialog_Assign(this.Instance, Source)
+proc Assign*(this: TPrintDialog, Source: TObject) =
+  PrintDialog_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TPrintDialog): TClass =
   return PrintDialog_ClassType(this.Instance)
@@ -10786,8 +10786,8 @@ proc GetNamePath*(this: TOpenPictureDialog): string =
 proc HasParent*(this: TOpenPictureDialog): bool =
   return OpenPictureDialog_HasParent(this.Instance)
 
-proc Assign*(this: TOpenPictureDialog, Source: pointer) =
-  OpenPictureDialog_Assign(this.Instance, Source)
+proc Assign*(this: TOpenPictureDialog, Source: TObject) =
+  OpenPictureDialog_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TOpenPictureDialog): TClass =
   return OpenPictureDialog_ClassType(this.Instance)
@@ -10914,8 +10914,8 @@ proc GetNamePath*(this: TSavePictureDialog): string =
 proc HasParent*(this: TSavePictureDialog): bool =
   return SavePictureDialog_HasParent(this.Instance)
 
-proc Assign*(this: TSavePictureDialog, Source: pointer) =
-  SavePictureDialog_Assign(this.Instance, Source)
+proc Assign*(this: TSavePictureDialog, Source: TObject) =
+  SavePictureDialog_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TSavePictureDialog): TClass =
   return SavePictureDialog_ClassType(this.Instance)
@@ -11042,8 +11042,8 @@ proc GetNamePath*(this: TSelectDirectoryDialog): string =
 proc HasParent*(this: TSelectDirectoryDialog): bool =
   return SelectDirectoryDialog_HasParent(this.Instance)
 
-proc Assign*(this: TSelectDirectoryDialog, Source: pointer) =
-  SelectDirectoryDialog_Assign(this.Instance, Source)
+proc Assign*(this: TSelectDirectoryDialog, Source: TObject) =
+  SelectDirectoryDialog_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TSelectDirectoryDialog): TClass =
   return SelectDirectoryDialog_ClassType(this.Instance)
@@ -11290,8 +11290,8 @@ proc FindComponent*(this: TRichEdit, AName: string): TComponent =
 proc GetNamePath*(this: TRichEdit): string =
   return $RichEdit_GetNamePath(this.Instance)
 
-proc Assign*(this: TRichEdit, Source: pointer) =
-  RichEdit_Assign(this.Instance, Source)
+proc Assign*(this: TRichEdit, Source: TObject) =
+  RichEdit_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TRichEdit): TClass =
   return RichEdit_ClassType(this.Instance)
@@ -11964,8 +11964,8 @@ proc FindComponent*(this: TTrackBar, AName: string): TComponent =
 proc GetNamePath*(this: TTrackBar): string =
   return $TrackBar_GetNamePath(this.Instance)
 
-proc Assign*(this: TTrackBar, Source: pointer) =
-  TrackBar_Assign(this.Instance, Source)
+proc Assign*(this: TTrackBar, Source: TObject) =
+  TrackBar_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TTrackBar): TClass =
   return TrackBar_ClassType(this.Instance)
@@ -12422,8 +12422,8 @@ proc HideDragImage*(this: TImageList)  =
 proc ShowDragImage*(this: TImageList)  =
   ImageList_ShowDragImage(this.Instance)
 
-proc Assign*(this: TImageList, Source: pointer) =
-  ImageList_Assign(this.Instance, Source)
+proc Assign*(this: TImageList, Source: TObject) =
+  ImageList_Assign(this.Instance, CheckPtr(Source))
 
 proc Add*(this: TImageList, Image: TBitmap, Mask: TBitmap): int32  =
   return ImageList_Add(this.Instance, CheckPtr(Image), CheckPtr(Mask))
@@ -12721,8 +12721,8 @@ proc FindComponent*(this: TUpDown, AName: string): TComponent =
 proc GetNamePath*(this: TUpDown): string =
   return $UpDown_GetNamePath(this.Instance)
 
-proc Assign*(this: TUpDown, Source: pointer) =
-  UpDown_Assign(this.Instance, Source)
+proc Assign*(this: TUpDown, Source: TObject) =
+  UpDown_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TUpDown): TClass =
   return UpDown_ClassType(this.Instance)
@@ -13230,8 +13230,8 @@ proc FindComponent*(this: TProgressBar, AName: string): TComponent =
 proc GetNamePath*(this: TProgressBar): string =
   return $ProgressBar_GetNamePath(this.Instance)
 
-proc Assign*(this: TProgressBar, Source: pointer) =
-  ProgressBar_Assign(this.Instance, Source)
+proc Assign*(this: TProgressBar, Source: TObject) =
+  ProgressBar_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TProgressBar): TClass =
   return ProgressBar_ClassType(this.Instance)
@@ -13766,8 +13766,8 @@ proc FindComponent*(this: TDateTimePicker, AName: string): TComponent =
 proc GetNamePath*(this: TDateTimePicker): string =
   return $DateTimePicker_GetNamePath(this.Instance)
 
-proc Assign*(this: TDateTimePicker, Source: pointer) =
-  DateTimePicker_Assign(this.Instance, Source)
+proc Assign*(this: TDateTimePicker, Source: TObject) =
+  DateTimePicker_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TDateTimePicker): TClass =
   return DateTimePicker_ClassType(this.Instance)
@@ -14308,8 +14308,8 @@ proc FindComponent*(this: TMonthCalendar, AName: string): TComponent =
 proc GetNamePath*(this: TMonthCalendar): string =
   return $MonthCalendar_GetNamePath(this.Instance)
 
-proc Assign*(this: TMonthCalendar, Source: pointer) =
-  MonthCalendar_Assign(this.Instance, Source)
+proc Assign*(this: TMonthCalendar, Source: TObject) =
+  MonthCalendar_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TMonthCalendar): TClass =
   return MonthCalendar_ClassType(this.Instance)
@@ -14850,8 +14850,8 @@ proc FindComponent*(this: TListView, AName: string): TComponent =
 proc GetNamePath*(this: TListView): string =
   return $ListView_GetNamePath(this.Instance)
 
-proc Assign*(this: TListView, Source: pointer) =
-  ListView_Assign(this.Instance, Source)
+proc Assign*(this: TListView, Source: TObject) =
+  ListView_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TListView): TClass =
   return ListView_ClassType(this.Instance)
@@ -15716,8 +15716,8 @@ proc FindComponent*(this: TTreeView, AName: string): TComponent =
 proc GetNamePath*(this: TTreeView): string =
   return $TreeView_GetNamePath(this.Instance)
 
-proc Assign*(this: TTreeView, Source: pointer) =
-  TreeView_Assign(this.Instance, Source)
+proc Assign*(this: TTreeView, Source: TObject) =
+  TreeView_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TTreeView): TClass =
   return TreeView_ClassType(this.Instance)
@@ -16522,8 +16522,8 @@ proc FindComponent*(this: TStatusBar, AName: string): TComponent =
 proc GetNamePath*(this: TStatusBar): string =
   return $StatusBar_GetNamePath(this.Instance)
 
-proc Assign*(this: TStatusBar, Source: pointer) =
-  StatusBar_Assign(this.Instance, Source)
+proc Assign*(this: TStatusBar, Source: TObject) =
+  StatusBar_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TStatusBar): TClass =
   return StatusBar_ClassType(this.Instance)
@@ -17091,8 +17091,8 @@ proc FindComponent*(this: TToolBar, AName: string): TComponent =
 proc GetNamePath*(this: TToolBar): string =
   return $ToolBar_GetNamePath(this.Instance)
 
-proc Assign*(this: TToolBar, Source: pointer) =
-  ToolBar_Assign(this.Instance, Source)
+proc Assign*(this: TToolBar, Source: TObject) =
+  ToolBar_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TToolBar): TClass =
   return ToolBar_ClassType(this.Instance)
@@ -17729,8 +17729,8 @@ proc FindComponent*(this: TBitBtn, AName: string): TComponent =
 proc GetNamePath*(this: TBitBtn): string =
   return $BitBtn_GetNamePath(this.Instance)
 
-proc Assign*(this: TBitBtn, Source: pointer) =
-  BitBtn_Assign(this.Instance, Source)
+proc Assign*(this: TBitBtn, Source: TObject) =
+  BitBtn_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TBitBtn): TClass =
   return BitBtn_ClassType(this.Instance)
@@ -18181,8 +18181,8 @@ proc NewIcon*(): TIcon =
    new(result, Free)
    result.Instance = Icon_Create()
 
-proc Assign*(this: TIcon, Source: pointer)  =
-  Icon_Assign(this.Instance, Source)
+proc Assign*(this: TIcon, Source: TObject)  =
+  Icon_Assign(this.Instance, CheckPtr(Source))
 
 proc HandleAllocated*(this: TIcon): bool  =
   return Icon_HandleAllocated(this.Instance)
@@ -18291,8 +18291,8 @@ proc NewBitmap*(): TBitmap =
    new(result, Free)
    result.Instance = Bitmap_Create()
 
-proc Assign*(this: TBitmap, Source: pointer)  =
-  Bitmap_Assign(this.Instance, Source)
+proc Assign*(this: TBitmap, Source: TObject)  =
+  Bitmap_Assign(this.Instance, CheckPtr(Source))
 
 proc FreeImage*(this: TBitmap)  =
   Bitmap_FreeImage(this.Instance)
@@ -18520,8 +18520,8 @@ proc NewFont*(): TFont =
    new(result, Free)
    result.Instance = Font_Create()
 
-proc Assign*(this: TFont, Source: pointer)  =
-  Font_Assign(this.Instance, Source)
+proc Assign*(this: TFont, Source: TObject)  =
+  Font_Assign(this.Instance, CheckPtr(Source))
 
 proc HandleAllocated*(this: TFont): bool  =
   return Font_HandleAllocated(this.Instance)
@@ -18639,8 +18639,8 @@ proc AddObject*(this: TStrings, S: string, AObject: TObject): int32  =
 proc Append*(this: TStrings, S: string)  =
   Strings_Append(this.Instance, S)
 
-proc Assign*(this: TStrings, Source: pointer)  =
-  Strings_Assign(this.Instance, Source)
+proc Assign*(this: TStrings, Source: TObject)  =
+  Strings_Assign(this.Instance, CheckPtr(Source))
 
 proc BeginUpdate*(this: TStrings)  =
   Strings_BeginUpdate(this.Instance)
@@ -18782,8 +18782,8 @@ proc Add*(this: TStringList, S: string): int32  =
 proc AddObject*(this: TStringList, S: string, AObject: TObject): int32  =
   return StringList_AddObject(this.Instance, S, CheckPtr(AObject))
 
-proc Assign*(this: TStringList, Source: pointer)  =
-  StringList_Assign(this.Instance, Source)
+proc Assign*(this: TStringList, Source: TObject)  =
+  StringList_Assign(this.Instance, CheckPtr(Source))
 
 proc Clear*(this: TStringList)  =
   StringList_Clear(this.Instance)
@@ -18934,8 +18934,8 @@ proc NewBrush*(): TBrush =
    new(result, Free)
    result.Instance = Brush_Create()
 
-proc Assign*(this: TBrush, Source: pointer)  =
-  Brush_Assign(this.Instance, Source)
+proc Assign*(this: TBrush, Source: TObject)  =
+  Brush_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: TBrush): string  =
   return $Brush_GetNamePath(this.Instance)
@@ -18999,8 +18999,8 @@ proc NewPen*(): TPen =
    new(result, Free)
    result.Instance = Pen_Create()
 
-proc Assign*(this: TPen, Source: pointer)  =
-  Pen_Assign(this.Instance, Source)
+proc Assign*(this: TPen, Source: TObject)  =
+  Pen_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: TPen): string  =
   return $Pen_GetNamePath(this.Instance)
@@ -19097,8 +19097,8 @@ proc FindComponent*(this: TMenuItem, AName: string): TComponent =
 proc GetNamePath*(this: TMenuItem): string =
   return $MenuItem_GetNamePath(this.Instance)
 
-proc Assign*(this: TMenuItem, Source: pointer) =
-  MenuItem_Assign(this.Instance, Source)
+proc Assign*(this: TMenuItem, Source: TObject) =
+  MenuItem_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TMenuItem): TClass =
   return MenuItem_ClassType(this.Instance)
@@ -19267,8 +19267,8 @@ proc LoadFromStream*(this: TPicture, Stream: TObject)  =
 proc SaveToStream*(this: TPicture, Stream: TObject)  =
   Picture_SaveToStream(this.Instance, CheckPtr(Stream))
 
-proc Assign*(this: TPicture, Source: pointer)  =
-  Picture_Assign(this.Instance, Source)
+proc Assign*(this: TPicture, Source: TObject)  =
+  Picture_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: TPicture): string  =
   return $Picture_GetNamePath(this.Instance)
@@ -19338,8 +19338,8 @@ proc Add*(this: TListColumns): TListColumn  =
 proc Owner*(this: TListColumns): TListView  =
   return ListColumns_Owner(this.Instance).AsListView
 
-proc Assign*(this: TListColumns, Source: pointer)  =
-  ListColumns_Assign(this.Instance, Source)
+proc Assign*(this: TListColumns, Source: TObject)  =
+  ListColumns_Assign(this.Instance, CheckPtr(Source))
 
 proc BeginUpdate*(this: TListColumns)  =
   ListColumns_BeginUpdate(this.Instance)
@@ -19406,8 +19406,8 @@ proc NewListItems*(AOwner: TListView): TListItems =
 proc Add*(this: TListItems): TListItem  =
   return ListItems_Add(this.Instance).AsListItem
 
-proc Assign*(this: TListItems, Source: pointer)  =
-  ListItems_Assign(this.Instance, Source)
+proc Assign*(this: TListItems, Source: TObject)  =
+  ListItems_Assign(this.Instance, CheckPtr(Source))
 
 proc BeginUpdate*(this: TListItems)  =
   ListItems_BeginUpdate(this.Instance)
@@ -19504,8 +19504,8 @@ proc AddFirst*(this: TTreeNodes, Sibling: TTreeNode, S: string): TTreeNode  =
 proc Add*(this: TTreeNodes, Sibling: TTreeNode, S: string): TTreeNode  =
   return TreeNodes_Add(this.Instance, CheckPtr(Sibling), S).AsTreeNode
 
-proc Assign*(this: TTreeNodes, Source: pointer)  =
-  TreeNodes_Assign(this.Instance, Source)
+proc Assign*(this: TTreeNodes, Source: TObject)  =
+  TreeNodes_Assign(this.Instance, CheckPtr(Source))
 
 proc BeginUpdate*(this: TTreeNodes)  =
   TreeNodes_BeginUpdate(this.Instance)
@@ -19578,8 +19578,8 @@ proc NewListItem*(AOwner: TListItems): TListItem =
 proc DisplayRectSubItem*(this: TListItem, subItem: int32, Code: TDisplayCode): TRect  =
   ListItem_DisplayRectSubItem(this.Instance, subItem, Code, result)
 
-proc Assign*(this: TListItem, Source: pointer)  =
-  ListItem_Assign(this.Instance, Source)
+proc Assign*(this: TListItem, Source: TObject)  =
+  ListItem_Assign(this.Instance, CheckPtr(Source))
 
 proc Delete*(this: TListItem)  =
   ListItem_Delete(this.Instance)
@@ -19721,8 +19721,8 @@ proc NewTreeNode*(AOwner: TTreeNodes): TTreeNode =
    new(result, Free)
    result.Instance = TreeNode_Create(CheckPtr(AOwner))
 
-proc Assign*(this: TTreeNode, Source: pointer)  =
-  TreeNode_Assign(this.Instance, Source)
+proc Assign*(this: TTreeNode, Source: TObject)  =
+  TreeNode_Assign(this.Instance, CheckPtr(Source))
 
 proc Collapse*(this: TTreeNode, Recurse: bool)  =
   TreeNode_Collapse(this.Instance, Recurse)
@@ -20002,8 +20002,8 @@ proc FindComponent*(this: TPageControl, AName: string): TComponent =
 proc GetNamePath*(this: TPageControl): string =
   return $PageControl_GetNamePath(this.Instance)
 
-proc Assign*(this: TPageControl, Source: pointer) =
-  PageControl_Assign(this.Instance, Source)
+proc Assign*(this: TPageControl, Source: TObject) =
+  PageControl_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TPageControl): TClass =
   return PageControl_ClassType(this.Instance)
@@ -20580,8 +20580,8 @@ proc FindComponent*(this: TTabSheet, AName: string): TComponent =
 proc GetNamePath*(this: TTabSheet): string =
   return $TabSheet_GetNamePath(this.Instance)
 
-proc Assign*(this: TTabSheet, Source: pointer) =
-  TabSheet_Assign(this.Instance, Source)
+proc Assign*(this: TTabSheet, Source: TObject) =
+  TabSheet_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TTabSheet): TClass =
   return TabSheet_ClassType(this.Instance)
@@ -21113,8 +21113,8 @@ proc FindComponent*(this: TButton, AName: string): TComponent =
 proc GetNamePath*(this: TButton): string =
   return $Button_GetNamePath(this.Instance)
 
-proc Assign*(this: TButton, Source: pointer) =
-  Button_Assign(this.Instance, Source)
+proc Assign*(this: TButton, Source: TObject) =
+  Button_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TButton): TClass =
   return Button_ClassType(this.Instance)
@@ -21670,8 +21670,8 @@ proc FindComponent*(this: TEdit, AName: string): TComponent =
 proc GetNamePath*(this: TEdit): string =
   return $Edit_GetNamePath(this.Instance)
 
-proc Assign*(this: TEdit, Source: pointer) =
-  Edit_Assign(this.Instance, Source)
+proc Assign*(this: TEdit, Source: TObject) =
+  Edit_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TEdit): TClass =
   return Edit_ClassType(this.Instance)
@@ -22200,8 +22200,8 @@ proc GetNamePath*(this: TScreen): string =
 proc HasParent*(this: TScreen): bool =
   return Screen_HasParent(this.Instance)
 
-proc Assign*(this: TScreen, Source: pointer) =
-  Screen_Assign(this.Instance, Source)
+proc Assign*(this: TScreen, Source: TObject) =
+  Screen_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TScreen): TClass =
   return Screen_ClassType(this.Instance)
@@ -22393,8 +22393,8 @@ proc NewListColumn*(AOwner: TCollection): TListColumn =
    new(result, Free)
    result.Instance = ListColumn_Create(CheckPtr(AOwner))
 
-proc Assign*(this: TListColumn, Source: pointer)  =
-  ListColumn_Assign(this.Instance, Source)
+proc Assign*(this: TListColumn, Source: TObject)  =
+  ListColumn_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: TListColumn): string  =
   return $ListColumn_GetNamePath(this.Instance)
@@ -22506,8 +22506,8 @@ proc NewCollectionItem*(AOwner: TCollection): TCollectionItem =
 proc GetNamePath*(this: TCollectionItem): string  =
   return $CollectionItem_GetNamePath(this.Instance)
 
-proc Assign*(this: TCollectionItem, Source: pointer)  =
-  CollectionItem_Assign(this.Instance, Source)
+proc Assign*(this: TCollectionItem, Source: TObject)  =
+  CollectionItem_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TCollectionItem): TClass =
   return CollectionItem_ClassType(this.Instance)
@@ -22565,11 +22565,11 @@ proc Add*(this: TStatusPanels): TStatusPanel  =
 proc Insert*(this: TStatusPanels, Index: int32): TStatusPanel  =
   return StatusPanels_Insert(this.Instance, Index).AsStatusPanel
 
-proc Owner*(this: TStatusPanels): pointer  =
-  return StatusPanels_Owner(this.Instance)
+proc Owner*(this: TStatusPanels): TObject  =
+  return StatusPanels_Owner(this.Instance).AsObject
 
-proc Assign*(this: TStatusPanels, Source: pointer)  =
-  StatusPanels_Assign(this.Instance, Source)
+proc Assign*(this: TStatusPanels, Source: TObject)  =
+  StatusPanels_Assign(this.Instance, CheckPtr(Source))
 
 proc BeginUpdate*(this: TStatusPanels)  =
   StatusPanels_BeginUpdate(this.Instance)
@@ -22636,8 +22636,8 @@ proc NewStatusPanel*(AOwner: TCollection): TStatusPanel =
    new(result, Free)
    result.Instance = StatusPanel_Create(CheckPtr(AOwner))
 
-proc Assign*(this: TStatusPanel, Source: pointer)  =
-  StatusPanel_Assign(this.Instance, Source)
+proc Assign*(this: TStatusPanel, Source: TObject)  =
+  StatusPanel_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: TStatusPanel): string  =
   return $StatusPanel_GetNamePath(this.Instance)
@@ -22851,8 +22851,8 @@ proc FindComponent*(this: TSpinEdit, AName: string): TComponent =
 proc GetNamePath*(this: TSpinEdit): string =
   return $SpinEdit_GetNamePath(this.Instance)
 
-proc Assign*(this: TSpinEdit, Source: pointer) =
-  SpinEdit_Assign(this.Instance, Source)
+proc Assign*(this: TSpinEdit, Source: TObject) =
+  SpinEdit_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TSpinEdit): TClass =
   return SpinEdit_ClassType(this.Instance)
@@ -23462,8 +23462,8 @@ proc FindComponent*(this: TMiniWebview, AName: string): TComponent =
 proc GetNamePath*(this: TMiniWebview): string =
   return $MiniWebview_GetNamePath(this.Instance)
 
-proc Assign*(this: TMiniWebview, Source: pointer) =
-  MiniWebview_Assign(this.Instance, Source)
+proc Assign*(this: TMiniWebview, Source: TObject) =
+  MiniWebview_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TMiniWebview): TClass =
   return MiniWebview_ClassType(this.Instance)
@@ -23842,8 +23842,8 @@ proc TextHeight*(this: TCanvas, Text: string): int32  =
 proc TextWidth*(this: TCanvas, Text: string): int32  =
   return Canvas_TextWidth(this.Instance, Text)
 
-proc Assign*(this: TCanvas, Source: pointer)  =
-  Canvas_Assign(this.Instance, Source)
+proc Assign*(this: TCanvas, Source: TObject)  =
+  Canvas_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: TCanvas): string  =
   return $Canvas_GetNamePath(this.Instance)
@@ -24020,8 +24020,8 @@ proc GetNamePath*(this: TApplication): string =
 proc HasParent*(this: TApplication): bool =
   return Application_HasParent(this.Instance)
 
-proc Assign*(this: TApplication, Source: pointer) =
-  Application_Assign(this.Instance, Source)
+proc Assign*(this: TApplication, Source: TObject) =
+  Application_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TApplication): TClass =
   return Application_ClassType(this.Instance)
@@ -24248,8 +24248,8 @@ proc LoadFromStream*(this: TGraphic, Stream: TObject)  =
 proc SaveToStream*(this: TGraphic, Stream: TObject)  =
   Graphic_SaveToStream(this.Instance, CheckPtr(Stream))
 
-proc Assign*(this: TGraphic, Source: pointer)  =
-  Graphic_Assign(this.Instance, Source)
+proc Assign*(this: TGraphic, Source: TObject)  =
+  Graphic_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: TGraphic): string  =
   return $Graphic_GetNamePath(this.Instance)
@@ -24325,8 +24325,8 @@ proc NewPngImage*(): TPngImage =
    new(result, Free)
    result.Instance = PngImage_Create()
 
-proc Assign*(this: TPngImage, Source: pointer)  =
-  PngImage_Assign(this.Instance, Source)
+proc Assign*(this: TPngImage, Source: TObject)  =
+  PngImage_Assign(this.Instance, CheckPtr(Source))
 
 proc LoadFromStream*(this: TPngImage, Stream: TObject)  =
   PngImage_LoadFromStream(this.Instance, CheckPtr(Stream))
@@ -24423,8 +24423,8 @@ proc NewJPEGImage*(): TJPEGImage =
    new(result, Free)
    result.Instance = JPEGImage_Create()
 
-proc Assign*(this: TJPEGImage, Source: pointer)  =
-  JPEGImage_Assign(this.Instance, Source)
+proc Assign*(this: TJPEGImage, Source: TObject)  =
+  JPEGImage_Assign(this.Instance, CheckPtr(Source))
 
 proc LoadFromStream*(this: TJPEGImage, Stream: TObject)  =
   JPEGImage_LoadFromStream(this.Instance, CheckPtr(Stream))
@@ -24542,8 +24542,8 @@ proc LoadFromStream*(this: TGIFImage, Stream: TObject)  =
 proc Clear*(this: TGIFImage)  =
   GIFImage_Clear(this.Instance)
 
-proc Assign*(this: TGIFImage, Source: pointer)  =
-  GIFImage_Assign(this.Instance, Source)
+proc Assign*(this: TGIFImage, Source: TObject)  =
+  GIFImage_Assign(this.Instance, CheckPtr(Source))
 
 proc Equals*(this: TGIFImage, Obj: TObject): bool =
   return GIFImage_Equals(this.Instance, CheckPtr(Obj))
@@ -24640,8 +24640,8 @@ proc GetNamePath*(this: TActionList): string =
 proc HasParent*(this: TActionList): bool =
   return ActionList_HasParent(this.Instance)
 
-proc Assign*(this: TActionList, Source: pointer) =
-  ActionList_Assign(this.Instance, Source)
+proc Assign*(this: TActionList, Source: TObject) =
+  ActionList_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TActionList): TClass =
   return ActionList_ClassType(this.Instance)
@@ -24732,8 +24732,8 @@ proc FindComponent*(this: TAction, AName: string): TComponent =
 proc GetNamePath*(this: TAction): string =
   return $Action_GetNamePath(this.Instance)
 
-proc Assign*(this: TAction, Source: pointer) =
-  Action_Assign(this.Instance, Source)
+proc Assign*(this: TAction, Source: TObject) =
+  Action_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TAction): TClass =
   return Action_ClassType(this.Instance)
@@ -24929,8 +24929,8 @@ proc FindComponent*(this: TToolButton, AName: string): TComponent =
 proc GetNamePath*(this: TToolButton): string =
   return $ToolButton_GetNamePath(this.Instance)
 
-proc Assign*(this: TToolButton, Source: pointer) =
-  ToolButton_Assign(this.Instance, Source)
+proc Assign*(this: TToolButton, Source: TObject) =
+  ToolButton_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TToolButton): TClass =
   return ToolButton_ClassType(this.Instance)
@@ -25562,8 +25562,8 @@ proc NewClipboard*(): TClipboard =
    new(result, Free)
    result.Instance = Clipboard_Create()
 
-proc Assign*(this: TClipboard, Source: pointer)  =
-  Clipboard_Assign(this.Instance, Source)
+proc Assign*(this: TClipboard, Source: TObject)  =
+  Clipboard_Assign(this.Instance, CheckPtr(Source))
 
 proc Clear*(this: TClipboard)  =
   Clipboard_Clear(this.Instance)
@@ -25758,8 +25758,8 @@ proc FindComponent*(this: TPaintBox, AName: string): TComponent =
 proc GetNamePath*(this: TPaintBox): string =
   return $PaintBox_GetNamePath(this.Instance)
 
-proc Assign*(this: TPaintBox, Source: pointer) =
-  PaintBox_Assign(this.Instance, Source)
+proc Assign*(this: TPaintBox, Source: TObject) =
+  PaintBox_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TPaintBox): TClass =
   return PaintBox_ClassType(this.Instance)
@@ -26093,8 +26093,8 @@ proc GetNamePath*(this: TTimer): string =
 proc HasParent*(this: TTimer): bool =
   return Timer_HasParent(this.Instance)
 
-proc Assign*(this: TTimer, Source: pointer) =
-  Timer_Assign(this.Instance, Source)
+proc Assign*(this: TTimer, Source: TObject) =
+  Timer_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TTimer): TClass =
   return Timer_ClassType(this.Instance)
@@ -26364,8 +26364,8 @@ proc FindComponent*(this: TForm, AName: string): TComponent =
 proc GetNamePath*(this: TForm): string =
   return $Form_GetNamePath(this.Instance)
 
-proc Assign*(this: TForm, Source: pointer) =
-  Form_Assign(this.Instance, Source)
+proc Assign*(this: TForm, Source: TObject) =
+  Form_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TForm): TClass =
   return Form_ClassType(this.Instance)
@@ -26988,8 +26988,8 @@ proc InheritedWndProc*(this: TForm, AMsg: var TMessage)  =
 #------------------------- TParaAttributes -------------------------
 
 
-proc Assign*(this: TParaAttributes, Source: pointer)  =
-  ParaAttributes_Assign(this.Instance, Source)
+proc Assign*(this: TParaAttributes, Source: TObject)  =
+  ParaAttributes_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: TParaAttributes): string  =
   return $ParaAttributes_GetNamePath(this.Instance)
@@ -27063,8 +27063,8 @@ proc TParaAttributesClass*(): TClass = ParaAttributes_StaticClassType()
 #------------------------- TTextAttributes -------------------------
 
 
-proc Assign*(this: TTextAttributes, Source: pointer)  =
-  TextAttributes_Assign(this.Instance, Source)
+proc Assign*(this: TTextAttributes, Source: TObject)  =
+  TextAttributes_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: TTextAttributes): string  =
   return $TextAttributes_GetNamePath(this.Instance)
@@ -27138,8 +27138,8 @@ proc TTextAttributesClass*(): TClass = TextAttributes_StaticClassType()
 #------------------------- TIconOptions -------------------------
 
 
-proc Assign*(this: TIconOptions, Source: pointer)  =
-  IconOptions_Assign(this.Instance, Source)
+proc Assign*(this: TIconOptions, Source: TObject)  =
+  IconOptions_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: TIconOptions): string  =
   return $IconOptions_GetNamePath(this.Instance)
@@ -27332,8 +27332,8 @@ proc FindComponent*(this: TScrollBar, AName: string): TComponent =
 proc GetNamePath*(this: TScrollBar): string =
   return $ScrollBar_GetNamePath(this.Instance)
 
-proc Assign*(this: TScrollBar, Source: pointer) =
-  ScrollBar_Assign(this.Instance, Source)
+proc Assign*(this: TScrollBar, Source: TObject) =
+  ScrollBar_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TScrollBar): TClass =
   return ScrollBar_ClassType(this.Instance)
@@ -27877,8 +27877,8 @@ proc FindComponent*(this: TMaskEdit, AName: string): TComponent =
 proc GetNamePath*(this: TMaskEdit): string =
   return $MaskEdit_GetNamePath(this.Instance)
 
-proc Assign*(this: TMaskEdit, Source: pointer) =
-  MaskEdit_Assign(this.Instance, Source)
+proc Assign*(this: TMaskEdit, Source: TObject) =
+  MaskEdit_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TMaskEdit): TClass =
   return MaskEdit_ClassType(this.Instance)
@@ -28461,8 +28461,8 @@ proc FindComponent*(this: TShape, AName: string): TComponent =
 proc GetNamePath*(this: TShape): string =
   return $Shape_GetNamePath(this.Instance)
 
-proc Assign*(this: TShape, Source: pointer) =
-  Shape_Assign(this.Instance, Source)
+proc Assign*(this: TShape, Source: TObject) =
+  Shape_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TShape): TClass =
   return Shape_ClassType(this.Instance)
@@ -28832,8 +28832,8 @@ proc FindComponent*(this: TBevel, AName: string): TComponent =
 proc GetNamePath*(this: TBevel): string =
   return $Bevel_GetNamePath(this.Instance)
 
-proc Assign*(this: TBevel, Source: pointer) =
-  Bevel_Assign(this.Instance, Source)
+proc Assign*(this: TBevel, Source: TObject) =
+  Bevel_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TBevel): TClass =
   return Bevel_ClassType(this.Instance)
@@ -29203,8 +29203,8 @@ proc FindComponent*(this: TScrollBox, AName: string): TComponent =
 proc GetNamePath*(this: TScrollBox): string =
   return $ScrollBox_GetNamePath(this.Instance)
 
-proc Assign*(this: TScrollBox, Source: pointer) =
-  ScrollBox_Assign(this.Instance, Source)
+proc Assign*(this: TScrollBox, Source: TObject) =
+  ScrollBox_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TScrollBox): TClass =
   return ScrollBox_ClassType(this.Instance)
@@ -29802,8 +29802,8 @@ proc FindComponent*(this: TCheckListBox, AName: string): TComponent =
 proc GetNamePath*(this: TCheckListBox): string =
   return $CheckListBox_GetNamePath(this.Instance)
 
-proc Assign*(this: TCheckListBox, Source: pointer) =
-  CheckListBox_Assign(this.Instance, Source)
+proc Assign*(this: TCheckListBox, Source: TObject) =
+  CheckListBox_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TCheckListBox): TClass =
   return CheckListBox_ClassType(this.Instance)
@@ -30386,8 +30386,8 @@ proc FindComponent*(this: TGauge, AName: string): TComponent =
 proc GetNamePath*(this: TGauge): string =
   return $Gauge_GetNamePath(this.Instance)
 
-proc Assign*(this: TGauge, Source: pointer) =
-  Gauge_Assign(this.Instance, Source)
+proc Assign*(this: TGauge, Source: TObject) =
+  Gauge_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TGauge): TClass =
   return Gauge_ClassType(this.Instance)
@@ -30775,8 +30775,8 @@ proc FindComponent*(this: TImageButton, AName: string): TComponent =
 proc GetNamePath*(this: TImageButton): string =
   return $ImageButton_GetNamePath(this.Instance)
 
-proc Assign*(this: TImageButton, Source: pointer) =
-  ImageButton_Assign(this.Instance, Source)
+proc Assign*(this: TImageButton, Source: TObject) =
+  ImageButton_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TImageButton): TClass =
   return ImageButton_ClassType(this.Instance)
@@ -31146,8 +31146,8 @@ proc GetNamePath*(this: TFindDialog): string =
 proc HasParent*(this: TFindDialog): bool =
   return FindDialog_HasParent(this.Instance)
 
-proc Assign*(this: TFindDialog, Source: pointer) =
-  FindDialog_Assign(this.Instance, Source)
+proc Assign*(this: TFindDialog, Source: TObject) =
+  FindDialog_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TFindDialog): TClass =
   return FindDialog_ClassType(this.Instance)
@@ -31265,8 +31265,8 @@ proc GetNamePath*(this: TReplaceDialog): string =
 proc HasParent*(this: TReplaceDialog): bool =
   return ReplaceDialog_HasParent(this.Instance)
 
-proc Assign*(this: TReplaceDialog, Source: pointer) =
-  ReplaceDialog_Assign(this.Instance, Source)
+proc Assign*(this: TReplaceDialog, Source: TObject) =
+  ReplaceDialog_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TReplaceDialog): TClass =
   return ReplaceDialog_ClassType(this.Instance)
@@ -31390,8 +31390,8 @@ proc GetNamePath*(this: TPrinterSetupDialog): string =
 proc HasParent*(this: TPrinterSetupDialog): bool =
   return PrinterSetupDialog_HasParent(this.Instance)
 
-proc Assign*(this: TPrinterSetupDialog, Source: pointer) =
-  PrinterSetupDialog_Assign(this.Instance, Source)
+proc Assign*(this: TPrinterSetupDialog, Source: TObject) =
+  PrinterSetupDialog_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TPrinterSetupDialog): TClass =
   return PrinterSetupDialog_ClassType(this.Instance)
@@ -31473,8 +31473,8 @@ proc GetNamePath*(this: TPageSetupDialog): string =
 proc HasParent*(this: TPageSetupDialog): bool =
   return PageSetupDialog_HasParent(this.Instance)
 
-proc Assign*(this: TPageSetupDialog, Source: pointer) =
-  PageSetupDialog_Assign(this.Instance, Source)
+proc Assign*(this: TPageSetupDialog, Source: TObject) =
+  PageSetupDialog_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TPageSetupDialog): TClass =
   return PageSetupDialog_ClassType(this.Instance)
@@ -31959,8 +31959,8 @@ proc FindComponent*(this: TStringGrid, AName: string): TComponent =
 proc GetNamePath*(this: TStringGrid): string =
   return $StringGrid_GetNamePath(this.Instance)
 
-proc Assign*(this: TStringGrid, Source: pointer) =
-  StringGrid_Assign(this.Instance, Source)
+proc Assign*(this: TStringGrid, Source: TObject) =
+  StringGrid_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TStringGrid): TClass =
   return StringGrid_ClassType(this.Instance)
@@ -32954,8 +32954,8 @@ proc FindComponent*(this: TDrawGrid, AName: string): TComponent =
 proc GetNamePath*(this: TDrawGrid): string =
   return $DrawGrid_GetNamePath(this.Instance)
 
-proc Assign*(this: TDrawGrid, Source: pointer) =
-  DrawGrid_Assign(this.Instance, Source)
+proc Assign*(this: TDrawGrid, Source: TObject) =
+  DrawGrid_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TDrawGrid): TClass =
   return DrawGrid_ClassType(this.Instance)
@@ -33661,8 +33661,8 @@ proc FindComponent*(this: TValueListEditor, AName: string): TComponent =
 proc GetNamePath*(this: TValueListEditor): string =
   return $ValueListEditor_GetNamePath(this.Instance)
 
-proc Assign*(this: TValueListEditor, Source: pointer) =
-  ValueListEditor_Assign(this.Instance, Source)
+proc Assign*(this: TValueListEditor, Source: TObject) =
+  ValueListEditor_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TValueListEditor): TClass =
   return ValueListEditor_ClassType(this.Instance)
@@ -34368,8 +34368,8 @@ proc FindComponent*(this: THeaderControl, AName: string): TComponent =
 proc GetNamePath*(this: THeaderControl): string =
   return $HeaderControl_GetNamePath(this.Instance)
 
-proc Assign*(this: THeaderControl, Source: pointer) =
-  HeaderControl_Assign(this.Instance, Source)
+proc Assign*(this: THeaderControl, Source: TObject) =
+  HeaderControl_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: THeaderControl): TClass =
   return HeaderControl_ClassType(this.Instance)
@@ -34790,8 +34790,8 @@ proc NewHeaderSection*(AOwner: TCollection): THeaderSection =
    new(result, Free)
    result.Instance = HeaderSection_Create(CheckPtr(AOwner))
 
-proc Assign*(this: THeaderSection, Source: pointer)  =
-  HeaderSection_Assign(this.Instance, Source)
+proc Assign*(this: THeaderSection, Source: TObject)  =
+  HeaderSection_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: THeaderSection): string  =
   return $HeaderSection_GetNamePath(this.Instance)
@@ -34897,11 +34897,11 @@ proc AddItem*(this: THeaderSections, Item: THeaderSection, Index: int32): THeade
 proc Insert*(this: THeaderSections, Index: int32): THeaderSection  =
   return HeaderSections_Insert(this.Instance, Index).AsHeaderSection
 
-proc Owner*(this: THeaderSections): pointer  =
-  return HeaderSections_Owner(this.Instance)
+proc Owner*(this: THeaderSections): TObject  =
+  return HeaderSections_Owner(this.Instance).AsObject
 
-proc Assign*(this: THeaderSections, Source: pointer)  =
-  HeaderSections_Assign(this.Instance, Source)
+proc Assign*(this: THeaderSections, Source: TObject)  =
+  HeaderSections_Assign(this.Instance, CheckPtr(Source))
 
 proc BeginUpdate*(this: THeaderSections)  =
   HeaderSections_BeginUpdate(this.Instance)
@@ -35091,8 +35091,8 @@ proc FindComponent*(this: TLabeledEdit, AName: string): TComponent =
 proc GetNamePath*(this: TLabeledEdit): string =
   return $LabeledEdit_GetNamePath(this.Instance)
 
-proc Assign*(this: TLabeledEdit, Source: pointer) =
-  LabeledEdit_Assign(this.Instance, Source)
+proc Assign*(this: TLabeledEdit, Source: TObject) =
+  LabeledEdit_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TLabeledEdit): TClass =
   return LabeledEdit_ClassType(this.Instance)
@@ -35681,8 +35681,8 @@ proc FindComponent*(this: TBoundLabel, AName: string): TComponent =
 proc GetNamePath*(this: TBoundLabel): string =
   return $BoundLabel_GetNamePath(this.Instance)
 
-proc Assign*(this: TBoundLabel, Source: pointer) =
-  BoundLabel_Assign(this.Instance, Source)
+proc Assign*(this: TBoundLabel, Source: TObject) =
+  BoundLabel_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TBoundLabel): TClass =
   return BoundLabel_ClassType(this.Instance)
@@ -36130,8 +36130,8 @@ proc FindComponent*(this: TFlowPanel, AName: string): TComponent =
 proc GetNamePath*(this: TFlowPanel): string =
   return $FlowPanel_GetNamePath(this.Instance)
 
-proc Assign*(this: TFlowPanel, Source: pointer) =
-  FlowPanel_Assign(this.Instance, Source)
+proc Assign*(this: TFlowPanel, Source: TObject) =
+  FlowPanel_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TFlowPanel): TClass =
   return FlowPanel_ClassType(this.Instance)
@@ -36720,8 +36720,8 @@ proc FindComponent*(this: TCoolBar, AName: string): TComponent =
 proc GetNamePath*(this: TCoolBar): string =
   return $CoolBar_GetNamePath(this.Instance)
 
-proc Assign*(this: TCoolBar, Source: pointer) =
-  CoolBar_Assign(this.Instance, Source)
+proc Assign*(this: TCoolBar, Source: TObject) =
+  CoolBar_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TCoolBar): TClass =
   return CoolBar_ClassType(this.Instance)
@@ -37235,11 +37235,11 @@ proc Add*(this: TCoolBands): TCoolBand  =
 proc FindBand*(this: TCoolBands, AControl: TControl): TCoolBand  =
   return CoolBands_FindBand(this.Instance, CheckPtr(AControl)).AsCoolBand
 
-proc Owner*(this: TCoolBands): pointer  =
-  return CoolBands_Owner(this.Instance)
+proc Owner*(this: TCoolBands): TObject  =
+  return CoolBands_Owner(this.Instance).AsObject
 
-proc Assign*(this: TCoolBands, Source: pointer)  =
-  CoolBands_Assign(this.Instance, Source)
+proc Assign*(this: TCoolBands, Source: TObject)  =
+  CoolBands_Assign(this.Instance, CheckPtr(Source))
 
 proc BeginUpdate*(this: TCoolBands)  =
   CoolBands_BeginUpdate(this.Instance)
@@ -37303,8 +37303,8 @@ proc NewCoolBand*(AOwner: TCollection): TCoolBand =
    new(result, Free)
    result.Instance = CoolBand_Create(CheckPtr(AOwner))
 
-proc Assign*(this: TCoolBand, Source: pointer)  =
-  CoolBand_Assign(this.Instance, Source)
+proc Assign*(this: TCoolBand, Source: TObject)  =
+  CoolBand_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: TCoolBand): string  =
   return $CoolBand_GetNamePath(this.Instance)
@@ -37458,14 +37458,14 @@ proc NewCollection*(AOwner: pointer): TCollection =
    new(result, Free)
    result.Instance = Collection_Create(AOwner)
 
-proc Owner*(this: TCollection): pointer  =
-  return Collection_Owner(this.Instance)
+proc Owner*(this: TCollection): TObject  =
+  return Collection_Owner(this.Instance).AsObject
 
 proc Add*(this: TCollection): TCollectionItem  =
   return Collection_Add(this.Instance).AsCollectionItem
 
-proc Assign*(this: TCollection, Source: pointer)  =
-  Collection_Assign(this.Instance, Source)
+proc Assign*(this: TCollection, Source: TObject)  =
+  Collection_Assign(this.Instance, CheckPtr(Source))
 
 proc BeginUpdate*(this: TCollection)  =
   Collection_BeginUpdate(this.Instance)
@@ -37639,8 +37639,8 @@ proc GetNamePath*(this: TTaskDialog): string =
 proc HasParent*(this: TTaskDialog): bool =
   return TaskDialog_HasParent(this.Instance)
 
-proc Assign*(this: TTaskDialog, Source: pointer) =
-  TaskDialog_Assign(this.Instance, Source)
+proc Assign*(this: TTaskDialog, Source: TObject) =
+  TaskDialog_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TTaskDialog): TClass =
   return TaskDialog_ClassType(this.Instance)
@@ -37804,11 +37804,11 @@ proc Add*(this: TTaskDialogButtons): TTaskDialogBaseButtonItem  =
 proc FindButton*(this: TTaskDialogButtons, AModalResult: TModalResult): TTaskDialogBaseButtonItem  =
   return TaskDialogButtons_FindButton(this.Instance, AModalResult).AsTaskDialogBaseButtonItem
 
-proc Owner*(this: TTaskDialogButtons): pointer  =
-  return TaskDialogButtons_Owner(this.Instance)
+proc Owner*(this: TTaskDialogButtons): TObject  =
+  return TaskDialogButtons_Owner(this.Instance).AsObject
 
-proc Assign*(this: TTaskDialogButtons, Source: pointer)  =
-  TaskDialogButtons_Assign(this.Instance, Source)
+proc Assign*(this: TTaskDialogButtons, Source: TObject)  =
+  TaskDialogButtons_Assign(this.Instance, CheckPtr(Source))
 
 proc BeginUpdate*(this: TTaskDialogButtons)  =
   TaskDialogButtons_BeginUpdate(this.Instance)
@@ -37881,8 +37881,8 @@ proc NewTaskDialogButtonItem*(AOwner: TCollection): TTaskDialogButtonItem =
 proc GetNamePath*(this: TTaskDialogButtonItem): string  =
   return $TaskDialogButtonItem_GetNamePath(this.Instance)
 
-proc Assign*(this: TTaskDialogButtonItem, Source: pointer)  =
-  TaskDialogButtonItem_Assign(this.Instance, Source)
+proc Assign*(this: TTaskDialogButtonItem, Source: TObject)  =
+  TaskDialogButtonItem_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TTaskDialogButtonItem): TClass =
   return TaskDialogButtonItem_ClassType(this.Instance)
@@ -37955,8 +37955,8 @@ proc NewTaskDialogRadioButtonItem*(AOwner: TCollection): TTaskDialogRadioButtonI
 proc GetNamePath*(this: TTaskDialogRadioButtonItem): string  =
   return $TaskDialogRadioButtonItem_GetNamePath(this.Instance)
 
-proc Assign*(this: TTaskDialogRadioButtonItem, Source: pointer)  =
-  TaskDialogRadioButtonItem_Assign(this.Instance, Source)
+proc Assign*(this: TTaskDialogRadioButtonItem, Source: TObject)  =
+  TaskDialogRadioButtonItem_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TTaskDialogRadioButtonItem): TClass =
   return TaskDialogRadioButtonItem_ClassType(this.Instance)
@@ -38029,8 +38029,8 @@ proc NewTaskDialogBaseButtonItem*(AOwner: TCollection): TTaskDialogBaseButtonIte
 proc GetNamePath*(this: TTaskDialogBaseButtonItem): string  =
   return $TaskDialogBaseButtonItem_GetNamePath(this.Instance)
 
-proc Assign*(this: TTaskDialogBaseButtonItem, Source: pointer)  =
-  TaskDialogBaseButtonItem_Assign(this.Instance, Source)
+proc Assign*(this: TTaskDialogBaseButtonItem, Source: TObject)  =
+  TaskDialogBaseButtonItem_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TTaskDialogBaseButtonItem): TClass =
   return TaskDialogBaseButtonItem_ClassType(this.Instance)
@@ -38223,8 +38223,8 @@ proc FindComponent*(this: TComboBoxEx, AName: string): TComponent =
 proc GetNamePath*(this: TComboBoxEx): string =
   return $ComboBoxEx_GetNamePath(this.Instance)
 
-proc Assign*(this: TComboBoxEx, Source: pointer) =
-  ComboBoxEx_Assign(this.Instance, Source)
+proc Assign*(this: TComboBoxEx, Source: TObject) =
+  ComboBoxEx_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TComboBoxEx): TClass =
   return ComboBoxEx_ClassType(this.Instance)
@@ -38739,11 +38739,11 @@ proc AddItem*(this: TComboExItems, Caption: string, ImageIndex: int32, SelectedI
 proc Insert*(this: TComboExItems, Index: int32): TComboExItem  =
   return ComboExItems_Insert(this.Instance, Index).AsComboExItem
 
-proc Owner*(this: TComboExItems): pointer  =
-  return ComboExItems_Owner(this.Instance)
+proc Owner*(this: TComboExItems): TObject  =
+  return ComboExItems_Owner(this.Instance).AsObject
 
-proc Assign*(this: TComboExItems, Source: pointer)  =
-  ComboExItems_Assign(this.Instance, Source)
+proc Assign*(this: TComboExItems, Source: TObject)  =
+  ComboExItems_Assign(this.Instance, CheckPtr(Source))
 
 proc BeginUpdate*(this: TComboExItems)  =
   ComboExItems_BeginUpdate(this.Instance)
@@ -38796,8 +38796,8 @@ proc TComboExItemsClass*(): TClass = ComboExItems_StaticClassType()
 #------------------------- TComboExItem -------------------------
 
 
-proc Assign*(this: TComboExItem, Source: pointer)  =
-  ComboExItem_Assign(this.Instance, Source)
+proc Assign*(this: TComboExItem, Source: TObject)  =
+  ComboExItem_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: TComboExItem): string  =
   return $ComboExItem_GetNamePath(this.Instance)
@@ -38993,8 +38993,8 @@ proc FindComponent*(this: TFrame, AName: string): TComponent =
 proc GetNamePath*(this: TFrame): string =
   return $Frame_GetNamePath(this.Instance)
 
-proc Assign*(this: TFrame, Source: pointer) =
-  Frame_Assign(this.Instance, Source)
+proc Assign*(this: TFrame, Source: TObject) =
+  Frame_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TFrame): TClass =
   return Frame_ClassType(this.Instance)
@@ -39452,8 +39452,8 @@ proc TFrameClass*(): TClass = Frame_StaticClassType()
 #------------------------- TControlScrollBar -------------------------
 
 
-proc Assign*(this: TControlScrollBar, Source: pointer)  =
-  ControlScrollBar_Assign(this.Instance, Source)
+proc Assign*(this: TControlScrollBar, Source: TObject)  =
+  ControlScrollBar_Assign(this.Instance, CheckPtr(Source))
 
 proc IsScrollBarVisible*(this: TControlScrollBar): bool  =
   return ControlScrollBar_IsScrollBarVisible(this.Instance)
@@ -39527,8 +39527,8 @@ proc TControlScrollBarClass*(): TClass = ControlScrollBar_StaticClassType()
 #------------------------- TSizeConstraints -------------------------
 
 
-proc Assign*(this: TSizeConstraints, Source: pointer)  =
-  SizeConstraints_Assign(this.Instance, Source)
+proc Assign*(this: TSizeConstraints, Source: TObject)  =
+  SizeConstraints_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: TSizeConstraints): string  =
   return $SizeConstraints_GetNamePath(this.Instance)
@@ -39655,8 +39655,8 @@ proc FindComponent*(this: TXButton, AName: string): TComponent =
 proc GetNamePath*(this: TXButton): string =
   return $XButton_GetNamePath(this.Instance)
 
-proc Assign*(this: TXButton, Source: pointer) =
-  XButton_Assign(this.Instance, Source)
+proc Assign*(this: TXButton, Source: TObject) =
+  XButton_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TXButton): TClass =
   return XButton_ClassType(this.Instance)
@@ -40009,8 +40009,8 @@ proc TXButtonClass*(): TClass = XButton_StaticClassType()
 #------------------------- TAnchorSide -------------------------
 
 
-proc Assign*(this: TAnchorSide, Source: pointer)  =
-  AnchorSide_Assign(this.Instance, Source)
+proc Assign*(this: TAnchorSide, Source: TObject)  =
+  AnchorSide_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: TAnchorSide): string  =
   return $AnchorSide_GetNamePath(this.Instance)
@@ -40057,8 +40057,8 @@ proc TAnchorSideClass*(): TClass = AnchorSide_StaticClassType()
 #------------------------- TControlBorderSpacing -------------------------
 
 
-proc Assign*(this: TControlBorderSpacing, Source: pointer)  =
-  ControlBorderSpacing_Assign(this.Instance, Source)
+proc Assign*(this: TControlBorderSpacing, Source: TObject)  =
+  ControlBorderSpacing_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: TControlBorderSpacing): string  =
   return $ControlBorderSpacing_GetNamePath(this.Instance)
@@ -40180,8 +40180,8 @@ proc TControlBorderSpacingClass*(): TClass = ControlBorderSpacing_StaticClassTyp
 #------------------------- TControlChildSizing -------------------------
 
 
-proc Assign*(this: TControlChildSizing, Source: pointer)  =
-  ControlChildSizing_Assign(this.Instance, Source)
+proc Assign*(this: TControlChildSizing, Source: TObject)  =
+  ControlChildSizing_Assign(this.Instance, CheckPtr(Source))
 
 proc GetNamePath*(this: TControlChildSizing): string  =
   return $ControlChildSizing_GetNamePath(this.Instance)
@@ -40395,8 +40395,8 @@ proc FindComponent*(this: TCheckGroup, AName: string): TComponent =
 proc GetNamePath*(this: TCheckGroup): string =
   return $CheckGroup_GetNamePath(this.Instance)
 
-proc Assign*(this: TCheckGroup, Source: pointer) =
-  CheckGroup_Assign(this.Instance, Source)
+proc Assign*(this: TCheckGroup, Source: TObject) =
+  CheckGroup_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TCheckGroup): TClass =
   return CheckGroup_ClassType(this.Instance)
@@ -40976,8 +40976,8 @@ proc FindComponent*(this: TToggleBox, AName: string): TComponent =
 proc GetNamePath*(this: TToggleBox): string =
   return $ToggleBox_GetNamePath(this.Instance)
 
-proc Assign*(this: TToggleBox, Source: pointer) =
-  ToggleBox_Assign(this.Instance, Source)
+proc Assign*(this: TToggleBox, Source: TObject) =
+  ToggleBox_Assign(this.Instance, CheckPtr(Source))
 
 proc ClassType*(this: TToggleBox): TClass =
   return ToggleBox_ClassType(this.Instance)
@@ -41411,8 +41411,8 @@ proc TToggleBoxClass*(): TClass = ToggleBox_StaticClassType()
 #------------------------- TGridColumnTitle -------------------------
 
 
-proc Assign*(this: TGridColumnTitle, Source: pointer)  =
-  GridColumnTitle_Assign(this.Instance, Source)
+proc Assign*(this: TGridColumnTitle, Source: TObject)  =
+  GridColumnTitle_Assign(this.Instance, CheckPtr(Source))
 
 proc FillTitleDefaultFont*(this: TGridColumnTitle)  =
   GridColumnTitle_FillTitleDefaultFont(this.Instance)
@@ -41507,8 +41507,8 @@ proc TGridColumnTitleClass*(): TClass = GridColumnTitle_StaticClassType()
 #------------------------- TGridColumn -------------------------
 
 
-proc Assign*(this: TGridColumn, Source: pointer)  =
-  GridColumn_Assign(this.Instance, Source)
+proc Assign*(this: TGridColumn, Source: TObject)  =
+  GridColumn_Assign(this.Instance, CheckPtr(Source))
 
 proc IsDefault*(this: TGridColumn): bool  =
   return GridColumn_IsDefault(this.Instance)
@@ -41699,11 +41699,11 @@ proc IsDefault*(this: TGridColumns): bool  =
 proc HasIndex*(this: TGridColumns, Index: int32): bool  =
   return GridColumns_HasIndex(this.Instance, Index)
 
-proc Owner*(this: TGridColumns): pointer  =
-  return GridColumns_Owner(this.Instance)
+proc Owner*(this: TGridColumns): TObject  =
+  return GridColumns_Owner(this.Instance).AsObject
 
-proc Assign*(this: TGridColumns, Source: pointer)  =
-  GridColumns_Assign(this.Instance, Source)
+proc Assign*(this: TGridColumns, Source: TObject)  =
+  GridColumns_Assign(this.Instance, CheckPtr(Source))
 
 proc BeginUpdate*(this: TGridColumns)  =
   GridColumns_BeginUpdate(this.Instance)
