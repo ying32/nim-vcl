@@ -7,7 +7,7 @@ when defined(gcc) and defined(windows):
   else:  
     {.link: "appres_amd64.o".}
 
-import strutils, vcl, types, fns, typeinfo#, macros
+import strutils, vcl, types, fns, typeinfo #, macros
 
 ## 如何实现这种的??????
 ## TMainForm = lclClass(TForm)
@@ -38,6 +38,14 @@ proc Free(obj: TTest1) =
 var 
   mainForm: TMainForm
   form2: TForm
+  # thr: Thread[void]
+
+# proc threadFunc() {.thread.} =
+#   echo("threadid-2: ", CurrentThreadId())
+#   在线程中操作ui必须使用ThreadSync方法切换到主线程执行
+#   ThreadSync(proc()=
+#     echo("threadid-3: ", CurrentThreadId())
+#   )
 
 # 单击事件测试
 proc onButton1Click(sender: pointer) =
@@ -45,6 +53,15 @@ proc onButton1Click(sender: pointer) =
   var test1: TTest1
   new(test1, Free)
   
+  echo("handle: ", Application.Handle)
+  echo("mainThreadId: ", MainThreadId())
+  echo("threadid-1: ", CurrentThreadId())
+  
+  # 创建一条线程，并开始运行
+  # createThread(thr, threadFunc)
+  # joinThread(thr) 这里是会wait，造成主线程阻塞，然后ThreadSync就会卡死的
+  # echo("结束测试")
+
   #invokeNew
   # var test2 = Test2(val:1)
   # var x3 = toAny(test2)
@@ -76,6 +93,19 @@ proc onFormMouseMove(sender: pointer, shift: TShiftState, x: int32, y: int32) =
     let sp = Mouse.CursorPos
     mainForm.lbl1.Caption = format("p: x=$1, y=$2, screen: x=$3, y=$4", x, y, sp.x, sp.y)
   # discard
+
+# 窗口消息测试
+proc onFormWndProc(msg: var TMessage) = 
+  # 在WndProc必需要调用InheritedWndProc，以便让消息传递，至于放在哪个位置这个根据需求决定
+  mainForm.InheritedWndProc(msg)
+  case msg.msg
+  of 0x0201: # WM_LBUTTONDOWN
+    echo "鼠标左键按下"
+  of 0x0202: # WM_LBUTTONUP
+    echo "鼠标左键抬起" 
+  else:
+    discard
+  
 
 # 打开文件对话框测试
 proc onBtn2Click(sender: pointer) =
@@ -123,6 +153,7 @@ mainForm.AllowDropFiles = true
 mainForm.OnDropFiles = onDropFiles
 mainForm.Height = 550
 mainForm.OnMouseMove = onFormMouseMove
+mainForm.OnWndProc = onFormWndProc
 
 #label
 mainForm.lbl1 = NewLabel(mainForm)

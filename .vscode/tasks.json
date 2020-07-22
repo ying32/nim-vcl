@@ -12,6 +12,7 @@
                 // "--debugger:native",
                 // "--app:gui",
                 // "-d:release"
+                // "-d:nimCoroutines"
             ],
             "group": {
                 "kind": "build",

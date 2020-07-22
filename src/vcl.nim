@@ -41765,6 +41765,24 @@ proc `Items=`*(this: TGridColumns, Index: int32, AValue: TGridColumn)  =
 proc TGridColumnsClass*(): TClass = GridColumns_StaticClassType()
 
 
+#------------ threadSync ----------------------
+# 
+import locks
+
+# 线程同步专用回调
+var
+  syncLock: Lock
+
+proc ThreadSync*(fn: TThreadProc) =
+  acquire(syncLock) 
+  defer:
+    release(syncLock)
+  threadSyncProc = fn
+  DSynchronize(false)
+  threadSyncProc = nil
+
+# 锁
+initLock(syncLock)
 
 #------------ global vars ----------------------
 
