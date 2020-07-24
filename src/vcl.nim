@@ -464,8 +464,8 @@ template defaultFree(pName) =
 proc Free*(this: TObject)  = defaultFree: Object_Free
 
 proc NewObject*(): TObject =
-   new(result, Free)
-   result.Instance = Object_Create()
+  new(result, Free)
+  result.Instance = Object_Create()
 
 proc ClassType*(this: TObject): TClass  =
   return Object_ClassType(this.Instance)
@@ -496,8 +496,8 @@ proc TObjectClass*(): TClass = Object_StaticClassType()
 proc Free*(this: TComponent) = defaultFree: Component_Free
 
 proc NewComponent*(AOwner: TComponent): TComponent =
-   new(result, Free)
-   result.Instance = Component_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Component_Create(CheckPtr(AOwner))
 
 proc FindComponent*(this: TComponent, AName: string): TComponent  =
   return Component_FindComponent(this.Instance, AName).AsComponent
@@ -567,8 +567,8 @@ proc TComponentClass*(): TClass = Component_StaticClassType()
 proc Free*(this: TControl) = defaultFree: Control_Free
 
 proc NewControl*(AOwner: TComponent): TControl =
-   new(result)
-   result.Instance = Control_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Control_Create(CheckPtr(AOwner))
 
 proc BringToFront*(this: TControl)  =
   Control_BringToFront(this.Instance)
@@ -872,8 +872,8 @@ proc TControlClass*(): TClass = Control_StaticClassType()
 proc Free*(this: TWinControl) = defaultFree: WinControl_Free
 
 proc NewWinControl*(AOwner: TComponent): TWinControl =
-   new(result)
-   result.Instance = WinControl_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = WinControl_Create(CheckPtr(AOwner))
 
 proc CanFocus*(this: TWinControl): bool  =
   return WinControl_CanFocus(this.Instance)
@@ -1297,8 +1297,8 @@ proc TWinControlClass*(): TClass = WinControl_StaticClassType()
 proc Free*(this: TMainMenu) = defaultFree: MainMenu_Free
 
 proc NewMainMenu*(AOwner: TComponent): TMainMenu =
-   new(result)
-   result.Instance = MainMenu_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = MainMenu_Create(CheckPtr(AOwner))
 
 proc FindComponent*(this: TMainMenu, AName: string): TComponent =
   return MainMenu_FindComponent(this.Instance, AName).AsComponent
@@ -1401,8 +1401,8 @@ proc TMainMenuClass*(): TClass = MainMenu_StaticClassType()
 proc Free*(this: TPopupMenu) = defaultFree: PopupMenu_Free
 
 proc NewPopupMenu*(AOwner: TComponent): TPopupMenu =
-   new(result)
-   result.Instance = PopupMenu_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = PopupMenu_Create(CheckPtr(AOwner))
 
 proc CloseMenu*(this: TPopupMenu)  =
   PopupMenu_CloseMenu(this.Instance)
@@ -1526,8 +1526,8 @@ proc TPopupMenuClass*(): TClass = PopupMenu_StaticClassType()
 proc Free*(this: TMemo) = defaultFree: Memo_Free
 
 proc NewMemo*(AOwner: TComponent): TMemo =
-   new(result)
-   result.Instance = Memo_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Memo_Create(CheckPtr(AOwner))
 
 proc Append*(this: TMemo, Value: string)  =
   Memo_Append(this.Instance, Value)
@@ -2191,8 +2191,8 @@ proc TMemoClass*(): TClass = Memo_StaticClassType()
 proc Free*(this: TCheckBox) = defaultFree: CheckBox_Free
 
 proc NewCheckBox*(AOwner: TComponent): TCheckBox =
-   new(result)
-   result.Instance = CheckBox_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = CheckBox_Create(CheckPtr(AOwner))
 
 proc CanFocus*(this: TCheckBox): bool =
   return CheckBox_CanFocus(this.Instance)
@@ -2748,8 +2748,8 @@ proc TCheckBoxClass*(): TClass = CheckBox_StaticClassType()
 proc Free*(this: TRadioButton) = defaultFree: RadioButton_Free
 
 proc NewRadioButton*(AOwner: TComponent): TRadioButton =
-   new(result)
-   result.Instance = RadioButton_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = RadioButton_Create(CheckPtr(AOwner))
 
 proc CanFocus*(this: TRadioButton): bool =
   return RadioButton_CanFocus(this.Instance)
@@ -3293,8 +3293,8 @@ proc TRadioButtonClass*(): TClass = RadioButton_StaticClassType()
 proc Free*(this: TGroupBox) = defaultFree: GroupBox_Free
 
 proc NewGroupBox*(AOwner: TComponent): TGroupBox =
-   new(result)
-   result.Instance = GroupBox_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = GroupBox_Create(CheckPtr(AOwner))
 
 proc CanFocus*(this: TGroupBox): bool =
   return GroupBox_CanFocus(this.Instance)
@@ -3835,8 +3835,8 @@ proc TGroupBoxClass*(): TClass = GroupBox_StaticClassType()
 proc Free*(this: TLabel) = defaultFree: Label_Free
 
 proc NewLabel*(AOwner: TComponent): TLabel =
-   new(result)
-   result.Instance = Label_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Label_Create(CheckPtr(AOwner))
 
 proc BringToFront*(this: TLabel) =
   Label_BringToFront(this.Instance)
@@ -4284,8 +4284,8 @@ proc TLabelClass*(): TClass = Label_StaticClassType()
 proc Free*(this: TListBox) = defaultFree: ListBox_Free
 
 proc NewListBox*(AOwner: TComponent): TListBox =
-   new(result)
-   result.Instance = ListBox_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ListBox_Create(CheckPtr(AOwner))
 
 proc AddItem*(this: TListBox, Item: string, AObject: TObject)  =
   ListBox_AddItem(this.Instance, Item, CheckPtr(AObject))
@@ -4925,8 +4925,8 @@ proc TListBoxClass*(): TClass = ListBox_StaticClassType()
 proc Free*(this: TComboBox) = defaultFree: ComboBox_Free
 
 proc NewComboBox*(AOwner: TComponent): TComboBox =
-   new(result)
-   result.Instance = ComboBox_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ComboBox_Create(CheckPtr(AOwner))
 
 proc AddItem*(this: TComboBox, Item: string, AObject: TObject)  =
   ComboBox_AddItem(this.Instance, Item, CheckPtr(AObject))
@@ -5563,8 +5563,8 @@ proc TComboBoxClass*(): TClass = ComboBox_StaticClassType()
 proc Free*(this: TPanel) = defaultFree: Panel_Free
 
 proc NewPanel*(AOwner: TComponent): TPanel =
-   new(result)
-   result.Instance = Panel_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Panel_Create(CheckPtr(AOwner))
 
 proc CanFocus*(this: TPanel): bool =
   return Panel_CanFocus(this.Instance)
@@ -6156,8 +6156,8 @@ proc TPanelClass*(): TClass = Panel_StaticClassType()
 proc Free*(this: TImage) = defaultFree: Image_Free
 
 proc NewImage*(AOwner: TComponent): TImage =
-   new(result)
-   result.Instance = Image_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Image_Create(CheckPtr(AOwner))
 
 proc BringToFront*(this: TImage) =
   Image_BringToFront(this.Instance)
@@ -6584,8 +6584,8 @@ proc TImageClass*(): TClass = Image_StaticClassType()
 proc Free*(this: TLinkLabel) = defaultFree: LinkLabel_Free
 
 proc NewLinkLabel*(AOwner: TComponent): TLinkLabel =
-   new(result)
-   result.Instance = LinkLabel_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = LinkLabel_Create(CheckPtr(AOwner))
 
 proc Invalidate*(this: TLinkLabel) =
   LinkLabel_Invalidate(this.Instance)
@@ -6994,8 +6994,8 @@ proc TLinkLabelClass*(): TClass = LinkLabel_StaticClassType()
 proc Free*(this: TSpeedButton) = defaultFree: SpeedButton_Free
 
 proc NewSpeedButton*(AOwner: TComponent): TSpeedButton =
-   new(result)
-   result.Instance = SpeedButton_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = SpeedButton_Create(CheckPtr(AOwner))
 
 proc Click*(this: TSpeedButton)  =
   SpeedButton_Click(this.Instance)
@@ -7431,8 +7431,8 @@ proc TSpeedButtonClass*(): TClass = SpeedButton_StaticClassType()
 proc Free*(this: TSplitter) = defaultFree: Splitter_Free
 
 proc NewSplitter*(AOwner: TComponent): TSplitter =
-   new(result)
-   result.Instance = Splitter_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Splitter_Create(CheckPtr(AOwner))
 
 proc BringToFront*(this: TSplitter) =
   Splitter_BringToFront(this.Instance)
@@ -7766,8 +7766,8 @@ proc TSplitterClass*(): TClass = Splitter_StaticClassType()
 proc Free*(this: TRadioGroup) = defaultFree: RadioGroup_Free
 
 proc NewRadioGroup*(AOwner: TComponent): TRadioGroup =
-   new(result)
-   result.Instance = RadioGroup_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = RadioGroup_Create(CheckPtr(AOwner))
 
 proc FlipChildren*(this: TRadioGroup, AllLevels: bool) =
   RadioGroup_FlipChildren(this.Instance, AllLevels)
@@ -8281,8 +8281,8 @@ proc TRadioGroupClass*(): TClass = RadioGroup_StaticClassType()
 proc Free*(this: TStaticText) = defaultFree: StaticText_Free
 
 proc NewStaticText*(AOwner: TComponent): TStaticText =
-   new(result)
-   result.Instance = StaticText_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = StaticText_Create(CheckPtr(AOwner))
 
 proc CanFocus*(this: TStaticText): bool =
   return StaticText_CanFocus(this.Instance)
@@ -8835,8 +8835,8 @@ proc TStaticTextClass*(): TClass = StaticText_StaticClassType()
 proc Free*(this: TColorBox) = defaultFree: ColorBox_Free
 
 proc NewColorBox*(AOwner: TComponent): TColorBox =
-   new(result)
-   result.Instance = ColorBox_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ColorBox_Create(CheckPtr(AOwner))
 
 proc AddItem*(this: TColorBox, Item: string, AObject: TObject)  =
   ColorBox_AddItem(this.Instance, Item, CheckPtr(AObject))
@@ -9452,8 +9452,8 @@ proc TColorBoxClass*(): TClass = ColorBox_StaticClassType()
 proc Free*(this: TColorListBox) = defaultFree: ColorListBox_Free
 
 proc NewColorListBox*(AOwner: TComponent): TColorListBox =
-   new(result)
-   result.Instance = ColorListBox_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ColorListBox_Create(CheckPtr(AOwner))
 
 proc AddItem*(this: TColorListBox, Item: string, AObject: TObject)  =
   ColorListBox_AddItem(this.Instance, Item, CheckPtr(AObject))
@@ -10051,8 +10051,8 @@ proc TColorListBoxClass*(): TClass = ColorListBox_StaticClassType()
 proc Free*(this: TTrayIcon) = defaultFree: TrayIcon_Free
 
 proc NewTrayIcon*(AOwner: TComponent): TTrayIcon =
-   new(result)
-   result.Instance = TrayIcon_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = TrayIcon_Create(CheckPtr(AOwner))
 
 proc ShowBalloonHint*(this: TTrayIcon)  =
   TrayIcon_ShowBalloonHint(this.Instance)
@@ -10194,8 +10194,8 @@ proc TTrayIconClass*(): TClass = TrayIcon_StaticClassType()
 proc Free*(this: TOpenDialog) = defaultFree: OpenDialog_Free
 
 proc NewOpenDialog*(AOwner: TComponent): TOpenDialog =
-   new(result)
-   result.Instance = OpenDialog_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = OpenDialog_Create(CheckPtr(AOwner))
 
 proc Execute*(this: TOpenDialog): bool  =
   return OpenDialog_Execute(this.Instance)
@@ -10322,8 +10322,8 @@ proc TOpenDialogClass*(): TClass = OpenDialog_StaticClassType()
 proc Free*(this: TSaveDialog) = defaultFree: SaveDialog_Free
 
 proc NewSaveDialog*(AOwner: TComponent): TSaveDialog =
-   new(result)
-   result.Instance = SaveDialog_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = SaveDialog_Create(CheckPtr(AOwner))
 
 proc Execute*(this: TSaveDialog): bool  =
   return SaveDialog_Execute(this.Instance)
@@ -10450,8 +10450,8 @@ proc TSaveDialogClass*(): TClass = SaveDialog_StaticClassType()
 proc Free*(this: TColorDialog) = defaultFree: ColorDialog_Free
 
 proc NewColorDialog*(AOwner: TComponent): TColorDialog =
-   new(result)
-   result.Instance = ColorDialog_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ColorDialog_Create(CheckPtr(AOwner))
 
 proc Execute*(this: TColorDialog): bool  =
   return ColorDialog_Execute(this.Instance)
@@ -10539,8 +10539,8 @@ proc TColorDialogClass*(): TClass = ColorDialog_StaticClassType()
 proc Free*(this: TFontDialog) = defaultFree: FontDialog_Free
 
 proc NewFontDialog*(AOwner: TComponent): TFontDialog =
-   new(result)
-   result.Instance = FontDialog_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = FontDialog_Create(CheckPtr(AOwner))
 
 proc Execute*(this: TFontDialog): bool  =
   return FontDialog_Execute(this.Instance)
@@ -10634,8 +10634,8 @@ proc TFontDialogClass*(): TClass = FontDialog_StaticClassType()
 proc Free*(this: TPrintDialog) = defaultFree: PrintDialog_Free
 
 proc NewPrintDialog*(AOwner: TComponent): TPrintDialog =
-   new(result)
-   result.Instance = PrintDialog_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = PrintDialog_Create(CheckPtr(AOwner))
 
 proc Execute*(this: TPrintDialog): bool  =
   return PrintDialog_Execute(this.Instance)
@@ -10771,8 +10771,8 @@ proc TPrintDialogClass*(): TClass = PrintDialog_StaticClassType()
 proc Free*(this: TOpenPictureDialog) = defaultFree: OpenPictureDialog_Free
 
 proc NewOpenPictureDialog*(AOwner: TComponent): TOpenPictureDialog =
-   new(result)
-   result.Instance = OpenPictureDialog_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = OpenPictureDialog_Create(CheckPtr(AOwner))
 
 proc Execute*(this: TOpenPictureDialog): bool  =
   return OpenPictureDialog_Execute(this.Instance)
@@ -10899,8 +10899,8 @@ proc TOpenPictureDialogClass*(): TClass = OpenPictureDialog_StaticClassType()
 proc Free*(this: TSavePictureDialog) = defaultFree: SavePictureDialog_Free
 
 proc NewSavePictureDialog*(AOwner: TComponent): TSavePictureDialog =
-   new(result)
-   result.Instance = SavePictureDialog_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = SavePictureDialog_Create(CheckPtr(AOwner))
 
 proc Execute*(this: TSavePictureDialog): bool  =
   return SavePictureDialog_Execute(this.Instance)
@@ -11027,8 +11027,8 @@ proc TSavePictureDialogClass*(): TClass = SavePictureDialog_StaticClassType()
 proc Free*(this: TSelectDirectoryDialog) = defaultFree: SelectDirectoryDialog_Free
 
 proc NewSelectDirectoryDialog*(AOwner: TComponent): TSelectDirectoryDialog =
-   new(result)
-   result.Instance = SelectDirectoryDialog_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = SelectDirectoryDialog_Create(CheckPtr(AOwner))
 
 proc Execute*(this: TSelectDirectoryDialog): bool  =
   return SelectDirectoryDialog_Execute(this.Instance)
@@ -11155,8 +11155,8 @@ proc TSelectDirectoryDialogClass*(): TClass = SelectDirectoryDialog_StaticClassT
 proc Free*(this: TRichEdit) = defaultFree: RichEdit_Free
 
 proc NewRichEdit*(AOwner: TComponent): TRichEdit =
-   new(result)
-   result.Instance = RichEdit_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = RichEdit_Create(CheckPtr(AOwner))
 
 proc Clear*(this: TRichEdit)  =
   RichEdit_Clear(this.Instance)
@@ -11850,8 +11850,8 @@ proc TRichEditClass*(): TClass = RichEdit_StaticClassType()
 proc Free*(this: TTrackBar) = defaultFree: TrackBar_Free
 
 proc NewTrackBar*(AOwner: TComponent): TTrackBar =
-   new(result)
-   result.Instance = TrackBar_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = TrackBar_Create(CheckPtr(AOwner))
 
 proc SetTick*(this: TTrackBar, Value: int32)  =
   TrackBar_SetTick(this.Instance, Value)
@@ -12410,8 +12410,8 @@ proc TTrackBarClass*(): TClass = TrackBar_StaticClassType()
 proc Free*(this: TImageList) = defaultFree: ImageList_Free
 
 proc NewImageList*(AOwner: TComponent): TImageList =
-   new(result)
-   result.Instance = ImageList_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ImageList_Create(CheckPtr(AOwner))
 
 proc GetHotSpot*(this: TImageList): TPoint  =
   ImageList_GetHotSpot(this.Instance, result)
@@ -12610,8 +12610,8 @@ proc GetIcon*(this: TImageList, Index: int32, Image: TIcon)  =
 proc Free*(this: TUpDown) = defaultFree: UpDown_Free
 
 proc NewUpDown*(AOwner: TComponent): TUpDown =
-   new(result)
-   result.Instance = UpDown_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = UpDown_Create(CheckPtr(AOwner))
 
 proc CanFocus*(this: TUpDown): bool =
   return UpDown_CanFocus(this.Instance)
@@ -13113,8 +13113,8 @@ proc TUpDownClass*(): TClass = UpDown_StaticClassType()
 proc Free*(this: TProgressBar) = defaultFree: ProgressBar_Free
 
 proc NewProgressBar*(AOwner: TComponent): TProgressBar =
-   new(result)
-   result.Instance = ProgressBar_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ProgressBar_Create(CheckPtr(AOwner))
 
 proc StepIt*(this: TProgressBar)  =
   ProgressBar_StepIt(this.Instance)
@@ -13655,8 +13655,8 @@ proc TProgressBarClass*(): TClass = ProgressBar_StaticClassType()
 proc Free*(this: TDateTimePicker) = defaultFree: DateTimePicker_Free
 
 proc NewDateTimePicker*(AOwner: TComponent): TDateTimePicker =
-   new(result)
-   result.Instance = DateTimePicker_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = DateTimePicker_Create(CheckPtr(AOwner))
 
 proc CanFocus*(this: TDateTimePicker): bool =
   return DateTimePicker_CanFocus(this.Instance)
@@ -14197,8 +14197,8 @@ proc TDateTimePickerClass*(): TClass = DateTimePicker_StaticClassType()
 proc Free*(this: TMonthCalendar) = defaultFree: MonthCalendar_Free
 
 proc NewMonthCalendar*(AOwner: TComponent): TMonthCalendar =
-   new(result)
-   result.Instance = MonthCalendar_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = MonthCalendar_Create(CheckPtr(AOwner))
 
 proc CanFocus*(this: TMonthCalendar): bool =
   return MonthCalendar_CanFocus(this.Instance)
@@ -14715,8 +14715,8 @@ proc TMonthCalendarClass*(): TClass = MonthCalendar_StaticClassType()
 proc Free*(this: TListView) = defaultFree: ListView_Free
 
 proc NewListView*(AOwner: TComponent): TListView =
-   new(result)
-   result.Instance = ListView_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ListView_Create(CheckPtr(AOwner))
 
 proc AddItem*(this: TListView, Item: string, AObject: TObject)  =
   ListView_AddItem(this.Instance, Item, CheckPtr(AObject))
@@ -15572,8 +15572,8 @@ proc TListViewClass*(): TClass = ListView_StaticClassType()
 proc Free*(this: TTreeView) = defaultFree: TreeView_Free
 
 proc NewTreeView*(AOwner: TComponent): TTreeView =
-   new(result)
-   result.Instance = TreeView_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = TreeView_Create(CheckPtr(AOwner))
 
 proc AlphaSort*(this: TTreeView, ARecurse: bool): bool  =
   return TreeView_AlphaSort(this.Instance, ARecurse)
@@ -16411,8 +16411,8 @@ proc TTreeViewClass*(): TClass = TreeView_StaticClassType()
 proc Free*(this: TStatusBar) = defaultFree: StatusBar_Free
 
 proc NewStatusBar*(AOwner: TComponent): TStatusBar =
-   new(result)
-   result.Instance = StatusBar_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = StatusBar_Create(CheckPtr(AOwner))
 
 proc FlipChildren*(this: TStatusBar, AllLevels: bool) =
   StatusBar_FlipChildren(this.Instance, AllLevels)
@@ -16980,8 +16980,8 @@ proc TStatusBarClass*(): TClass = StatusBar_StaticClassType()
 proc Free*(this: TToolBar) = defaultFree: ToolBar_Free
 
 proc NewToolBar*(AOwner: TComponent): TToolBar =
-   new(result)
-   result.Instance = ToolBar_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ToolBar_Create(CheckPtr(AOwner))
 
 proc FlipChildren*(this: TToolBar, AllLevels: bool) =
   ToolBar_FlipChildren(this.Instance, AllLevels)
@@ -17615,8 +17615,8 @@ proc TToolBarClass*(): TClass = ToolBar_StaticClassType()
 proc Free*(this: TBitBtn) = defaultFree: BitBtn_Free
 
 proc NewBitBtn*(AOwner: TComponent): TBitBtn =
-   new(result)
-   result.Instance = BitBtn_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = BitBtn_Create(CheckPtr(AOwner))
 
 proc Click*(this: TBitBtn)  =
   BitBtn_Click(this.Instance)
@@ -18178,8 +18178,8 @@ proc TBitBtnClass*(): TClass = BitBtn_StaticClassType()
 proc Free*(this: TIcon) = defaultFree: Icon_Free
 
 proc NewIcon*(): TIcon =
-   new(result, Free)
-   result.Instance = Icon_Create()
+  new(result)
+  result.Instance = Icon_Create()
 
 proc Assign*(this: TIcon, Source: TObject)  =
   Icon_Assign(this.Instance, CheckPtr(Source))
@@ -18288,8 +18288,8 @@ proc TIconClass*(): TClass = Icon_StaticClassType()
 proc Free*(this: TBitmap) = defaultFree: Bitmap_Free
 
 proc NewBitmap*(): TBitmap =
-   new(result, Free)
-   result.Instance = Bitmap_Create()
+  new(result)
+  result.Instance = Bitmap_Create()
 
 proc Assign*(this: TBitmap, Source: TObject)  =
   Bitmap_Assign(this.Instance, CheckPtr(Source))
@@ -18443,8 +18443,8 @@ proc LoadFromDevice*(this: TBitmap, ADc: HDC)  =
 proc Free*(this: TMemoryStream) = defaultFree: MemoryStream_Free
 
 proc NewMemoryStream*(): TMemoryStream =
-   new(result, Free)
-   result.Instance = MemoryStream_Create()
+  new(result)
+  result.Instance = MemoryStream_Create()
 
 proc Clear*(this: TMemoryStream)  =
   MemoryStream_Clear(this.Instance)
@@ -18517,8 +18517,8 @@ proc Read*(this: TMemoryStream, Buffer: pointer, Count: int32): int32  =
 proc Free*(this: TFont) = defaultFree: Font_Free
 
 proc NewFont*(): TFont =
-   new(result, Free)
-   result.Instance = Font_Create()
+  new(result)
+  result.Instance = Font_Create()
 
 proc Assign*(this: TFont, Source: TObject)  =
   Font_Assign(this.Instance, CheckPtr(Source))
@@ -18627,8 +18627,8 @@ proc TFontClass*(): TClass = Font_StaticClassType()
 proc Free*(this: TStrings) = defaultFree: Strings_Free
 
 proc NewStrings*(): TStrings =
-   new(result, Free)
-   result.Instance = Strings_Create()
+  new(result)
+  result.Instance = Strings_Create()
 
 proc Add*(this: TStrings, S: string): int32  =
   return Strings_Add(this.Instance, S)
@@ -18773,8 +18773,8 @@ proc TStringsClass*(): TClass = Strings_StaticClassType()
 proc Free*(this: TStringList) = defaultFree: StringList_Free
 
 proc NewStringList*(): TStringList =
-   new(result, Free)
-   result.Instance = StringList_Create()
+  new(result)
+  result.Instance = StringList_Create()
 
 proc Add*(this: TStringList, S: string): int32  =
   return StringList_Add(this.Instance, S)
@@ -18931,8 +18931,8 @@ proc TStringListClass*(): TClass = StringList_StaticClassType()
 proc Free*(this: TBrush) = defaultFree: Brush_Free
 
 proc NewBrush*(): TBrush =
-   new(result, Free)
-   result.Instance = Brush_Create()
+  new(result)
+  result.Instance = Brush_Create()
 
 proc Assign*(this: TBrush, Source: TObject)  =
   Brush_Assign(this.Instance, CheckPtr(Source))
@@ -18996,8 +18996,8 @@ proc TBrushClass*(): TClass = Brush_StaticClassType()
 proc Free*(this: TPen) = defaultFree: Pen_Free
 
 proc NewPen*(): TPen =
-   new(result, Free)
-   result.Instance = Pen_Create()
+  new(result)
+  result.Instance = Pen_Create()
 
 proc Assign*(this: TPen, Source: TObject)  =
   Pen_Assign(this.Instance, CheckPtr(Source))
@@ -19067,8 +19067,8 @@ proc TPenClass*(): TClass = Pen_StaticClassType()
 proc Free*(this: TMenuItem) = defaultFree: MenuItem_Free
 
 proc NewMenuItem*(AOwner: TComponent): TMenuItem =
-   new(result)
-   result.Instance = MenuItem_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = MenuItem_Create(CheckPtr(AOwner))
 
 proc Insert*(this: TMenuItem, Index: int32, Item: TMenuItem)  =
   MenuItem_Insert(this.Instance, Index, CheckPtr(Item))
@@ -19252,8 +19252,8 @@ proc TMenuItemClass*(): TClass = MenuItem_StaticClassType()
 proc Free*(this: TPicture) = defaultFree: Picture_Free
 
 proc NewPicture*(): TPicture =
-   new(result, Free)
-   result.Instance = Picture_Create()
+  new(result)
+  result.Instance = Picture_Create()
 
 proc LoadFromFile*(this: TPicture, Filename: string)  =
   Picture_LoadFromFile(this.Instance, Filename)
@@ -19329,8 +19329,8 @@ proc TPictureClass*(): TClass = Picture_StaticClassType()
 proc Free*(this: TListColumns) = defaultFree: ListColumns_Free
 
 proc NewListColumns*(AOwner: TListView): TListColumns =
-   new(result, Free)
-   result.Instance = ListColumns_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ListColumns_Create(CheckPtr(AOwner))
 
 proc Add*(this: TListColumns): TListColumn  =
   return ListColumns_Add(this.Instance).AsListColumn
@@ -19400,8 +19400,8 @@ proc TListColumnsClass*(): TClass = ListColumns_StaticClassType()
 proc Free*(this: TListItems) = defaultFree: ListItems_Free
 
 proc NewListItems*(AOwner: TListView): TListItems =
-   new(result, Free)
-   result.Instance = ListItems_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ListItems_Create(CheckPtr(AOwner))
 
 proc Add*(this: TListItems): TListItem  =
   return ListItems_Add(this.Instance).AsListItem
@@ -19474,8 +19474,8 @@ proc TListItemsClass*(): TClass = ListItems_StaticClassType()
 proc Free*(this: TTreeNodes) = defaultFree: TreeNodes_Free
 
 proc NewTreeNodes*(AOwner: TTreeView): TTreeNodes =
-   new(result, Free)
-   result.Instance = TreeNodes_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = TreeNodes_Create(CheckPtr(AOwner))
 
 proc AddChildFirst*(this: TTreeNodes, Parent: TTreeNode, S: string): TTreeNode  =
   return TreeNodes_AddChildFirst(this.Instance, CheckPtr(Parent), S).AsTreeNode
@@ -19572,8 +19572,8 @@ proc TTreeNodesClass*(): TClass = TreeNodes_StaticClassType()
 proc Free*(this: TListItem) = defaultFree: ListItem_Free
 
 proc NewListItem*(AOwner: TListItems): TListItem =
-   new(result, Free)
-   result.Instance = ListItem_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ListItem_Create(CheckPtr(AOwner))
 
 proc DisplayRectSubItem*(this: TListItem, subItem: int32, Code: TDisplayCode): TRect  =
   ListItem_DisplayRectSubItem(this.Instance, subItem, Code, result)
@@ -19718,8 +19718,8 @@ proc TListItemClass*(): TClass = ListItem_StaticClassType()
 proc Free*(this: TTreeNode) = defaultFree: TreeNode_Free
 
 proc NewTreeNode*(AOwner: TTreeNodes): TTreeNode =
-   new(result, Free)
-   result.Instance = TreeNode_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = TreeNode_Create(CheckPtr(AOwner))
 
 proc Assign*(this: TTreeNode, Source: TObject)  =
   TreeNode_Assign(this.Instance, CheckPtr(Source))
@@ -19885,8 +19885,8 @@ proc TTreeNodeClass*(): TClass = TreeNode_StaticClassType()
 proc Free*(this: TPageControl) = defaultFree: PageControl_Free
 
 proc NewPageControl*(AOwner: TComponent): TPageControl =
-   new(result)
-   result.Instance = PageControl_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = PageControl_Create(CheckPtr(AOwner))
 
 proc SelectNextPage*(this: TPageControl, GoForward: bool, CheckTabVisible: bool)  =
   PageControl_SelectNextPage(this.Instance, GoForward, CheckTabVisible)
@@ -20469,8 +20469,8 @@ proc TPageControlClass*(): TClass = PageControl_StaticClassType()
 proc Free*(this: TTabSheet) = defaultFree: TabSheet_Free
 
 proc NewTabSheet*(AOwner: TComponent): TTabSheet =
-   new(result)
-   result.Instance = TabSheet_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = TabSheet_Create(CheckPtr(AOwner))
 
 proc CanFocus*(this: TTabSheet): bool =
   return TabSheet_CanFocus(this.Instance)
@@ -20999,8 +20999,8 @@ proc TTabSheetClass*(): TClass = TabSheet_StaticClassType()
 proc Free*(this: TButton) = defaultFree: Button_Free
 
 proc NewButton*(AOwner: TComponent): TButton =
-   new(result)
-   result.Instance = Button_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Button_Create(CheckPtr(AOwner))
 
 proc Click*(this: TButton)  =
   Button_Click(this.Instance)
@@ -21538,8 +21538,8 @@ proc TButtonClass*(): TClass = Button_StaticClassType()
 proc Free*(this: TEdit) = defaultFree: Edit_Free
 
 proc NewEdit*(AOwner: TComponent): TEdit =
-   new(result)
-   result.Instance = Edit_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Edit_Create(CheckPtr(AOwner))
 
 proc Clear*(this: TEdit)  =
   Edit_Clear(this.Instance)
@@ -22188,8 +22188,8 @@ proc TEditClass*(): TClass = Edit_StaticClassType()
 proc Free*(this: TScreen) = defaultFree: Screen_Free
 
 proc NewScreen*(AOwner: TComponent): TScreen =
-   new(result)
-   result.Instance = Screen_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Screen_Create(CheckPtr(AOwner))
 
 proc FindComponent*(this: TScreen, AName: string): TComponent =
   return Screen_FindComponent(this.Instance, AName).AsComponent
@@ -22340,8 +22340,8 @@ proc TScreenClass*(): TClass = Screen_StaticClassType()
 proc Free*(this: TMouse) = defaultFree: Mouse_Free
 
 proc NewMouse*(): TMouse =
-   new(result, Free)
-   result.Instance = Mouse_Create()
+  new(result)
+  result.Instance = Mouse_Create()
 
 proc ClassType*(this: TMouse): TClass =
   return Mouse_ClassType(this.Instance)
@@ -22390,8 +22390,8 @@ proc TMouseClass*(): TClass = Mouse_StaticClassType()
 proc Free*(this: TListColumn) = defaultFree: ListColumn_Free
 
 proc NewListColumn*(AOwner: TCollection): TListColumn =
-   new(result, Free)
-   result.Instance = ListColumn_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ListColumn_Create(CheckPtr(AOwner))
 
 proc Assign*(this: TListColumn, Source: TObject)  =
   ListColumn_Assign(this.Instance, CheckPtr(Source))
@@ -22500,8 +22500,8 @@ proc TListColumnClass*(): TClass = ListColumn_StaticClassType()
 proc Free*(this: TCollectionItem) = defaultFree: CollectionItem_Free
 
 proc NewCollectionItem*(AOwner: TCollection): TCollectionItem =
-   new(result, Free)
-   result.Instance = CollectionItem_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = CollectionItem_Create(CheckPtr(AOwner))
 
 proc GetNamePath*(this: TCollectionItem): string  =
   return $CollectionItem_GetNamePath(this.Instance)
@@ -22556,8 +22556,8 @@ proc TCollectionItemClass*(): TClass = CollectionItem_StaticClassType()
 proc Free*(this: TStatusPanels) = defaultFree: StatusPanels_Free
 
 proc NewStatusPanels*(AOwner: TStatusBar): TStatusPanels =
-   new(result, Free)
-   result.Instance = StatusPanels_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = StatusPanels_Create(CheckPtr(AOwner))
 
 proc Add*(this: TStatusPanels): TStatusPanel  =
   return StatusPanels_Add(this.Instance).AsStatusPanel
@@ -22633,8 +22633,8 @@ proc TStatusPanelsClass*(): TClass = StatusPanels_StaticClassType()
 proc Free*(this: TStatusPanel) = defaultFree: StatusPanel_Free
 
 proc NewStatusPanel*(AOwner: TCollection): TStatusPanel =
-   new(result, Free)
-   result.Instance = StatusPanel_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = StatusPanel_Create(CheckPtr(AOwner))
 
 proc Assign*(this: TStatusPanel, Source: TObject)  =
   StatusPanel_Assign(this.Instance, CheckPtr(Source))
@@ -22719,8 +22719,8 @@ proc TStatusPanelClass*(): TClass = StatusPanel_StaticClassType()
 proc Free*(this: TSpinEdit) = defaultFree: SpinEdit_Free
 
 proc NewSpinEdit*(AOwner: TComponent): TSpinEdit =
-   new(result)
-   result.Instance = SpinEdit_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = SpinEdit_Create(CheckPtr(AOwner))
 
 proc Clear*(this: TSpinEdit)  =
   SpinEdit_Clear(this.Instance)
@@ -23324,8 +23324,8 @@ proc TSpinEditClass*(): TClass = SpinEdit_StaticClassType()
 proc Free*(this: TMiniWebview) = defaultFree: MiniWebview_Free
 
 proc NewMiniWebview*(AOwner: TComponent): TMiniWebview =
-   new(result)
-   result.Instance = MiniWebview_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = MiniWebview_Create(CheckPtr(AOwner))
 
 proc Navigate*(this: TMiniWebview, AURL: string)  =
   MiniWebview_Navigate(this.Instance, AURL)
@@ -23785,8 +23785,8 @@ proc TMiniWebviewClass*(): TClass = MiniWebview_StaticClassType()
 proc Free*(this: TCanvas) = defaultFree: Canvas_Free
 
 proc NewCanvas*(): TCanvas =
-   new(result, Free)
-   result.Instance = Canvas_Create()
+  new(result)
+  result.Instance = Canvas_Create()
 
 proc Arc*(this: TCanvas, X1: int32, Y1: int32, X2: int32, Y2: int32, X3: int32, Y3: int32, X4: int32, Y4: int32)  =
   Canvas_Arc(this.Instance, X1, Y1, X2, Y2, X3, Y3, X4, Y4)
@@ -23969,8 +23969,8 @@ proc `Pixels=`*(this: TCanvas, X: int32, Y: int32, AColor: TColor)  =
 proc Free*(this: TApplication) = defaultFree: Application_Free
 
 proc NewApplication*(AOwner: TComponent): TApplication =
-   new(result)
-   result.Instance = Application_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Application_Create(CheckPtr(AOwner))
 
 proc ActivateHint*(this: TApplication, CursorPos: var TPoint)  =
   Application_ActivateHint(this.Instance, CursorPos)
@@ -24230,8 +24230,8 @@ proc Run*(this: TApplication)  =
 proc Free*(this: TGraphic) = defaultFree: Graphic_Free
 
 proc NewGraphic*(): TGraphic =
-   new(result, Free)
-   result.Instance = Graphic_Create()
+  new(result)
+  result.Instance = Graphic_Create()
 
 proc Equals*(this: TGraphic, Obj: TObject): bool =
   return Graphic_Equals(this.Instance, CheckPtr(Obj))
@@ -24322,8 +24322,8 @@ proc TGraphicClass*(): TClass = Graphic_StaticClassType()
 proc Free*(this: TPngImage) = defaultFree: PngImage_Free
 
 proc NewPngImage*(): TPngImage =
-   new(result, Free)
-   result.Instance = PngImage_Create()
+  new(result)
+  result.Instance = PngImage_Create()
 
 proc Assign*(this: TPngImage, Source: TObject)  =
   PngImage_Assign(this.Instance, CheckPtr(Source))
@@ -24420,8 +24420,8 @@ proc TPngImageClass*(): TClass = PngImage_StaticClassType()
 proc Free*(this: TJPEGImage) = defaultFree: JPEGImage_Free
 
 proc NewJPEGImage*(): TJPEGImage =
-   new(result, Free)
-   result.Instance = JPEGImage_Create()
+  new(result)
+  result.Instance = JPEGImage_Create()
 
 proc Assign*(this: TJPEGImage, Source: TObject)  =
   JPEGImage_Assign(this.Instance, CheckPtr(Source))
@@ -24530,8 +24530,8 @@ proc TJPEGImageClass*(): TClass = JPEGImage_StaticClassType()
 proc Free*(this: TGIFImage) = defaultFree: GIFImage_Free
 
 proc NewGIFImage*(): TGIFImage =
-   new(result, Free)
-   result.Instance = GIFImage_Create()
+  new(result)
+  result.Instance = GIFImage_Create()
 
 proc SaveToStream*(this: TGIFImage, Stream: TObject)  =
   GIFImage_SaveToStream(this.Instance, CheckPtr(Stream))
@@ -24628,8 +24628,8 @@ proc TGIFImageClass*(): TClass = GIFImage_StaticClassType()
 proc Free*(this: TActionList) = defaultFree: ActionList_Free
 
 proc NewActionList*(AOwner: TComponent): TActionList =
-   new(result)
-   result.Instance = ActionList_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ActionList_Create(CheckPtr(AOwner))
 
 proc FindComponent*(this: TActionList, AName: string): TComponent =
   return ActionList_FindComponent(this.Instance, AName).AsComponent
@@ -24714,8 +24714,8 @@ proc TActionListClass*(): TClass = ActionList_StaticClassType()
 proc Free*(this: TAction) = defaultFree: Action_Free
 
 proc NewAction*(AOwner: TComponent): TAction =
-   new(result)
-   result.Instance = Action_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Action_Create(CheckPtr(AOwner))
 
 proc Execute*(this: TAction): bool  =
   return Action_Execute(this.Instance)
@@ -24857,8 +24857,8 @@ proc TActionClass*(): TClass = Action_StaticClassType()
 proc Free*(this: TToolButton) = defaultFree: ToolButton_Free
 
 proc NewToolButton*(AOwner: TComponent): TToolButton =
-   new(result)
-   result.Instance = ToolButton_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ToolButton_Create(CheckPtr(AOwner))
 
 proc CheckMenuDropdown*(this: TToolButton): bool  =
   return ToolButton_CheckMenuDropdown(this.Instance)
@@ -25303,8 +25303,8 @@ proc TToolButtonClass*(): TClass = ToolButton_StaticClassType()
 proc Free*(this: TIniFile) = defaultFree: IniFile_Free
 
 proc NewIniFile*(AFileName: string): TIniFile =
-   new(result, Free)
-   result.Instance = IniFile_Create(AFileName)
+  new(result)
+  result.Instance = IniFile_Create(AFileName)
 
 proc ReadString*(this: TIniFile, Section: string, Ident: string, Default: string): string  =
   return $IniFile_ReadString(this.Instance, Section, Ident, Default)
@@ -25401,8 +25401,8 @@ proc TIniFileClass*(): TClass = IniFile_StaticClassType()
 proc Free*(this: TRegistry) = defaultFree: Registry_Free
 
 proc NewRegistry*(AAccess: uint32): TRegistry =
-   new(result, Free)
-   result.Instance = Registry_Create(AAccess)
+  new(result)
+  result.Instance = Registry_Create(AAccess)
 
 proc CloseKey*(this: TRegistry)  =
   Registry_CloseKey(this.Instance)
@@ -25559,8 +25559,8 @@ proc TRegistryClass*(): TClass = Registry_StaticClassType()
 proc Free*(this: TClipboard) = defaultFree: Clipboard_Free
 
 proc NewClipboard*(): TClipboard =
-   new(result, Free)
-   result.Instance = Clipboard_Create()
+  new(result)
+  result.Instance = Clipboard_Create()
 
 proc Assign*(this: TClipboard, Source: TObject)  =
   Clipboard_Assign(this.Instance, CheckPtr(Source))
@@ -25630,8 +25630,8 @@ proc `Clipboard=`*(this: TClipboard): TClipboard  =
 proc Free*(this: TMonitor) = defaultFree: Monitor_Free
 
 proc NewMonitor*(): TMonitor =
-   new(result, Free)
-   result.Instance = Monitor_Create()
+  new(result)
+  result.Instance = Monitor_Create()
 
 proc ClassType*(this: TMonitor): TClass =
   return Monitor_ClassType(this.Instance)
@@ -25692,8 +25692,8 @@ proc TMonitorClass*(): TClass = Monitor_StaticClassType()
 proc Free*(this: TPaintBox) = defaultFree: PaintBox_Free
 
 proc NewPaintBox*(AOwner: TComponent): TPaintBox =
-   new(result)
-   result.Instance = PaintBox_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = PaintBox_Create(CheckPtr(AOwner))
 
 proc BringToFront*(this: TPaintBox) =
   PaintBox_BringToFront(this.Instance)
@@ -26081,8 +26081,8 @@ proc TPaintBoxClass*(): TClass = PaintBox_StaticClassType()
 proc Free*(this: TTimer) = defaultFree: Timer_Free
 
 proc NewTimer*(AOwner: TComponent): TTimer =
-   new(result)
-   result.Instance = Timer_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Timer_Create(CheckPtr(AOwner))
 
 proc FindComponent*(this: TTimer, AName: string): TComponent =
   return Timer_FindComponent(this.Instance, AName).AsComponent
@@ -26167,8 +26167,8 @@ proc TTimerClass*(): TClass = Timer_StaticClassType()
 proc Free*(this: TList) = defaultFree: List_Free
 
 proc NewList*(): TList =
-   new(result, Free)
-   result.Instance = List_Create()
+  new(result)
+  result.Instance = List_Create()
 
 proc Add*(this: TList, Item: pointer): int32  =
   return List_Add(this.Instance, Item)
@@ -26241,8 +26241,8 @@ proc TListClass*(): TClass = List_StaticClassType()
 proc Free*(this: TForm) = defaultFree: Form_Free
 
 proc NewForm*(AOwner: TComponent): TForm =
-   new(result)
-   result.Instance = Form_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Form_Create(CheckPtr(AOwner))
 
 proc Close*(this: TForm)  =
   Form_Close(this.Instance)
@@ -27218,8 +27218,8 @@ proc ExceptionClass*(): TClass = Exception_StaticClassType()
 proc Free*(this: TScrollBar) = defaultFree: ScrollBar_Free
 
 proc NewScrollBar*(AOwner: TComponent): TScrollBar =
-   new(result)
-   result.Instance = ScrollBar_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ScrollBar_Create(CheckPtr(AOwner))
 
 proc SetParams*(this: TScrollBar, APosition: int32, AMin: int32, AMax: int32)  =
   ScrollBar_SetParams(this.Instance, APosition, AMin, AMax)
@@ -27742,8 +27742,8 @@ proc TScrollBarClass*(): TClass = ScrollBar_StaticClassType()
 proc Free*(this: TMaskEdit) = defaultFree: MaskEdit_Free
 
 proc NewMaskEdit*(AOwner: TComponent): TMaskEdit =
-   new(result)
-   result.Instance = MaskEdit_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = MaskEdit_Create(CheckPtr(AOwner))
 
 proc ValidateEdit*(this: TMaskEdit)  =
   MaskEdit_ValidateEdit(this.Instance)
@@ -28395,8 +28395,8 @@ proc TMaskEditClass*(): TClass = MaskEdit_StaticClassType()
 proc Free*(this: TShape) = defaultFree: Shape_Free
 
 proc NewShape*(AOwner: TComponent): TShape =
-   new(result)
-   result.Instance = Shape_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Shape_Create(CheckPtr(AOwner))
 
 proc BringToFront*(this: TShape) =
   Shape_BringToFront(this.Instance)
@@ -28766,8 +28766,8 @@ proc TShapeClass*(): TClass = Shape_StaticClassType()
 proc Free*(this: TBevel) = defaultFree: Bevel_Free
 
 proc NewBevel*(AOwner: TComponent): TBevel =
-   new(result)
-   result.Instance = Bevel_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Bevel_Create(CheckPtr(AOwner))
 
 proc BringToFront*(this: TBevel) =
   Bevel_BringToFront(this.Instance)
@@ -29089,8 +29089,8 @@ proc TBevelClass*(): TClass = Bevel_StaticClassType()
 proc Free*(this: TScrollBox) = defaultFree: ScrollBox_Free
 
 proc NewScrollBox*(AOwner: TComponent): TScrollBox =
-   new(result)
-   result.Instance = ScrollBox_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ScrollBox_Create(CheckPtr(AOwner))
 
 proc ScrollInView*(this: TScrollBox, AControl: TControl)  =
   ScrollBox_ScrollInView(this.Instance, CheckPtr(AControl))
@@ -29667,8 +29667,8 @@ proc TScrollBoxClass*(): TClass = ScrollBox_StaticClassType()
 proc Free*(this: TCheckListBox) = defaultFree: CheckListBox_Free
 
 proc NewCheckListBox*(AOwner: TComponent): TCheckListBox =
-   new(result)
-   result.Instance = CheckListBox_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = CheckListBox_Create(CheckPtr(AOwner))
 
 proc CheckAll*(this: TCheckListBox, AState: TCheckBoxState, AllowGrayed: bool, AllowDisabled: bool)  =
   CheckListBox_CheckAll(this.Instance, AState, AllowGrayed, AllowDisabled)
@@ -30317,8 +30317,8 @@ proc TCheckListBoxClass*(): TClass = CheckListBox_StaticClassType()
 proc Free*(this: TGauge) = defaultFree: Gauge_Free
 
 proc NewGauge*(AOwner: TComponent): TGauge =
-   new(result)
-   result.Instance = Gauge_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Gauge_Create(CheckPtr(AOwner))
 
 proc AddProgress*(this: TGauge, Value: int32)  =
   Gauge_AddProgress(this.Instance, Value)
@@ -30706,8 +30706,8 @@ proc TGaugeClass*(): TClass = Gauge_StaticClassType()
 proc Free*(this: TImageButton) = defaultFree: ImageButton_Free
 
 proc NewImageButton*(AOwner: TComponent): TImageButton =
-   new(result)
-   result.Instance = ImageButton_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ImageButton_Create(CheckPtr(AOwner))
 
 proc Click*(this: TImageButton)  =
   ImageButton_Click(this.Instance)
@@ -31128,8 +31128,8 @@ proc TImageButtonClass*(): TClass = ImageButton_StaticClassType()
 proc Free*(this: TFindDialog) = defaultFree: FindDialog_Free
 
 proc NewFindDialog*(AOwner: TComponent): TFindDialog =
-   new(result)
-   result.Instance = FindDialog_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = FindDialog_Create(CheckPtr(AOwner))
 
 proc CloseDialog*(this: TFindDialog)  =
   FindDialog_CloseDialog(this.Instance)
@@ -31247,8 +31247,8 @@ proc TFindDialogClass*(): TClass = FindDialog_StaticClassType()
 proc Free*(this: TReplaceDialog) = defaultFree: ReplaceDialog_Free
 
 proc NewReplaceDialog*(AOwner: TComponent): TReplaceDialog =
-   new(result)
-   result.Instance = ReplaceDialog_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ReplaceDialog_Create(CheckPtr(AOwner))
 
 proc CloseDialog*(this: TReplaceDialog)  =
   ReplaceDialog_CloseDialog(this.Instance)
@@ -31375,8 +31375,8 @@ proc TReplaceDialogClass*(): TClass = ReplaceDialog_StaticClassType()
 proc Free*(this: TPrinterSetupDialog) = defaultFree: PrinterSetupDialog_Free
 
 proc NewPrinterSetupDialog*(AOwner: TComponent): TPrinterSetupDialog =
-   new(result)
-   result.Instance = PrinterSetupDialog_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = PrinterSetupDialog_Create(CheckPtr(AOwner))
 
 proc Execute*(this: TPrinterSetupDialog): bool  =
   return PrinterSetupDialog_Execute(this.Instance)
@@ -31458,8 +31458,8 @@ proc TPrinterSetupDialogClass*(): TClass = PrinterSetupDialog_StaticClassType()
 proc Free*(this: TPageSetupDialog) = defaultFree: PageSetupDialog_Free
 
 proc NewPageSetupDialog*(AOwner: TComponent): TPageSetupDialog =
-   new(result)
-   result.Instance = PageSetupDialog_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = PageSetupDialog_Create(CheckPtr(AOwner))
 
 proc Execute*(this: TPageSetupDialog): bool  =
   return PageSetupDialog_Execute(this.Instance)
@@ -31586,8 +31586,8 @@ proc TPageSetupDialogClass*(): TClass = PageSetupDialog_StaticClassType()
 proc Free*(this: TDragObject) = defaultFree: DragObject_Free
 
 proc NewDragObject*(AOwner: TControl): TDragObject =
-   new(result, Free)
-   result.Instance = DragObject_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = DragObject_Create(CheckPtr(AOwner))
 
 proc Assign*(this: TDragObject, Source: TDragObject)  =
   DragObject_Assign(this.Instance, CheckPtr(Source))
@@ -31654,8 +31654,8 @@ proc TDragObjectClass*(): TClass = DragObject_StaticClassType()
 proc Free*(this: TDragDockObject) = defaultFree: DragDockObject_Free
 
 proc NewDragDockObject*(AOwner: TControl): TDragDockObject =
-   new(result, Free)
-   result.Instance = DragDockObject_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = DragDockObject_Create(CheckPtr(AOwner))
 
 proc Assign*(this: TDragDockObject, Source: TDragObject)  =
   DragDockObject_Assign(this.Instance, CheckPtr(Source))
@@ -31752,8 +31752,8 @@ proc TDragDockObjectClass*(): TClass = DragDockObject_StaticClassType()
 proc Free*(this: TStringGrid) = defaultFree: StringGrid_Free
 
 proc NewStringGrid*(AOwner: TComponent): TStringGrid =
-   new(result)
-   result.Instance = StringGrid_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = StringGrid_Create(CheckPtr(AOwner))
 
 proc DeleteColRow*(this: TStringGrid, IsColumn: bool, index: int32)  =
   StringGrid_DeleteColRow(this.Instance, IsColumn, index)
@@ -32834,8 +32834,8 @@ proc TStringGridClass*(): TClass = StringGrid_StaticClassType()
 proc Free*(this: TDrawGrid) = defaultFree: DrawGrid_Free
 
 proc NewDrawGrid*(AOwner: TComponent): TDrawGrid =
-   new(result)
-   result.Instance = DrawGrid_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = DrawGrid_Create(CheckPtr(AOwner))
 
 proc CellRect*(this: TDrawGrid, ACol: int32, ARow: int32): TRect  =
   DrawGrid_CellRect(this.Instance, ACol, ARow, result)
@@ -33538,8 +33538,8 @@ proc TDrawGridClass*(): TClass = DrawGrid_StaticClassType()
 proc Free*(this: TValueListEditor) = defaultFree: ValueListEditor_Free
 
 proc NewValueListEditor*(AOwner: TComponent): TValueListEditor =
-   new(result)
-   result.Instance = ValueListEditor_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ValueListEditor_Create(CheckPtr(AOwner))
 
 proc DeleteRow*(this: TValueListEditor, ARow: int32)  =
   ValueListEditor_DeleteRow(this.Instance, ARow)
@@ -34257,8 +34257,8 @@ proc TValueListEditorClass*(): TClass = ValueListEditor_StaticClassType()
 proc Free*(this: THeaderControl) = defaultFree: HeaderControl_Free
 
 proc NewHeaderControl*(AOwner: TComponent): THeaderControl =
-   new(result)
-   result.Instance = HeaderControl_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = HeaderControl_Create(CheckPtr(AOwner))
 
 proc FlipChildren*(this: THeaderControl, AllLevels: bool) =
   HeaderControl_FlipChildren(this.Instance, AllLevels)
@@ -34787,8 +34787,8 @@ proc THeaderControlClass*(): TClass = HeaderControl_StaticClassType()
 proc Free*(this: THeaderSection) = defaultFree: HeaderSection_Free
 
 proc NewHeaderSection*(AOwner: TCollection): THeaderSection =
-   new(result, Free)
-   result.Instance = HeaderSection_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = HeaderSection_Create(CheckPtr(AOwner))
 
 proc Assign*(this: THeaderSection, Source: TObject)  =
   HeaderSection_Assign(this.Instance, CheckPtr(Source))
@@ -34885,8 +34885,8 @@ proc THeaderSectionClass*(): TClass = HeaderSection_StaticClassType()
 proc Free*(this: THeaderSections) = defaultFree: HeaderSections_Free
 
 proc NewHeaderSections*(AOwner: THeaderControl): THeaderSections =
-   new(result, Free)
-   result.Instance = HeaderSections_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = HeaderSections_Create(CheckPtr(AOwner))
 
 proc Add*(this: THeaderSections): THeaderSection  =
   return HeaderSections_Add(this.Instance).AsHeaderSection
@@ -34959,8 +34959,8 @@ proc THeaderSectionsClass*(): TClass = HeaderSections_StaticClassType()
 proc Free*(this: TLabeledEdit) = defaultFree: LabeledEdit_Free
 
 proc NewLabeledEdit*(AOwner: TComponent): TLabeledEdit =
-   new(result)
-   result.Instance = LabeledEdit_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = LabeledEdit_Create(CheckPtr(AOwner))
 
 proc SetBounds*(this: TLabeledEdit, ALeft: int32, ATop: int32, AWidth: int32, AHeight: int32) =
   LabeledEdit_SetBounds(this.Instance, ALeft, ATop, AWidth, AHeight)
@@ -35615,8 +35615,8 @@ proc TLabeledEditClass*(): TClass = LabeledEdit_StaticClassType()
 proc Free*(this: TBoundLabel) = defaultFree: BoundLabel_Free
 
 proc NewBoundLabel*(AOwner: TComponent): TBoundLabel =
-   new(result)
-   result.Instance = BoundLabel_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = BoundLabel_Create(CheckPtr(AOwner))
 
 proc BringToFront*(this: TBoundLabel) =
   BoundLabel_BringToFront(this.Instance)
@@ -36013,8 +36013,8 @@ proc TBoundLabelClass*(): TClass = BoundLabel_StaticClassType()
 proc Free*(this: TFlowPanel) = defaultFree: FlowPanel_Free
 
 proc NewFlowPanel*(AOwner: TComponent): TFlowPanel =
-   new(result)
-   result.Instance = FlowPanel_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = FlowPanel_Create(CheckPtr(AOwner))
 
 proc GetControlIndex*(this: TFlowPanel, AControl: TControl): int32  =
   return FlowPanel_GetControlIndex(this.Instance, CheckPtr(AControl))
@@ -36612,8 +36612,8 @@ proc TFlowPanelClass*(): TClass = FlowPanel_StaticClassType()
 proc Free*(this: TCoolBar) = defaultFree: CoolBar_Free
 
 proc NewCoolBar*(AOwner: TComponent): TCoolBar =
-   new(result)
-   result.Instance = CoolBar_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = CoolBar_Create(CheckPtr(AOwner))
 
 proc FlipChildren*(this: TCoolBar, AllLevels: bool) =
   CoolBar_FlipChildren(this.Instance, AllLevels)
@@ -37226,8 +37226,8 @@ proc TCoolBarClass*(): TClass = CoolBar_StaticClassType()
 proc Free*(this: TCoolBands) = defaultFree: CoolBands_Free
 
 proc NewCoolBands*(AOwner: TCoolBar): TCoolBands =
-   new(result, Free)
-   result.Instance = CoolBands_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = CoolBands_Create(CheckPtr(AOwner))
 
 proc Add*(this: TCoolBands): TCoolBand  =
   return CoolBands_Add(this.Instance).AsCoolBand
@@ -37300,8 +37300,8 @@ proc TCoolBandsClass*(): TClass = CoolBands_StaticClassType()
 proc Free*(this: TCoolBand) = defaultFree: CoolBand_Free
 
 proc NewCoolBand*(AOwner: TCollection): TCoolBand =
-   new(result, Free)
-   result.Instance = CoolBand_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = CoolBand_Create(CheckPtr(AOwner))
 
 proc Assign*(this: TCoolBand, Source: TObject)  =
   CoolBand_Assign(this.Instance, CheckPtr(Source))
@@ -37455,8 +37455,8 @@ proc TCoolBandClass*(): TClass = CoolBand_StaticClassType()
 proc Free*(this: TCollection) = defaultFree: Collection_Free
 
 proc NewCollection*(AOwner: pointer): TCollection =
-   new(result, Free)
-   result.Instance = Collection_Create(AOwner)
+  new(result)
+  result.Instance = Collection_Create(AOwner)
 
 proc Owner*(this: TCollection): TObject  =
   return Collection_Owner(this.Instance).AsObject
@@ -37526,8 +37526,8 @@ proc TCollectionClass*(): TClass = Collection_StaticClassType()
 proc Free*(this: TPrinter) = defaultFree: Printer_Free
 
 proc NewPrinter*(): TPrinter =
-   new(result, Free)
-   result.Instance = Printer_Create()
+  new(result)
+  result.Instance = Printer_Create()
 
 proc Abort*(this: TPrinter)  =
   Printer_Abort(this.Instance)
@@ -37624,8 +37624,8 @@ proc `Printer=`*(this: TPrinter, aName: string)  =
 proc Free*(this: TTaskDialog) = defaultFree: TaskDialog_Free
 
 proc NewTaskDialog*(AOwner: TComponent): TTaskDialog =
-   new(result)
-   result.Instance = TaskDialog_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = TaskDialog_Create(CheckPtr(AOwner))
 
 proc Execute*(this: TTaskDialog): bool  =
   return TaskDialog_Execute(this.Instance)
@@ -37875,8 +37875,8 @@ proc TTaskDialogButtonsClass*(): TClass = TaskDialogButtons_StaticClassType()
 proc Free*(this: TTaskDialogButtonItem) = defaultFree: TaskDialogButtonItem_Free
 
 proc NewTaskDialogButtonItem*(AOwner: TCollection): TTaskDialogButtonItem =
-   new(result, Free)
-   result.Instance = TaskDialogButtonItem_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = TaskDialogButtonItem_Create(CheckPtr(AOwner))
 
 proc GetNamePath*(this: TTaskDialogButtonItem): string  =
   return $TaskDialogButtonItem_GetNamePath(this.Instance)
@@ -37949,8 +37949,8 @@ proc TTaskDialogButtonItemClass*(): TClass = TaskDialogButtonItem_StaticClassTyp
 proc Free*(this: TTaskDialogRadioButtonItem) = defaultFree: TaskDialogRadioButtonItem_Free
 
 proc NewTaskDialogRadioButtonItem*(AOwner: TCollection): TTaskDialogRadioButtonItem =
-   new(result, Free)
-   result.Instance = TaskDialogRadioButtonItem_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = TaskDialogRadioButtonItem_Create(CheckPtr(AOwner))
 
 proc GetNamePath*(this: TTaskDialogRadioButtonItem): string  =
   return $TaskDialogRadioButtonItem_GetNamePath(this.Instance)
@@ -38023,8 +38023,8 @@ proc TTaskDialogRadioButtonItemClass*(): TClass = TaskDialogRadioButtonItem_Stat
 proc Free*(this: TTaskDialogBaseButtonItem) = defaultFree: TaskDialogBaseButtonItem_Free
 
 proc NewTaskDialogBaseButtonItem*(AOwner: TCollection): TTaskDialogBaseButtonItem =
-   new(result, Free)
-   result.Instance = TaskDialogBaseButtonItem_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = TaskDialogBaseButtonItem_Create(CheckPtr(AOwner))
 
 proc GetNamePath*(this: TTaskDialogBaseButtonItem): string  =
   return $TaskDialogBaseButtonItem_GetNamePath(this.Instance)
@@ -38097,8 +38097,8 @@ proc TTaskDialogBaseButtonItemClass*(): TClass = TaskDialogBaseButtonItem_Static
 proc Free*(this: TComboBoxEx) = defaultFree: ComboBoxEx_Free
 
 proc NewComboBoxEx*(AOwner: TComponent): TComboBoxEx =
-   new(result)
-   result.Instance = ComboBoxEx_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ComboBoxEx_Create(CheckPtr(AOwner))
 
 proc Focused*(this: TComboBoxEx): bool =
   return ComboBoxEx_Focused(this.Instance)
@@ -38879,8 +38879,8 @@ proc TComboExItemClass*(): TClass = ComboExItem_StaticClassType()
 proc Free*(this: TFrame) = defaultFree: Frame_Free
 
 proc NewFrame*(AOwner: TComponent): TFrame =
-   new(result)
-   result.Instance = Frame_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = Frame_Create(CheckPtr(AOwner))
 
 proc ScrollInView*(this: TFrame, AControl: TControl)  =
   Frame_ScrollInView(this.Instance, CheckPtr(AControl))
@@ -39589,8 +39589,8 @@ proc TSizeConstraintsClass*(): TClass = SizeConstraints_StaticClassType()
 proc Free*(this: TXButton) = defaultFree: XButton_Free
 
 proc NewXButton*(AOwner: TComponent): TXButton =
-   new(result)
-   result.Instance = XButton_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = XButton_Create(CheckPtr(AOwner))
 
 proc BringToFront*(this: TXButton) =
   XButton_BringToFront(this.Instance)
@@ -40281,8 +40281,8 @@ proc TControlChildSizingClass*(): TClass = ControlChildSizing_StaticClassType()
 proc Free*(this: TCheckGroup) = defaultFree: CheckGroup_Free
 
 proc NewCheckGroup*(AOwner: TComponent): TCheckGroup =
-   new(result)
-   result.Instance = CheckGroup_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = CheckGroup_Create(CheckPtr(AOwner))
 
 proc FlipChildren*(this: TCheckGroup, AllLevels: bool) =
   CheckGroup_FlipChildren(this.Instance, AllLevels)
@@ -40865,8 +40865,8 @@ proc TCheckGroupClass*(): TClass = CheckGroup_StaticClassType()
 proc Free*(this: TToggleBox) = defaultFree: ToggleBox_Free
 
 proc NewToggleBox*(AOwner: TComponent): TToggleBox =
-   new(result)
-   result.Instance = ToggleBox_Create(CheckPtr(AOwner))
+  new(result)
+  result.Instance = ToggleBox_Create(CheckPtr(AOwner))
 
 proc CanFocus*(this: TToggleBox): bool =
   return ToggleBox_CanFocus(this.Instance)

@@ -195,7 +195,7 @@ btn2.Width = 100
 btn2.OnClick = onBtn2Click
 
 # ResForm，不使用重定义类型的方式
-form2 = Application.CreateForm()
+form2 = Application.CreateForm() 
 when defined(windows):
   # 已经打包到资源中了
   #

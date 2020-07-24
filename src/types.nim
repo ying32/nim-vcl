@@ -1710,7 +1710,7 @@ type
 
   TUnDockEvent* = proc(sender: pointer, client: pointer, newTarget: pointer, allow: var bool) {.nimcall.}
 
-  TStartDockEvent* = proc(sender: pointer, dragObject: pointer) {.nimcall.}
+  TStartDockEvent* = proc(sender: pointer, dragObject: var pointer) {.nimcall.}
 
   TGetSiteInfoEvent* = proc(sender: pointer, dockClient: pointer, influenceRect: var TRect, mousePos: var TPoint, canDock: var bool) {.nimcall.}
 
@@ -1826,9 +1826,9 @@ type
 
   THeaderSizingEvent* = proc(sender: pointer, isColumn: bool, aIndex: int32, aSize: int32) {.nimcall.}
 
-  TSelectEditorEvent* = proc(sender: pointer, aCol: int32, aRow: int32, editor: pointer) {.nimcall.}
+  TSelectEditorEvent* = proc(sender: pointer, aCol: int32, aRow: int32, editor: var pointer) {.nimcall.}
 
-  TUserCheckBoxBitmapEvent* = proc(sender: pointer, aCol: int32, aRow: int32, CheckedState: TCheckBoxState, aBitmap: pointer) {.nimcall.}
+  TUserCheckBoxBitmapEvent* = proc(sender: pointer, aCol: int32, aRow: int32, CheckedState: TCheckBoxState, aBitmap: var pointer) {.nimcall.}
 
   TValidateEntryEvent* = proc(sender: pointer, aCol: int32, aRow: int32, oldValue: cstring, newValue: var cstring) {.nimcall.}
 
