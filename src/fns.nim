@@ -13,208 +13,208 @@ proc ShowMessageFmt*(formatstr: string, a: varargs[string, `$`]) =
   ShowMessage(strutils.format(formatstr, a))
 
 proc GetFPStringArrayMember*(p: pointer, index: int): string =
-  return $DGetStringArrOf(p, index)
+  return $lclapi.DGetStringArrOf(p, index)
 
 proc SelectDirectory*(Directory: var string, Options: TSelectDirOpts, HelpCtx: int32): bool =
   var ps1: cstring = Directory
-  result = DSelectDirectory1(ps1, Options, HelpCtx)
+  result = lclapi.DSelectDirectory1(ps1, Options, HelpCtx)
   if result:
     Directory = $ps1
 
 proc SelectDirectory*(Caption: string, Root: string, AShowHidden: bool, Directory: var string): bool =
   var ps4: cstring = Directory
-  result = DSelectDirectory2(Caption, Root, AShowHidden, ps4)
+  result = lclapi.DSelectDirectory2(Caption, Root, AShowHidden, ps4)
   if result:
     Directory = $ps4
 
 proc InputQuery*(ACaption: string, APrompt: string, Value: string, AOut: var string): bool =
   var ps4: cstring = AOut
-  result = DInputQuery(ACaption, APrompt, Value, ps4)
+  result = lclapi.DInputQuery(ACaption, APrompt, Value, ps4)
   if result:
     AOut = $ps4
 
 proc GetLibResourceItem*(AIndex: int32): TResItem =
-  DGetLibResourceItem(AIndex, result)
+  lclapi.DGetLibResourceItem(AIndex, result)
 
 proc StringToGUID*(AGUIDStr: string): TGUID =
-  DStringToGUID(AGUIDStr, result)
+  lclapi.DStringToGUID(AGUIDStr, result)
 
 proc CreateGUID*(): TGUID =
-  DCreateGUID(result)
+  lclapi.DCreateGUID(result)
 
 when defined(linux):
   proc GdkWindow_GetXId*(AW: PGdkWindow): TXId =
-    GdkWindow_GetXId(AW, result)
+    lclapi.GdkWindow_GetXId(AW, result)
 
 
 
 proc LibStringEncoding*(): TStringEncoding =
-  return DLibStringEncoding()
+  return lclapi.DLibStringEncoding()
 
 proc LibVersion*(): uint32 =
-  return DLibVersion()
+  return lclapi.DLibVersion()
 
 proc SysLocale*(AInfo: var TSysLocale) =
-  DSysLocale(AInfo)
+  lclapi.DSysLocale(AInfo)
 
 proc TextToShortCut*(AText: string): TShortCut =
-  return DTextToShortCut(AText)
+  return lclapi.DTextToShortCut(AText)
 
 proc ShortCutToText*(AVal: TShortCut): string =
-  return $DShortCutToText(AVal)
+  return $lclapi.DShortCutToText(AVal)
 
 when not defined(windows):
   proc SendMessage*(hWd: HWND, msg: uint32, wParam: WPARAM, lParam: LPARAM): LRESULT =
-    return DSendMessage(hWd, msg, wParam, lParam)
+    return lclapi.DSendMessage(hWd, msg, wParam, lParam)
 
 when not defined(windows):
   proc PostMessage*(hWd: HWND, msg: uint32, wParam: WPARAM, lParam: LPARAM): bool =
-    return DPostMessage(hWd, msg, wParam, lParam)
+    return lclapi.DPostMessage(hWd, msg, wParam, lParam)
 
 when not defined(windows):
   proc IsIconic*(hWnd: HWND): bool =
-    return DIsIconic(hWnd)
+    return lclapi.DIsIconic(hWnd)
 
 when not defined(windows):
   proc IsWindow*(hWnd: HWND): bool =
-    return DIsWindow(hWnd)
+    return lclapi.DIsWindow(hWnd)
 
 when not defined(windows):
   proc IsZoomed*(hWnd: HWND): bool =
-    return DIsZoomed(hWnd)
+    return lclapi.DIsZoomed(hWnd)
 
 when not defined(windows):
   proc IsWindowVisible*(hWnd: HWND): bool =
-    return DIsWindowVisible(hWnd)
+    return lclapi.DIsWindowVisible(hWnd)
 
 when not defined(windows):
   proc GetDC*(hWnd: HWND): HDC =
-    return DGetDC(hWnd)
+    return lclapi.DGetDC(hWnd)
 
 when not defined(windows):
   proc ReleaseDC*(hWnd: HWND, dc: HDC): int32 =
-    return DReleaseDC(hWnd, dc)
+    return lclapi.DReleaseDC(hWnd, dc)
 
 when not defined(windows):
   proc SetForegroundWindow*(hWnd: HWND): bool =
-    return DSetForegroundWindow(hWnd)
+    return lclapi.DSetForegroundWindow(hWnd)
 
 when not defined(windows):
   proc WindowFromPoint*(point: var TPoint): HWND =
-    return DWindowFromPoint(point)
+    return lclapi.DWindowFromPoint(point)
 
 proc ShowMessage*(AMsg: string) =
-  DShowMessage(AMsg)
+  lclapi.DShowMessage(AMsg)
 
 proc GetMainInstance*(): HINST =
-  return DGetMainInstance()
+  return lclapi.DGetMainInstance()
 
 proc MessageDlg*(Msg: string, DlgType: TMsgDlgType, Buttons: TMsgDlgButtons, HelpCtx: int32): int32 =
-  return DMessageDlg(Msg, DlgType, Buttons, HelpCtx)
+  return lclapi.DMessageDlg(Msg, DlgType, Buttons, HelpCtx)
 
 proc MainThreadId*(): TThreadID =
-  return DMainThreadId()
+  return lclapi.DMainThreadId()
 
 proc CurrentThreadId*(): TThreadID =
-  return DCurrentThreadId()
+  return lclapi.DCurrentThreadId()
 
 proc SysOpen*(FileName: string) =
-  DSysOpen(FileName)
+  lclapi.DSysOpen(FileName)
 
 proc ExtractFilePath*(AFileName: string): string =
-  return $DExtractFilePath(AFileName)
+  return $lclapi.DExtractFilePath(AFileName)
 
 proc FileExists*(AFileName: string): bool =
-  return DFileExists(AFileName)
+  return lclapi.DFileExists(AFileName)
 
 proc InputBox*(ACaption: string, APrompt: string, ADefault: string): string =
-  return $DInputBox(ACaption, APrompt, ADefault)
+  return $lclapi.DInputBox(ACaption, APrompt, ADefault)
 
 proc PasswordBox*(ACaption: string, APrompt: string): string =
-  return $DPasswordBox(ACaption, APrompt)
+  return $lclapi.DPasswordBox(ACaption, APrompt)
 
 proc InputCombo*(ACaption: string, APrompt: string, AList: TStrings): int32 =
-  return DInputCombo(ACaption, APrompt, CheckPtr(AList))
+  return lclapi.DInputCombo(ACaption, APrompt, CheckPtr(AList))
 
 proc InputComboEx*(ACaption: string, APrompt: string, AList: TStrings, AllowCustomText: bool): string =
-  return $DInputComboEx(ACaption, APrompt, CheckPtr(AList), AllowCustomText)
+  return $lclapi.DInputComboEx(ACaption, APrompt, CheckPtr(AList), AllowCustomText)
 
 when defined(windows):
   proc CreateURLShortCut*(ADestPath: string, AShortCutName: string, AURL: string) =
-    DCreateURLShortCut(ADestPath, AShortCutName, AURL)
+    lclapi.DCreateURLShortCut(ADestPath, AShortCutName, AURL)
 
 when defined(windows):
   proc CreateShortCut*(ADestPath: string, AShortCutName: string, ASrcFileName: string, AIconFileName: string, ADescription: string, ACmdArgs: string): bool =
-    return DCreateShortCut(ADestPath, AShortCutName, ASrcFileName, AIconFileName, ADescription, ACmdArgs)
+    return lclapi.DCreateShortCut(ADestPath, AShortCutName, ASrcFileName, AIconFileName, ADescription, ACmdArgs)
 
 proc SetPropertyValue*(Instance: TObject, PropName: string, Value: string) =
-  DSetPropertyValue(CheckPtr(Instance), PropName, Value)
+  lclapi.DSetPropertyValue(CheckPtr(Instance), PropName, Value)
 
 proc SetPropertySecValue*(Instance: TObject, PropName: string, SecPropName: string, Value: string) =
-  DSetPropertySecValue(CheckPtr(Instance), PropName, SecPropName, Value)
+  lclapi.DSetPropertySecValue(CheckPtr(Instance), PropName, SecPropName, Value)
 
 proc GUIDToString*(AGUID: TGUID): string =
   var ps0 = AGUID
-  return $DGUIDToString(ps0)
+  return $lclapi.DGUIDToString(ps0)
 
 proc LibAbout*(): string =
-  return $DLibAbout()
+  return $lclapi.DLibAbout()
 
 proc GetLibResourceCount*(): int32 =
-  return DGetLibResourceCount()
+  return lclapi.DGetLibResourceCount()
 
 proc ModifyLibResource*(APtr: pointer, AValue: string) =
-  DModifyLibResource(APtr, AValue)
+  lclapi.DModifyLibResource(APtr, AValue)
 
 proc GetLibType*(): TLibType =
-  return DGetLibType()
+  return lclapi.DGetLibType()
 
 proc InitGoDll*(AMainThreadId: TThreadID) =
-  DInitGoDll(AMainThreadId)
+  lclapi.DInitGoDll(AMainThreadId)
 
 proc FindControl*(AHandle: HWND): TWinControl =
-  return DFindControl(AHandle).AsWinControl
+  return lclapi.DFindControl(AHandle).AsWinControl
 
 proc FindLCLControl*(AScreenPos: TPoint): TControl =
   var ps0 = AScreenPos
-  return DFindLCLControl(ps0).AsControl
+  return lclapi.DFindLCLControl(ps0).AsControl
 
 proc FindOwnerControl*(Handle: HWND): TWinControl =
-  return DFindOwnerControl(Handle).AsWinControl
+  return lclapi.DFindOwnerControl(Handle).AsWinControl
 
 proc FindControlAtPosition*(APosition: TPoint, AllowDisabled: bool): TControl =
   var ps0 = APosition
-  return DFindControlAtPosition(ps0, AllowDisabled).AsControl
+  return lclapi.DFindControlAtPosition(ps0, AllowDisabled).AsControl
 
 proc FindLCLWindow*(AScreenPos: TPoint, AllowDisabled: bool): TWinControl =
   var ps0 = AScreenPos
-  return DFindLCLWindow(ps0, AllowDisabled).AsWinControl
+  return lclapi.DFindLCLWindow(ps0, AllowDisabled).AsWinControl
 
 proc FindDragTarget*(APosition: TPoint, AllowDisabled: bool): TControl =
   var ps0 = APosition
-  return DFindDragTarget(ps0, AllowDisabled).AsControl
+  return lclapi.DFindDragTarget(ps0, AllowDisabled).AsControl
 
 when defined(linux):
   proc GtkWidget_GetGtkFixed*(Ah: HWND): PGtkFixed =
-    return GtkWidget_GetGtkFixed(Ah)
+    return lclapi.GtkWidget_GetGtkFixed(Ah)
 
 when defined(linux):
   proc GdkWindow_FromForm*(AForm: TForm): PGdkWindow =
-    return GdkWindow_FromForm(CheckPtr(AForm))
+    return lclapi.GdkWindow_FromForm(CheckPtr(AForm))
 
 when defined(linux):
   proc GtkWidget_Window*(Ah: HWND): PGdkWindow =
-    return GtkWidget_Window(Ah)
+    return lclapi.GtkWidget_Window(Ah)
 
 when defined(macosx):
   proc NSWindow_FromForm*(AForm: TForm): MyNSWindow =
-    return NSWindow_FromForm(CheckPtr(AForm))
+    return lclapi.NSWindow_FromForm(CheckPtr(AForm))
 
 proc ResFormLoadFromResourceName*(AInstance: uint, AResName: string, ARoot: TComponent) =
-  ResFormLoadFromResourceName(AInstance, AResName, CheckPtr(ARoot))
+  lclapi.ResFormLoadFromResourceName(AInstance, AResName, CheckPtr(ARoot))
 
 proc ResFormLoadFromFile*(AFileName: string, ARoot: TComponent) =
-  ResFormLoadFromFile(AFileName, CheckPtr(ARoot))
+  lclapi.ResFormLoadFromFile(AFileName, CheckPtr(ARoot))
 
 proc ResFormLoadFromStream*(AStream: TObject, ARoot: TComponent) =
-  ResFormLoadFromStream(CheckPtr(AStream), CheckPtr(ARoot))
+  lclapi.ResFormLoadFromStream(CheckPtr(AStream), CheckPtr(ARoot))
