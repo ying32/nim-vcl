@@ -1726,6 +1726,7 @@ proc ComboBox_SetOnDblClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "
 proc ComboBox_SetOnDragDrop*(AObj: pointer, AEventId: TDragDropEvent) {.importc: "ComboBox_SetOnDragDrop", dynlib: dllname.}
 proc ComboBox_SetOnDragOver*(AObj: pointer, AEventId: TDragOverEvent) {.importc: "ComboBox_SetOnDragOver", dynlib: dllname.}
 proc ComboBox_SetOnDrawItem*(AObj: pointer, AEventId: TDrawItemEvent) {.importc: "ComboBox_SetOnDrawItem", dynlib: dllname.}
+proc ComboBox_SetOnDropDown*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "ComboBox_SetOnDropDown", dynlib: dllname.}
 proc ComboBox_SetOnEndDrag*(AObj: pointer, AEventId: TEndDragEvent) {.importc: "ComboBox_SetOnEndDrag", dynlib: dllname.}
 proc ComboBox_SetOnEnter*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "ComboBox_SetOnEnter", dynlib: dllname.}
 proc ComboBox_SetOnExit*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "ComboBox_SetOnExit", dynlib: dllname.}
@@ -3020,6 +3021,7 @@ proc ColorBox_SetOnClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Col
 proc ColorBox_SetOnContextPopup*(AObj: pointer, AEventId: TContextPopupEvent) {.importc: "ColorBox_SetOnContextPopup", dynlib: dllname.}
 proc ColorBox_SetOnDragDrop*(AObj: pointer, AEventId: TDragDropEvent) {.importc: "ColorBox_SetOnDragDrop", dynlib: dllname.}
 proc ColorBox_SetOnDragOver*(AObj: pointer, AEventId: TDragOverEvent) {.importc: "ColorBox_SetOnDragOver", dynlib: dllname.}
+proc ColorBox_SetOnDropDown*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "ColorBox_SetOnDropDown", dynlib: dllname.}
 proc ColorBox_SetOnEndDrag*(AObj: pointer, AEventId: TEndDragEvent) {.importc: "ColorBox_SetOnEndDrag", dynlib: dllname.}
 proc ColorBox_SetOnEnter*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "ColorBox_SetOnEnter", dynlib: dllname.}
 proc ColorBox_SetOnExit*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "ColorBox_SetOnExit", dynlib: dllname.}
@@ -4626,6 +4628,7 @@ proc DateTimePicker_SetVisible*(AObj: pointer, AValue: bool) {.importc: "DateTim
 proc DateTimePicker_SetOnClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "DateTimePicker_SetOnClick", dynlib: dllname.}
 proc DateTimePicker_SetOnChange*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "DateTimePicker_SetOnChange", dynlib: dllname.}
 proc DateTimePicker_SetOnContextPopup*(AObj: pointer, AEventId: TContextPopupEvent) {.importc: "DateTimePicker_SetOnContextPopup", dynlib: dllname.}
+proc DateTimePicker_SetOnDropDown*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "DateTimePicker_SetOnDropDown", dynlib: dllname.}
 proc DateTimePicker_SetOnEnter*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "DateTimePicker_SetOnEnter", dynlib: dllname.}
 proc DateTimePicker_SetOnExit*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "DateTimePicker_SetOnExit", dynlib: dllname.}
 proc DateTimePicker_SetOnKeyDown*(AObj: pointer, AEventId: TKeyEvent) {.importc: "DateTimePicker_SetOnKeyDown", dynlib: dllname.}
@@ -12809,6 +12812,7 @@ proc ComboBoxEx_SetOnContextPopup*(AObj: pointer, AEventId: TContextPopupEvent) 
 proc ComboBoxEx_SetOnDblClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "ComboBoxEx_SetOnDblClick", dynlib: dllname.}
 proc ComboBoxEx_SetOnDragDrop*(AObj: pointer, AEventId: TDragDropEvent) {.importc: "ComboBoxEx_SetOnDragDrop", dynlib: dllname.}
 proc ComboBoxEx_SetOnDragOver*(AObj: pointer, AEventId: TDragOverEvent) {.importc: "ComboBoxEx_SetOnDragOver", dynlib: dllname.}
+proc ComboBoxEx_SetOnDropDown*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "ComboBoxEx_SetOnDropDown", dynlib: dllname.}
 proc ComboBoxEx_SetOnEndDock*(AObj: pointer, AEventId: TEndDragEvent) {.importc: "ComboBoxEx_SetOnEndDock", dynlib: dllname.}
 proc ComboBoxEx_SetOnEndDrag*(AObj: pointer, AEventId: TEndDragEvent) {.importc: "ComboBoxEx_SetOnEndDrag", dynlib: dllname.}
 proc ComboBoxEx_SetOnEnter*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "ComboBoxEx_SetOnEnter", dynlib: dllname.}

@@ -573,11 +573,13 @@ proc NewControl*(AOwner: TComponent): TControl =
 proc BringToFront*(this: TControl)  =
   Control_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TControl, Point: var TPoint): TPoint  =
-  Control_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TControl, Point: TPoint): TPoint  =
+  var ps1 = Point
+  Control_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TControl, Point: var TPoint, AParent: TWinControl): TPoint  =
-  Control_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TControl, Point: TPoint, AParent: TWinControl): TPoint  =
+  var ps1 = Point
+  Control_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TControl): bool  =
   return Control_Dragging(this.Instance)
@@ -600,11 +602,13 @@ proc Refresh*(this: TControl)  =
 proc Repaint*(this: TControl)  =
   Control_Repaint(this.Instance)
 
-proc ScreenToClient*(this: TControl, Point: var TPoint): TPoint  =
-  Control_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TControl, Point: TPoint): TPoint  =
+  var ps1 = Point
+  Control_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TControl, Point: var TPoint, AParent: TWinControl): TPoint  =
-  Control_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TControl, Point: TPoint, AParent: TWinControl): TPoint  =
+  var ps1 = Point
+  Control_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TControl)  =
   Control_SendToBack(this.Instance)
@@ -881,8 +885,9 @@ proc CanFocus*(this: TWinControl): bool  =
 proc ContainsControl*(this: TWinControl, Control: TControl): bool  =
   return WinControl_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TWinControl, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl  =
-  return WinControl_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TWinControl, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl  =
+  var ps1 = Pos
+  return WinControl_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TWinControl)  =
   WinControl_DisableAlign(this.Instance)
@@ -935,11 +940,13 @@ proc Update*(this: TWinControl) =
 proc BringToFront*(this: TWinControl) =
   WinControl_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TWinControl, Point: var TPoint): TPoint =
-  WinControl_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TWinControl, Point: TPoint): TPoint =
+  var ps1 = Point
+  WinControl_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TWinControl, Point: var TPoint, AParent: TWinControl): TPoint =
-  WinControl_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TWinControl, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  WinControl_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TWinControl): bool =
   return WinControl_Dragging(this.Instance)
@@ -956,11 +963,13 @@ proc Perform*(this: TWinControl, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TWinControl) =
   WinControl_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TWinControl, Point: var TPoint): TPoint =
-  WinControl_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TWinControl, Point: TPoint): TPoint =
+  var ps1 = Point
+  WinControl_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TWinControl, Point: var TPoint, AParent: TWinControl): TPoint =
-  WinControl_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TWinControl, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  WinControl_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TWinControl) =
   WinControl_SendToBack(this.Instance)
@@ -1559,8 +1568,9 @@ proc CanFocus*(this: TMemo): bool =
 proc ContainsControl*(this: TMemo, Control: TControl): bool =
   return Memo_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TMemo, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return Memo_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TMemo, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return Memo_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TMemo) =
   Memo_DisableAlign(this.Instance)
@@ -1613,11 +1623,13 @@ proc Update*(this: TMemo) =
 proc BringToFront*(this: TMemo) =
   Memo_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TMemo, Point: var TPoint): TPoint =
-  Memo_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TMemo, Point: TPoint): TPoint =
+  var ps1 = Point
+  Memo_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TMemo, Point: var TPoint, AParent: TWinControl): TPoint =
-  Memo_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TMemo, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Memo_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TMemo): bool =
   return Memo_Dragging(this.Instance)
@@ -1634,11 +1646,13 @@ proc Perform*(this: TMemo, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TMemo) =
   Memo_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TMemo, Point: var TPoint): TPoint =
-  Memo_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TMemo, Point: TPoint): TPoint =
+  var ps1 = Point
+  Memo_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TMemo, Point: var TPoint, AParent: TWinControl): TPoint =
-  Memo_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TMemo, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Memo_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TMemo) =
   Memo_SendToBack(this.Instance)
@@ -2200,8 +2214,9 @@ proc CanFocus*(this: TCheckBox): bool =
 proc ContainsControl*(this: TCheckBox, Control: TControl): bool =
   return CheckBox_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TCheckBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return CheckBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TCheckBox, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return CheckBox_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TCheckBox) =
   CheckBox_DisableAlign(this.Instance)
@@ -2254,11 +2269,13 @@ proc Update*(this: TCheckBox) =
 proc BringToFront*(this: TCheckBox) =
   CheckBox_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TCheckBox, Point: var TPoint): TPoint =
-  CheckBox_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TCheckBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  CheckBox_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TCheckBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  CheckBox_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TCheckBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  CheckBox_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TCheckBox): bool =
   return CheckBox_Dragging(this.Instance)
@@ -2275,11 +2292,13 @@ proc Perform*(this: TCheckBox, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TCheckBox) =
   CheckBox_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TCheckBox, Point: var TPoint): TPoint =
-  CheckBox_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TCheckBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  CheckBox_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TCheckBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  CheckBox_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TCheckBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  CheckBox_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TCheckBox) =
   CheckBox_SendToBack(this.Instance)
@@ -2757,8 +2776,9 @@ proc CanFocus*(this: TRadioButton): bool =
 proc ContainsControl*(this: TRadioButton, Control: TControl): bool =
   return RadioButton_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TRadioButton, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return RadioButton_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TRadioButton, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return RadioButton_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TRadioButton) =
   RadioButton_DisableAlign(this.Instance)
@@ -2811,11 +2831,13 @@ proc Update*(this: TRadioButton) =
 proc BringToFront*(this: TRadioButton) =
   RadioButton_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TRadioButton, Point: var TPoint): TPoint =
-  RadioButton_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TRadioButton, Point: TPoint): TPoint =
+  var ps1 = Point
+  RadioButton_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TRadioButton, Point: var TPoint, AParent: TWinControl): TPoint =
-  RadioButton_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TRadioButton, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  RadioButton_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TRadioButton): bool =
   return RadioButton_Dragging(this.Instance)
@@ -2832,11 +2854,13 @@ proc Perform*(this: TRadioButton, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TRadioButton) =
   RadioButton_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TRadioButton, Point: var TPoint): TPoint =
-  RadioButton_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TRadioButton, Point: TPoint): TPoint =
+  var ps1 = Point
+  RadioButton_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TRadioButton, Point: var TPoint, AParent: TWinControl): TPoint =
-  RadioButton_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TRadioButton, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  RadioButton_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TRadioButton) =
   RadioButton_SendToBack(this.Instance)
@@ -3302,8 +3326,9 @@ proc CanFocus*(this: TGroupBox): bool =
 proc ContainsControl*(this: TGroupBox, Control: TControl): bool =
   return GroupBox_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TGroupBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return GroupBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TGroupBox, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return GroupBox_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TGroupBox) =
   GroupBox_DisableAlign(this.Instance)
@@ -3356,11 +3381,13 @@ proc Update*(this: TGroupBox) =
 proc BringToFront*(this: TGroupBox) =
   GroupBox_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TGroupBox, Point: var TPoint): TPoint =
-  GroupBox_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TGroupBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  GroupBox_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TGroupBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  GroupBox_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TGroupBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  GroupBox_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TGroupBox): bool =
   return GroupBox_Dragging(this.Instance)
@@ -3377,11 +3404,13 @@ proc Perform*(this: TGroupBox, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TGroupBox) =
   GroupBox_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TGroupBox, Point: var TPoint): TPoint =
-  GroupBox_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TGroupBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  GroupBox_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TGroupBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  GroupBox_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TGroupBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  GroupBox_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TGroupBox) =
   GroupBox_SendToBack(this.Instance)
@@ -3841,11 +3870,13 @@ proc NewLabel*(AOwner: TComponent): TLabel =
 proc BringToFront*(this: TLabel) =
   Label_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TLabel, Point: var TPoint): TPoint =
-  Label_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TLabel, Point: TPoint): TPoint =
+  var ps1 = Point
+  Label_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TLabel, Point: var TPoint, AParent: TWinControl): TPoint =
-  Label_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TLabel, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Label_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TLabel): bool =
   return Label_Dragging(this.Instance)
@@ -3868,11 +3899,13 @@ proc Refresh*(this: TLabel) =
 proc Repaint*(this: TLabel) =
   Label_Repaint(this.Instance)
 
-proc ScreenToClient*(this: TLabel, Point: var TPoint): TPoint =
-  Label_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TLabel, Point: TPoint): TPoint =
+  var ps1 = Point
+  Label_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TLabel, Point: var TPoint, AParent: TWinControl): TPoint =
-  Label_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TLabel, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Label_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TLabel) =
   Label_SendToBack(this.Instance)
@@ -4299,8 +4332,9 @@ proc ClearSelection*(this: TListBox)  =
 proc DeleteSelected*(this: TListBox)  =
   ListBox_DeleteSelected(this.Instance)
 
-proc ItemAtPos*(this: TListBox, Pos: var TPoint, Existing: bool): int32  =
-  return ListBox_ItemAtPos(this.Instance, Pos, Existing)
+proc ItemAtPos*(this: TListBox, Pos: TPoint, Existing: bool): int32  =
+  var ps1 = Pos
+  return ListBox_ItemAtPos(this.Instance, ps1, Existing)
 
 proc ItemRect*(this: TListBox, Index: int32): TRect  =
   ListBox_ItemRect(this.Instance, Index, result)
@@ -4314,8 +4348,9 @@ proc CanFocus*(this: TListBox): bool =
 proc ContainsControl*(this: TListBox, Control: TControl): bool =
   return ListBox_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TListBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return ListBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TListBox, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return ListBox_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TListBox) =
   ListBox_DisableAlign(this.Instance)
@@ -4368,11 +4403,13 @@ proc Update*(this: TListBox) =
 proc BringToFront*(this: TListBox) =
   ListBox_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TListBox, Point: var TPoint): TPoint =
-  ListBox_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TListBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  ListBox_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TListBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  ListBox_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TListBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ListBox_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TListBox): bool =
   return ListBox_Dragging(this.Instance)
@@ -4389,11 +4426,13 @@ proc Perform*(this: TListBox, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TListBox) =
   ListBox_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TListBox, Point: var TPoint): TPoint =
-  ListBox_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TListBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  ListBox_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TListBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  ListBox_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TListBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ListBox_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TListBox) =
   ListBox_SendToBack(this.Instance)
@@ -4952,8 +4991,9 @@ proc CanFocus*(this: TComboBox): bool =
 proc ContainsControl*(this: TComboBox, Control: TControl): bool =
   return ComboBox_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TComboBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return ComboBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TComboBox, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return ComboBox_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TComboBox) =
   ComboBox_DisableAlign(this.Instance)
@@ -5003,11 +5043,13 @@ proc Update*(this: TComboBox) =
 proc BringToFront*(this: TComboBox) =
   ComboBox_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TComboBox, Point: var TPoint): TPoint =
-  ComboBox_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TComboBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  ComboBox_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TComboBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  ComboBox_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TComboBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ComboBox_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TComboBox): bool =
   return ComboBox_Dragging(this.Instance)
@@ -5024,11 +5066,13 @@ proc Perform*(this: TComboBox, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TComboBox) =
   ComboBox_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TComboBox, Point: var TPoint): TPoint =
-  ComboBox_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TComboBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  ComboBox_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TComboBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  ComboBox_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TComboBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ComboBox_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TComboBox) =
   ComboBox_SendToBack(this.Instance)
@@ -5293,6 +5337,9 @@ proc `OnDragOver=`*(this: TComboBox, AEventId: TDragOverEvent)  =
 
 proc `OnDrawItem=`*(this: TComboBox, AEventId: TDrawItemEvent)  =
   ComboBox_SetOnDrawItem(this.Instance, AEventId)
+
+proc `OnDropDown=`*(this: TComboBox, AEventId: TNotifyEvent)  =
+  ComboBox_SetOnDropDown(this.Instance, AEventId)
 
 proc `OnEndDrag=`*(this: TComboBox, AEventId: TEndDragEvent)  =
   ComboBox_SetOnEndDrag(this.Instance, AEventId)
@@ -5572,8 +5619,9 @@ proc CanFocus*(this: TPanel): bool =
 proc ContainsControl*(this: TPanel, Control: TControl): bool =
   return Panel_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TPanel, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return Panel_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TPanel, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return Panel_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TPanel) =
   Panel_DisableAlign(this.Instance)
@@ -5626,11 +5674,13 @@ proc Update*(this: TPanel) =
 proc BringToFront*(this: TPanel) =
   Panel_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TPanel, Point: var TPoint): TPoint =
-  Panel_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TPanel, Point: TPoint): TPoint =
+  var ps1 = Point
+  Panel_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TPanel, Point: var TPoint, AParent: TWinControl): TPoint =
-  Panel_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TPanel, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Panel_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TPanel): bool =
   return Panel_Dragging(this.Instance)
@@ -5647,11 +5697,13 @@ proc Perform*(this: TPanel, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TPanel) =
   Panel_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TPanel, Point: var TPoint): TPoint =
-  Panel_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TPanel, Point: TPoint): TPoint =
+  var ps1 = Point
+  Panel_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TPanel, Point: var TPoint, AParent: TWinControl): TPoint =
-  Panel_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TPanel, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Panel_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TPanel) =
   Panel_SendToBack(this.Instance)
@@ -6162,11 +6214,13 @@ proc NewImage*(AOwner: TComponent): TImage =
 proc BringToFront*(this: TImage) =
   Image_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TImage, Point: var TPoint): TPoint =
-  Image_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TImage, Point: TPoint): TPoint =
+  var ps1 = Point
+  Image_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TImage, Point: var TPoint, AParent: TWinControl): TPoint =
-  Image_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TImage, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Image_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TImage): bool =
   return Image_Dragging(this.Instance)
@@ -6189,11 +6243,13 @@ proc Refresh*(this: TImage) =
 proc Repaint*(this: TImage) =
   Image_Repaint(this.Instance)
 
-proc ScreenToClient*(this: TImage, Point: var TPoint): TPoint =
-  Image_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TImage, Point: TPoint): TPoint =
+  var ps1 = Point
+  Image_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TImage, Point: var TPoint, AParent: TWinControl): TPoint =
-  Image_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TImage, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Image_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TImage) =
   Image_SendToBack(this.Instance)
@@ -6602,11 +6658,13 @@ proc Update*(this: TLinkLabel) =
 proc BringToFront*(this: TLinkLabel) =
   LinkLabel_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TLinkLabel, Point: var TPoint): TPoint =
-  LinkLabel_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TLinkLabel, Point: TPoint): TPoint =
+  var ps1 = Point
+  LinkLabel_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TLinkLabel, Point: var TPoint, AParent: TWinControl): TPoint =
-  LinkLabel_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TLinkLabel, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  LinkLabel_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TLinkLabel): bool =
   return LinkLabel_Dragging(this.Instance)
@@ -6623,11 +6681,13 @@ proc Perform*(this: TLinkLabel, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TLinkLabel) =
   LinkLabel_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TLinkLabel, Point: var TPoint): TPoint =
-  LinkLabel_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TLinkLabel, Point: TPoint): TPoint =
+  var ps1 = Point
+  LinkLabel_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TLinkLabel, Point: var TPoint, AParent: TWinControl): TPoint =
-  LinkLabel_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TLinkLabel, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  LinkLabel_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TLinkLabel) =
   LinkLabel_SendToBack(this.Instance)
@@ -7003,11 +7063,13 @@ proc Click*(this: TSpeedButton)  =
 proc BringToFront*(this: TSpeedButton) =
   SpeedButton_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TSpeedButton, Point: var TPoint): TPoint =
-  SpeedButton_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TSpeedButton, Point: TPoint): TPoint =
+  var ps1 = Point
+  SpeedButton_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TSpeedButton, Point: var TPoint, AParent: TWinControl): TPoint =
-  SpeedButton_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TSpeedButton, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  SpeedButton_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TSpeedButton): bool =
   return SpeedButton_Dragging(this.Instance)
@@ -7030,11 +7092,13 @@ proc Refresh*(this: TSpeedButton) =
 proc Repaint*(this: TSpeedButton) =
   SpeedButton_Repaint(this.Instance)
 
-proc ScreenToClient*(this: TSpeedButton, Point: var TPoint): TPoint =
-  SpeedButton_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TSpeedButton, Point: TPoint): TPoint =
+  var ps1 = Point
+  SpeedButton_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TSpeedButton, Point: var TPoint, AParent: TWinControl): TPoint =
-  SpeedButton_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TSpeedButton, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  SpeedButton_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TSpeedButton) =
   SpeedButton_SendToBack(this.Instance)
@@ -7437,11 +7501,13 @@ proc NewSplitter*(AOwner: TComponent): TSplitter =
 proc BringToFront*(this: TSplitter) =
   Splitter_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TSplitter, Point: var TPoint): TPoint =
-  Splitter_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TSplitter, Point: TPoint): TPoint =
+  var ps1 = Point
+  Splitter_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TSplitter, Point: var TPoint, AParent: TWinControl): TPoint =
-  Splitter_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TSplitter, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Splitter_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TSplitter): bool =
   return Splitter_Dragging(this.Instance)
@@ -7464,11 +7530,13 @@ proc Refresh*(this: TSplitter) =
 proc Repaint*(this: TSplitter) =
   Splitter_Repaint(this.Instance)
 
-proc ScreenToClient*(this: TSplitter, Point: var TPoint): TPoint =
-  Splitter_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TSplitter, Point: TPoint): TPoint =
+  var ps1 = Point
+  Splitter_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TSplitter, Point: var TPoint, AParent: TWinControl): TPoint =
-  Splitter_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TSplitter, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Splitter_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TSplitter) =
   Splitter_SendToBack(this.Instance)
@@ -7778,8 +7846,9 @@ proc CanFocus*(this: TRadioGroup): bool =
 proc ContainsControl*(this: TRadioGroup, Control: TControl): bool =
   return RadioGroup_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TRadioGroup, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return RadioGroup_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TRadioGroup, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return RadioGroup_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TRadioGroup) =
   RadioGroup_DisableAlign(this.Instance)
@@ -7829,11 +7898,13 @@ proc Update*(this: TRadioGroup) =
 proc BringToFront*(this: TRadioGroup) =
   RadioGroup_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TRadioGroup, Point: var TPoint): TPoint =
-  RadioGroup_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TRadioGroup, Point: TPoint): TPoint =
+  var ps1 = Point
+  RadioGroup_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TRadioGroup, Point: var TPoint, AParent: TWinControl): TPoint =
-  RadioGroup_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TRadioGroup, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  RadioGroup_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TRadioGroup): bool =
   return RadioGroup_Dragging(this.Instance)
@@ -7850,11 +7921,13 @@ proc Perform*(this: TRadioGroup, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TRadioGroup) =
   RadioGroup_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TRadioGroup, Point: var TPoint): TPoint =
-  RadioGroup_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TRadioGroup, Point: TPoint): TPoint =
+  var ps1 = Point
+  RadioGroup_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TRadioGroup, Point: var TPoint, AParent: TWinControl): TPoint =
-  RadioGroup_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TRadioGroup, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  RadioGroup_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TRadioGroup) =
   RadioGroup_SendToBack(this.Instance)
@@ -8290,8 +8363,9 @@ proc CanFocus*(this: TStaticText): bool =
 proc ContainsControl*(this: TStaticText, Control: TControl): bool =
   return StaticText_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TStaticText, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return StaticText_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TStaticText, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return StaticText_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TStaticText) =
   StaticText_DisableAlign(this.Instance)
@@ -8344,11 +8418,13 @@ proc Update*(this: TStaticText) =
 proc BringToFront*(this: TStaticText) =
   StaticText_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TStaticText, Point: var TPoint): TPoint =
-  StaticText_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TStaticText, Point: TPoint): TPoint =
+  var ps1 = Point
+  StaticText_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TStaticText, Point: var TPoint, AParent: TWinControl): TPoint =
-  StaticText_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TStaticText, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  StaticText_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TStaticText): bool =
   return StaticText_Dragging(this.Instance)
@@ -8365,11 +8441,13 @@ proc Perform*(this: TStaticText, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TStaticText) =
   StaticText_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TStaticText, Point: var TPoint): TPoint =
-  StaticText_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TStaticText, Point: TPoint): TPoint =
+  var ps1 = Point
+  StaticText_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TStaticText, Point: var TPoint, AParent: TWinControl): TPoint =
-  StaticText_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TStaticText, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  StaticText_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TStaticText) =
   StaticText_SendToBack(this.Instance)
@@ -8862,8 +8940,9 @@ proc CanFocus*(this: TColorBox): bool =
 proc ContainsControl*(this: TColorBox, Control: TControl): bool =
   return ColorBox_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TColorBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return ColorBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TColorBox, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return ColorBox_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TColorBox) =
   ColorBox_DisableAlign(this.Instance)
@@ -8913,11 +8992,13 @@ proc Update*(this: TColorBox) =
 proc BringToFront*(this: TColorBox) =
   ColorBox_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TColorBox, Point: var TPoint): TPoint =
-  ColorBox_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TColorBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  ColorBox_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TColorBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  ColorBox_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TColorBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ColorBox_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TColorBox): bool =
   return ColorBox_Dragging(this.Instance)
@@ -8934,11 +9015,13 @@ proc Perform*(this: TColorBox, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TColorBox) =
   ColorBox_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TColorBox, Point: var TPoint): TPoint =
-  ColorBox_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TColorBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  ColorBox_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TColorBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  ColorBox_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TColorBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ColorBox_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TColorBox) =
   ColorBox_SendToBack(this.Instance)
@@ -9167,6 +9250,9 @@ proc `OnDragDrop=`*(this: TColorBox, AEventId: TDragDropEvent)  =
 
 proc `OnDragOver=`*(this: TColorBox, AEventId: TDragOverEvent)  =
   ColorBox_SetOnDragOver(this.Instance, AEventId)
+
+proc `OnDropDown=`*(this: TColorBox, AEventId: TNotifyEvent)  =
+  ColorBox_SetOnDropDown(this.Instance, AEventId)
 
 proc `OnEndDrag=`*(this: TColorBox, AEventId: TEndDragEvent)  =
   ColorBox_SetOnEndDrag(this.Instance, AEventId)
@@ -9467,8 +9553,9 @@ proc ClearSelection*(this: TColorListBox)  =
 proc DeleteSelected*(this: TColorListBox)  =
   ColorListBox_DeleteSelected(this.Instance)
 
-proc ItemAtPos*(this: TColorListBox, Pos: var TPoint, Existing: bool): int32  =
-  return ColorListBox_ItemAtPos(this.Instance, Pos, Existing)
+proc ItemAtPos*(this: TColorListBox, Pos: TPoint, Existing: bool): int32  =
+  var ps1 = Pos
+  return ColorListBox_ItemAtPos(this.Instance, ps1, Existing)
 
 proc ItemRect*(this: TColorListBox, Index: int32): TRect  =
   ColorListBox_ItemRect(this.Instance, Index, result)
@@ -9482,8 +9569,9 @@ proc CanFocus*(this: TColorListBox): bool =
 proc ContainsControl*(this: TColorListBox, Control: TControl): bool =
   return ColorListBox_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TColorListBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return ColorListBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TColorListBox, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return ColorListBox_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TColorListBox) =
   ColorListBox_DisableAlign(this.Instance)
@@ -9536,11 +9624,13 @@ proc Update*(this: TColorListBox) =
 proc BringToFront*(this: TColorListBox) =
   ColorListBox_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TColorListBox, Point: var TPoint): TPoint =
-  ColorListBox_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TColorListBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  ColorListBox_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TColorListBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  ColorListBox_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TColorListBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ColorListBox_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TColorListBox): bool =
   return ColorListBox_Dragging(this.Instance)
@@ -9557,11 +9647,13 @@ proc Perform*(this: TColorListBox, Msg: uint32, WParam: uint, LParam: int): int 
 proc Refresh*(this: TColorListBox) =
   ColorListBox_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TColorListBox, Point: var TPoint): TPoint =
-  ColorListBox_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TColorListBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  ColorListBox_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TColorListBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  ColorListBox_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TColorListBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ColorListBox_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TColorListBox) =
   ColorListBox_SendToBack(this.Instance)
@@ -11188,8 +11280,9 @@ proc CanFocus*(this: TRichEdit): bool =
 proc ContainsControl*(this: TRichEdit, Control: TControl): bool =
   return RichEdit_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TRichEdit, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return RichEdit_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TRichEdit, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return RichEdit_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TRichEdit) =
   RichEdit_DisableAlign(this.Instance)
@@ -11242,11 +11335,13 @@ proc Update*(this: TRichEdit) =
 proc BringToFront*(this: TRichEdit) =
   RichEdit_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TRichEdit, Point: var TPoint): TPoint =
-  RichEdit_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TRichEdit, Point: TPoint): TPoint =
+  var ps1 = Point
+  RichEdit_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TRichEdit, Point: var TPoint, AParent: TWinControl): TPoint =
-  RichEdit_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TRichEdit, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  RichEdit_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TRichEdit): bool =
   return RichEdit_Dragging(this.Instance)
@@ -11263,11 +11358,13 @@ proc Perform*(this: TRichEdit, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TRichEdit) =
   RichEdit_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TRichEdit, Point: var TPoint): TPoint =
-  RichEdit_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TRichEdit, Point: TPoint): TPoint =
+  var ps1 = Point
+  RichEdit_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TRichEdit, Point: var TPoint, AParent: TWinControl): TPoint =
-  RichEdit_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TRichEdit, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  RichEdit_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TRichEdit) =
   RichEdit_SendToBack(this.Instance)
@@ -11862,8 +11959,9 @@ proc CanFocus*(this: TTrackBar): bool =
 proc ContainsControl*(this: TTrackBar, Control: TControl): bool =
   return TrackBar_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TTrackBar, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return TrackBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TTrackBar, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return TrackBar_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TTrackBar) =
   TrackBar_DisableAlign(this.Instance)
@@ -11916,11 +12014,13 @@ proc Update*(this: TTrackBar) =
 proc BringToFront*(this: TTrackBar) =
   TrackBar_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TTrackBar, Point: var TPoint): TPoint =
-  TrackBar_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TTrackBar, Point: TPoint): TPoint =
+  var ps1 = Point
+  TrackBar_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TTrackBar, Point: var TPoint, AParent: TWinControl): TPoint =
-  TrackBar_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TTrackBar, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  TrackBar_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TTrackBar): bool =
   return TrackBar_Dragging(this.Instance)
@@ -11937,11 +12037,13 @@ proc Perform*(this: TTrackBar, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TTrackBar) =
   TrackBar_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TTrackBar, Point: var TPoint): TPoint =
-  TrackBar_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TTrackBar, Point: TPoint): TPoint =
+  var ps1 = Point
+  TrackBar_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TTrackBar, Point: var TPoint, AParent: TWinControl): TPoint =
-  TrackBar_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TTrackBar, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  TrackBar_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TTrackBar) =
   TrackBar_SendToBack(this.Instance)
@@ -12619,8 +12721,9 @@ proc CanFocus*(this: TUpDown): bool =
 proc ContainsControl*(this: TUpDown, Control: TControl): bool =
   return UpDown_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TUpDown, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return UpDown_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TUpDown, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return UpDown_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TUpDown) =
   UpDown_DisableAlign(this.Instance)
@@ -12673,11 +12776,13 @@ proc Update*(this: TUpDown) =
 proc BringToFront*(this: TUpDown) =
   UpDown_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TUpDown, Point: var TPoint): TPoint =
-  UpDown_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TUpDown, Point: TPoint): TPoint =
+  var ps1 = Point
+  UpDown_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TUpDown, Point: var TPoint, AParent: TWinControl): TPoint =
-  UpDown_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TUpDown, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  UpDown_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TUpDown): bool =
   return UpDown_Dragging(this.Instance)
@@ -12694,11 +12799,13 @@ proc Perform*(this: TUpDown, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TUpDown) =
   UpDown_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TUpDown, Point: var TPoint): TPoint =
-  UpDown_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TUpDown, Point: TPoint): TPoint =
+  var ps1 = Point
+  UpDown_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TUpDown, Point: var TPoint, AParent: TWinControl): TPoint =
-  UpDown_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TUpDown, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  UpDown_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TUpDown) =
   UpDown_SendToBack(this.Instance)
@@ -13128,8 +13235,9 @@ proc CanFocus*(this: TProgressBar): bool =
 proc ContainsControl*(this: TProgressBar, Control: TControl): bool =
   return ProgressBar_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TProgressBar, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return ProgressBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TProgressBar, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return ProgressBar_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TProgressBar) =
   ProgressBar_DisableAlign(this.Instance)
@@ -13182,11 +13290,13 @@ proc Update*(this: TProgressBar) =
 proc BringToFront*(this: TProgressBar) =
   ProgressBar_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TProgressBar, Point: var TPoint): TPoint =
-  ProgressBar_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TProgressBar, Point: TPoint): TPoint =
+  var ps1 = Point
+  ProgressBar_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TProgressBar, Point: var TPoint, AParent: TWinControl): TPoint =
-  ProgressBar_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TProgressBar, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ProgressBar_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TProgressBar): bool =
   return ProgressBar_Dragging(this.Instance)
@@ -13203,11 +13313,13 @@ proc Perform*(this: TProgressBar, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TProgressBar) =
   ProgressBar_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TProgressBar, Point: var TPoint): TPoint =
-  ProgressBar_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TProgressBar, Point: TPoint): TPoint =
+  var ps1 = Point
+  ProgressBar_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TProgressBar, Point: var TPoint, AParent: TWinControl): TPoint =
-  ProgressBar_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TProgressBar, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ProgressBar_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TProgressBar) =
   ProgressBar_SendToBack(this.Instance)
@@ -13664,8 +13776,9 @@ proc CanFocus*(this: TDateTimePicker): bool =
 proc ContainsControl*(this: TDateTimePicker, Control: TControl): bool =
   return DateTimePicker_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TDateTimePicker, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return DateTimePicker_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TDateTimePicker, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return DateTimePicker_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TDateTimePicker) =
   DateTimePicker_DisableAlign(this.Instance)
@@ -13718,11 +13831,13 @@ proc Update*(this: TDateTimePicker) =
 proc BringToFront*(this: TDateTimePicker) =
   DateTimePicker_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TDateTimePicker, Point: var TPoint): TPoint =
-  DateTimePicker_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TDateTimePicker, Point: TPoint): TPoint =
+  var ps1 = Point
+  DateTimePicker_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TDateTimePicker, Point: var TPoint, AParent: TWinControl): TPoint =
-  DateTimePicker_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TDateTimePicker, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  DateTimePicker_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TDateTimePicker): bool =
   return DateTimePicker_Dragging(this.Instance)
@@ -13739,11 +13854,13 @@ proc Perform*(this: TDateTimePicker, Msg: uint32, WParam: uint, LParam: int): in
 proc Refresh*(this: TDateTimePicker) =
   DateTimePicker_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TDateTimePicker, Point: var TPoint): TPoint =
-  DateTimePicker_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TDateTimePicker, Point: TPoint): TPoint =
+  var ps1 = Point
+  DateTimePicker_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TDateTimePicker, Point: var TPoint, AParent: TWinControl): TPoint =
-  DateTimePicker_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TDateTimePicker, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  DateTimePicker_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TDateTimePicker) =
   DateTimePicker_SendToBack(this.Instance)
@@ -13969,6 +14086,9 @@ proc `OnChange=`*(this: TDateTimePicker, AEventId: TNotifyEvent)  =
 
 proc `OnContextPopup=`*(this: TDateTimePicker, AEventId: TContextPopupEvent)  =
   DateTimePicker_SetOnContextPopup(this.Instance, AEventId)
+
+proc `OnDropDown=`*(this: TDateTimePicker, AEventId: TNotifyEvent)  =
+  DateTimePicker_SetOnDropDown(this.Instance, AEventId)
 
 proc `OnEnter=`*(this: TDateTimePicker, AEventId: TNotifyEvent)  =
   DateTimePicker_SetOnEnter(this.Instance, AEventId)
@@ -14206,8 +14326,9 @@ proc CanFocus*(this: TMonthCalendar): bool =
 proc ContainsControl*(this: TMonthCalendar, Control: TControl): bool =
   return MonthCalendar_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TMonthCalendar, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return MonthCalendar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TMonthCalendar, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return MonthCalendar_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TMonthCalendar) =
   MonthCalendar_DisableAlign(this.Instance)
@@ -14260,11 +14381,13 @@ proc Update*(this: TMonthCalendar) =
 proc BringToFront*(this: TMonthCalendar) =
   MonthCalendar_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TMonthCalendar, Point: var TPoint): TPoint =
-  MonthCalendar_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TMonthCalendar, Point: TPoint): TPoint =
+  var ps1 = Point
+  MonthCalendar_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TMonthCalendar, Point: var TPoint, AParent: TWinControl): TPoint =
-  MonthCalendar_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TMonthCalendar, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  MonthCalendar_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TMonthCalendar): bool =
   return MonthCalendar_Dragging(this.Instance)
@@ -14281,11 +14404,13 @@ proc Perform*(this: TMonthCalendar, Msg: uint32, WParam: uint, LParam: int): int
 proc Refresh*(this: TMonthCalendar) =
   MonthCalendar_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TMonthCalendar, Point: var TPoint): TPoint =
-  MonthCalendar_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TMonthCalendar, Point: TPoint): TPoint =
+  var ps1 = Point
+  MonthCalendar_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TMonthCalendar, Point: var TPoint, AParent: TWinControl): TPoint =
-  MonthCalendar_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TMonthCalendar, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  MonthCalendar_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TMonthCalendar) =
   MonthCalendar_SendToBack(this.Instance)
@@ -14748,8 +14873,9 @@ proc CanFocus*(this: TListView): bool =
 proc ContainsControl*(this: TListView, Control: TControl): bool =
   return ListView_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TListView, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return ListView_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TListView, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return ListView_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TListView) =
   ListView_DisableAlign(this.Instance)
@@ -14802,11 +14928,13 @@ proc Update*(this: TListView) =
 proc BringToFront*(this: TListView) =
   ListView_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TListView, Point: var TPoint): TPoint =
-  ListView_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TListView, Point: TPoint): TPoint =
+  var ps1 = Point
+  ListView_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TListView, Point: var TPoint, AParent: TWinControl): TPoint =
-  ListView_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TListView, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ListView_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TListView): bool =
   return ListView_Dragging(this.Instance)
@@ -14823,11 +14951,13 @@ proc Perform*(this: TListView, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TListView) =
   ListView_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TListView, Point: var TPoint): TPoint =
-  ListView_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TListView, Point: TPoint): TPoint =
+  var ps1 = Point
+  ListView_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TListView, Point: var TPoint, AParent: TWinControl): TPoint =
-  ListView_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TListView, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ListView_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TListView) =
   ListView_SendToBack(this.Instance)
@@ -15614,8 +15744,9 @@ proc CanFocus*(this: TTreeView): bool =
 proc ContainsControl*(this: TTreeView, Control: TControl): bool =
   return TreeView_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TTreeView, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return TreeView_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TTreeView, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return TreeView_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TTreeView) =
   TreeView_DisableAlign(this.Instance)
@@ -15668,11 +15799,13 @@ proc Update*(this: TTreeView) =
 proc BringToFront*(this: TTreeView) =
   TreeView_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TTreeView, Point: var TPoint): TPoint =
-  TreeView_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TTreeView, Point: TPoint): TPoint =
+  var ps1 = Point
+  TreeView_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TTreeView, Point: var TPoint, AParent: TWinControl): TPoint =
-  TreeView_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TTreeView, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  TreeView_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TTreeView): bool =
   return TreeView_Dragging(this.Instance)
@@ -15689,11 +15822,13 @@ proc Perform*(this: TTreeView, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TTreeView) =
   TreeView_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TTreeView, Point: var TPoint): TPoint =
-  TreeView_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TTreeView, Point: TPoint): TPoint =
+  var ps1 = Point
+  TreeView_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TTreeView, Point: var TPoint, AParent: TWinControl): TPoint =
-  TreeView_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TTreeView, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  TreeView_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TTreeView) =
   TreeView_SendToBack(this.Instance)
@@ -16426,8 +16561,9 @@ proc CanFocus*(this: TStatusBar): bool =
 proc ContainsControl*(this: TStatusBar, Control: TControl): bool =
   return StatusBar_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TStatusBar, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return StatusBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TStatusBar, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return StatusBar_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TStatusBar) =
   StatusBar_DisableAlign(this.Instance)
@@ -16474,11 +16610,13 @@ proc Update*(this: TStatusBar) =
 proc BringToFront*(this: TStatusBar) =
   StatusBar_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TStatusBar, Point: var TPoint): TPoint =
-  StatusBar_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TStatusBar, Point: TPoint): TPoint =
+  var ps1 = Point
+  StatusBar_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TStatusBar, Point: var TPoint, AParent: TWinControl): TPoint =
-  StatusBar_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TStatusBar, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  StatusBar_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TStatusBar): bool =
   return StatusBar_Dragging(this.Instance)
@@ -16495,11 +16633,13 @@ proc Perform*(this: TStatusBar, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TStatusBar) =
   StatusBar_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TStatusBar, Point: var TPoint): TPoint =
-  StatusBar_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TStatusBar, Point: TPoint): TPoint =
+  var ps1 = Point
+  StatusBar_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TStatusBar, Point: var TPoint, AParent: TWinControl): TPoint =
-  StatusBar_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TStatusBar, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  StatusBar_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TStatusBar) =
   StatusBar_SendToBack(this.Instance)
@@ -16992,8 +17132,9 @@ proc CanFocus*(this: TToolBar): bool =
 proc ContainsControl*(this: TToolBar, Control: TControl): bool =
   return ToolBar_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TToolBar, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return ToolBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TToolBar, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return ToolBar_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TToolBar) =
   ToolBar_DisableAlign(this.Instance)
@@ -17043,11 +17184,13 @@ proc Update*(this: TToolBar) =
 proc BringToFront*(this: TToolBar) =
   ToolBar_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TToolBar, Point: var TPoint): TPoint =
-  ToolBar_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TToolBar, Point: TPoint): TPoint =
+  var ps1 = Point
+  ToolBar_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TToolBar, Point: var TPoint, AParent: TWinControl): TPoint =
-  ToolBar_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TToolBar, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ToolBar_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TToolBar): bool =
   return ToolBar_Dragging(this.Instance)
@@ -17064,11 +17207,13 @@ proc Perform*(this: TToolBar, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TToolBar) =
   ToolBar_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TToolBar, Point: var TPoint): TPoint =
-  ToolBar_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TToolBar, Point: TPoint): TPoint =
+  var ps1 = Point
+  ToolBar_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TToolBar, Point: var TPoint, AParent: TWinControl): TPoint =
-  ToolBar_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TToolBar, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ToolBar_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TToolBar) =
   ToolBar_SendToBack(this.Instance)
@@ -17627,8 +17772,9 @@ proc CanFocus*(this: TBitBtn): bool =
 proc ContainsControl*(this: TBitBtn, Control: TControl): bool =
   return BitBtn_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TBitBtn, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return BitBtn_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TBitBtn, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return BitBtn_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TBitBtn) =
   BitBtn_DisableAlign(this.Instance)
@@ -17681,11 +17827,13 @@ proc Update*(this: TBitBtn) =
 proc BringToFront*(this: TBitBtn) =
   BitBtn_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TBitBtn, Point: var TPoint): TPoint =
-  BitBtn_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TBitBtn, Point: TPoint): TPoint =
+  var ps1 = Point
+  BitBtn_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TBitBtn, Point: var TPoint, AParent: TWinControl): TPoint =
-  BitBtn_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TBitBtn, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  BitBtn_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TBitBtn): bool =
   return BitBtn_Dragging(this.Instance)
@@ -17702,11 +17850,13 @@ proc Perform*(this: TBitBtn, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TBitBtn) =
   BitBtn_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TBitBtn, Point: var TPoint): TPoint =
-  BitBtn_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TBitBtn, Point: TPoint): TPoint =
+  var ps1 = Point
+  BitBtn_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TBitBtn, Point: var TPoint, AParent: TWinControl): TPoint =
-  BitBtn_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TBitBtn, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  BitBtn_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TBitBtn) =
   BitBtn_SendToBack(this.Instance)
@@ -18455,8 +18605,9 @@ proc LoadFromStream*(this: TMemoryStream, Stream: TObject)  =
 proc LoadFromFile*(this: TMemoryStream, FileName: string)  =
   MemoryStream_LoadFromFile(this.Instance, FileName)
 
-proc Seek*(this: TMemoryStream, Offset: var int64, Origin: TSeekOrigin): int64  =
-  MemoryStream_Seek(this.Instance, Offset, Origin, result)
+proc Seek*(this: TMemoryStream, Offset: int64, Origin: TSeekOrigin): int64  =
+  var ps1 = Offset
+  MemoryStream_Seek(this.Instance, ps1, Origin, result)
 
 proc SaveToStream*(this: TMemoryStream, Stream: TObject)  =
   MemoryStream_SaveToStream(this.Instance, CheckPtr(Stream))
@@ -18464,8 +18615,9 @@ proc SaveToStream*(this: TMemoryStream, Stream: TObject)  =
 proc SaveToFile*(this: TMemoryStream, FileName: string)  =
   MemoryStream_SaveToFile(this.Instance, FileName)
 
-proc CopyFrom*(this: TMemoryStream, Source: TObject, Count: var int64): int64  =
-  MemoryStream_CopyFrom(this.Instance, CheckPtr(Source), Count, result)
+proc CopyFrom*(this: TMemoryStream, Source: TObject, Count: int64): int64  =
+  var ps2 = Count
+  MemoryStream_CopyFrom(this.Instance, CheckPtr(Source), ps2, result)
 
 proc ClassType*(this: TMemoryStream): TClass =
   return MemoryStream_ClassType(this.Instance)
@@ -19900,8 +20052,9 @@ proc CanFocus*(this: TPageControl): bool =
 proc ContainsControl*(this: TPageControl, Control: TControl): bool =
   return PageControl_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TPageControl, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return PageControl_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TPageControl, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return PageControl_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TPageControl) =
   PageControl_DisableAlign(this.Instance)
@@ -19954,11 +20107,13 @@ proc Update*(this: TPageControl) =
 proc BringToFront*(this: TPageControl) =
   PageControl_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TPageControl, Point: var TPoint): TPoint =
-  PageControl_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TPageControl, Point: TPoint): TPoint =
+  var ps1 = Point
+  PageControl_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TPageControl, Point: var TPoint, AParent: TWinControl): TPoint =
-  PageControl_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TPageControl, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  PageControl_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TPageControl): bool =
   return PageControl_Dragging(this.Instance)
@@ -19975,11 +20130,13 @@ proc Perform*(this: TPageControl, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TPageControl) =
   PageControl_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TPageControl, Point: var TPoint): TPoint =
-  PageControl_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TPageControl, Point: TPoint): TPoint =
+  var ps1 = Point
+  PageControl_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TPageControl, Point: var TPoint, AParent: TWinControl): TPoint =
-  PageControl_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TPageControl, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  PageControl_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TPageControl) =
   PageControl_SendToBack(this.Instance)
@@ -20478,8 +20635,9 @@ proc CanFocus*(this: TTabSheet): bool =
 proc ContainsControl*(this: TTabSheet, Control: TControl): bool =
   return TabSheet_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TTabSheet, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return TabSheet_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TTabSheet, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return TabSheet_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TTabSheet) =
   TabSheet_DisableAlign(this.Instance)
@@ -20532,11 +20690,13 @@ proc Update*(this: TTabSheet) =
 proc BringToFront*(this: TTabSheet) =
   TabSheet_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TTabSheet, Point: var TPoint): TPoint =
-  TabSheet_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TTabSheet, Point: TPoint): TPoint =
+  var ps1 = Point
+  TabSheet_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TTabSheet, Point: var TPoint, AParent: TWinControl): TPoint =
-  TabSheet_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TTabSheet, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  TabSheet_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TTabSheet): bool =
   return TabSheet_Dragging(this.Instance)
@@ -20553,11 +20713,13 @@ proc Perform*(this: TTabSheet, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TTabSheet) =
   TabSheet_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TTabSheet, Point: var TPoint): TPoint =
-  TabSheet_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TTabSheet, Point: TPoint): TPoint =
+  var ps1 = Point
+  TabSheet_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TTabSheet, Point: var TPoint, AParent: TWinControl): TPoint =
-  TabSheet_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TTabSheet, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  TabSheet_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TTabSheet) =
   TabSheet_SendToBack(this.Instance)
@@ -21011,8 +21173,9 @@ proc CanFocus*(this: TButton): bool =
 proc ContainsControl*(this: TButton, Control: TControl): bool =
   return Button_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TButton, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return Button_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TButton, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return Button_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TButton) =
   Button_DisableAlign(this.Instance)
@@ -21065,11 +21228,13 @@ proc Update*(this: TButton) =
 proc BringToFront*(this: TButton) =
   Button_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TButton, Point: var TPoint): TPoint =
-  Button_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TButton, Point: TPoint): TPoint =
+  var ps1 = Point
+  Button_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TButton, Point: var TPoint, AParent: TWinControl): TPoint =
-  Button_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TButton, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Button_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TButton): bool =
   return Button_Dragging(this.Instance)
@@ -21086,11 +21251,13 @@ proc Perform*(this: TButton, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TButton) =
   Button_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TButton, Point: var TPoint): TPoint =
-  Button_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TButton, Point: TPoint): TPoint =
+  var ps1 = Point
+  Button_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TButton, Point: var TPoint, AParent: TWinControl): TPoint =
-  Button_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TButton, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Button_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TButton) =
   Button_SendToBack(this.Instance)
@@ -21568,8 +21735,9 @@ proc CanFocus*(this: TEdit): bool =
 proc ContainsControl*(this: TEdit, Control: TControl): bool =
   return Edit_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TEdit, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return Edit_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TEdit, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return Edit_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TEdit) =
   Edit_DisableAlign(this.Instance)
@@ -21622,11 +21790,13 @@ proc Update*(this: TEdit) =
 proc BringToFront*(this: TEdit) =
   Edit_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TEdit, Point: var TPoint): TPoint =
-  Edit_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TEdit, Point: TPoint): TPoint =
+  var ps1 = Point
+  Edit_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TEdit, Point: var TPoint, AParent: TWinControl): TPoint =
-  Edit_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TEdit, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Edit_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TEdit): bool =
   return Edit_Dragging(this.Instance)
@@ -21643,11 +21813,13 @@ proc Perform*(this: TEdit, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TEdit) =
   Edit_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TEdit, Point: var TPoint): TPoint =
-  Edit_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TEdit, Point: TPoint): TPoint =
+  var ps1 = Point
+  Edit_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TEdit, Point: var TPoint, AParent: TWinControl): TPoint =
-  Edit_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TEdit, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Edit_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TEdit) =
   Edit_SendToBack(this.Instance)
@@ -22749,8 +22921,9 @@ proc CanFocus*(this: TSpinEdit): bool =
 proc ContainsControl*(this: TSpinEdit, Control: TControl): bool =
   return SpinEdit_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TSpinEdit, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return SpinEdit_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TSpinEdit, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return SpinEdit_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TSpinEdit) =
   SpinEdit_DisableAlign(this.Instance)
@@ -22803,11 +22976,13 @@ proc Update*(this: TSpinEdit) =
 proc BringToFront*(this: TSpinEdit) =
   SpinEdit_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TSpinEdit, Point: var TPoint): TPoint =
-  SpinEdit_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TSpinEdit, Point: TPoint): TPoint =
+  var ps1 = Point
+  SpinEdit_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TSpinEdit, Point: var TPoint, AParent: TWinControl): TPoint =
-  SpinEdit_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TSpinEdit, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  SpinEdit_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TSpinEdit): bool =
   return SpinEdit_Dragging(this.Instance)
@@ -22824,11 +22999,13 @@ proc Perform*(this: TSpinEdit, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TSpinEdit) =
   SpinEdit_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TSpinEdit, Point: var TPoint): TPoint =
-  SpinEdit_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TSpinEdit, Point: TPoint): TPoint =
+  var ps1 = Point
+  SpinEdit_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TSpinEdit, Point: var TPoint, AParent: TWinControl): TPoint =
-  SpinEdit_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TSpinEdit, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  SpinEdit_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TSpinEdit) =
   SpinEdit_SendToBack(this.Instance)
@@ -23366,8 +23543,9 @@ proc CanFocus*(this: TMiniWebview): bool =
 proc ContainsControl*(this: TMiniWebview, Control: TControl): bool =
   return MiniWebview_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TMiniWebview, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return MiniWebview_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TMiniWebview, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return MiniWebview_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TMiniWebview) =
   MiniWebview_DisableAlign(this.Instance)
@@ -23417,11 +23595,13 @@ proc Update*(this: TMiniWebview) =
 proc BringToFront*(this: TMiniWebview) =
   MiniWebview_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TMiniWebview, Point: var TPoint): TPoint =
-  MiniWebview_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TMiniWebview, Point: TPoint): TPoint =
+  var ps1 = Point
+  MiniWebview_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TMiniWebview, Point: var TPoint, AParent: TWinControl): TPoint =
-  MiniWebview_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TMiniWebview, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  MiniWebview_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TMiniWebview): bool =
   return MiniWebview_Dragging(this.Instance)
@@ -23435,11 +23615,13 @@ proc Hide*(this: TMiniWebview) =
 proc Perform*(this: TMiniWebview, Msg: uint32, WParam: uint, LParam: int): int =
   return MiniWebview_Perform(this.Instance, Msg, WParam, LParam)
 
-proc ScreenToClient*(this: TMiniWebview, Point: var TPoint): TPoint =
-  MiniWebview_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TMiniWebview, Point: TPoint): TPoint =
+  var ps1 = Point
+  MiniWebview_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TMiniWebview, Point: var TPoint, AParent: TWinControl): TPoint =
-  MiniWebview_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TMiniWebview, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  MiniWebview_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TMiniWebview) =
   MiniWebview_SendToBack(this.Instance)
@@ -23794,8 +23976,10 @@ proc Arc*(this: TCanvas, X1: int32, Y1: int32, X2: int32, Y2: int32, X3: int32, 
 proc ArcTo*(this: TCanvas, X1: int32, Y1: int32, X2: int32, Y2: int32, X3: int32, Y3: int32, X4: int32, Y4: int32)  =
   Canvas_ArcTo(this.Instance, X1, Y1, X2, Y2, X3, Y3, X4, Y4)
 
-proc AngleArc*(this: TCanvas, X: int32, Y: int32, Radius: uint32, StartAngle: var float32, SweepAngle: var float32)  =
-  Canvas_AngleArc(this.Instance, X, Y, Radius, StartAngle, SweepAngle)
+proc AngleArc*(this: TCanvas, X: int32, Y: int32, Radius: uint32, StartAngle: float32, SweepAngle: float32)  =
+  var ps4 = StartAngle
+  var ps5 = SweepAngle
+  Canvas_AngleArc(this.Instance, X, Y, Radius, ps4, ps5)
 
 proc Chord*(this: TCanvas, X1: int32, Y1: int32, X2: int32, Y2: int32, X3: int32, Y3: int32, X4: int32, Y4: int32)  =
   Canvas_Chord(this.Instance, X1, Y1, X2, Y2, X3, Y3, X4, Y4)
@@ -23972,8 +24156,9 @@ proc NewApplication*(AOwner: TComponent): TApplication =
   new(result)
   result.Instance = Application_Create(CheckPtr(AOwner))
 
-proc ActivateHint*(this: TApplication, CursorPos: var TPoint)  =
-  Application_ActivateHint(this.Instance, CursorPos)
+proc ActivateHint*(this: TApplication, CursorPos: TPoint)  =
+  var ps1 = CursorPos
+  Application_ActivateHint(this.Instance, ps1)
 
 proc BringToFront*(this: TApplication)  =
   Application_BringToFront(this.Instance)
@@ -24872,11 +25057,13 @@ proc SetBounds*(this: TToolButton, ALeft: int32, ATop: int32, AWidth: int32, AHe
 proc BringToFront*(this: TToolButton) =
   ToolButton_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TToolButton, Point: var TPoint): TPoint =
-  ToolButton_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TToolButton, Point: TPoint): TPoint =
+  var ps1 = Point
+  ToolButton_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TToolButton, Point: var TPoint, AParent: TWinControl): TPoint =
-  ToolButton_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TToolButton, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ToolButton_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TToolButton): bool =
   return ToolButton_Dragging(this.Instance)
@@ -24899,11 +25086,13 @@ proc Refresh*(this: TToolButton) =
 proc Repaint*(this: TToolButton) =
   ToolButton_Repaint(this.Instance)
 
-proc ScreenToClient*(this: TToolButton, Point: var TPoint): TPoint =
-  ToolButton_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TToolButton, Point: TPoint): TPoint =
+  var ps1 = Point
+  ToolButton_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TToolButton, Point: var TPoint, AParent: TWinControl): TPoint =
-  ToolButton_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TToolButton, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ToolButton_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TToolButton) =
   ToolButton_SendToBack(this.Instance)
@@ -25348,8 +25537,9 @@ proc ReadDate*(this: TIniFile, Section: string, Name: string, Default: uint32): 
 proc ReadDateTime*(this: TIniFile, Section: string, Name: string, Default: uint32): uint32  =
   return IniFile_ReadDateTime(this.Instance, Section, Name, Default)
 
-proc ReadFloat*(this: TIniFile, Section: string, Name: string, Default: var float64): float64  =
-  IniFile_ReadFloat(this.Instance, Section, Name, Default, result)
+proc ReadFloat*(this: TIniFile, Section: string, Name: string, Default: float64): float64  =
+  var ps3 = Default
+  IniFile_ReadFloat(this.Instance, Section, Name, ps3, result)
 
 proc ReadTime*(this: TIniFile, Section: string, Name: string, Default: uint32): uint32  =
   return IniFile_ReadTime(this.Instance, Section, Name, Default)
@@ -25360,8 +25550,9 @@ proc WriteDate*(this: TIniFile, Section: string, Name: string, Value: uint32)  =
 proc WriteDateTime*(this: TIniFile, Section: string, Name: string, Value: uint32)  =
   IniFile_WriteDateTime(this.Instance, Section, Name, Value)
 
-proc WriteFloat*(this: TIniFile, Section: string, Name: string, Value: var float64)  =
-  IniFile_WriteFloat(this.Instance, Section, Name, Value)
+proc WriteFloat*(this: TIniFile, Section: string, Name: string, Value: float64)  =
+  var ps3 = Value
+  IniFile_WriteFloat(this.Instance, Section, Name, ps3)
 
 proc WriteTime*(this: TIniFile, Section: string, Name: string, Value: uint32)  =
   IniFile_WriteTime(this.Instance, Section, Name, Value)
@@ -25485,8 +25676,9 @@ proc WriteDate*(this: TRegistry, Name: string, Value: uint32)  =
 proc WriteDateTime*(this: TRegistry, Name: string, Value: uint32)  =
   Registry_WriteDateTime(this.Instance, Name, Value)
 
-proc WriteFloat*(this: TRegistry, Name: string, Value: var float64)  =
-  Registry_WriteFloat(this.Instance, Name, Value)
+proc WriteFloat*(this: TRegistry, Name: string, Value: float64)  =
+  var ps2 = Value
+  Registry_WriteFloat(this.Instance, Name, ps2)
 
 proc WriteInteger*(this: TRegistry, Name: string, Value: int32)  =
   Registry_WriteInteger(this.Instance, Name, Value)
@@ -25698,11 +25890,13 @@ proc NewPaintBox*(AOwner: TComponent): TPaintBox =
 proc BringToFront*(this: TPaintBox) =
   PaintBox_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TPaintBox, Point: var TPoint): TPoint =
-  PaintBox_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TPaintBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  PaintBox_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TPaintBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  PaintBox_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TPaintBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  PaintBox_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TPaintBox): bool =
   return PaintBox_Dragging(this.Instance)
@@ -25725,11 +25919,13 @@ proc Refresh*(this: TPaintBox) =
 proc Repaint*(this: TPaintBox) =
   PaintBox_Repaint(this.Instance)
 
-proc ScreenToClient*(this: TPaintBox, Point: var TPoint): TPoint =
-  PaintBox_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TPaintBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  PaintBox_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TPaintBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  PaintBox_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TPaintBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  PaintBox_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TPaintBox) =
   PaintBox_SendToBack(this.Instance)
@@ -26271,8 +26467,9 @@ proc CanFocus*(this: TForm): bool =
 proc ContainsControl*(this: TForm, Control: TControl): bool =
   return Form_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TForm, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return Form_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TForm, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return Form_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TForm) =
   Form_DisableAlign(this.Instance)
@@ -26322,11 +26519,13 @@ proc Update*(this: TForm) =
 proc BringToFront*(this: TForm) =
   Form_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TForm, Point: var TPoint): TPoint =
-  Form_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TForm, Point: TPoint): TPoint =
+  var ps1 = Point
+  Form_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TForm, Point: var TPoint, AParent: TWinControl): TPoint =
-  Form_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TForm, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Form_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TForm): bool =
   return Form_Dragging(this.Instance)
@@ -26340,11 +26539,13 @@ proc Perform*(this: TForm, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TForm) =
   Form_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TForm, Point: var TPoint): TPoint =
-  Form_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TForm, Point: TPoint): TPoint =
+  var ps1 = Point
+  Form_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TForm, Point: var TPoint, AParent: TWinControl): TPoint =
-  Form_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TForm, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Form_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TForm) =
   Form_SendToBack(this.Instance)
@@ -27230,8 +27431,9 @@ proc CanFocus*(this: TScrollBar): bool =
 proc ContainsControl*(this: TScrollBar, Control: TControl): bool =
   return ScrollBar_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TScrollBar, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return ScrollBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TScrollBar, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return ScrollBar_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TScrollBar) =
   ScrollBar_DisableAlign(this.Instance)
@@ -27284,11 +27486,13 @@ proc Update*(this: TScrollBar) =
 proc BringToFront*(this: TScrollBar) =
   ScrollBar_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TScrollBar, Point: var TPoint): TPoint =
-  ScrollBar_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TScrollBar, Point: TPoint): TPoint =
+  var ps1 = Point
+  ScrollBar_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TScrollBar, Point: var TPoint, AParent: TWinControl): TPoint =
-  ScrollBar_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TScrollBar, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ScrollBar_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TScrollBar): bool =
   return ScrollBar_Dragging(this.Instance)
@@ -27305,11 +27509,13 @@ proc Perform*(this: TScrollBar, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TScrollBar) =
   ScrollBar_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TScrollBar, Point: var TPoint): TPoint =
-  ScrollBar_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TScrollBar, Point: TPoint): TPoint =
+  var ps1 = Point
+  ScrollBar_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TScrollBar, Point: var TPoint, AParent: TWinControl): TPoint =
-  ScrollBar_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TScrollBar, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ScrollBar_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TScrollBar) =
   ScrollBar_SendToBack(this.Instance)
@@ -27778,8 +27984,9 @@ proc CanFocus*(this: TMaskEdit): bool =
 proc ContainsControl*(this: TMaskEdit, Control: TControl): bool =
   return MaskEdit_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TMaskEdit, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return MaskEdit_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TMaskEdit, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return MaskEdit_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TMaskEdit) =
   MaskEdit_DisableAlign(this.Instance)
@@ -27832,11 +28039,13 @@ proc Update*(this: TMaskEdit) =
 proc BringToFront*(this: TMaskEdit) =
   MaskEdit_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TMaskEdit, Point: var TPoint): TPoint =
-  MaskEdit_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TMaskEdit, Point: TPoint): TPoint =
+  var ps1 = Point
+  MaskEdit_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TMaskEdit, Point: var TPoint, AParent: TWinControl): TPoint =
-  MaskEdit_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TMaskEdit, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  MaskEdit_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TMaskEdit): bool =
   return MaskEdit_Dragging(this.Instance)
@@ -27853,11 +28062,13 @@ proc Perform*(this: TMaskEdit, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TMaskEdit) =
   MaskEdit_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TMaskEdit, Point: var TPoint): TPoint =
-  MaskEdit_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TMaskEdit, Point: TPoint): TPoint =
+  var ps1 = Point
+  MaskEdit_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TMaskEdit, Point: var TPoint, AParent: TWinControl): TPoint =
-  MaskEdit_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TMaskEdit, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  MaskEdit_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TMaskEdit) =
   MaskEdit_SendToBack(this.Instance)
@@ -28401,11 +28612,13 @@ proc NewShape*(AOwner: TComponent): TShape =
 proc BringToFront*(this: TShape) =
   Shape_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TShape, Point: var TPoint): TPoint =
-  Shape_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TShape, Point: TPoint): TPoint =
+  var ps1 = Point
+  Shape_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TShape, Point: var TPoint, AParent: TWinControl): TPoint =
-  Shape_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TShape, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Shape_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TShape): bool =
   return Shape_Dragging(this.Instance)
@@ -28428,11 +28641,13 @@ proc Refresh*(this: TShape) =
 proc Repaint*(this: TShape) =
   Shape_Repaint(this.Instance)
 
-proc ScreenToClient*(this: TShape, Point: var TPoint): TPoint =
-  Shape_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TShape, Point: TPoint): TPoint =
+  var ps1 = Point
+  Shape_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TShape, Point: var TPoint, AParent: TWinControl): TPoint =
-  Shape_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TShape, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Shape_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TShape) =
   Shape_SendToBack(this.Instance)
@@ -28772,11 +28987,13 @@ proc NewBevel*(AOwner: TComponent): TBevel =
 proc BringToFront*(this: TBevel) =
   Bevel_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TBevel, Point: var TPoint): TPoint =
-  Bevel_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TBevel, Point: TPoint): TPoint =
+  var ps1 = Point
+  Bevel_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TBevel, Point: var TPoint, AParent: TWinControl): TPoint =
-  Bevel_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TBevel, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Bevel_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TBevel): bool =
   return Bevel_Dragging(this.Instance)
@@ -28799,11 +29016,13 @@ proc Refresh*(this: TBevel) =
 proc Repaint*(this: TBevel) =
   Bevel_Repaint(this.Instance)
 
-proc ScreenToClient*(this: TBevel, Point: var TPoint): TPoint =
-  Bevel_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TBevel, Point: TPoint): TPoint =
+  var ps1 = Point
+  Bevel_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TBevel, Point: var TPoint, AParent: TWinControl): TPoint =
-  Bevel_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TBevel, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Bevel_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TBevel) =
   Bevel_SendToBack(this.Instance)
@@ -29101,8 +29320,9 @@ proc CanFocus*(this: TScrollBox): bool =
 proc ContainsControl*(this: TScrollBox, Control: TControl): bool =
   return ScrollBox_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TScrollBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return ScrollBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TScrollBox, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return ScrollBox_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TScrollBox) =
   ScrollBox_DisableAlign(this.Instance)
@@ -29155,11 +29375,13 @@ proc Update*(this: TScrollBox) =
 proc BringToFront*(this: TScrollBox) =
   ScrollBox_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TScrollBox, Point: var TPoint): TPoint =
-  ScrollBox_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TScrollBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  ScrollBox_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TScrollBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  ScrollBox_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TScrollBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ScrollBox_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TScrollBox): bool =
   return ScrollBox_Dragging(this.Instance)
@@ -29176,11 +29398,13 @@ proc Perform*(this: TScrollBox, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TScrollBox) =
   ScrollBox_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TScrollBox, Point: var TPoint): TPoint =
-  ScrollBox_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TScrollBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  ScrollBox_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TScrollBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  ScrollBox_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TScrollBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ScrollBox_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TScrollBox) =
   ScrollBox_SendToBack(this.Instance)
@@ -29685,8 +29909,9 @@ proc ClearSelection*(this: TCheckListBox)  =
 proc DeleteSelected*(this: TCheckListBox)  =
   CheckListBox_DeleteSelected(this.Instance)
 
-proc ItemAtPos*(this: TCheckListBox, Pos: var TPoint, Existing: bool): int32  =
-  return CheckListBox_ItemAtPos(this.Instance, Pos, Existing)
+proc ItemAtPos*(this: TCheckListBox, Pos: TPoint, Existing: bool): int32  =
+  var ps1 = Pos
+  return CheckListBox_ItemAtPos(this.Instance, ps1, Existing)
 
 proc ItemRect*(this: TCheckListBox, Index: int32): TRect  =
   CheckListBox_ItemRect(this.Instance, Index, result)
@@ -29700,8 +29925,9 @@ proc CanFocus*(this: TCheckListBox): bool =
 proc ContainsControl*(this: TCheckListBox, Control: TControl): bool =
   return CheckListBox_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TCheckListBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return CheckListBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TCheckListBox, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return CheckListBox_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TCheckListBox) =
   CheckListBox_DisableAlign(this.Instance)
@@ -29754,11 +29980,13 @@ proc Update*(this: TCheckListBox) =
 proc BringToFront*(this: TCheckListBox) =
   CheckListBox_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TCheckListBox, Point: var TPoint): TPoint =
-  CheckListBox_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TCheckListBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  CheckListBox_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TCheckListBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  CheckListBox_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TCheckListBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  CheckListBox_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TCheckListBox): bool =
   return CheckListBox_Dragging(this.Instance)
@@ -29775,11 +30003,13 @@ proc Perform*(this: TCheckListBox, Msg: uint32, WParam: uint, LParam: int): int 
 proc Refresh*(this: TCheckListBox) =
   CheckListBox_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TCheckListBox, Point: var TPoint): TPoint =
-  CheckListBox_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TCheckListBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  CheckListBox_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TCheckListBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  CheckListBox_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TCheckListBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  CheckListBox_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TCheckListBox) =
   CheckListBox_SendToBack(this.Instance)
@@ -30326,11 +30556,13 @@ proc AddProgress*(this: TGauge, Value: int32)  =
 proc BringToFront*(this: TGauge) =
   Gauge_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TGauge, Point: var TPoint): TPoint =
-  Gauge_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TGauge, Point: TPoint): TPoint =
+  var ps1 = Point
+  Gauge_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TGauge, Point: var TPoint, AParent: TWinControl): TPoint =
-  Gauge_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TGauge, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Gauge_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TGauge): bool =
   return Gauge_Dragging(this.Instance)
@@ -30353,11 +30585,13 @@ proc Refresh*(this: TGauge) =
 proc Repaint*(this: TGauge) =
   Gauge_Repaint(this.Instance)
 
-proc ScreenToClient*(this: TGauge, Point: var TPoint): TPoint =
-  Gauge_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TGauge, Point: TPoint): TPoint =
+  var ps1 = Point
+  Gauge_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TGauge, Point: var TPoint, AParent: TWinControl): TPoint =
-  Gauge_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TGauge, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Gauge_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TGauge) =
   Gauge_SendToBack(this.Instance)
@@ -30715,11 +30949,13 @@ proc Click*(this: TImageButton)  =
 proc BringToFront*(this: TImageButton) =
   ImageButton_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TImageButton, Point: var TPoint): TPoint =
-  ImageButton_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TImageButton, Point: TPoint): TPoint =
+  var ps1 = Point
+  ImageButton_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TImageButton, Point: var TPoint, AParent: TWinControl): TPoint =
-  ImageButton_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TImageButton, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ImageButton_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TImageButton): bool =
   return ImageButton_Dragging(this.Instance)
@@ -30742,11 +30978,13 @@ proc Refresh*(this: TImageButton) =
 proc Repaint*(this: TImageButton) =
   ImageButton_Repaint(this.Instance)
 
-proc ScreenToClient*(this: TImageButton, Point: var TPoint): TPoint =
-  ImageButton_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TImageButton, Point: TPoint): TPoint =
+  var ps1 = Point
+  ImageButton_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TImageButton, Point: var TPoint, AParent: TWinControl): TPoint =
-  ImageButton_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TImageButton, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ImageButton_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TImageButton) =
   ImageButton_SendToBack(this.Instance)
@@ -31827,8 +32065,9 @@ proc InvalidateCell*(this: TStringGrid, aCol: int32, aRow: int32)  =
 proc InvalidateCol*(this: TStringGrid, ACol: int32)  =
   StringGrid_InvalidateCol(this.Instance, ACol)
 
-proc InvalidateRange*(this: TStringGrid, aRange: var TRect)  =
-  StringGrid_InvalidateRange(this.Instance, aRange)
+proc InvalidateRange*(this: TStringGrid, aRange: TRect)  =
+  var ps1 = aRange
+  StringGrid_InvalidateRange(this.Instance, ps1)
 
 proc InvalidateRow*(this: TStringGrid, ARow: int32)  =
   StringGrid_InvalidateRow(this.Instance, ARow)
@@ -31842,11 +32081,13 @@ proc IsFixedCellVisible*(this: TStringGrid, aCol: int32, aRow: int32): bool  =
 proc MouseCoord*(this: TStringGrid, X: int32, Y: int32): TGridCoord  =
   StringGrid_MouseCoord(this.Instance, X, Y, result)
 
-proc MouseToCell*(this: TStringGrid, Mouse: var TPoint): TPoint  =
-  StringGrid_MouseToCell(this.Instance, Mouse, result)
+proc MouseToCell*(this: TStringGrid, Mouse: TPoint): TPoint  =
+  var ps1 = Mouse
+  StringGrid_MouseToCell(this.Instance, ps1, result)
 
-proc MouseToLogcell*(this: TStringGrid, Mouse: var TPoint): TPoint  =
-  StringGrid_MouseToLogcell(this.Instance, Mouse, result)
+proc MouseToLogcell*(this: TStringGrid, Mouse: TPoint): TPoint  =
+  var ps1 = Mouse
+  StringGrid_MouseToLogcell(this.Instance, ps1, result)
 
 proc MouseToGridZone*(this: TStringGrid, X: int32, Y: int32): TGridZone  =
   return StringGrid_MouseToGridZone(this.Instance, X, Y)
@@ -31857,8 +32098,9 @@ proc CanFocus*(this: TStringGrid): bool =
 proc ContainsControl*(this: TStringGrid, Control: TControl): bool =
   return StringGrid_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TStringGrid, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return StringGrid_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TStringGrid, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return StringGrid_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TStringGrid) =
   StringGrid_DisableAlign(this.Instance)
@@ -31911,11 +32153,13 @@ proc Update*(this: TStringGrid) =
 proc BringToFront*(this: TStringGrid) =
   StringGrid_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TStringGrid, Point: var TPoint): TPoint =
-  StringGrid_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TStringGrid, Point: TPoint): TPoint =
+  var ps1 = Point
+  StringGrid_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TStringGrid, Point: var TPoint, AParent: TWinControl): TPoint =
-  StringGrid_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TStringGrid, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  StringGrid_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TStringGrid): bool =
   return StringGrid_Dragging(this.Instance)
@@ -31932,11 +32176,13 @@ proc Perform*(this: TStringGrid, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TStringGrid) =
   StringGrid_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TStringGrid, Point: var TPoint): TPoint =
-  StringGrid_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TStringGrid, Point: TPoint): TPoint =
+  var ps1 = Point
+  StringGrid_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TStringGrid, Point: var TPoint, AParent: TWinControl): TPoint =
-  StringGrid_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TStringGrid, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  StringGrid_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TStringGrid) =
   StringGrid_SendToBack(this.Instance)
@@ -32852,8 +33098,9 @@ proc CanFocus*(this: TDrawGrid): bool =
 proc ContainsControl*(this: TDrawGrid, Control: TControl): bool =
   return DrawGrid_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TDrawGrid, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return DrawGrid_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TDrawGrid, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return DrawGrid_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TDrawGrid) =
   DrawGrid_DisableAlign(this.Instance)
@@ -32906,11 +33153,13 @@ proc Update*(this: TDrawGrid) =
 proc BringToFront*(this: TDrawGrid) =
   DrawGrid_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TDrawGrid, Point: var TPoint): TPoint =
-  DrawGrid_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TDrawGrid, Point: TPoint): TPoint =
+  var ps1 = Point
+  DrawGrid_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TDrawGrid, Point: var TPoint, AParent: TWinControl): TPoint =
-  DrawGrid_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TDrawGrid, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  DrawGrid_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TDrawGrid): bool =
   return DrawGrid_Dragging(this.Instance)
@@ -32927,11 +33176,13 @@ proc Perform*(this: TDrawGrid, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TDrawGrid) =
   DrawGrid_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TDrawGrid, Point: var TPoint): TPoint =
-  DrawGrid_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TDrawGrid, Point: TPoint): TPoint =
+  var ps1 = Point
+  DrawGrid_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TDrawGrid, Point: var TPoint, AParent: TWinControl): TPoint =
-  DrawGrid_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TDrawGrid, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  DrawGrid_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TDrawGrid) =
   DrawGrid_SendToBack(this.Instance)
@@ -33562,8 +33813,9 @@ proc CanFocus*(this: TValueListEditor): bool =
 proc ContainsControl*(this: TValueListEditor, Control: TControl): bool =
   return ValueListEditor_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TValueListEditor, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return ValueListEditor_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TValueListEditor, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return ValueListEditor_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TValueListEditor) =
   ValueListEditor_DisableAlign(this.Instance)
@@ -33616,11 +33868,13 @@ proc Update*(this: TValueListEditor) =
 proc BringToFront*(this: TValueListEditor) =
   ValueListEditor_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TValueListEditor, Point: var TPoint): TPoint =
-  ValueListEditor_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TValueListEditor, Point: TPoint): TPoint =
+  var ps1 = Point
+  ValueListEditor_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TValueListEditor, Point: var TPoint, AParent: TWinControl): TPoint =
-  ValueListEditor_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TValueListEditor, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ValueListEditor_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TValueListEditor): bool =
   return ValueListEditor_Dragging(this.Instance)
@@ -33634,11 +33888,13 @@ proc Hide*(this: TValueListEditor) =
 proc Perform*(this: TValueListEditor, Msg: uint32, WParam: uint, LParam: int): int =
   return ValueListEditor_Perform(this.Instance, Msg, WParam, LParam)
 
-proc ScreenToClient*(this: TValueListEditor, Point: var TPoint): TPoint =
-  ValueListEditor_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TValueListEditor, Point: TPoint): TPoint =
+  var ps1 = Point
+  ValueListEditor_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TValueListEditor, Point: var TPoint, AParent: TWinControl): TPoint =
-  ValueListEditor_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TValueListEditor, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ValueListEditor_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TValueListEditor) =
   ValueListEditor_SendToBack(this.Instance)
@@ -34269,8 +34525,9 @@ proc CanFocus*(this: THeaderControl): bool =
 proc ContainsControl*(this: THeaderControl, Control: TControl): bool =
   return HeaderControl_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: THeaderControl, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return HeaderControl_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: THeaderControl, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return HeaderControl_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: THeaderControl) =
   HeaderControl_DisableAlign(this.Instance)
@@ -34320,11 +34577,13 @@ proc Update*(this: THeaderControl) =
 proc BringToFront*(this: THeaderControl) =
   HeaderControl_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: THeaderControl, Point: var TPoint): TPoint =
-  HeaderControl_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: THeaderControl, Point: TPoint): TPoint =
+  var ps1 = Point
+  HeaderControl_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: THeaderControl, Point: var TPoint, AParent: TWinControl): TPoint =
-  HeaderControl_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: THeaderControl, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  HeaderControl_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: THeaderControl): bool =
   return HeaderControl_Dragging(this.Instance)
@@ -34341,11 +34600,13 @@ proc Perform*(this: THeaderControl, Msg: uint32, WParam: uint, LParam: int): int
 proc Refresh*(this: THeaderControl) =
   HeaderControl_Refresh(this.Instance)
 
-proc ScreenToClient*(this: THeaderControl, Point: var TPoint): TPoint =
-  HeaderControl_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: THeaderControl, Point: TPoint): TPoint =
+  var ps1 = Point
+  HeaderControl_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: THeaderControl, Point: var TPoint, AParent: TWinControl): TPoint =
-  HeaderControl_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: THeaderControl, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  HeaderControl_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: THeaderControl) =
   HeaderControl_SendToBack(this.Instance)
@@ -34992,8 +35253,9 @@ proc CanFocus*(this: TLabeledEdit): bool =
 proc ContainsControl*(this: TLabeledEdit, Control: TControl): bool =
   return LabeledEdit_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TLabeledEdit, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return LabeledEdit_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TLabeledEdit, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return LabeledEdit_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TLabeledEdit) =
   LabeledEdit_DisableAlign(this.Instance)
@@ -35043,11 +35305,13 @@ proc Update*(this: TLabeledEdit) =
 proc BringToFront*(this: TLabeledEdit) =
   LabeledEdit_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TLabeledEdit, Point: var TPoint): TPoint =
-  LabeledEdit_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TLabeledEdit, Point: TPoint): TPoint =
+  var ps1 = Point
+  LabeledEdit_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TLabeledEdit, Point: var TPoint, AParent: TWinControl): TPoint =
-  LabeledEdit_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TLabeledEdit, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  LabeledEdit_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TLabeledEdit): bool =
   return LabeledEdit_Dragging(this.Instance)
@@ -35064,11 +35328,13 @@ proc Perform*(this: TLabeledEdit, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TLabeledEdit) =
   LabeledEdit_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TLabeledEdit, Point: var TPoint): TPoint =
-  LabeledEdit_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TLabeledEdit, Point: TPoint): TPoint =
+  var ps1 = Point
+  LabeledEdit_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TLabeledEdit, Point: var TPoint, AParent: TWinControl): TPoint =
-  LabeledEdit_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TLabeledEdit, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  LabeledEdit_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TLabeledEdit) =
   LabeledEdit_SendToBack(this.Instance)
@@ -35621,11 +35887,13 @@ proc NewBoundLabel*(AOwner: TComponent): TBoundLabel =
 proc BringToFront*(this: TBoundLabel) =
   BoundLabel_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TBoundLabel, Point: var TPoint): TPoint =
-  BoundLabel_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TBoundLabel, Point: TPoint): TPoint =
+  var ps1 = Point
+  BoundLabel_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TBoundLabel, Point: var TPoint, AParent: TWinControl): TPoint =
-  BoundLabel_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TBoundLabel, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  BoundLabel_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TBoundLabel): bool =
   return BoundLabel_Dragging(this.Instance)
@@ -35648,11 +35916,13 @@ proc Refresh*(this: TBoundLabel) =
 proc Repaint*(this: TBoundLabel) =
   BoundLabel_Repaint(this.Instance)
 
-proc ScreenToClient*(this: TBoundLabel, Point: var TPoint): TPoint =
-  BoundLabel_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TBoundLabel, Point: TPoint): TPoint =
+  var ps1 = Point
+  BoundLabel_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TBoundLabel, Point: var TPoint, AParent: TWinControl): TPoint =
-  BoundLabel_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TBoundLabel, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  BoundLabel_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TBoundLabel) =
   BoundLabel_SendToBack(this.Instance)
@@ -36028,8 +36298,9 @@ proc CanFocus*(this: TFlowPanel): bool =
 proc ContainsControl*(this: TFlowPanel, Control: TControl): bool =
   return FlowPanel_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TFlowPanel, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return FlowPanel_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TFlowPanel, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return FlowPanel_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TFlowPanel) =
   FlowPanel_DisableAlign(this.Instance)
@@ -36082,11 +36353,13 @@ proc Update*(this: TFlowPanel) =
 proc BringToFront*(this: TFlowPanel) =
   FlowPanel_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TFlowPanel, Point: var TPoint): TPoint =
-  FlowPanel_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TFlowPanel, Point: TPoint): TPoint =
+  var ps1 = Point
+  FlowPanel_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TFlowPanel, Point: var TPoint, AParent: TWinControl): TPoint =
-  FlowPanel_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TFlowPanel, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  FlowPanel_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TFlowPanel): bool =
   return FlowPanel_Dragging(this.Instance)
@@ -36103,11 +36376,13 @@ proc Perform*(this: TFlowPanel, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TFlowPanel) =
   FlowPanel_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TFlowPanel, Point: var TPoint): TPoint =
-  FlowPanel_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TFlowPanel, Point: TPoint): TPoint =
+  var ps1 = Point
+  FlowPanel_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TFlowPanel, Point: var TPoint, AParent: TWinControl): TPoint =
-  FlowPanel_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TFlowPanel, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  FlowPanel_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TFlowPanel) =
   FlowPanel_SendToBack(this.Instance)
@@ -36624,8 +36899,9 @@ proc CanFocus*(this: TCoolBar): bool =
 proc ContainsControl*(this: TCoolBar, Control: TControl): bool =
   return CoolBar_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TCoolBar, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return CoolBar_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TCoolBar, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return CoolBar_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TCoolBar) =
   CoolBar_DisableAlign(this.Instance)
@@ -36672,11 +36948,13 @@ proc Update*(this: TCoolBar) =
 proc BringToFront*(this: TCoolBar) =
   CoolBar_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TCoolBar, Point: var TPoint): TPoint =
-  CoolBar_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TCoolBar, Point: TPoint): TPoint =
+  var ps1 = Point
+  CoolBar_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TCoolBar, Point: var TPoint, AParent: TWinControl): TPoint =
-  CoolBar_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TCoolBar, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  CoolBar_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TCoolBar): bool =
   return CoolBar_Dragging(this.Instance)
@@ -36693,11 +36971,13 @@ proc Perform*(this: TCoolBar, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TCoolBar) =
   CoolBar_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TCoolBar, Point: var TPoint): TPoint =
-  CoolBar_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TCoolBar, Point: TPoint): TPoint =
+  var ps1 = Point
+  CoolBar_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TCoolBar, Point: var TPoint, AParent: TWinControl): TPoint =
-  CoolBar_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TCoolBar, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  CoolBar_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TCoolBar) =
   CoolBar_SendToBack(this.Instance)
@@ -38124,8 +38404,9 @@ proc CanFocus*(this: TComboBoxEx): bool =
 proc ContainsControl*(this: TComboBoxEx, Control: TControl): bool =
   return ComboBoxEx_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TComboBoxEx, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return ComboBoxEx_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TComboBoxEx, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return ComboBoxEx_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TComboBoxEx) =
   ComboBoxEx_DisableAlign(this.Instance)
@@ -38175,11 +38456,13 @@ proc Update*(this: TComboBoxEx) =
 proc BringToFront*(this: TComboBoxEx) =
   ComboBoxEx_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TComboBoxEx, Point: var TPoint): TPoint =
-  ComboBoxEx_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TComboBoxEx, Point: TPoint): TPoint =
+  var ps1 = Point
+  ComboBoxEx_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TComboBoxEx, Point: var TPoint, AParent: TWinControl): TPoint =
-  ComboBoxEx_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TComboBoxEx, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ComboBoxEx_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TComboBoxEx): bool =
   return ComboBoxEx_Dragging(this.Instance)
@@ -38196,11 +38479,13 @@ proc Perform*(this: TComboBoxEx, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TComboBoxEx) =
   ComboBoxEx_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TComboBoxEx, Point: var TPoint): TPoint =
-  ComboBoxEx_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TComboBoxEx, Point: TPoint): TPoint =
+  var ps1 = Point
+  ComboBoxEx_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TComboBoxEx, Point: var TPoint, AParent: TWinControl): TPoint =
-  ComboBoxEx_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TComboBoxEx, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ComboBoxEx_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TComboBoxEx) =
   ComboBoxEx_SendToBack(this.Instance)
@@ -38450,6 +38735,9 @@ proc `OnDragDrop=`*(this: TComboBoxEx, AEventId: TDragDropEvent)  =
 
 proc `OnDragOver=`*(this: TComboBoxEx, AEventId: TDragOverEvent)  =
   ComboBoxEx_SetOnDragOver(this.Instance, AEventId)
+
+proc `OnDropDown=`*(this: TComboBoxEx, AEventId: TNotifyEvent)  =
+  ComboBoxEx_SetOnDropDown(this.Instance, AEventId)
 
 proc `OnEndDock=`*(this: TComboBoxEx, AEventId: TEndDragEvent)  =
   ComboBoxEx_SetOnEndDock(this.Instance, AEventId)
@@ -38891,8 +39179,9 @@ proc CanFocus*(this: TFrame): bool =
 proc ContainsControl*(this: TFrame, Control: TControl): bool =
   return Frame_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TFrame, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return Frame_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TFrame, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return Frame_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TFrame) =
   Frame_DisableAlign(this.Instance)
@@ -38945,11 +39234,13 @@ proc Update*(this: TFrame) =
 proc BringToFront*(this: TFrame) =
   Frame_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TFrame, Point: var TPoint): TPoint =
-  Frame_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TFrame, Point: TPoint): TPoint =
+  var ps1 = Point
+  Frame_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TFrame, Point: var TPoint, AParent: TWinControl): TPoint =
-  Frame_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TFrame, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Frame_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TFrame): bool =
   return Frame_Dragging(this.Instance)
@@ -38966,11 +39257,13 @@ proc Perform*(this: TFrame, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TFrame) =
   Frame_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TFrame, Point: var TPoint): TPoint =
-  Frame_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TFrame, Point: TPoint): TPoint =
+  var ps1 = Point
+  Frame_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TFrame, Point: var TPoint, AParent: TWinControl): TPoint =
-  Frame_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TFrame, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Frame_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TFrame) =
   Frame_SendToBack(this.Instance)
@@ -39595,11 +39888,13 @@ proc NewXButton*(AOwner: TComponent): TXButton =
 proc BringToFront*(this: TXButton) =
   XButton_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TXButton, Point: var TPoint): TPoint =
-  XButton_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TXButton, Point: TPoint): TPoint =
+  var ps1 = Point
+  XButton_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TXButton, Point: var TPoint, AParent: TWinControl): TPoint =
-  XButton_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TXButton, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  XButton_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TXButton): bool =
   return XButton_Dragging(this.Instance)
@@ -39622,11 +39917,13 @@ proc Refresh*(this: TXButton) =
 proc Repaint*(this: TXButton) =
   XButton_Repaint(this.Instance)
 
-proc ScreenToClient*(this: TXButton, Point: var TPoint): TPoint =
-  XButton_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TXButton, Point: TPoint): TPoint =
+  var ps1 = Point
+  XButton_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TXButton, Point: var TPoint, AParent: TWinControl): TPoint =
-  XButton_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TXButton, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  XButton_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TXButton) =
   XButton_SendToBack(this.Instance)
@@ -40296,8 +40593,9 @@ proc CanFocus*(this: TCheckGroup): bool =
 proc ContainsControl*(this: TCheckGroup, Control: TControl): bool =
   return CheckGroup_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TCheckGroup, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return CheckGroup_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TCheckGroup, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return CheckGroup_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TCheckGroup) =
   CheckGroup_DisableAlign(this.Instance)
@@ -40347,11 +40645,13 @@ proc Update*(this: TCheckGroup) =
 proc BringToFront*(this: TCheckGroup) =
   CheckGroup_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TCheckGroup, Point: var TPoint): TPoint =
-  CheckGroup_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TCheckGroup, Point: TPoint): TPoint =
+  var ps1 = Point
+  CheckGroup_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TCheckGroup, Point: var TPoint, AParent: TWinControl): TPoint =
-  CheckGroup_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TCheckGroup, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  CheckGroup_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TCheckGroup): bool =
   return CheckGroup_Dragging(this.Instance)
@@ -40368,11 +40668,13 @@ proc Perform*(this: TCheckGroup, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TCheckGroup) =
   CheckGroup_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TCheckGroup, Point: var TPoint): TPoint =
-  CheckGroup_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TCheckGroup, Point: TPoint): TPoint =
+  var ps1 = Point
+  CheckGroup_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TCheckGroup, Point: var TPoint, AParent: TWinControl): TPoint =
-  CheckGroup_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TCheckGroup, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  CheckGroup_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TCheckGroup) =
   CheckGroup_SendToBack(this.Instance)
@@ -40874,8 +41176,9 @@ proc CanFocus*(this: TToggleBox): bool =
 proc ContainsControl*(this: TToggleBox, Control: TControl): bool =
   return ToggleBox_ContainsControl(this.Instance, CheckPtr(Control))
 
-proc ControlAtPos*(this: TToggleBox, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  return ToggleBox_ControlAtPos(this.Instance, Pos, AllowDisabled, AllowWinControls).AsControl
+proc ControlAtPos*(this: TToggleBox, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return ToggleBox_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
 
 proc DisableAlign*(this: TToggleBox) =
   ToggleBox_DisableAlign(this.Instance)
@@ -40928,11 +41231,13 @@ proc Update*(this: TToggleBox) =
 proc BringToFront*(this: TToggleBox) =
   ToggleBox_BringToFront(this.Instance)
 
-proc ClientToScreen*(this: TToggleBox, Point: var TPoint): TPoint =
-  ToggleBox_ClientToScreen(this.Instance, Point, result)
+proc ClientToScreen*(this: TToggleBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  ToggleBox_ClientToScreen(this.Instance, ps1, result)
 
-proc ClientToParent*(this: TToggleBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  ToggleBox_ClientToParent(this.Instance, Point, CheckPtr(AParent), result)
+proc ClientToParent*(this: TToggleBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ToggleBox_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc Dragging*(this: TToggleBox): bool =
   return ToggleBox_Dragging(this.Instance)
@@ -40949,11 +41254,13 @@ proc Perform*(this: TToggleBox, Msg: uint32, WParam: uint, LParam: int): int =
 proc Refresh*(this: TToggleBox) =
   ToggleBox_Refresh(this.Instance)
 
-proc ScreenToClient*(this: TToggleBox, Point: var TPoint): TPoint =
-  ToggleBox_ScreenToClient(this.Instance, Point, result)
+proc ScreenToClient*(this: TToggleBox, Point: TPoint): TPoint =
+  var ps1 = Point
+  ToggleBox_ScreenToClient(this.Instance, ps1, result)
 
-proc ParentToClient*(this: TToggleBox, Point: var TPoint, AParent: TWinControl): TPoint =
-  ToggleBox_ParentToClient(this.Instance, Point, CheckPtr(AParent), result)
+proc ParentToClient*(this: TToggleBox, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  ToggleBox_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
 
 proc SendToBack*(this: TToggleBox) =
   ToggleBox_SendToBack(this.Instance)
