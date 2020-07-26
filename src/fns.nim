@@ -216,5 +216,5 @@ proc ResFormLoadFromResourceName*(AInstance: uint, AResName: string, ARoot: TCom
 proc ResFormLoadFromFile*(AFileName: string, ARoot: TComponent) =
   lclapi.ResFormLoadFromFile(AFileName, CheckPtr(ARoot))
 
-proc ResFormLoadFromStream*(AStream: TObject, ARoot: TComponent) =
+proc ResFormLoadFromStream*(AStream: TStream, ARoot: TComponent) =
   lclapi.ResFormLoadFromStream(CheckPtr(AStream), CheckPtr(ARoot))

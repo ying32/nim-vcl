@@ -103,7 +103,9 @@ type
 
   TBitmap* = ref object of TObject
 
-  TMemoryStream* = ref object of TObject
+  TStream* = ref object of TObject
+
+  TMemoryStream* = ref object of TStream
 
   TFont* = ref object of TObject
 
@@ -351,6 +353,7 @@ proc AsToolBar*(obj: pointer): TToolBar = defaultPointerAs
 proc AsBitBtn*(obj: pointer): TBitBtn = defaultPointerAs
 proc AsIcon*(obj: pointer): TIcon = defaultPointerAs
 proc AsBitmap*(obj: pointer): TBitmap = defaultPointerAs
+proc AsStream*(obj: pointer): TStream = defaultPointerAs
 proc AsMemoryStream*(obj: pointer): TMemoryStream = defaultPointerAs
 proc AsFont*(obj: pointer): TFont = defaultPointerAs
 proc AsStrings*(obj: pointer): TStrings = defaultPointerAs
@@ -15723,13 +15726,13 @@ proc IsEditing*(this: TTreeView): bool  =
 proc LoadFromFile*(this: TTreeView, FileName: string)  =
   TreeView_LoadFromFile(this.Instance, FileName)
 
-proc LoadFromStream*(this: TTreeView, Stream: TObject)  =
+proc LoadFromStream*(this: TTreeView, Stream: TStream)  =
   TreeView_LoadFromStream(this.Instance, CheckPtr(Stream))
 
 proc SaveToFile*(this: TTreeView, FileName: string)  =
   TreeView_SaveToFile(this.Instance, FileName)
 
-proc SaveToStream*(this: TTreeView, Stream: TObject)  =
+proc SaveToStream*(this: TTreeView, Stream: TStream)  =
   TreeView_SaveToStream(this.Instance, CheckPtr(Stream))
 
 proc ClearSelection*(this: TTreeView, KeepPrimary: bool)  =
@@ -18337,10 +18340,10 @@ proc Assign*(this: TIcon, Source: TObject)  =
 proc HandleAllocated*(this: TIcon): bool  =
   return Icon_HandleAllocated(this.Instance)
 
-proc LoadFromStream*(this: TIcon, Stream: TObject)  =
+proc LoadFromStream*(this: TIcon, Stream: TStream)  =
   Icon_LoadFromStream(this.Instance, CheckPtr(Stream))
 
-proc SaveToStream*(this: TIcon, Stream: TObject)  =
+proc SaveToStream*(this: TIcon, Stream: TStream)  =
   Icon_SaveToStream(this.Instance, CheckPtr(Stream))
 
 proc SetSize*(this: TIcon, AWidth: int32, AHeight: int32)  =
@@ -18450,10 +18453,10 @@ proc FreeImage*(this: TBitmap)  =
 proc HandleAllocated*(this: TBitmap): bool  =
   return Bitmap_HandleAllocated(this.Instance)
 
-proc LoadFromStream*(this: TBitmap, Stream: TObject)  =
+proc LoadFromStream*(this: TBitmap, Stream: TStream)  =
   Bitmap_LoadFromStream(this.Instance, CheckPtr(Stream))
 
-proc SaveToStream*(this: TBitmap, Stream: TObject)  =
+proc SaveToStream*(this: TBitmap, Stream: TStream)  =
   Bitmap_SaveToStream(this.Instance, CheckPtr(Stream))
 
 proc SetSize*(this: TBitmap, AWidth: int32, AHeight: int32)  =
@@ -18588,9 +18591,12 @@ proc EndUpdate*(this: TBitmap, AStreamIsValid: bool)  =
 proc LoadFromDevice*(this: TBitmap, ADc: HDC)  =
   Bitmap_LoadFromDevice(this.Instance, ADc)
 
+#------------------------- TStream -------------------------
+
+
 #------------------------- TMemoryStream -------------------------
 
-proc Free*(this: TMemoryStream) = defaultFree: MemoryStream_Free
+proc Free*(this: TMemoryStream)  = defaultFree: MemoryStream_Free
 
 proc NewMemoryStream*(): TMemoryStream =
   new(result)
@@ -18599,7 +18605,7 @@ proc NewMemoryStream*(): TMemoryStream =
 proc Clear*(this: TMemoryStream)  =
   MemoryStream_Clear(this.Instance)
 
-proc LoadFromStream*(this: TMemoryStream, Stream: TObject)  =
+proc LoadFromStream*(this: TMemoryStream, Stream: TStream)  =
   MemoryStream_LoadFromStream(this.Instance, CheckPtr(Stream))
 
 proc LoadFromFile*(this: TMemoryStream, FileName: string)  =
@@ -18609,35 +18615,35 @@ proc Seek*(this: TMemoryStream, Offset: int64, Origin: TSeekOrigin): int64  =
   var ps1 = Offset
   MemoryStream_Seek(this.Instance, ps1, Origin, result)
 
-proc SaveToStream*(this: TMemoryStream, Stream: TObject)  =
+proc SaveToStream*(this: TMemoryStream, Stream: TStream)  =
   MemoryStream_SaveToStream(this.Instance, CheckPtr(Stream))
 
 proc SaveToFile*(this: TMemoryStream, FileName: string)  =
   MemoryStream_SaveToFile(this.Instance, FileName)
 
-proc CopyFrom*(this: TMemoryStream, Source: TObject, Count: int64): int64  =
+proc CopyFrom*(this: TMemoryStream, Source: TStream, Count: int64): int64  =
   var ps2 = Count
   MemoryStream_CopyFrom(this.Instance, CheckPtr(Source), ps2, result)
 
-proc ClassType*(this: TMemoryStream): TClass =
+proc ClassType*(this: TMemoryStream): TClass  =
   return MemoryStream_ClassType(this.Instance)
 
-proc ClassName*(this: TMemoryStream): string =
+proc ClassName*(this: TMemoryStream): string  =
   return $MemoryStream_ClassName(this.Instance)
 
-proc InstanceSize*(this: TMemoryStream): int32 =
+proc InstanceSize*(this: TMemoryStream): int32  =
   return MemoryStream_InstanceSize(this.Instance)
 
-proc InheritsFrom*(this: TMemoryStream, AClass: TClass): bool =
+proc InheritsFrom*(this: TMemoryStream, AClass: TClass): bool  =
   return MemoryStream_InheritsFrom(this.Instance, AClass)
 
-proc Equals*(this: TMemoryStream, Obj: TObject): bool =
+proc Equals*(this: TMemoryStream, Obj: TObject): bool  =
   return MemoryStream_Equals(this.Instance, CheckPtr(Obj))
 
-proc GetHashCode*(this: TMemoryStream): int32 =
+proc GetHashCode*(this: TMemoryStream): int32  =
   return MemoryStream_GetHashCode(this.Instance)
 
-proc ToString*(this: TMemoryStream): string =
+proc ToString*(this: TMemoryStream): string  =
   return $MemoryStream_ToString(this.Instance)
 
 proc Memory*(this: TMemoryStream): pointer  =
@@ -18827,7 +18833,7 @@ proc InsertObject*(this: TStrings, Index: int32, S: string, AObject: TObject)  =
 proc LoadFromFile*(this: TStrings, FileName: string)  =
   Strings_LoadFromFile(this.Instance, FileName)
 
-proc LoadFromStream*(this: TStrings, Stream: TObject)  =
+proc LoadFromStream*(this: TStrings, Stream: TStream)  =
   Strings_LoadFromStream(this.Instance, CheckPtr(Stream))
 
 proc Move*(this: TStrings, CurIndex: int32, NewIndex: int32)  =
@@ -18836,7 +18842,7 @@ proc Move*(this: TStrings, CurIndex: int32, NewIndex: int32)  =
 proc SaveToFile*(this: TStrings, FileName: string)  =
   Strings_SaveToFile(this.Instance, FileName)
 
-proc SaveToStream*(this: TStrings, Stream: TObject)  =
+proc SaveToStream*(this: TStrings, Stream: TStream)  =
   Strings_SaveToStream(this.Instance, CheckPtr(Stream))
 
 proc GetNamePath*(this: TStrings): string  =
@@ -18973,7 +18979,7 @@ proc IndexOfObject*(this: TStringList, AObject: TObject): int32 =
 proc LoadFromFile*(this: TStringList, FileName: string) =
   StringList_LoadFromFile(this.Instance, FileName)
 
-proc LoadFromStream*(this: TStringList, Stream: TObject) =
+proc LoadFromStream*(this: TStringList, Stream: TStream) =
   StringList_LoadFromStream(this.Instance, CheckPtr(Stream))
 
 proc Move*(this: TStringList, CurIndex: int32, NewIndex: int32) =
@@ -18982,7 +18988,7 @@ proc Move*(this: TStringList, CurIndex: int32, NewIndex: int32) =
 proc SaveToFile*(this: TStringList, FileName: string) =
   StringList_SaveToFile(this.Instance, FileName)
 
-proc SaveToStream*(this: TStringList, Stream: TObject) =
+proc SaveToStream*(this: TStringList, Stream: TStream) =
   StringList_SaveToStream(this.Instance, CheckPtr(Stream))
 
 proc GetNamePath*(this: TStringList): string =
@@ -19413,10 +19419,10 @@ proc LoadFromFile*(this: TPicture, Filename: string)  =
 proc SaveToFile*(this: TPicture, Filename: string)  =
   Picture_SaveToFile(this.Instance, Filename)
 
-proc LoadFromStream*(this: TPicture, Stream: TObject)  =
+proc LoadFromStream*(this: TPicture, Stream: TStream)  =
   Picture_LoadFromStream(this.Instance, CheckPtr(Stream))
 
-proc SaveToStream*(this: TPicture, Stream: TObject)  =
+proc SaveToStream*(this: TPicture, Stream: TStream)  =
   Picture_SaveToStream(this.Instance, CheckPtr(Stream))
 
 proc Assign*(this: TPicture, Source: TObject)  =
@@ -24427,10 +24433,10 @@ proc LoadFromFile*(this: TGraphic, Filename: string)  =
 proc SaveToFile*(this: TGraphic, Filename: string)  =
   Graphic_SaveToFile(this.Instance, Filename)
 
-proc LoadFromStream*(this: TGraphic, Stream: TObject)  =
+proc LoadFromStream*(this: TGraphic, Stream: TStream)  =
   Graphic_LoadFromStream(this.Instance, CheckPtr(Stream))
 
-proc SaveToStream*(this: TGraphic, Stream: TObject)  =
+proc SaveToStream*(this: TGraphic, Stream: TStream)  =
   Graphic_SaveToStream(this.Instance, CheckPtr(Stream))
 
 proc Assign*(this: TGraphic, Source: TObject)  =
@@ -24513,10 +24519,10 @@ proc NewPngImage*(): TPngImage =
 proc Assign*(this: TPngImage, Source: TObject)  =
   PngImage_Assign(this.Instance, CheckPtr(Source))
 
-proc LoadFromStream*(this: TPngImage, Stream: TObject)  =
+proc LoadFromStream*(this: TPngImage, Stream: TStream)  =
   PngImage_LoadFromStream(this.Instance, CheckPtr(Stream))
 
-proc SaveToStream*(this: TPngImage, Stream: TObject)  =
+proc SaveToStream*(this: TPngImage, Stream: TStream)  =
   PngImage_SaveToStream(this.Instance, CheckPtr(Stream))
 
 proc LoadFromResourceName*(this: TPngImage, Instance: uint, Name: string)  =
@@ -24611,10 +24617,10 @@ proc NewJPEGImage*(): TJPEGImage =
 proc Assign*(this: TJPEGImage, Source: TObject)  =
   JPEGImage_Assign(this.Instance, CheckPtr(Source))
 
-proc LoadFromStream*(this: TJPEGImage, Stream: TObject)  =
+proc LoadFromStream*(this: TJPEGImage, Stream: TStream)  =
   JPEGImage_LoadFromStream(this.Instance, CheckPtr(Stream))
 
-proc SaveToStream*(this: TJPEGImage, Stream: TObject)  =
+proc SaveToStream*(this: TJPEGImage, Stream: TStream)  =
   JPEGImage_SaveToStream(this.Instance, CheckPtr(Stream))
 
 proc Equals*(this: TJPEGImage, Obj: TObject): bool =
@@ -24718,10 +24724,10 @@ proc NewGIFImage*(): TGIFImage =
   new(result)
   result.Instance = GIFImage_Create()
 
-proc SaveToStream*(this: TGIFImage, Stream: TObject)  =
+proc SaveToStream*(this: TGIFImage, Stream: TStream)  =
   GIFImage_SaveToStream(this.Instance, CheckPtr(Stream))
 
-proc LoadFromStream*(this: TGIFImage, Stream: TObject)  =
+proc LoadFromStream*(this: TGIFImage, Stream: TStream)  =
   GIFImage_LoadFromStream(this.Instance, CheckPtr(Stream))
 
 proc Clear*(this: TGIFImage)  =

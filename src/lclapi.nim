@@ -6121,6 +6121,7 @@ proc Bitmap_Clear*(AObj: pointer) {.importc: "Bitmap_Clear", dynlib: dllname.}
 proc Bitmap_BeginUpdate*(AObj: pointer, ACanvasOnly: bool) {.importc: "Bitmap_BeginUpdate", dynlib: dllname.}
 proc Bitmap_EndUpdate*(AObj: pointer, AStreamIsValid: bool) {.importc: "Bitmap_EndUpdate", dynlib: dllname.}
 proc Bitmap_LoadFromDevice*(AObj: pointer, ADc: HDC) {.importc: "Bitmap_LoadFromDevice", dynlib: dllname.}
+# ----------------- TStream ----------------------
 # ----------------- TMemoryStream ----------------------
 proc MemoryStream_Create*(): pointer {.importc: "MemoryStream_Create", dynlib: dllname.}
 proc MemoryStream_Free*(AObj: pointer) {.importc: "MemoryStream_Free", dynlib: dllname.}
