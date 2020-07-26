@@ -109,7 +109,7 @@ type
 
   TStrings* = ref object of TObject
 
-  TStringList* = ref object of TObject
+  TStringList* = ref object of TStrings
 
   TBrush* = ref object of TObject
 
@@ -18928,64 +18928,64 @@ proc NewStringList*(): TStringList =
   new(result)
   result.Instance = StringList_Create()
 
-proc Add*(this: TStringList, S: string): int32  =
+proc Add*(this: TStringList, S: string): int32 =
   return StringList_Add(this.Instance, S)
 
-proc AddObject*(this: TStringList, S: string, AObject: TObject): int32  =
+proc AddObject*(this: TStringList, S: string, AObject: TObject): int32 =
   return StringList_AddObject(this.Instance, S, CheckPtr(AObject))
 
-proc Assign*(this: TStringList, Source: TObject)  =
+proc Assign*(this: TStringList, Source: TObject) =
   StringList_Assign(this.Instance, CheckPtr(Source))
 
-proc Clear*(this: TStringList)  =
+proc Clear*(this: TStringList) =
   StringList_Clear(this.Instance)
 
-proc Delete*(this: TStringList, Index: int32)  =
+proc Delete*(this: TStringList, Index: int32) =
   StringList_Delete(this.Instance, Index)
 
-proc IndexOf*(this: TStringList, S: string): int32  =
+proc IndexOf*(this: TStringList, S: string): int32 =
   return StringList_IndexOf(this.Instance, S)
 
-proc Insert*(this: TStringList, Index: int32, S: string)  =
+proc Insert*(this: TStringList, Index: int32, S: string) =
   StringList_Insert(this.Instance, Index, S)
 
-proc InsertObject*(this: TStringList, Index: int32, S: string, AObject: TObject)  =
+proc InsertObject*(this: TStringList, Index: int32, S: string, AObject: TObject) =
   StringList_InsertObject(this.Instance, Index, S, CheckPtr(AObject))
 
-proc Append*(this: TStringList, S: string)  =
+proc Append*(this: TStringList, S: string) =
   StringList_Append(this.Instance, S)
 
-proc BeginUpdate*(this: TStringList)  =
+proc BeginUpdate*(this: TStringList) =
   StringList_BeginUpdate(this.Instance)
 
-proc EndUpdate*(this: TStringList)  =
+proc EndUpdate*(this: TStringList) =
   StringList_EndUpdate(this.Instance)
 
 proc Equals*(this: TStringList, Strings: TStrings): bool  =
   return StringList_Equals(this.Instance, CheckPtr(Strings))
 
-proc IndexOfName*(this: TStringList, Name: string): int32  =
+proc IndexOfName*(this: TStringList, Name: string): int32 =
   return StringList_IndexOfName(this.Instance, Name)
 
-proc IndexOfObject*(this: TStringList, AObject: TObject): int32  =
+proc IndexOfObject*(this: TStringList, AObject: TObject): int32 =
   return StringList_IndexOfObject(this.Instance, CheckPtr(AObject))
 
-proc LoadFromFile*(this: TStringList, FileName: string)  =
+proc LoadFromFile*(this: TStringList, FileName: string) =
   StringList_LoadFromFile(this.Instance, FileName)
 
-proc LoadFromStream*(this: TStringList, Stream: TObject)  =
+proc LoadFromStream*(this: TStringList, Stream: TObject) =
   StringList_LoadFromStream(this.Instance, CheckPtr(Stream))
 
-proc Move*(this: TStringList, CurIndex: int32, NewIndex: int32)  =
+proc Move*(this: TStringList, CurIndex: int32, NewIndex: int32) =
   StringList_Move(this.Instance, CurIndex, NewIndex)
 
-proc SaveToFile*(this: TStringList, FileName: string)  =
+proc SaveToFile*(this: TStringList, FileName: string) =
   StringList_SaveToFile(this.Instance, FileName)
 
-proc SaveToStream*(this: TStringList, Stream: TObject)  =
+proc SaveToStream*(this: TStringList, Stream: TObject) =
   StringList_SaveToStream(this.Instance, CheckPtr(Stream))
 
-proc GetNamePath*(this: TStringList): string  =
+proc GetNamePath*(this: TStringList): string =
   return $StringList_GetNamePath(this.Instance)
 
 proc ClassType*(this: TStringList): TClass =
