@@ -54,6 +54,7 @@ when not defined(windows):
 proc SetEventCallback*(APtr: pointer) {.importc: "SetEventCallback", dynlib: dllname.}
 proc SetMessageCallback*(APtr: pointer) {.importc: "SetMessageCallback", dynlib: dllname.}
 proc SetThreadSyncCallback*(APtr: pointer) {.importc: "SetThreadSyncCallback", dynlib: dllname.}
+proc SetExceptionHandlerCallback*(APtr: pointer) {.importc: "SetExceptionHandlerCallback", dynlib: dllname.}
 proc DGetStringArrOf*(P: pointer, AIndex: int): cstring {.importc: "DGetStringArrOf", dynlib: dllname.}
 proc DStrLen*(p: cstring): int {.importc: "DStrLen", dynlib: dllname.}
 proc DMove*(Src: pointer, Dest: pointer, Len: int) {.importc: "DMove", dynlib: dllname.}
@@ -4524,6 +4525,9 @@ proc ProgressBar_StaticClassType*(): TClass {.importc: "ProgressBar_StaticClassT
 # ----------------- TDateTimePicker ----------------------
 proc DateTimePicker_Create*(AOwner: pointer): pointer {.importc: "DateTimePicker_Create", dynlib: dllname.}
 proc DateTimePicker_Free*(AObj: pointer) {.importc: "DateTimePicker_Free", dynlib: dllname.}
+proc DateTimePicker_DateIsNull*(AObj: pointer): bool {.importc: "DateTimePicker_DateIsNull", dynlib: dllname.}
+proc DateTimePicker_SelectDate*(AObj: pointer) {.importc: "DateTimePicker_SelectDate", dynlib: dllname.}
+proc DateTimePicker_SelectTime*(AObj: pointer) {.importc: "DateTimePicker_SelectTime", dynlib: dllname.}
 proc DateTimePicker_CanFocus*(AObj: pointer): bool {.importc: "DateTimePicker_CanFocus", dynlib: dllname.}
 proc DateTimePicker_ContainsControl*(AObj: pointer, Control: pointer): bool {.importc: "DateTimePicker_ContainsControl", dynlib: dllname.}
 proc DateTimePicker_ControlAtPos*(AObj: pointer, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): pointer {.importc: "DateTimePicker_ControlAtPos", dynlib: dllname.}
@@ -4574,9 +4578,47 @@ proc DateTimePicker_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) 
 proc DateTimePicker_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "DateTimePicker_AnchorVerticalCenterTo", dynlib: dllname.}
 proc DateTimePicker_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "DateTimePicker_AnchorAsAlign", dynlib: dllname.}
 proc DateTimePicker_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "DateTimePicker_AnchorClient", dynlib: dllname.}
+proc DateTimePicker_GetArrowShape*(AObj: pointer): TArrowShape {.importc: "DateTimePicker_GetArrowShape", dynlib: dllname.}
+proc DateTimePicker_SetArrowShape*(AObj: pointer, AValue: TArrowShape) {.importc: "DateTimePicker_SetArrowShape", dynlib: dllname.}
+proc DateTimePicker_GetAutoAdvance*(AObj: pointer): bool {.importc: "DateTimePicker_GetAutoAdvance", dynlib: dllname.}
+proc DateTimePicker_SetAutoAdvance*(AObj: pointer, AValue: bool) {.importc: "DateTimePicker_SetAutoAdvance", dynlib: dllname.}
+proc DateTimePicker_GetAutoButtonSize*(AObj: pointer): bool {.importc: "DateTimePicker_GetAutoButtonSize", dynlib: dllname.}
+proc DateTimePicker_SetAutoButtonSize*(AObj: pointer, AValue: bool) {.importc: "DateTimePicker_SetAutoButtonSize", dynlib: dllname.}
+proc DateTimePicker_GetCascade*(AObj: pointer): bool {.importc: "DateTimePicker_GetCascade", dynlib: dllname.}
+proc DateTimePicker_SetCascade*(AObj: pointer, AValue: bool) {.importc: "DateTimePicker_SetCascade", dynlib: dllname.}
+proc DateTimePicker_GetCenturyFrom*(AObj: pointer): uint16 {.importc: "DateTimePicker_GetCenturyFrom", dynlib: dllname.}
+proc DateTimePicker_SetCenturyFrom*(AObj: pointer, AValue: uint16) {.importc: "DateTimePicker_SetCenturyFrom", dynlib: dllname.}
+proc DateTimePicker_GetDateDisplayOrder*(AObj: pointer): TDateDisplayOrder {.importc: "DateTimePicker_GetDateDisplayOrder", dynlib: dllname.}
+proc DateTimePicker_SetDateDisplayOrder*(AObj: pointer, AValue: TDateDisplayOrder) {.importc: "DateTimePicker_SetDateDisplayOrder", dynlib: dllname.}
+proc DateTimePicker_GetDateSeparator*(AObj: pointer): cstring {.importc: "DateTimePicker_GetDateSeparator", dynlib: dllname.}
+proc DateTimePicker_SetDateSeparator*(AObj: pointer, AValue: cstring) {.importc: "DateTimePicker_SetDateSeparator", dynlib: dllname.}
+proc DateTimePicker_GetLeadingZeros*(AObj: pointer): bool {.importc: "DateTimePicker_GetLeadingZeros", dynlib: dllname.}
+proc DateTimePicker_SetLeadingZeros*(AObj: pointer, AValue: bool) {.importc: "DateTimePicker_SetLeadingZeros", dynlib: dllname.}
+proc DateTimePicker_GetMonthNames*(AObj: pointer): cstring {.importc: "DateTimePicker_GetMonthNames", dynlib: dllname.}
+proc DateTimePicker_SetMonthNames*(AObj: pointer, AValue: cstring) {.importc: "DateTimePicker_SetMonthNames", dynlib: dllname.}
+proc DateTimePicker_GetShowMonthNames*(AObj: pointer): bool {.importc: "DateTimePicker_GetShowMonthNames", dynlib: dllname.}
+proc DateTimePicker_SetShowMonthNames*(AObj: pointer, AValue: bool) {.importc: "DateTimePicker_SetShowMonthNames", dynlib: dllname.}
+proc DateTimePicker_GetNullInputAllowed*(AObj: pointer): bool {.importc: "DateTimePicker_GetNullInputAllowed", dynlib: dllname.}
+proc DateTimePicker_SetNullInputAllowed*(AObj: pointer, AValue: bool) {.importc: "DateTimePicker_SetNullInputAllowed", dynlib: dllname.}
+proc DateTimePicker_GetOptions*(AObj: pointer): TDateTimePickerOptions {.importc: "DateTimePicker_GetOptions", dynlib: dllname.}
+proc DateTimePicker_SetOptions*(AObj: pointer, AValue: TDateTimePickerOptions) {.importc: "DateTimePicker_SetOptions", dynlib: dllname.}
+proc DateTimePicker_GetShowCheckBox*(AObj: pointer): bool {.importc: "DateTimePicker_GetShowCheckBox", dynlib: dllname.}
+proc DateTimePicker_SetShowCheckBox*(AObj: pointer, AValue: bool) {.importc: "DateTimePicker_SetShowCheckBox", dynlib: dllname.}
+proc DateTimePicker_GetReadOnly*(AObj: pointer): bool {.importc: "DateTimePicker_GetReadOnly", dynlib: dllname.}
+proc DateTimePicker_SetReadOnly*(AObj: pointer, AValue: bool) {.importc: "DateTimePicker_SetReadOnly", dynlib: dllname.}
+proc DateTimePicker_GetTextForNullDate*(AObj: pointer): cstring {.importc: "DateTimePicker_GetTextForNullDate", dynlib: dllname.}
+proc DateTimePicker_SetTextForNullDate*(AObj: pointer, AValue: cstring) {.importc: "DateTimePicker_SetTextForNullDate", dynlib: dllname.}
+proc DateTimePicker_GetTimeDisplay*(AObj: pointer): TTimeDisplay {.importc: "DateTimePicker_GetTimeDisplay", dynlib: dllname.}
+proc DateTimePicker_SetTimeDisplay*(AObj: pointer, AValue: TTimeDisplay) {.importc: "DateTimePicker_SetTimeDisplay", dynlib: dllname.}
+proc DateTimePicker_GetTimeSeparator*(AObj: pointer): cstring {.importc: "DateTimePicker_GetTimeSeparator", dynlib: dllname.}
+proc DateTimePicker_SetTimeSeparator*(AObj: pointer, AValue: cstring) {.importc: "DateTimePicker_SetTimeSeparator", dynlib: dllname.}
+proc DateTimePicker_GetTrailingSeparator*(AObj: pointer): bool {.importc: "DateTimePicker_GetTrailingSeparator", dynlib: dllname.}
+proc DateTimePicker_SetTrailingSeparator*(AObj: pointer, AValue: bool) {.importc: "DateTimePicker_SetTrailingSeparator", dynlib: dllname.}
+proc DateTimePicker_GetUseDefaultSeparators*(AObj: pointer): bool {.importc: "DateTimePicker_GetUseDefaultSeparators", dynlib: dllname.}
+proc DateTimePicker_SetUseDefaultSeparators*(AObj: pointer, AValue: bool) {.importc: "DateTimePicker_SetUseDefaultSeparators", dynlib: dllname.}
+proc DateTimePicker_GetDroppedDown*(AObj: pointer): bool {.importc: "DateTimePicker_GetDroppedDown", dynlib: dllname.}
 proc DateTimePicker_GetDateTime*(AObj: pointer): uint32 {.importc: "DateTimePicker_GetDateTime", dynlib: dllname.}
 proc DateTimePicker_SetDateTime*(AObj: pointer, AValue: uint32) {.importc: "DateTimePicker_SetDateTime", dynlib: dllname.}
-proc DateTimePicker_GetDroppedDown*(AObj: pointer): bool {.importc: "DateTimePicker_GetDroppedDown", dynlib: dllname.}
 proc DateTimePicker_GetAlign*(AObj: pointer): TAlign {.importc: "DateTimePicker_GetAlign", dynlib: dllname.}
 proc DateTimePicker_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "DateTimePicker_SetAlign", dynlib: dllname.}
 proc DateTimePicker_GetAnchors*(AObj: pointer): TAnchors {.importc: "DateTimePicker_GetAnchors", dynlib: dllname.}
@@ -4756,6 +4798,8 @@ proc MonthCalendar_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {
 proc MonthCalendar_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "MonthCalendar_AnchorVerticalCenterTo", dynlib: dllname.}
 proc MonthCalendar_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "MonthCalendar_AnchorAsAlign", dynlib: dllname.}
 proc MonthCalendar_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "MonthCalendar_AnchorClient", dynlib: dllname.}
+proc MonthCalendar_GetDateTime*(AObj: pointer): uint32 {.importc: "MonthCalendar_GetDateTime", dynlib: dllname.}
+proc MonthCalendar_SetDateTime*(AObj: pointer, AValue: uint32) {.importc: "MonthCalendar_SetDateTime", dynlib: dllname.}
 proc MonthCalendar_GetAlign*(AObj: pointer): TAlign {.importc: "MonthCalendar_GetAlign", dynlib: dllname.}
 proc MonthCalendar_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "MonthCalendar_SetAlign", dynlib: dllname.}
 proc MonthCalendar_GetAnchors*(AObj: pointer): TAnchors {.importc: "MonthCalendar_GetAnchors", dynlib: dllname.}
@@ -8733,6 +8777,7 @@ proc List_StaticClassType*(): TClass {.importc: "List_StaticClassType", dynlib: 
 # ----------------- TForm ----------------------
 proc Form_Create*(AOwner: pointer): pointer {.importc: "Form_Create", dynlib: dllname.}
 proc Form_Free*(AObj: pointer) {.importc: "Form_Free", dynlib: dllname.}
+proc Form_Cascade*(AObj: pointer) {.importc: "Form_Cascade", dynlib: dllname.}
 proc Form_Close*(AObj: pointer) {.importc: "Form_Close", dynlib: dllname.}
 proc Form_FocusControl*(AObj: pointer, Control: pointer) {.importc: "Form_FocusControl", dynlib: dllname.}
 proc Form_Hide*(AObj: pointer) {.importc: "Form_Hide", dynlib: dllname.}
@@ -13980,7 +14025,11 @@ proc doThreadSyncCallbackProc(): uint =
     threadSyncProc = nil
   return 0
 
+
+proc doHandlerExceptionCallbackProc(msg: cstring): uint =
+  return 0
 # set callback
 SetEventCallback(cast[pointer](doEventCallbackProc))
 SetMessageCallback(cast[pointer](doMessageCallbackProc))
 SetThreadSyncCallback(cast[pointer](doThreadSyncCallbackProc))
+SetExceptionHandlerCallback(cast[pointer](doHandlerExceptionCallbackProc))

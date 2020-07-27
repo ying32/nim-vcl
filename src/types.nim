@@ -1562,6 +1562,56 @@ type
     poNone,
     poHeaderClick,
 
+  TDisplaySetting* = enum
+    dsShowHeadings,
+    dsShowDayNames,
+    dsNoMonthChange,
+    dsShowWeekNumbers,
+    dsStartMonday,
+
+  TTimeFormat* = enum
+    tf12, # 12 hours format, with am/pm string
+    tf24, # 24 hours format
+
+  TTimeDisplay* = enum
+    tdHM, # hour and minute
+    tdHMS, # hour Minute and second
+    tdHMSMs, # hour Minute Second and milisecond
+
+  TArrowShape* = enum
+    asClassicSmaller,
+    asClassicLarger,
+    asModernSmaller,
+    asModernLarger,
+    asYetAnotherShape,
+    asTheme,
+
+  TDateDisplayOrder* = enum
+    ddoDMY,
+    ddoMDY,
+    ddoYMD,
+    ddoTryDefault,
+
+  TDateTimePart* = enum
+    dtpDay,
+    dtpMonth,
+    dtpYear,
+    dtpHour,
+    dtpMinute,
+    dtpSecond,
+    dtpMiliSec,
+    dtpAMPM,
+
+  TDateTimeParts* = set[TDateTimePart]
+
+  TDateTimePickerOption* = enum
+    dtpoDoChangeOnSetDateTime,
+    dtpoEnabledIfUnchecked,
+    dtpoAutoCheck,
+    dtpoFlatButton,
+
+  TDateTimePickerOptions* = set[TDateTimePickerOption]
+
 when defined(i386):
   type
     TDWordFiller = object

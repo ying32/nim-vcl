@@ -13773,6 +13773,15 @@ proc NewDateTimePicker*(AOwner: TComponent): TDateTimePicker =
   new(result)
   result.Instance = DateTimePicker_Create(CheckPtr(AOwner))
 
+proc DateIsNull*(this: TDateTimePicker): bool  =
+  return DateTimePicker_DateIsNull(this.Instance)
+
+proc SelectDate*(this: TDateTimePicker)  =
+  DateTimePicker_SelectDate(this.Instance)
+
+proc SelectTime*(this: TDateTimePicker)  =
+  DateTimePicker_SelectTime(this.Instance)
+
 proc CanFocus*(this: TDateTimePicker): bool =
   return DateTimePicker_CanFocus(this.Instance)
 
@@ -13928,14 +13937,128 @@ proc AnchorAsAlign*(this: TDateTimePicker, ATheAlign: TAlign, ASpace: int32) =
 proc AnchorClient*(this: TDateTimePicker, ASpace: int32) =
   DateTimePicker_AnchorClient(this.Instance, ASpace)
 
+proc ArrowShape*(this: TDateTimePicker): TArrowShape  =
+  return DateTimePicker_GetArrowShape(this.Instance)
+
+proc `ArrowShape=`*(this: TDateTimePicker, AValue: TArrowShape)  =
+  DateTimePicker_SetArrowShape(this.Instance, AValue)
+
+proc AutoAdvance*(this: TDateTimePicker): bool  =
+  return DateTimePicker_GetAutoAdvance(this.Instance)
+
+proc `AutoAdvance=`*(this: TDateTimePicker, AValue: bool)  =
+  DateTimePicker_SetAutoAdvance(this.Instance, AValue)
+
+proc AutoButtonSize*(this: TDateTimePicker): bool  =
+  return DateTimePicker_GetAutoButtonSize(this.Instance)
+
+proc `AutoButtonSize=`*(this: TDateTimePicker, AValue: bool)  =
+  DateTimePicker_SetAutoButtonSize(this.Instance, AValue)
+
+proc Cascade*(this: TDateTimePicker): bool  =
+  return DateTimePicker_GetCascade(this.Instance)
+
+proc `Cascade=`*(this: TDateTimePicker, AValue: bool)  =
+  DateTimePicker_SetCascade(this.Instance, AValue)
+
+proc CenturyFrom*(this: TDateTimePicker): uint16  =
+  return DateTimePicker_GetCenturyFrom(this.Instance)
+
+proc `CenturyFrom=`*(this: TDateTimePicker, AValue: uint16)  =
+  DateTimePicker_SetCenturyFrom(this.Instance, AValue)
+
+proc DateDisplayOrder*(this: TDateTimePicker): TDateDisplayOrder  =
+  return DateTimePicker_GetDateDisplayOrder(this.Instance)
+
+proc `DateDisplayOrder=`*(this: TDateTimePicker, AValue: TDateDisplayOrder)  =
+  DateTimePicker_SetDateDisplayOrder(this.Instance, AValue)
+
+proc DateSeparator*(this: TDateTimePicker): string  =
+  return $DateTimePicker_GetDateSeparator(this.Instance)
+
+proc `DateSeparator=`*(this: TDateTimePicker, AValue: string)  =
+  DateTimePicker_SetDateSeparator(this.Instance, AValue)
+
+proc LeadingZeros*(this: TDateTimePicker): bool  =
+  return DateTimePicker_GetLeadingZeros(this.Instance)
+
+proc `LeadingZeros=`*(this: TDateTimePicker, AValue: bool)  =
+  DateTimePicker_SetLeadingZeros(this.Instance, AValue)
+
+proc MonthNames*(this: TDateTimePicker): string  =
+  return $DateTimePicker_GetMonthNames(this.Instance)
+
+proc `MonthNames=`*(this: TDateTimePicker, AValue: string)  =
+  DateTimePicker_SetMonthNames(this.Instance, AValue)
+
+proc ShowMonthNames*(this: TDateTimePicker): bool  =
+  return DateTimePicker_GetShowMonthNames(this.Instance)
+
+proc `ShowMonthNames=`*(this: TDateTimePicker, AValue: bool)  =
+  DateTimePicker_SetShowMonthNames(this.Instance, AValue)
+
+proc NullInputAllowed*(this: TDateTimePicker): bool  =
+  return DateTimePicker_GetNullInputAllowed(this.Instance)
+
+proc `NullInputAllowed=`*(this: TDateTimePicker, AValue: bool)  =
+  DateTimePicker_SetNullInputAllowed(this.Instance, AValue)
+
+proc Options*(this: TDateTimePicker): TDateTimePickerOptions  =
+  return DateTimePicker_GetOptions(this.Instance)
+
+proc `Options=`*(this: TDateTimePicker, AValue: TDateTimePickerOptions)  =
+  DateTimePicker_SetOptions(this.Instance, AValue)
+
+proc ShowCheckBox*(this: TDateTimePicker): bool  =
+  return DateTimePicker_GetShowCheckBox(this.Instance)
+
+proc `ShowCheckBox=`*(this: TDateTimePicker, AValue: bool)  =
+  DateTimePicker_SetShowCheckBox(this.Instance, AValue)
+
+proc ReadOnly*(this: TDateTimePicker): bool  =
+  return DateTimePicker_GetReadOnly(this.Instance)
+
+proc `ReadOnly=`*(this: TDateTimePicker, AValue: bool)  =
+  DateTimePicker_SetReadOnly(this.Instance, AValue)
+
+proc TextForNullDate*(this: TDateTimePicker): string  =
+  return $DateTimePicker_GetTextForNullDate(this.Instance)
+
+proc `TextForNullDate=`*(this: TDateTimePicker, AValue: string)  =
+  DateTimePicker_SetTextForNullDate(this.Instance, AValue)
+
+proc TimeDisplay*(this: TDateTimePicker): TTimeDisplay  =
+  return DateTimePicker_GetTimeDisplay(this.Instance)
+
+proc `TimeDisplay=`*(this: TDateTimePicker, AValue: TTimeDisplay)  =
+  DateTimePicker_SetTimeDisplay(this.Instance, AValue)
+
+proc TimeSeparator*(this: TDateTimePicker): string  =
+  return $DateTimePicker_GetTimeSeparator(this.Instance)
+
+proc `TimeSeparator=`*(this: TDateTimePicker, AValue: string)  =
+  DateTimePicker_SetTimeSeparator(this.Instance, AValue)
+
+proc TrailingSeparator*(this: TDateTimePicker): bool  =
+  return DateTimePicker_GetTrailingSeparator(this.Instance)
+
+proc `TrailingSeparator=`*(this: TDateTimePicker, AValue: bool)  =
+  DateTimePicker_SetTrailingSeparator(this.Instance, AValue)
+
+proc UseDefaultSeparators*(this: TDateTimePicker): bool  =
+  return DateTimePicker_GetUseDefaultSeparators(this.Instance)
+
+proc `UseDefaultSeparators=`*(this: TDateTimePicker, AValue: bool)  =
+  DateTimePicker_SetUseDefaultSeparators(this.Instance, AValue)
+
+proc DroppedDown*(this: TDateTimePicker): bool  =
+  return DateTimePicker_GetDroppedDown(this.Instance)
+
 proc DateTime*(this: TDateTimePicker): uint32  =
   return DateTimePicker_GetDateTime(this.Instance)
 
 proc `DateTime=`*(this: TDateTimePicker, AValue: uint32)  =
   DateTimePicker_SetDateTime(this.Instance, AValue)
-
-proc DroppedDown*(this: TDateTimePicker): bool  =
-  return DateTimePicker_GetDroppedDown(this.Instance)
 
 proc Align*(this: TDateTimePicker): TAlign  =
   return DateTimePicker_GetAlign(this.Instance)
@@ -14477,6 +14600,12 @@ proc AnchorAsAlign*(this: TMonthCalendar, ATheAlign: TAlign, ASpace: int32) =
 
 proc AnchorClient*(this: TMonthCalendar, ASpace: int32) =
   MonthCalendar_AnchorClient(this.Instance, ASpace)
+
+proc DateTime*(this: TMonthCalendar): uint32  =
+  return MonthCalendar_GetDateTime(this.Instance)
+
+proc `DateTime=`*(this: TMonthCalendar, AValue: uint32)  =
+  MonthCalendar_SetDateTime(this.Instance, AValue)
 
 proc Align*(this: TMonthCalendar): TAlign  =
   return MonthCalendar_GetAlign(this.Instance)
@@ -26445,6 +26574,9 @@ proc Free*(this: TForm) = defaultFree: Form_Free
 proc NewForm*(AOwner: TComponent): TForm =
   new(result)
   result.Instance = Form_Create(CheckPtr(AOwner))
+
+proc Cascade*(this: TForm)  =
+  Form_Cascade(this.Instance)
 
 proc Close*(this: TForm)  =
   Form_Close(this.Instance)
