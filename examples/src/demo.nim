@@ -7,7 +7,12 @@ when defined(gcc) and defined(windows):
   else:  
     {.link: "appres_amd64.o".}
 
-import strutils, vcl, types, fns, typeinfo #, macros
+import 
+  strutils, 
+  "../../src/vcl", 
+  "../../src/types", 
+  "../../src/fns", 
+  typeinfo #, macros
 
 ## 如何实现这种的??????
 ## TMainForm = lclClass(TForm)
