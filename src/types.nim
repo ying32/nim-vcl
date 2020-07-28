@@ -1663,7 +1663,7 @@ when defined(amd64):
 when defined(linux):
   type
     PGdkWindow* = pointer
-    TXId* = usize
+    # TXId* = usize
     PGtkFixed* = pointer
 
 
