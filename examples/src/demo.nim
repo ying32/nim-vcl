@@ -235,6 +235,25 @@ btnOpenColordlg.OnClick = proc(sender: pointer)=
   if dlgColor.Execute:
     mainForm.lbl1.Font.Color = dlgColor.Color
 
+
+# exception button
+let btnTestException = NewButton(mainForm)
+btnTestException.Parent = mainForm
+btnTestException.Caption = "Exception Test"
+btnTestException.Left = btnOpenColordlg.Left + btnOpenColordlg.Width + 10
+btnTestException.Top = btnOpenColordlg.Top
+btnTestException.Width = 100
+btnTestException.OnClick = proc(sender: pointer)=
+   # exception test
+  try:
+    let jpg = NewJPEGImage()
+    jpg.LoadFromFile("abc.jpg") # 不存在abc.jpg
+  except system.Exception as e:
+    discard MessageDlg("ERROR: " & e.msg, mtError, {mbYes}, 0)
+    #ShowMessage(e.msg)
+  except:
+    echo "Unknown exception!"
+
 # memo
 mainForm.memo = NewMemo(mainForm)
 mainForm.memo.Parent = mainForm
@@ -243,6 +262,9 @@ mainForm.memo.Top = btnOpenForm2.Top + btnOpenForm2.Height + 10
 mainForm.memo.Width = 500
 mainForm.memo.Height = 300
 mainForm.memo.ScrollBars = ssVertical
+
+
+
 
 # run
 Application.Run

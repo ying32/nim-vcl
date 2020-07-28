@@ -14027,7 +14027,9 @@ proc doThreadSyncCallbackProc(): uint =
 
 
 proc doHandlerExceptionCallbackProc(msg: cstring): uint =
-  return 0
+  raise newException(Exception, $msg)
+
+
 # set callback
 SetEventCallback(cast[pointer](doEventCallbackProc))
 SetMessageCallback(cast[pointer](doMessageCallbackProc))
