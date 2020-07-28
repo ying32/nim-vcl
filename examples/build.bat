@@ -1,2 +1,2 @@
-rem nim c --app:gui -d:release -d:nimCoroutines src/Hello.nim
-nim c -d:release --threads:on src/Hello.nim
+rem nim c --app:gui -d:release -d:nimCoroutines src/demo.nim
+nim c -d:release --threads:on src/demo.nim
