@@ -9,9 +9,9 @@ when defined(gcc) and defined(windows):
 
 import 
   strutils, 
-  "../../src/vcl", 
-  "../../src/types", 
-  "../../src/fns", 
+  ../../src/[vcl, types, fns], 
+  # "../../src/types", 
+  # "../../src/fns", 
   typeinfo #, macros
 
 ## 如何实现这种的??????
