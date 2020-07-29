@@ -7,7 +7,7 @@
 | 平台        | 状态   |       |
 | ----------- | ------ | ----- |
 | Windows x64 | 已测试 | Win10 |
-| Linux       | 待测试 |    Linux Mint 19   |
+| Linux       | 已测试 |    Linux Mint 19   |
 | macOS       | 待测试 |       |
 ----
 
@@ -24,7 +24,7 @@ nim-vcl的代码由 [Nim模板](https://github.com/ying32/liblcl/tree/master/Too
 | Platform        | Status   |       |
 | ----------- | ------ | ----- |
 | Windows x64 | Tested | Win10 |
-| Linux       | To be tested |    Linux Mint 19   |
+| Linux       | Tested |    Linux Mint 19   |
 | macOS       | To be tested |       |
 ----
 
