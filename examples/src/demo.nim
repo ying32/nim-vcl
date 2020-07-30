@@ -139,6 +139,10 @@ let guid = CreateGUID()
 echo("guid: ", GUIDToString(guid)) 
 
 
+# 全局异常处理
+# Application.OnException= proc(e: ref Exception) =
+#   ShowMessage("exception: " & e.msg)
+
 Application.Title = "Nim: LCL Application"
 Application.MainFormOnTaskBar =true
 Application.Initialize
@@ -248,7 +252,7 @@ btnTestException.OnClick = proc(sender: pointer)=
   try:
     let jpg = NewJPEGImage() # TJPEGImage new的时候传入了Free，所以调用Free不是必须的。
     jpg.LoadFromFile("abc.jpg") # 不存在abc.jpg
-  except system.Exception as e:
+  except Exception as e:
     discard MessageDlg("ERROR: " & e.msg, mtError, {mbYes}, 0)
     #ShowMessage(e.msg)
   except:

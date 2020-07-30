@@ -195,7 +195,6 @@ type
 
   TIconOptions* = ref object of TObject
 
-  Exception* = ref object of TObject
 
   TScrollBar* = ref object of TWinControl
 
@@ -399,7 +398,6 @@ proc AsForm*(obj: pointer): TForm = defaultPointerAs
 proc AsParaAttributes*(obj: pointer): TParaAttributes = defaultPointerAs
 proc AsTextAttributes*(obj: pointer): TTextAttributes = defaultPointerAs
 proc AsIconOptions*(obj: pointer): TIconOptions = defaultPointerAs
-proc AsException*(obj: pointer): Exception = defaultPointerAs
 proc AsScrollBar*(obj: pointer): TScrollBar = defaultPointerAs
 proc AsMaskEdit*(obj: pointer): TMaskEdit = defaultPointerAs
 proc AsShape*(obj: pointer): TShape = defaultPointerAs
@@ -24477,9 +24475,8 @@ proc `OnActivate=`*(this: TApplication, AEventId: TNotifyEvent)  =
 
 proc `OnDeactivate=`*(this: TApplication, AEventId: TNotifyEvent)  =
   Application_SetOnDeactivate(this.Instance, AEventId)
-
 proc `OnException=`*(this: TApplication, AEventId: TExceptionEvent)  =
-  Application_SetOnException(this.Instance, AEventId)
+  lclapi.exceptionProc = AEventId
 
 proc `OnHelp=`*(this: TApplication, AEventId: THelpEvent)  =
   Application_SetOnHelp(this.Instance, AEventId)
@@ -27517,39 +27514,6 @@ proc `AutoArrange=`*(this: TIconOptions, AValue: bool)  =
   IconOptions_SetAutoArrange(this.Instance, AValue)
 
 proc TIconOptionsClass*(): TClass = IconOptions_StaticClassType()
-
-
-#------------------------- Exception -------------------------
-
-
-proc ToString*(this: Exception): string =
-  return $Exception_ToString(this.Instance)
-
-proc ClassType*(this: Exception): TClass =
-  return Exception_ClassType(this.Instance)
-
-proc ClassName*(this: Exception): string =
-  return $Exception_ClassName(this.Instance)
-
-proc InstanceSize*(this: Exception): int32 =
-  return Exception_InstanceSize(this.Instance)
-
-proc InheritsFrom*(this: Exception, AClass: TClass): bool =
-  return Exception_InheritsFrom(this.Instance, AClass)
-
-proc Equals*(this: Exception, Obj: TObject): bool =
-  return Exception_Equals(this.Instance, CheckPtr(Obj))
-
-proc GetHashCode*(this: Exception): int32 =
-  return Exception_GetHashCode(this.Instance)
-
-proc Message*(this: Exception): string  =
-  return $Exception_GetMessage(this.Instance)
-
-proc `Message=`*(this: Exception, AValue: string)  =
-  Exception_SetMessage(this.Instance, AValue)
-
-proc ExceptionClass*(): TClass = Exception_StaticClassType()
 
 
 #------------------------- TScrollBar -------------------------

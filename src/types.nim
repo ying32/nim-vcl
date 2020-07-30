@@ -1686,7 +1686,7 @@ type
 
   TSysLinkEvent* = proc(sender: pointer, link: cstring, linkType: TSysLinkType) {.nimcall.}
 
-  TExceptionEvent* = proc(sender: pointer, e: pointer) {.nimcall.}
+  TExceptionEvent* = proc(e: ref Exception) {.nimcall.}
 
   TKeyEvent* = proc(sender: pointer, key: var Char, shift: TShiftState) {.nimcall.}
 

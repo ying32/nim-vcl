@@ -9090,17 +9090,6 @@ proc IconOptions_SetArrangement*(AObj: pointer, AValue: TIconArrangement) {.impo
 proc IconOptions_GetAutoArrange*(AObj: pointer): bool {.importc: "IconOptions_GetAutoArrange", dynlib: dllname.}
 proc IconOptions_SetAutoArrange*(AObj: pointer, AValue: bool) {.importc: "IconOptions_SetAutoArrange", dynlib: dllname.}
 proc IconOptions_StaticClassType*(): TClass {.importc: "IconOptions_StaticClassType", dynlib: dllname.}
-# ----------------- Exception ----------------------
-proc Exception_ToString*(AObj: pointer): cstring {.importc: "Exception_ToString", dynlib: dllname.}
-proc Exception_ClassType*(AObj: pointer): TClass {.importc: "Exception_ClassType", dynlib: dllname.}
-proc Exception_ClassName*(AObj: pointer): cstring {.importc: "Exception_ClassName", dynlib: dllname.}
-proc Exception_InstanceSize*(AObj: pointer): int32 {.importc: "Exception_InstanceSize", dynlib: dllname.}
-proc Exception_InheritsFrom*(AObj: pointer, AClass: TClass): bool {.importc: "Exception_InheritsFrom", dynlib: dllname.}
-proc Exception_Equals*(AObj: pointer, Obj: pointer): bool {.importc: "Exception_Equals", dynlib: dllname.}
-proc Exception_GetHashCode*(AObj: pointer): int32 {.importc: "Exception_GetHashCode", dynlib: dllname.}
-proc Exception_GetMessage*(AObj: pointer): cstring {.importc: "Exception_GetMessage", dynlib: dllname.}
-proc Exception_SetMessage*(AObj: pointer, AValue: cstring) {.importc: "Exception_SetMessage", dynlib: dllname.}
-proc Exception_StaticClassType*(): TClass {.importc: "Exception_StaticClassType", dynlib: dllname.}
 # ----------------- TScrollBar ----------------------
 proc ScrollBar_Create*(AOwner: pointer): pointer {.importc: "ScrollBar_Create", dynlib: dllname.}
 proc ScrollBar_Free*(AObj: pointer) {.importc: "ScrollBar_Free", dynlib: dllname.}
@@ -14026,7 +14015,14 @@ proc doThreadSyncCallbackProc(): uint =
   return 0
 
 
+var
+  exceptionProc*: TExceptionEvent;
+
 proc doHandlerExceptionCallbackProc(msg: cstring): uint =
+  # 如果设置了全局的，则由全局的异常捕获，则不再直接抛出异常
+  if exceptionProc != nil:
+    exceptionProc(newException(Exception, $msg))
+    return
   raise newException(Exception, $msg)
 
 # set callback
