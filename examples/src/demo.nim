@@ -7,21 +7,19 @@ when defined(gcc) and defined(windows):
   else:  
     {.link: "appres_amd64.o".}
 
-import 
+import  
   strutils, 
-  ../../src/[vcl, types, fns], 
-  # "../../src/types", 
-  # "../../src/fns", 
+  ../../src/[vcl, types, fns],   
   typeinfo #, macros
 
-## 如何实现这种的??????
+## 如何实现这种的?????? 
 ## TMainForm = lclClass(TForm)
-# macro lclClass(class: untyped, parent: untyped): untyped =
-#   result = newStmtList() 
+# macro lclClass(class: untyped, parent: untyped): untyped = 
+#   result = newStmtList()    
 #   result.add parseExpr($class & "= ref object of" & $parent)
  
   
-## 如何实现反射填充ref object的字段？？  
+## 如何实现反射填充ref object的字段？？     
 ## 
 
 type 
@@ -30,6 +28,8 @@ type
     edit: TEdit
     lbl1: TLabel
     dlgOpen: TOpenDialog
+    mainMenu: TMainMenu
+    pmMenu: TPopupMenu
     # dlgColor: TColorDialog
 
 type
@@ -266,6 +266,63 @@ mainForm.memo.Top = btnOpenForm2.Top + btnOpenForm2.Height + 10
 mainForm.memo.Width = 500
 mainForm.memo.Height = 300
 mainForm.memo.ScrollBars = ssVertical
+
+# TMainMenu
+mainForm.mainMenu = NewMainMenu(mainForm)
+let fItem = NewMenuItem(mainForm)
+fItem.Caption = "&File"
+
+# new
+var subItem = NewMenuItem(mainForm)
+subItem.Caption = "&New"
+subItem.ShortCutText = "Ctrl+N"
+subItem.OnClick = proc(sender: pointer)=
+  mainForm.memo.Clear
+  discard
+fItem.Add(subItem)
+
+# open
+subItem = NewMenuItem(mainForm)
+subItem.Caption = "&Open"
+subItem.ShortCutText = "Ctrl+O"
+subItem.OnClick = proc(sender: pointer)= 
+  ShowMessage("Open")
+  discard
+fItem.Add(subItem)
+# -
+subItem = NewMenuItem(mainForm)
+subItem.Caption = "-"
+fItem.Add(subItem)
+
+#exit
+subItem = NewMenuItem(mainForm)
+subItem.Caption = "&Exit"
+subItem.OnClick = proc(sender: pointer)=
+  Application.Terminate
+  discard
+fItem.Add(subItem)
+
+# add fItem
+mainForm.mainMenu.Items.Add(fItem)
+
+# TPopupMenu
+mainForm.pmMenu = NewPopupMenu(mainForm)
+mainForm.PopupMenu = mainForm.pmMenu
+
+try:
+#exit
+  subItem = NewMenuItem(mainForm)
+  subItem.Caption = "&Exit"
+  subItem.OnClick = proc(sender: pointer)=
+    Application.Terminate
+    discard
+  mainForm.pmMenu.Items.Add(subItem)
+except Exception as e:
+  ShowMessage(e.msg)
+except:
+  discard
+
+
 
 
 

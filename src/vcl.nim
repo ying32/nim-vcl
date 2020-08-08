@@ -5,10 +5,7 @@
 ]#
 #{.experimental: "codeReordering".}
 
-
 import lclapi, types
-
-
 
 type
 
@@ -19531,6 +19528,11 @@ proc Components*(this: TMenuItem, AIndex: int32): TComponent  =
 
 proc TMenuItemClass*(): TClass = MenuItem_StaticClassType()
 
+proc ShortCutText*(this: TMenuItem): string =
+  return $DShortCutToText(this.ShortCut)
+
+proc `ShortCutText=`*(this: TMenuItem, text: string) =
+  `ShortCut=`(this, DTextToShortCut(text))
 
 #------------------------- TPicture -------------------------
 
