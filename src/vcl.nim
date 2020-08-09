@@ -11855,6 +11855,13 @@ proc NewImageList*(AOwner: TComponent): TImageList =
   new(result)
   result.Instance = ImageList_Create(CheckPtr(AOwner))
 
+proc StretchDraw*(this: TImageList, ACanvas: TCanvas, AIndex: int32, ARect: TRect, AEnabled: bool)  =
+  var ps3 = ARect
+  ImageList_StretchDraw(this.Instance, CheckPtr(ACanvas), AIndex, ps3, AEnabled)
+
+proc AddSliced*(this: TImageList, Image: TBitmap, AHorizontalCount: int32, AVerticalCount: int32): int32  =
+  return ImageList_AddSliced(this.Instance, CheckPtr(Image), AHorizontalCount, AVerticalCount)
+
 proc GetHotSpot*(this: TImageList): TPoint  =
   ImageList_GetHotSpot(this.Instance, result)
 
@@ -19516,11 +19523,12 @@ proc Components*(this: TMenuItem, AIndex: int32): TComponent  =
 
 proc TMenuItemClass*(): TClass = MenuItem_StaticClassType()
 
-proc ShortCutText*(this: TMenuItem): string =
-  return $DShortCutToText(this.ShortCut)
 
-proc `ShortCutText=`*(this: TMenuItem, text: string) =
-  `ShortCut=`(this, DTextToShortCut(text))
+proc ShortCutText*(this: TMenuItem): string  =
+  return $MenuItem_GetShortCutText(this.Instance)
+
+proc `ShortCutText=`*(this: TMenuItem, Value: string)  =
+  MenuItem_SetShortCutText(this.Instance, Value)
 
 #------------------------- TPicture -------------------------
 
@@ -24134,6 +24142,10 @@ proc Refresh*(this: TCanvas)  =
 proc RoundRect*(this: TCanvas, X1: int32, Y1: int32, X2: int32, Y2: int32, X3: int32, Y3: int32)  =
   Canvas_RoundRect(this.Instance, X1, Y1, X2, Y2, X3, Y3)
 
+proc StretchDraw*(this: TCanvas, Rect: TRect, Graphic: TGraphic)  =
+  var ps1 = Rect
+  Canvas_StretchDraw(this.Instance, ps1, CheckPtr(Graphic))
+
 proc TextExtent*(this: TCanvas, Text: string): TSize  =
   Canvas_TextExtent(this.Instance, Text, result)
 
@@ -24212,6 +24224,12 @@ proc `OnChange=`*(this: TCanvas, AEventId: TNotifyEvent)  =
 proc `OnChanging=`*(this: TCanvas, AEventId: TNotifyEvent)  =
   Canvas_SetOnChanging(this.Instance, AEventId)
 
+proc Pixels*(this: TCanvas, X: int32, Y: int32): TColor  =
+  return Canvas_GetPixels(this.Instance, X, Y)
+
+proc `Pixels=`*(this: TCanvas, X: int32, Y: int32, AValue: TColor)  =
+  Canvas_SetPixels(this.Instance, X, Y, AValue)
+
 proc TCanvasClass*(): TClass = Canvas_StaticClassType()
 
 
@@ -24243,17 +24261,12 @@ proc FrameRect*(this: TCanvas, Rect: TRect)  =
   var ps1 = Rect
   Canvas_FrameRect(this.Instance, ps1)
 
-proc StretchDraw*(this: TCanvas, Rect: TRect, Graphic: TGraphic)  =
-  var ps1 = Rect
-  Canvas_StretchDraw(this.Instance, ps1, CheckPtr(Graphic))
-
 proc TextRect*(this: TCanvas, Rect: TRect, X: int32, Y: int32, Text: string)  =
   var ps1 = Rect
   Canvas_TextRect1(this.Instance, ps1, X, Y, Text)
 
-proc TextRect*(this: TCanvas, Rect: var TRect, Text: string, TextFormat: TTextFormat): int32 =
-  var cstr: cstring = nil
-  result = Canvas_TextRect2(this.Instance, Rect, Text, cstr, TextFormat)
+proc TextRect*(this: TCanvas, Rect: var TRect, Text: string, TextFormat: TTextFormat): int32  =
+  return Canvas_TextRect2(this.Instance, Rect, Text, TextFormat)
 
 proc Polygon*(this: TCanvas, APoints: var TPoint, ALen: int32)  =
   Canvas_Polygon(this.Instance, APoints, ALen)
@@ -24263,12 +24276,6 @@ proc Polyline*(this: TCanvas, APoints: var TPoint, ALen: int32)  =
 
 proc PolyBezier*(this: TCanvas, APoints: var TPoint, ALen: int32)  =
   Canvas_PolyBezier(this.Instance, APoints, ALen)
-
-proc Pixels*(this: TCanvas, X: int32, Y: int32): TColor  =
-  return Canvas_Pixels(this.Instance, X, Y)
-
-proc `Pixels=`*(this: TCanvas, X: int32, Y: int32, AColor: TColor)  =
-  Canvas_SetPixels(this.Instance, X, Y, AColor)
 
 #------------------------- TApplication -------------------------
 
@@ -25887,6 +25894,27 @@ proc NewClipboard*(): TClipboard =
   new(result, Free)
   result.Instance = Clipboard_Create()
 
+proc FindPictureFormatID*(this: TClipboard): TClipboardFormat  =
+  return Clipboard_FindPictureFormatID(this.Instance)
+
+proc FindFormatID*(this: TClipboard, FormatName: string): TClipboardFormat  =
+  return Clipboard_FindFormatID(this.Instance, FormatName)
+
+proc GetAsHtml*(this: TClipboard, ExtractFragmentOnly: bool): string  =
+  return $Clipboard_GetAsHtml(this.Instance, ExtractFragmentOnly)
+
+proc SupportedFormats*(this: TClipboard, List: TStrings)  =
+  Clipboard_SupportedFormats(this.Instance, CheckPtr(List))
+
+proc HasFormatName*(this: TClipboard, FormatName: string): bool  =
+  return Clipboard_HasFormatName(this.Instance, FormatName)
+
+proc HasPictureFormat*(this: TClipboard): bool  =
+  return Clipboard_HasPictureFormat(this.Instance)
+
+proc SetAsHtml*(this: TClipboard, Html: string, PlainText: string)  =
+  Clipboard_SetAsHtml(this.Instance, Html, PlainText)
+
 proc Assign*(this: TClipboard, Source: TObject)  =
   Clipboard_Assign(this.Instance, CheckPtr(Source))
 
@@ -25895,9 +25923,6 @@ proc Clear*(this: TClipboard)  =
 
 proc Close*(this: TClipboard)  =
   Clipboard_Close(this.Instance)
-
-proc HasFormat*(this: TClipboard, Format: uint16): bool  =
-  return Clipboard_HasFormat(this.Instance, Format)
 
 proc Open*(this: TClipboard)  =
   Clipboard_Open(this.Instance)
@@ -25941,14 +25966,14 @@ proc `AsText=`*(this: TClipboard, AValue: string)  =
 proc FormatCount*(this: TClipboard): int32  =
   return Clipboard_GetFormatCount(this.Instance)
 
-proc Formats*(this: TClipboard, Index: int32): uint16  =
+proc Formats*(this: TClipboard, Index: int32): TClipboardFormat  =
   return Clipboard_GetFormats(this.Instance, Index)
 
 proc TClipboardClass*(): TClass = Clipboard_StaticClassType()
 
 
-proc `Clipboard=`*(this: TClipboard): TClipboard  =
-  return Clipboard_SetClipboard(this.Instance).AsClipboard
+proc HasFormat*(this: TClipboard, AFormatID: TClipboardFormat): bool  =
+  return Clipboard_HasFormat(this.Instance, AFormatID)
 
 #------------------------- TMonitor -------------------------
 
@@ -31229,6 +31254,12 @@ proc ImageCount*(this: TImageButton): int32  =
 
 proc `ImageCount=`*(this: TImageButton, AValue: int32)  =
   ImageButton_SetImageCount(this.Instance, AValue)
+
+proc Orientation*(this: TImageButton): TImageOrientation  =
+  return ImageButton_GetOrientation(this.Instance)
+
+proc `Orientation=`*(this: TImageButton, AValue: TImageOrientation)  =
+  ImageButton_SetOrientation(this.Instance, AValue)
 
 proc ModalResult*(this: TImageButton): TModalResult  =
   return ImageButton_GetModalResult(this.Instance)

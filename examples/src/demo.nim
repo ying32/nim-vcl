@@ -250,7 +250,7 @@ btnTestException.Width = 100
 btnTestException.OnClick = proc(sender: pointer)=
    # exception test
   try:
-    let jpg = NewJPEGImage() # TJPEGImage new的时候传入了Free，所以调用Free不是必须的。
+    let jpg = NewJPEGImage() # TJPEGImage new的时候传入了Free，所以调用Free不是必须的。 
     jpg.LoadFromFile("abc.jpg") # 不存在abc.jpg
   except Exception as e:
     discard MessageDlg("ERROR: " & e.msg, mtError, {mbYes}, 0)

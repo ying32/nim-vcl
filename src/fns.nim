@@ -63,6 +63,9 @@ proc TextToShortCut*(AText: string): TShortCut =
 proc ShortCutToText*(AVal: TShortCut): string =
   return $lclapi.DShortCutToText(AVal)
 
+proc SetClipboard*(ANewClipboard: TClipboard): TClipboard =
+  return lclapi.DSetClipboard(CheckPtr(ANewClipboard)).AsClipboard
+
 when not defined(windows):
   proc SendMessage*(hWd: HWND, msg: uint32, wParam: WPARAM, lParam: LPARAM): LRESULT =
     return lclapi.DSendMessage(hWd, msg, wParam, lParam)
@@ -98,6 +101,10 @@ when not defined(windows):
 when not defined(windows):
   proc SetForegroundWindow*(hWnd: HWND): bool =
     return lclapi.DSetForegroundWindow(hWnd)
+
+when not defined(windows):
+  proc RegisterClipboardFormat*(AFormat: string): TClipboardFormat =
+    return lclapi.DRegisterClipboardFormat(AFormat)
 
 when not defined(windows):
   proc WindowFromPoint*(point: var TPoint): HWND =

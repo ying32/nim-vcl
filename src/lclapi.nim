@@ -31,6 +31,7 @@ proc Screen_Instance*(): pointer {.importc: "Screen_Instance", dynlib: dllname.}
 proc DTextToShortCut*(AText: cstring): TShortCut {.importc: "DTextToShortCut", dynlib: dllname.}
 proc DShortCutToText*(AVal: TShortCut): cstring {.importc: "DShortCutToText", dynlib: dllname.}
 proc Clipboard_Instance*(): pointer {.importc: "Clipboard_Instance", dynlib: dllname.}
+proc DSetClipboard*(ANewClipboard: pointer): pointer {.importc: "DSetClipboard", dynlib: dllname.}
 when not defined(windows):
   proc DSendMessage*(hWd: HWND, msg: uint32, wParam: WPARAM, lParam: LPARAM): LRESULT {.importc: "DSendMessage", dynlib: dllname.}
 when not defined(windows):
@@ -49,6 +50,8 @@ when not defined(windows):
   proc DReleaseDC*(hWnd: HWND, dc: HDC): int32 {.importc: "DReleaseDC", dynlib: dllname.}
 when not defined(windows):
   proc DSetForegroundWindow*(hWnd: HWND): bool {.importc: "DSetForegroundWindow", dynlib: dllname.}
+when not defined(windows):
+  proc DRegisterClipboardFormat*(AFormat: cstring): TClipboardFormat {.importc: "DRegisterClipboardFormat", dynlib: dllname.}
 when not defined(windows):
   proc DWindowFromPoint*(point: var TPoint): HWND {.importc: "DWindowFromPoint", dynlib: dllname.}
 proc SetEventCallback*(APtr: pointer) {.importc: "SetEventCallback", dynlib: dllname.}
@@ -3891,6 +3894,8 @@ proc TrackBar_StaticClassType*(): TClass {.importc: "TrackBar_StaticClassType", 
 # ----------------- TImageList ----------------------
 proc ImageList_Create*(AOwner: pointer): pointer {.importc: "ImageList_Create", dynlib: dllname.}
 proc ImageList_Free*(AObj: pointer) {.importc: "ImageList_Free", dynlib: dllname.}
+proc ImageList_StretchDraw*(AObj: pointer, ACanvas: pointer, AIndex: int32, ARect: var TRect, AEnabled: bool) {.importc: "ImageList_StretchDraw", dynlib: dllname.}
+proc ImageList_AddSliced*(AObj: pointer, Image: pointer, AHorizontalCount: int32, AVerticalCount: int32): int32 {.importc: "ImageList_AddSliced", dynlib: dllname.}
 proc ImageList_GetHotSpot*(AObj: pointer, Result: var TPoint) {.importc: "ImageList_GetHotSpot", dynlib: dllname.}
 proc ImageList_HideDragImage*(AObj: pointer) {.importc: "ImageList_HideDragImage", dynlib: dllname.}
 proc ImageList_ShowDragImage*(AObj: pointer) {.importc: "ImageList_ShowDragImage", dynlib: dllname.}
@@ -6434,6 +6439,8 @@ proc MenuItem_SetTag*(AObj: pointer, AValue: int) {.importc: "MenuItem_SetTag", 
 proc MenuItem_GetItems*(AObj: pointer, Index: int32): pointer {.importc: "MenuItem_GetItems", dynlib: dllname.}
 proc MenuItem_GetComponents*(AObj: pointer, AIndex: int32): pointer {.importc: "MenuItem_GetComponents", dynlib: dllname.}
 proc MenuItem_StaticClassType*(): TClass {.importc: "MenuItem_StaticClassType", dynlib: dllname.}
+proc MenuItem_GetShortCutText*(AObj: pointer): cstring {.importc: "MenuItem_GetShortCutText", dynlib: dllname.}
+proc MenuItem_SetShortCutText*(AObj: pointer, Value: cstring) {.importc: "MenuItem_SetShortCutText", dynlib: dllname.}
 # ----------------- TPicture ----------------------
 proc Picture_Create*(): pointer {.importc: "Picture_Create", dynlib: dllname.}
 proc Picture_Free*(AObj: pointer) {.importc: "Picture_Free", dynlib: dllname.}
@@ -7967,6 +7974,7 @@ proc Canvas_Pie*(AObj: pointer, X1: int32, Y1: int32, X2: int32, Y2: int32, X3: 
 proc Canvas_Rectangle*(AObj: pointer, X1: int32, Y1: int32, X2: int32, Y2: int32) {.importc: "Canvas_Rectangle", dynlib: dllname.}
 proc Canvas_Refresh*(AObj: pointer) {.importc: "Canvas_Refresh", dynlib: dllname.}
 proc Canvas_RoundRect*(AObj: pointer, X1: int32, Y1: int32, X2: int32, Y2: int32, X3: int32, Y3: int32) {.importc: "Canvas_RoundRect", dynlib: dllname.}
+proc Canvas_StretchDraw*(AObj: pointer, Rect: var TRect, Graphic: pointer) {.importc: "Canvas_StretchDraw", dynlib: dllname.}
 proc Canvas_TextExtent*(AObj: pointer, Text: cstring, Result: var TSize) {.importc: "Canvas_TextExtent", dynlib: dllname.}
 proc Canvas_TextOut*(AObj: pointer, X: int32, Y: int32, Text: cstring) {.importc: "Canvas_TextOut", dynlib: dllname.}
 proc Canvas_Lock*(AObj: pointer) {.importc: "Canvas_Lock", dynlib: dllname.}
@@ -7993,6 +8001,8 @@ proc Canvas_GetPen*(AObj: pointer): pointer {.importc: "Canvas_GetPen", dynlib: 
 proc Canvas_SetPen*(AObj: pointer, AValue: pointer) {.importc: "Canvas_SetPen", dynlib: dllname.}
 proc Canvas_SetOnChange*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Canvas_SetOnChange", dynlib: dllname.}
 proc Canvas_SetOnChanging*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Canvas_SetOnChanging", dynlib: dllname.}
+proc Canvas_GetPixels*(AObj: pointer, X: int32, Y: int32): TColor {.importc: "Canvas_GetPixels", dynlib: dllname.}
+proc Canvas_SetPixels*(AObj: pointer, X: int32, Y: int32, AValue: TColor) {.importc: "Canvas_SetPixels", dynlib: dllname.}
 proc Canvas_StaticClassType*(): TClass {.importc: "Canvas_StaticClassType", dynlib: dllname.}
 proc Canvas_BrushCopy*(AObj: pointer, Dest: var TRect, Bitmap: pointer, Source: var TRect, Color: TColor) {.importc: "Canvas_BrushCopy", dynlib: dllname.}
 proc Canvas_CopyRect*(AObj: pointer, Dest: var TRect, Canvas: pointer, Source: var TRect) {.importc: "Canvas_CopyRect", dynlib: dllname.}
@@ -8001,14 +8011,11 @@ proc Canvas_Draw2*(AObj: pointer, X: int32, Y: int32, Graphic: pointer, Opacity:
 proc Canvas_DrawFocusRect*(AObj: pointer, ARect: var TRect) {.importc: "Canvas_DrawFocusRect", dynlib: dllname.}
 proc Canvas_FillRect*(AObj: pointer, Rect: var TRect) {.importc: "Canvas_FillRect", dynlib: dllname.}
 proc Canvas_FrameRect*(AObj: pointer, Rect: var TRect) {.importc: "Canvas_FrameRect", dynlib: dllname.}
-proc Canvas_StretchDraw*(AObj: pointer, Rect: var TRect, Graphic: pointer) {.importc: "Canvas_StretchDraw", dynlib: dllname.}
 proc Canvas_TextRect1*(AObj: pointer, Rect: var TRect, X: int32, Y: int32, Text: cstring) {.importc: "Canvas_TextRect1", dynlib: dllname.}
-proc Canvas_TextRect2*(AObj: pointer, Rect: var TRect, Text: cstring, AOutStr: var cstring, TextFormat: TTextFormat): int32 {.importc: "Canvas_TextRect2", dynlib: dllname.}
+proc Canvas_TextRect2*(AObj: pointer, Rect: var TRect, Text: cstring, TextFormat: TTextFormat): int32 {.importc: "Canvas_TextRect2", dynlib: dllname.}
 proc Canvas_Polygon*(AObj: pointer, APoints: var TPoint, ALen: int32) {.importc: "Canvas_Polygon", dynlib: dllname.}
 proc Canvas_Polyline*(AObj: pointer, APoints: var TPoint, ALen: int32) {.importc: "Canvas_Polyline", dynlib: dllname.}
 proc Canvas_PolyBezier*(AObj: pointer, APoints: var TPoint, ALen: int32) {.importc: "Canvas_PolyBezier", dynlib: dllname.}
-proc Canvas_Pixels*(AObj: pointer, X: int32, Y: int32): TColor {.importc: "Canvas_Pixels", dynlib: dllname.}
-proc Canvas_SetPixels*(AObj: pointer, X: int32, Y: int32, AColor: TColor) {.importc: "Canvas_SetPixels", dynlib: dllname.}
 # ----------------- TApplication ----------------------
 proc Application_Create*(AOwner: pointer): pointer {.importc: "Application_Create", dynlib: dllname.}
 proc Application_Free*(AObj: pointer) {.importc: "Application_Free", dynlib: dllname.}
@@ -8548,10 +8555,16 @@ proc Registry_StaticClassType*(): TClass {.importc: "Registry_StaticClassType", 
 # ----------------- TClipboard ----------------------
 proc Clipboard_Create*(): pointer {.importc: "Clipboard_Create", dynlib: dllname.}
 proc Clipboard_Free*(AObj: pointer) {.importc: "Clipboard_Free", dynlib: dllname.}
+proc Clipboard_FindPictureFormatID*(AObj: pointer): TClipboardFormat {.importc: "Clipboard_FindPictureFormatID", dynlib: dllname.}
+proc Clipboard_FindFormatID*(AObj: pointer, FormatName: cstring): TClipboardFormat {.importc: "Clipboard_FindFormatID", dynlib: dllname.}
+proc Clipboard_GetAsHtml*(AObj: pointer, ExtractFragmentOnly: bool): cstring {.importc: "Clipboard_GetAsHtml", dynlib: dllname.}
+proc Clipboard_SupportedFormats*(AObj: pointer, List: pointer) {.importc: "Clipboard_SupportedFormats", dynlib: dllname.}
+proc Clipboard_HasFormatName*(AObj: pointer, FormatName: cstring): bool {.importc: "Clipboard_HasFormatName", dynlib: dllname.}
+proc Clipboard_HasPictureFormat*(AObj: pointer): bool {.importc: "Clipboard_HasPictureFormat", dynlib: dllname.}
+proc Clipboard_SetAsHtml*(AObj: pointer, Html: cstring, PlainText: cstring) {.importc: "Clipboard_SetAsHtml", dynlib: dllname.}
 proc Clipboard_Assign*(AObj: pointer, Source: pointer) {.importc: "Clipboard_Assign", dynlib: dllname.}
 proc Clipboard_Clear*(AObj: pointer) {.importc: "Clipboard_Clear", dynlib: dllname.}
 proc Clipboard_Close*(AObj: pointer) {.importc: "Clipboard_Close", dynlib: dllname.}
-proc Clipboard_HasFormat*(AObj: pointer, Format: uint16): bool {.importc: "Clipboard_HasFormat", dynlib: dllname.}
 proc Clipboard_Open*(AObj: pointer) {.importc: "Clipboard_Open", dynlib: dllname.}
 proc Clipboard_GetTextBuf*(AObj: pointer, Buffer: cstring, BufSize: int32): int32 {.importc: "Clipboard_GetTextBuf", dynlib: dllname.}
 proc Clipboard_SetTextBuf*(AObj: pointer, Buffer: cstring) {.importc: "Clipboard_SetTextBuf", dynlib: dllname.}
@@ -8566,9 +8579,9 @@ proc Clipboard_ToString*(AObj: pointer): cstring {.importc: "Clipboard_ToString"
 proc Clipboard_GetAsText*(AObj: pointer): cstring {.importc: "Clipboard_GetAsText", dynlib: dllname.}
 proc Clipboard_SetAsText*(AObj: pointer, AValue: cstring) {.importc: "Clipboard_SetAsText", dynlib: dllname.}
 proc Clipboard_GetFormatCount*(AObj: pointer): int32 {.importc: "Clipboard_GetFormatCount", dynlib: dllname.}
-proc Clipboard_GetFormats*(AObj: pointer, Index: int32): uint16 {.importc: "Clipboard_GetFormats", dynlib: dllname.}
+proc Clipboard_GetFormats*(AObj: pointer, Index: int32): TClipboardFormat {.importc: "Clipboard_GetFormats", dynlib: dllname.}
 proc Clipboard_StaticClassType*(): TClass {.importc: "Clipboard_StaticClassType", dynlib: dllname.}
-proc Clipboard_SetClipboard*(NewClipboard: pointer): pointer {.importc: "Clipboard_SetClipboard", dynlib: dllname.}
+proc Clipboard_HasFormat*(AObj: pointer, AFormatID: TClipboardFormat): bool {.importc: "Clipboard_HasFormat", dynlib: dllname.}
 # ----------------- TMonitor ----------------------
 proc Monitor_Create*(): pointer {.importc: "Monitor_Create", dynlib: dllname.}
 proc Monitor_Free*(AObj: pointer) {.importc: "Monitor_Free", dynlib: dllname.}
@@ -10318,6 +10331,8 @@ proc ImageButton_GetFont*(AObj: pointer): pointer {.importc: "ImageButton_GetFon
 proc ImageButton_SetFont*(AObj: pointer, AValue: pointer) {.importc: "ImageButton_SetFont", dynlib: dllname.}
 proc ImageButton_GetImageCount*(AObj: pointer): int32 {.importc: "ImageButton_GetImageCount", dynlib: dllname.}
 proc ImageButton_SetImageCount*(AObj: pointer, AValue: int32) {.importc: "ImageButton_SetImageCount", dynlib: dllname.}
+proc ImageButton_GetOrientation*(AObj: pointer): TImageOrientation {.importc: "ImageButton_GetOrientation", dynlib: dllname.}
+proc ImageButton_SetOrientation*(AObj: pointer, AValue: TImageOrientation) {.importc: "ImageButton_SetOrientation", dynlib: dllname.}
 proc ImageButton_GetModalResult*(AObj: pointer): TModalResult {.importc: "ImageButton_GetModalResult", dynlib: dllname.}
 proc ImageButton_SetModalResult*(AObj: pointer, AValue: TModalResult) {.importc: "ImageButton_SetModalResult", dynlib: dllname.}
 proc ImageButton_GetParentShowHint*(AObj: pointer): bool {.importc: "ImageButton_GetParentShowHint", dynlib: dllname.}
