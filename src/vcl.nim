@@ -18,11 +18,11 @@ type
 
   TWinControl* = ref object of TControl
 
-  TMainMenu* = ref object of TComponent
+  TGraphic* = ref object of TObject
 
-  TPopupMenu* = ref object of TComponent
+  TStrings* = ref object of TObject
 
-  TMemo* = ref object of TWinControl
+  TStream* = ref object of TObject
 
   TCheckBox* = ref object of TWinControl
 
@@ -96,17 +96,17 @@ type
 
   TBitBtn* = ref object of TWinControl
 
-  TIcon* = ref object of TObject
+  TIcon* = ref object of TGraphic
 
-  TBitmap* = ref object of TObject
+  TBitmap* = ref object of TGraphic
 
-  TStream* = ref object of TObject
+  TMemo* = ref object of TWinControl
 
   TMemoryStream* = ref object of TStream
 
   TFont* = ref object of TObject
 
-  TStrings* = ref object of TObject
+  TPopupMenu* = ref object of TComponent
 
   TStringList* = ref object of TStrings
 
@@ -156,13 +156,13 @@ type
 
   TApplication* = ref object of TComponent
 
-  TGraphic* = ref object of TObject
+  TMainMenu* = ref object of TComponent
 
-  TPngImage* = ref object of TObject
+  TPngImage* = ref object of TGraphic
 
-  TJPEGImage* = ref object of TObject
+  TJPEGImage* = ref object of TGraphic
 
-  TGIFImage* = ref object of TObject
+  TGIFImage* = ref object of TGraphic
 
   TActionList* = ref object of TComponent
 
@@ -308,9 +308,9 @@ proc AsObject*(obj: pointer): TObject = defaultPointerAs
 proc AsComponent*(obj: pointer): TComponent = defaultPointerAs
 proc AsControl*(obj: pointer): TControl = defaultPointerAs
 proc AsWinControl*(obj: pointer): TWinControl = defaultPointerAs
-proc AsMainMenu*(obj: pointer): TMainMenu = defaultPointerAs
-proc AsPopupMenu*(obj: pointer): TPopupMenu = defaultPointerAs
-proc AsMemo*(obj: pointer): TMemo = defaultPointerAs
+proc AsGraphic*(obj: pointer): TGraphic = defaultPointerAs
+proc AsStrings*(obj: pointer): TStrings = defaultPointerAs
+proc AsStream*(obj: pointer): TStream = defaultPointerAs
 proc AsCheckBox*(obj: pointer): TCheckBox = defaultPointerAs
 proc AsRadioButton*(obj: pointer): TRadioButton = defaultPointerAs
 proc AsGroupBox*(obj: pointer): TGroupBox = defaultPointerAs
@@ -349,10 +349,10 @@ proc AsToolBar*(obj: pointer): TToolBar = defaultPointerAs
 proc AsBitBtn*(obj: pointer): TBitBtn = defaultPointerAs
 proc AsIcon*(obj: pointer): TIcon = defaultPointerAs
 proc AsBitmap*(obj: pointer): TBitmap = defaultPointerAs
-proc AsStream*(obj: pointer): TStream = defaultPointerAs
+proc AsMemo*(obj: pointer): TMemo = defaultPointerAs
 proc AsMemoryStream*(obj: pointer): TMemoryStream = defaultPointerAs
 proc AsFont*(obj: pointer): TFont = defaultPointerAs
-proc AsStrings*(obj: pointer): TStrings = defaultPointerAs
+proc AsPopupMenu*(obj: pointer): TPopupMenu = defaultPointerAs
 proc AsStringList*(obj: pointer): TStringList = defaultPointerAs
 proc AsBrush*(obj: pointer): TBrush = defaultPointerAs
 proc AsPen*(obj: pointer): TPen = defaultPointerAs
@@ -377,7 +377,7 @@ proc AsSpinEdit*(obj: pointer): TSpinEdit = defaultPointerAs
 proc AsMiniWebview*(obj: pointer): TMiniWebview = defaultPointerAs
 proc AsCanvas*(obj: pointer): TCanvas = defaultPointerAs
 proc AsApplication*(obj: pointer): TApplication = defaultPointerAs
-proc AsGraphic*(obj: pointer): TGraphic = defaultPointerAs
+proc AsMainMenu*(obj: pointer): TMainMenu = defaultPointerAs
 proc AsPngImage*(obj: pointer): TPngImage = defaultPointerAs
 proc AsJPEGImage*(obj: pointer): TJPEGImage = defaultPointerAs
 proc AsGIFImage*(obj: pointer): TGIFImage = defaultPointerAs
@@ -1299,903 +1299,245 @@ proc AnchorSide*(this: TWinControl, AKind: TAnchorKind): TAnchorSide  =
 proc TWinControlClass*(): TClass = WinControl_StaticClassType()
 
 
-#------------------------- TMainMenu -------------------------
+#------------------------- TGraphic -------------------------
 
-proc Free*(this: TMainMenu) = defaultFree: MainMenu_Free
+proc Free*(this: TGraphic) = defaultFree: Graphic_Free
 
-proc NewMainMenu*(AOwner: TComponent): TMainMenu =
-  new(result)
-  result.Instance = MainMenu_Create(CheckPtr(AOwner))
+proc NewGraphic*(): TGraphic =
+  new(result, Free)
+  result.Instance = Graphic_Create()
 
-proc FindComponent*(this: TMainMenu, AName: string): TComponent =
-  return MainMenu_FindComponent(this.Instance, AName).AsComponent
+proc Equals*(this: TGraphic, Obj: TObject): bool =
+  return Graphic_Equals(this.Instance, CheckPtr(Obj))
 
-proc GetNamePath*(this: TMainMenu): string =
-  return $MainMenu_GetNamePath(this.Instance)
+proc LoadFromFile*(this: TGraphic, Filename: string)  =
+  Graphic_LoadFromFile(this.Instance, Filename)
 
-proc HasParent*(this: TMainMenu): bool =
-  return MainMenu_HasParent(this.Instance)
+proc SaveToFile*(this: TGraphic, Filename: string)  =
+  Graphic_SaveToFile(this.Instance, Filename)
 
-proc Assign*(this: TMainMenu, Source: TObject) =
-  MainMenu_Assign(this.Instance, CheckPtr(Source))
+proc LoadFromStream*(this: TGraphic, Stream: TStream)  =
+  Graphic_LoadFromStream(this.Instance, CheckPtr(Stream))
 
-proc ClassType*(this: TMainMenu): TClass =
-  return MainMenu_ClassType(this.Instance)
+proc SaveToStream*(this: TGraphic, Stream: TStream)  =
+  Graphic_SaveToStream(this.Instance, CheckPtr(Stream))
 
-proc ClassName*(this: TMainMenu): string =
-  return $MainMenu_ClassName(this.Instance)
+proc Assign*(this: TGraphic, Source: TObject)  =
+  Graphic_Assign(this.Instance, CheckPtr(Source))
 
-proc InstanceSize*(this: TMainMenu): int32 =
-  return MainMenu_InstanceSize(this.Instance)
+proc GetNamePath*(this: TGraphic): string  =
+  return $Graphic_GetNamePath(this.Instance)
 
-proc InheritsFrom*(this: TMainMenu, AClass: TClass): bool =
-  return MainMenu_InheritsFrom(this.Instance, AClass)
+proc ClassType*(this: TGraphic): TClass =
+  return Graphic_ClassType(this.Instance)
 
-proc Equals*(this: TMainMenu, Obj: TObject): bool =
-  return MainMenu_Equals(this.Instance, CheckPtr(Obj))
+proc ClassName*(this: TGraphic): string =
+  return $Graphic_ClassName(this.Instance)
 
-proc GetHashCode*(this: TMainMenu): int32 =
-  return MainMenu_GetHashCode(this.Instance)
+proc InstanceSize*(this: TGraphic): int32 =
+  return Graphic_InstanceSize(this.Instance)
 
-proc ToString*(this: TMainMenu): string =
-  return $MainMenu_ToString(this.Instance)
+proc InheritsFrom*(this: TGraphic, AClass: TClass): bool =
+  return Graphic_InheritsFrom(this.Instance, AClass)
 
-proc ImagesWidth*(this: TMainMenu): int32  =
-  return MainMenu_GetImagesWidth(this.Instance)
+proc GetHashCode*(this: TGraphic): int32 =
+  return Graphic_GetHashCode(this.Instance)
 
-proc `ImagesWidth=`*(this: TMainMenu, AValue: int32)  =
-  MainMenu_SetImagesWidth(this.Instance, AValue)
+proc ToString*(this: TGraphic): string =
+  return $Graphic_ToString(this.Instance)
 
-proc BiDiMode*(this: TMainMenu): TBiDiMode  =
-  return MainMenu_GetBiDiMode(this.Instance)
+proc Empty*(this: TGraphic): bool  =
+  return Graphic_GetEmpty(this.Instance)
 
-proc `BiDiMode=`*(this: TMainMenu, AValue: TBiDiMode)  =
-  MainMenu_SetBiDiMode(this.Instance, AValue)
+proc Height*(this: TGraphic): int32  =
+  return Graphic_GetHeight(this.Instance)
 
-proc Images*(this: TMainMenu): TImageList  =
-  return MainMenu_GetImages(this.Instance).AsImageList
+proc `Height=`*(this: TGraphic, AValue: int32)  =
+  Graphic_SetHeight(this.Instance, AValue)
 
-proc `Images=`*(this: TMainMenu, AValue: TImageList)  =
-  MainMenu_SetImages(this.Instance, CheckPtr(AValue))
+proc Modified*(this: TGraphic): bool  =
+  return Graphic_GetModified(this.Instance)
 
-proc OwnerDraw*(this: TMainMenu): bool  =
-  return MainMenu_GetOwnerDraw(this.Instance)
+proc `Modified=`*(this: TGraphic, AValue: bool)  =
+  Graphic_SetModified(this.Instance, AValue)
 
-proc `OwnerDraw=`*(this: TMainMenu, AValue: bool)  =
-  MainMenu_SetOwnerDraw(this.Instance, AValue)
+proc Palette*(this: TGraphic): HPALETTE  =
+  return Graphic_GetPalette(this.Instance)
 
-proc `OnChange=`*(this: TMainMenu, AEventId: TMenuChangeEvent)  =
-  MainMenu_SetOnChange(this.Instance, AEventId)
+proc `Palette=`*(this: TGraphic, AValue: HPALETTE)  =
+  Graphic_SetPalette(this.Instance, AValue)
 
-proc Handle*(this: TMainMenu): HMENU  =
-  return MainMenu_GetHandle(this.Instance)
+proc PaletteModified*(this: TGraphic): bool  =
+  return Graphic_GetPaletteModified(this.Instance)
 
-proc Items*(this: TMainMenu): TMenuItem  =
-  return MainMenu_GetItems(this.Instance).AsMenuItem
+proc `PaletteModified=`*(this: TGraphic, AValue: bool)  =
+  Graphic_SetPaletteModified(this.Instance, AValue)
 
-proc ComponentCount*(this: TMainMenu): int32  =
-  return MainMenu_GetComponentCount(this.Instance)
+proc Transparent*(this: TGraphic): bool  =
+  return Graphic_GetTransparent(this.Instance)
 
-proc ComponentIndex*(this: TMainMenu): int32  =
-  return MainMenu_GetComponentIndex(this.Instance)
+proc `Transparent=`*(this: TGraphic, AValue: bool)  =
+  Graphic_SetTransparent(this.Instance, AValue)
 
-proc `ComponentIndex=`*(this: TMainMenu, AValue: int32)  =
-  MainMenu_SetComponentIndex(this.Instance, AValue)
+proc Width*(this: TGraphic): int32  =
+  return Graphic_GetWidth(this.Instance)
 
-proc Owner*(this: TMainMenu): TComponent  =
-  return MainMenu_GetOwner(this.Instance).AsComponent
+proc `Width=`*(this: TGraphic, AValue: int32)  =
+  Graphic_SetWidth(this.Instance, AValue)
 
-proc Name*(this: TMainMenu): string  =
-  return $MainMenu_GetName(this.Instance)
+proc `OnChange=`*(this: TGraphic, AEventId: TNotifyEvent)  =
+  Graphic_SetOnChange(this.Instance, AEventId)
 
-proc `Name=`*(this: TMainMenu, AValue: string)  =
-  MainMenu_SetName(this.Instance, AValue)
+proc TGraphicClass*(): TClass = Graphic_StaticClassType()
 
-proc Tag*(this: TMainMenu): int  =
-  return MainMenu_GetTag(this.Instance)
 
-proc `Tag=`*(this: TMainMenu, AValue: int)  =
-  MainMenu_SetTag(this.Instance, AValue)
+#------------------------- TStrings -------------------------
 
-proc Components*(this: TMainMenu, AIndex: int32): TComponent  =
-  return MainMenu_GetComponents(this.Instance, AIndex).AsComponent
+proc Free*(this: TStrings) = defaultFree: Strings_Free
 
-proc TMainMenuClass*(): TClass = MainMenu_StaticClassType()
+proc NewStrings*(): TStrings =
+  new(result, Free)
+  result.Instance = Strings_Create()
 
+proc Add*(this: TStrings, S: string): int32  =
+  return Strings_Add(this.Instance, S)
 
-#------------------------- TPopupMenu -------------------------
+proc AddObject*(this: TStrings, S: string, AObject: TObject): int32  =
+  return Strings_AddObject(this.Instance, S, CheckPtr(AObject))
 
-proc Free*(this: TPopupMenu) = defaultFree: PopupMenu_Free
+proc Append*(this: TStrings, S: string)  =
+  Strings_Append(this.Instance, S)
 
-proc NewPopupMenu*(AOwner: TComponent): TPopupMenu =
-  new(result)
-  result.Instance = PopupMenu_Create(CheckPtr(AOwner))
+proc Assign*(this: TStrings, Source: TObject)  =
+  Strings_Assign(this.Instance, CheckPtr(Source))
 
-proc CloseMenu*(this: TPopupMenu)  =
-  PopupMenu_CloseMenu(this.Instance)
+proc BeginUpdate*(this: TStrings)  =
+  Strings_BeginUpdate(this.Instance)
 
-proc Popup*(this: TPopupMenu, X: int32, Y: int32)  =
-  PopupMenu_Popup(this.Instance, X, Y)
+proc Clear*(this: TStrings)  =
+  Strings_Clear(this.Instance)
 
-proc FindComponent*(this: TPopupMenu, AName: string): TComponent =
-  return PopupMenu_FindComponent(this.Instance, AName).AsComponent
+proc Delete*(this: TStrings, Index: int32)  =
+  Strings_Delete(this.Instance, Index)
 
-proc GetNamePath*(this: TPopupMenu): string =
-  return $PopupMenu_GetNamePath(this.Instance)
+proc EndUpdate*(this: TStrings)  =
+  Strings_EndUpdate(this.Instance)
 
-proc HasParent*(this: TPopupMenu): bool =
-  return PopupMenu_HasParent(this.Instance)
+proc Equals*(this: TStrings, Strings: TStrings): bool  =
+  return Strings_Equals(this.Instance, CheckPtr(Strings))
 
-proc Assign*(this: TPopupMenu, Source: TObject) =
-  PopupMenu_Assign(this.Instance, CheckPtr(Source))
+proc IndexOf*(this: TStrings, S: string): int32  =
+  return Strings_IndexOf(this.Instance, S)
 
-proc ClassType*(this: TPopupMenu): TClass =
-  return PopupMenu_ClassType(this.Instance)
+proc IndexOfName*(this: TStrings, Name: string): int32  =
+  return Strings_IndexOfName(this.Instance, Name)
 
-proc ClassName*(this: TPopupMenu): string =
-  return $PopupMenu_ClassName(this.Instance)
+proc IndexOfObject*(this: TStrings, AObject: TObject): int32  =
+  return Strings_IndexOfObject(this.Instance, CheckPtr(AObject))
 
-proc InstanceSize*(this: TPopupMenu): int32 =
-  return PopupMenu_InstanceSize(this.Instance)
+proc Insert*(this: TStrings, Index: int32, S: string)  =
+  Strings_Insert(this.Instance, Index, S)
 
-proc InheritsFrom*(this: TPopupMenu, AClass: TClass): bool =
-  return PopupMenu_InheritsFrom(this.Instance, AClass)
+proc InsertObject*(this: TStrings, Index: int32, S: string, AObject: TObject)  =
+  Strings_InsertObject(this.Instance, Index, S, CheckPtr(AObject))
 
-proc Equals*(this: TPopupMenu, Obj: TObject): bool =
-  return PopupMenu_Equals(this.Instance, CheckPtr(Obj))
+proc LoadFromFile*(this: TStrings, FileName: string)  =
+  Strings_LoadFromFile(this.Instance, FileName)
 
-proc GetHashCode*(this: TPopupMenu): int32 =
-  return PopupMenu_GetHashCode(this.Instance)
+proc LoadFromStream*(this: TStrings, Stream: TStream)  =
+  Strings_LoadFromStream(this.Instance, CheckPtr(Stream))
 
-proc ToString*(this: TPopupMenu): string =
-  return $PopupMenu_ToString(this.Instance)
+proc Move*(this: TStrings, CurIndex: int32, NewIndex: int32)  =
+  Strings_Move(this.Instance, CurIndex, NewIndex)
 
-proc ImagesWidth*(this: TPopupMenu): int32  =
-  return PopupMenu_GetImagesWidth(this.Instance)
+proc SaveToFile*(this: TStrings, FileName: string)  =
+  Strings_SaveToFile(this.Instance, FileName)
 
-proc `ImagesWidth=`*(this: TPopupMenu, AValue: int32)  =
-  PopupMenu_SetImagesWidth(this.Instance, AValue)
+proc SaveToStream*(this: TStrings, Stream: TStream)  =
+  Strings_SaveToStream(this.Instance, CheckPtr(Stream))
 
-proc PopupComponent*(this: TPopupMenu): TComponent  =
-  return PopupMenu_GetPopupComponent(this.Instance).AsComponent
+proc GetNamePath*(this: TStrings): string  =
+  return $Strings_GetNamePath(this.Instance)
 
-proc `PopupComponent=`*(this: TPopupMenu, AValue: TComponent)  =
-  PopupMenu_SetPopupComponent(this.Instance, CheckPtr(AValue))
+proc ClassType*(this: TStrings): TClass =
+  return Strings_ClassType(this.Instance)
 
-proc PopupPoint*(this: TPopupMenu): TPoint  =
-  PopupMenu_GetPopupPoint(this.Instance, result)
+proc ClassName*(this: TStrings): string =
+  return $Strings_ClassName(this.Instance)
 
-proc Alignment*(this: TPopupMenu): TPopupAlignment  =
-  return PopupMenu_GetAlignment(this.Instance)
+proc InstanceSize*(this: TStrings): int32 =
+  return Strings_InstanceSize(this.Instance)
 
-proc `Alignment=`*(this: TPopupMenu, AValue: TPopupAlignment)  =
-  PopupMenu_SetAlignment(this.Instance, AValue)
+proc InheritsFrom*(this: TStrings, AClass: TClass): bool =
+  return Strings_InheritsFrom(this.Instance, AClass)
 
-proc BiDiMode*(this: TPopupMenu): TBiDiMode  =
-  return PopupMenu_GetBiDiMode(this.Instance)
+proc GetHashCode*(this: TStrings): int32 =
+  return Strings_GetHashCode(this.Instance)
 
-proc `BiDiMode=`*(this: TPopupMenu, AValue: TBiDiMode)  =
-  PopupMenu_SetBiDiMode(this.Instance, AValue)
+proc ToString*(this: TStrings): string =
+  return $Strings_ToString(this.Instance)
 
-proc Images*(this: TPopupMenu): TImageList  =
-  return PopupMenu_GetImages(this.Instance).AsImageList
+proc Capacity*(this: TStrings): int32  =
+  return Strings_GetCapacity(this.Instance)
 
-proc `Images=`*(this: TPopupMenu, AValue: TImageList)  =
-  PopupMenu_SetImages(this.Instance, CheckPtr(AValue))
+proc `Capacity=`*(this: TStrings, AValue: int32)  =
+  Strings_SetCapacity(this.Instance, AValue)
 
-proc OwnerDraw*(this: TPopupMenu): bool  =
-  return PopupMenu_GetOwnerDraw(this.Instance)
+proc CommaText*(this: TStrings): string  =
+  return $Strings_GetCommaText(this.Instance)
 
-proc `OwnerDraw=`*(this: TPopupMenu, AValue: bool)  =
-  PopupMenu_SetOwnerDraw(this.Instance, AValue)
+proc `CommaText=`*(this: TStrings, AValue: string)  =
+  Strings_SetCommaText(this.Instance, AValue)
 
-proc `OnPopup=`*(this: TPopupMenu, AEventId: TNotifyEvent)  =
-  PopupMenu_SetOnPopup(this.Instance, AEventId)
+proc Count*(this: TStrings): int32  =
+  return Strings_GetCount(this.Instance)
 
-proc Handle*(this: TPopupMenu): HMENU  =
-  return PopupMenu_GetHandle(this.Instance)
+proc Delimiter*(this: TStrings): Char  =
+  return Strings_GetDelimiter(this.Instance)
 
-proc Items*(this: TPopupMenu): TMenuItem  =
-  return PopupMenu_GetItems(this.Instance).AsMenuItem
+proc `Delimiter=`*(this: TStrings, AValue: Char)  =
+  Strings_SetDelimiter(this.Instance, AValue)
 
-proc ComponentCount*(this: TPopupMenu): int32  =
-  return PopupMenu_GetComponentCount(this.Instance)
+proc NameValueSeparator*(this: TStrings): Char  =
+  return Strings_GetNameValueSeparator(this.Instance)
 
-proc ComponentIndex*(this: TPopupMenu): int32  =
-  return PopupMenu_GetComponentIndex(this.Instance)
+proc `NameValueSeparator=`*(this: TStrings, AValue: Char)  =
+  Strings_SetNameValueSeparator(this.Instance, AValue)
 
-proc `ComponentIndex=`*(this: TPopupMenu, AValue: int32)  =
-  PopupMenu_SetComponentIndex(this.Instance, AValue)
+proc Text*(this: TStrings): string  =
+  return $Strings_GetText(this.Instance)
 
-proc Owner*(this: TPopupMenu): TComponent  =
-  return PopupMenu_GetOwner(this.Instance).AsComponent
+proc `Text=`*(this: TStrings, AValue: string)  =
+  Strings_SetText(this.Instance, AValue)
 
-proc Name*(this: TPopupMenu): string  =
-  return $PopupMenu_GetName(this.Instance)
+proc Objects*(this: TStrings, Index: int32): TObject  =
+  return Strings_GetObjects(this.Instance, Index).AsObject
 
-proc `Name=`*(this: TPopupMenu, AValue: string)  =
-  PopupMenu_SetName(this.Instance, AValue)
+proc `Objects=`*(this: TStrings, Index: int32, AValue: TObject)  =
+  Strings_SetObjects(this.Instance, Index, CheckPtr(AValue))
 
-proc Tag*(this: TPopupMenu): int  =
-  return PopupMenu_GetTag(this.Instance)
+proc Values*(this: TStrings, Name: string): string  =
+  return $Strings_GetValues(this.Instance, Name)
 
-proc `Tag=`*(this: TPopupMenu, AValue: int)  =
-  PopupMenu_SetTag(this.Instance, AValue)
+proc `Values=`*(this: TStrings, Name: string, AValue: string)  =
+  Strings_SetValues(this.Instance, Name, AValue)
 
-proc Components*(this: TPopupMenu, AIndex: int32): TComponent  =
-  return PopupMenu_GetComponents(this.Instance, AIndex).AsComponent
+proc ValueFromIndex*(this: TStrings, Index: int32): string  =
+  return $Strings_GetValueFromIndex(this.Instance, Index)
 
-proc TPopupMenuClass*(): TClass = PopupMenu_StaticClassType()
+proc `ValueFromIndex=`*(this: TStrings, Index: int32, AValue: string)  =
+  Strings_SetValueFromIndex(this.Instance, Index, AValue)
 
+proc Strings*(this: TStrings, Index: int32): string  =
+  return $Strings_GetStrings(this.Instance, Index)
 
-#------------------------- TMemo -------------------------
+proc `Strings=`*(this: TStrings, Index: int32, AValue: string)  =
+  Strings_SetStrings(this.Instance, Index, AValue)
 
-proc Free*(this: TMemo) = defaultFree: Memo_Free
+proc TStringsClass*(): TClass = Strings_StaticClassType()
 
-proc NewMemo*(AOwner: TComponent): TMemo =
-  new(result)
-  result.Instance = Memo_Create(CheckPtr(AOwner))
 
-proc Append*(this: TMemo, Value: string)  =
-  Memo_Append(this.Instance, Value)
-
-proc Clear*(this: TMemo)  =
-  Memo_Clear(this.Instance)
-
-proc ClearSelection*(this: TMemo)  =
-  Memo_ClearSelection(this.Instance)
-
-proc CopyToClipboard*(this: TMemo)  =
-  Memo_CopyToClipboard(this.Instance)
-
-proc CutToClipboard*(this: TMemo)  =
-  Memo_CutToClipboard(this.Instance)
-
-proc PasteFromClipboard*(this: TMemo)  =
-  Memo_PasteFromClipboard(this.Instance)
-
-proc Undo*(this: TMemo)  =
-  Memo_Undo(this.Instance)
-
-proc SelectAll*(this: TMemo)  =
-  Memo_SelectAll(this.Instance)
-
-proc CanFocus*(this: TMemo): bool =
-  return Memo_CanFocus(this.Instance)
-
-proc ContainsControl*(this: TMemo, Control: TControl): bool =
-  return Memo_ContainsControl(this.Instance, CheckPtr(Control))
-
-proc ControlAtPos*(this: TMemo, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
-  var ps1 = Pos
-  return Memo_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
-
-proc DisableAlign*(this: TMemo) =
-  Memo_DisableAlign(this.Instance)
-
-proc EnableAlign*(this: TMemo) =
-  Memo_EnableAlign(this.Instance)
-
-proc FindChildControl*(this: TMemo, ControlName: string): TControl =
-  return Memo_FindChildControl(this.Instance, ControlName).AsControl
-
-proc FlipChildren*(this: TMemo, AllLevels: bool) =
-  Memo_FlipChildren(this.Instance, AllLevels)
-
-proc Focused*(this: TMemo): bool =
-  return Memo_Focused(this.Instance)
-
-proc HandleAllocated*(this: TMemo): bool =
-  return Memo_HandleAllocated(this.Instance)
-
-proc InsertControl*(this: TMemo, AControl: TControl) =
-  Memo_InsertControl(this.Instance, CheckPtr(AControl))
-
-proc Invalidate*(this: TMemo) =
-  Memo_Invalidate(this.Instance)
-
-proc RemoveControl*(this: TMemo, AControl: TControl) =
-  Memo_RemoveControl(this.Instance, CheckPtr(AControl))
-
-proc Realign*(this: TMemo) =
-  Memo_Realign(this.Instance)
-
-proc Repaint*(this: TMemo) =
-  Memo_Repaint(this.Instance)
-
-proc ScaleBy*(this: TMemo, M: int32, D: int32) =
-  Memo_ScaleBy(this.Instance, M, D)
-
-proc ScrollBy*(this: TMemo, DeltaX: int32, DeltaY: int32) =
-  Memo_ScrollBy(this.Instance, DeltaX, DeltaY)
-
-proc SetBounds*(this: TMemo, ALeft: int32, ATop: int32, AWidth: int32, AHeight: int32) =
-  Memo_SetBounds(this.Instance, ALeft, ATop, AWidth, AHeight)
-
-proc SetFocus*(this: TMemo) =
-  Memo_SetFocus(this.Instance)
-
-proc Update*(this: TMemo) =
-  Memo_Update(this.Instance)
-
-proc BringToFront*(this: TMemo) =
-  Memo_BringToFront(this.Instance)
-
-proc ClientToScreen*(this: TMemo, Point: TPoint): TPoint =
-  var ps1 = Point
-  Memo_ClientToScreen(this.Instance, ps1, result)
-
-proc ClientToParent*(this: TMemo, Point: TPoint, AParent: TWinControl): TPoint =
-  var ps1 = Point
-  Memo_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
-
-proc Dragging*(this: TMemo): bool =
-  return Memo_Dragging(this.Instance)
-
-proc HasParent*(this: TMemo): bool =
-  return Memo_HasParent(this.Instance)
-
-proc Hide*(this: TMemo) =
-  Memo_Hide(this.Instance)
-
-proc Perform*(this: TMemo, Msg: uint32, WParam: uint, LParam: int): int =
-  return Memo_Perform(this.Instance, Msg, WParam, LParam)
-
-proc Refresh*(this: TMemo) =
-  Memo_Refresh(this.Instance)
-
-proc ScreenToClient*(this: TMemo, Point: TPoint): TPoint =
-  var ps1 = Point
-  Memo_ScreenToClient(this.Instance, ps1, result)
-
-proc ParentToClient*(this: TMemo, Point: TPoint, AParent: TWinControl): TPoint =
-  var ps1 = Point
-  Memo_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
-
-proc SendToBack*(this: TMemo) =
-  Memo_SendToBack(this.Instance)
-
-proc Show*(this: TMemo) =
-  Memo_Show(this.Instance)
-
-proc GetTextBuf*(this: TMemo, Buffer: string, BufSize: int32): int32 =
-  return Memo_GetTextBuf(this.Instance, Buffer, BufSize)
-
-proc GetTextLen*(this: TMemo): int32 =
-  return Memo_GetTextLen(this.Instance)
-
-proc SetTextBuf*(this: TMemo, Buffer: string) =
-  Memo_SetTextBuf(this.Instance, Buffer)
-
-proc FindComponent*(this: TMemo, AName: string): TComponent =
-  return Memo_FindComponent(this.Instance, AName).AsComponent
-
-proc GetNamePath*(this: TMemo): string =
-  return $Memo_GetNamePath(this.Instance)
-
-proc Assign*(this: TMemo, Source: TObject) =
-  Memo_Assign(this.Instance, CheckPtr(Source))
-
-proc ClassType*(this: TMemo): TClass =
-  return Memo_ClassType(this.Instance)
-
-proc ClassName*(this: TMemo): string =
-  return $Memo_ClassName(this.Instance)
-
-proc InstanceSize*(this: TMemo): int32 =
-  return Memo_InstanceSize(this.Instance)
-
-proc InheritsFrom*(this: TMemo, AClass: TClass): bool =
-  return Memo_InheritsFrom(this.Instance, AClass)
-
-proc Equals*(this: TMemo, Obj: TObject): bool =
-  return Memo_Equals(this.Instance, CheckPtr(Obj))
-
-proc GetHashCode*(this: TMemo): int32 =
-  return Memo_GetHashCode(this.Instance)
-
-proc ToString*(this: TMemo): string =
-  return $Memo_ToString(this.Instance)
-
-proc AnchorToNeighbour*(this: TMemo, ASide: TAnchorKind, ASpace: int32, ASibling: TControl) =
-  Memo_AnchorToNeighbour(this.Instance, ASide, ASpace, CheckPtr(ASibling))
-
-proc AnchorParallel*(this: TMemo, ASide: TAnchorKind, ASpace: int32, ASibling: TControl) =
-  Memo_AnchorParallel(this.Instance, ASide, ASpace, CheckPtr(ASibling))
-
-proc AnchorHorizontalCenterTo*(this: TMemo, ASibling: TControl) =
-  Memo_AnchorHorizontalCenterTo(this.Instance, CheckPtr(ASibling))
-
-proc AnchorVerticalCenterTo*(this: TMemo, ASibling: TControl) =
-  Memo_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
-
-proc AnchorAsAlign*(this: TMemo, ATheAlign: TAlign, ASpace: int32) =
-  Memo_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
-
-proc AnchorClient*(this: TMemo, ASpace: int32) =
-  Memo_AnchorClient(this.Instance, ASpace)
-
-proc Align*(this: TMemo): TAlign  =
-  return Memo_GetAlign(this.Instance)
-
-proc `Align=`*(this: TMemo, AValue: TAlign)  =
-  Memo_SetAlign(this.Instance, AValue)
-
-proc Alignment*(this: TMemo): TAlignment  =
-  return Memo_GetAlignment(this.Instance)
-
-proc `Alignment=`*(this: TMemo, AValue: TAlignment)  =
-  Memo_SetAlignment(this.Instance, AValue)
-
-proc Anchors*(this: TMemo): TAnchors  =
-  return Memo_GetAnchors(this.Instance)
-
-proc `Anchors=`*(this: TMemo, AValue: TAnchors)  =
-  Memo_SetAnchors(this.Instance, AValue)
-
-proc BiDiMode*(this: TMemo): TBiDiMode  =
-  return Memo_GetBiDiMode(this.Instance)
-
-proc `BiDiMode=`*(this: TMemo, AValue: TBiDiMode)  =
-  Memo_SetBiDiMode(this.Instance, AValue)
-
-proc BorderStyle*(this: TMemo): TBorderStyle  =
-  return Memo_GetBorderStyle(this.Instance)
-
-proc `BorderStyle=`*(this: TMemo, AValue: TBorderStyle)  =
-  Memo_SetBorderStyle(this.Instance, AValue)
-
-proc CharCase*(this: TMemo): TEditCharCase  =
-  return Memo_GetCharCase(this.Instance)
-
-proc `CharCase=`*(this: TMemo, AValue: TEditCharCase)  =
-  Memo_SetCharCase(this.Instance, AValue)
-
-proc Color*(this: TMemo): TColor  =
-  return Memo_GetColor(this.Instance)
-
-proc `Color=`*(this: TMemo, AValue: TColor)  =
-  Memo_SetColor(this.Instance, AValue)
-
-proc Constraints*(this: TMemo): TSizeConstraints  =
-  return Memo_GetConstraints(this.Instance).AsSizeConstraints
-
-proc `Constraints=`*(this: TMemo, AValue: TSizeConstraints)  =
-  Memo_SetConstraints(this.Instance, CheckPtr(AValue))
-
-proc DoubleBuffered*(this: TMemo): bool  =
-  return Memo_GetDoubleBuffered(this.Instance)
-
-proc `DoubleBuffered=`*(this: TMemo, AValue: bool)  =
-  Memo_SetDoubleBuffered(this.Instance, AValue)
-
-proc DragCursor*(this: TMemo): TCursor  =
-  return Memo_GetDragCursor(this.Instance)
-
-proc `DragCursor=`*(this: TMemo, AValue: TCursor)  =
-  Memo_SetDragCursor(this.Instance, AValue)
-
-proc DragKind*(this: TMemo): TDragKind  =
-  return Memo_GetDragKind(this.Instance)
-
-proc `DragKind=`*(this: TMemo, AValue: TDragKind)  =
-  Memo_SetDragKind(this.Instance, AValue)
-
-proc DragMode*(this: TMemo): TDragMode  =
-  return Memo_GetDragMode(this.Instance)
-
-proc `DragMode=`*(this: TMemo, AValue: TDragMode)  =
-  Memo_SetDragMode(this.Instance, AValue)
-
-proc Enabled*(this: TMemo): bool  =
-  return Memo_GetEnabled(this.Instance)
-
-proc `Enabled=`*(this: TMemo, AValue: bool)  =
-  Memo_SetEnabled(this.Instance, AValue)
-
-proc Font*(this: TMemo): TFont  =
-  return Memo_GetFont(this.Instance).AsFont
-
-proc `Font=`*(this: TMemo, AValue: TFont)  =
-  Memo_SetFont(this.Instance, CheckPtr(AValue))
-
-proc HideSelection*(this: TMemo): bool  =
-  return Memo_GetHideSelection(this.Instance)
-
-proc `HideSelection=`*(this: TMemo, AValue: bool)  =
-  Memo_SetHideSelection(this.Instance, AValue)
-
-proc Lines*(this: TMemo): TStrings  =
-  return Memo_GetLines(this.Instance).AsStrings
-
-proc `Lines=`*(this: TMemo, AValue: TStrings)  =
-  Memo_SetLines(this.Instance, CheckPtr(AValue))
-
-proc MaxLength*(this: TMemo): int32  =
-  return Memo_GetMaxLength(this.Instance)
-
-proc `MaxLength=`*(this: TMemo, AValue: int32)  =
-  Memo_SetMaxLength(this.Instance, AValue)
-
-proc ParentColor*(this: TMemo): bool  =
-  return Memo_GetParentColor(this.Instance)
-
-proc `ParentColor=`*(this: TMemo, AValue: bool)  =
-  Memo_SetParentColor(this.Instance, AValue)
-
-proc ParentDoubleBuffered*(this: TMemo): bool  =
-  return Memo_GetParentDoubleBuffered(this.Instance)
-
-proc `ParentDoubleBuffered=`*(this: TMemo, AValue: bool)  =
-  Memo_SetParentDoubleBuffered(this.Instance, AValue)
-
-proc ParentFont*(this: TMemo): bool  =
-  return Memo_GetParentFont(this.Instance)
-
-proc `ParentFont=`*(this: TMemo, AValue: bool)  =
-  Memo_SetParentFont(this.Instance, AValue)
-
-proc ParentShowHint*(this: TMemo): bool  =
-  return Memo_GetParentShowHint(this.Instance)
-
-proc `ParentShowHint=`*(this: TMemo, AValue: bool)  =
-  Memo_SetParentShowHint(this.Instance, AValue)
-
-proc PopupMenu*(this: TMemo): TPopupMenu  =
-  return Memo_GetPopupMenu(this.Instance).AsPopupMenu
-
-proc `PopupMenu=`*(this: TMemo, AValue: TPopupMenu)  =
-  Memo_SetPopupMenu(this.Instance, CheckPtr(AValue))
-
-proc ReadOnly*(this: TMemo): bool  =
-  return Memo_GetReadOnly(this.Instance)
-
-proc `ReadOnly=`*(this: TMemo, AValue: bool)  =
-  Memo_SetReadOnly(this.Instance, AValue)
-
-proc ScrollBars*(this: TMemo): TScrollStyle  =
-  return Memo_GetScrollBars(this.Instance)
-
-proc `ScrollBars=`*(this: TMemo, AValue: TScrollStyle)  =
-  Memo_SetScrollBars(this.Instance, AValue)
-
-proc ShowHint*(this: TMemo): bool  =
-  return Memo_GetShowHint(this.Instance)
-
-proc `ShowHint=`*(this: TMemo, AValue: bool)  =
-  Memo_SetShowHint(this.Instance, AValue)
-
-proc TabOrder*(this: TMemo): TTabOrder  =
-  return Memo_GetTabOrder(this.Instance)
-
-proc `TabOrder=`*(this: TMemo, AValue: TTabOrder)  =
-  Memo_SetTabOrder(this.Instance, AValue)
-
-proc TabStop*(this: TMemo): bool  =
-  return Memo_GetTabStop(this.Instance)
-
-proc `TabStop=`*(this: TMemo, AValue: bool)  =
-  Memo_SetTabStop(this.Instance, AValue)
-
-proc Visible*(this: TMemo): bool  =
-  return Memo_GetVisible(this.Instance)
-
-proc `Visible=`*(this: TMemo, AValue: bool)  =
-  Memo_SetVisible(this.Instance, AValue)
-
-proc WantReturns*(this: TMemo): bool  =
-  return Memo_GetWantReturns(this.Instance)
-
-proc `WantReturns=`*(this: TMemo, AValue: bool)  =
-  Memo_SetWantReturns(this.Instance, AValue)
-
-proc WantTabs*(this: TMemo): bool  =
-  return Memo_GetWantTabs(this.Instance)
-
-proc `WantTabs=`*(this: TMemo, AValue: bool)  =
-  Memo_SetWantTabs(this.Instance, AValue)
-
-proc WordWrap*(this: TMemo): bool  =
-  return Memo_GetWordWrap(this.Instance)
-
-proc `WordWrap=`*(this: TMemo, AValue: bool)  =
-  Memo_SetWordWrap(this.Instance, AValue)
-
-proc `OnChange=`*(this: TMemo, AEventId: TNotifyEvent)  =
-  Memo_SetOnChange(this.Instance, AEventId)
-
-proc `OnClick=`*(this: TMemo, AEventId: TNotifyEvent)  =
-  Memo_SetOnClick(this.Instance, AEventId)
-
-proc `OnContextPopup=`*(this: TMemo, AEventId: TContextPopupEvent)  =
-  Memo_SetOnContextPopup(this.Instance, AEventId)
-
-proc `OnDblClick=`*(this: TMemo, AEventId: TNotifyEvent)  =
-  Memo_SetOnDblClick(this.Instance, AEventId)
-
-proc `OnDragDrop=`*(this: TMemo, AEventId: TDragDropEvent)  =
-  Memo_SetOnDragDrop(this.Instance, AEventId)
-
-proc `OnDragOver=`*(this: TMemo, AEventId: TDragOverEvent)  =
-  Memo_SetOnDragOver(this.Instance, AEventId)
-
-proc `OnEndDrag=`*(this: TMemo, AEventId: TEndDragEvent)  =
-  Memo_SetOnEndDrag(this.Instance, AEventId)
-
-proc `OnEnter=`*(this: TMemo, AEventId: TNotifyEvent)  =
-  Memo_SetOnEnter(this.Instance, AEventId)
-
-proc `OnExit=`*(this: TMemo, AEventId: TNotifyEvent)  =
-  Memo_SetOnExit(this.Instance, AEventId)
-
-proc `OnKeyDown=`*(this: TMemo, AEventId: TKeyEvent)  =
-  Memo_SetOnKeyDown(this.Instance, AEventId)
-
-proc `OnKeyPress=`*(this: TMemo, AEventId: TKeyPressEvent)  =
-  Memo_SetOnKeyPress(this.Instance, AEventId)
-
-proc `OnKeyUp=`*(this: TMemo, AEventId: TKeyEvent)  =
-  Memo_SetOnKeyUp(this.Instance, AEventId)
-
-proc `OnMouseDown=`*(this: TMemo, AEventId: TMouseEvent)  =
-  Memo_SetOnMouseDown(this.Instance, AEventId)
-
-proc `OnMouseEnter=`*(this: TMemo, AEventId: TNotifyEvent)  =
-  Memo_SetOnMouseEnter(this.Instance, AEventId)
-
-proc `OnMouseLeave=`*(this: TMemo, AEventId: TNotifyEvent)  =
-  Memo_SetOnMouseLeave(this.Instance, AEventId)
-
-proc `OnMouseMove=`*(this: TMemo, AEventId: TMouseMoveEvent)  =
-  Memo_SetOnMouseMove(this.Instance, AEventId)
-
-proc `OnMouseUp=`*(this: TMemo, AEventId: TMouseEvent)  =
-  Memo_SetOnMouseUp(this.Instance, AEventId)
-
-proc CaretPos*(this: TMemo): TPoint  =
-  Memo_GetCaretPos(this.Instance, result)
-
-proc `CaretPos=`*(this: TMemo, AValue: var TPoint)  =
-  Memo_SetCaretPos(this.Instance, AValue)
-
-proc CanUndo*(this: TMemo): bool  =
-  return Memo_GetCanUndo(this.Instance)
-
-proc Modified*(this: TMemo): bool  =
-  return Memo_GetModified(this.Instance)
-
-proc `Modified=`*(this: TMemo, AValue: bool)  =
-  Memo_SetModified(this.Instance, AValue)
-
-proc SelLength*(this: TMemo): int32  =
-  return Memo_GetSelLength(this.Instance)
-
-proc `SelLength=`*(this: TMemo, AValue: int32)  =
-  Memo_SetSelLength(this.Instance, AValue)
-
-proc SelStart*(this: TMemo): int32  =
-  return Memo_GetSelStart(this.Instance)
-
-proc `SelStart=`*(this: TMemo, AValue: int32)  =
-  Memo_SetSelStart(this.Instance, AValue)
-
-proc SelText*(this: TMemo): string  =
-  return $Memo_GetSelText(this.Instance)
-
-proc `SelText=`*(this: TMemo, AValue: string)  =
-  Memo_SetSelText(this.Instance, AValue)
-
-proc Text*(this: TMemo): string  =
-  return $Memo_GetText(this.Instance)
-
-proc `Text=`*(this: TMemo, AValue: string)  =
-  Memo_SetText(this.Instance, AValue)
-
-proc TextHint*(this: TMemo): string  =
-  return $Memo_GetTextHint(this.Instance)
-
-proc `TextHint=`*(this: TMemo, AValue: string)  =
-  Memo_SetTextHint(this.Instance, AValue)
-
-proc DockClientCount*(this: TMemo): int32  =
-  return Memo_GetDockClientCount(this.Instance)
-
-proc DockSite*(this: TMemo): bool  =
-  return Memo_GetDockSite(this.Instance)
-
-proc `DockSite=`*(this: TMemo, AValue: bool)  =
-  Memo_SetDockSite(this.Instance, AValue)
-
-proc MouseInClient*(this: TMemo): bool  =
-  return Memo_GetMouseInClient(this.Instance)
-
-proc VisibleDockClientCount*(this: TMemo): int32  =
-  return Memo_GetVisibleDockClientCount(this.Instance)
-
-proc Brush*(this: TMemo): TBrush  =
-  return Memo_GetBrush(this.Instance).AsBrush
-
-proc ControlCount*(this: TMemo): int32  =
-  return Memo_GetControlCount(this.Instance)
-
-proc Handle*(this: TMemo): HWND  =
-  return Memo_GetHandle(this.Instance)
-
-proc ParentWindow*(this: TMemo): HWND  =
-  return Memo_GetParentWindow(this.Instance)
-
-proc `ParentWindow=`*(this: TMemo, AValue: HWND)  =
-  Memo_SetParentWindow(this.Instance, AValue)
-
-proc Showing*(this: TMemo): bool  =
-  return Memo_GetShowing(this.Instance)
-
-proc UseDockManager*(this: TMemo): bool  =
-  return Memo_GetUseDockManager(this.Instance)
-
-proc `UseDockManager=`*(this: TMemo, AValue: bool)  =
-  Memo_SetUseDockManager(this.Instance, AValue)
-
-proc Action*(this: TMemo): TAction  =
-  return Memo_GetAction(this.Instance).AsAction
-
-proc `Action=`*(this: TMemo, AValue: TAction)  =
-  Memo_SetAction(this.Instance, CheckPtr(AValue))
-
-proc BoundsRect*(this: TMemo): TRect  =
-  Memo_GetBoundsRect(this.Instance, result)
-
-proc `BoundsRect=`*(this: TMemo, AValue: var TRect)  =
-  Memo_SetBoundsRect(this.Instance, AValue)
-
-proc ClientHeight*(this: TMemo): int32  =
-  return Memo_GetClientHeight(this.Instance)
-
-proc `ClientHeight=`*(this: TMemo, AValue: int32)  =
-  Memo_SetClientHeight(this.Instance, AValue)
-
-proc ClientOrigin*(this: TMemo): TPoint  =
-  Memo_GetClientOrigin(this.Instance, result)
-
-proc ClientRect*(this: TMemo): TRect  =
-  Memo_GetClientRect(this.Instance, result)
-
-proc ClientWidth*(this: TMemo): int32  =
-  return Memo_GetClientWidth(this.Instance)
-
-proc `ClientWidth=`*(this: TMemo, AValue: int32)  =
-  Memo_SetClientWidth(this.Instance, AValue)
-
-proc ControlState*(this: TMemo): TControlState  =
-  return Memo_GetControlState(this.Instance)
-
-proc `ControlState=`*(this: TMemo, AValue: TControlState)  =
-  Memo_SetControlState(this.Instance, AValue)
-
-proc ControlStyle*(this: TMemo): TControlStyle  =
-  return Memo_GetControlStyle(this.Instance)
-
-proc `ControlStyle=`*(this: TMemo, AValue: TControlStyle)  =
-  Memo_SetControlStyle(this.Instance, AValue)
-
-proc Floating*(this: TMemo): bool  =
-  return Memo_GetFloating(this.Instance)
-
-proc Parent*(this: TMemo): TWinControl  =
-  return Memo_GetParent(this.Instance).AsWinControl
-
-proc `Parent=`*(this: TMemo, AValue: TWinControl)  =
-  Memo_SetParent(this.Instance, CheckPtr(AValue))
-
-proc Left*(this: TMemo): int32  =
-  return Memo_GetLeft(this.Instance)
-
-proc `Left=`*(this: TMemo, AValue: int32)  =
-  Memo_SetLeft(this.Instance, AValue)
-
-proc Top*(this: TMemo): int32  =
-  return Memo_GetTop(this.Instance)
-
-proc `Top=`*(this: TMemo, AValue: int32)  =
-  Memo_SetTop(this.Instance, AValue)
-
-proc Width*(this: TMemo): int32  =
-  return Memo_GetWidth(this.Instance)
-
-proc `Width=`*(this: TMemo, AValue: int32)  =
-  Memo_SetWidth(this.Instance, AValue)
-
-proc Height*(this: TMemo): int32  =
-  return Memo_GetHeight(this.Instance)
-
-proc `Height=`*(this: TMemo, AValue: int32)  =
-  Memo_SetHeight(this.Instance, AValue)
-
-proc Cursor*(this: TMemo): TCursor  =
-  return Memo_GetCursor(this.Instance)
-
-proc `Cursor=`*(this: TMemo, AValue: TCursor)  =
-  Memo_SetCursor(this.Instance, AValue)
-
-proc Hint*(this: TMemo): string  =
-  return $Memo_GetHint(this.Instance)
-
-proc `Hint=`*(this: TMemo, AValue: string)  =
-  Memo_SetHint(this.Instance, AValue)
-
-proc ComponentCount*(this: TMemo): int32  =
-  return Memo_GetComponentCount(this.Instance)
-
-proc ComponentIndex*(this: TMemo): int32  =
-  return Memo_GetComponentIndex(this.Instance)
-
-proc `ComponentIndex=`*(this: TMemo, AValue: int32)  =
-  Memo_SetComponentIndex(this.Instance, AValue)
-
-proc Owner*(this: TMemo): TComponent  =
-  return Memo_GetOwner(this.Instance).AsComponent
-
-proc Name*(this: TMemo): string  =
-  return $Memo_GetName(this.Instance)
-
-proc `Name=`*(this: TMemo, AValue: string)  =
-  Memo_SetName(this.Instance, AValue)
-
-proc Tag*(this: TMemo): int  =
-  return Memo_GetTag(this.Instance)
-
-proc `Tag=`*(this: TMemo, AValue: int)  =
-  Memo_SetTag(this.Instance, AValue)
-
-proc AnchorSideLeft*(this: TMemo): TAnchorSide  =
-  return Memo_GetAnchorSideLeft(this.Instance).AsAnchorSide
-
-proc `AnchorSideLeft=`*(this: TMemo, AValue: TAnchorSide)  =
-  Memo_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
-
-proc AnchorSideTop*(this: TMemo): TAnchorSide  =
-  return Memo_GetAnchorSideTop(this.Instance).AsAnchorSide
-
-proc `AnchorSideTop=`*(this: TMemo, AValue: TAnchorSide)  =
-  Memo_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
-
-proc AnchorSideRight*(this: TMemo): TAnchorSide  =
-  return Memo_GetAnchorSideRight(this.Instance).AsAnchorSide
-
-proc `AnchorSideRight=`*(this: TMemo, AValue: TAnchorSide)  =
-  Memo_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
-
-proc AnchorSideBottom*(this: TMemo): TAnchorSide  =
-  return Memo_GetAnchorSideBottom(this.Instance).AsAnchorSide
-
-proc `AnchorSideBottom=`*(this: TMemo, AValue: TAnchorSide)  =
-  Memo_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
-
-proc ChildSizing*(this: TMemo): TControlChildSizing  =
-  return Memo_GetChildSizing(this.Instance).AsControlChildSizing
-
-proc `ChildSizing=`*(this: TMemo, AValue: TControlChildSizing)  =
-  Memo_SetChildSizing(this.Instance, CheckPtr(AValue))
-
-proc BorderSpacing*(this: TMemo): TControlBorderSpacing  =
-  return Memo_GetBorderSpacing(this.Instance).AsControlBorderSpacing
-
-proc `BorderSpacing=`*(this: TMemo, AValue: TControlBorderSpacing)  =
-  Memo_SetBorderSpacing(this.Instance, CheckPtr(AValue))
-
-proc DockClients*(this: TMemo, Index: int32): TControl  =
-  return Memo_GetDockClients(this.Instance, Index).AsControl
-
-proc Controls*(this: TMemo, Index: int32): TControl  =
-  return Memo_GetControls(this.Instance, Index).AsControl
-
-proc Components*(this: TMemo, AIndex: int32): TComponent  =
-  return Memo_GetComponents(this.Instance, AIndex).AsComponent
-
-proc AnchorSide*(this: TMemo, AKind: TAnchorKind): TAnchorSide  =
-  return Memo_GetAnchorSide(this.Instance, AKind).AsAnchorSide
-
-proc TMemoClass*(): TClass = Memo_StaticClassType()
+#------------------------- TStream -------------------------
 
 
 #------------------------- TCheckBox -------------------------
@@ -18458,16 +17800,16 @@ proc NewIcon*(): TIcon =
   new(result, Free)
   result.Instance = Icon_Create()
 
-proc Assign*(this: TIcon, Source: TObject)  =
+proc Assign*(this: TIcon, Source: TObject) =
   Icon_Assign(this.Instance, CheckPtr(Source))
 
 proc HandleAllocated*(this: TIcon): bool  =
   return Icon_HandleAllocated(this.Instance)
 
-proc LoadFromStream*(this: TIcon, Stream: TStream)  =
+proc LoadFromStream*(this: TIcon, Stream: TStream) =
   Icon_LoadFromStream(this.Instance, CheckPtr(Stream))
 
-proc SaveToStream*(this: TIcon, Stream: TStream)  =
+proc SaveToStream*(this: TIcon, Stream: TStream) =
   Icon_SaveToStream(this.Instance, CheckPtr(Stream))
 
 proc SetSize*(this: TIcon, AWidth: int32, AHeight: int32)  =
@@ -18482,13 +17824,13 @@ proc LoadFromResourceID*(this: TIcon, Instance: uint, ResID: int32)  =
 proc Equals*(this: TIcon, Obj: TObject): bool =
   return Icon_Equals(this.Instance, CheckPtr(Obj))
 
-proc LoadFromFile*(this: TIcon, Filename: string)  =
+proc LoadFromFile*(this: TIcon, Filename: string) =
   Icon_LoadFromFile(this.Instance, Filename)
 
-proc SaveToFile*(this: TIcon, Filename: string)  =
+proc SaveToFile*(this: TIcon, Filename: string) =
   Icon_SaveToFile(this.Instance, Filename)
 
-proc GetNamePath*(this: TIcon): string  =
+proc GetNamePath*(this: TIcon): string =
   return $Icon_GetNamePath(this.Instance)
 
 proc ClassType*(this: TIcon): TClass =
@@ -18568,7 +17910,7 @@ proc NewBitmap*(): TBitmap =
   new(result, Free)
   result.Instance = Bitmap_Create()
 
-proc Assign*(this: TBitmap, Source: TObject)  =
+proc Assign*(this: TBitmap, Source: TObject) =
   Bitmap_Assign(this.Instance, CheckPtr(Source))
 
 proc FreeImage*(this: TBitmap)  =
@@ -18577,10 +17919,10 @@ proc FreeImage*(this: TBitmap)  =
 proc HandleAllocated*(this: TBitmap): bool  =
   return Bitmap_HandleAllocated(this.Instance)
 
-proc LoadFromStream*(this: TBitmap, Stream: TStream)  =
+proc LoadFromStream*(this: TBitmap, Stream: TStream) =
   Bitmap_LoadFromStream(this.Instance, CheckPtr(Stream))
 
-proc SaveToStream*(this: TBitmap, Stream: TStream)  =
+proc SaveToStream*(this: TBitmap, Stream: TStream) =
   Bitmap_SaveToStream(this.Instance, CheckPtr(Stream))
 
 proc SetSize*(this: TBitmap, AWidth: int32, AHeight: int32)  =
@@ -18595,13 +17937,13 @@ proc LoadFromResourceID*(this: TBitmap, Instance: uint, ResID: int32)  =
 proc Equals*(this: TBitmap, Obj: TObject): bool =
   return Bitmap_Equals(this.Instance, CheckPtr(Obj))
 
-proc LoadFromFile*(this: TBitmap, Filename: string)  =
+proc LoadFromFile*(this: TBitmap, Filename: string) =
   Bitmap_LoadFromFile(this.Instance, Filename)
 
-proc SaveToFile*(this: TBitmap, Filename: string)  =
+proc SaveToFile*(this: TBitmap, Filename: string) =
   Bitmap_SaveToFile(this.Instance, Filename)
 
-proc GetNamePath*(this: TBitmap): string  =
+proc GetNamePath*(this: TBitmap): string =
   return $Bitmap_GetNamePath(this.Instance)
 
 proc ClassType*(this: TBitmap): TClass =
@@ -18715,7 +18057,674 @@ proc EndUpdate*(this: TBitmap, AStreamIsValid: bool)  =
 proc LoadFromDevice*(this: TBitmap, ADc: HDC)  =
   Bitmap_LoadFromDevice(this.Instance, ADc)
 
-#------------------------- TStream -------------------------
+#------------------------- TMemo -------------------------
+
+proc Free*(this: TMemo) = defaultFree: Memo_Free
+
+proc NewMemo*(AOwner: TComponent): TMemo =
+  new(result)
+  result.Instance = Memo_Create(CheckPtr(AOwner))
+
+proc Append*(this: TMemo, Value: string)  =
+  Memo_Append(this.Instance, Value)
+
+proc Clear*(this: TMemo)  =
+  Memo_Clear(this.Instance)
+
+proc ClearSelection*(this: TMemo)  =
+  Memo_ClearSelection(this.Instance)
+
+proc CopyToClipboard*(this: TMemo)  =
+  Memo_CopyToClipboard(this.Instance)
+
+proc CutToClipboard*(this: TMemo)  =
+  Memo_CutToClipboard(this.Instance)
+
+proc PasteFromClipboard*(this: TMemo)  =
+  Memo_PasteFromClipboard(this.Instance)
+
+proc Undo*(this: TMemo)  =
+  Memo_Undo(this.Instance)
+
+proc SelectAll*(this: TMemo)  =
+  Memo_SelectAll(this.Instance)
+
+proc CanFocus*(this: TMemo): bool =
+  return Memo_CanFocus(this.Instance)
+
+proc ContainsControl*(this: TMemo, Control: TControl): bool =
+  return Memo_ContainsControl(this.Instance, CheckPtr(Control))
+
+proc ControlAtPos*(this: TMemo, Pos: TPoint, AllowDisabled: bool, AllowWinControls: bool): TControl =
+  var ps1 = Pos
+  return Memo_ControlAtPos(this.Instance, ps1, AllowDisabled, AllowWinControls).AsControl
+
+proc DisableAlign*(this: TMemo) =
+  Memo_DisableAlign(this.Instance)
+
+proc EnableAlign*(this: TMemo) =
+  Memo_EnableAlign(this.Instance)
+
+proc FindChildControl*(this: TMemo, ControlName: string): TControl =
+  return Memo_FindChildControl(this.Instance, ControlName).AsControl
+
+proc FlipChildren*(this: TMemo, AllLevels: bool) =
+  Memo_FlipChildren(this.Instance, AllLevels)
+
+proc Focused*(this: TMemo): bool =
+  return Memo_Focused(this.Instance)
+
+proc HandleAllocated*(this: TMemo): bool =
+  return Memo_HandleAllocated(this.Instance)
+
+proc InsertControl*(this: TMemo, AControl: TControl) =
+  Memo_InsertControl(this.Instance, CheckPtr(AControl))
+
+proc Invalidate*(this: TMemo) =
+  Memo_Invalidate(this.Instance)
+
+proc RemoveControl*(this: TMemo, AControl: TControl) =
+  Memo_RemoveControl(this.Instance, CheckPtr(AControl))
+
+proc Realign*(this: TMemo) =
+  Memo_Realign(this.Instance)
+
+proc Repaint*(this: TMemo) =
+  Memo_Repaint(this.Instance)
+
+proc ScaleBy*(this: TMemo, M: int32, D: int32) =
+  Memo_ScaleBy(this.Instance, M, D)
+
+proc ScrollBy*(this: TMemo, DeltaX: int32, DeltaY: int32) =
+  Memo_ScrollBy(this.Instance, DeltaX, DeltaY)
+
+proc SetBounds*(this: TMemo, ALeft: int32, ATop: int32, AWidth: int32, AHeight: int32) =
+  Memo_SetBounds(this.Instance, ALeft, ATop, AWidth, AHeight)
+
+proc SetFocus*(this: TMemo) =
+  Memo_SetFocus(this.Instance)
+
+proc Update*(this: TMemo) =
+  Memo_Update(this.Instance)
+
+proc BringToFront*(this: TMemo) =
+  Memo_BringToFront(this.Instance)
+
+proc ClientToScreen*(this: TMemo, Point: TPoint): TPoint =
+  var ps1 = Point
+  Memo_ClientToScreen(this.Instance, ps1, result)
+
+proc ClientToParent*(this: TMemo, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Memo_ClientToParent(this.Instance, ps1, CheckPtr(AParent), result)
+
+proc Dragging*(this: TMemo): bool =
+  return Memo_Dragging(this.Instance)
+
+proc HasParent*(this: TMemo): bool =
+  return Memo_HasParent(this.Instance)
+
+proc Hide*(this: TMemo) =
+  Memo_Hide(this.Instance)
+
+proc Perform*(this: TMemo, Msg: uint32, WParam: uint, LParam: int): int =
+  return Memo_Perform(this.Instance, Msg, WParam, LParam)
+
+proc Refresh*(this: TMemo) =
+  Memo_Refresh(this.Instance)
+
+proc ScreenToClient*(this: TMemo, Point: TPoint): TPoint =
+  var ps1 = Point
+  Memo_ScreenToClient(this.Instance, ps1, result)
+
+proc ParentToClient*(this: TMemo, Point: TPoint, AParent: TWinControl): TPoint =
+  var ps1 = Point
+  Memo_ParentToClient(this.Instance, ps1, CheckPtr(AParent), result)
+
+proc SendToBack*(this: TMemo) =
+  Memo_SendToBack(this.Instance)
+
+proc Show*(this: TMemo) =
+  Memo_Show(this.Instance)
+
+proc GetTextBuf*(this: TMemo, Buffer: string, BufSize: int32): int32 =
+  return Memo_GetTextBuf(this.Instance, Buffer, BufSize)
+
+proc GetTextLen*(this: TMemo): int32 =
+  return Memo_GetTextLen(this.Instance)
+
+proc SetTextBuf*(this: TMemo, Buffer: string) =
+  Memo_SetTextBuf(this.Instance, Buffer)
+
+proc FindComponent*(this: TMemo, AName: string): TComponent =
+  return Memo_FindComponent(this.Instance, AName).AsComponent
+
+proc GetNamePath*(this: TMemo): string =
+  return $Memo_GetNamePath(this.Instance)
+
+proc Assign*(this: TMemo, Source: TObject) =
+  Memo_Assign(this.Instance, CheckPtr(Source))
+
+proc ClassType*(this: TMemo): TClass =
+  return Memo_ClassType(this.Instance)
+
+proc ClassName*(this: TMemo): string =
+  return $Memo_ClassName(this.Instance)
+
+proc InstanceSize*(this: TMemo): int32 =
+  return Memo_InstanceSize(this.Instance)
+
+proc InheritsFrom*(this: TMemo, AClass: TClass): bool =
+  return Memo_InheritsFrom(this.Instance, AClass)
+
+proc Equals*(this: TMemo, Obj: TObject): bool =
+  return Memo_Equals(this.Instance, CheckPtr(Obj))
+
+proc GetHashCode*(this: TMemo): int32 =
+  return Memo_GetHashCode(this.Instance)
+
+proc ToString*(this: TMemo): string =
+  return $Memo_ToString(this.Instance)
+
+proc AnchorToNeighbour*(this: TMemo, ASide: TAnchorKind, ASpace: int32, ASibling: TControl) =
+  Memo_AnchorToNeighbour(this.Instance, ASide, ASpace, CheckPtr(ASibling))
+
+proc AnchorParallel*(this: TMemo, ASide: TAnchorKind, ASpace: int32, ASibling: TControl) =
+  Memo_AnchorParallel(this.Instance, ASide, ASpace, CheckPtr(ASibling))
+
+proc AnchorHorizontalCenterTo*(this: TMemo, ASibling: TControl) =
+  Memo_AnchorHorizontalCenterTo(this.Instance, CheckPtr(ASibling))
+
+proc AnchorVerticalCenterTo*(this: TMemo, ASibling: TControl) =
+  Memo_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
+
+proc AnchorAsAlign*(this: TMemo, ATheAlign: TAlign, ASpace: int32) =
+  Memo_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
+
+proc AnchorClient*(this: TMemo, ASpace: int32) =
+  Memo_AnchorClient(this.Instance, ASpace)
+
+proc Align*(this: TMemo): TAlign  =
+  return Memo_GetAlign(this.Instance)
+
+proc `Align=`*(this: TMemo, AValue: TAlign)  =
+  Memo_SetAlign(this.Instance, AValue)
+
+proc Alignment*(this: TMemo): TAlignment  =
+  return Memo_GetAlignment(this.Instance)
+
+proc `Alignment=`*(this: TMemo, AValue: TAlignment)  =
+  Memo_SetAlignment(this.Instance, AValue)
+
+proc Anchors*(this: TMemo): TAnchors  =
+  return Memo_GetAnchors(this.Instance)
+
+proc `Anchors=`*(this: TMemo, AValue: TAnchors)  =
+  Memo_SetAnchors(this.Instance, AValue)
+
+proc BiDiMode*(this: TMemo): TBiDiMode  =
+  return Memo_GetBiDiMode(this.Instance)
+
+proc `BiDiMode=`*(this: TMemo, AValue: TBiDiMode)  =
+  Memo_SetBiDiMode(this.Instance, AValue)
+
+proc BorderStyle*(this: TMemo): TBorderStyle  =
+  return Memo_GetBorderStyle(this.Instance)
+
+proc `BorderStyle=`*(this: TMemo, AValue: TBorderStyle)  =
+  Memo_SetBorderStyle(this.Instance, AValue)
+
+proc CharCase*(this: TMemo): TEditCharCase  =
+  return Memo_GetCharCase(this.Instance)
+
+proc `CharCase=`*(this: TMemo, AValue: TEditCharCase)  =
+  Memo_SetCharCase(this.Instance, AValue)
+
+proc Color*(this: TMemo): TColor  =
+  return Memo_GetColor(this.Instance)
+
+proc `Color=`*(this: TMemo, AValue: TColor)  =
+  Memo_SetColor(this.Instance, AValue)
+
+proc Constraints*(this: TMemo): TSizeConstraints  =
+  return Memo_GetConstraints(this.Instance).AsSizeConstraints
+
+proc `Constraints=`*(this: TMemo, AValue: TSizeConstraints)  =
+  Memo_SetConstraints(this.Instance, CheckPtr(AValue))
+
+proc DoubleBuffered*(this: TMemo): bool  =
+  return Memo_GetDoubleBuffered(this.Instance)
+
+proc `DoubleBuffered=`*(this: TMemo, AValue: bool)  =
+  Memo_SetDoubleBuffered(this.Instance, AValue)
+
+proc DragCursor*(this: TMemo): TCursor  =
+  return Memo_GetDragCursor(this.Instance)
+
+proc `DragCursor=`*(this: TMemo, AValue: TCursor)  =
+  Memo_SetDragCursor(this.Instance, AValue)
+
+proc DragKind*(this: TMemo): TDragKind  =
+  return Memo_GetDragKind(this.Instance)
+
+proc `DragKind=`*(this: TMemo, AValue: TDragKind)  =
+  Memo_SetDragKind(this.Instance, AValue)
+
+proc DragMode*(this: TMemo): TDragMode  =
+  return Memo_GetDragMode(this.Instance)
+
+proc `DragMode=`*(this: TMemo, AValue: TDragMode)  =
+  Memo_SetDragMode(this.Instance, AValue)
+
+proc Enabled*(this: TMemo): bool  =
+  return Memo_GetEnabled(this.Instance)
+
+proc `Enabled=`*(this: TMemo, AValue: bool)  =
+  Memo_SetEnabled(this.Instance, AValue)
+
+proc Font*(this: TMemo): TFont  =
+  return Memo_GetFont(this.Instance).AsFont
+
+proc `Font=`*(this: TMemo, AValue: TFont)  =
+  Memo_SetFont(this.Instance, CheckPtr(AValue))
+
+proc HideSelection*(this: TMemo): bool  =
+  return Memo_GetHideSelection(this.Instance)
+
+proc `HideSelection=`*(this: TMemo, AValue: bool)  =
+  Memo_SetHideSelection(this.Instance, AValue)
+
+proc Lines*(this: TMemo): TStrings  =
+  return Memo_GetLines(this.Instance).AsStrings
+
+proc `Lines=`*(this: TMemo, AValue: TStrings)  =
+  Memo_SetLines(this.Instance, CheckPtr(AValue))
+
+proc MaxLength*(this: TMemo): int32  =
+  return Memo_GetMaxLength(this.Instance)
+
+proc `MaxLength=`*(this: TMemo, AValue: int32)  =
+  Memo_SetMaxLength(this.Instance, AValue)
+
+proc ParentColor*(this: TMemo): bool  =
+  return Memo_GetParentColor(this.Instance)
+
+proc `ParentColor=`*(this: TMemo, AValue: bool)  =
+  Memo_SetParentColor(this.Instance, AValue)
+
+proc ParentDoubleBuffered*(this: TMemo): bool  =
+  return Memo_GetParentDoubleBuffered(this.Instance)
+
+proc `ParentDoubleBuffered=`*(this: TMemo, AValue: bool)  =
+  Memo_SetParentDoubleBuffered(this.Instance, AValue)
+
+proc ParentFont*(this: TMemo): bool  =
+  return Memo_GetParentFont(this.Instance)
+
+proc `ParentFont=`*(this: TMemo, AValue: bool)  =
+  Memo_SetParentFont(this.Instance, AValue)
+
+proc ParentShowHint*(this: TMemo): bool  =
+  return Memo_GetParentShowHint(this.Instance)
+
+proc `ParentShowHint=`*(this: TMemo, AValue: bool)  =
+  Memo_SetParentShowHint(this.Instance, AValue)
+
+proc PopupMenu*(this: TMemo): TPopupMenu  =
+  return Memo_GetPopupMenu(this.Instance).AsPopupMenu
+
+proc `PopupMenu=`*(this: TMemo, AValue: TPopupMenu)  =
+  Memo_SetPopupMenu(this.Instance, CheckPtr(AValue))
+
+proc ReadOnly*(this: TMemo): bool  =
+  return Memo_GetReadOnly(this.Instance)
+
+proc `ReadOnly=`*(this: TMemo, AValue: bool)  =
+  Memo_SetReadOnly(this.Instance, AValue)
+
+proc ScrollBars*(this: TMemo): TScrollStyle  =
+  return Memo_GetScrollBars(this.Instance)
+
+proc `ScrollBars=`*(this: TMemo, AValue: TScrollStyle)  =
+  Memo_SetScrollBars(this.Instance, AValue)
+
+proc ShowHint*(this: TMemo): bool  =
+  return Memo_GetShowHint(this.Instance)
+
+proc `ShowHint=`*(this: TMemo, AValue: bool)  =
+  Memo_SetShowHint(this.Instance, AValue)
+
+proc TabOrder*(this: TMemo): TTabOrder  =
+  return Memo_GetTabOrder(this.Instance)
+
+proc `TabOrder=`*(this: TMemo, AValue: TTabOrder)  =
+  Memo_SetTabOrder(this.Instance, AValue)
+
+proc TabStop*(this: TMemo): bool  =
+  return Memo_GetTabStop(this.Instance)
+
+proc `TabStop=`*(this: TMemo, AValue: bool)  =
+  Memo_SetTabStop(this.Instance, AValue)
+
+proc Visible*(this: TMemo): bool  =
+  return Memo_GetVisible(this.Instance)
+
+proc `Visible=`*(this: TMemo, AValue: bool)  =
+  Memo_SetVisible(this.Instance, AValue)
+
+proc WantReturns*(this: TMemo): bool  =
+  return Memo_GetWantReturns(this.Instance)
+
+proc `WantReturns=`*(this: TMemo, AValue: bool)  =
+  Memo_SetWantReturns(this.Instance, AValue)
+
+proc WantTabs*(this: TMemo): bool  =
+  return Memo_GetWantTabs(this.Instance)
+
+proc `WantTabs=`*(this: TMemo, AValue: bool)  =
+  Memo_SetWantTabs(this.Instance, AValue)
+
+proc WordWrap*(this: TMemo): bool  =
+  return Memo_GetWordWrap(this.Instance)
+
+proc `WordWrap=`*(this: TMemo, AValue: bool)  =
+  Memo_SetWordWrap(this.Instance, AValue)
+
+proc `OnChange=`*(this: TMemo, AEventId: TNotifyEvent)  =
+  Memo_SetOnChange(this.Instance, AEventId)
+
+proc `OnClick=`*(this: TMemo, AEventId: TNotifyEvent)  =
+  Memo_SetOnClick(this.Instance, AEventId)
+
+proc `OnContextPopup=`*(this: TMemo, AEventId: TContextPopupEvent)  =
+  Memo_SetOnContextPopup(this.Instance, AEventId)
+
+proc `OnDblClick=`*(this: TMemo, AEventId: TNotifyEvent)  =
+  Memo_SetOnDblClick(this.Instance, AEventId)
+
+proc `OnDragDrop=`*(this: TMemo, AEventId: TDragDropEvent)  =
+  Memo_SetOnDragDrop(this.Instance, AEventId)
+
+proc `OnDragOver=`*(this: TMemo, AEventId: TDragOverEvent)  =
+  Memo_SetOnDragOver(this.Instance, AEventId)
+
+proc `OnEndDrag=`*(this: TMemo, AEventId: TEndDragEvent)  =
+  Memo_SetOnEndDrag(this.Instance, AEventId)
+
+proc `OnEnter=`*(this: TMemo, AEventId: TNotifyEvent)  =
+  Memo_SetOnEnter(this.Instance, AEventId)
+
+proc `OnExit=`*(this: TMemo, AEventId: TNotifyEvent)  =
+  Memo_SetOnExit(this.Instance, AEventId)
+
+proc `OnKeyDown=`*(this: TMemo, AEventId: TKeyEvent)  =
+  Memo_SetOnKeyDown(this.Instance, AEventId)
+
+proc `OnKeyPress=`*(this: TMemo, AEventId: TKeyPressEvent)  =
+  Memo_SetOnKeyPress(this.Instance, AEventId)
+
+proc `OnKeyUp=`*(this: TMemo, AEventId: TKeyEvent)  =
+  Memo_SetOnKeyUp(this.Instance, AEventId)
+
+proc `OnMouseDown=`*(this: TMemo, AEventId: TMouseEvent)  =
+  Memo_SetOnMouseDown(this.Instance, AEventId)
+
+proc `OnMouseEnter=`*(this: TMemo, AEventId: TNotifyEvent)  =
+  Memo_SetOnMouseEnter(this.Instance, AEventId)
+
+proc `OnMouseLeave=`*(this: TMemo, AEventId: TNotifyEvent)  =
+  Memo_SetOnMouseLeave(this.Instance, AEventId)
+
+proc `OnMouseMove=`*(this: TMemo, AEventId: TMouseMoveEvent)  =
+  Memo_SetOnMouseMove(this.Instance, AEventId)
+
+proc `OnMouseUp=`*(this: TMemo, AEventId: TMouseEvent)  =
+  Memo_SetOnMouseUp(this.Instance, AEventId)
+
+proc CaretPos*(this: TMemo): TPoint  =
+  Memo_GetCaretPos(this.Instance, result)
+
+proc `CaretPos=`*(this: TMemo, AValue: var TPoint)  =
+  Memo_SetCaretPos(this.Instance, AValue)
+
+proc CanUndo*(this: TMemo): bool  =
+  return Memo_GetCanUndo(this.Instance)
+
+proc Modified*(this: TMemo): bool  =
+  return Memo_GetModified(this.Instance)
+
+proc `Modified=`*(this: TMemo, AValue: bool)  =
+  Memo_SetModified(this.Instance, AValue)
+
+proc SelLength*(this: TMemo): int32  =
+  return Memo_GetSelLength(this.Instance)
+
+proc `SelLength=`*(this: TMemo, AValue: int32)  =
+  Memo_SetSelLength(this.Instance, AValue)
+
+proc SelStart*(this: TMemo): int32  =
+  return Memo_GetSelStart(this.Instance)
+
+proc `SelStart=`*(this: TMemo, AValue: int32)  =
+  Memo_SetSelStart(this.Instance, AValue)
+
+proc SelText*(this: TMemo): string  =
+  return $Memo_GetSelText(this.Instance)
+
+proc `SelText=`*(this: TMemo, AValue: string)  =
+  Memo_SetSelText(this.Instance, AValue)
+
+proc Text*(this: TMemo): string  =
+  return $Memo_GetText(this.Instance)
+
+proc `Text=`*(this: TMemo, AValue: string)  =
+  Memo_SetText(this.Instance, AValue)
+
+proc TextHint*(this: TMemo): string  =
+  return $Memo_GetTextHint(this.Instance)
+
+proc `TextHint=`*(this: TMemo, AValue: string)  =
+  Memo_SetTextHint(this.Instance, AValue)
+
+proc DockClientCount*(this: TMemo): int32  =
+  return Memo_GetDockClientCount(this.Instance)
+
+proc DockSite*(this: TMemo): bool  =
+  return Memo_GetDockSite(this.Instance)
+
+proc `DockSite=`*(this: TMemo, AValue: bool)  =
+  Memo_SetDockSite(this.Instance, AValue)
+
+proc MouseInClient*(this: TMemo): bool  =
+  return Memo_GetMouseInClient(this.Instance)
+
+proc VisibleDockClientCount*(this: TMemo): int32  =
+  return Memo_GetVisibleDockClientCount(this.Instance)
+
+proc Brush*(this: TMemo): TBrush  =
+  return Memo_GetBrush(this.Instance).AsBrush
+
+proc ControlCount*(this: TMemo): int32  =
+  return Memo_GetControlCount(this.Instance)
+
+proc Handle*(this: TMemo): HWND  =
+  return Memo_GetHandle(this.Instance)
+
+proc ParentWindow*(this: TMemo): HWND  =
+  return Memo_GetParentWindow(this.Instance)
+
+proc `ParentWindow=`*(this: TMemo, AValue: HWND)  =
+  Memo_SetParentWindow(this.Instance, AValue)
+
+proc Showing*(this: TMemo): bool  =
+  return Memo_GetShowing(this.Instance)
+
+proc UseDockManager*(this: TMemo): bool  =
+  return Memo_GetUseDockManager(this.Instance)
+
+proc `UseDockManager=`*(this: TMemo, AValue: bool)  =
+  Memo_SetUseDockManager(this.Instance, AValue)
+
+proc Action*(this: TMemo): TAction  =
+  return Memo_GetAction(this.Instance).AsAction
+
+proc `Action=`*(this: TMemo, AValue: TAction)  =
+  Memo_SetAction(this.Instance, CheckPtr(AValue))
+
+proc BoundsRect*(this: TMemo): TRect  =
+  Memo_GetBoundsRect(this.Instance, result)
+
+proc `BoundsRect=`*(this: TMemo, AValue: var TRect)  =
+  Memo_SetBoundsRect(this.Instance, AValue)
+
+proc ClientHeight*(this: TMemo): int32  =
+  return Memo_GetClientHeight(this.Instance)
+
+proc `ClientHeight=`*(this: TMemo, AValue: int32)  =
+  Memo_SetClientHeight(this.Instance, AValue)
+
+proc ClientOrigin*(this: TMemo): TPoint  =
+  Memo_GetClientOrigin(this.Instance, result)
+
+proc ClientRect*(this: TMemo): TRect  =
+  Memo_GetClientRect(this.Instance, result)
+
+proc ClientWidth*(this: TMemo): int32  =
+  return Memo_GetClientWidth(this.Instance)
+
+proc `ClientWidth=`*(this: TMemo, AValue: int32)  =
+  Memo_SetClientWidth(this.Instance, AValue)
+
+proc ControlState*(this: TMemo): TControlState  =
+  return Memo_GetControlState(this.Instance)
+
+proc `ControlState=`*(this: TMemo, AValue: TControlState)  =
+  Memo_SetControlState(this.Instance, AValue)
+
+proc ControlStyle*(this: TMemo): TControlStyle  =
+  return Memo_GetControlStyle(this.Instance)
+
+proc `ControlStyle=`*(this: TMemo, AValue: TControlStyle)  =
+  Memo_SetControlStyle(this.Instance, AValue)
+
+proc Floating*(this: TMemo): bool  =
+  return Memo_GetFloating(this.Instance)
+
+proc Parent*(this: TMemo): TWinControl  =
+  return Memo_GetParent(this.Instance).AsWinControl
+
+proc `Parent=`*(this: TMemo, AValue: TWinControl)  =
+  Memo_SetParent(this.Instance, CheckPtr(AValue))
+
+proc Left*(this: TMemo): int32  =
+  return Memo_GetLeft(this.Instance)
+
+proc `Left=`*(this: TMemo, AValue: int32)  =
+  Memo_SetLeft(this.Instance, AValue)
+
+proc Top*(this: TMemo): int32  =
+  return Memo_GetTop(this.Instance)
+
+proc `Top=`*(this: TMemo, AValue: int32)  =
+  Memo_SetTop(this.Instance, AValue)
+
+proc Width*(this: TMemo): int32  =
+  return Memo_GetWidth(this.Instance)
+
+proc `Width=`*(this: TMemo, AValue: int32)  =
+  Memo_SetWidth(this.Instance, AValue)
+
+proc Height*(this: TMemo): int32  =
+  return Memo_GetHeight(this.Instance)
+
+proc `Height=`*(this: TMemo, AValue: int32)  =
+  Memo_SetHeight(this.Instance, AValue)
+
+proc Cursor*(this: TMemo): TCursor  =
+  return Memo_GetCursor(this.Instance)
+
+proc `Cursor=`*(this: TMemo, AValue: TCursor)  =
+  Memo_SetCursor(this.Instance, AValue)
+
+proc Hint*(this: TMemo): string  =
+  return $Memo_GetHint(this.Instance)
+
+proc `Hint=`*(this: TMemo, AValue: string)  =
+  Memo_SetHint(this.Instance, AValue)
+
+proc ComponentCount*(this: TMemo): int32  =
+  return Memo_GetComponentCount(this.Instance)
+
+proc ComponentIndex*(this: TMemo): int32  =
+  return Memo_GetComponentIndex(this.Instance)
+
+proc `ComponentIndex=`*(this: TMemo, AValue: int32)  =
+  Memo_SetComponentIndex(this.Instance, AValue)
+
+proc Owner*(this: TMemo): TComponent  =
+  return Memo_GetOwner(this.Instance).AsComponent
+
+proc Name*(this: TMemo): string  =
+  return $Memo_GetName(this.Instance)
+
+proc `Name=`*(this: TMemo, AValue: string)  =
+  Memo_SetName(this.Instance, AValue)
+
+proc Tag*(this: TMemo): int  =
+  return Memo_GetTag(this.Instance)
+
+proc `Tag=`*(this: TMemo, AValue: int)  =
+  Memo_SetTag(this.Instance, AValue)
+
+proc AnchorSideLeft*(this: TMemo): TAnchorSide  =
+  return Memo_GetAnchorSideLeft(this.Instance).AsAnchorSide
+
+proc `AnchorSideLeft=`*(this: TMemo, AValue: TAnchorSide)  =
+  Memo_SetAnchorSideLeft(this.Instance, CheckPtr(AValue))
+
+proc AnchorSideTop*(this: TMemo): TAnchorSide  =
+  return Memo_GetAnchorSideTop(this.Instance).AsAnchorSide
+
+proc `AnchorSideTop=`*(this: TMemo, AValue: TAnchorSide)  =
+  Memo_SetAnchorSideTop(this.Instance, CheckPtr(AValue))
+
+proc AnchorSideRight*(this: TMemo): TAnchorSide  =
+  return Memo_GetAnchorSideRight(this.Instance).AsAnchorSide
+
+proc `AnchorSideRight=`*(this: TMemo, AValue: TAnchorSide)  =
+  Memo_SetAnchorSideRight(this.Instance, CheckPtr(AValue))
+
+proc AnchorSideBottom*(this: TMemo): TAnchorSide  =
+  return Memo_GetAnchorSideBottom(this.Instance).AsAnchorSide
+
+proc `AnchorSideBottom=`*(this: TMemo, AValue: TAnchorSide)  =
+  Memo_SetAnchorSideBottom(this.Instance, CheckPtr(AValue))
+
+proc ChildSizing*(this: TMemo): TControlChildSizing  =
+  return Memo_GetChildSizing(this.Instance).AsControlChildSizing
+
+proc `ChildSizing=`*(this: TMemo, AValue: TControlChildSizing)  =
+  Memo_SetChildSizing(this.Instance, CheckPtr(AValue))
+
+proc BorderSpacing*(this: TMemo): TControlBorderSpacing  =
+  return Memo_GetBorderSpacing(this.Instance).AsControlBorderSpacing
+
+proc `BorderSpacing=`*(this: TMemo, AValue: TControlBorderSpacing)  =
+  Memo_SetBorderSpacing(this.Instance, CheckPtr(AValue))
+
+proc DockClients*(this: TMemo, Index: int32): TControl  =
+  return Memo_GetDockClients(this.Instance, Index).AsControl
+
+proc Controls*(this: TMemo, Index: int32): TControl  =
+  return Memo_GetControls(this.Instance, Index).AsControl
+
+proc Components*(this: TMemo, AIndex: int32): TComponent  =
+  return Memo_GetComponents(this.Instance, AIndex).AsComponent
+
+proc AnchorSide*(this: TMemo, AKind: TAnchorKind): TAnchorSide  =
+  return Memo_GetAnchorSide(this.Instance, AKind).AsAnchorSide
+
+proc TMemoClass*(): TClass = Memo_StaticClassType()
 
 
 #------------------------- TMemoryStream -------------------------
@@ -18904,150 +18913,129 @@ proc `OnChange=`*(this: TFont, AEventId: TNotifyEvent)  =
 proc TFontClass*(): TClass = Font_StaticClassType()
 
 
-#------------------------- TStrings -------------------------
+#------------------------- TPopupMenu -------------------------
 
-proc Free*(this: TStrings) = defaultFree: Strings_Free
+proc Free*(this: TPopupMenu) = defaultFree: PopupMenu_Free
 
-proc NewStrings*(): TStrings =
-  new(result, Free)
-  result.Instance = Strings_Create()
+proc NewPopupMenu*(AOwner: TComponent): TPopupMenu =
+  new(result)
+  result.Instance = PopupMenu_Create(CheckPtr(AOwner))
 
-proc Add*(this: TStrings, S: string): int32  =
-  return Strings_Add(this.Instance, S)
+proc CloseMenu*(this: TPopupMenu)  =
+  PopupMenu_CloseMenu(this.Instance)
 
-proc AddObject*(this: TStrings, S: string, AObject: TObject): int32  =
-  return Strings_AddObject(this.Instance, S, CheckPtr(AObject))
+proc Popup*(this: TPopupMenu, X: int32, Y: int32)  =
+  PopupMenu_Popup(this.Instance, X, Y)
 
-proc Append*(this: TStrings, S: string)  =
-  Strings_Append(this.Instance, S)
+proc FindComponent*(this: TPopupMenu, AName: string): TComponent =
+  return PopupMenu_FindComponent(this.Instance, AName).AsComponent
 
-proc Assign*(this: TStrings, Source: TObject)  =
-  Strings_Assign(this.Instance, CheckPtr(Source))
+proc GetNamePath*(this: TPopupMenu): string =
+  return $PopupMenu_GetNamePath(this.Instance)
 
-proc BeginUpdate*(this: TStrings)  =
-  Strings_BeginUpdate(this.Instance)
+proc HasParent*(this: TPopupMenu): bool =
+  return PopupMenu_HasParent(this.Instance)
 
-proc Clear*(this: TStrings)  =
-  Strings_Clear(this.Instance)
+proc Assign*(this: TPopupMenu, Source: TObject) =
+  PopupMenu_Assign(this.Instance, CheckPtr(Source))
 
-proc Delete*(this: TStrings, Index: int32)  =
-  Strings_Delete(this.Instance, Index)
+proc ClassType*(this: TPopupMenu): TClass =
+  return PopupMenu_ClassType(this.Instance)
 
-proc EndUpdate*(this: TStrings)  =
-  Strings_EndUpdate(this.Instance)
+proc ClassName*(this: TPopupMenu): string =
+  return $PopupMenu_ClassName(this.Instance)
 
-proc Equals*(this: TStrings, Strings: TStrings): bool  =
-  return Strings_Equals(this.Instance, CheckPtr(Strings))
+proc InstanceSize*(this: TPopupMenu): int32 =
+  return PopupMenu_InstanceSize(this.Instance)
 
-proc IndexOf*(this: TStrings, S: string): int32  =
-  return Strings_IndexOf(this.Instance, S)
+proc InheritsFrom*(this: TPopupMenu, AClass: TClass): bool =
+  return PopupMenu_InheritsFrom(this.Instance, AClass)
 
-proc IndexOfName*(this: TStrings, Name: string): int32  =
-  return Strings_IndexOfName(this.Instance, Name)
+proc Equals*(this: TPopupMenu, Obj: TObject): bool =
+  return PopupMenu_Equals(this.Instance, CheckPtr(Obj))
 
-proc IndexOfObject*(this: TStrings, AObject: TObject): int32  =
-  return Strings_IndexOfObject(this.Instance, CheckPtr(AObject))
+proc GetHashCode*(this: TPopupMenu): int32 =
+  return PopupMenu_GetHashCode(this.Instance)
 
-proc Insert*(this: TStrings, Index: int32, S: string)  =
-  Strings_Insert(this.Instance, Index, S)
+proc ToString*(this: TPopupMenu): string =
+  return $PopupMenu_ToString(this.Instance)
 
-proc InsertObject*(this: TStrings, Index: int32, S: string, AObject: TObject)  =
-  Strings_InsertObject(this.Instance, Index, S, CheckPtr(AObject))
+proc ImagesWidth*(this: TPopupMenu): int32  =
+  return PopupMenu_GetImagesWidth(this.Instance)
 
-proc LoadFromFile*(this: TStrings, FileName: string)  =
-  Strings_LoadFromFile(this.Instance, FileName)
+proc `ImagesWidth=`*(this: TPopupMenu, AValue: int32)  =
+  PopupMenu_SetImagesWidth(this.Instance, AValue)
 
-proc LoadFromStream*(this: TStrings, Stream: TStream)  =
-  Strings_LoadFromStream(this.Instance, CheckPtr(Stream))
+proc PopupComponent*(this: TPopupMenu): TComponent  =
+  return PopupMenu_GetPopupComponent(this.Instance).AsComponent
 
-proc Move*(this: TStrings, CurIndex: int32, NewIndex: int32)  =
-  Strings_Move(this.Instance, CurIndex, NewIndex)
+proc `PopupComponent=`*(this: TPopupMenu, AValue: TComponent)  =
+  PopupMenu_SetPopupComponent(this.Instance, CheckPtr(AValue))
 
-proc SaveToFile*(this: TStrings, FileName: string)  =
-  Strings_SaveToFile(this.Instance, FileName)
+proc PopupPoint*(this: TPopupMenu): TPoint  =
+  PopupMenu_GetPopupPoint(this.Instance, result)
 
-proc SaveToStream*(this: TStrings, Stream: TStream)  =
-  Strings_SaveToStream(this.Instance, CheckPtr(Stream))
+proc Alignment*(this: TPopupMenu): TPopupAlignment  =
+  return PopupMenu_GetAlignment(this.Instance)
 
-proc GetNamePath*(this: TStrings): string  =
-  return $Strings_GetNamePath(this.Instance)
+proc `Alignment=`*(this: TPopupMenu, AValue: TPopupAlignment)  =
+  PopupMenu_SetAlignment(this.Instance, AValue)
 
-proc ClassType*(this: TStrings): TClass =
-  return Strings_ClassType(this.Instance)
+proc BiDiMode*(this: TPopupMenu): TBiDiMode  =
+  return PopupMenu_GetBiDiMode(this.Instance)
 
-proc ClassName*(this: TStrings): string =
-  return $Strings_ClassName(this.Instance)
+proc `BiDiMode=`*(this: TPopupMenu, AValue: TBiDiMode)  =
+  PopupMenu_SetBiDiMode(this.Instance, AValue)
 
-proc InstanceSize*(this: TStrings): int32 =
-  return Strings_InstanceSize(this.Instance)
+proc Images*(this: TPopupMenu): TImageList  =
+  return PopupMenu_GetImages(this.Instance).AsImageList
 
-proc InheritsFrom*(this: TStrings, AClass: TClass): bool =
-  return Strings_InheritsFrom(this.Instance, AClass)
+proc `Images=`*(this: TPopupMenu, AValue: TImageList)  =
+  PopupMenu_SetImages(this.Instance, CheckPtr(AValue))
 
-proc GetHashCode*(this: TStrings): int32 =
-  return Strings_GetHashCode(this.Instance)
+proc OwnerDraw*(this: TPopupMenu): bool  =
+  return PopupMenu_GetOwnerDraw(this.Instance)
 
-proc ToString*(this: TStrings): string =
-  return $Strings_ToString(this.Instance)
+proc `OwnerDraw=`*(this: TPopupMenu, AValue: bool)  =
+  PopupMenu_SetOwnerDraw(this.Instance, AValue)
 
-proc Capacity*(this: TStrings): int32  =
-  return Strings_GetCapacity(this.Instance)
+proc `OnPopup=`*(this: TPopupMenu, AEventId: TNotifyEvent)  =
+  PopupMenu_SetOnPopup(this.Instance, AEventId)
 
-proc `Capacity=`*(this: TStrings, AValue: int32)  =
-  Strings_SetCapacity(this.Instance, AValue)
+proc Handle*(this: TPopupMenu): HMENU  =
+  return PopupMenu_GetHandle(this.Instance)
 
-proc CommaText*(this: TStrings): string  =
-  return $Strings_GetCommaText(this.Instance)
+proc Items*(this: TPopupMenu): TMenuItem  =
+  return PopupMenu_GetItems(this.Instance).AsMenuItem
 
-proc `CommaText=`*(this: TStrings, AValue: string)  =
-  Strings_SetCommaText(this.Instance, AValue)
+proc ComponentCount*(this: TPopupMenu): int32  =
+  return PopupMenu_GetComponentCount(this.Instance)
 
-proc Count*(this: TStrings): int32  =
-  return Strings_GetCount(this.Instance)
+proc ComponentIndex*(this: TPopupMenu): int32  =
+  return PopupMenu_GetComponentIndex(this.Instance)
 
-proc Delimiter*(this: TStrings): Char  =
-  return Strings_GetDelimiter(this.Instance)
+proc `ComponentIndex=`*(this: TPopupMenu, AValue: int32)  =
+  PopupMenu_SetComponentIndex(this.Instance, AValue)
 
-proc `Delimiter=`*(this: TStrings, AValue: Char)  =
-  Strings_SetDelimiter(this.Instance, AValue)
+proc Owner*(this: TPopupMenu): TComponent  =
+  return PopupMenu_GetOwner(this.Instance).AsComponent
 
-proc NameValueSeparator*(this: TStrings): Char  =
-  return Strings_GetNameValueSeparator(this.Instance)
+proc Name*(this: TPopupMenu): string  =
+  return $PopupMenu_GetName(this.Instance)
 
-proc `NameValueSeparator=`*(this: TStrings, AValue: Char)  =
-  Strings_SetNameValueSeparator(this.Instance, AValue)
+proc `Name=`*(this: TPopupMenu, AValue: string)  =
+  PopupMenu_SetName(this.Instance, AValue)
 
-proc Text*(this: TStrings): string  =
-  return $Strings_GetText(this.Instance)
+proc Tag*(this: TPopupMenu): int  =
+  return PopupMenu_GetTag(this.Instance)
 
-proc `Text=`*(this: TStrings, AValue: string)  =
-  Strings_SetText(this.Instance, AValue)
+proc `Tag=`*(this: TPopupMenu, AValue: int)  =
+  PopupMenu_SetTag(this.Instance, AValue)
 
-proc Objects*(this: TStrings, Index: int32): TObject  =
-  return Strings_GetObjects(this.Instance, Index).AsObject
+proc Components*(this: TPopupMenu, AIndex: int32): TComponent  =
+  return PopupMenu_GetComponents(this.Instance, AIndex).AsComponent
 
-proc `Objects=`*(this: TStrings, Index: int32, AValue: TObject)  =
-  Strings_SetObjects(this.Instance, Index, CheckPtr(AValue))
-
-proc Values*(this: TStrings, Name: string): string  =
-  return $Strings_GetValues(this.Instance, Name)
-
-proc `Values=`*(this: TStrings, Name: string, AValue: string)  =
-  Strings_SetValues(this.Instance, Name, AValue)
-
-proc ValueFromIndex*(this: TStrings, Index: int32): string  =
-  return $Strings_GetValueFromIndex(this.Instance, Index)
-
-proc `ValueFromIndex=`*(this: TStrings, Index: int32, AValue: string)  =
-  Strings_SetValueFromIndex(this.Instance, Index, AValue)
-
-proc Strings*(this: TStrings, Index: int32): string  =
-  return $Strings_GetStrings(this.Instance, Index)
-
-proc `Strings=`*(this: TStrings, Index: int32, AValue: string)  =
-  Strings_SetStrings(this.Instance, Index, AValue)
-
-proc TStringsClass*(): TClass = Strings_StaticClassType()
+proc TPopupMenuClass*(): TClass = PopupMenu_StaticClassType()
 
 
 #------------------------- TStringList -------------------------
@@ -24263,10 +24251,9 @@ proc TextRect*(this: TCanvas, Rect: TRect, X: int32, Y: int32, Text: string)  =
   var ps1 = Rect
   Canvas_TextRect1(this.Instance, ps1, X, Y, Text)
 
-proc TextRect*(this: TCanvas, Rect: var TRect, Text: string, AOutStr: var string, TextFormat: TTextFormat): int32 =
-  var outstr: cstring
-  result = Canvas_TextRect2(this.Instance, Rect, Text, outstr, TextFormat)
-  AOutStr = $outstr
+proc TextRect*(this: TCanvas, Rect: var TRect, Text: string, TextFormat: TTextFormat): int32 =
+  var cstr: cstring = nil
+  result = Canvas_TextRect2(this.Instance, Rect, Text, cstr, TextFormat)
 
 proc Polygon*(this: TCanvas, APoints: var TPoint, ALen: int32)  =
   Canvas_Polygon(this.Instance, APoints, ALen)
@@ -24544,96 +24531,108 @@ proc CreateForm*(this: TApplication): TForm =
 proc Run*(this: TApplication)  =
   Application_Run(this.Instance)
 
-#------------------------- TGraphic -------------------------
+#------------------------- TMainMenu -------------------------
 
-proc Free*(this: TGraphic) = defaultFree: Graphic_Free
+proc Free*(this: TMainMenu) = defaultFree: MainMenu_Free
 
-proc NewGraphic*(): TGraphic =
-  new(result, Free)
-  result.Instance = Graphic_Create()
+proc NewMainMenu*(AOwner: TComponent): TMainMenu =
+  new(result)
+  result.Instance = MainMenu_Create(CheckPtr(AOwner))
 
-proc Equals*(this: TGraphic, Obj: TObject): bool =
-  return Graphic_Equals(this.Instance, CheckPtr(Obj))
+proc FindComponent*(this: TMainMenu, AName: string): TComponent =
+  return MainMenu_FindComponent(this.Instance, AName).AsComponent
 
-proc LoadFromFile*(this: TGraphic, Filename: string)  =
-  Graphic_LoadFromFile(this.Instance, Filename)
+proc GetNamePath*(this: TMainMenu): string =
+  return $MainMenu_GetNamePath(this.Instance)
 
-proc SaveToFile*(this: TGraphic, Filename: string)  =
-  Graphic_SaveToFile(this.Instance, Filename)
+proc HasParent*(this: TMainMenu): bool =
+  return MainMenu_HasParent(this.Instance)
 
-proc LoadFromStream*(this: TGraphic, Stream: TStream)  =
-  Graphic_LoadFromStream(this.Instance, CheckPtr(Stream))
+proc Assign*(this: TMainMenu, Source: TObject) =
+  MainMenu_Assign(this.Instance, CheckPtr(Source))
 
-proc SaveToStream*(this: TGraphic, Stream: TStream)  =
-  Graphic_SaveToStream(this.Instance, CheckPtr(Stream))
+proc ClassType*(this: TMainMenu): TClass =
+  return MainMenu_ClassType(this.Instance)
 
-proc Assign*(this: TGraphic, Source: TObject)  =
-  Graphic_Assign(this.Instance, CheckPtr(Source))
+proc ClassName*(this: TMainMenu): string =
+  return $MainMenu_ClassName(this.Instance)
 
-proc GetNamePath*(this: TGraphic): string  =
-  return $Graphic_GetNamePath(this.Instance)
+proc InstanceSize*(this: TMainMenu): int32 =
+  return MainMenu_InstanceSize(this.Instance)
 
-proc ClassType*(this: TGraphic): TClass =
-  return Graphic_ClassType(this.Instance)
+proc InheritsFrom*(this: TMainMenu, AClass: TClass): bool =
+  return MainMenu_InheritsFrom(this.Instance, AClass)
 
-proc ClassName*(this: TGraphic): string =
-  return $Graphic_ClassName(this.Instance)
+proc Equals*(this: TMainMenu, Obj: TObject): bool =
+  return MainMenu_Equals(this.Instance, CheckPtr(Obj))
 
-proc InstanceSize*(this: TGraphic): int32 =
-  return Graphic_InstanceSize(this.Instance)
+proc GetHashCode*(this: TMainMenu): int32 =
+  return MainMenu_GetHashCode(this.Instance)
 
-proc InheritsFrom*(this: TGraphic, AClass: TClass): bool =
-  return Graphic_InheritsFrom(this.Instance, AClass)
+proc ToString*(this: TMainMenu): string =
+  return $MainMenu_ToString(this.Instance)
 
-proc GetHashCode*(this: TGraphic): int32 =
-  return Graphic_GetHashCode(this.Instance)
+proc ImagesWidth*(this: TMainMenu): int32  =
+  return MainMenu_GetImagesWidth(this.Instance)
 
-proc ToString*(this: TGraphic): string =
-  return $Graphic_ToString(this.Instance)
+proc `ImagesWidth=`*(this: TMainMenu, AValue: int32)  =
+  MainMenu_SetImagesWidth(this.Instance, AValue)
 
-proc Empty*(this: TGraphic): bool  =
-  return Graphic_GetEmpty(this.Instance)
+proc BiDiMode*(this: TMainMenu): TBiDiMode  =
+  return MainMenu_GetBiDiMode(this.Instance)
 
-proc Height*(this: TGraphic): int32  =
-  return Graphic_GetHeight(this.Instance)
+proc `BiDiMode=`*(this: TMainMenu, AValue: TBiDiMode)  =
+  MainMenu_SetBiDiMode(this.Instance, AValue)
 
-proc `Height=`*(this: TGraphic, AValue: int32)  =
-  Graphic_SetHeight(this.Instance, AValue)
+proc Images*(this: TMainMenu): TImageList  =
+  return MainMenu_GetImages(this.Instance).AsImageList
 
-proc Modified*(this: TGraphic): bool  =
-  return Graphic_GetModified(this.Instance)
+proc `Images=`*(this: TMainMenu, AValue: TImageList)  =
+  MainMenu_SetImages(this.Instance, CheckPtr(AValue))
 
-proc `Modified=`*(this: TGraphic, AValue: bool)  =
-  Graphic_SetModified(this.Instance, AValue)
+proc OwnerDraw*(this: TMainMenu): bool  =
+  return MainMenu_GetOwnerDraw(this.Instance)
 
-proc Palette*(this: TGraphic): HPALETTE  =
-  return Graphic_GetPalette(this.Instance)
+proc `OwnerDraw=`*(this: TMainMenu, AValue: bool)  =
+  MainMenu_SetOwnerDraw(this.Instance, AValue)
 
-proc `Palette=`*(this: TGraphic, AValue: HPALETTE)  =
-  Graphic_SetPalette(this.Instance, AValue)
+proc `OnChange=`*(this: TMainMenu, AEventId: TMenuChangeEvent)  =
+  MainMenu_SetOnChange(this.Instance, AEventId)
 
-proc PaletteModified*(this: TGraphic): bool  =
-  return Graphic_GetPaletteModified(this.Instance)
+proc Handle*(this: TMainMenu): HMENU  =
+  return MainMenu_GetHandle(this.Instance)
 
-proc `PaletteModified=`*(this: TGraphic, AValue: bool)  =
-  Graphic_SetPaletteModified(this.Instance, AValue)
+proc Items*(this: TMainMenu): TMenuItem  =
+  return MainMenu_GetItems(this.Instance).AsMenuItem
 
-proc Transparent*(this: TGraphic): bool  =
-  return Graphic_GetTransparent(this.Instance)
+proc ComponentCount*(this: TMainMenu): int32  =
+  return MainMenu_GetComponentCount(this.Instance)
 
-proc `Transparent=`*(this: TGraphic, AValue: bool)  =
-  Graphic_SetTransparent(this.Instance, AValue)
+proc ComponentIndex*(this: TMainMenu): int32  =
+  return MainMenu_GetComponentIndex(this.Instance)
 
-proc Width*(this: TGraphic): int32  =
-  return Graphic_GetWidth(this.Instance)
+proc `ComponentIndex=`*(this: TMainMenu, AValue: int32)  =
+  MainMenu_SetComponentIndex(this.Instance, AValue)
 
-proc `Width=`*(this: TGraphic, AValue: int32)  =
-  Graphic_SetWidth(this.Instance, AValue)
+proc Owner*(this: TMainMenu): TComponent  =
+  return MainMenu_GetOwner(this.Instance).AsComponent
 
-proc `OnChange=`*(this: TGraphic, AEventId: TNotifyEvent)  =
-  Graphic_SetOnChange(this.Instance, AEventId)
+proc Name*(this: TMainMenu): string  =
+  return $MainMenu_GetName(this.Instance)
 
-proc TGraphicClass*(): TClass = Graphic_StaticClassType()
+proc `Name=`*(this: TMainMenu, AValue: string)  =
+  MainMenu_SetName(this.Instance, AValue)
+
+proc Tag*(this: TMainMenu): int  =
+  return MainMenu_GetTag(this.Instance)
+
+proc `Tag=`*(this: TMainMenu, AValue: int)  =
+  MainMenu_SetTag(this.Instance, AValue)
+
+proc Components*(this: TMainMenu, AIndex: int32): TComponent  =
+  return MainMenu_GetComponents(this.Instance, AIndex).AsComponent
+
+proc TMainMenuClass*(): TClass = MainMenu_StaticClassType()
 
 
 #------------------------- TPngImage -------------------------
@@ -24644,13 +24643,13 @@ proc NewPngImage*(): TPngImage =
   new(result, Free)
   result.Instance = PngImage_Create()
 
-proc Assign*(this: TPngImage, Source: TObject)  =
+proc Assign*(this: TPngImage, Source: TObject) =
   PngImage_Assign(this.Instance, CheckPtr(Source))
 
-proc LoadFromStream*(this: TPngImage, Stream: TStream)  =
+proc LoadFromStream*(this: TPngImage, Stream: TStream) =
   PngImage_LoadFromStream(this.Instance, CheckPtr(Stream))
 
-proc SaveToStream*(this: TPngImage, Stream: TStream)  =
+proc SaveToStream*(this: TPngImage, Stream: TStream) =
   PngImage_SaveToStream(this.Instance, CheckPtr(Stream))
 
 proc LoadFromResourceName*(this: TPngImage, Instance: uint, Name: string)  =
@@ -24662,16 +24661,16 @@ proc LoadFromResourceID*(this: TPngImage, Instance: uint, ResID: int32)  =
 proc Equals*(this: TPngImage, Obj: TObject): bool =
   return PngImage_Equals(this.Instance, CheckPtr(Obj))
 
-proc LoadFromFile*(this: TPngImage, Filename: string)  =
+proc LoadFromFile*(this: TPngImage, Filename: string) =
   PngImage_LoadFromFile(this.Instance, Filename)
 
-proc SaveToFile*(this: TPngImage, Filename: string)  =
+proc SaveToFile*(this: TPngImage, Filename: string) =
   PngImage_SaveToFile(this.Instance, Filename)
 
 proc SetSize*(this: TPngImage, AWidth: int32, AHeight: int32)  =
   PngImage_SetSize(this.Instance, AWidth, AHeight)
 
-proc GetNamePath*(this: TPngImage): string  =
+proc GetNamePath*(this: TPngImage): string =
   return $PngImage_GetNamePath(this.Instance)
 
 proc ClassType*(this: TPngImage): TClass =
@@ -24742,28 +24741,28 @@ proc NewJPEGImage*(): TJPEGImage =
   new(result, Free)
   result.Instance = JPEGImage_Create()
 
-proc Assign*(this: TJPEGImage, Source: TObject)  =
+proc Assign*(this: TJPEGImage, Source: TObject) =
   JPEGImage_Assign(this.Instance, CheckPtr(Source))
 
-proc LoadFromStream*(this: TJPEGImage, Stream: TStream)  =
+proc LoadFromStream*(this: TJPEGImage, Stream: TStream) =
   JPEGImage_LoadFromStream(this.Instance, CheckPtr(Stream))
 
-proc SaveToStream*(this: TJPEGImage, Stream: TStream)  =
+proc SaveToStream*(this: TJPEGImage, Stream: TStream) =
   JPEGImage_SaveToStream(this.Instance, CheckPtr(Stream))
 
 proc Equals*(this: TJPEGImage, Obj: TObject): bool =
   return JPEGImage_Equals(this.Instance, CheckPtr(Obj))
 
-proc LoadFromFile*(this: TJPEGImage, Filename: string)  =
+proc LoadFromFile*(this: TJPEGImage, Filename: string) =
   JPEGImage_LoadFromFile(this.Instance, Filename)
 
-proc SaveToFile*(this: TJPEGImage, Filename: string)  =
+proc SaveToFile*(this: TJPEGImage, Filename: string) =
   JPEGImage_SaveToFile(this.Instance, Filename)
 
 proc SetSize*(this: TJPEGImage, AWidth: int32, AHeight: int32)  =
   JPEGImage_SetSize(this.Instance, AWidth, AHeight)
 
-proc GetNamePath*(this: TJPEGImage): string  =
+proc GetNamePath*(this: TJPEGImage): string =
   return $JPEGImage_GetNamePath(this.Instance)
 
 proc ClassType*(this: TJPEGImage): TClass =
@@ -24852,31 +24851,31 @@ proc NewGIFImage*(): TGIFImage =
   new(result, Free)
   result.Instance = GIFImage_Create()
 
-proc SaveToStream*(this: TGIFImage, Stream: TStream)  =
+proc SaveToStream*(this: TGIFImage, Stream: TStream) =
   GIFImage_SaveToStream(this.Instance, CheckPtr(Stream))
 
-proc LoadFromStream*(this: TGIFImage, Stream: TStream)  =
+proc LoadFromStream*(this: TGIFImage, Stream: TStream) =
   GIFImage_LoadFromStream(this.Instance, CheckPtr(Stream))
 
 proc Clear*(this: TGIFImage)  =
   GIFImage_Clear(this.Instance)
 
-proc Assign*(this: TGIFImage, Source: TObject)  =
+proc Assign*(this: TGIFImage, Source: TObject) =
   GIFImage_Assign(this.Instance, CheckPtr(Source))
 
 proc Equals*(this: TGIFImage, Obj: TObject): bool =
   return GIFImage_Equals(this.Instance, CheckPtr(Obj))
 
-proc LoadFromFile*(this: TGIFImage, Filename: string)  =
+proc LoadFromFile*(this: TGIFImage, Filename: string) =
   GIFImage_LoadFromFile(this.Instance, Filename)
 
-proc SaveToFile*(this: TGIFImage, Filename: string)  =
+proc SaveToFile*(this: TGIFImage, Filename: string) =
   GIFImage_SaveToFile(this.Instance, Filename)
 
 proc SetSize*(this: TGIFImage, AWidth: int32, AHeight: int32)  =
   GIFImage_SetSize(this.Instance, AWidth, AHeight)
 
-proc GetNamePath*(this: TGIFImage): string  =
+proc GetNamePath*(this: TGIFImage): string =
   return $GIFImage_GetNamePath(this.Instance)
 
 proc ClassType*(this: TGIFImage): TClass =

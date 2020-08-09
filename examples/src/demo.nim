@@ -38,7 +38,7 @@ type
      val: int
 
 proc Free(obj: TTest1) =
-  echo "调用了释放" 
+  echo "call free." 
 
 var 
   mainForm: TMainForm
@@ -105,9 +105,9 @@ proc onFormWndProc(msg: var TMessage) =
   mainForm.InheritedWndProc(msg)
   case msg.msg
   of 0x0201: # WM_LBUTTONDOWN
-    echo "鼠标左键按下"
+    echo "mouse down"
   of 0x0202: # WM_LBUTTONUP
-    echo "鼠标左键抬起" 
+    echo "mouse up" 
   else:
     discard
   
@@ -121,7 +121,7 @@ proc onBtn2Click(sender: pointer) =
 
 ###########################################################################
 
-echo "测试"
+echo "Test"
 
 # proc TestFunc1(p: var TPoint) =
   # echo p.x, ",", p.y 
@@ -305,7 +305,7 @@ fItem.Add(subItem)
 # add fItem
 mainForm.mainMenu.Items.Add(fItem)
 
-# TPopupMenu
+# TPopupMenu    
 mainForm.pmMenu = NewPopupMenu(mainForm)
 mainForm.PopupMenu = mainForm.pmMenu
 

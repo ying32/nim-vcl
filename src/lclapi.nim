@@ -390,305 +390,87 @@ proc WinControl_GetControls*(AObj: pointer, Index: int32): pointer {.importc: "W
 proc WinControl_GetComponents*(AObj: pointer, AIndex: int32): pointer {.importc: "WinControl_GetComponents", dynlib: dllname.}
 proc WinControl_GetAnchorSide*(AObj: pointer, AKind: TAnchorKind): pointer {.importc: "WinControl_GetAnchorSide", dynlib: dllname.}
 proc WinControl_StaticClassType*(): TClass {.importc: "WinControl_StaticClassType", dynlib: dllname.}
-# ----------------- TMainMenu ----------------------
-proc MainMenu_Create*(AOwner: pointer): pointer {.importc: "MainMenu_Create", dynlib: dllname.}
-proc MainMenu_Free*(AObj: pointer) {.importc: "MainMenu_Free", dynlib: dllname.}
-proc MainMenu_FindComponent*(AObj: pointer, AName: cstring): pointer {.importc: "MainMenu_FindComponent", dynlib: dllname.}
-proc MainMenu_GetNamePath*(AObj: pointer): cstring {.importc: "MainMenu_GetNamePath", dynlib: dllname.}
-proc MainMenu_HasParent*(AObj: pointer): bool {.importc: "MainMenu_HasParent", dynlib: dllname.}
-proc MainMenu_Assign*(AObj: pointer, Source: pointer) {.importc: "MainMenu_Assign", dynlib: dllname.}
-proc MainMenu_ClassType*(AObj: pointer): TClass {.importc: "MainMenu_ClassType", dynlib: dllname.}
-proc MainMenu_ClassName*(AObj: pointer): cstring {.importc: "MainMenu_ClassName", dynlib: dllname.}
-proc MainMenu_InstanceSize*(AObj: pointer): int32 {.importc: "MainMenu_InstanceSize", dynlib: dllname.}
-proc MainMenu_InheritsFrom*(AObj: pointer, AClass: TClass): bool {.importc: "MainMenu_InheritsFrom", dynlib: dllname.}
-proc MainMenu_Equals*(AObj: pointer, Obj: pointer): bool {.importc: "MainMenu_Equals", dynlib: dllname.}
-proc MainMenu_GetHashCode*(AObj: pointer): int32 {.importc: "MainMenu_GetHashCode", dynlib: dllname.}
-proc MainMenu_ToString*(AObj: pointer): cstring {.importc: "MainMenu_ToString", dynlib: dllname.}
-proc MainMenu_GetImagesWidth*(AObj: pointer): int32 {.importc: "MainMenu_GetImagesWidth", dynlib: dllname.}
-proc MainMenu_SetImagesWidth*(AObj: pointer, AValue: int32) {.importc: "MainMenu_SetImagesWidth", dynlib: dllname.}
-proc MainMenu_GetBiDiMode*(AObj: pointer): TBiDiMode {.importc: "MainMenu_GetBiDiMode", dynlib: dllname.}
-proc MainMenu_SetBiDiMode*(AObj: pointer, AValue: TBiDiMode) {.importc: "MainMenu_SetBiDiMode", dynlib: dllname.}
-proc MainMenu_GetImages*(AObj: pointer): pointer {.importc: "MainMenu_GetImages", dynlib: dllname.}
-proc MainMenu_SetImages*(AObj: pointer, AValue: pointer) {.importc: "MainMenu_SetImages", dynlib: dllname.}
-proc MainMenu_GetOwnerDraw*(AObj: pointer): bool {.importc: "MainMenu_GetOwnerDraw", dynlib: dllname.}
-proc MainMenu_SetOwnerDraw*(AObj: pointer, AValue: bool) {.importc: "MainMenu_SetOwnerDraw", dynlib: dllname.}
-proc MainMenu_SetOnChange*(AObj: pointer, AEventId: TMenuChangeEvent) {.importc: "MainMenu_SetOnChange", dynlib: dllname.}
-proc MainMenu_GetHandle*(AObj: pointer): HMENU {.importc: "MainMenu_GetHandle", dynlib: dllname.}
-proc MainMenu_GetItems*(AObj: pointer): pointer {.importc: "MainMenu_GetItems", dynlib: dllname.}
-proc MainMenu_GetComponentCount*(AObj: pointer): int32 {.importc: "MainMenu_GetComponentCount", dynlib: dllname.}
-proc MainMenu_GetComponentIndex*(AObj: pointer): int32 {.importc: "MainMenu_GetComponentIndex", dynlib: dllname.}
-proc MainMenu_SetComponentIndex*(AObj: pointer, AValue: int32) {.importc: "MainMenu_SetComponentIndex", dynlib: dllname.}
-proc MainMenu_GetOwner*(AObj: pointer): pointer {.importc: "MainMenu_GetOwner", dynlib: dllname.}
-proc MainMenu_GetName*(AObj: pointer): cstring {.importc: "MainMenu_GetName", dynlib: dllname.}
-proc MainMenu_SetName*(AObj: pointer, AValue: cstring) {.importc: "MainMenu_SetName", dynlib: dllname.}
-proc MainMenu_GetTag*(AObj: pointer): int {.importc: "MainMenu_GetTag", dynlib: dllname.}
-proc MainMenu_SetTag*(AObj: pointer, AValue: int) {.importc: "MainMenu_SetTag", dynlib: dllname.}
-proc MainMenu_GetComponents*(AObj: pointer, AIndex: int32): pointer {.importc: "MainMenu_GetComponents", dynlib: dllname.}
-proc MainMenu_StaticClassType*(): TClass {.importc: "MainMenu_StaticClassType", dynlib: dllname.}
-# ----------------- TPopupMenu ----------------------
-proc PopupMenu_Create*(AOwner: pointer): pointer {.importc: "PopupMenu_Create", dynlib: dllname.}
-proc PopupMenu_Free*(AObj: pointer) {.importc: "PopupMenu_Free", dynlib: dllname.}
-proc PopupMenu_CloseMenu*(AObj: pointer) {.importc: "PopupMenu_CloseMenu", dynlib: dllname.}
-proc PopupMenu_Popup*(AObj: pointer, X: int32, Y: int32) {.importc: "PopupMenu_Popup", dynlib: dllname.}
-proc PopupMenu_FindComponent*(AObj: pointer, AName: cstring): pointer {.importc: "PopupMenu_FindComponent", dynlib: dllname.}
-proc PopupMenu_GetNamePath*(AObj: pointer): cstring {.importc: "PopupMenu_GetNamePath", dynlib: dllname.}
-proc PopupMenu_HasParent*(AObj: pointer): bool {.importc: "PopupMenu_HasParent", dynlib: dllname.}
-proc PopupMenu_Assign*(AObj: pointer, Source: pointer) {.importc: "PopupMenu_Assign", dynlib: dllname.}
-proc PopupMenu_ClassType*(AObj: pointer): TClass {.importc: "PopupMenu_ClassType", dynlib: dllname.}
-proc PopupMenu_ClassName*(AObj: pointer): cstring {.importc: "PopupMenu_ClassName", dynlib: dllname.}
-proc PopupMenu_InstanceSize*(AObj: pointer): int32 {.importc: "PopupMenu_InstanceSize", dynlib: dllname.}
-proc PopupMenu_InheritsFrom*(AObj: pointer, AClass: TClass): bool {.importc: "PopupMenu_InheritsFrom", dynlib: dllname.}
-proc PopupMenu_Equals*(AObj: pointer, Obj: pointer): bool {.importc: "PopupMenu_Equals", dynlib: dllname.}
-proc PopupMenu_GetHashCode*(AObj: pointer): int32 {.importc: "PopupMenu_GetHashCode", dynlib: dllname.}
-proc PopupMenu_ToString*(AObj: pointer): cstring {.importc: "PopupMenu_ToString", dynlib: dllname.}
-proc PopupMenu_GetImagesWidth*(AObj: pointer): int32 {.importc: "PopupMenu_GetImagesWidth", dynlib: dllname.}
-proc PopupMenu_SetImagesWidth*(AObj: pointer, AValue: int32) {.importc: "PopupMenu_SetImagesWidth", dynlib: dllname.}
-proc PopupMenu_GetPopupComponent*(AObj: pointer): pointer {.importc: "PopupMenu_GetPopupComponent", dynlib: dllname.}
-proc PopupMenu_SetPopupComponent*(AObj: pointer, AValue: pointer) {.importc: "PopupMenu_SetPopupComponent", dynlib: dllname.}
-proc PopupMenu_GetPopupPoint*(AObj: pointer, Result: var TPoint) {.importc: "PopupMenu_GetPopupPoint", dynlib: dllname.}
-proc PopupMenu_GetAlignment*(AObj: pointer): TPopupAlignment {.importc: "PopupMenu_GetAlignment", dynlib: dllname.}
-proc PopupMenu_SetAlignment*(AObj: pointer, AValue: TPopupAlignment) {.importc: "PopupMenu_SetAlignment", dynlib: dllname.}
-proc PopupMenu_GetBiDiMode*(AObj: pointer): TBiDiMode {.importc: "PopupMenu_GetBiDiMode", dynlib: dllname.}
-proc PopupMenu_SetBiDiMode*(AObj: pointer, AValue: TBiDiMode) {.importc: "PopupMenu_SetBiDiMode", dynlib: dllname.}
-proc PopupMenu_GetImages*(AObj: pointer): pointer {.importc: "PopupMenu_GetImages", dynlib: dllname.}
-proc PopupMenu_SetImages*(AObj: pointer, AValue: pointer) {.importc: "PopupMenu_SetImages", dynlib: dllname.}
-proc PopupMenu_GetOwnerDraw*(AObj: pointer): bool {.importc: "PopupMenu_GetOwnerDraw", dynlib: dllname.}
-proc PopupMenu_SetOwnerDraw*(AObj: pointer, AValue: bool) {.importc: "PopupMenu_SetOwnerDraw", dynlib: dllname.}
-proc PopupMenu_SetOnPopup*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "PopupMenu_SetOnPopup", dynlib: dllname.}
-proc PopupMenu_GetHandle*(AObj: pointer): HMENU {.importc: "PopupMenu_GetHandle", dynlib: dllname.}
-proc PopupMenu_GetItems*(AObj: pointer): pointer {.importc: "PopupMenu_GetItems", dynlib: dllname.}
-proc PopupMenu_GetComponentCount*(AObj: pointer): int32 {.importc: "PopupMenu_GetComponentCount", dynlib: dllname.}
-proc PopupMenu_GetComponentIndex*(AObj: pointer): int32 {.importc: "PopupMenu_GetComponentIndex", dynlib: dllname.}
-proc PopupMenu_SetComponentIndex*(AObj: pointer, AValue: int32) {.importc: "PopupMenu_SetComponentIndex", dynlib: dllname.}
-proc PopupMenu_GetOwner*(AObj: pointer): pointer {.importc: "PopupMenu_GetOwner", dynlib: dllname.}
-proc PopupMenu_GetName*(AObj: pointer): cstring {.importc: "PopupMenu_GetName", dynlib: dllname.}
-proc PopupMenu_SetName*(AObj: pointer, AValue: cstring) {.importc: "PopupMenu_SetName", dynlib: dllname.}
-proc PopupMenu_GetTag*(AObj: pointer): int {.importc: "PopupMenu_GetTag", dynlib: dllname.}
-proc PopupMenu_SetTag*(AObj: pointer, AValue: int) {.importc: "PopupMenu_SetTag", dynlib: dllname.}
-proc PopupMenu_GetComponents*(AObj: pointer, AIndex: int32): pointer {.importc: "PopupMenu_GetComponents", dynlib: dllname.}
-proc PopupMenu_StaticClassType*(): TClass {.importc: "PopupMenu_StaticClassType", dynlib: dllname.}
-# ----------------- TMemo ----------------------
-proc Memo_Create*(AOwner: pointer): pointer {.importc: "Memo_Create", dynlib: dllname.}
-proc Memo_Free*(AObj: pointer) {.importc: "Memo_Free", dynlib: dllname.}
-proc Memo_Append*(AObj: pointer, Value: cstring) {.importc: "Memo_Append", dynlib: dllname.}
-proc Memo_Clear*(AObj: pointer) {.importc: "Memo_Clear", dynlib: dllname.}
-proc Memo_ClearSelection*(AObj: pointer) {.importc: "Memo_ClearSelection", dynlib: dllname.}
-proc Memo_CopyToClipboard*(AObj: pointer) {.importc: "Memo_CopyToClipboard", dynlib: dllname.}
-proc Memo_CutToClipboard*(AObj: pointer) {.importc: "Memo_CutToClipboard", dynlib: dllname.}
-proc Memo_PasteFromClipboard*(AObj: pointer) {.importc: "Memo_PasteFromClipboard", dynlib: dllname.}
-proc Memo_Undo*(AObj: pointer) {.importc: "Memo_Undo", dynlib: dllname.}
-proc Memo_SelectAll*(AObj: pointer) {.importc: "Memo_SelectAll", dynlib: dllname.}
-proc Memo_CanFocus*(AObj: pointer): bool {.importc: "Memo_CanFocus", dynlib: dllname.}
-proc Memo_ContainsControl*(AObj: pointer, Control: pointer): bool {.importc: "Memo_ContainsControl", dynlib: dllname.}
-proc Memo_ControlAtPos*(AObj: pointer, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): pointer {.importc: "Memo_ControlAtPos", dynlib: dllname.}
-proc Memo_DisableAlign*(AObj: pointer) {.importc: "Memo_DisableAlign", dynlib: dllname.}
-proc Memo_EnableAlign*(AObj: pointer) {.importc: "Memo_EnableAlign", dynlib: dllname.}
-proc Memo_FindChildControl*(AObj: pointer, ControlName: cstring): pointer {.importc: "Memo_FindChildControl", dynlib: dllname.}
-proc Memo_FlipChildren*(AObj: pointer, AllLevels: bool) {.importc: "Memo_FlipChildren", dynlib: dllname.}
-proc Memo_Focused*(AObj: pointer): bool {.importc: "Memo_Focused", dynlib: dllname.}
-proc Memo_HandleAllocated*(AObj: pointer): bool {.importc: "Memo_HandleAllocated", dynlib: dllname.}
-proc Memo_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "Memo_InsertControl", dynlib: dllname.}
-proc Memo_Invalidate*(AObj: pointer) {.importc: "Memo_Invalidate", dynlib: dllname.}
-proc Memo_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "Memo_RemoveControl", dynlib: dllname.}
-proc Memo_Realign*(AObj: pointer) {.importc: "Memo_Realign", dynlib: dllname.}
-proc Memo_Repaint*(AObj: pointer) {.importc: "Memo_Repaint", dynlib: dllname.}
-proc Memo_ScaleBy*(AObj: pointer, M: int32, D: int32) {.importc: "Memo_ScaleBy", dynlib: dllname.}
-proc Memo_ScrollBy*(AObj: pointer, DeltaX: int32, DeltaY: int32) {.importc: "Memo_ScrollBy", dynlib: dllname.}
-proc Memo_SetBounds*(AObj: pointer, ALeft: int32, ATop: int32, AWidth: int32, AHeight: int32) {.importc: "Memo_SetBounds", dynlib: dllname.}
-proc Memo_SetFocus*(AObj: pointer) {.importc: "Memo_SetFocus", dynlib: dllname.}
-proc Memo_Update*(AObj: pointer) {.importc: "Memo_Update", dynlib: dllname.}
-proc Memo_BringToFront*(AObj: pointer) {.importc: "Memo_BringToFront", dynlib: dllname.}
-proc Memo_ClientToScreen*(AObj: pointer, Point: var TPoint, Result: var TPoint) {.importc: "Memo_ClientToScreen", dynlib: dllname.}
-proc Memo_ClientToParent*(AObj: pointer, Point: var TPoint, AParent: pointer, Result: var TPoint) {.importc: "Memo_ClientToParent", dynlib: dllname.}
-proc Memo_Dragging*(AObj: pointer): bool {.importc: "Memo_Dragging", dynlib: dllname.}
-proc Memo_HasParent*(AObj: pointer): bool {.importc: "Memo_HasParent", dynlib: dllname.}
-proc Memo_Hide*(AObj: pointer) {.importc: "Memo_Hide", dynlib: dllname.}
-proc Memo_Perform*(AObj: pointer, Msg: uint32, WParam: uint, LParam: int): int {.importc: "Memo_Perform", dynlib: dllname.}
-proc Memo_Refresh*(AObj: pointer) {.importc: "Memo_Refresh", dynlib: dllname.}
-proc Memo_ScreenToClient*(AObj: pointer, Point: var TPoint, Result: var TPoint) {.importc: "Memo_ScreenToClient", dynlib: dllname.}
-proc Memo_ParentToClient*(AObj: pointer, Point: var TPoint, AParent: pointer, Result: var TPoint) {.importc: "Memo_ParentToClient", dynlib: dllname.}
-proc Memo_SendToBack*(AObj: pointer) {.importc: "Memo_SendToBack", dynlib: dllname.}
-proc Memo_Show*(AObj: pointer) {.importc: "Memo_Show", dynlib: dllname.}
-proc Memo_GetTextBuf*(AObj: pointer, Buffer: cstring, BufSize: int32): int32 {.importc: "Memo_GetTextBuf", dynlib: dllname.}
-proc Memo_GetTextLen*(AObj: pointer): int32 {.importc: "Memo_GetTextLen", dynlib: dllname.}
-proc Memo_SetTextBuf*(AObj: pointer, Buffer: cstring) {.importc: "Memo_SetTextBuf", dynlib: dllname.}
-proc Memo_FindComponent*(AObj: pointer, AName: cstring): pointer {.importc: "Memo_FindComponent", dynlib: dllname.}
-proc Memo_GetNamePath*(AObj: pointer): cstring {.importc: "Memo_GetNamePath", dynlib: dllname.}
-proc Memo_Assign*(AObj: pointer, Source: pointer) {.importc: "Memo_Assign", dynlib: dllname.}
-proc Memo_ClassType*(AObj: pointer): TClass {.importc: "Memo_ClassType", dynlib: dllname.}
-proc Memo_ClassName*(AObj: pointer): cstring {.importc: "Memo_ClassName", dynlib: dllname.}
-proc Memo_InstanceSize*(AObj: pointer): int32 {.importc: "Memo_InstanceSize", dynlib: dllname.}
-proc Memo_InheritsFrom*(AObj: pointer, AClass: TClass): bool {.importc: "Memo_InheritsFrom", dynlib: dllname.}
-proc Memo_Equals*(AObj: pointer, Obj: pointer): bool {.importc: "Memo_Equals", dynlib: dllname.}
-proc Memo_GetHashCode*(AObj: pointer): int32 {.importc: "Memo_GetHashCode", dynlib: dllname.}
-proc Memo_ToString*(AObj: pointer): cstring {.importc: "Memo_ToString", dynlib: dllname.}
-proc Memo_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Memo_AnchorToNeighbour", dynlib: dllname.}
-proc Memo_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Memo_AnchorParallel", dynlib: dllname.}
-proc Memo_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Memo_AnchorHorizontalCenterTo", dynlib: dllname.}
-proc Memo_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Memo_AnchorVerticalCenterTo", dynlib: dllname.}
-proc Memo_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "Memo_AnchorAsAlign", dynlib: dllname.}
-proc Memo_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "Memo_AnchorClient", dynlib: dllname.}
-proc Memo_GetAlign*(AObj: pointer): TAlign {.importc: "Memo_GetAlign", dynlib: dllname.}
-proc Memo_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "Memo_SetAlign", dynlib: dllname.}
-proc Memo_GetAlignment*(AObj: pointer): TAlignment {.importc: "Memo_GetAlignment", dynlib: dllname.}
-proc Memo_SetAlignment*(AObj: pointer, AValue: TAlignment) {.importc: "Memo_SetAlignment", dynlib: dllname.}
-proc Memo_GetAnchors*(AObj: pointer): TAnchors {.importc: "Memo_GetAnchors", dynlib: dllname.}
-proc Memo_SetAnchors*(AObj: pointer, AValue: TAnchors) {.importc: "Memo_SetAnchors", dynlib: dllname.}
-proc Memo_GetBiDiMode*(AObj: pointer): TBiDiMode {.importc: "Memo_GetBiDiMode", dynlib: dllname.}
-proc Memo_SetBiDiMode*(AObj: pointer, AValue: TBiDiMode) {.importc: "Memo_SetBiDiMode", dynlib: dllname.}
-proc Memo_GetBorderStyle*(AObj: pointer): TBorderStyle {.importc: "Memo_GetBorderStyle", dynlib: dllname.}
-proc Memo_SetBorderStyle*(AObj: pointer, AValue: TBorderStyle) {.importc: "Memo_SetBorderStyle", dynlib: dllname.}
-proc Memo_GetCharCase*(AObj: pointer): TEditCharCase {.importc: "Memo_GetCharCase", dynlib: dllname.}
-proc Memo_SetCharCase*(AObj: pointer, AValue: TEditCharCase) {.importc: "Memo_SetCharCase", dynlib: dllname.}
-proc Memo_GetColor*(AObj: pointer): TColor {.importc: "Memo_GetColor", dynlib: dllname.}
-proc Memo_SetColor*(AObj: pointer, AValue: TColor) {.importc: "Memo_SetColor", dynlib: dllname.}
-proc Memo_GetConstraints*(AObj: pointer): pointer {.importc: "Memo_GetConstraints", dynlib: dllname.}
-proc Memo_SetConstraints*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetConstraints", dynlib: dllname.}
-proc Memo_GetDoubleBuffered*(AObj: pointer): bool {.importc: "Memo_GetDoubleBuffered", dynlib: dllname.}
-proc Memo_SetDoubleBuffered*(AObj: pointer, AValue: bool) {.importc: "Memo_SetDoubleBuffered", dynlib: dllname.}
-proc Memo_GetDragCursor*(AObj: pointer): TCursor {.importc: "Memo_GetDragCursor", dynlib: dllname.}
-proc Memo_SetDragCursor*(AObj: pointer, AValue: TCursor) {.importc: "Memo_SetDragCursor", dynlib: dllname.}
-proc Memo_GetDragKind*(AObj: pointer): TDragKind {.importc: "Memo_GetDragKind", dynlib: dllname.}
-proc Memo_SetDragKind*(AObj: pointer, AValue: TDragKind) {.importc: "Memo_SetDragKind", dynlib: dllname.}
-proc Memo_GetDragMode*(AObj: pointer): TDragMode {.importc: "Memo_GetDragMode", dynlib: dllname.}
-proc Memo_SetDragMode*(AObj: pointer, AValue: TDragMode) {.importc: "Memo_SetDragMode", dynlib: dllname.}
-proc Memo_GetEnabled*(AObj: pointer): bool {.importc: "Memo_GetEnabled", dynlib: dllname.}
-proc Memo_SetEnabled*(AObj: pointer, AValue: bool) {.importc: "Memo_SetEnabled", dynlib: dllname.}
-proc Memo_GetFont*(AObj: pointer): pointer {.importc: "Memo_GetFont", dynlib: dllname.}
-proc Memo_SetFont*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetFont", dynlib: dllname.}
-proc Memo_GetHideSelection*(AObj: pointer): bool {.importc: "Memo_GetHideSelection", dynlib: dllname.}
-proc Memo_SetHideSelection*(AObj: pointer, AValue: bool) {.importc: "Memo_SetHideSelection", dynlib: dllname.}
-proc Memo_GetLines*(AObj: pointer): pointer {.importc: "Memo_GetLines", dynlib: dllname.}
-proc Memo_SetLines*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetLines", dynlib: dllname.}
-proc Memo_GetMaxLength*(AObj: pointer): int32 {.importc: "Memo_GetMaxLength", dynlib: dllname.}
-proc Memo_SetMaxLength*(AObj: pointer, AValue: int32) {.importc: "Memo_SetMaxLength", dynlib: dllname.}
-proc Memo_GetParentColor*(AObj: pointer): bool {.importc: "Memo_GetParentColor", dynlib: dllname.}
-proc Memo_SetParentColor*(AObj: pointer, AValue: bool) {.importc: "Memo_SetParentColor", dynlib: dllname.}
-proc Memo_GetParentDoubleBuffered*(AObj: pointer): bool {.importc: "Memo_GetParentDoubleBuffered", dynlib: dllname.}
-proc Memo_SetParentDoubleBuffered*(AObj: pointer, AValue: bool) {.importc: "Memo_SetParentDoubleBuffered", dynlib: dllname.}
-proc Memo_GetParentFont*(AObj: pointer): bool {.importc: "Memo_GetParentFont", dynlib: dllname.}
-proc Memo_SetParentFont*(AObj: pointer, AValue: bool) {.importc: "Memo_SetParentFont", dynlib: dllname.}
-proc Memo_GetParentShowHint*(AObj: pointer): bool {.importc: "Memo_GetParentShowHint", dynlib: dllname.}
-proc Memo_SetParentShowHint*(AObj: pointer, AValue: bool) {.importc: "Memo_SetParentShowHint", dynlib: dllname.}
-proc Memo_GetPopupMenu*(AObj: pointer): pointer {.importc: "Memo_GetPopupMenu", dynlib: dllname.}
-proc Memo_SetPopupMenu*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetPopupMenu", dynlib: dllname.}
-proc Memo_GetReadOnly*(AObj: pointer): bool {.importc: "Memo_GetReadOnly", dynlib: dllname.}
-proc Memo_SetReadOnly*(AObj: pointer, AValue: bool) {.importc: "Memo_SetReadOnly", dynlib: dllname.}
-proc Memo_GetScrollBars*(AObj: pointer): TScrollStyle {.importc: "Memo_GetScrollBars", dynlib: dllname.}
-proc Memo_SetScrollBars*(AObj: pointer, AValue: TScrollStyle) {.importc: "Memo_SetScrollBars", dynlib: dllname.}
-proc Memo_GetShowHint*(AObj: pointer): bool {.importc: "Memo_GetShowHint", dynlib: dllname.}
-proc Memo_SetShowHint*(AObj: pointer, AValue: bool) {.importc: "Memo_SetShowHint", dynlib: dllname.}
-proc Memo_GetTabOrder*(AObj: pointer): TTabOrder {.importc: "Memo_GetTabOrder", dynlib: dllname.}
-proc Memo_SetTabOrder*(AObj: pointer, AValue: TTabOrder) {.importc: "Memo_SetTabOrder", dynlib: dllname.}
-proc Memo_GetTabStop*(AObj: pointer): bool {.importc: "Memo_GetTabStop", dynlib: dllname.}
-proc Memo_SetTabStop*(AObj: pointer, AValue: bool) {.importc: "Memo_SetTabStop", dynlib: dllname.}
-proc Memo_GetVisible*(AObj: pointer): bool {.importc: "Memo_GetVisible", dynlib: dllname.}
-proc Memo_SetVisible*(AObj: pointer, AValue: bool) {.importc: "Memo_SetVisible", dynlib: dllname.}
-proc Memo_GetWantReturns*(AObj: pointer): bool {.importc: "Memo_GetWantReturns", dynlib: dllname.}
-proc Memo_SetWantReturns*(AObj: pointer, AValue: bool) {.importc: "Memo_SetWantReturns", dynlib: dllname.}
-proc Memo_GetWantTabs*(AObj: pointer): bool {.importc: "Memo_GetWantTabs", dynlib: dllname.}
-proc Memo_SetWantTabs*(AObj: pointer, AValue: bool) {.importc: "Memo_SetWantTabs", dynlib: dllname.}
-proc Memo_GetWordWrap*(AObj: pointer): bool {.importc: "Memo_GetWordWrap", dynlib: dllname.}
-proc Memo_SetWordWrap*(AObj: pointer, AValue: bool) {.importc: "Memo_SetWordWrap", dynlib: dllname.}
-proc Memo_SetOnChange*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Memo_SetOnChange", dynlib: dllname.}
-proc Memo_SetOnClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Memo_SetOnClick", dynlib: dllname.}
-proc Memo_SetOnContextPopup*(AObj: pointer, AEventId: TContextPopupEvent) {.importc: "Memo_SetOnContextPopup", dynlib: dllname.}
-proc Memo_SetOnDblClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Memo_SetOnDblClick", dynlib: dllname.}
-proc Memo_SetOnDragDrop*(AObj: pointer, AEventId: TDragDropEvent) {.importc: "Memo_SetOnDragDrop", dynlib: dllname.}
-proc Memo_SetOnDragOver*(AObj: pointer, AEventId: TDragOverEvent) {.importc: "Memo_SetOnDragOver", dynlib: dllname.}
-proc Memo_SetOnEndDrag*(AObj: pointer, AEventId: TEndDragEvent) {.importc: "Memo_SetOnEndDrag", dynlib: dllname.}
-proc Memo_SetOnEnter*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Memo_SetOnEnter", dynlib: dllname.}
-proc Memo_SetOnExit*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Memo_SetOnExit", dynlib: dllname.}
-proc Memo_SetOnKeyDown*(AObj: pointer, AEventId: TKeyEvent) {.importc: "Memo_SetOnKeyDown", dynlib: dllname.}
-proc Memo_SetOnKeyPress*(AObj: pointer, AEventId: TKeyPressEvent) {.importc: "Memo_SetOnKeyPress", dynlib: dllname.}
-proc Memo_SetOnKeyUp*(AObj: pointer, AEventId: TKeyEvent) {.importc: "Memo_SetOnKeyUp", dynlib: dllname.}
-proc Memo_SetOnMouseDown*(AObj: pointer, AEventId: TMouseEvent) {.importc: "Memo_SetOnMouseDown", dynlib: dllname.}
-proc Memo_SetOnMouseEnter*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Memo_SetOnMouseEnter", dynlib: dllname.}
-proc Memo_SetOnMouseLeave*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Memo_SetOnMouseLeave", dynlib: dllname.}
-proc Memo_SetOnMouseMove*(AObj: pointer, AEventId: TMouseMoveEvent) {.importc: "Memo_SetOnMouseMove", dynlib: dllname.}
-proc Memo_SetOnMouseUp*(AObj: pointer, AEventId: TMouseEvent) {.importc: "Memo_SetOnMouseUp", dynlib: dllname.}
-proc Memo_GetCaretPos*(AObj: pointer, Result: var TPoint) {.importc: "Memo_GetCaretPos", dynlib: dllname.}
-proc Memo_SetCaretPos*(AObj: pointer, AValue: var TPoint) {.importc: "Memo_SetCaretPos", dynlib: dllname.}
-proc Memo_GetCanUndo*(AObj: pointer): bool {.importc: "Memo_GetCanUndo", dynlib: dllname.}
-proc Memo_GetModified*(AObj: pointer): bool {.importc: "Memo_GetModified", dynlib: dllname.}
-proc Memo_SetModified*(AObj: pointer, AValue: bool) {.importc: "Memo_SetModified", dynlib: dllname.}
-proc Memo_GetSelLength*(AObj: pointer): int32 {.importc: "Memo_GetSelLength", dynlib: dllname.}
-proc Memo_SetSelLength*(AObj: pointer, AValue: int32) {.importc: "Memo_SetSelLength", dynlib: dllname.}
-proc Memo_GetSelStart*(AObj: pointer): int32 {.importc: "Memo_GetSelStart", dynlib: dllname.}
-proc Memo_SetSelStart*(AObj: pointer, AValue: int32) {.importc: "Memo_SetSelStart", dynlib: dllname.}
-proc Memo_GetSelText*(AObj: pointer): cstring {.importc: "Memo_GetSelText", dynlib: dllname.}
-proc Memo_SetSelText*(AObj: pointer, AValue: cstring) {.importc: "Memo_SetSelText", dynlib: dllname.}
-proc Memo_GetText*(AObj: pointer): cstring {.importc: "Memo_GetText", dynlib: dllname.}
-proc Memo_SetText*(AObj: pointer, AValue: cstring) {.importc: "Memo_SetText", dynlib: dllname.}
-proc Memo_GetTextHint*(AObj: pointer): cstring {.importc: "Memo_GetTextHint", dynlib: dllname.}
-proc Memo_SetTextHint*(AObj: pointer, AValue: cstring) {.importc: "Memo_SetTextHint", dynlib: dllname.}
-proc Memo_GetDockClientCount*(AObj: pointer): int32 {.importc: "Memo_GetDockClientCount", dynlib: dllname.}
-proc Memo_GetDockSite*(AObj: pointer): bool {.importc: "Memo_GetDockSite", dynlib: dllname.}
-proc Memo_SetDockSite*(AObj: pointer, AValue: bool) {.importc: "Memo_SetDockSite", dynlib: dllname.}
-proc Memo_GetMouseInClient*(AObj: pointer): bool {.importc: "Memo_GetMouseInClient", dynlib: dllname.}
-proc Memo_GetVisibleDockClientCount*(AObj: pointer): int32 {.importc: "Memo_GetVisibleDockClientCount", dynlib: dllname.}
-proc Memo_GetBrush*(AObj: pointer): pointer {.importc: "Memo_GetBrush", dynlib: dllname.}
-proc Memo_GetControlCount*(AObj: pointer): int32 {.importc: "Memo_GetControlCount", dynlib: dllname.}
-proc Memo_GetHandle*(AObj: pointer): HWND {.importc: "Memo_GetHandle", dynlib: dllname.}
-proc Memo_GetParentWindow*(AObj: pointer): HWND {.importc: "Memo_GetParentWindow", dynlib: dllname.}
-proc Memo_SetParentWindow*(AObj: pointer, AValue: HWND) {.importc: "Memo_SetParentWindow", dynlib: dllname.}
-proc Memo_GetShowing*(AObj: pointer): bool {.importc: "Memo_GetShowing", dynlib: dllname.}
-proc Memo_GetUseDockManager*(AObj: pointer): bool {.importc: "Memo_GetUseDockManager", dynlib: dllname.}
-proc Memo_SetUseDockManager*(AObj: pointer, AValue: bool) {.importc: "Memo_SetUseDockManager", dynlib: dllname.}
-proc Memo_GetAction*(AObj: pointer): pointer {.importc: "Memo_GetAction", dynlib: dllname.}
-proc Memo_SetAction*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetAction", dynlib: dllname.}
-proc Memo_GetBoundsRect*(AObj: pointer, Result: var TRect) {.importc: "Memo_GetBoundsRect", dynlib: dllname.}
-proc Memo_SetBoundsRect*(AObj: pointer, AValue: var TRect) {.importc: "Memo_SetBoundsRect", dynlib: dllname.}
-proc Memo_GetClientHeight*(AObj: pointer): int32 {.importc: "Memo_GetClientHeight", dynlib: dllname.}
-proc Memo_SetClientHeight*(AObj: pointer, AValue: int32) {.importc: "Memo_SetClientHeight", dynlib: dllname.}
-proc Memo_GetClientOrigin*(AObj: pointer, Result: var TPoint) {.importc: "Memo_GetClientOrigin", dynlib: dllname.}
-proc Memo_GetClientRect*(AObj: pointer, Result: var TRect) {.importc: "Memo_GetClientRect", dynlib: dllname.}
-proc Memo_GetClientWidth*(AObj: pointer): int32 {.importc: "Memo_GetClientWidth", dynlib: dllname.}
-proc Memo_SetClientWidth*(AObj: pointer, AValue: int32) {.importc: "Memo_SetClientWidth", dynlib: dllname.}
-proc Memo_GetControlState*(AObj: pointer): TControlState {.importc: "Memo_GetControlState", dynlib: dllname.}
-proc Memo_SetControlState*(AObj: pointer, AValue: TControlState) {.importc: "Memo_SetControlState", dynlib: dllname.}
-proc Memo_GetControlStyle*(AObj: pointer): TControlStyle {.importc: "Memo_GetControlStyle", dynlib: dllname.}
-proc Memo_SetControlStyle*(AObj: pointer, AValue: TControlStyle) {.importc: "Memo_SetControlStyle", dynlib: dllname.}
-proc Memo_GetFloating*(AObj: pointer): bool {.importc: "Memo_GetFloating", dynlib: dllname.}
-proc Memo_GetParent*(AObj: pointer): pointer {.importc: "Memo_GetParent", dynlib: dllname.}
-proc Memo_SetParent*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetParent", dynlib: dllname.}
-proc Memo_GetLeft*(AObj: pointer): int32 {.importc: "Memo_GetLeft", dynlib: dllname.}
-proc Memo_SetLeft*(AObj: pointer, AValue: int32) {.importc: "Memo_SetLeft", dynlib: dllname.}
-proc Memo_GetTop*(AObj: pointer): int32 {.importc: "Memo_GetTop", dynlib: dllname.}
-proc Memo_SetTop*(AObj: pointer, AValue: int32) {.importc: "Memo_SetTop", dynlib: dllname.}
-proc Memo_GetWidth*(AObj: pointer): int32 {.importc: "Memo_GetWidth", dynlib: dllname.}
-proc Memo_SetWidth*(AObj: pointer, AValue: int32) {.importc: "Memo_SetWidth", dynlib: dllname.}
-proc Memo_GetHeight*(AObj: pointer): int32 {.importc: "Memo_GetHeight", dynlib: dllname.}
-proc Memo_SetHeight*(AObj: pointer, AValue: int32) {.importc: "Memo_SetHeight", dynlib: dllname.}
-proc Memo_GetCursor*(AObj: pointer): TCursor {.importc: "Memo_GetCursor", dynlib: dllname.}
-proc Memo_SetCursor*(AObj: pointer, AValue: TCursor) {.importc: "Memo_SetCursor", dynlib: dllname.}
-proc Memo_GetHint*(AObj: pointer): cstring {.importc: "Memo_GetHint", dynlib: dllname.}
-proc Memo_SetHint*(AObj: pointer, AValue: cstring) {.importc: "Memo_SetHint", dynlib: dllname.}
-proc Memo_GetComponentCount*(AObj: pointer): int32 {.importc: "Memo_GetComponentCount", dynlib: dllname.}
-proc Memo_GetComponentIndex*(AObj: pointer): int32 {.importc: "Memo_GetComponentIndex", dynlib: dllname.}
-proc Memo_SetComponentIndex*(AObj: pointer, AValue: int32) {.importc: "Memo_SetComponentIndex", dynlib: dllname.}
-proc Memo_GetOwner*(AObj: pointer): pointer {.importc: "Memo_GetOwner", dynlib: dllname.}
-proc Memo_GetName*(AObj: pointer): cstring {.importc: "Memo_GetName", dynlib: dllname.}
-proc Memo_SetName*(AObj: pointer, AValue: cstring) {.importc: "Memo_SetName", dynlib: dllname.}
-proc Memo_GetTag*(AObj: pointer): int {.importc: "Memo_GetTag", dynlib: dllname.}
-proc Memo_SetTag*(AObj: pointer, AValue: int) {.importc: "Memo_SetTag", dynlib: dllname.}
-proc Memo_GetAnchorSideLeft*(AObj: pointer): pointer {.importc: "Memo_GetAnchorSideLeft", dynlib: dllname.}
-proc Memo_SetAnchorSideLeft*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetAnchorSideLeft", dynlib: dllname.}
-proc Memo_GetAnchorSideTop*(AObj: pointer): pointer {.importc: "Memo_GetAnchorSideTop", dynlib: dllname.}
-proc Memo_SetAnchorSideTop*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetAnchorSideTop", dynlib: dllname.}
-proc Memo_GetAnchorSideRight*(AObj: pointer): pointer {.importc: "Memo_GetAnchorSideRight", dynlib: dllname.}
-proc Memo_SetAnchorSideRight*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetAnchorSideRight", dynlib: dllname.}
-proc Memo_GetAnchorSideBottom*(AObj: pointer): pointer {.importc: "Memo_GetAnchorSideBottom", dynlib: dllname.}
-proc Memo_SetAnchorSideBottom*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetAnchorSideBottom", dynlib: dllname.}
-proc Memo_GetChildSizing*(AObj: pointer): pointer {.importc: "Memo_GetChildSizing", dynlib: dllname.}
-proc Memo_SetChildSizing*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetChildSizing", dynlib: dllname.}
-proc Memo_GetBorderSpacing*(AObj: pointer): pointer {.importc: "Memo_GetBorderSpacing", dynlib: dllname.}
-proc Memo_SetBorderSpacing*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetBorderSpacing", dynlib: dllname.}
-proc Memo_GetDockClients*(AObj: pointer, Index: int32): pointer {.importc: "Memo_GetDockClients", dynlib: dllname.}
-proc Memo_GetControls*(AObj: pointer, Index: int32): pointer {.importc: "Memo_GetControls", dynlib: dllname.}
-proc Memo_GetComponents*(AObj: pointer, AIndex: int32): pointer {.importc: "Memo_GetComponents", dynlib: dllname.}
-proc Memo_GetAnchorSide*(AObj: pointer, AKind: TAnchorKind): pointer {.importc: "Memo_GetAnchorSide", dynlib: dllname.}
-proc Memo_StaticClassType*(): TClass {.importc: "Memo_StaticClassType", dynlib: dllname.}
+# ----------------- TGraphic ----------------------
+proc Graphic_Create*(): pointer {.importc: "Graphic_Create", dynlib: dllname.}
+proc Graphic_Free*(AObj: pointer) {.importc: "Graphic_Free", dynlib: dllname.}
+proc Graphic_Equals*(AObj: pointer, Obj: pointer): bool {.importc: "Graphic_Equals", dynlib: dllname.}
+proc Graphic_LoadFromFile*(AObj: pointer, Filename: cstring) {.importc: "Graphic_LoadFromFile", dynlib: dllname.}
+proc Graphic_SaveToFile*(AObj: pointer, Filename: cstring) {.importc: "Graphic_SaveToFile", dynlib: dllname.}
+proc Graphic_LoadFromStream*(AObj: pointer, Stream: pointer) {.importc: "Graphic_LoadFromStream", dynlib: dllname.}
+proc Graphic_SaveToStream*(AObj: pointer, Stream: pointer) {.importc: "Graphic_SaveToStream", dynlib: dllname.}
+proc Graphic_Assign*(AObj: pointer, Source: pointer) {.importc: "Graphic_Assign", dynlib: dllname.}
+proc Graphic_GetNamePath*(AObj: pointer): cstring {.importc: "Graphic_GetNamePath", dynlib: dllname.}
+proc Graphic_ClassType*(AObj: pointer): TClass {.importc: "Graphic_ClassType", dynlib: dllname.}
+proc Graphic_ClassName*(AObj: pointer): cstring {.importc: "Graphic_ClassName", dynlib: dllname.}
+proc Graphic_InstanceSize*(AObj: pointer): int32 {.importc: "Graphic_InstanceSize", dynlib: dllname.}
+proc Graphic_InheritsFrom*(AObj: pointer, AClass: TClass): bool {.importc: "Graphic_InheritsFrom", dynlib: dllname.}
+proc Graphic_GetHashCode*(AObj: pointer): int32 {.importc: "Graphic_GetHashCode", dynlib: dllname.}
+proc Graphic_ToString*(AObj: pointer): cstring {.importc: "Graphic_ToString", dynlib: dllname.}
+proc Graphic_GetEmpty*(AObj: pointer): bool {.importc: "Graphic_GetEmpty", dynlib: dllname.}
+proc Graphic_GetHeight*(AObj: pointer): int32 {.importc: "Graphic_GetHeight", dynlib: dllname.}
+proc Graphic_SetHeight*(AObj: pointer, AValue: int32) {.importc: "Graphic_SetHeight", dynlib: dllname.}
+proc Graphic_GetModified*(AObj: pointer): bool {.importc: "Graphic_GetModified", dynlib: dllname.}
+proc Graphic_SetModified*(AObj: pointer, AValue: bool) {.importc: "Graphic_SetModified", dynlib: dllname.}
+proc Graphic_GetPalette*(AObj: pointer): HPALETTE {.importc: "Graphic_GetPalette", dynlib: dllname.}
+proc Graphic_SetPalette*(AObj: pointer, AValue: HPALETTE) {.importc: "Graphic_SetPalette", dynlib: dllname.}
+proc Graphic_GetPaletteModified*(AObj: pointer): bool {.importc: "Graphic_GetPaletteModified", dynlib: dllname.}
+proc Graphic_SetPaletteModified*(AObj: pointer, AValue: bool) {.importc: "Graphic_SetPaletteModified", dynlib: dllname.}
+proc Graphic_GetTransparent*(AObj: pointer): bool {.importc: "Graphic_GetTransparent", dynlib: dllname.}
+proc Graphic_SetTransparent*(AObj: pointer, AValue: bool) {.importc: "Graphic_SetTransparent", dynlib: dllname.}
+proc Graphic_GetWidth*(AObj: pointer): int32 {.importc: "Graphic_GetWidth", dynlib: dllname.}
+proc Graphic_SetWidth*(AObj: pointer, AValue: int32) {.importc: "Graphic_SetWidth", dynlib: dllname.}
+proc Graphic_SetOnChange*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Graphic_SetOnChange", dynlib: dllname.}
+proc Graphic_StaticClassType*(): TClass {.importc: "Graphic_StaticClassType", dynlib: dllname.}
+# ----------------- TStrings ----------------------
+proc Strings_Create*(): pointer {.importc: "Strings_Create", dynlib: dllname.}
+proc Strings_Free*(AObj: pointer) {.importc: "Strings_Free", dynlib: dllname.}
+proc Strings_Add*(AObj: pointer, S: cstring): int32 {.importc: "Strings_Add", dynlib: dllname.}
+proc Strings_AddObject*(AObj: pointer, S: cstring, AObject: pointer): int32 {.importc: "Strings_AddObject", dynlib: dllname.}
+proc Strings_Append*(AObj: pointer, S: cstring) {.importc: "Strings_Append", dynlib: dllname.}
+proc Strings_Assign*(AObj: pointer, Source: pointer) {.importc: "Strings_Assign", dynlib: dllname.}
+proc Strings_BeginUpdate*(AObj: pointer) {.importc: "Strings_BeginUpdate", dynlib: dllname.}
+proc Strings_Clear*(AObj: pointer) {.importc: "Strings_Clear", dynlib: dllname.}
+proc Strings_Delete*(AObj: pointer, Index: int32) {.importc: "Strings_Delete", dynlib: dllname.}
+proc Strings_EndUpdate*(AObj: pointer) {.importc: "Strings_EndUpdate", dynlib: dllname.}
+proc Strings_Equals*(AObj: pointer, Strings: pointer): bool {.importc: "Strings_Equals", dynlib: dllname.}
+proc Strings_IndexOf*(AObj: pointer, S: cstring): int32 {.importc: "Strings_IndexOf", dynlib: dllname.}
+proc Strings_IndexOfName*(AObj: pointer, Name: cstring): int32 {.importc: "Strings_IndexOfName", dynlib: dllname.}
+proc Strings_IndexOfObject*(AObj: pointer, AObject: pointer): int32 {.importc: "Strings_IndexOfObject", dynlib: dllname.}
+proc Strings_Insert*(AObj: pointer, Index: int32, S: cstring) {.importc: "Strings_Insert", dynlib: dllname.}
+proc Strings_InsertObject*(AObj: pointer, Index: int32, S: cstring, AObject: pointer) {.importc: "Strings_InsertObject", dynlib: dllname.}
+proc Strings_LoadFromFile*(AObj: pointer, FileName: cstring) {.importc: "Strings_LoadFromFile", dynlib: dllname.}
+proc Strings_LoadFromStream*(AObj: pointer, Stream: pointer) {.importc: "Strings_LoadFromStream", dynlib: dllname.}
+proc Strings_Move*(AObj: pointer, CurIndex: int32, NewIndex: int32) {.importc: "Strings_Move", dynlib: dllname.}
+proc Strings_SaveToFile*(AObj: pointer, FileName: cstring) {.importc: "Strings_SaveToFile", dynlib: dllname.}
+proc Strings_SaveToStream*(AObj: pointer, Stream: pointer) {.importc: "Strings_SaveToStream", dynlib: dllname.}
+proc Strings_GetNamePath*(AObj: pointer): cstring {.importc: "Strings_GetNamePath", dynlib: dllname.}
+proc Strings_ClassType*(AObj: pointer): TClass {.importc: "Strings_ClassType", dynlib: dllname.}
+proc Strings_ClassName*(AObj: pointer): cstring {.importc: "Strings_ClassName", dynlib: dllname.}
+proc Strings_InstanceSize*(AObj: pointer): int32 {.importc: "Strings_InstanceSize", dynlib: dllname.}
+proc Strings_InheritsFrom*(AObj: pointer, AClass: TClass): bool {.importc: "Strings_InheritsFrom", dynlib: dllname.}
+proc Strings_GetHashCode*(AObj: pointer): int32 {.importc: "Strings_GetHashCode", dynlib: dllname.}
+proc Strings_ToString*(AObj: pointer): cstring {.importc: "Strings_ToString", dynlib: dllname.}
+proc Strings_GetCapacity*(AObj: pointer): int32 {.importc: "Strings_GetCapacity", dynlib: dllname.}
+proc Strings_SetCapacity*(AObj: pointer, AValue: int32) {.importc: "Strings_SetCapacity", dynlib: dllname.}
+proc Strings_GetCommaText*(AObj: pointer): cstring {.importc: "Strings_GetCommaText", dynlib: dllname.}
+proc Strings_SetCommaText*(AObj: pointer, AValue: cstring) {.importc: "Strings_SetCommaText", dynlib: dllname.}
+proc Strings_GetCount*(AObj: pointer): int32 {.importc: "Strings_GetCount", dynlib: dllname.}
+proc Strings_GetDelimiter*(AObj: pointer): Char {.importc: "Strings_GetDelimiter", dynlib: dllname.}
+proc Strings_SetDelimiter*(AObj: pointer, AValue: Char) {.importc: "Strings_SetDelimiter", dynlib: dllname.}
+proc Strings_GetNameValueSeparator*(AObj: pointer): Char {.importc: "Strings_GetNameValueSeparator", dynlib: dllname.}
+proc Strings_SetNameValueSeparator*(AObj: pointer, AValue: Char) {.importc: "Strings_SetNameValueSeparator", dynlib: dllname.}
+proc Strings_GetText*(AObj: pointer): cstring {.importc: "Strings_GetText", dynlib: dllname.}
+proc Strings_SetText*(AObj: pointer, AValue: cstring) {.importc: "Strings_SetText", dynlib: dllname.}
+proc Strings_GetObjects*(AObj: pointer, Index: int32): pointer {.importc: "Strings_GetObjects", dynlib: dllname.}
+proc Strings_SetObjects*(AObj: pointer, Index: int32, AValue: pointer) {.importc: "Strings_SetObjects", dynlib: dllname.}
+proc Strings_GetValues*(AObj: pointer, Name: cstring): cstring {.importc: "Strings_GetValues", dynlib: dllname.}
+proc Strings_SetValues*(AObj: pointer, Name: cstring, AValue: cstring) {.importc: "Strings_SetValues", dynlib: dllname.}
+proc Strings_GetValueFromIndex*(AObj: pointer, Index: int32): cstring {.importc: "Strings_GetValueFromIndex", dynlib: dllname.}
+proc Strings_SetValueFromIndex*(AObj: pointer, Index: int32, AValue: cstring) {.importc: "Strings_SetValueFromIndex", dynlib: dllname.}
+proc Strings_GetStrings*(AObj: pointer, Index: int32): cstring {.importc: "Strings_GetStrings", dynlib: dllname.}
+proc Strings_SetStrings*(AObj: pointer, Index: int32, AValue: cstring) {.importc: "Strings_SetStrings", dynlib: dllname.}
+proc Strings_StaticClassType*(): TClass {.importc: "Strings_StaticClassType", dynlib: dllname.}
+# ----------------- TStream ----------------------
 # ----------------- TCheckBox ----------------------
 proc CheckBox_Create*(AOwner: pointer): pointer {.importc: "CheckBox_Create", dynlib: dllname.}
 proc CheckBox_Free*(AObj: pointer) {.importc: "CheckBox_Free", dynlib: dllname.}
@@ -6165,7 +5947,228 @@ proc Bitmap_Clear*(AObj: pointer) {.importc: "Bitmap_Clear", dynlib: dllname.}
 proc Bitmap_BeginUpdate*(AObj: pointer, ACanvasOnly: bool) {.importc: "Bitmap_BeginUpdate", dynlib: dllname.}
 proc Bitmap_EndUpdate*(AObj: pointer, AStreamIsValid: bool) {.importc: "Bitmap_EndUpdate", dynlib: dllname.}
 proc Bitmap_LoadFromDevice*(AObj: pointer, ADc: HDC) {.importc: "Bitmap_LoadFromDevice", dynlib: dllname.}
-# ----------------- TStream ----------------------
+# ----------------- TMemo ----------------------
+proc Memo_Create*(AOwner: pointer): pointer {.importc: "Memo_Create", dynlib: dllname.}
+proc Memo_Free*(AObj: pointer) {.importc: "Memo_Free", dynlib: dllname.}
+proc Memo_Append*(AObj: pointer, Value: cstring) {.importc: "Memo_Append", dynlib: dllname.}
+proc Memo_Clear*(AObj: pointer) {.importc: "Memo_Clear", dynlib: dllname.}
+proc Memo_ClearSelection*(AObj: pointer) {.importc: "Memo_ClearSelection", dynlib: dllname.}
+proc Memo_CopyToClipboard*(AObj: pointer) {.importc: "Memo_CopyToClipboard", dynlib: dllname.}
+proc Memo_CutToClipboard*(AObj: pointer) {.importc: "Memo_CutToClipboard", dynlib: dllname.}
+proc Memo_PasteFromClipboard*(AObj: pointer) {.importc: "Memo_PasteFromClipboard", dynlib: dllname.}
+proc Memo_Undo*(AObj: pointer) {.importc: "Memo_Undo", dynlib: dllname.}
+proc Memo_SelectAll*(AObj: pointer) {.importc: "Memo_SelectAll", dynlib: dllname.}
+proc Memo_CanFocus*(AObj: pointer): bool {.importc: "Memo_CanFocus", dynlib: dllname.}
+proc Memo_ContainsControl*(AObj: pointer, Control: pointer): bool {.importc: "Memo_ContainsControl", dynlib: dllname.}
+proc Memo_ControlAtPos*(AObj: pointer, Pos: var TPoint, AllowDisabled: bool, AllowWinControls: bool): pointer {.importc: "Memo_ControlAtPos", dynlib: dllname.}
+proc Memo_DisableAlign*(AObj: pointer) {.importc: "Memo_DisableAlign", dynlib: dllname.}
+proc Memo_EnableAlign*(AObj: pointer) {.importc: "Memo_EnableAlign", dynlib: dllname.}
+proc Memo_FindChildControl*(AObj: pointer, ControlName: cstring): pointer {.importc: "Memo_FindChildControl", dynlib: dllname.}
+proc Memo_FlipChildren*(AObj: pointer, AllLevels: bool) {.importc: "Memo_FlipChildren", dynlib: dllname.}
+proc Memo_Focused*(AObj: pointer): bool {.importc: "Memo_Focused", dynlib: dllname.}
+proc Memo_HandleAllocated*(AObj: pointer): bool {.importc: "Memo_HandleAllocated", dynlib: dllname.}
+proc Memo_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "Memo_InsertControl", dynlib: dllname.}
+proc Memo_Invalidate*(AObj: pointer) {.importc: "Memo_Invalidate", dynlib: dllname.}
+proc Memo_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "Memo_RemoveControl", dynlib: dllname.}
+proc Memo_Realign*(AObj: pointer) {.importc: "Memo_Realign", dynlib: dllname.}
+proc Memo_Repaint*(AObj: pointer) {.importc: "Memo_Repaint", dynlib: dllname.}
+proc Memo_ScaleBy*(AObj: pointer, M: int32, D: int32) {.importc: "Memo_ScaleBy", dynlib: dllname.}
+proc Memo_ScrollBy*(AObj: pointer, DeltaX: int32, DeltaY: int32) {.importc: "Memo_ScrollBy", dynlib: dllname.}
+proc Memo_SetBounds*(AObj: pointer, ALeft: int32, ATop: int32, AWidth: int32, AHeight: int32) {.importc: "Memo_SetBounds", dynlib: dllname.}
+proc Memo_SetFocus*(AObj: pointer) {.importc: "Memo_SetFocus", dynlib: dllname.}
+proc Memo_Update*(AObj: pointer) {.importc: "Memo_Update", dynlib: dllname.}
+proc Memo_BringToFront*(AObj: pointer) {.importc: "Memo_BringToFront", dynlib: dllname.}
+proc Memo_ClientToScreen*(AObj: pointer, Point: var TPoint, Result: var TPoint) {.importc: "Memo_ClientToScreen", dynlib: dllname.}
+proc Memo_ClientToParent*(AObj: pointer, Point: var TPoint, AParent: pointer, Result: var TPoint) {.importc: "Memo_ClientToParent", dynlib: dllname.}
+proc Memo_Dragging*(AObj: pointer): bool {.importc: "Memo_Dragging", dynlib: dllname.}
+proc Memo_HasParent*(AObj: pointer): bool {.importc: "Memo_HasParent", dynlib: dllname.}
+proc Memo_Hide*(AObj: pointer) {.importc: "Memo_Hide", dynlib: dllname.}
+proc Memo_Perform*(AObj: pointer, Msg: uint32, WParam: uint, LParam: int): int {.importc: "Memo_Perform", dynlib: dllname.}
+proc Memo_Refresh*(AObj: pointer) {.importc: "Memo_Refresh", dynlib: dllname.}
+proc Memo_ScreenToClient*(AObj: pointer, Point: var TPoint, Result: var TPoint) {.importc: "Memo_ScreenToClient", dynlib: dllname.}
+proc Memo_ParentToClient*(AObj: pointer, Point: var TPoint, AParent: pointer, Result: var TPoint) {.importc: "Memo_ParentToClient", dynlib: dllname.}
+proc Memo_SendToBack*(AObj: pointer) {.importc: "Memo_SendToBack", dynlib: dllname.}
+proc Memo_Show*(AObj: pointer) {.importc: "Memo_Show", dynlib: dllname.}
+proc Memo_GetTextBuf*(AObj: pointer, Buffer: cstring, BufSize: int32): int32 {.importc: "Memo_GetTextBuf", dynlib: dllname.}
+proc Memo_GetTextLen*(AObj: pointer): int32 {.importc: "Memo_GetTextLen", dynlib: dllname.}
+proc Memo_SetTextBuf*(AObj: pointer, Buffer: cstring) {.importc: "Memo_SetTextBuf", dynlib: dllname.}
+proc Memo_FindComponent*(AObj: pointer, AName: cstring): pointer {.importc: "Memo_FindComponent", dynlib: dllname.}
+proc Memo_GetNamePath*(AObj: pointer): cstring {.importc: "Memo_GetNamePath", dynlib: dllname.}
+proc Memo_Assign*(AObj: pointer, Source: pointer) {.importc: "Memo_Assign", dynlib: dllname.}
+proc Memo_ClassType*(AObj: pointer): TClass {.importc: "Memo_ClassType", dynlib: dllname.}
+proc Memo_ClassName*(AObj: pointer): cstring {.importc: "Memo_ClassName", dynlib: dllname.}
+proc Memo_InstanceSize*(AObj: pointer): int32 {.importc: "Memo_InstanceSize", dynlib: dllname.}
+proc Memo_InheritsFrom*(AObj: pointer, AClass: TClass): bool {.importc: "Memo_InheritsFrom", dynlib: dllname.}
+proc Memo_Equals*(AObj: pointer, Obj: pointer): bool {.importc: "Memo_Equals", dynlib: dllname.}
+proc Memo_GetHashCode*(AObj: pointer): int32 {.importc: "Memo_GetHashCode", dynlib: dllname.}
+proc Memo_ToString*(AObj: pointer): cstring {.importc: "Memo_ToString", dynlib: dllname.}
+proc Memo_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Memo_AnchorToNeighbour", dynlib: dllname.}
+proc Memo_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Memo_AnchorParallel", dynlib: dllname.}
+proc Memo_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Memo_AnchorHorizontalCenterTo", dynlib: dllname.}
+proc Memo_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Memo_AnchorVerticalCenterTo", dynlib: dllname.}
+proc Memo_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "Memo_AnchorAsAlign", dynlib: dllname.}
+proc Memo_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "Memo_AnchorClient", dynlib: dllname.}
+proc Memo_GetAlign*(AObj: pointer): TAlign {.importc: "Memo_GetAlign", dynlib: dllname.}
+proc Memo_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "Memo_SetAlign", dynlib: dllname.}
+proc Memo_GetAlignment*(AObj: pointer): TAlignment {.importc: "Memo_GetAlignment", dynlib: dllname.}
+proc Memo_SetAlignment*(AObj: pointer, AValue: TAlignment) {.importc: "Memo_SetAlignment", dynlib: dllname.}
+proc Memo_GetAnchors*(AObj: pointer): TAnchors {.importc: "Memo_GetAnchors", dynlib: dllname.}
+proc Memo_SetAnchors*(AObj: pointer, AValue: TAnchors) {.importc: "Memo_SetAnchors", dynlib: dllname.}
+proc Memo_GetBiDiMode*(AObj: pointer): TBiDiMode {.importc: "Memo_GetBiDiMode", dynlib: dllname.}
+proc Memo_SetBiDiMode*(AObj: pointer, AValue: TBiDiMode) {.importc: "Memo_SetBiDiMode", dynlib: dllname.}
+proc Memo_GetBorderStyle*(AObj: pointer): TBorderStyle {.importc: "Memo_GetBorderStyle", dynlib: dllname.}
+proc Memo_SetBorderStyle*(AObj: pointer, AValue: TBorderStyle) {.importc: "Memo_SetBorderStyle", dynlib: dllname.}
+proc Memo_GetCharCase*(AObj: pointer): TEditCharCase {.importc: "Memo_GetCharCase", dynlib: dllname.}
+proc Memo_SetCharCase*(AObj: pointer, AValue: TEditCharCase) {.importc: "Memo_SetCharCase", dynlib: dllname.}
+proc Memo_GetColor*(AObj: pointer): TColor {.importc: "Memo_GetColor", dynlib: dllname.}
+proc Memo_SetColor*(AObj: pointer, AValue: TColor) {.importc: "Memo_SetColor", dynlib: dllname.}
+proc Memo_GetConstraints*(AObj: pointer): pointer {.importc: "Memo_GetConstraints", dynlib: dllname.}
+proc Memo_SetConstraints*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetConstraints", dynlib: dllname.}
+proc Memo_GetDoubleBuffered*(AObj: pointer): bool {.importc: "Memo_GetDoubleBuffered", dynlib: dllname.}
+proc Memo_SetDoubleBuffered*(AObj: pointer, AValue: bool) {.importc: "Memo_SetDoubleBuffered", dynlib: dllname.}
+proc Memo_GetDragCursor*(AObj: pointer): TCursor {.importc: "Memo_GetDragCursor", dynlib: dllname.}
+proc Memo_SetDragCursor*(AObj: pointer, AValue: TCursor) {.importc: "Memo_SetDragCursor", dynlib: dllname.}
+proc Memo_GetDragKind*(AObj: pointer): TDragKind {.importc: "Memo_GetDragKind", dynlib: dllname.}
+proc Memo_SetDragKind*(AObj: pointer, AValue: TDragKind) {.importc: "Memo_SetDragKind", dynlib: dllname.}
+proc Memo_GetDragMode*(AObj: pointer): TDragMode {.importc: "Memo_GetDragMode", dynlib: dllname.}
+proc Memo_SetDragMode*(AObj: pointer, AValue: TDragMode) {.importc: "Memo_SetDragMode", dynlib: dllname.}
+proc Memo_GetEnabled*(AObj: pointer): bool {.importc: "Memo_GetEnabled", dynlib: dllname.}
+proc Memo_SetEnabled*(AObj: pointer, AValue: bool) {.importc: "Memo_SetEnabled", dynlib: dllname.}
+proc Memo_GetFont*(AObj: pointer): pointer {.importc: "Memo_GetFont", dynlib: dllname.}
+proc Memo_SetFont*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetFont", dynlib: dllname.}
+proc Memo_GetHideSelection*(AObj: pointer): bool {.importc: "Memo_GetHideSelection", dynlib: dllname.}
+proc Memo_SetHideSelection*(AObj: pointer, AValue: bool) {.importc: "Memo_SetHideSelection", dynlib: dllname.}
+proc Memo_GetLines*(AObj: pointer): pointer {.importc: "Memo_GetLines", dynlib: dllname.}
+proc Memo_SetLines*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetLines", dynlib: dllname.}
+proc Memo_GetMaxLength*(AObj: pointer): int32 {.importc: "Memo_GetMaxLength", dynlib: dllname.}
+proc Memo_SetMaxLength*(AObj: pointer, AValue: int32) {.importc: "Memo_SetMaxLength", dynlib: dllname.}
+proc Memo_GetParentColor*(AObj: pointer): bool {.importc: "Memo_GetParentColor", dynlib: dllname.}
+proc Memo_SetParentColor*(AObj: pointer, AValue: bool) {.importc: "Memo_SetParentColor", dynlib: dllname.}
+proc Memo_GetParentDoubleBuffered*(AObj: pointer): bool {.importc: "Memo_GetParentDoubleBuffered", dynlib: dllname.}
+proc Memo_SetParentDoubleBuffered*(AObj: pointer, AValue: bool) {.importc: "Memo_SetParentDoubleBuffered", dynlib: dllname.}
+proc Memo_GetParentFont*(AObj: pointer): bool {.importc: "Memo_GetParentFont", dynlib: dllname.}
+proc Memo_SetParentFont*(AObj: pointer, AValue: bool) {.importc: "Memo_SetParentFont", dynlib: dllname.}
+proc Memo_GetParentShowHint*(AObj: pointer): bool {.importc: "Memo_GetParentShowHint", dynlib: dllname.}
+proc Memo_SetParentShowHint*(AObj: pointer, AValue: bool) {.importc: "Memo_SetParentShowHint", dynlib: dllname.}
+proc Memo_GetPopupMenu*(AObj: pointer): pointer {.importc: "Memo_GetPopupMenu", dynlib: dllname.}
+proc Memo_SetPopupMenu*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetPopupMenu", dynlib: dllname.}
+proc Memo_GetReadOnly*(AObj: pointer): bool {.importc: "Memo_GetReadOnly", dynlib: dllname.}
+proc Memo_SetReadOnly*(AObj: pointer, AValue: bool) {.importc: "Memo_SetReadOnly", dynlib: dllname.}
+proc Memo_GetScrollBars*(AObj: pointer): TScrollStyle {.importc: "Memo_GetScrollBars", dynlib: dllname.}
+proc Memo_SetScrollBars*(AObj: pointer, AValue: TScrollStyle) {.importc: "Memo_SetScrollBars", dynlib: dllname.}
+proc Memo_GetShowHint*(AObj: pointer): bool {.importc: "Memo_GetShowHint", dynlib: dllname.}
+proc Memo_SetShowHint*(AObj: pointer, AValue: bool) {.importc: "Memo_SetShowHint", dynlib: dllname.}
+proc Memo_GetTabOrder*(AObj: pointer): TTabOrder {.importc: "Memo_GetTabOrder", dynlib: dllname.}
+proc Memo_SetTabOrder*(AObj: pointer, AValue: TTabOrder) {.importc: "Memo_SetTabOrder", dynlib: dllname.}
+proc Memo_GetTabStop*(AObj: pointer): bool {.importc: "Memo_GetTabStop", dynlib: dllname.}
+proc Memo_SetTabStop*(AObj: pointer, AValue: bool) {.importc: "Memo_SetTabStop", dynlib: dllname.}
+proc Memo_GetVisible*(AObj: pointer): bool {.importc: "Memo_GetVisible", dynlib: dllname.}
+proc Memo_SetVisible*(AObj: pointer, AValue: bool) {.importc: "Memo_SetVisible", dynlib: dllname.}
+proc Memo_GetWantReturns*(AObj: pointer): bool {.importc: "Memo_GetWantReturns", dynlib: dllname.}
+proc Memo_SetWantReturns*(AObj: pointer, AValue: bool) {.importc: "Memo_SetWantReturns", dynlib: dllname.}
+proc Memo_GetWantTabs*(AObj: pointer): bool {.importc: "Memo_GetWantTabs", dynlib: dllname.}
+proc Memo_SetWantTabs*(AObj: pointer, AValue: bool) {.importc: "Memo_SetWantTabs", dynlib: dllname.}
+proc Memo_GetWordWrap*(AObj: pointer): bool {.importc: "Memo_GetWordWrap", dynlib: dllname.}
+proc Memo_SetWordWrap*(AObj: pointer, AValue: bool) {.importc: "Memo_SetWordWrap", dynlib: dllname.}
+proc Memo_SetOnChange*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Memo_SetOnChange", dynlib: dllname.}
+proc Memo_SetOnClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Memo_SetOnClick", dynlib: dllname.}
+proc Memo_SetOnContextPopup*(AObj: pointer, AEventId: TContextPopupEvent) {.importc: "Memo_SetOnContextPopup", dynlib: dllname.}
+proc Memo_SetOnDblClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Memo_SetOnDblClick", dynlib: dllname.}
+proc Memo_SetOnDragDrop*(AObj: pointer, AEventId: TDragDropEvent) {.importc: "Memo_SetOnDragDrop", dynlib: dllname.}
+proc Memo_SetOnDragOver*(AObj: pointer, AEventId: TDragOverEvent) {.importc: "Memo_SetOnDragOver", dynlib: dllname.}
+proc Memo_SetOnEndDrag*(AObj: pointer, AEventId: TEndDragEvent) {.importc: "Memo_SetOnEndDrag", dynlib: dllname.}
+proc Memo_SetOnEnter*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Memo_SetOnEnter", dynlib: dllname.}
+proc Memo_SetOnExit*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Memo_SetOnExit", dynlib: dllname.}
+proc Memo_SetOnKeyDown*(AObj: pointer, AEventId: TKeyEvent) {.importc: "Memo_SetOnKeyDown", dynlib: dllname.}
+proc Memo_SetOnKeyPress*(AObj: pointer, AEventId: TKeyPressEvent) {.importc: "Memo_SetOnKeyPress", dynlib: dllname.}
+proc Memo_SetOnKeyUp*(AObj: pointer, AEventId: TKeyEvent) {.importc: "Memo_SetOnKeyUp", dynlib: dllname.}
+proc Memo_SetOnMouseDown*(AObj: pointer, AEventId: TMouseEvent) {.importc: "Memo_SetOnMouseDown", dynlib: dllname.}
+proc Memo_SetOnMouseEnter*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Memo_SetOnMouseEnter", dynlib: dllname.}
+proc Memo_SetOnMouseLeave*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Memo_SetOnMouseLeave", dynlib: dllname.}
+proc Memo_SetOnMouseMove*(AObj: pointer, AEventId: TMouseMoveEvent) {.importc: "Memo_SetOnMouseMove", dynlib: dllname.}
+proc Memo_SetOnMouseUp*(AObj: pointer, AEventId: TMouseEvent) {.importc: "Memo_SetOnMouseUp", dynlib: dllname.}
+proc Memo_GetCaretPos*(AObj: pointer, Result: var TPoint) {.importc: "Memo_GetCaretPos", dynlib: dllname.}
+proc Memo_SetCaretPos*(AObj: pointer, AValue: var TPoint) {.importc: "Memo_SetCaretPos", dynlib: dllname.}
+proc Memo_GetCanUndo*(AObj: pointer): bool {.importc: "Memo_GetCanUndo", dynlib: dllname.}
+proc Memo_GetModified*(AObj: pointer): bool {.importc: "Memo_GetModified", dynlib: dllname.}
+proc Memo_SetModified*(AObj: pointer, AValue: bool) {.importc: "Memo_SetModified", dynlib: dllname.}
+proc Memo_GetSelLength*(AObj: pointer): int32 {.importc: "Memo_GetSelLength", dynlib: dllname.}
+proc Memo_SetSelLength*(AObj: pointer, AValue: int32) {.importc: "Memo_SetSelLength", dynlib: dllname.}
+proc Memo_GetSelStart*(AObj: pointer): int32 {.importc: "Memo_GetSelStart", dynlib: dllname.}
+proc Memo_SetSelStart*(AObj: pointer, AValue: int32) {.importc: "Memo_SetSelStart", dynlib: dllname.}
+proc Memo_GetSelText*(AObj: pointer): cstring {.importc: "Memo_GetSelText", dynlib: dllname.}
+proc Memo_SetSelText*(AObj: pointer, AValue: cstring) {.importc: "Memo_SetSelText", dynlib: dllname.}
+proc Memo_GetText*(AObj: pointer): cstring {.importc: "Memo_GetText", dynlib: dllname.}
+proc Memo_SetText*(AObj: pointer, AValue: cstring) {.importc: "Memo_SetText", dynlib: dllname.}
+proc Memo_GetTextHint*(AObj: pointer): cstring {.importc: "Memo_GetTextHint", dynlib: dllname.}
+proc Memo_SetTextHint*(AObj: pointer, AValue: cstring) {.importc: "Memo_SetTextHint", dynlib: dllname.}
+proc Memo_GetDockClientCount*(AObj: pointer): int32 {.importc: "Memo_GetDockClientCount", dynlib: dllname.}
+proc Memo_GetDockSite*(AObj: pointer): bool {.importc: "Memo_GetDockSite", dynlib: dllname.}
+proc Memo_SetDockSite*(AObj: pointer, AValue: bool) {.importc: "Memo_SetDockSite", dynlib: dllname.}
+proc Memo_GetMouseInClient*(AObj: pointer): bool {.importc: "Memo_GetMouseInClient", dynlib: dllname.}
+proc Memo_GetVisibleDockClientCount*(AObj: pointer): int32 {.importc: "Memo_GetVisibleDockClientCount", dynlib: dllname.}
+proc Memo_GetBrush*(AObj: pointer): pointer {.importc: "Memo_GetBrush", dynlib: dllname.}
+proc Memo_GetControlCount*(AObj: pointer): int32 {.importc: "Memo_GetControlCount", dynlib: dllname.}
+proc Memo_GetHandle*(AObj: pointer): HWND {.importc: "Memo_GetHandle", dynlib: dllname.}
+proc Memo_GetParentWindow*(AObj: pointer): HWND {.importc: "Memo_GetParentWindow", dynlib: dllname.}
+proc Memo_SetParentWindow*(AObj: pointer, AValue: HWND) {.importc: "Memo_SetParentWindow", dynlib: dllname.}
+proc Memo_GetShowing*(AObj: pointer): bool {.importc: "Memo_GetShowing", dynlib: dllname.}
+proc Memo_GetUseDockManager*(AObj: pointer): bool {.importc: "Memo_GetUseDockManager", dynlib: dllname.}
+proc Memo_SetUseDockManager*(AObj: pointer, AValue: bool) {.importc: "Memo_SetUseDockManager", dynlib: dllname.}
+proc Memo_GetAction*(AObj: pointer): pointer {.importc: "Memo_GetAction", dynlib: dllname.}
+proc Memo_SetAction*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetAction", dynlib: dllname.}
+proc Memo_GetBoundsRect*(AObj: pointer, Result: var TRect) {.importc: "Memo_GetBoundsRect", dynlib: dllname.}
+proc Memo_SetBoundsRect*(AObj: pointer, AValue: var TRect) {.importc: "Memo_SetBoundsRect", dynlib: dllname.}
+proc Memo_GetClientHeight*(AObj: pointer): int32 {.importc: "Memo_GetClientHeight", dynlib: dllname.}
+proc Memo_SetClientHeight*(AObj: pointer, AValue: int32) {.importc: "Memo_SetClientHeight", dynlib: dllname.}
+proc Memo_GetClientOrigin*(AObj: pointer, Result: var TPoint) {.importc: "Memo_GetClientOrigin", dynlib: dllname.}
+proc Memo_GetClientRect*(AObj: pointer, Result: var TRect) {.importc: "Memo_GetClientRect", dynlib: dllname.}
+proc Memo_GetClientWidth*(AObj: pointer): int32 {.importc: "Memo_GetClientWidth", dynlib: dllname.}
+proc Memo_SetClientWidth*(AObj: pointer, AValue: int32) {.importc: "Memo_SetClientWidth", dynlib: dllname.}
+proc Memo_GetControlState*(AObj: pointer): TControlState {.importc: "Memo_GetControlState", dynlib: dllname.}
+proc Memo_SetControlState*(AObj: pointer, AValue: TControlState) {.importc: "Memo_SetControlState", dynlib: dllname.}
+proc Memo_GetControlStyle*(AObj: pointer): TControlStyle {.importc: "Memo_GetControlStyle", dynlib: dllname.}
+proc Memo_SetControlStyle*(AObj: pointer, AValue: TControlStyle) {.importc: "Memo_SetControlStyle", dynlib: dllname.}
+proc Memo_GetFloating*(AObj: pointer): bool {.importc: "Memo_GetFloating", dynlib: dllname.}
+proc Memo_GetParent*(AObj: pointer): pointer {.importc: "Memo_GetParent", dynlib: dllname.}
+proc Memo_SetParent*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetParent", dynlib: dllname.}
+proc Memo_GetLeft*(AObj: pointer): int32 {.importc: "Memo_GetLeft", dynlib: dllname.}
+proc Memo_SetLeft*(AObj: pointer, AValue: int32) {.importc: "Memo_SetLeft", dynlib: dllname.}
+proc Memo_GetTop*(AObj: pointer): int32 {.importc: "Memo_GetTop", dynlib: dllname.}
+proc Memo_SetTop*(AObj: pointer, AValue: int32) {.importc: "Memo_SetTop", dynlib: dllname.}
+proc Memo_GetWidth*(AObj: pointer): int32 {.importc: "Memo_GetWidth", dynlib: dllname.}
+proc Memo_SetWidth*(AObj: pointer, AValue: int32) {.importc: "Memo_SetWidth", dynlib: dllname.}
+proc Memo_GetHeight*(AObj: pointer): int32 {.importc: "Memo_GetHeight", dynlib: dllname.}
+proc Memo_SetHeight*(AObj: pointer, AValue: int32) {.importc: "Memo_SetHeight", dynlib: dllname.}
+proc Memo_GetCursor*(AObj: pointer): TCursor {.importc: "Memo_GetCursor", dynlib: dllname.}
+proc Memo_SetCursor*(AObj: pointer, AValue: TCursor) {.importc: "Memo_SetCursor", dynlib: dllname.}
+proc Memo_GetHint*(AObj: pointer): cstring {.importc: "Memo_GetHint", dynlib: dllname.}
+proc Memo_SetHint*(AObj: pointer, AValue: cstring) {.importc: "Memo_SetHint", dynlib: dllname.}
+proc Memo_GetComponentCount*(AObj: pointer): int32 {.importc: "Memo_GetComponentCount", dynlib: dllname.}
+proc Memo_GetComponentIndex*(AObj: pointer): int32 {.importc: "Memo_GetComponentIndex", dynlib: dllname.}
+proc Memo_SetComponentIndex*(AObj: pointer, AValue: int32) {.importc: "Memo_SetComponentIndex", dynlib: dllname.}
+proc Memo_GetOwner*(AObj: pointer): pointer {.importc: "Memo_GetOwner", dynlib: dllname.}
+proc Memo_GetName*(AObj: pointer): cstring {.importc: "Memo_GetName", dynlib: dllname.}
+proc Memo_SetName*(AObj: pointer, AValue: cstring) {.importc: "Memo_SetName", dynlib: dllname.}
+proc Memo_GetTag*(AObj: pointer): int {.importc: "Memo_GetTag", dynlib: dllname.}
+proc Memo_SetTag*(AObj: pointer, AValue: int) {.importc: "Memo_SetTag", dynlib: dllname.}
+proc Memo_GetAnchorSideLeft*(AObj: pointer): pointer {.importc: "Memo_GetAnchorSideLeft", dynlib: dllname.}
+proc Memo_SetAnchorSideLeft*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetAnchorSideLeft", dynlib: dllname.}
+proc Memo_GetAnchorSideTop*(AObj: pointer): pointer {.importc: "Memo_GetAnchorSideTop", dynlib: dllname.}
+proc Memo_SetAnchorSideTop*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetAnchorSideTop", dynlib: dllname.}
+proc Memo_GetAnchorSideRight*(AObj: pointer): pointer {.importc: "Memo_GetAnchorSideRight", dynlib: dllname.}
+proc Memo_SetAnchorSideRight*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetAnchorSideRight", dynlib: dllname.}
+proc Memo_GetAnchorSideBottom*(AObj: pointer): pointer {.importc: "Memo_GetAnchorSideBottom", dynlib: dllname.}
+proc Memo_SetAnchorSideBottom*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetAnchorSideBottom", dynlib: dllname.}
+proc Memo_GetChildSizing*(AObj: pointer): pointer {.importc: "Memo_GetChildSizing", dynlib: dllname.}
+proc Memo_SetChildSizing*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetChildSizing", dynlib: dllname.}
+proc Memo_GetBorderSpacing*(AObj: pointer): pointer {.importc: "Memo_GetBorderSpacing", dynlib: dllname.}
+proc Memo_SetBorderSpacing*(AObj: pointer, AValue: pointer) {.importc: "Memo_SetBorderSpacing", dynlib: dllname.}
+proc Memo_GetDockClients*(AObj: pointer, Index: int32): pointer {.importc: "Memo_GetDockClients", dynlib: dllname.}
+proc Memo_GetControls*(AObj: pointer, Index: int32): pointer {.importc: "Memo_GetControls", dynlib: dllname.}
+proc Memo_GetComponents*(AObj: pointer, AIndex: int32): pointer {.importc: "Memo_GetComponents", dynlib: dllname.}
+proc Memo_GetAnchorSide*(AObj: pointer, AKind: TAnchorKind): pointer {.importc: "Memo_GetAnchorSide", dynlib: dllname.}
+proc Memo_StaticClassType*(): TClass {.importc: "Memo_StaticClassType", dynlib: dllname.}
 # ----------------- TMemoryStream ----------------------
 proc MemoryStream_Create*(): pointer {.importc: "MemoryStream_Create", dynlib: dllname.}
 proc MemoryStream_Free*(AObj: pointer) {.importc: "MemoryStream_Free", dynlib: dllname.}
@@ -6228,55 +6231,48 @@ proc Font_GetQuality*(AObj: pointer): TFontQuality {.importc: "Font_GetQuality",
 proc Font_SetQuality*(AObj: pointer, AValue: TFontQuality) {.importc: "Font_SetQuality", dynlib: dllname.}
 proc Font_SetOnChange*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Font_SetOnChange", dynlib: dllname.}
 proc Font_StaticClassType*(): TClass {.importc: "Font_StaticClassType", dynlib: dllname.}
-# ----------------- TStrings ----------------------
-proc Strings_Create*(): pointer {.importc: "Strings_Create", dynlib: dllname.}
-proc Strings_Free*(AObj: pointer) {.importc: "Strings_Free", dynlib: dllname.}
-proc Strings_Add*(AObj: pointer, S: cstring): int32 {.importc: "Strings_Add", dynlib: dllname.}
-proc Strings_AddObject*(AObj: pointer, S: cstring, AObject: pointer): int32 {.importc: "Strings_AddObject", dynlib: dllname.}
-proc Strings_Append*(AObj: pointer, S: cstring) {.importc: "Strings_Append", dynlib: dllname.}
-proc Strings_Assign*(AObj: pointer, Source: pointer) {.importc: "Strings_Assign", dynlib: dllname.}
-proc Strings_BeginUpdate*(AObj: pointer) {.importc: "Strings_BeginUpdate", dynlib: dllname.}
-proc Strings_Clear*(AObj: pointer) {.importc: "Strings_Clear", dynlib: dllname.}
-proc Strings_Delete*(AObj: pointer, Index: int32) {.importc: "Strings_Delete", dynlib: dllname.}
-proc Strings_EndUpdate*(AObj: pointer) {.importc: "Strings_EndUpdate", dynlib: dllname.}
-proc Strings_Equals*(AObj: pointer, Strings: pointer): bool {.importc: "Strings_Equals", dynlib: dllname.}
-proc Strings_IndexOf*(AObj: pointer, S: cstring): int32 {.importc: "Strings_IndexOf", dynlib: dllname.}
-proc Strings_IndexOfName*(AObj: pointer, Name: cstring): int32 {.importc: "Strings_IndexOfName", dynlib: dllname.}
-proc Strings_IndexOfObject*(AObj: pointer, AObject: pointer): int32 {.importc: "Strings_IndexOfObject", dynlib: dllname.}
-proc Strings_Insert*(AObj: pointer, Index: int32, S: cstring) {.importc: "Strings_Insert", dynlib: dllname.}
-proc Strings_InsertObject*(AObj: pointer, Index: int32, S: cstring, AObject: pointer) {.importc: "Strings_InsertObject", dynlib: dllname.}
-proc Strings_LoadFromFile*(AObj: pointer, FileName: cstring) {.importc: "Strings_LoadFromFile", dynlib: dllname.}
-proc Strings_LoadFromStream*(AObj: pointer, Stream: pointer) {.importc: "Strings_LoadFromStream", dynlib: dllname.}
-proc Strings_Move*(AObj: pointer, CurIndex: int32, NewIndex: int32) {.importc: "Strings_Move", dynlib: dllname.}
-proc Strings_SaveToFile*(AObj: pointer, FileName: cstring) {.importc: "Strings_SaveToFile", dynlib: dllname.}
-proc Strings_SaveToStream*(AObj: pointer, Stream: pointer) {.importc: "Strings_SaveToStream", dynlib: dllname.}
-proc Strings_GetNamePath*(AObj: pointer): cstring {.importc: "Strings_GetNamePath", dynlib: dllname.}
-proc Strings_ClassType*(AObj: pointer): TClass {.importc: "Strings_ClassType", dynlib: dllname.}
-proc Strings_ClassName*(AObj: pointer): cstring {.importc: "Strings_ClassName", dynlib: dllname.}
-proc Strings_InstanceSize*(AObj: pointer): int32 {.importc: "Strings_InstanceSize", dynlib: dllname.}
-proc Strings_InheritsFrom*(AObj: pointer, AClass: TClass): bool {.importc: "Strings_InheritsFrom", dynlib: dllname.}
-proc Strings_GetHashCode*(AObj: pointer): int32 {.importc: "Strings_GetHashCode", dynlib: dllname.}
-proc Strings_ToString*(AObj: pointer): cstring {.importc: "Strings_ToString", dynlib: dllname.}
-proc Strings_GetCapacity*(AObj: pointer): int32 {.importc: "Strings_GetCapacity", dynlib: dllname.}
-proc Strings_SetCapacity*(AObj: pointer, AValue: int32) {.importc: "Strings_SetCapacity", dynlib: dllname.}
-proc Strings_GetCommaText*(AObj: pointer): cstring {.importc: "Strings_GetCommaText", dynlib: dllname.}
-proc Strings_SetCommaText*(AObj: pointer, AValue: cstring) {.importc: "Strings_SetCommaText", dynlib: dllname.}
-proc Strings_GetCount*(AObj: pointer): int32 {.importc: "Strings_GetCount", dynlib: dllname.}
-proc Strings_GetDelimiter*(AObj: pointer): Char {.importc: "Strings_GetDelimiter", dynlib: dllname.}
-proc Strings_SetDelimiter*(AObj: pointer, AValue: Char) {.importc: "Strings_SetDelimiter", dynlib: dllname.}
-proc Strings_GetNameValueSeparator*(AObj: pointer): Char {.importc: "Strings_GetNameValueSeparator", dynlib: dllname.}
-proc Strings_SetNameValueSeparator*(AObj: pointer, AValue: Char) {.importc: "Strings_SetNameValueSeparator", dynlib: dllname.}
-proc Strings_GetText*(AObj: pointer): cstring {.importc: "Strings_GetText", dynlib: dllname.}
-proc Strings_SetText*(AObj: pointer, AValue: cstring) {.importc: "Strings_SetText", dynlib: dllname.}
-proc Strings_GetObjects*(AObj: pointer, Index: int32): pointer {.importc: "Strings_GetObjects", dynlib: dllname.}
-proc Strings_SetObjects*(AObj: pointer, Index: int32, AValue: pointer) {.importc: "Strings_SetObjects", dynlib: dllname.}
-proc Strings_GetValues*(AObj: pointer, Name: cstring): cstring {.importc: "Strings_GetValues", dynlib: dllname.}
-proc Strings_SetValues*(AObj: pointer, Name: cstring, AValue: cstring) {.importc: "Strings_SetValues", dynlib: dllname.}
-proc Strings_GetValueFromIndex*(AObj: pointer, Index: int32): cstring {.importc: "Strings_GetValueFromIndex", dynlib: dllname.}
-proc Strings_SetValueFromIndex*(AObj: pointer, Index: int32, AValue: cstring) {.importc: "Strings_SetValueFromIndex", dynlib: dllname.}
-proc Strings_GetStrings*(AObj: pointer, Index: int32): cstring {.importc: "Strings_GetStrings", dynlib: dllname.}
-proc Strings_SetStrings*(AObj: pointer, Index: int32, AValue: cstring) {.importc: "Strings_SetStrings", dynlib: dllname.}
-proc Strings_StaticClassType*(): TClass {.importc: "Strings_StaticClassType", dynlib: dllname.}
+# ----------------- TPopupMenu ----------------------
+proc PopupMenu_Create*(AOwner: pointer): pointer {.importc: "PopupMenu_Create", dynlib: dllname.}
+proc PopupMenu_Free*(AObj: pointer) {.importc: "PopupMenu_Free", dynlib: dllname.}
+proc PopupMenu_CloseMenu*(AObj: pointer) {.importc: "PopupMenu_CloseMenu", dynlib: dllname.}
+proc PopupMenu_Popup*(AObj: pointer, X: int32, Y: int32) {.importc: "PopupMenu_Popup", dynlib: dllname.}
+proc PopupMenu_FindComponent*(AObj: pointer, AName: cstring): pointer {.importc: "PopupMenu_FindComponent", dynlib: dllname.}
+proc PopupMenu_GetNamePath*(AObj: pointer): cstring {.importc: "PopupMenu_GetNamePath", dynlib: dllname.}
+proc PopupMenu_HasParent*(AObj: pointer): bool {.importc: "PopupMenu_HasParent", dynlib: dllname.}
+proc PopupMenu_Assign*(AObj: pointer, Source: pointer) {.importc: "PopupMenu_Assign", dynlib: dllname.}
+proc PopupMenu_ClassType*(AObj: pointer): TClass {.importc: "PopupMenu_ClassType", dynlib: dllname.}
+proc PopupMenu_ClassName*(AObj: pointer): cstring {.importc: "PopupMenu_ClassName", dynlib: dllname.}
+proc PopupMenu_InstanceSize*(AObj: pointer): int32 {.importc: "PopupMenu_InstanceSize", dynlib: dllname.}
+proc PopupMenu_InheritsFrom*(AObj: pointer, AClass: TClass): bool {.importc: "PopupMenu_InheritsFrom", dynlib: dllname.}
+proc PopupMenu_Equals*(AObj: pointer, Obj: pointer): bool {.importc: "PopupMenu_Equals", dynlib: dllname.}
+proc PopupMenu_GetHashCode*(AObj: pointer): int32 {.importc: "PopupMenu_GetHashCode", dynlib: dllname.}
+proc PopupMenu_ToString*(AObj: pointer): cstring {.importc: "PopupMenu_ToString", dynlib: dllname.}
+proc PopupMenu_GetImagesWidth*(AObj: pointer): int32 {.importc: "PopupMenu_GetImagesWidth", dynlib: dllname.}
+proc PopupMenu_SetImagesWidth*(AObj: pointer, AValue: int32) {.importc: "PopupMenu_SetImagesWidth", dynlib: dllname.}
+proc PopupMenu_GetPopupComponent*(AObj: pointer): pointer {.importc: "PopupMenu_GetPopupComponent", dynlib: dllname.}
+proc PopupMenu_SetPopupComponent*(AObj: pointer, AValue: pointer) {.importc: "PopupMenu_SetPopupComponent", dynlib: dllname.}
+proc PopupMenu_GetPopupPoint*(AObj: pointer, Result: var TPoint) {.importc: "PopupMenu_GetPopupPoint", dynlib: dllname.}
+proc PopupMenu_GetAlignment*(AObj: pointer): TPopupAlignment {.importc: "PopupMenu_GetAlignment", dynlib: dllname.}
+proc PopupMenu_SetAlignment*(AObj: pointer, AValue: TPopupAlignment) {.importc: "PopupMenu_SetAlignment", dynlib: dllname.}
+proc PopupMenu_GetBiDiMode*(AObj: pointer): TBiDiMode {.importc: "PopupMenu_GetBiDiMode", dynlib: dllname.}
+proc PopupMenu_SetBiDiMode*(AObj: pointer, AValue: TBiDiMode) {.importc: "PopupMenu_SetBiDiMode", dynlib: dllname.}
+proc PopupMenu_GetImages*(AObj: pointer): pointer {.importc: "PopupMenu_GetImages", dynlib: dllname.}
+proc PopupMenu_SetImages*(AObj: pointer, AValue: pointer) {.importc: "PopupMenu_SetImages", dynlib: dllname.}
+proc PopupMenu_GetOwnerDraw*(AObj: pointer): bool {.importc: "PopupMenu_GetOwnerDraw", dynlib: dllname.}
+proc PopupMenu_SetOwnerDraw*(AObj: pointer, AValue: bool) {.importc: "PopupMenu_SetOwnerDraw", dynlib: dllname.}
+proc PopupMenu_SetOnPopup*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "PopupMenu_SetOnPopup", dynlib: dllname.}
+proc PopupMenu_GetHandle*(AObj: pointer): HMENU {.importc: "PopupMenu_GetHandle", dynlib: dllname.}
+proc PopupMenu_GetItems*(AObj: pointer): pointer {.importc: "PopupMenu_GetItems", dynlib: dllname.}
+proc PopupMenu_GetComponentCount*(AObj: pointer): int32 {.importc: "PopupMenu_GetComponentCount", dynlib: dllname.}
+proc PopupMenu_GetComponentIndex*(AObj: pointer): int32 {.importc: "PopupMenu_GetComponentIndex", dynlib: dllname.}
+proc PopupMenu_SetComponentIndex*(AObj: pointer, AValue: int32) {.importc: "PopupMenu_SetComponentIndex", dynlib: dllname.}
+proc PopupMenu_GetOwner*(AObj: pointer): pointer {.importc: "PopupMenu_GetOwner", dynlib: dllname.}
+proc PopupMenu_GetName*(AObj: pointer): cstring {.importc: "PopupMenu_GetName", dynlib: dllname.}
+proc PopupMenu_SetName*(AObj: pointer, AValue: cstring) {.importc: "PopupMenu_SetName", dynlib: dllname.}
+proc PopupMenu_GetTag*(AObj: pointer): int {.importc: "PopupMenu_GetTag", dynlib: dllname.}
+proc PopupMenu_SetTag*(AObj: pointer, AValue: int) {.importc: "PopupMenu_SetTag", dynlib: dllname.}
+proc PopupMenu_GetComponents*(AObj: pointer, AIndex: int32): pointer {.importc: "PopupMenu_GetComponents", dynlib: dllname.}
+proc PopupMenu_StaticClassType*(): TClass {.importc: "PopupMenu_StaticClassType", dynlib: dllname.}
 # ----------------- TStringList ----------------------
 proc StringList_Create*(): pointer {.importc: "StringList_Create", dynlib: dllname.}
 proc StringList_Free*(AObj: pointer) {.importc: "StringList_Free", dynlib: dllname.}
@@ -8099,37 +8095,41 @@ proc Application_StaticClassType*(): TClass {.importc: "Application_StaticClassT
 proc Application_Initialize*(AObj: pointer) {.importc: "Application_Initialize", dynlib: dllname.}
 proc Application_CreateForm*(App: pointer, AInitScale: bool): pointer {.importc: "Application_CreateForm", dynlib: dllname.}
 proc Application_Run*(AObj: pointer) {.importc: "Application_Run", dynlib: dllname.}
-# ----------------- TGraphic ----------------------
-proc Graphic_Create*(): pointer {.importc: "Graphic_Create", dynlib: dllname.}
-proc Graphic_Free*(AObj: pointer) {.importc: "Graphic_Free", dynlib: dllname.}
-proc Graphic_Equals*(AObj: pointer, Obj: pointer): bool {.importc: "Graphic_Equals", dynlib: dllname.}
-proc Graphic_LoadFromFile*(AObj: pointer, Filename: cstring) {.importc: "Graphic_LoadFromFile", dynlib: dllname.}
-proc Graphic_SaveToFile*(AObj: pointer, Filename: cstring) {.importc: "Graphic_SaveToFile", dynlib: dllname.}
-proc Graphic_LoadFromStream*(AObj: pointer, Stream: pointer) {.importc: "Graphic_LoadFromStream", dynlib: dllname.}
-proc Graphic_SaveToStream*(AObj: pointer, Stream: pointer) {.importc: "Graphic_SaveToStream", dynlib: dllname.}
-proc Graphic_Assign*(AObj: pointer, Source: pointer) {.importc: "Graphic_Assign", dynlib: dllname.}
-proc Graphic_GetNamePath*(AObj: pointer): cstring {.importc: "Graphic_GetNamePath", dynlib: dllname.}
-proc Graphic_ClassType*(AObj: pointer): TClass {.importc: "Graphic_ClassType", dynlib: dllname.}
-proc Graphic_ClassName*(AObj: pointer): cstring {.importc: "Graphic_ClassName", dynlib: dllname.}
-proc Graphic_InstanceSize*(AObj: pointer): int32 {.importc: "Graphic_InstanceSize", dynlib: dllname.}
-proc Graphic_InheritsFrom*(AObj: pointer, AClass: TClass): bool {.importc: "Graphic_InheritsFrom", dynlib: dllname.}
-proc Graphic_GetHashCode*(AObj: pointer): int32 {.importc: "Graphic_GetHashCode", dynlib: dllname.}
-proc Graphic_ToString*(AObj: pointer): cstring {.importc: "Graphic_ToString", dynlib: dllname.}
-proc Graphic_GetEmpty*(AObj: pointer): bool {.importc: "Graphic_GetEmpty", dynlib: dllname.}
-proc Graphic_GetHeight*(AObj: pointer): int32 {.importc: "Graphic_GetHeight", dynlib: dllname.}
-proc Graphic_SetHeight*(AObj: pointer, AValue: int32) {.importc: "Graphic_SetHeight", dynlib: dllname.}
-proc Graphic_GetModified*(AObj: pointer): bool {.importc: "Graphic_GetModified", dynlib: dllname.}
-proc Graphic_SetModified*(AObj: pointer, AValue: bool) {.importc: "Graphic_SetModified", dynlib: dllname.}
-proc Graphic_GetPalette*(AObj: pointer): HPALETTE {.importc: "Graphic_GetPalette", dynlib: dllname.}
-proc Graphic_SetPalette*(AObj: pointer, AValue: HPALETTE) {.importc: "Graphic_SetPalette", dynlib: dllname.}
-proc Graphic_GetPaletteModified*(AObj: pointer): bool {.importc: "Graphic_GetPaletteModified", dynlib: dllname.}
-proc Graphic_SetPaletteModified*(AObj: pointer, AValue: bool) {.importc: "Graphic_SetPaletteModified", dynlib: dllname.}
-proc Graphic_GetTransparent*(AObj: pointer): bool {.importc: "Graphic_GetTransparent", dynlib: dllname.}
-proc Graphic_SetTransparent*(AObj: pointer, AValue: bool) {.importc: "Graphic_SetTransparent", dynlib: dllname.}
-proc Graphic_GetWidth*(AObj: pointer): int32 {.importc: "Graphic_GetWidth", dynlib: dllname.}
-proc Graphic_SetWidth*(AObj: pointer, AValue: int32) {.importc: "Graphic_SetWidth", dynlib: dllname.}
-proc Graphic_SetOnChange*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Graphic_SetOnChange", dynlib: dllname.}
-proc Graphic_StaticClassType*(): TClass {.importc: "Graphic_StaticClassType", dynlib: dllname.}
+# ----------------- TMainMenu ----------------------
+proc MainMenu_Create*(AOwner: pointer): pointer {.importc: "MainMenu_Create", dynlib: dllname.}
+proc MainMenu_Free*(AObj: pointer) {.importc: "MainMenu_Free", dynlib: dllname.}
+proc MainMenu_FindComponent*(AObj: pointer, AName: cstring): pointer {.importc: "MainMenu_FindComponent", dynlib: dllname.}
+proc MainMenu_GetNamePath*(AObj: pointer): cstring {.importc: "MainMenu_GetNamePath", dynlib: dllname.}
+proc MainMenu_HasParent*(AObj: pointer): bool {.importc: "MainMenu_HasParent", dynlib: dllname.}
+proc MainMenu_Assign*(AObj: pointer, Source: pointer) {.importc: "MainMenu_Assign", dynlib: dllname.}
+proc MainMenu_ClassType*(AObj: pointer): TClass {.importc: "MainMenu_ClassType", dynlib: dllname.}
+proc MainMenu_ClassName*(AObj: pointer): cstring {.importc: "MainMenu_ClassName", dynlib: dllname.}
+proc MainMenu_InstanceSize*(AObj: pointer): int32 {.importc: "MainMenu_InstanceSize", dynlib: dllname.}
+proc MainMenu_InheritsFrom*(AObj: pointer, AClass: TClass): bool {.importc: "MainMenu_InheritsFrom", dynlib: dllname.}
+proc MainMenu_Equals*(AObj: pointer, Obj: pointer): bool {.importc: "MainMenu_Equals", dynlib: dllname.}
+proc MainMenu_GetHashCode*(AObj: pointer): int32 {.importc: "MainMenu_GetHashCode", dynlib: dllname.}
+proc MainMenu_ToString*(AObj: pointer): cstring {.importc: "MainMenu_ToString", dynlib: dllname.}
+proc MainMenu_GetImagesWidth*(AObj: pointer): int32 {.importc: "MainMenu_GetImagesWidth", dynlib: dllname.}
+proc MainMenu_SetImagesWidth*(AObj: pointer, AValue: int32) {.importc: "MainMenu_SetImagesWidth", dynlib: dllname.}
+proc MainMenu_GetBiDiMode*(AObj: pointer): TBiDiMode {.importc: "MainMenu_GetBiDiMode", dynlib: dllname.}
+proc MainMenu_SetBiDiMode*(AObj: pointer, AValue: TBiDiMode) {.importc: "MainMenu_SetBiDiMode", dynlib: dllname.}
+proc MainMenu_GetImages*(AObj: pointer): pointer {.importc: "MainMenu_GetImages", dynlib: dllname.}
+proc MainMenu_SetImages*(AObj: pointer, AValue: pointer) {.importc: "MainMenu_SetImages", dynlib: dllname.}
+proc MainMenu_GetOwnerDraw*(AObj: pointer): bool {.importc: "MainMenu_GetOwnerDraw", dynlib: dllname.}
+proc MainMenu_SetOwnerDraw*(AObj: pointer, AValue: bool) {.importc: "MainMenu_SetOwnerDraw", dynlib: dllname.}
+proc MainMenu_SetOnChange*(AObj: pointer, AEventId: TMenuChangeEvent) {.importc: "MainMenu_SetOnChange", dynlib: dllname.}
+proc MainMenu_GetHandle*(AObj: pointer): HMENU {.importc: "MainMenu_GetHandle", dynlib: dllname.}
+proc MainMenu_GetItems*(AObj: pointer): pointer {.importc: "MainMenu_GetItems", dynlib: dllname.}
+proc MainMenu_GetComponentCount*(AObj: pointer): int32 {.importc: "MainMenu_GetComponentCount", dynlib: dllname.}
+proc MainMenu_GetComponentIndex*(AObj: pointer): int32 {.importc: "MainMenu_GetComponentIndex", dynlib: dllname.}
+proc MainMenu_SetComponentIndex*(AObj: pointer, AValue: int32) {.importc: "MainMenu_SetComponentIndex", dynlib: dllname.}
+proc MainMenu_GetOwner*(AObj: pointer): pointer {.importc: "MainMenu_GetOwner", dynlib: dllname.}
+proc MainMenu_GetName*(AObj: pointer): cstring {.importc: "MainMenu_GetName", dynlib: dllname.}
+proc MainMenu_SetName*(AObj: pointer, AValue: cstring) {.importc: "MainMenu_SetName", dynlib: dllname.}
+proc MainMenu_GetTag*(AObj: pointer): int {.importc: "MainMenu_GetTag", dynlib: dllname.}
+proc MainMenu_SetTag*(AObj: pointer, AValue: int) {.importc: "MainMenu_SetTag", dynlib: dllname.}
+proc MainMenu_GetComponents*(AObj: pointer, AIndex: int32): pointer {.importc: "MainMenu_GetComponents", dynlib: dllname.}
+proc MainMenu_StaticClassType*(): TClass {.importc: "MainMenu_StaticClassType", dynlib: dllname.}
 # ----------------- TPngImage ----------------------
 proc PngImage_Create*(): pointer {.importc: "PngImage_Create", dynlib: dllname.}
 proc PngImage_Free*(AObj: pointer) {.importc: "PngImage_Free", dynlib: dllname.}
