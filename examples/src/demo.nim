@@ -30,7 +30,8 @@ type
     dlgOpen: TOpenDialog
     mainMenu: TMainMenu
     pmMenu: TPopupMenu
-    # dlgColor: TColorDialog
+    listbox1: TListBox
+        # dlgColor: TColorDialog
 
 type
   TTest1 = ref object
@@ -264,7 +265,7 @@ mainForm.memo.Parent = mainForm
 mainForm.memo.Left = 100
 mainForm.memo.Top = btnOpenForm2.Top + btnOpenForm2.Height + 10
 mainForm.memo.Width = 500
-mainForm.memo.Height = 300
+mainForm.memo.Height = 200
 mainForm.memo.ScrollBars = ssVertical
 
 # TMainMenu
@@ -323,6 +324,45 @@ except:
   discard
 
 
+# TListBox
+mainForm.listbox1 = NewListBox(mainForm)
+mainForm.listbox1.Parent = mainForm
+mainForm.listbox1.Left = mainForm.memo.Left
+mainForm.listbox1.Top = mainForm.memo.Top + mainForm.memo.Height + 10
+mainForm.listbox1.Width = mainForm.memo.Width
+mainForm.listbox1.Height = 120
+mainForm.listbox1.OnClick=proc(sender: pointer)=
+  let idx = mainForm.listbox1.ItemIndex
+  if idx != -1:
+    echo mainForm.listbox1.Items.Strings(idx)  
+  discard
+mainForm.listbox1.Style = lbOwnerDrawFixed
+mainForm.listbox1.ItemHeight = 30
+mainForm.listbox1.OnDrawItem=proc(control: pointer, index: int32, aRect: var TRect, state: TOwnerDrawState)=
+  let canvas = mainForm.listbox1.Canvas
+  let s = mainForm.listbox1.Items.Strings(index)
+  let fw = canvas.TextWidth(s)
+  let fh = canvas.TextHeight(s)
+  canvas.Font.Color = clBlack
+  canvas.Brush.Color = TColor(clBtnFace)
+  canvas.FillRect(aRect)
+  canvas.Brush.Color = 0x00FFF7F7
+  canvas.Pen.Color = clSkyblue
+  canvas.Rectangle(aRect.left + 1, aRect.top + 1, aRect.right - 1, aRect.bottom - 1)
+  canvas.Rectangle(aRect.left, aRect.top, aRect.right, aRect.bottom)
+  if odSelected in state:
+    canvas.Brush.Color = 0x00FFB2B5
+    canvas.Rectangle(aRect.left + 1, aRect.top + 1, aRect.right - 1, aRect.bottom - 1)
+    canvas.Font.Color = clBlue
+    if odFocused in state:
+      canvas.DrawFocusRect(aRect)
+      discard
+
+  canvas.TextOut(aRect.left + (aRect.right - fw) div 2, aRect.top + (30 - fh) div 2, s)
+  discard
+
+for i in 0..10:
+  discard mainForm.listbox1.Items.Add(format("item=$1", i))  
 
 
 
