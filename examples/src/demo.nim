@@ -9,7 +9,7 @@ when defined(gcc) and defined(windows):
 
 import  
   strutils, 
-  ../../src/[vcl, types, fns],   
+  ../../src/[vcl, types, fns, messages],   
   typeinfo #, macros
 
 ## 如何实现这种的?????? 
@@ -105,9 +105,9 @@ proc onFormWndProc(msg: var TMessage) =
   # 在WndProc必需要调用InheritedWndProc，以便让消息传递，至于放在哪个位置这个根据需求决定
   mainForm.InheritedWndProc(msg)
   case msg.msg
-  of 0x0201: # WM_LBUTTONDOWN
+  of WM_LBUTTONDOWN: #0x0201: # WM_LBUTTONDOWN
     echo "mouse down"
-  of 0x0202: # WM_LBUTTONUP
+  of WM_LBUTTONUP:#0x0202: # WM_LBUTTONUP
     echo "mouse up" 
   else:
     discard
