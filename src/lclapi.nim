@@ -185,8 +185,22 @@ proc Control_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32
 proc Control_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Control_AnchorParallel", dynlib: dllname.}
 proc Control_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Control_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc Control_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Control_AnchorVerticalCenterTo", dynlib: dllname.}
+proc Control_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "Control_AnchorSame", dynlib: dllname.}
 proc Control_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "Control_AnchorAsAlign", dynlib: dllname.}
 proc Control_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "Control_AnchorClient", dynlib: dllname.}
+proc Control_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Control_ScaleDesignToForm", dynlib: dllname.}
+proc Control_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "Control_ScaleFormToDesign", dynlib: dllname.}
+proc Control_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Control_Scale96ToForm", dynlib: dllname.}
+proc Control_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Control_ScaleFormTo96", dynlib: dllname.}
+proc Control_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Control_Scale96ToFont", dynlib: dllname.}
+proc Control_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Control_ScaleFontTo96", dynlib: dllname.}
+proc Control_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Control_ScaleScreenToFont", dynlib: dllname.}
+proc Control_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Control_ScaleFontToScreen", dynlib: dllname.}
+proc Control_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Control_Scale96ToScreen", dynlib: dllname.}
+proc Control_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Control_ScaleScreenTo96", dynlib: dllname.}
+proc Control_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "Control_AutoAdjustLayout", dynlib: dllname.}
+proc Control_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "Control_FixDesignFontsPPI", dynlib: dllname.}
+proc Control_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "Control_ScaleFontsPPI", dynlib: dllname.}
 proc Control_GetEnabled*(AObj: pointer): bool {.importc: "Control_GetEnabled", dynlib: dllname.}
 proc Control_SetEnabled*(AObj: pointer, AValue: bool) {.importc: "Control_SetEnabled", dynlib: dllname.}
 proc Control_GetAction*(AObj: pointer): pointer {.importc: "Control_GetAction", dynlib: dllname.}
@@ -265,6 +279,7 @@ proc WinControl_Focused*(AObj: pointer): bool {.importc: "WinControl_Focused", d
 proc WinControl_HandleAllocated*(AObj: pointer): bool {.importc: "WinControl_HandleAllocated", dynlib: dllname.}
 proc WinControl_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "WinControl_InsertControl", dynlib: dllname.}
 proc WinControl_Invalidate*(AObj: pointer) {.importc: "WinControl_Invalidate", dynlib: dllname.}
+proc WinControl_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "WinControl_PaintTo", dynlib: dllname.}
 proc WinControl_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "WinControl_RemoveControl", dynlib: dllname.}
 proc WinControl_Realign*(AObj: pointer) {.importc: "WinControl_Realign", dynlib: dllname.}
 proc WinControl_Repaint*(AObj: pointer) {.importc: "WinControl_Repaint", dynlib: dllname.}
@@ -302,8 +317,22 @@ proc WinControl_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: in
 proc WinControl_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "WinControl_AnchorParallel", dynlib: dllname.}
 proc WinControl_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "WinControl_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc WinControl_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "WinControl_AnchorVerticalCenterTo", dynlib: dllname.}
+proc WinControl_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "WinControl_AnchorSame", dynlib: dllname.}
 proc WinControl_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "WinControl_AnchorAsAlign", dynlib: dllname.}
 proc WinControl_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "WinControl_AnchorClient", dynlib: dllname.}
+proc WinControl_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "WinControl_ScaleDesignToForm", dynlib: dllname.}
+proc WinControl_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "WinControl_ScaleFormToDesign", dynlib: dllname.}
+proc WinControl_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "WinControl_Scale96ToForm", dynlib: dllname.}
+proc WinControl_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "WinControl_ScaleFormTo96", dynlib: dllname.}
+proc WinControl_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "WinControl_Scale96ToFont", dynlib: dllname.}
+proc WinControl_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "WinControl_ScaleFontTo96", dynlib: dllname.}
+proc WinControl_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "WinControl_ScaleScreenToFont", dynlib: dllname.}
+proc WinControl_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "WinControl_ScaleFontToScreen", dynlib: dllname.}
+proc WinControl_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "WinControl_Scale96ToScreen", dynlib: dllname.}
+proc WinControl_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "WinControl_ScaleScreenTo96", dynlib: dllname.}
+proc WinControl_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "WinControl_AutoAdjustLayout", dynlib: dllname.}
+proc WinControl_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "WinControl_FixDesignFontsPPI", dynlib: dllname.}
+proc WinControl_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "WinControl_ScaleFontsPPI", dynlib: dllname.}
 proc WinControl_GetDockClientCount*(AObj: pointer): int32 {.importc: "WinControl_GetDockClientCount", dynlib: dllname.}
 proc WinControl_GetDockSite*(AObj: pointer): bool {.importc: "WinControl_GetDockSite", dynlib: dllname.}
 proc WinControl_SetDockSite*(AObj: pointer, AValue: bool) {.importc: "WinControl_SetDockSite", dynlib: dllname.}
@@ -488,6 +517,7 @@ proc CheckBox_Focused*(AObj: pointer): bool {.importc: "CheckBox_Focused", dynli
 proc CheckBox_HandleAllocated*(AObj: pointer): bool {.importc: "CheckBox_HandleAllocated", dynlib: dllname.}
 proc CheckBox_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "CheckBox_InsertControl", dynlib: dllname.}
 proc CheckBox_Invalidate*(AObj: pointer) {.importc: "CheckBox_Invalidate", dynlib: dllname.}
+proc CheckBox_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "CheckBox_PaintTo", dynlib: dllname.}
 proc CheckBox_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "CheckBox_RemoveControl", dynlib: dllname.}
 proc CheckBox_Realign*(AObj: pointer) {.importc: "CheckBox_Realign", dynlib: dllname.}
 proc CheckBox_Repaint*(AObj: pointer) {.importc: "CheckBox_Repaint", dynlib: dllname.}
@@ -525,8 +555,22 @@ proc CheckBox_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int3
 proc CheckBox_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "CheckBox_AnchorParallel", dynlib: dllname.}
 proc CheckBox_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "CheckBox_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc CheckBox_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "CheckBox_AnchorVerticalCenterTo", dynlib: dllname.}
+proc CheckBox_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "CheckBox_AnchorSame", dynlib: dllname.}
 proc CheckBox_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "CheckBox_AnchorAsAlign", dynlib: dllname.}
 proc CheckBox_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "CheckBox_AnchorClient", dynlib: dllname.}
+proc CheckBox_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "CheckBox_ScaleDesignToForm", dynlib: dllname.}
+proc CheckBox_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "CheckBox_ScaleFormToDesign", dynlib: dllname.}
+proc CheckBox_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "CheckBox_Scale96ToForm", dynlib: dllname.}
+proc CheckBox_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "CheckBox_ScaleFormTo96", dynlib: dllname.}
+proc CheckBox_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "CheckBox_Scale96ToFont", dynlib: dllname.}
+proc CheckBox_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "CheckBox_ScaleFontTo96", dynlib: dllname.}
+proc CheckBox_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "CheckBox_ScaleScreenToFont", dynlib: dllname.}
+proc CheckBox_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "CheckBox_ScaleFontToScreen", dynlib: dllname.}
+proc CheckBox_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "CheckBox_Scale96ToScreen", dynlib: dllname.}
+proc CheckBox_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "CheckBox_ScaleScreenTo96", dynlib: dllname.}
+proc CheckBox_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "CheckBox_AutoAdjustLayout", dynlib: dllname.}
+proc CheckBox_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "CheckBox_FixDesignFontsPPI", dynlib: dllname.}
+proc CheckBox_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "CheckBox_ScaleFontsPPI", dynlib: dllname.}
 proc CheckBox_SetOnChange*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "CheckBox_SetOnChange", dynlib: dllname.}
 proc CheckBox_GetAction*(AObj: pointer): pointer {.importc: "CheckBox_GetAction", dynlib: dllname.}
 proc CheckBox_SetAction*(AObj: pointer, AValue: pointer) {.importc: "CheckBox_SetAction", dynlib: dllname.}
@@ -674,6 +718,7 @@ proc RadioButton_Focused*(AObj: pointer): bool {.importc: "RadioButton_Focused",
 proc RadioButton_HandleAllocated*(AObj: pointer): bool {.importc: "RadioButton_HandleAllocated", dynlib: dllname.}
 proc RadioButton_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "RadioButton_InsertControl", dynlib: dllname.}
 proc RadioButton_Invalidate*(AObj: pointer) {.importc: "RadioButton_Invalidate", dynlib: dllname.}
+proc RadioButton_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "RadioButton_PaintTo", dynlib: dllname.}
 proc RadioButton_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "RadioButton_RemoveControl", dynlib: dllname.}
 proc RadioButton_Realign*(AObj: pointer) {.importc: "RadioButton_Realign", dynlib: dllname.}
 proc RadioButton_Repaint*(AObj: pointer) {.importc: "RadioButton_Repaint", dynlib: dllname.}
@@ -711,8 +756,22 @@ proc RadioButton_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: i
 proc RadioButton_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "RadioButton_AnchorParallel", dynlib: dllname.}
 proc RadioButton_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "RadioButton_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc RadioButton_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "RadioButton_AnchorVerticalCenterTo", dynlib: dllname.}
+proc RadioButton_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "RadioButton_AnchorSame", dynlib: dllname.}
 proc RadioButton_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "RadioButton_AnchorAsAlign", dynlib: dllname.}
 proc RadioButton_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "RadioButton_AnchorClient", dynlib: dllname.}
+proc RadioButton_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "RadioButton_ScaleDesignToForm", dynlib: dllname.}
+proc RadioButton_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "RadioButton_ScaleFormToDesign", dynlib: dllname.}
+proc RadioButton_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "RadioButton_Scale96ToForm", dynlib: dllname.}
+proc RadioButton_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "RadioButton_ScaleFormTo96", dynlib: dllname.}
+proc RadioButton_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "RadioButton_Scale96ToFont", dynlib: dllname.}
+proc RadioButton_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "RadioButton_ScaleFontTo96", dynlib: dllname.}
+proc RadioButton_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "RadioButton_ScaleScreenToFont", dynlib: dllname.}
+proc RadioButton_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "RadioButton_ScaleFontToScreen", dynlib: dllname.}
+proc RadioButton_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "RadioButton_Scale96ToScreen", dynlib: dllname.}
+proc RadioButton_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "RadioButton_ScaleScreenTo96", dynlib: dllname.}
+proc RadioButton_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "RadioButton_AutoAdjustLayout", dynlib: dllname.}
+proc RadioButton_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "RadioButton_FixDesignFontsPPI", dynlib: dllname.}
+proc RadioButton_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "RadioButton_ScaleFontsPPI", dynlib: dllname.}
 proc RadioButton_SetOnChange*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "RadioButton_SetOnChange", dynlib: dllname.}
 proc RadioButton_GetAction*(AObj: pointer): pointer {.importc: "RadioButton_GetAction", dynlib: dllname.}
 proc RadioButton_SetAction*(AObj: pointer, AValue: pointer) {.importc: "RadioButton_SetAction", dynlib: dllname.}
@@ -856,6 +915,7 @@ proc GroupBox_Focused*(AObj: pointer): bool {.importc: "GroupBox_Focused", dynli
 proc GroupBox_HandleAllocated*(AObj: pointer): bool {.importc: "GroupBox_HandleAllocated", dynlib: dllname.}
 proc GroupBox_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "GroupBox_InsertControl", dynlib: dllname.}
 proc GroupBox_Invalidate*(AObj: pointer) {.importc: "GroupBox_Invalidate", dynlib: dllname.}
+proc GroupBox_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "GroupBox_PaintTo", dynlib: dllname.}
 proc GroupBox_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "GroupBox_RemoveControl", dynlib: dllname.}
 proc GroupBox_Realign*(AObj: pointer) {.importc: "GroupBox_Realign", dynlib: dllname.}
 proc GroupBox_Repaint*(AObj: pointer) {.importc: "GroupBox_Repaint", dynlib: dllname.}
@@ -893,8 +953,22 @@ proc GroupBox_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int3
 proc GroupBox_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "GroupBox_AnchorParallel", dynlib: dllname.}
 proc GroupBox_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "GroupBox_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc GroupBox_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "GroupBox_AnchorVerticalCenterTo", dynlib: dllname.}
+proc GroupBox_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "GroupBox_AnchorSame", dynlib: dllname.}
 proc GroupBox_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "GroupBox_AnchorAsAlign", dynlib: dllname.}
 proc GroupBox_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "GroupBox_AnchorClient", dynlib: dllname.}
+proc GroupBox_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "GroupBox_ScaleDesignToForm", dynlib: dllname.}
+proc GroupBox_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "GroupBox_ScaleFormToDesign", dynlib: dllname.}
+proc GroupBox_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "GroupBox_Scale96ToForm", dynlib: dllname.}
+proc GroupBox_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "GroupBox_ScaleFormTo96", dynlib: dllname.}
+proc GroupBox_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "GroupBox_Scale96ToFont", dynlib: dllname.}
+proc GroupBox_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "GroupBox_ScaleFontTo96", dynlib: dllname.}
+proc GroupBox_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "GroupBox_ScaleScreenToFont", dynlib: dllname.}
+proc GroupBox_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "GroupBox_ScaleFontToScreen", dynlib: dllname.}
+proc GroupBox_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "GroupBox_Scale96ToScreen", dynlib: dllname.}
+proc GroupBox_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "GroupBox_ScaleScreenTo96", dynlib: dllname.}
+proc GroupBox_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "GroupBox_AutoAdjustLayout", dynlib: dllname.}
+proc GroupBox_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "GroupBox_FixDesignFontsPPI", dynlib: dllname.}
+proc GroupBox_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "GroupBox_ScaleFontsPPI", dynlib: dllname.}
 proc GroupBox_GetAlign*(AObj: pointer): TAlign {.importc: "GroupBox_GetAlign", dynlib: dllname.}
 proc GroupBox_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "GroupBox_SetAlign", dynlib: dllname.}
 proc GroupBox_GetAnchors*(AObj: pointer): TAnchors {.importc: "GroupBox_GetAnchors", dynlib: dllname.}
@@ -1059,8 +1133,22 @@ proc Label_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, 
 proc Label_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Label_AnchorParallel", dynlib: dllname.}
 proc Label_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Label_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc Label_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Label_AnchorVerticalCenterTo", dynlib: dllname.}
+proc Label_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "Label_AnchorSame", dynlib: dllname.}
 proc Label_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "Label_AnchorAsAlign", dynlib: dllname.}
 proc Label_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "Label_AnchorClient", dynlib: dllname.}
+proc Label_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Label_ScaleDesignToForm", dynlib: dllname.}
+proc Label_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "Label_ScaleFormToDesign", dynlib: dllname.}
+proc Label_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Label_Scale96ToForm", dynlib: dllname.}
+proc Label_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Label_ScaleFormTo96", dynlib: dllname.}
+proc Label_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Label_Scale96ToFont", dynlib: dllname.}
+proc Label_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Label_ScaleFontTo96", dynlib: dllname.}
+proc Label_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Label_ScaleScreenToFont", dynlib: dllname.}
+proc Label_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Label_ScaleFontToScreen", dynlib: dllname.}
+proc Label_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Label_Scale96ToScreen", dynlib: dllname.}
+proc Label_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Label_ScaleScreenTo96", dynlib: dllname.}
+proc Label_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "Label_AutoAdjustLayout", dynlib: dllname.}
+proc Label_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "Label_FixDesignFontsPPI", dynlib: dllname.}
+proc Label_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "Label_ScaleFontsPPI", dynlib: dllname.}
 proc Label_GetOptimalFill*(AObj: pointer): bool {.importc: "Label_GetOptimalFill", dynlib: dllname.}
 proc Label_SetOptimalFill*(AObj: pointer, AValue: bool) {.importc: "Label_SetOptimalFill", dynlib: dllname.}
 proc Label_GetAlign*(AObj: pointer): TAlign {.importc: "Label_GetAlign", dynlib: dllname.}
@@ -1194,6 +1282,7 @@ proc ListBox_Focused*(AObj: pointer): bool {.importc: "ListBox_Focused", dynlib:
 proc ListBox_HandleAllocated*(AObj: pointer): bool {.importc: "ListBox_HandleAllocated", dynlib: dllname.}
 proc ListBox_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "ListBox_InsertControl", dynlib: dllname.}
 proc ListBox_Invalidate*(AObj: pointer) {.importc: "ListBox_Invalidate", dynlib: dllname.}
+proc ListBox_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "ListBox_PaintTo", dynlib: dllname.}
 proc ListBox_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "ListBox_RemoveControl", dynlib: dllname.}
 proc ListBox_Realign*(AObj: pointer) {.importc: "ListBox_Realign", dynlib: dllname.}
 proc ListBox_Repaint*(AObj: pointer) {.importc: "ListBox_Repaint", dynlib: dllname.}
@@ -1231,8 +1320,22 @@ proc ListBox_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32
 proc ListBox_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "ListBox_AnchorParallel", dynlib: dllname.}
 proc ListBox_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ListBox_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc ListBox_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ListBox_AnchorVerticalCenterTo", dynlib: dllname.}
+proc ListBox_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "ListBox_AnchorSame", dynlib: dllname.}
 proc ListBox_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "ListBox_AnchorAsAlign", dynlib: dllname.}
 proc ListBox_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "ListBox_AnchorClient", dynlib: dllname.}
+proc ListBox_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ListBox_ScaleDesignToForm", dynlib: dllname.}
+proc ListBox_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "ListBox_ScaleFormToDesign", dynlib: dllname.}
+proc ListBox_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ListBox_Scale96ToForm", dynlib: dllname.}
+proc ListBox_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ListBox_ScaleFormTo96", dynlib: dllname.}
+proc ListBox_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ListBox_Scale96ToFont", dynlib: dllname.}
+proc ListBox_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ListBox_ScaleFontTo96", dynlib: dllname.}
+proc ListBox_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ListBox_ScaleScreenToFont", dynlib: dllname.}
+proc ListBox_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ListBox_ScaleFontToScreen", dynlib: dllname.}
+proc ListBox_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ListBox_Scale96ToScreen", dynlib: dllname.}
+proc ListBox_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ListBox_ScaleScreenTo96", dynlib: dllname.}
+proc ListBox_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "ListBox_AutoAdjustLayout", dynlib: dllname.}
+proc ListBox_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "ListBox_FixDesignFontsPPI", dynlib: dllname.}
+proc ListBox_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "ListBox_ScaleFontsPPI", dynlib: dllname.}
 proc ListBox_GetClickOnSelChange*(AObj: pointer): bool {.importc: "ListBox_GetClickOnSelChange", dynlib: dllname.}
 proc ListBox_SetClickOnSelChange*(AObj: pointer, AValue: bool) {.importc: "ListBox_SetClickOnSelChange", dynlib: dllname.}
 proc ListBox_GetOptions*(AObj: pointer): TListBoxOptions {.importc: "ListBox_GetOptions", dynlib: dllname.}
@@ -1406,6 +1509,7 @@ proc ComboBox_FlipChildren*(AObj: pointer, AllLevels: bool) {.importc: "ComboBox
 proc ComboBox_HandleAllocated*(AObj: pointer): bool {.importc: "ComboBox_HandleAllocated", dynlib: dllname.}
 proc ComboBox_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "ComboBox_InsertControl", dynlib: dllname.}
 proc ComboBox_Invalidate*(AObj: pointer) {.importc: "ComboBox_Invalidate", dynlib: dllname.}
+proc ComboBox_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "ComboBox_PaintTo", dynlib: dllname.}
 proc ComboBox_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "ComboBox_RemoveControl", dynlib: dllname.}
 proc ComboBox_Realign*(AObj: pointer) {.importc: "ComboBox_Realign", dynlib: dllname.}
 proc ComboBox_Repaint*(AObj: pointer) {.importc: "ComboBox_Repaint", dynlib: dllname.}
@@ -1443,8 +1547,22 @@ proc ComboBox_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int3
 proc ComboBox_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "ComboBox_AnchorParallel", dynlib: dllname.}
 proc ComboBox_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ComboBox_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc ComboBox_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ComboBox_AnchorVerticalCenterTo", dynlib: dllname.}
+proc ComboBox_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "ComboBox_AnchorSame", dynlib: dllname.}
 proc ComboBox_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "ComboBox_AnchorAsAlign", dynlib: dllname.}
 proc ComboBox_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "ComboBox_AnchorClient", dynlib: dllname.}
+proc ComboBox_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBox_ScaleDesignToForm", dynlib: dllname.}
+proc ComboBox_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBox_ScaleFormToDesign", dynlib: dllname.}
+proc ComboBox_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBox_Scale96ToForm", dynlib: dllname.}
+proc ComboBox_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBox_ScaleFormTo96", dynlib: dllname.}
+proc ComboBox_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBox_Scale96ToFont", dynlib: dllname.}
+proc ComboBox_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBox_ScaleFontTo96", dynlib: dllname.}
+proc ComboBox_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBox_ScaleScreenToFont", dynlib: dllname.}
+proc ComboBox_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBox_ScaleFontToScreen", dynlib: dllname.}
+proc ComboBox_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBox_Scale96ToScreen", dynlib: dllname.}
+proc ComboBox_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBox_ScaleScreenTo96", dynlib: dllname.}
+proc ComboBox_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "ComboBox_AutoAdjustLayout", dynlib: dllname.}
+proc ComboBox_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "ComboBox_FixDesignFontsPPI", dynlib: dllname.}
+proc ComboBox_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "ComboBox_ScaleFontsPPI", dynlib: dllname.}
 proc ComboBox_GetAlign*(AObj: pointer): TAlign {.importc: "ComboBox_GetAlign", dynlib: dllname.}
 proc ComboBox_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "ComboBox_SetAlign", dynlib: dllname.}
 proc ComboBox_GetAutoComplete*(AObj: pointer): bool {.importc: "ComboBox_GetAutoComplete", dynlib: dllname.}
@@ -1615,6 +1733,7 @@ proc Panel_Focused*(AObj: pointer): bool {.importc: "Panel_Focused", dynlib: dll
 proc Panel_HandleAllocated*(AObj: pointer): bool {.importc: "Panel_HandleAllocated", dynlib: dllname.}
 proc Panel_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "Panel_InsertControl", dynlib: dllname.}
 proc Panel_Invalidate*(AObj: pointer) {.importc: "Panel_Invalidate", dynlib: dllname.}
+proc Panel_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "Panel_PaintTo", dynlib: dllname.}
 proc Panel_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "Panel_RemoveControl", dynlib: dllname.}
 proc Panel_Realign*(AObj: pointer) {.importc: "Panel_Realign", dynlib: dllname.}
 proc Panel_Repaint*(AObj: pointer) {.importc: "Panel_Repaint", dynlib: dllname.}
@@ -1652,8 +1771,22 @@ proc Panel_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, 
 proc Panel_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Panel_AnchorParallel", dynlib: dllname.}
 proc Panel_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Panel_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc Panel_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Panel_AnchorVerticalCenterTo", dynlib: dllname.}
+proc Panel_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "Panel_AnchorSame", dynlib: dllname.}
 proc Panel_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "Panel_AnchorAsAlign", dynlib: dllname.}
 proc Panel_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "Panel_AnchorClient", dynlib: dllname.}
+proc Panel_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Panel_ScaleDesignToForm", dynlib: dllname.}
+proc Panel_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "Panel_ScaleFormToDesign", dynlib: dllname.}
+proc Panel_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Panel_Scale96ToForm", dynlib: dllname.}
+proc Panel_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Panel_ScaleFormTo96", dynlib: dllname.}
+proc Panel_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Panel_Scale96ToFont", dynlib: dllname.}
+proc Panel_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Panel_ScaleFontTo96", dynlib: dllname.}
+proc Panel_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Panel_ScaleScreenToFont", dynlib: dllname.}
+proc Panel_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Panel_ScaleFontToScreen", dynlib: dllname.}
+proc Panel_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Panel_Scale96ToScreen", dynlib: dllname.}
+proc Panel_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Panel_ScaleScreenTo96", dynlib: dllname.}
+proc Panel_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "Panel_AutoAdjustLayout", dynlib: dllname.}
+proc Panel_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "Panel_FixDesignFontsPPI", dynlib: dllname.}
+proc Panel_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "Panel_ScaleFontsPPI", dynlib: dllname.}
 proc Panel_GetAlign*(AObj: pointer): TAlign {.importc: "Panel_GetAlign", dynlib: dllname.}
 proc Panel_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "Panel_SetAlign", dynlib: dllname.}
 proc Panel_GetAlignment*(AObj: pointer): TAlignment {.importc: "Panel_GetAlignment", dynlib: dllname.}
@@ -1835,8 +1968,22 @@ proc Image_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, 
 proc Image_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Image_AnchorParallel", dynlib: dllname.}
 proc Image_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Image_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc Image_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Image_AnchorVerticalCenterTo", dynlib: dllname.}
+proc Image_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "Image_AnchorSame", dynlib: dllname.}
 proc Image_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "Image_AnchorAsAlign", dynlib: dllname.}
 proc Image_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "Image_AnchorClient", dynlib: dllname.}
+proc Image_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Image_ScaleDesignToForm", dynlib: dllname.}
+proc Image_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "Image_ScaleFormToDesign", dynlib: dllname.}
+proc Image_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Image_Scale96ToForm", dynlib: dllname.}
+proc Image_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Image_ScaleFormTo96", dynlib: dllname.}
+proc Image_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Image_Scale96ToFont", dynlib: dllname.}
+proc Image_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Image_ScaleFontTo96", dynlib: dllname.}
+proc Image_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Image_ScaleScreenToFont", dynlib: dllname.}
+proc Image_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Image_ScaleFontToScreen", dynlib: dllname.}
+proc Image_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Image_Scale96ToScreen", dynlib: dllname.}
+proc Image_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Image_ScaleScreenTo96", dynlib: dllname.}
+proc Image_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "Image_AutoAdjustLayout", dynlib: dllname.}
+proc Image_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "Image_FixDesignFontsPPI", dynlib: dllname.}
+proc Image_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "Image_ScaleFontsPPI", dynlib: dllname.}
 proc Image_GetAntialiasingMode*(AObj: pointer): TAntialiasingMode {.importc: "Image_GetAntialiasingMode", dynlib: dllname.}
 proc Image_SetAntialiasingMode*(AObj: pointer, AValue: TAntialiasingMode) {.importc: "Image_SetAntialiasingMode", dynlib: dllname.}
 proc Image_GetKeepOriginXWhenClipped*(AObj: pointer): bool {.importc: "Image_GetKeepOriginXWhenClipped", dynlib: dllname.}
@@ -1978,8 +2125,22 @@ proc LinkLabel_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int
 proc LinkLabel_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "LinkLabel_AnchorParallel", dynlib: dllname.}
 proc LinkLabel_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "LinkLabel_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc LinkLabel_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "LinkLabel_AnchorVerticalCenterTo", dynlib: dllname.}
+proc LinkLabel_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "LinkLabel_AnchorSame", dynlib: dllname.}
 proc LinkLabel_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "LinkLabel_AnchorAsAlign", dynlib: dllname.}
 proc LinkLabel_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "LinkLabel_AnchorClient", dynlib: dllname.}
+proc LinkLabel_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "LinkLabel_ScaleDesignToForm", dynlib: dllname.}
+proc LinkLabel_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "LinkLabel_ScaleFormToDesign", dynlib: dllname.}
+proc LinkLabel_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "LinkLabel_Scale96ToForm", dynlib: dllname.}
+proc LinkLabel_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "LinkLabel_ScaleFormTo96", dynlib: dllname.}
+proc LinkLabel_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "LinkLabel_Scale96ToFont", dynlib: dllname.}
+proc LinkLabel_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "LinkLabel_ScaleFontTo96", dynlib: dllname.}
+proc LinkLabel_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "LinkLabel_ScaleScreenToFont", dynlib: dllname.}
+proc LinkLabel_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "LinkLabel_ScaleFontToScreen", dynlib: dllname.}
+proc LinkLabel_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "LinkLabel_Scale96ToScreen", dynlib: dllname.}
+proc LinkLabel_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "LinkLabel_ScaleScreenTo96", dynlib: dllname.}
+proc LinkLabel_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "LinkLabel_AutoAdjustLayout", dynlib: dllname.}
+proc LinkLabel_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "LinkLabel_FixDesignFontsPPI", dynlib: dllname.}
+proc LinkLabel_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "LinkLabel_ScaleFontsPPI", dynlib: dllname.}
 proc LinkLabel_GetAlign*(AObj: pointer): TAlign {.importc: "LinkLabel_GetAlign", dynlib: dllname.}
 proc LinkLabel_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "LinkLabel_SetAlign", dynlib: dllname.}
 proc LinkLabel_GetAlignment*(AObj: pointer): TAlignment {.importc: "LinkLabel_GetAlignment", dynlib: dllname.}
@@ -2116,8 +2277,22 @@ proc SpeedButton_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: i
 proc SpeedButton_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "SpeedButton_AnchorParallel", dynlib: dllname.}
 proc SpeedButton_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "SpeedButton_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc SpeedButton_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "SpeedButton_AnchorVerticalCenterTo", dynlib: dllname.}
+proc SpeedButton_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "SpeedButton_AnchorSame", dynlib: dllname.}
 proc SpeedButton_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "SpeedButton_AnchorAsAlign", dynlib: dllname.}
 proc SpeedButton_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "SpeedButton_AnchorClient", dynlib: dllname.}
+proc SpeedButton_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "SpeedButton_ScaleDesignToForm", dynlib: dllname.}
+proc SpeedButton_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "SpeedButton_ScaleFormToDesign", dynlib: dllname.}
+proc SpeedButton_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "SpeedButton_Scale96ToForm", dynlib: dllname.}
+proc SpeedButton_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "SpeedButton_ScaleFormTo96", dynlib: dllname.}
+proc SpeedButton_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "SpeedButton_Scale96ToFont", dynlib: dllname.}
+proc SpeedButton_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "SpeedButton_ScaleFontTo96", dynlib: dllname.}
+proc SpeedButton_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "SpeedButton_ScaleScreenToFont", dynlib: dllname.}
+proc SpeedButton_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "SpeedButton_ScaleFontToScreen", dynlib: dllname.}
+proc SpeedButton_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "SpeedButton_Scale96ToScreen", dynlib: dllname.}
+proc SpeedButton_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "SpeedButton_ScaleScreenTo96", dynlib: dllname.}
+proc SpeedButton_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "SpeedButton_AutoAdjustLayout", dynlib: dllname.}
+proc SpeedButton_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "SpeedButton_FixDesignFontsPPI", dynlib: dllname.}
+proc SpeedButton_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "SpeedButton_ScaleFontsPPI", dynlib: dllname.}
 proc SpeedButton_GetImageIndex*(AObj: pointer): int32 {.importc: "SpeedButton_GetImageIndex", dynlib: dllname.}
 proc SpeedButton_SetImageIndex*(AObj: pointer, AValue: int32) {.importc: "SpeedButton_SetImageIndex", dynlib: dllname.}
 proc SpeedButton_GetImages*(AObj: pointer): pointer {.importc: "SpeedButton_GetImages", dynlib: dllname.}
@@ -2261,8 +2436,22 @@ proc Splitter_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int3
 proc Splitter_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Splitter_AnchorParallel", dynlib: dllname.}
 proc Splitter_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Splitter_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc Splitter_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Splitter_AnchorVerticalCenterTo", dynlib: dllname.}
+proc Splitter_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "Splitter_AnchorSame", dynlib: dllname.}
 proc Splitter_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "Splitter_AnchorAsAlign", dynlib: dllname.}
 proc Splitter_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "Splitter_AnchorClient", dynlib: dllname.}
+proc Splitter_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Splitter_ScaleDesignToForm", dynlib: dllname.}
+proc Splitter_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "Splitter_ScaleFormToDesign", dynlib: dllname.}
+proc Splitter_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Splitter_Scale96ToForm", dynlib: dllname.}
+proc Splitter_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Splitter_ScaleFormTo96", dynlib: dllname.}
+proc Splitter_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Splitter_Scale96ToFont", dynlib: dllname.}
+proc Splitter_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Splitter_ScaleFontTo96", dynlib: dllname.}
+proc Splitter_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Splitter_ScaleScreenToFont", dynlib: dllname.}
+proc Splitter_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Splitter_ScaleFontToScreen", dynlib: dllname.}
+proc Splitter_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Splitter_Scale96ToScreen", dynlib: dllname.}
+proc Splitter_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Splitter_ScaleScreenTo96", dynlib: dllname.}
+proc Splitter_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "Splitter_AutoAdjustLayout", dynlib: dllname.}
+proc Splitter_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "Splitter_FixDesignFontsPPI", dynlib: dllname.}
+proc Splitter_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "Splitter_ScaleFontsPPI", dynlib: dllname.}
 proc Splitter_GetResizeAnchor*(AObj: pointer): TAnchorKind {.importc: "Splitter_GetResizeAnchor", dynlib: dllname.}
 proc Splitter_SetResizeAnchor*(AObj: pointer, AValue: TAnchorKind) {.importc: "Splitter_SetResizeAnchor", dynlib: dllname.}
 proc Splitter_GetCanvas*(AObj: pointer): pointer {.importc: "Splitter_GetCanvas", dynlib: dllname.}
@@ -2351,6 +2540,7 @@ proc RadioGroup_Focused*(AObj: pointer): bool {.importc: "RadioGroup_Focused", d
 proc RadioGroup_HandleAllocated*(AObj: pointer): bool {.importc: "RadioGroup_HandleAllocated", dynlib: dllname.}
 proc RadioGroup_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "RadioGroup_InsertControl", dynlib: dllname.}
 proc RadioGroup_Invalidate*(AObj: pointer) {.importc: "RadioGroup_Invalidate", dynlib: dllname.}
+proc RadioGroup_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "RadioGroup_PaintTo", dynlib: dllname.}
 proc RadioGroup_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "RadioGroup_RemoveControl", dynlib: dllname.}
 proc RadioGroup_Realign*(AObj: pointer) {.importc: "RadioGroup_Realign", dynlib: dllname.}
 proc RadioGroup_Repaint*(AObj: pointer) {.importc: "RadioGroup_Repaint", dynlib: dllname.}
@@ -2388,8 +2578,22 @@ proc RadioGroup_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: in
 proc RadioGroup_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "RadioGroup_AnchorParallel", dynlib: dllname.}
 proc RadioGroup_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "RadioGroup_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc RadioGroup_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "RadioGroup_AnchorVerticalCenterTo", dynlib: dllname.}
+proc RadioGroup_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "RadioGroup_AnchorSame", dynlib: dllname.}
 proc RadioGroup_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "RadioGroup_AnchorAsAlign", dynlib: dllname.}
 proc RadioGroup_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "RadioGroup_AnchorClient", dynlib: dllname.}
+proc RadioGroup_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "RadioGroup_ScaleDesignToForm", dynlib: dllname.}
+proc RadioGroup_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "RadioGroup_ScaleFormToDesign", dynlib: dllname.}
+proc RadioGroup_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "RadioGroup_Scale96ToForm", dynlib: dllname.}
+proc RadioGroup_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "RadioGroup_ScaleFormTo96", dynlib: dllname.}
+proc RadioGroup_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "RadioGroup_Scale96ToFont", dynlib: dllname.}
+proc RadioGroup_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "RadioGroup_ScaleFontTo96", dynlib: dllname.}
+proc RadioGroup_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "RadioGroup_ScaleScreenToFont", dynlib: dllname.}
+proc RadioGroup_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "RadioGroup_ScaleFontToScreen", dynlib: dllname.}
+proc RadioGroup_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "RadioGroup_Scale96ToScreen", dynlib: dllname.}
+proc RadioGroup_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "RadioGroup_ScaleScreenTo96", dynlib: dllname.}
+proc RadioGroup_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "RadioGroup_AutoAdjustLayout", dynlib: dllname.}
+proc RadioGroup_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "RadioGroup_FixDesignFontsPPI", dynlib: dllname.}
+proc RadioGroup_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "RadioGroup_ScaleFontsPPI", dynlib: dllname.}
 proc RadioGroup_GetAlign*(AObj: pointer): TAlign {.importc: "RadioGroup_GetAlign", dynlib: dllname.}
 proc RadioGroup_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "RadioGroup_SetAlign", dynlib: dllname.}
 proc RadioGroup_GetAnchors*(AObj: pointer): TAnchors {.importc: "RadioGroup_GetAnchors", dynlib: dllname.}
@@ -2523,6 +2727,7 @@ proc StaticText_Focused*(AObj: pointer): bool {.importc: "StaticText_Focused", d
 proc StaticText_HandleAllocated*(AObj: pointer): bool {.importc: "StaticText_HandleAllocated", dynlib: dllname.}
 proc StaticText_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "StaticText_InsertControl", dynlib: dllname.}
 proc StaticText_Invalidate*(AObj: pointer) {.importc: "StaticText_Invalidate", dynlib: dllname.}
+proc StaticText_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "StaticText_PaintTo", dynlib: dllname.}
 proc StaticText_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "StaticText_RemoveControl", dynlib: dllname.}
 proc StaticText_Realign*(AObj: pointer) {.importc: "StaticText_Realign", dynlib: dllname.}
 proc StaticText_Repaint*(AObj: pointer) {.importc: "StaticText_Repaint", dynlib: dllname.}
@@ -2560,8 +2765,22 @@ proc StaticText_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: in
 proc StaticText_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "StaticText_AnchorParallel", dynlib: dllname.}
 proc StaticText_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "StaticText_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc StaticText_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "StaticText_AnchorVerticalCenterTo", dynlib: dllname.}
+proc StaticText_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "StaticText_AnchorSame", dynlib: dllname.}
 proc StaticText_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "StaticText_AnchorAsAlign", dynlib: dllname.}
 proc StaticText_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "StaticText_AnchorClient", dynlib: dllname.}
+proc StaticText_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "StaticText_ScaleDesignToForm", dynlib: dllname.}
+proc StaticText_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "StaticText_ScaleFormToDesign", dynlib: dllname.}
+proc StaticText_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "StaticText_Scale96ToForm", dynlib: dllname.}
+proc StaticText_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "StaticText_ScaleFormTo96", dynlib: dllname.}
+proc StaticText_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "StaticText_Scale96ToFont", dynlib: dllname.}
+proc StaticText_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "StaticText_ScaleFontTo96", dynlib: dllname.}
+proc StaticText_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "StaticText_ScaleScreenToFont", dynlib: dllname.}
+proc StaticText_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "StaticText_ScaleFontToScreen", dynlib: dllname.}
+proc StaticText_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "StaticText_Scale96ToScreen", dynlib: dllname.}
+proc StaticText_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "StaticText_ScaleScreenTo96", dynlib: dllname.}
+proc StaticText_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "StaticText_AutoAdjustLayout", dynlib: dllname.}
+proc StaticText_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "StaticText_FixDesignFontsPPI", dynlib: dllname.}
+proc StaticText_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "StaticText_ScaleFontsPPI", dynlib: dllname.}
 proc StaticText_GetAlign*(AObj: pointer): TAlign {.importc: "StaticText_GetAlign", dynlib: dllname.}
 proc StaticText_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "StaticText_SetAlign", dynlib: dllname.}
 proc StaticText_GetAlignment*(AObj: pointer): TAlignment {.importc: "StaticText_GetAlignment", dynlib: dllname.}
@@ -2713,6 +2932,7 @@ proc ColorBox_FlipChildren*(AObj: pointer, AllLevels: bool) {.importc: "ColorBox
 proc ColorBox_HandleAllocated*(AObj: pointer): bool {.importc: "ColorBox_HandleAllocated", dynlib: dllname.}
 proc ColorBox_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "ColorBox_InsertControl", dynlib: dllname.}
 proc ColorBox_Invalidate*(AObj: pointer) {.importc: "ColorBox_Invalidate", dynlib: dllname.}
+proc ColorBox_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "ColorBox_PaintTo", dynlib: dllname.}
 proc ColorBox_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "ColorBox_RemoveControl", dynlib: dllname.}
 proc ColorBox_Realign*(AObj: pointer) {.importc: "ColorBox_Realign", dynlib: dllname.}
 proc ColorBox_Repaint*(AObj: pointer) {.importc: "ColorBox_Repaint", dynlib: dllname.}
@@ -2750,8 +2970,22 @@ proc ColorBox_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int3
 proc ColorBox_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "ColorBox_AnchorParallel", dynlib: dllname.}
 proc ColorBox_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ColorBox_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc ColorBox_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ColorBox_AnchorVerticalCenterTo", dynlib: dllname.}
+proc ColorBox_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "ColorBox_AnchorSame", dynlib: dllname.}
 proc ColorBox_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "ColorBox_AnchorAsAlign", dynlib: dllname.}
 proc ColorBox_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "ColorBox_AnchorClient", dynlib: dllname.}
+proc ColorBox_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ColorBox_ScaleDesignToForm", dynlib: dllname.}
+proc ColorBox_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "ColorBox_ScaleFormToDesign", dynlib: dllname.}
+proc ColorBox_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ColorBox_Scale96ToForm", dynlib: dllname.}
+proc ColorBox_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ColorBox_ScaleFormTo96", dynlib: dllname.}
+proc ColorBox_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ColorBox_Scale96ToFont", dynlib: dllname.}
+proc ColorBox_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ColorBox_ScaleFontTo96", dynlib: dllname.}
+proc ColorBox_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ColorBox_ScaleScreenToFont", dynlib: dllname.}
+proc ColorBox_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ColorBox_ScaleFontToScreen", dynlib: dllname.}
+proc ColorBox_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ColorBox_Scale96ToScreen", dynlib: dllname.}
+proc ColorBox_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ColorBox_ScaleScreenTo96", dynlib: dllname.}
+proc ColorBox_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "ColorBox_AutoAdjustLayout", dynlib: dllname.}
+proc ColorBox_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "ColorBox_FixDesignFontsPPI", dynlib: dllname.}
+proc ColorBox_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "ColorBox_ScaleFontsPPI", dynlib: dllname.}
 proc ColorBox_GetAlign*(AObj: pointer): TAlign {.importc: "ColorBox_GetAlign", dynlib: dllname.}
 proc ColorBox_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "ColorBox_SetAlign", dynlib: dllname.}
 proc ColorBox_GetAutoComplete*(AObj: pointer): bool {.importc: "ColorBox_GetAutoComplete", dynlib: dllname.}
@@ -2922,6 +3156,7 @@ proc ColorListBox_Focused*(AObj: pointer): bool {.importc: "ColorListBox_Focused
 proc ColorListBox_HandleAllocated*(AObj: pointer): bool {.importc: "ColorListBox_HandleAllocated", dynlib: dllname.}
 proc ColorListBox_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "ColorListBox_InsertControl", dynlib: dllname.}
 proc ColorListBox_Invalidate*(AObj: pointer) {.importc: "ColorListBox_Invalidate", dynlib: dllname.}
+proc ColorListBox_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "ColorListBox_PaintTo", dynlib: dllname.}
 proc ColorListBox_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "ColorListBox_RemoveControl", dynlib: dllname.}
 proc ColorListBox_Realign*(AObj: pointer) {.importc: "ColorListBox_Realign", dynlib: dllname.}
 proc ColorListBox_Repaint*(AObj: pointer) {.importc: "ColorListBox_Repaint", dynlib: dllname.}
@@ -2959,8 +3194,22 @@ proc ColorListBox_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: 
 proc ColorListBox_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "ColorListBox_AnchorParallel", dynlib: dllname.}
 proc ColorListBox_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ColorListBox_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc ColorListBox_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ColorListBox_AnchorVerticalCenterTo", dynlib: dllname.}
+proc ColorListBox_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "ColorListBox_AnchorSame", dynlib: dllname.}
 proc ColorListBox_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "ColorListBox_AnchorAsAlign", dynlib: dllname.}
 proc ColorListBox_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "ColorListBox_AnchorClient", dynlib: dllname.}
+proc ColorListBox_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ColorListBox_ScaleDesignToForm", dynlib: dllname.}
+proc ColorListBox_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "ColorListBox_ScaleFormToDesign", dynlib: dllname.}
+proc ColorListBox_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ColorListBox_Scale96ToForm", dynlib: dllname.}
+proc ColorListBox_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ColorListBox_ScaleFormTo96", dynlib: dllname.}
+proc ColorListBox_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ColorListBox_Scale96ToFont", dynlib: dllname.}
+proc ColorListBox_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ColorListBox_ScaleFontTo96", dynlib: dllname.}
+proc ColorListBox_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ColorListBox_ScaleScreenToFont", dynlib: dllname.}
+proc ColorListBox_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ColorListBox_ScaleFontToScreen", dynlib: dllname.}
+proc ColorListBox_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ColorListBox_Scale96ToScreen", dynlib: dllname.}
+proc ColorListBox_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ColorListBox_ScaleScreenTo96", dynlib: dllname.}
+proc ColorListBox_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "ColorListBox_AutoAdjustLayout", dynlib: dllname.}
+proc ColorListBox_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "ColorListBox_FixDesignFontsPPI", dynlib: dllname.}
+proc ColorListBox_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "ColorListBox_ScaleFontsPPI", dynlib: dllname.}
 proc ColorListBox_GetAlign*(AObj: pointer): TAlign {.importc: "ColorListBox_GetAlign", dynlib: dllname.}
 proc ColorListBox_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "ColorListBox_SetAlign", dynlib: dllname.}
 proc ColorListBox_GetDefaultColorColor*(AObj: pointer): TColor {.importc: "ColorListBox_GetDefaultColorColor", dynlib: dllname.}
@@ -3252,6 +3501,8 @@ proc ColorDialog_GetHashCode*(AObj: pointer): int32 {.importc: "ColorDialog_GetH
 proc ColorDialog_ToString*(AObj: pointer): cstring {.importc: "ColorDialog_ToString", dynlib: dllname.}
 proc ColorDialog_GetColor*(AObj: pointer): TColor {.importc: "ColorDialog_GetColor", dynlib: dllname.}
 proc ColorDialog_SetColor*(AObj: pointer, AValue: TColor) {.importc: "ColorDialog_SetColor", dynlib: dllname.}
+proc ColorDialog_GetCustomColors*(AObj: pointer): pointer {.importc: "ColorDialog_GetCustomColors", dynlib: dllname.}
+proc ColorDialog_SetCustomColors*(AObj: pointer, AValue: pointer) {.importc: "ColorDialog_SetCustomColors", dynlib: dllname.}
 proc ColorDialog_GetHandle*(AObj: pointer): HWND {.importc: "ColorDialog_GetHandle", dynlib: dllname.}
 proc ColorDialog_SetOnClose*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "ColorDialog_SetOnClose", dynlib: dllname.}
 proc ColorDialog_SetOnShow*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "ColorDialog_SetOnShow", dynlib: dllname.}
@@ -3494,6 +3745,7 @@ proc RichEdit_Focused*(AObj: pointer): bool {.importc: "RichEdit_Focused", dynli
 proc RichEdit_HandleAllocated*(AObj: pointer): bool {.importc: "RichEdit_HandleAllocated", dynlib: dllname.}
 proc RichEdit_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "RichEdit_InsertControl", dynlib: dllname.}
 proc RichEdit_Invalidate*(AObj: pointer) {.importc: "RichEdit_Invalidate", dynlib: dllname.}
+proc RichEdit_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "RichEdit_PaintTo", dynlib: dllname.}
 proc RichEdit_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "RichEdit_RemoveControl", dynlib: dllname.}
 proc RichEdit_Realign*(AObj: pointer) {.importc: "RichEdit_Realign", dynlib: dllname.}
 proc RichEdit_Repaint*(AObj: pointer) {.importc: "RichEdit_Repaint", dynlib: dllname.}
@@ -3531,8 +3783,22 @@ proc RichEdit_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int3
 proc RichEdit_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "RichEdit_AnchorParallel", dynlib: dllname.}
 proc RichEdit_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "RichEdit_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc RichEdit_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "RichEdit_AnchorVerticalCenterTo", dynlib: dllname.}
+proc RichEdit_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "RichEdit_AnchorSame", dynlib: dllname.}
 proc RichEdit_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "RichEdit_AnchorAsAlign", dynlib: dllname.}
 proc RichEdit_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "RichEdit_AnchorClient", dynlib: dllname.}
+proc RichEdit_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "RichEdit_ScaleDesignToForm", dynlib: dllname.}
+proc RichEdit_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "RichEdit_ScaleFormToDesign", dynlib: dllname.}
+proc RichEdit_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "RichEdit_Scale96ToForm", dynlib: dllname.}
+proc RichEdit_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "RichEdit_ScaleFormTo96", dynlib: dllname.}
+proc RichEdit_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "RichEdit_Scale96ToFont", dynlib: dllname.}
+proc RichEdit_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "RichEdit_ScaleFontTo96", dynlib: dllname.}
+proc RichEdit_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "RichEdit_ScaleScreenToFont", dynlib: dllname.}
+proc RichEdit_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "RichEdit_ScaleFontToScreen", dynlib: dllname.}
+proc RichEdit_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "RichEdit_Scale96ToScreen", dynlib: dllname.}
+proc RichEdit_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "RichEdit_ScaleScreenTo96", dynlib: dllname.}
+proc RichEdit_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "RichEdit_AutoAdjustLayout", dynlib: dllname.}
+proc RichEdit_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "RichEdit_FixDesignFontsPPI", dynlib: dllname.}
+proc RichEdit_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "RichEdit_ScaleFontsPPI", dynlib: dllname.}
 proc RichEdit_GetAlign*(AObj: pointer): TAlign {.importc: "RichEdit_GetAlign", dynlib: dllname.}
 proc RichEdit_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "RichEdit_SetAlign", dynlib: dllname.}
 proc RichEdit_GetAlignment*(AObj: pointer): TAlignment {.importc: "RichEdit_GetAlignment", dynlib: dllname.}
@@ -3719,6 +3985,7 @@ proc TrackBar_Focused*(AObj: pointer): bool {.importc: "TrackBar_Focused", dynli
 proc TrackBar_HandleAllocated*(AObj: pointer): bool {.importc: "TrackBar_HandleAllocated", dynlib: dllname.}
 proc TrackBar_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "TrackBar_InsertControl", dynlib: dllname.}
 proc TrackBar_Invalidate*(AObj: pointer) {.importc: "TrackBar_Invalidate", dynlib: dllname.}
+proc TrackBar_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "TrackBar_PaintTo", dynlib: dllname.}
 proc TrackBar_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "TrackBar_RemoveControl", dynlib: dllname.}
 proc TrackBar_Realign*(AObj: pointer) {.importc: "TrackBar_Realign", dynlib: dllname.}
 proc TrackBar_Repaint*(AObj: pointer) {.importc: "TrackBar_Repaint", dynlib: dllname.}
@@ -3756,8 +4023,22 @@ proc TrackBar_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int3
 proc TrackBar_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "TrackBar_AnchorParallel", dynlib: dllname.}
 proc TrackBar_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "TrackBar_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc TrackBar_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "TrackBar_AnchorVerticalCenterTo", dynlib: dllname.}
+proc TrackBar_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "TrackBar_AnchorSame", dynlib: dllname.}
 proc TrackBar_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "TrackBar_AnchorAsAlign", dynlib: dllname.}
 proc TrackBar_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "TrackBar_AnchorClient", dynlib: dllname.}
+proc TrackBar_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "TrackBar_ScaleDesignToForm", dynlib: dllname.}
+proc TrackBar_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "TrackBar_ScaleFormToDesign", dynlib: dllname.}
+proc TrackBar_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "TrackBar_Scale96ToForm", dynlib: dllname.}
+proc TrackBar_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "TrackBar_ScaleFormTo96", dynlib: dllname.}
+proc TrackBar_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "TrackBar_Scale96ToFont", dynlib: dllname.}
+proc TrackBar_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "TrackBar_ScaleFontTo96", dynlib: dllname.}
+proc TrackBar_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "TrackBar_ScaleScreenToFont", dynlib: dllname.}
+proc TrackBar_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "TrackBar_ScaleFontToScreen", dynlib: dllname.}
+proc TrackBar_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "TrackBar_Scale96ToScreen", dynlib: dllname.}
+proc TrackBar_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "TrackBar_ScaleScreenTo96", dynlib: dllname.}
+proc TrackBar_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "TrackBar_AutoAdjustLayout", dynlib: dllname.}
+proc TrackBar_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "TrackBar_FixDesignFontsPPI", dynlib: dllname.}
+proc TrackBar_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "TrackBar_ScaleFontsPPI", dynlib: dllname.}
 proc TrackBar_GetAlign*(AObj: pointer): TAlign {.importc: "TrackBar_GetAlign", dynlib: dllname.}
 proc TrackBar_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "TrackBar_SetAlign", dynlib: dllname.}
 proc TrackBar_GetAnchors*(AObj: pointer): TAnchors {.importc: "TrackBar_GetAnchors", dynlib: dllname.}
@@ -3974,6 +4255,7 @@ proc UpDown_Focused*(AObj: pointer): bool {.importc: "UpDown_Focused", dynlib: d
 proc UpDown_HandleAllocated*(AObj: pointer): bool {.importc: "UpDown_HandleAllocated", dynlib: dllname.}
 proc UpDown_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "UpDown_InsertControl", dynlib: dllname.}
 proc UpDown_Invalidate*(AObj: pointer) {.importc: "UpDown_Invalidate", dynlib: dllname.}
+proc UpDown_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "UpDown_PaintTo", dynlib: dllname.}
 proc UpDown_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "UpDown_RemoveControl", dynlib: dllname.}
 proc UpDown_Realign*(AObj: pointer) {.importc: "UpDown_Realign", dynlib: dllname.}
 proc UpDown_Repaint*(AObj: pointer) {.importc: "UpDown_Repaint", dynlib: dllname.}
@@ -4011,8 +4293,22 @@ proc UpDown_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32,
 proc UpDown_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "UpDown_AnchorParallel", dynlib: dllname.}
 proc UpDown_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "UpDown_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc UpDown_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "UpDown_AnchorVerticalCenterTo", dynlib: dllname.}
+proc UpDown_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "UpDown_AnchorSame", dynlib: dllname.}
 proc UpDown_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "UpDown_AnchorAsAlign", dynlib: dllname.}
 proc UpDown_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "UpDown_AnchorClient", dynlib: dllname.}
+proc UpDown_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "UpDown_ScaleDesignToForm", dynlib: dllname.}
+proc UpDown_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "UpDown_ScaleFormToDesign", dynlib: dllname.}
+proc UpDown_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "UpDown_Scale96ToForm", dynlib: dllname.}
+proc UpDown_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "UpDown_ScaleFormTo96", dynlib: dllname.}
+proc UpDown_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "UpDown_Scale96ToFont", dynlib: dllname.}
+proc UpDown_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "UpDown_ScaleFontTo96", dynlib: dllname.}
+proc UpDown_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "UpDown_ScaleScreenToFont", dynlib: dllname.}
+proc UpDown_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "UpDown_ScaleFontToScreen", dynlib: dllname.}
+proc UpDown_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "UpDown_Scale96ToScreen", dynlib: dllname.}
+proc UpDown_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "UpDown_ScaleScreenTo96", dynlib: dllname.}
+proc UpDown_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "UpDown_AutoAdjustLayout", dynlib: dllname.}
+proc UpDown_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "UpDown_FixDesignFontsPPI", dynlib: dllname.}
+proc UpDown_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "UpDown_ScaleFontsPPI", dynlib: dllname.}
 proc UpDown_GetAnchors*(AObj: pointer): TAnchors {.importc: "UpDown_GetAnchors", dynlib: dllname.}
 proc UpDown_SetAnchors*(AObj: pointer, AValue: TAnchors) {.importc: "UpDown_SetAnchors", dynlib: dllname.}
 proc UpDown_GetDoubleBuffered*(AObj: pointer): bool {.importc: "UpDown_GetDoubleBuffered", dynlib: dllname.}
@@ -4144,6 +4440,7 @@ proc ProgressBar_Focused*(AObj: pointer): bool {.importc: "ProgressBar_Focused",
 proc ProgressBar_HandleAllocated*(AObj: pointer): bool {.importc: "ProgressBar_HandleAllocated", dynlib: dllname.}
 proc ProgressBar_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "ProgressBar_InsertControl", dynlib: dllname.}
 proc ProgressBar_Invalidate*(AObj: pointer) {.importc: "ProgressBar_Invalidate", dynlib: dllname.}
+proc ProgressBar_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "ProgressBar_PaintTo", dynlib: dllname.}
 proc ProgressBar_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "ProgressBar_RemoveControl", dynlib: dllname.}
 proc ProgressBar_Realign*(AObj: pointer) {.importc: "ProgressBar_Realign", dynlib: dllname.}
 proc ProgressBar_Repaint*(AObj: pointer) {.importc: "ProgressBar_Repaint", dynlib: dllname.}
@@ -4181,8 +4478,22 @@ proc ProgressBar_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: i
 proc ProgressBar_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "ProgressBar_AnchorParallel", dynlib: dllname.}
 proc ProgressBar_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ProgressBar_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc ProgressBar_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ProgressBar_AnchorVerticalCenterTo", dynlib: dllname.}
+proc ProgressBar_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "ProgressBar_AnchorSame", dynlib: dllname.}
 proc ProgressBar_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "ProgressBar_AnchorAsAlign", dynlib: dllname.}
 proc ProgressBar_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "ProgressBar_AnchorClient", dynlib: dllname.}
+proc ProgressBar_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ProgressBar_ScaleDesignToForm", dynlib: dllname.}
+proc ProgressBar_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "ProgressBar_ScaleFormToDesign", dynlib: dllname.}
+proc ProgressBar_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ProgressBar_Scale96ToForm", dynlib: dllname.}
+proc ProgressBar_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ProgressBar_ScaleFormTo96", dynlib: dllname.}
+proc ProgressBar_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ProgressBar_Scale96ToFont", dynlib: dllname.}
+proc ProgressBar_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ProgressBar_ScaleFontTo96", dynlib: dllname.}
+proc ProgressBar_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ProgressBar_ScaleScreenToFont", dynlib: dllname.}
+proc ProgressBar_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ProgressBar_ScaleFontToScreen", dynlib: dllname.}
+proc ProgressBar_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ProgressBar_Scale96ToScreen", dynlib: dllname.}
+proc ProgressBar_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ProgressBar_ScaleScreenTo96", dynlib: dllname.}
+proc ProgressBar_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "ProgressBar_AutoAdjustLayout", dynlib: dllname.}
+proc ProgressBar_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "ProgressBar_FixDesignFontsPPI", dynlib: dllname.}
+proc ProgressBar_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "ProgressBar_ScaleFontsPPI", dynlib: dllname.}
 proc ProgressBar_GetAlign*(AObj: pointer): TAlign {.importc: "ProgressBar_GetAlign", dynlib: dllname.}
 proc ProgressBar_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "ProgressBar_SetAlign", dynlib: dllname.}
 proc ProgressBar_GetAnchors*(AObj: pointer): TAnchors {.importc: "ProgressBar_GetAnchors", dynlib: dllname.}
@@ -4326,6 +4637,7 @@ proc DateTimePicker_Focused*(AObj: pointer): bool {.importc: "DateTimePicker_Foc
 proc DateTimePicker_HandleAllocated*(AObj: pointer): bool {.importc: "DateTimePicker_HandleAllocated", dynlib: dllname.}
 proc DateTimePicker_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "DateTimePicker_InsertControl", dynlib: dllname.}
 proc DateTimePicker_Invalidate*(AObj: pointer) {.importc: "DateTimePicker_Invalidate", dynlib: dllname.}
+proc DateTimePicker_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "DateTimePicker_PaintTo", dynlib: dllname.}
 proc DateTimePicker_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "DateTimePicker_RemoveControl", dynlib: dllname.}
 proc DateTimePicker_Realign*(AObj: pointer) {.importc: "DateTimePicker_Realign", dynlib: dllname.}
 proc DateTimePicker_Repaint*(AObj: pointer) {.importc: "DateTimePicker_Repaint", dynlib: dllname.}
@@ -4363,8 +4675,22 @@ proc DateTimePicker_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace
 proc DateTimePicker_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "DateTimePicker_AnchorParallel", dynlib: dllname.}
 proc DateTimePicker_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "DateTimePicker_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc DateTimePicker_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "DateTimePicker_AnchorVerticalCenterTo", dynlib: dllname.}
+proc DateTimePicker_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "DateTimePicker_AnchorSame", dynlib: dllname.}
 proc DateTimePicker_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "DateTimePicker_AnchorAsAlign", dynlib: dllname.}
 proc DateTimePicker_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "DateTimePicker_AnchorClient", dynlib: dllname.}
+proc DateTimePicker_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "DateTimePicker_ScaleDesignToForm", dynlib: dllname.}
+proc DateTimePicker_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "DateTimePicker_ScaleFormToDesign", dynlib: dllname.}
+proc DateTimePicker_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "DateTimePicker_Scale96ToForm", dynlib: dllname.}
+proc DateTimePicker_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "DateTimePicker_ScaleFormTo96", dynlib: dllname.}
+proc DateTimePicker_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "DateTimePicker_Scale96ToFont", dynlib: dllname.}
+proc DateTimePicker_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "DateTimePicker_ScaleFontTo96", dynlib: dllname.}
+proc DateTimePicker_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "DateTimePicker_ScaleScreenToFont", dynlib: dllname.}
+proc DateTimePicker_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "DateTimePicker_ScaleFontToScreen", dynlib: dllname.}
+proc DateTimePicker_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "DateTimePicker_Scale96ToScreen", dynlib: dllname.}
+proc DateTimePicker_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "DateTimePicker_ScaleScreenTo96", dynlib: dllname.}
+proc DateTimePicker_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "DateTimePicker_AutoAdjustLayout", dynlib: dllname.}
+proc DateTimePicker_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "DateTimePicker_FixDesignFontsPPI", dynlib: dllname.}
+proc DateTimePicker_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "DateTimePicker_ScaleFontsPPI", dynlib: dllname.}
 proc DateTimePicker_GetArrowShape*(AObj: pointer): TArrowShape {.importc: "DateTimePicker_GetArrowShape", dynlib: dllname.}
 proc DateTimePicker_SetArrowShape*(AObj: pointer, AValue: TArrowShape) {.importc: "DateTimePicker_SetArrowShape", dynlib: dllname.}
 proc DateTimePicker_GetAutoAdvance*(AObj: pointer): bool {.importc: "DateTimePicker_GetAutoAdvance", dynlib: dllname.}
@@ -4546,6 +4872,7 @@ proc MonthCalendar_Focused*(AObj: pointer): bool {.importc: "MonthCalendar_Focus
 proc MonthCalendar_HandleAllocated*(AObj: pointer): bool {.importc: "MonthCalendar_HandleAllocated", dynlib: dllname.}
 proc MonthCalendar_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "MonthCalendar_InsertControl", dynlib: dllname.}
 proc MonthCalendar_Invalidate*(AObj: pointer) {.importc: "MonthCalendar_Invalidate", dynlib: dllname.}
+proc MonthCalendar_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "MonthCalendar_PaintTo", dynlib: dllname.}
 proc MonthCalendar_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "MonthCalendar_RemoveControl", dynlib: dllname.}
 proc MonthCalendar_Realign*(AObj: pointer) {.importc: "MonthCalendar_Realign", dynlib: dllname.}
 proc MonthCalendar_Repaint*(AObj: pointer) {.importc: "MonthCalendar_Repaint", dynlib: dllname.}
@@ -4583,8 +4910,22 @@ proc MonthCalendar_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace:
 proc MonthCalendar_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "MonthCalendar_AnchorParallel", dynlib: dllname.}
 proc MonthCalendar_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "MonthCalendar_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc MonthCalendar_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "MonthCalendar_AnchorVerticalCenterTo", dynlib: dllname.}
+proc MonthCalendar_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "MonthCalendar_AnchorSame", dynlib: dllname.}
 proc MonthCalendar_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "MonthCalendar_AnchorAsAlign", dynlib: dllname.}
 proc MonthCalendar_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "MonthCalendar_AnchorClient", dynlib: dllname.}
+proc MonthCalendar_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "MonthCalendar_ScaleDesignToForm", dynlib: dllname.}
+proc MonthCalendar_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "MonthCalendar_ScaleFormToDesign", dynlib: dllname.}
+proc MonthCalendar_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "MonthCalendar_Scale96ToForm", dynlib: dllname.}
+proc MonthCalendar_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "MonthCalendar_ScaleFormTo96", dynlib: dllname.}
+proc MonthCalendar_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "MonthCalendar_Scale96ToFont", dynlib: dllname.}
+proc MonthCalendar_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "MonthCalendar_ScaleFontTo96", dynlib: dllname.}
+proc MonthCalendar_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "MonthCalendar_ScaleScreenToFont", dynlib: dllname.}
+proc MonthCalendar_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "MonthCalendar_ScaleFontToScreen", dynlib: dllname.}
+proc MonthCalendar_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "MonthCalendar_Scale96ToScreen", dynlib: dllname.}
+proc MonthCalendar_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "MonthCalendar_ScaleScreenTo96", dynlib: dllname.}
+proc MonthCalendar_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "MonthCalendar_AutoAdjustLayout", dynlib: dllname.}
+proc MonthCalendar_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "MonthCalendar_FixDesignFontsPPI", dynlib: dllname.}
+proc MonthCalendar_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "MonthCalendar_ScaleFontsPPI", dynlib: dllname.}
 proc MonthCalendar_GetDateTime*(AObj: pointer): uint32 {.importc: "MonthCalendar_GetDateTime", dynlib: dllname.}
 proc MonthCalendar_SetDateTime*(AObj: pointer, AValue: uint32) {.importc: "MonthCalendar_SetDateTime", dynlib: dllname.}
 proc MonthCalendar_GetAlign*(AObj: pointer): TAlign {.importc: "MonthCalendar_GetAlign", dynlib: dllname.}
@@ -4729,6 +5070,7 @@ proc ListView_Focused*(AObj: pointer): bool {.importc: "ListView_Focused", dynli
 proc ListView_HandleAllocated*(AObj: pointer): bool {.importc: "ListView_HandleAllocated", dynlib: dllname.}
 proc ListView_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "ListView_InsertControl", dynlib: dllname.}
 proc ListView_Invalidate*(AObj: pointer) {.importc: "ListView_Invalidate", dynlib: dllname.}
+proc ListView_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "ListView_PaintTo", dynlib: dllname.}
 proc ListView_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "ListView_RemoveControl", dynlib: dllname.}
 proc ListView_Realign*(AObj: pointer) {.importc: "ListView_Realign", dynlib: dllname.}
 proc ListView_Repaint*(AObj: pointer) {.importc: "ListView_Repaint", dynlib: dllname.}
@@ -4766,8 +5108,22 @@ proc ListView_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int3
 proc ListView_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "ListView_AnchorParallel", dynlib: dllname.}
 proc ListView_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ListView_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc ListView_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ListView_AnchorVerticalCenterTo", dynlib: dllname.}
+proc ListView_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "ListView_AnchorSame", dynlib: dllname.}
 proc ListView_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "ListView_AnchorAsAlign", dynlib: dllname.}
 proc ListView_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "ListView_AnchorClient", dynlib: dllname.}
+proc ListView_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ListView_ScaleDesignToForm", dynlib: dllname.}
+proc ListView_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "ListView_ScaleFormToDesign", dynlib: dllname.}
+proc ListView_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ListView_Scale96ToForm", dynlib: dllname.}
+proc ListView_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ListView_ScaleFormTo96", dynlib: dllname.}
+proc ListView_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ListView_Scale96ToFont", dynlib: dllname.}
+proc ListView_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ListView_ScaleFontTo96", dynlib: dllname.}
+proc ListView_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ListView_ScaleScreenToFont", dynlib: dllname.}
+proc ListView_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ListView_ScaleFontToScreen", dynlib: dllname.}
+proc ListView_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ListView_Scale96ToScreen", dynlib: dllname.}
+proc ListView_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ListView_ScaleScreenTo96", dynlib: dllname.}
+proc ListView_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "ListView_AutoAdjustLayout", dynlib: dllname.}
+proc ListView_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "ListView_FixDesignFontsPPI", dynlib: dllname.}
+proc ListView_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "ListView_ScaleFontsPPI", dynlib: dllname.}
 proc ListView_GetAutoSort*(AObj: pointer): bool {.importc: "ListView_GetAutoSort", dynlib: dllname.}
 proc ListView_SetAutoSort*(AObj: pointer, AValue: bool) {.importc: "ListView_SetAutoSort", dynlib: dllname.}
 proc ListView_GetAutoSortIndicator*(AObj: pointer): bool {.importc: "ListView_GetAutoSortIndicator", dynlib: dllname.}
@@ -4889,9 +5245,9 @@ proc ListView_SetOnContextPopup*(AObj: pointer, AEventId: TContextPopupEvent) {.
 proc ListView_SetOnCustomDraw*(AObj: pointer, AEventId: TLVCustomDrawEvent) {.importc: "ListView_SetOnCustomDraw", dynlib: dllname.}
 proc ListView_SetOnCustomDrawItem*(AObj: pointer, AEventId: TLVCustomDrawItemEvent) {.importc: "ListView_SetOnCustomDrawItem", dynlib: dllname.}
 proc ListView_SetOnCustomDrawSubItem*(AObj: pointer, AEventId: TLVCustomDrawSubItemEvent) {.importc: "ListView_SetOnCustomDrawSubItem", dynlib: dllname.}
-proc ListView_SetOnData*(AObj: pointer, AEventId: TLVOwnerDataEvent) {.importc: "ListView_SetOnData", dynlib: dllname.}
-proc ListView_SetOnDataFind*(AObj: pointer, AEventId: TLVOwnerDataFindEvent) {.importc: "ListView_SetOnDataFind", dynlib: dllname.}
-proc ListView_SetOnDataHint*(AObj: pointer, AEventId: TLVOwnerDataHintEvent) {.importc: "ListView_SetOnDataHint", dynlib: dllname.}
+proc ListView_SetOnData*(AObj: pointer, AEventId: TLVDataEvent) {.importc: "ListView_SetOnData", dynlib: dllname.}
+proc ListView_SetOnDataFind*(AObj: pointer, AEventId: TLVDataFindEvent) {.importc: "ListView_SetOnDataFind", dynlib: dllname.}
+proc ListView_SetOnDataHint*(AObj: pointer, AEventId: TLVDataHintEvent) {.importc: "ListView_SetOnDataHint", dynlib: dllname.}
 proc ListView_SetOnDblClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "ListView_SetOnDblClick", dynlib: dllname.}
 proc ListView_SetOnDeletion*(AObj: pointer, AEventId: TLVDeletedEvent) {.importc: "ListView_SetOnDeletion", dynlib: dllname.}
 proc ListView_SetOnEdited*(AObj: pointer, AEventId: TLVEditedEvent) {.importc: "ListView_SetOnEdited", dynlib: dllname.}
@@ -5018,6 +5374,7 @@ proc TreeView_Focused*(AObj: pointer): bool {.importc: "TreeView_Focused", dynli
 proc TreeView_HandleAllocated*(AObj: pointer): bool {.importc: "TreeView_HandleAllocated", dynlib: dllname.}
 proc TreeView_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "TreeView_InsertControl", dynlib: dllname.}
 proc TreeView_Invalidate*(AObj: pointer) {.importc: "TreeView_Invalidate", dynlib: dllname.}
+proc TreeView_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "TreeView_PaintTo", dynlib: dllname.}
 proc TreeView_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "TreeView_RemoveControl", dynlib: dllname.}
 proc TreeView_Realign*(AObj: pointer) {.importc: "TreeView_Realign", dynlib: dllname.}
 proc TreeView_Repaint*(AObj: pointer) {.importc: "TreeView_Repaint", dynlib: dllname.}
@@ -5055,8 +5412,22 @@ proc TreeView_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int3
 proc TreeView_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "TreeView_AnchorParallel", dynlib: dllname.}
 proc TreeView_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "TreeView_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc TreeView_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "TreeView_AnchorVerticalCenterTo", dynlib: dllname.}
+proc TreeView_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "TreeView_AnchorSame", dynlib: dllname.}
 proc TreeView_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "TreeView_AnchorAsAlign", dynlib: dllname.}
 proc TreeView_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "TreeView_AnchorClient", dynlib: dllname.}
+proc TreeView_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "TreeView_ScaleDesignToForm", dynlib: dllname.}
+proc TreeView_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "TreeView_ScaleFormToDesign", dynlib: dllname.}
+proc TreeView_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "TreeView_Scale96ToForm", dynlib: dllname.}
+proc TreeView_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "TreeView_ScaleFormTo96", dynlib: dllname.}
+proc TreeView_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "TreeView_Scale96ToFont", dynlib: dllname.}
+proc TreeView_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "TreeView_ScaleFontTo96", dynlib: dllname.}
+proc TreeView_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "TreeView_ScaleScreenToFont", dynlib: dllname.}
+proc TreeView_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "TreeView_ScaleFontToScreen", dynlib: dllname.}
+proc TreeView_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "TreeView_Scale96ToScreen", dynlib: dllname.}
+proc TreeView_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "TreeView_ScaleScreenTo96", dynlib: dllname.}
+proc TreeView_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "TreeView_AutoAdjustLayout", dynlib: dllname.}
+proc TreeView_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "TreeView_FixDesignFontsPPI", dynlib: dllname.}
+proc TreeView_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "TreeView_ScaleFontsPPI", dynlib: dllname.}
 proc TreeView_GetDefaultItemHeight*(AObj: pointer): int32 {.importc: "TreeView_GetDefaultItemHeight", dynlib: dllname.}
 proc TreeView_SetDefaultItemHeight*(AObj: pointer, AValue: int32) {.importc: "TreeView_SetDefaultItemHeight", dynlib: dllname.}
 proc TreeView_GetExpandSignColor*(AObj: pointer): TColor {.importc: "TreeView_GetExpandSignColor", dynlib: dllname.}
@@ -5288,6 +5659,7 @@ proc StatusBar_Focused*(AObj: pointer): bool {.importc: "StatusBar_Focused", dyn
 proc StatusBar_HandleAllocated*(AObj: pointer): bool {.importc: "StatusBar_HandleAllocated", dynlib: dllname.}
 proc StatusBar_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "StatusBar_InsertControl", dynlib: dllname.}
 proc StatusBar_Invalidate*(AObj: pointer) {.importc: "StatusBar_Invalidate", dynlib: dllname.}
+proc StatusBar_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "StatusBar_PaintTo", dynlib: dllname.}
 proc StatusBar_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "StatusBar_RemoveControl", dynlib: dllname.}
 proc StatusBar_Realign*(AObj: pointer) {.importc: "StatusBar_Realign", dynlib: dllname.}
 proc StatusBar_Repaint*(AObj: pointer) {.importc: "StatusBar_Repaint", dynlib: dllname.}
@@ -5324,8 +5696,22 @@ proc StatusBar_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int
 proc StatusBar_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "StatusBar_AnchorParallel", dynlib: dllname.}
 proc StatusBar_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "StatusBar_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc StatusBar_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "StatusBar_AnchorVerticalCenterTo", dynlib: dllname.}
+proc StatusBar_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "StatusBar_AnchorSame", dynlib: dllname.}
 proc StatusBar_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "StatusBar_AnchorAsAlign", dynlib: dllname.}
 proc StatusBar_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "StatusBar_AnchorClient", dynlib: dllname.}
+proc StatusBar_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "StatusBar_ScaleDesignToForm", dynlib: dllname.}
+proc StatusBar_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "StatusBar_ScaleFormToDesign", dynlib: dllname.}
+proc StatusBar_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "StatusBar_Scale96ToForm", dynlib: dllname.}
+proc StatusBar_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "StatusBar_ScaleFormTo96", dynlib: dllname.}
+proc StatusBar_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "StatusBar_Scale96ToFont", dynlib: dllname.}
+proc StatusBar_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "StatusBar_ScaleFontTo96", dynlib: dllname.}
+proc StatusBar_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "StatusBar_ScaleScreenToFont", dynlib: dllname.}
+proc StatusBar_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "StatusBar_ScaleFontToScreen", dynlib: dllname.}
+proc StatusBar_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "StatusBar_Scale96ToScreen", dynlib: dllname.}
+proc StatusBar_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "StatusBar_ScaleScreenTo96", dynlib: dllname.}
+proc StatusBar_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "StatusBar_AutoAdjustLayout", dynlib: dllname.}
+proc StatusBar_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "StatusBar_FixDesignFontsPPI", dynlib: dllname.}
+proc StatusBar_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "StatusBar_ScaleFontsPPI", dynlib: dllname.}
 proc StatusBar_GetAction*(AObj: pointer): pointer {.importc: "StatusBar_GetAction", dynlib: dllname.}
 proc StatusBar_SetAction*(AObj: pointer, AValue: pointer) {.importc: "StatusBar_SetAction", dynlib: dllname.}
 proc StatusBar_GetAutoHint*(AObj: pointer): bool {.importc: "StatusBar_GetAutoHint", dynlib: dllname.}
@@ -5477,6 +5863,7 @@ proc ToolBar_Focused*(AObj: pointer): bool {.importc: "ToolBar_Focused", dynlib:
 proc ToolBar_HandleAllocated*(AObj: pointer): bool {.importc: "ToolBar_HandleAllocated", dynlib: dllname.}
 proc ToolBar_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "ToolBar_InsertControl", dynlib: dllname.}
 proc ToolBar_Invalidate*(AObj: pointer) {.importc: "ToolBar_Invalidate", dynlib: dllname.}
+proc ToolBar_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "ToolBar_PaintTo", dynlib: dllname.}
 proc ToolBar_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "ToolBar_RemoveControl", dynlib: dllname.}
 proc ToolBar_Realign*(AObj: pointer) {.importc: "ToolBar_Realign", dynlib: dllname.}
 proc ToolBar_Repaint*(AObj: pointer) {.importc: "ToolBar_Repaint", dynlib: dllname.}
@@ -5514,8 +5901,22 @@ proc ToolBar_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32
 proc ToolBar_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "ToolBar_AnchorParallel", dynlib: dllname.}
 proc ToolBar_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ToolBar_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc ToolBar_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ToolBar_AnchorVerticalCenterTo", dynlib: dllname.}
+proc ToolBar_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "ToolBar_AnchorSame", dynlib: dllname.}
 proc ToolBar_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "ToolBar_AnchorAsAlign", dynlib: dllname.}
 proc ToolBar_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "ToolBar_AnchorClient", dynlib: dllname.}
+proc ToolBar_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ToolBar_ScaleDesignToForm", dynlib: dllname.}
+proc ToolBar_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "ToolBar_ScaleFormToDesign", dynlib: dllname.}
+proc ToolBar_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ToolBar_Scale96ToForm", dynlib: dllname.}
+proc ToolBar_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ToolBar_ScaleFormTo96", dynlib: dllname.}
+proc ToolBar_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ToolBar_Scale96ToFont", dynlib: dllname.}
+proc ToolBar_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ToolBar_ScaleFontTo96", dynlib: dllname.}
+proc ToolBar_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ToolBar_ScaleScreenToFont", dynlib: dllname.}
+proc ToolBar_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ToolBar_ScaleFontToScreen", dynlib: dllname.}
+proc ToolBar_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ToolBar_Scale96ToScreen", dynlib: dllname.}
+proc ToolBar_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ToolBar_ScaleScreenTo96", dynlib: dllname.}
+proc ToolBar_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "ToolBar_AutoAdjustLayout", dynlib: dllname.}
+proc ToolBar_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "ToolBar_FixDesignFontsPPI", dynlib: dllname.}
+proc ToolBar_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "ToolBar_ScaleFontsPPI", dynlib: dllname.}
 proc ToolBar_GetButtonCount*(AObj: pointer): int32 {.importc: "ToolBar_GetButtonCount", dynlib: dllname.}
 proc ToolBar_GetCanvas*(AObj: pointer): pointer {.importc: "ToolBar_GetCanvas", dynlib: dllname.}
 proc ToolBar_GetRowCount*(AObj: pointer): int32 {.importc: "ToolBar_GetRowCount", dynlib: dllname.}
@@ -5690,6 +6091,7 @@ proc BitBtn_Focused*(AObj: pointer): bool {.importc: "BitBtn_Focused", dynlib: d
 proc BitBtn_HandleAllocated*(AObj: pointer): bool {.importc: "BitBtn_HandleAllocated", dynlib: dllname.}
 proc BitBtn_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "BitBtn_InsertControl", dynlib: dllname.}
 proc BitBtn_Invalidate*(AObj: pointer) {.importc: "BitBtn_Invalidate", dynlib: dllname.}
+proc BitBtn_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "BitBtn_PaintTo", dynlib: dllname.}
 proc BitBtn_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "BitBtn_RemoveControl", dynlib: dllname.}
 proc BitBtn_Realign*(AObj: pointer) {.importc: "BitBtn_Realign", dynlib: dllname.}
 proc BitBtn_Repaint*(AObj: pointer) {.importc: "BitBtn_Repaint", dynlib: dllname.}
@@ -5727,8 +6129,22 @@ proc BitBtn_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32,
 proc BitBtn_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "BitBtn_AnchorParallel", dynlib: dllname.}
 proc BitBtn_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "BitBtn_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc BitBtn_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "BitBtn_AnchorVerticalCenterTo", dynlib: dllname.}
+proc BitBtn_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "BitBtn_AnchorSame", dynlib: dllname.}
 proc BitBtn_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "BitBtn_AnchorAsAlign", dynlib: dllname.}
 proc BitBtn_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "BitBtn_AnchorClient", dynlib: dllname.}
+proc BitBtn_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "BitBtn_ScaleDesignToForm", dynlib: dllname.}
+proc BitBtn_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "BitBtn_ScaleFormToDesign", dynlib: dllname.}
+proc BitBtn_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "BitBtn_Scale96ToForm", dynlib: dllname.}
+proc BitBtn_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "BitBtn_ScaleFormTo96", dynlib: dllname.}
+proc BitBtn_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "BitBtn_Scale96ToFont", dynlib: dllname.}
+proc BitBtn_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "BitBtn_ScaleFontTo96", dynlib: dllname.}
+proc BitBtn_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "BitBtn_ScaleScreenToFont", dynlib: dllname.}
+proc BitBtn_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "BitBtn_ScaleFontToScreen", dynlib: dllname.}
+proc BitBtn_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "BitBtn_Scale96ToScreen", dynlib: dllname.}
+proc BitBtn_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "BitBtn_ScaleScreenTo96", dynlib: dllname.}
+proc BitBtn_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "BitBtn_AutoAdjustLayout", dynlib: dllname.}
+proc BitBtn_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "BitBtn_FixDesignFontsPPI", dynlib: dllname.}
+proc BitBtn_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "BitBtn_ScaleFontsPPI", dynlib: dllname.}
 proc BitBtn_GetDefaultCaption*(AObj: pointer): bool {.importc: "BitBtn_GetDefaultCaption", dynlib: dllname.}
 proc BitBtn_SetDefaultCaption*(AObj: pointer, AValue: bool) {.importc: "BitBtn_SetDefaultCaption", dynlib: dllname.}
 proc BitBtn_GetGlyphShowMode*(AObj: pointer): TGlyphShowMode {.importc: "BitBtn_GetGlyphShowMode", dynlib: dllname.}
@@ -5974,6 +6390,7 @@ proc Memo_Focused*(AObj: pointer): bool {.importc: "Memo_Focused", dynlib: dllna
 proc Memo_HandleAllocated*(AObj: pointer): bool {.importc: "Memo_HandleAllocated", dynlib: dllname.}
 proc Memo_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "Memo_InsertControl", dynlib: dllname.}
 proc Memo_Invalidate*(AObj: pointer) {.importc: "Memo_Invalidate", dynlib: dllname.}
+proc Memo_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "Memo_PaintTo", dynlib: dllname.}
 proc Memo_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "Memo_RemoveControl", dynlib: dllname.}
 proc Memo_Realign*(AObj: pointer) {.importc: "Memo_Realign", dynlib: dllname.}
 proc Memo_Repaint*(AObj: pointer) {.importc: "Memo_Repaint", dynlib: dllname.}
@@ -6011,8 +6428,22 @@ proc Memo_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, A
 proc Memo_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Memo_AnchorParallel", dynlib: dllname.}
 proc Memo_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Memo_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc Memo_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Memo_AnchorVerticalCenterTo", dynlib: dllname.}
+proc Memo_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "Memo_AnchorSame", dynlib: dllname.}
 proc Memo_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "Memo_AnchorAsAlign", dynlib: dllname.}
 proc Memo_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "Memo_AnchorClient", dynlib: dllname.}
+proc Memo_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Memo_ScaleDesignToForm", dynlib: dllname.}
+proc Memo_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "Memo_ScaleFormToDesign", dynlib: dllname.}
+proc Memo_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Memo_Scale96ToForm", dynlib: dllname.}
+proc Memo_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Memo_ScaleFormTo96", dynlib: dllname.}
+proc Memo_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Memo_Scale96ToFont", dynlib: dllname.}
+proc Memo_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Memo_ScaleFontTo96", dynlib: dllname.}
+proc Memo_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Memo_ScaleScreenToFont", dynlib: dllname.}
+proc Memo_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Memo_ScaleFontToScreen", dynlib: dllname.}
+proc Memo_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Memo_Scale96ToScreen", dynlib: dllname.}
+proc Memo_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Memo_ScaleScreenTo96", dynlib: dllname.}
+proc Memo_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "Memo_AutoAdjustLayout", dynlib: dllname.}
+proc Memo_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "Memo_FixDesignFontsPPI", dynlib: dllname.}
+proc Memo_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "Memo_ScaleFontsPPI", dynlib: dllname.}
 proc Memo_GetAlign*(AObj: pointer): TAlign {.importc: "Memo_GetAlign", dynlib: dllname.}
 proc Memo_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "Memo_SetAlign", dynlib: dllname.}
 proc Memo_GetAlignment*(AObj: pointer): TAlignment {.importc: "Memo_GetAlignment", dynlib: dllname.}
@@ -6670,6 +7101,7 @@ proc PageControl_Focused*(AObj: pointer): bool {.importc: "PageControl_Focused",
 proc PageControl_HandleAllocated*(AObj: pointer): bool {.importc: "PageControl_HandleAllocated", dynlib: dllname.}
 proc PageControl_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "PageControl_InsertControl", dynlib: dllname.}
 proc PageControl_Invalidate*(AObj: pointer) {.importc: "PageControl_Invalidate", dynlib: dllname.}
+proc PageControl_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "PageControl_PaintTo", dynlib: dllname.}
 proc PageControl_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "PageControl_RemoveControl", dynlib: dllname.}
 proc PageControl_Realign*(AObj: pointer) {.importc: "PageControl_Realign", dynlib: dllname.}
 proc PageControl_Repaint*(AObj: pointer) {.importc: "PageControl_Repaint", dynlib: dllname.}
@@ -6707,8 +7139,22 @@ proc PageControl_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: i
 proc PageControl_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "PageControl_AnchorParallel", dynlib: dllname.}
 proc PageControl_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "PageControl_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc PageControl_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "PageControl_AnchorVerticalCenterTo", dynlib: dllname.}
+proc PageControl_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "PageControl_AnchorSame", dynlib: dllname.}
 proc PageControl_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "PageControl_AnchorAsAlign", dynlib: dllname.}
 proc PageControl_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "PageControl_AnchorClient", dynlib: dllname.}
+proc PageControl_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "PageControl_ScaleDesignToForm", dynlib: dllname.}
+proc PageControl_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "PageControl_ScaleFormToDesign", dynlib: dllname.}
+proc PageControl_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "PageControl_Scale96ToForm", dynlib: dllname.}
+proc PageControl_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "PageControl_ScaleFormTo96", dynlib: dllname.}
+proc PageControl_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "PageControl_Scale96ToFont", dynlib: dllname.}
+proc PageControl_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "PageControl_ScaleFontTo96", dynlib: dllname.}
+proc PageControl_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "PageControl_ScaleScreenToFont", dynlib: dllname.}
+proc PageControl_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "PageControl_ScaleFontToScreen", dynlib: dllname.}
+proc PageControl_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "PageControl_Scale96ToScreen", dynlib: dllname.}
+proc PageControl_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "PageControl_ScaleScreenTo96", dynlib: dllname.}
+proc PageControl_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "PageControl_AutoAdjustLayout", dynlib: dllname.}
+proc PageControl_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "PageControl_FixDesignFontsPPI", dynlib: dllname.}
+proc PageControl_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "PageControl_ScaleFontsPPI", dynlib: dllname.}
 proc PageControl_GetOptions*(AObj: pointer): TCTabControlOptions {.importc: "PageControl_GetOptions", dynlib: dllname.}
 proc PageControl_SetOptions*(AObj: pointer, AValue: TCTabControlOptions) {.importc: "PageControl_SetOptions", dynlib: dllname.}
 proc PageControl_GetActivePageIndex*(AObj: pointer): int32 {.importc: "PageControl_GetActivePageIndex", dynlib: dllname.}
@@ -6863,6 +7309,7 @@ proc TabSheet_Focused*(AObj: pointer): bool {.importc: "TabSheet_Focused", dynli
 proc TabSheet_HandleAllocated*(AObj: pointer): bool {.importc: "TabSheet_HandleAllocated", dynlib: dllname.}
 proc TabSheet_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "TabSheet_InsertControl", dynlib: dllname.}
 proc TabSheet_Invalidate*(AObj: pointer) {.importc: "TabSheet_Invalidate", dynlib: dllname.}
+proc TabSheet_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "TabSheet_PaintTo", dynlib: dllname.}
 proc TabSheet_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "TabSheet_RemoveControl", dynlib: dllname.}
 proc TabSheet_Realign*(AObj: pointer) {.importc: "TabSheet_Realign", dynlib: dllname.}
 proc TabSheet_Repaint*(AObj: pointer) {.importc: "TabSheet_Repaint", dynlib: dllname.}
@@ -6900,8 +7347,22 @@ proc TabSheet_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int3
 proc TabSheet_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "TabSheet_AnchorParallel", dynlib: dllname.}
 proc TabSheet_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "TabSheet_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc TabSheet_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "TabSheet_AnchorVerticalCenterTo", dynlib: dllname.}
+proc TabSheet_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "TabSheet_AnchorSame", dynlib: dllname.}
 proc TabSheet_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "TabSheet_AnchorAsAlign", dynlib: dllname.}
 proc TabSheet_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "TabSheet_AnchorClient", dynlib: dllname.}
+proc TabSheet_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "TabSheet_ScaleDesignToForm", dynlib: dllname.}
+proc TabSheet_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "TabSheet_ScaleFormToDesign", dynlib: dllname.}
+proc TabSheet_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "TabSheet_Scale96ToForm", dynlib: dllname.}
+proc TabSheet_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "TabSheet_ScaleFormTo96", dynlib: dllname.}
+proc TabSheet_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "TabSheet_Scale96ToFont", dynlib: dllname.}
+proc TabSheet_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "TabSheet_ScaleFontTo96", dynlib: dllname.}
+proc TabSheet_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "TabSheet_ScaleScreenToFont", dynlib: dllname.}
+proc TabSheet_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "TabSheet_ScaleFontToScreen", dynlib: dllname.}
+proc TabSheet_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "TabSheet_Scale96ToScreen", dynlib: dllname.}
+proc TabSheet_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "TabSheet_ScaleScreenTo96", dynlib: dllname.}
+proc TabSheet_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "TabSheet_AutoAdjustLayout", dynlib: dllname.}
+proc TabSheet_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "TabSheet_FixDesignFontsPPI", dynlib: dllname.}
+proc TabSheet_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "TabSheet_ScaleFontsPPI", dynlib: dllname.}
 proc TabSheet_GetPageControl*(AObj: pointer): pointer {.importc: "TabSheet_GetPageControl", dynlib: dllname.}
 proc TabSheet_SetPageControl*(AObj: pointer, AValue: pointer) {.importc: "TabSheet_SetPageControl", dynlib: dllname.}
 proc TabSheet_GetTabIndex*(AObj: pointer): int32 {.importc: "TabSheet_GetTabIndex", dynlib: dllname.}
@@ -7041,6 +7502,7 @@ proc Button_Focused*(AObj: pointer): bool {.importc: "Button_Focused", dynlib: d
 proc Button_HandleAllocated*(AObj: pointer): bool {.importc: "Button_HandleAllocated", dynlib: dllname.}
 proc Button_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "Button_InsertControl", dynlib: dllname.}
 proc Button_Invalidate*(AObj: pointer) {.importc: "Button_Invalidate", dynlib: dllname.}
+proc Button_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "Button_PaintTo", dynlib: dllname.}
 proc Button_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "Button_RemoveControl", dynlib: dllname.}
 proc Button_Realign*(AObj: pointer) {.importc: "Button_Realign", dynlib: dllname.}
 proc Button_Repaint*(AObj: pointer) {.importc: "Button_Repaint", dynlib: dllname.}
@@ -7078,8 +7540,22 @@ proc Button_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32,
 proc Button_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Button_AnchorParallel", dynlib: dllname.}
 proc Button_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Button_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc Button_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Button_AnchorVerticalCenterTo", dynlib: dllname.}
+proc Button_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "Button_AnchorSame", dynlib: dllname.}
 proc Button_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "Button_AnchorAsAlign", dynlib: dllname.}
 proc Button_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "Button_AnchorClient", dynlib: dllname.}
+proc Button_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Button_ScaleDesignToForm", dynlib: dllname.}
+proc Button_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "Button_ScaleFormToDesign", dynlib: dllname.}
+proc Button_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Button_Scale96ToForm", dynlib: dllname.}
+proc Button_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Button_ScaleFormTo96", dynlib: dllname.}
+proc Button_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Button_Scale96ToFont", dynlib: dllname.}
+proc Button_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Button_ScaleFontTo96", dynlib: dllname.}
+proc Button_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Button_ScaleScreenToFont", dynlib: dllname.}
+proc Button_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Button_ScaleFontToScreen", dynlib: dllname.}
+proc Button_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Button_Scale96ToScreen", dynlib: dllname.}
+proc Button_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Button_ScaleScreenTo96", dynlib: dllname.}
+proc Button_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "Button_AutoAdjustLayout", dynlib: dllname.}
+proc Button_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "Button_FixDesignFontsPPI", dynlib: dllname.}
+proc Button_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "Button_ScaleFontsPPI", dynlib: dllname.}
 proc Button_GetAction*(AObj: pointer): pointer {.importc: "Button_GetAction", dynlib: dllname.}
 proc Button_SetAction*(AObj: pointer, AValue: pointer) {.importc: "Button_SetAction", dynlib: dllname.}
 proc Button_GetAlign*(AObj: pointer): TAlign {.importc: "Button_GetAlign", dynlib: dllname.}
@@ -7227,6 +7703,7 @@ proc Edit_Focused*(AObj: pointer): bool {.importc: "Edit_Focused", dynlib: dllna
 proc Edit_HandleAllocated*(AObj: pointer): bool {.importc: "Edit_HandleAllocated", dynlib: dllname.}
 proc Edit_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "Edit_InsertControl", dynlib: dllname.}
 proc Edit_Invalidate*(AObj: pointer) {.importc: "Edit_Invalidate", dynlib: dllname.}
+proc Edit_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "Edit_PaintTo", dynlib: dllname.}
 proc Edit_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "Edit_RemoveControl", dynlib: dllname.}
 proc Edit_Realign*(AObj: pointer) {.importc: "Edit_Realign", dynlib: dllname.}
 proc Edit_Repaint*(AObj: pointer) {.importc: "Edit_Repaint", dynlib: dllname.}
@@ -7264,8 +7741,22 @@ proc Edit_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, A
 proc Edit_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Edit_AnchorParallel", dynlib: dllname.}
 proc Edit_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Edit_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc Edit_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Edit_AnchorVerticalCenterTo", dynlib: dllname.}
+proc Edit_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "Edit_AnchorSame", dynlib: dllname.}
 proc Edit_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "Edit_AnchorAsAlign", dynlib: dllname.}
 proc Edit_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "Edit_AnchorClient", dynlib: dllname.}
+proc Edit_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Edit_ScaleDesignToForm", dynlib: dllname.}
+proc Edit_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "Edit_ScaleFormToDesign", dynlib: dllname.}
+proc Edit_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Edit_Scale96ToForm", dynlib: dllname.}
+proc Edit_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Edit_ScaleFormTo96", dynlib: dllname.}
+proc Edit_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Edit_Scale96ToFont", dynlib: dllname.}
+proc Edit_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Edit_ScaleFontTo96", dynlib: dllname.}
+proc Edit_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Edit_ScaleScreenToFont", dynlib: dllname.}
+proc Edit_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Edit_ScaleFontToScreen", dynlib: dllname.}
+proc Edit_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Edit_Scale96ToScreen", dynlib: dllname.}
+proc Edit_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Edit_ScaleScreenTo96", dynlib: dllname.}
+proc Edit_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "Edit_AutoAdjustLayout", dynlib: dllname.}
+proc Edit_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "Edit_FixDesignFontsPPI", dynlib: dllname.}
+proc Edit_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "Edit_ScaleFontsPPI", dynlib: dllname.}
 proc Edit_GetAlign*(AObj: pointer): TAlign {.importc: "Edit_GetAlign", dynlib: dllname.}
 proc Edit_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "Edit_SetAlign", dynlib: dllname.}
 proc Edit_GetAlignment*(AObj: pointer): TAlignment {.importc: "Edit_GetAlignment", dynlib: dllname.}
@@ -7623,6 +8114,7 @@ proc SpinEdit_Focused*(AObj: pointer): bool {.importc: "SpinEdit_Focused", dynli
 proc SpinEdit_HandleAllocated*(AObj: pointer): bool {.importc: "SpinEdit_HandleAllocated", dynlib: dllname.}
 proc SpinEdit_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "SpinEdit_InsertControl", dynlib: dllname.}
 proc SpinEdit_Invalidate*(AObj: pointer) {.importc: "SpinEdit_Invalidate", dynlib: dllname.}
+proc SpinEdit_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "SpinEdit_PaintTo", dynlib: dllname.}
 proc SpinEdit_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "SpinEdit_RemoveControl", dynlib: dllname.}
 proc SpinEdit_Realign*(AObj: pointer) {.importc: "SpinEdit_Realign", dynlib: dllname.}
 proc SpinEdit_Repaint*(AObj: pointer) {.importc: "SpinEdit_Repaint", dynlib: dllname.}
@@ -7660,8 +8152,22 @@ proc SpinEdit_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int3
 proc SpinEdit_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "SpinEdit_AnchorParallel", dynlib: dllname.}
 proc SpinEdit_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "SpinEdit_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc SpinEdit_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "SpinEdit_AnchorVerticalCenterTo", dynlib: dllname.}
+proc SpinEdit_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "SpinEdit_AnchorSame", dynlib: dllname.}
 proc SpinEdit_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "SpinEdit_AnchorAsAlign", dynlib: dllname.}
 proc SpinEdit_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "SpinEdit_AnchorClient", dynlib: dllname.}
+proc SpinEdit_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "SpinEdit_ScaleDesignToForm", dynlib: dllname.}
+proc SpinEdit_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "SpinEdit_ScaleFormToDesign", dynlib: dllname.}
+proc SpinEdit_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "SpinEdit_Scale96ToForm", dynlib: dllname.}
+proc SpinEdit_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "SpinEdit_ScaleFormTo96", dynlib: dllname.}
+proc SpinEdit_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "SpinEdit_Scale96ToFont", dynlib: dllname.}
+proc SpinEdit_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "SpinEdit_ScaleFontTo96", dynlib: dllname.}
+proc SpinEdit_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "SpinEdit_ScaleScreenToFont", dynlib: dllname.}
+proc SpinEdit_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "SpinEdit_ScaleFontToScreen", dynlib: dllname.}
+proc SpinEdit_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "SpinEdit_Scale96ToScreen", dynlib: dllname.}
+proc SpinEdit_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "SpinEdit_ScaleScreenTo96", dynlib: dllname.}
+proc SpinEdit_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "SpinEdit_AutoAdjustLayout", dynlib: dllname.}
+proc SpinEdit_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "SpinEdit_FixDesignFontsPPI", dynlib: dllname.}
+proc SpinEdit_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "SpinEdit_ScaleFontsPPI", dynlib: dllname.}
 proc SpinEdit_GetAnchors*(AObj: pointer): TAnchors {.importc: "SpinEdit_GetAnchors", dynlib: dllname.}
 proc SpinEdit_SetAnchors*(AObj: pointer, AValue: TAnchors) {.importc: "SpinEdit_SetAnchors", dynlib: dllname.}
 proc SpinEdit_GetAutoSelect*(AObj: pointer): bool {.importc: "SpinEdit_GetAutoSelect", dynlib: dllname.}
@@ -7829,6 +8335,7 @@ proc MiniWebview_Focused*(AObj: pointer): bool {.importc: "MiniWebview_Focused",
 proc MiniWebview_HandleAllocated*(AObj: pointer): bool {.importc: "MiniWebview_HandleAllocated", dynlib: dllname.}
 proc MiniWebview_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "MiniWebview_InsertControl", dynlib: dllname.}
 proc MiniWebview_Invalidate*(AObj: pointer) {.importc: "MiniWebview_Invalidate", dynlib: dllname.}
+proc MiniWebview_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "MiniWebview_PaintTo", dynlib: dllname.}
 proc MiniWebview_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "MiniWebview_RemoveControl", dynlib: dllname.}
 proc MiniWebview_Realign*(AObj: pointer) {.importc: "MiniWebview_Realign", dynlib: dllname.}
 proc MiniWebview_Repaint*(AObj: pointer) {.importc: "MiniWebview_Repaint", dynlib: dllname.}
@@ -7864,8 +8371,22 @@ proc MiniWebview_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: i
 proc MiniWebview_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "MiniWebview_AnchorParallel", dynlib: dllname.}
 proc MiniWebview_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "MiniWebview_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc MiniWebview_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "MiniWebview_AnchorVerticalCenterTo", dynlib: dllname.}
+proc MiniWebview_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "MiniWebview_AnchorSame", dynlib: dllname.}
 proc MiniWebview_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "MiniWebview_AnchorAsAlign", dynlib: dllname.}
 proc MiniWebview_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "MiniWebview_AnchorClient", dynlib: dllname.}
+proc MiniWebview_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "MiniWebview_ScaleDesignToForm", dynlib: dllname.}
+proc MiniWebview_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "MiniWebview_ScaleFormToDesign", dynlib: dllname.}
+proc MiniWebview_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "MiniWebview_Scale96ToForm", dynlib: dllname.}
+proc MiniWebview_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "MiniWebview_ScaleFormTo96", dynlib: dllname.}
+proc MiniWebview_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "MiniWebview_Scale96ToFont", dynlib: dllname.}
+proc MiniWebview_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "MiniWebview_ScaleFontTo96", dynlib: dllname.}
+proc MiniWebview_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "MiniWebview_ScaleScreenToFont", dynlib: dllname.}
+proc MiniWebview_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "MiniWebview_ScaleFontToScreen", dynlib: dllname.}
+proc MiniWebview_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "MiniWebview_Scale96ToScreen", dynlib: dllname.}
+proc MiniWebview_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "MiniWebview_ScaleScreenTo96", dynlib: dllname.}
+proc MiniWebview_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "MiniWebview_AutoAdjustLayout", dynlib: dllname.}
+proc MiniWebview_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "MiniWebview_FixDesignFontsPPI", dynlib: dllname.}
+proc MiniWebview_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "MiniWebview_ScaleFontsPPI", dynlib: dllname.}
 proc MiniWebview_GetReadyState*(AObj: pointer): TReadyState {.importc: "MiniWebview_GetReadyState", dynlib: dllname.}
 proc MiniWebview_GetAlign*(AObj: pointer): TAlign {.importc: "MiniWebview_GetAlign", dynlib: dllname.}
 proc MiniWebview_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "MiniWebview_SetAlign", dynlib: dllname.}
@@ -8355,8 +8876,22 @@ proc ToolButton_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: in
 proc ToolButton_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "ToolButton_AnchorParallel", dynlib: dllname.}
 proc ToolButton_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ToolButton_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc ToolButton_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ToolButton_AnchorVerticalCenterTo", dynlib: dllname.}
+proc ToolButton_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "ToolButton_AnchorSame", dynlib: dllname.}
 proc ToolButton_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "ToolButton_AnchorAsAlign", dynlib: dllname.}
 proc ToolButton_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "ToolButton_AnchorClient", dynlib: dllname.}
+proc ToolButton_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ToolButton_ScaleDesignToForm", dynlib: dllname.}
+proc ToolButton_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "ToolButton_ScaleFormToDesign", dynlib: dllname.}
+proc ToolButton_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ToolButton_Scale96ToForm", dynlib: dllname.}
+proc ToolButton_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ToolButton_ScaleFormTo96", dynlib: dllname.}
+proc ToolButton_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ToolButton_Scale96ToFont", dynlib: dllname.}
+proc ToolButton_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ToolButton_ScaleFontTo96", dynlib: dllname.}
+proc ToolButton_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ToolButton_ScaleScreenToFont", dynlib: dllname.}
+proc ToolButton_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ToolButton_ScaleFontToScreen", dynlib: dllname.}
+proc ToolButton_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ToolButton_Scale96ToScreen", dynlib: dllname.}
+proc ToolButton_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ToolButton_ScaleScreenTo96", dynlib: dllname.}
+proc ToolButton_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "ToolButton_AutoAdjustLayout", dynlib: dllname.}
+proc ToolButton_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "ToolButton_FixDesignFontsPPI", dynlib: dllname.}
+proc ToolButton_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "ToolButton_ScaleFontsPPI", dynlib: dllname.}
 proc ToolButton_GetIndex*(AObj: pointer): int32 {.importc: "ToolButton_GetIndex", dynlib: dllname.}
 proc ToolButton_GetAction*(AObj: pointer): pointer {.importc: "ToolButton_GetAction", dynlib: dllname.}
 proc ToolButton_SetAction*(AObj: pointer, AValue: pointer) {.importc: "ToolButton_SetAction", dynlib: dllname.}
@@ -8639,8 +9174,22 @@ proc PaintBox_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int3
 proc PaintBox_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "PaintBox_AnchorParallel", dynlib: dllname.}
 proc PaintBox_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "PaintBox_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc PaintBox_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "PaintBox_AnchorVerticalCenterTo", dynlib: dllname.}
+proc PaintBox_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "PaintBox_AnchorSame", dynlib: dllname.}
 proc PaintBox_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "PaintBox_AnchorAsAlign", dynlib: dllname.}
 proc PaintBox_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "PaintBox_AnchorClient", dynlib: dllname.}
+proc PaintBox_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "PaintBox_ScaleDesignToForm", dynlib: dllname.}
+proc PaintBox_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "PaintBox_ScaleFormToDesign", dynlib: dllname.}
+proc PaintBox_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "PaintBox_Scale96ToForm", dynlib: dllname.}
+proc PaintBox_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "PaintBox_ScaleFormTo96", dynlib: dllname.}
+proc PaintBox_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "PaintBox_Scale96ToFont", dynlib: dllname.}
+proc PaintBox_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "PaintBox_ScaleFontTo96", dynlib: dllname.}
+proc PaintBox_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "PaintBox_ScaleScreenToFont", dynlib: dllname.}
+proc PaintBox_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "PaintBox_ScaleFontToScreen", dynlib: dllname.}
+proc PaintBox_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "PaintBox_Scale96ToScreen", dynlib: dllname.}
+proc PaintBox_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "PaintBox_ScaleScreenTo96", dynlib: dllname.}
+proc PaintBox_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "PaintBox_AutoAdjustLayout", dynlib: dllname.}
+proc PaintBox_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "PaintBox_FixDesignFontsPPI", dynlib: dllname.}
+proc PaintBox_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "PaintBox_ScaleFontsPPI", dynlib: dllname.}
 proc PaintBox_GetCanvas*(AObj: pointer): pointer {.importc: "PaintBox_GetCanvas", dynlib: dllname.}
 proc PaintBox_GetAlign*(AObj: pointer): TAlign {.importc: "PaintBox_GetAlign", dynlib: dllname.}
 proc PaintBox_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "PaintBox_SetAlign", dynlib: dllname.}
@@ -8809,6 +9358,7 @@ proc Form_Focused*(AObj: pointer): bool {.importc: "Form_Focused", dynlib: dllna
 proc Form_HandleAllocated*(AObj: pointer): bool {.importc: "Form_HandleAllocated", dynlib: dllname.}
 proc Form_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "Form_InsertControl", dynlib: dllname.}
 proc Form_Invalidate*(AObj: pointer) {.importc: "Form_Invalidate", dynlib: dllname.}
+proc Form_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "Form_PaintTo", dynlib: dllname.}
 proc Form_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "Form_RemoveControl", dynlib: dllname.}
 proc Form_Realign*(AObj: pointer) {.importc: "Form_Realign", dynlib: dllname.}
 proc Form_Repaint*(AObj: pointer) {.importc: "Form_Repaint", dynlib: dllname.}
@@ -8843,13 +9393,29 @@ proc Form_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, A
 proc Form_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Form_AnchorParallel", dynlib: dllname.}
 proc Form_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Form_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc Form_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Form_AnchorVerticalCenterTo", dynlib: dllname.}
+proc Form_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "Form_AnchorSame", dynlib: dllname.}
 proc Form_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "Form_AnchorAsAlign", dynlib: dllname.}
 proc Form_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "Form_AnchorClient", dynlib: dllname.}
+proc Form_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Form_ScaleDesignToForm", dynlib: dllname.}
+proc Form_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "Form_ScaleFormToDesign", dynlib: dllname.}
+proc Form_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Form_Scale96ToForm", dynlib: dllname.}
+proc Form_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Form_ScaleFormTo96", dynlib: dllname.}
+proc Form_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Form_Scale96ToFont", dynlib: dllname.}
+proc Form_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Form_ScaleFontTo96", dynlib: dllname.}
+proc Form_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Form_ScaleScreenToFont", dynlib: dllname.}
+proc Form_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Form_ScaleFontToScreen", dynlib: dllname.}
+proc Form_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Form_Scale96ToScreen", dynlib: dllname.}
+proc Form_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Form_ScaleScreenTo96", dynlib: dllname.}
+proc Form_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "Form_AutoAdjustLayout", dynlib: dllname.}
+proc Form_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "Form_FixDesignFontsPPI", dynlib: dllname.}
+proc Form_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "Form_ScaleFontsPPI", dynlib: dllname.}
 proc Form_GetAllowDropFiles*(AObj: pointer): bool {.importc: "Form_GetAllowDropFiles", dynlib: dllname.}
 proc Form_SetAllowDropFiles*(AObj: pointer, AValue: bool) {.importc: "Form_SetAllowDropFiles", dynlib: dllname.}
 proc Form_SetOnDropFiles*(AObj: pointer, AEventId: TDropFilesEvent) {.importc: "Form_SetOnDropFiles", dynlib: dllname.}
 proc Form_GetShowInTaskBar*(AObj: pointer): TShowInTaskbar {.importc: "Form_GetShowInTaskBar", dynlib: dllname.}
 proc Form_SetShowInTaskBar*(AObj: pointer, AValue: TShowInTaskbar) {.importc: "Form_SetShowInTaskBar", dynlib: dllname.}
+proc Form_GetDesignTimePPI*(AObj: pointer): int32 {.importc: "Form_GetDesignTimePPI", dynlib: dllname.}
+proc Form_SetDesignTimePPI*(AObj: pointer, AValue: int32) {.importc: "Form_SetDesignTimePPI", dynlib: dllname.}
 proc Form_GetAction*(AObj: pointer): pointer {.importc: "Form_GetAction", dynlib: dllname.}
 proc Form_SetAction*(AObj: pointer, AValue: pointer) {.importc: "Form_SetAction", dynlib: dllname.}
 proc Form_GetActiveControl*(AObj: pointer): pointer {.importc: "Form_GetActiveControl", dynlib: dllname.}
@@ -9118,6 +9684,7 @@ proc ScrollBar_Focused*(AObj: pointer): bool {.importc: "ScrollBar_Focused", dyn
 proc ScrollBar_HandleAllocated*(AObj: pointer): bool {.importc: "ScrollBar_HandleAllocated", dynlib: dllname.}
 proc ScrollBar_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "ScrollBar_InsertControl", dynlib: dllname.}
 proc ScrollBar_Invalidate*(AObj: pointer) {.importc: "ScrollBar_Invalidate", dynlib: dllname.}
+proc ScrollBar_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "ScrollBar_PaintTo", dynlib: dllname.}
 proc ScrollBar_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "ScrollBar_RemoveControl", dynlib: dllname.}
 proc ScrollBar_Realign*(AObj: pointer) {.importc: "ScrollBar_Realign", dynlib: dllname.}
 proc ScrollBar_Repaint*(AObj: pointer) {.importc: "ScrollBar_Repaint", dynlib: dllname.}
@@ -9155,8 +9722,22 @@ proc ScrollBar_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int
 proc ScrollBar_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "ScrollBar_AnchorParallel", dynlib: dllname.}
 proc ScrollBar_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ScrollBar_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc ScrollBar_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ScrollBar_AnchorVerticalCenterTo", dynlib: dllname.}
+proc ScrollBar_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "ScrollBar_AnchorSame", dynlib: dllname.}
 proc ScrollBar_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "ScrollBar_AnchorAsAlign", dynlib: dllname.}
 proc ScrollBar_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "ScrollBar_AnchorClient", dynlib: dllname.}
+proc ScrollBar_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBar_ScaleDesignToForm", dynlib: dllname.}
+proc ScrollBar_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBar_ScaleFormToDesign", dynlib: dllname.}
+proc ScrollBar_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBar_Scale96ToForm", dynlib: dllname.}
+proc ScrollBar_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBar_ScaleFormTo96", dynlib: dllname.}
+proc ScrollBar_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBar_Scale96ToFont", dynlib: dllname.}
+proc ScrollBar_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBar_ScaleFontTo96", dynlib: dllname.}
+proc ScrollBar_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBar_ScaleScreenToFont", dynlib: dllname.}
+proc ScrollBar_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBar_ScaleFontToScreen", dynlib: dllname.}
+proc ScrollBar_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBar_Scale96ToScreen", dynlib: dllname.}
+proc ScrollBar_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBar_ScaleScreenTo96", dynlib: dllname.}
+proc ScrollBar_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "ScrollBar_AutoAdjustLayout", dynlib: dllname.}
+proc ScrollBar_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "ScrollBar_FixDesignFontsPPI", dynlib: dllname.}
+proc ScrollBar_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "ScrollBar_ScaleFontsPPI", dynlib: dllname.}
 proc ScrollBar_GetAlign*(AObj: pointer): TAlign {.importc: "ScrollBar_GetAlign", dynlib: dllname.}
 proc ScrollBar_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "ScrollBar_SetAlign", dynlib: dllname.}
 proc ScrollBar_GetAnchors*(AObj: pointer): TAnchors {.importc: "ScrollBar_GetAnchors", dynlib: dllname.}
@@ -9301,6 +9882,7 @@ proc MaskEdit_Focused*(AObj: pointer): bool {.importc: "MaskEdit_Focused", dynli
 proc MaskEdit_HandleAllocated*(AObj: pointer): bool {.importc: "MaskEdit_HandleAllocated", dynlib: dllname.}
 proc MaskEdit_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "MaskEdit_InsertControl", dynlib: dllname.}
 proc MaskEdit_Invalidate*(AObj: pointer) {.importc: "MaskEdit_Invalidate", dynlib: dllname.}
+proc MaskEdit_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "MaskEdit_PaintTo", dynlib: dllname.}
 proc MaskEdit_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "MaskEdit_RemoveControl", dynlib: dllname.}
 proc MaskEdit_Realign*(AObj: pointer) {.importc: "MaskEdit_Realign", dynlib: dllname.}
 proc MaskEdit_Repaint*(AObj: pointer) {.importc: "MaskEdit_Repaint", dynlib: dllname.}
@@ -9337,8 +9919,22 @@ proc MaskEdit_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int3
 proc MaskEdit_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "MaskEdit_AnchorParallel", dynlib: dllname.}
 proc MaskEdit_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "MaskEdit_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc MaskEdit_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "MaskEdit_AnchorVerticalCenterTo", dynlib: dllname.}
+proc MaskEdit_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "MaskEdit_AnchorSame", dynlib: dllname.}
 proc MaskEdit_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "MaskEdit_AnchorAsAlign", dynlib: dllname.}
 proc MaskEdit_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "MaskEdit_AnchorClient", dynlib: dllname.}
+proc MaskEdit_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "MaskEdit_ScaleDesignToForm", dynlib: dllname.}
+proc MaskEdit_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "MaskEdit_ScaleFormToDesign", dynlib: dllname.}
+proc MaskEdit_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "MaskEdit_Scale96ToForm", dynlib: dllname.}
+proc MaskEdit_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "MaskEdit_ScaleFormTo96", dynlib: dllname.}
+proc MaskEdit_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "MaskEdit_Scale96ToFont", dynlib: dllname.}
+proc MaskEdit_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "MaskEdit_ScaleFontTo96", dynlib: dllname.}
+proc MaskEdit_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "MaskEdit_ScaleScreenToFont", dynlib: dllname.}
+proc MaskEdit_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "MaskEdit_ScaleFontToScreen", dynlib: dllname.}
+proc MaskEdit_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "MaskEdit_Scale96ToScreen", dynlib: dllname.}
+proc MaskEdit_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "MaskEdit_ScaleScreenTo96", dynlib: dllname.}
+proc MaskEdit_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "MaskEdit_AutoAdjustLayout", dynlib: dllname.}
+proc MaskEdit_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "MaskEdit_FixDesignFontsPPI", dynlib: dllname.}
+proc MaskEdit_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "MaskEdit_ScaleFontsPPI", dynlib: dllname.}
 proc MaskEdit_GetAlign*(AObj: pointer): TAlign {.importc: "MaskEdit_GetAlign", dynlib: dllname.}
 proc MaskEdit_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "MaskEdit_SetAlign", dynlib: dllname.}
 proc MaskEdit_GetAlignment*(AObj: pointer): TAlignment {.importc: "MaskEdit_GetAlignment", dynlib: dllname.}
@@ -9532,8 +10128,22 @@ proc Shape_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, 
 proc Shape_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Shape_AnchorParallel", dynlib: dllname.}
 proc Shape_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Shape_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc Shape_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Shape_AnchorVerticalCenterTo", dynlib: dllname.}
+proc Shape_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "Shape_AnchorSame", dynlib: dllname.}
 proc Shape_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "Shape_AnchorAsAlign", dynlib: dllname.}
 proc Shape_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "Shape_AnchorClient", dynlib: dllname.}
+proc Shape_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Shape_ScaleDesignToForm", dynlib: dllname.}
+proc Shape_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "Shape_ScaleFormToDesign", dynlib: dllname.}
+proc Shape_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Shape_Scale96ToForm", dynlib: dllname.}
+proc Shape_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Shape_ScaleFormTo96", dynlib: dllname.}
+proc Shape_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Shape_Scale96ToFont", dynlib: dllname.}
+proc Shape_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Shape_ScaleFontTo96", dynlib: dllname.}
+proc Shape_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Shape_ScaleScreenToFont", dynlib: dllname.}
+proc Shape_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Shape_ScaleFontToScreen", dynlib: dllname.}
+proc Shape_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Shape_Scale96ToScreen", dynlib: dllname.}
+proc Shape_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Shape_ScaleScreenTo96", dynlib: dllname.}
+proc Shape_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "Shape_AutoAdjustLayout", dynlib: dllname.}
+proc Shape_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "Shape_FixDesignFontsPPI", dynlib: dllname.}
+proc Shape_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "Shape_ScaleFontsPPI", dynlib: dllname.}
 proc Shape_GetAlign*(AObj: pointer): TAlign {.importc: "Shape_GetAlign", dynlib: dllname.}
 proc Shape_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "Shape_SetAlign", dynlib: dllname.}
 proc Shape_GetAnchors*(AObj: pointer): TAnchors {.importc: "Shape_GetAnchors", dynlib: dllname.}
@@ -9656,8 +10266,22 @@ proc Bevel_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, 
 proc Bevel_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Bevel_AnchorParallel", dynlib: dllname.}
 proc Bevel_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Bevel_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc Bevel_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Bevel_AnchorVerticalCenterTo", dynlib: dllname.}
+proc Bevel_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "Bevel_AnchorSame", dynlib: dllname.}
 proc Bevel_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "Bevel_AnchorAsAlign", dynlib: dllname.}
 proc Bevel_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "Bevel_AnchorClient", dynlib: dllname.}
+proc Bevel_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Bevel_ScaleDesignToForm", dynlib: dllname.}
+proc Bevel_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "Bevel_ScaleFormToDesign", dynlib: dllname.}
+proc Bevel_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Bevel_Scale96ToForm", dynlib: dllname.}
+proc Bevel_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Bevel_ScaleFormTo96", dynlib: dllname.}
+proc Bevel_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Bevel_Scale96ToFont", dynlib: dllname.}
+proc Bevel_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Bevel_ScaleFontTo96", dynlib: dllname.}
+proc Bevel_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Bevel_ScaleScreenToFont", dynlib: dllname.}
+proc Bevel_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Bevel_ScaleFontToScreen", dynlib: dllname.}
+proc Bevel_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Bevel_Scale96ToScreen", dynlib: dllname.}
+proc Bevel_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Bevel_ScaleScreenTo96", dynlib: dllname.}
+proc Bevel_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "Bevel_AutoAdjustLayout", dynlib: dllname.}
+proc Bevel_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "Bevel_FixDesignFontsPPI", dynlib: dllname.}
+proc Bevel_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "Bevel_ScaleFontsPPI", dynlib: dllname.}
 proc Bevel_GetAlign*(AObj: pointer): TAlign {.importc: "Bevel_GetAlign", dynlib: dllname.}
 proc Bevel_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "Bevel_SetAlign", dynlib: dllname.}
 proc Bevel_GetAnchors*(AObj: pointer): TAnchors {.importc: "Bevel_GetAnchors", dynlib: dllname.}
@@ -9743,6 +10367,7 @@ proc ScrollBox_Focused*(AObj: pointer): bool {.importc: "ScrollBox_Focused", dyn
 proc ScrollBox_HandleAllocated*(AObj: pointer): bool {.importc: "ScrollBox_HandleAllocated", dynlib: dllname.}
 proc ScrollBox_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "ScrollBox_InsertControl", dynlib: dllname.}
 proc ScrollBox_Invalidate*(AObj: pointer) {.importc: "ScrollBox_Invalidate", dynlib: dllname.}
+proc ScrollBox_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "ScrollBox_PaintTo", dynlib: dllname.}
 proc ScrollBox_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "ScrollBox_RemoveControl", dynlib: dllname.}
 proc ScrollBox_Realign*(AObj: pointer) {.importc: "ScrollBox_Realign", dynlib: dllname.}
 proc ScrollBox_Repaint*(AObj: pointer) {.importc: "ScrollBox_Repaint", dynlib: dllname.}
@@ -9780,8 +10405,22 @@ proc ScrollBox_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int
 proc ScrollBox_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "ScrollBox_AnchorParallel", dynlib: dllname.}
 proc ScrollBox_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ScrollBox_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc ScrollBox_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ScrollBox_AnchorVerticalCenterTo", dynlib: dllname.}
+proc ScrollBox_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "ScrollBox_AnchorSame", dynlib: dllname.}
 proc ScrollBox_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "ScrollBox_AnchorAsAlign", dynlib: dllname.}
 proc ScrollBox_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "ScrollBox_AnchorClient", dynlib: dllname.}
+proc ScrollBox_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBox_ScaleDesignToForm", dynlib: dllname.}
+proc ScrollBox_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBox_ScaleFormToDesign", dynlib: dllname.}
+proc ScrollBox_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBox_Scale96ToForm", dynlib: dllname.}
+proc ScrollBox_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBox_ScaleFormTo96", dynlib: dllname.}
+proc ScrollBox_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBox_Scale96ToFont", dynlib: dllname.}
+proc ScrollBox_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBox_ScaleFontTo96", dynlib: dllname.}
+proc ScrollBox_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBox_ScaleScreenToFont", dynlib: dllname.}
+proc ScrollBox_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBox_ScaleFontToScreen", dynlib: dllname.}
+proc ScrollBox_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBox_Scale96ToScreen", dynlib: dllname.}
+proc ScrollBox_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ScrollBox_ScaleScreenTo96", dynlib: dllname.}
+proc ScrollBox_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "ScrollBox_AutoAdjustLayout", dynlib: dllname.}
+proc ScrollBox_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "ScrollBox_FixDesignFontsPPI", dynlib: dllname.}
+proc ScrollBox_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "ScrollBox_ScaleFontsPPI", dynlib: dllname.}
 proc ScrollBox_GetAlign*(AObj: pointer): TAlign {.importc: "ScrollBox_GetAlign", dynlib: dllname.}
 proc ScrollBox_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "ScrollBox_SetAlign", dynlib: dllname.}
 proc ScrollBox_GetAnchors*(AObj: pointer): TAnchors {.importc: "ScrollBox_GetAnchors", dynlib: dllname.}
@@ -9943,6 +10582,7 @@ proc CheckListBox_Focused*(AObj: pointer): bool {.importc: "CheckListBox_Focused
 proc CheckListBox_HandleAllocated*(AObj: pointer): bool {.importc: "CheckListBox_HandleAllocated", dynlib: dllname.}
 proc CheckListBox_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "CheckListBox_InsertControl", dynlib: dllname.}
 proc CheckListBox_Invalidate*(AObj: pointer) {.importc: "CheckListBox_Invalidate", dynlib: dllname.}
+proc CheckListBox_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "CheckListBox_PaintTo", dynlib: dllname.}
 proc CheckListBox_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "CheckListBox_RemoveControl", dynlib: dllname.}
 proc CheckListBox_Realign*(AObj: pointer) {.importc: "CheckListBox_Realign", dynlib: dllname.}
 proc CheckListBox_Repaint*(AObj: pointer) {.importc: "CheckListBox_Repaint", dynlib: dllname.}
@@ -9980,8 +10620,22 @@ proc CheckListBox_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: 
 proc CheckListBox_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "CheckListBox_AnchorParallel", dynlib: dllname.}
 proc CheckListBox_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "CheckListBox_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc CheckListBox_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "CheckListBox_AnchorVerticalCenterTo", dynlib: dllname.}
+proc CheckListBox_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "CheckListBox_AnchorSame", dynlib: dllname.}
 proc CheckListBox_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "CheckListBox_AnchorAsAlign", dynlib: dllname.}
 proc CheckListBox_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "CheckListBox_AnchorClient", dynlib: dllname.}
+proc CheckListBox_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "CheckListBox_ScaleDesignToForm", dynlib: dllname.}
+proc CheckListBox_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "CheckListBox_ScaleFormToDesign", dynlib: dllname.}
+proc CheckListBox_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "CheckListBox_Scale96ToForm", dynlib: dllname.}
+proc CheckListBox_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "CheckListBox_ScaleFormTo96", dynlib: dllname.}
+proc CheckListBox_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "CheckListBox_Scale96ToFont", dynlib: dllname.}
+proc CheckListBox_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "CheckListBox_ScaleFontTo96", dynlib: dllname.}
+proc CheckListBox_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "CheckListBox_ScaleScreenToFont", dynlib: dllname.}
+proc CheckListBox_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "CheckListBox_ScaleFontToScreen", dynlib: dllname.}
+proc CheckListBox_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "CheckListBox_Scale96ToScreen", dynlib: dllname.}
+proc CheckListBox_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "CheckListBox_ScaleScreenTo96", dynlib: dllname.}
+proc CheckListBox_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "CheckListBox_AutoAdjustLayout", dynlib: dllname.}
+proc CheckListBox_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "CheckListBox_FixDesignFontsPPI", dynlib: dllname.}
+proc CheckListBox_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "CheckListBox_ScaleFontsPPI", dynlib: dllname.}
 proc CheckListBox_SetOnClickCheck*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "CheckListBox_SetOnClickCheck", dynlib: dllname.}
 proc CheckListBox_GetAlign*(AObj: pointer): TAlign {.importc: "CheckListBox_GetAlign", dynlib: dllname.}
 proc CheckListBox_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "CheckListBox_SetAlign", dynlib: dllname.}
@@ -10175,8 +10829,22 @@ proc Gauge_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, 
 proc Gauge_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Gauge_AnchorParallel", dynlib: dllname.}
 proc Gauge_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Gauge_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc Gauge_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Gauge_AnchorVerticalCenterTo", dynlib: dllname.}
+proc Gauge_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "Gauge_AnchorSame", dynlib: dllname.}
 proc Gauge_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "Gauge_AnchorAsAlign", dynlib: dllname.}
 proc Gauge_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "Gauge_AnchorClient", dynlib: dllname.}
+proc Gauge_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Gauge_ScaleDesignToForm", dynlib: dllname.}
+proc Gauge_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "Gauge_ScaleFormToDesign", dynlib: dllname.}
+proc Gauge_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Gauge_Scale96ToForm", dynlib: dllname.}
+proc Gauge_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Gauge_ScaleFormTo96", dynlib: dllname.}
+proc Gauge_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Gauge_Scale96ToFont", dynlib: dllname.}
+proc Gauge_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Gauge_ScaleFontTo96", dynlib: dllname.}
+proc Gauge_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Gauge_ScaleScreenToFont", dynlib: dllname.}
+proc Gauge_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Gauge_ScaleFontToScreen", dynlib: dllname.}
+proc Gauge_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Gauge_Scale96ToScreen", dynlib: dllname.}
+proc Gauge_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Gauge_ScaleScreenTo96", dynlib: dllname.}
+proc Gauge_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "Gauge_AutoAdjustLayout", dynlib: dllname.}
+proc Gauge_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "Gauge_FixDesignFontsPPI", dynlib: dllname.}
+proc Gauge_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "Gauge_ScaleFontsPPI", dynlib: dllname.}
 proc Gauge_GetPercentDone*(AObj: pointer): int32 {.importc: "Gauge_GetPercentDone", dynlib: dllname.}
 proc Gauge_GetAlign*(AObj: pointer): TAlign {.importc: "Gauge_GetAlign", dynlib: dllname.}
 proc Gauge_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "Gauge_SetAlign", dynlib: dllname.}
@@ -10305,8 +10973,22 @@ proc ImageButton_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: i
 proc ImageButton_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "ImageButton_AnchorParallel", dynlib: dllname.}
 proc ImageButton_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ImageButton_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc ImageButton_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ImageButton_AnchorVerticalCenterTo", dynlib: dllname.}
+proc ImageButton_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "ImageButton_AnchorSame", dynlib: dllname.}
 proc ImageButton_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "ImageButton_AnchorAsAlign", dynlib: dllname.}
 proc ImageButton_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "ImageButton_AnchorClient", dynlib: dllname.}
+proc ImageButton_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ImageButton_ScaleDesignToForm", dynlib: dllname.}
+proc ImageButton_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "ImageButton_ScaleFormToDesign", dynlib: dllname.}
+proc ImageButton_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ImageButton_Scale96ToForm", dynlib: dllname.}
+proc ImageButton_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ImageButton_ScaleFormTo96", dynlib: dllname.}
+proc ImageButton_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ImageButton_Scale96ToFont", dynlib: dllname.}
+proc ImageButton_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ImageButton_ScaleFontTo96", dynlib: dllname.}
+proc ImageButton_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ImageButton_ScaleScreenToFont", dynlib: dllname.}
+proc ImageButton_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ImageButton_ScaleFontToScreen", dynlib: dllname.}
+proc ImageButton_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ImageButton_Scale96ToScreen", dynlib: dllname.}
+proc ImageButton_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ImageButton_ScaleScreenTo96", dynlib: dllname.}
+proc ImageButton_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "ImageButton_AutoAdjustLayout", dynlib: dllname.}
+proc ImageButton_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "ImageButton_FixDesignFontsPPI", dynlib: dllname.}
+proc ImageButton_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "ImageButton_ScaleFontsPPI", dynlib: dllname.}
 proc ImageButton_GetAction*(AObj: pointer): pointer {.importc: "ImageButton_GetAction", dynlib: dllname.}
 proc ImageButton_SetAction*(AObj: pointer, AValue: pointer) {.importc: "ImageButton_SetAction", dynlib: dllname.}
 proc ImageButton_GetAlign*(AObj: pointer): TAlign {.importc: "ImageButton_GetAlign", dynlib: dllname.}
@@ -10667,6 +11349,7 @@ proc StringGrid_Focused*(AObj: pointer): bool {.importc: "StringGrid_Focused", d
 proc StringGrid_HandleAllocated*(AObj: pointer): bool {.importc: "StringGrid_HandleAllocated", dynlib: dllname.}
 proc StringGrid_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "StringGrid_InsertControl", dynlib: dllname.}
 proc StringGrid_Invalidate*(AObj: pointer) {.importc: "StringGrid_Invalidate", dynlib: dllname.}
+proc StringGrid_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "StringGrid_PaintTo", dynlib: dllname.}
 proc StringGrid_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "StringGrid_RemoveControl", dynlib: dllname.}
 proc StringGrid_Realign*(AObj: pointer) {.importc: "StringGrid_Realign", dynlib: dllname.}
 proc StringGrid_Repaint*(AObj: pointer) {.importc: "StringGrid_Repaint", dynlib: dllname.}
@@ -10704,8 +11387,22 @@ proc StringGrid_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: in
 proc StringGrid_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "StringGrid_AnchorParallel", dynlib: dllname.}
 proc StringGrid_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "StringGrid_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc StringGrid_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "StringGrid_AnchorVerticalCenterTo", dynlib: dllname.}
+proc StringGrid_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "StringGrid_AnchorSame", dynlib: dllname.}
 proc StringGrid_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "StringGrid_AnchorAsAlign", dynlib: dllname.}
 proc StringGrid_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "StringGrid_AnchorClient", dynlib: dllname.}
+proc StringGrid_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "StringGrid_ScaleDesignToForm", dynlib: dllname.}
+proc StringGrid_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "StringGrid_ScaleFormToDesign", dynlib: dllname.}
+proc StringGrid_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "StringGrid_Scale96ToForm", dynlib: dllname.}
+proc StringGrid_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "StringGrid_ScaleFormTo96", dynlib: dllname.}
+proc StringGrid_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "StringGrid_Scale96ToFont", dynlib: dllname.}
+proc StringGrid_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "StringGrid_ScaleFontTo96", dynlib: dllname.}
+proc StringGrid_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "StringGrid_ScaleScreenToFont", dynlib: dllname.}
+proc StringGrid_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "StringGrid_ScaleFontToScreen", dynlib: dllname.}
+proc StringGrid_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "StringGrid_Scale96ToScreen", dynlib: dllname.}
+proc StringGrid_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "StringGrid_ScaleScreenTo96", dynlib: dllname.}
+proc StringGrid_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "StringGrid_AutoAdjustLayout", dynlib: dllname.}
+proc StringGrid_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "StringGrid_FixDesignFontsPPI", dynlib: dllname.}
+proc StringGrid_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "StringGrid_ScaleFontsPPI", dynlib: dllname.}
 proc StringGrid_GetSelectedColor*(AObj: pointer): TColor {.importc: "StringGrid_GetSelectedColor", dynlib: dllname.}
 proc StringGrid_SetSelectedColor*(AObj: pointer, AValue: TColor) {.importc: "StringGrid_SetSelectedColor", dynlib: dllname.}
 proc StringGrid_GetSelectedColumn*(AObj: pointer): pointer {.importc: "StringGrid_GetSelectedColumn", dynlib: dllname.}
@@ -10999,6 +11696,7 @@ proc DrawGrid_Focused*(AObj: pointer): bool {.importc: "DrawGrid_Focused", dynli
 proc DrawGrid_HandleAllocated*(AObj: pointer): bool {.importc: "DrawGrid_HandleAllocated", dynlib: dllname.}
 proc DrawGrid_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "DrawGrid_InsertControl", dynlib: dllname.}
 proc DrawGrid_Invalidate*(AObj: pointer) {.importc: "DrawGrid_Invalidate", dynlib: dllname.}
+proc DrawGrid_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "DrawGrid_PaintTo", dynlib: dllname.}
 proc DrawGrid_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "DrawGrid_RemoveControl", dynlib: dllname.}
 proc DrawGrid_Realign*(AObj: pointer) {.importc: "DrawGrid_Realign", dynlib: dllname.}
 proc DrawGrid_Repaint*(AObj: pointer) {.importc: "DrawGrid_Repaint", dynlib: dllname.}
@@ -11036,8 +11734,22 @@ proc DrawGrid_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int3
 proc DrawGrid_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "DrawGrid_AnchorParallel", dynlib: dllname.}
 proc DrawGrid_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "DrawGrid_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc DrawGrid_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "DrawGrid_AnchorVerticalCenterTo", dynlib: dllname.}
+proc DrawGrid_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "DrawGrid_AnchorSame", dynlib: dllname.}
 proc DrawGrid_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "DrawGrid_AnchorAsAlign", dynlib: dllname.}
 proc DrawGrid_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "DrawGrid_AnchorClient", dynlib: dllname.}
+proc DrawGrid_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "DrawGrid_ScaleDesignToForm", dynlib: dllname.}
+proc DrawGrid_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "DrawGrid_ScaleFormToDesign", dynlib: dllname.}
+proc DrawGrid_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "DrawGrid_Scale96ToForm", dynlib: dllname.}
+proc DrawGrid_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "DrawGrid_ScaleFormTo96", dynlib: dllname.}
+proc DrawGrid_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "DrawGrid_Scale96ToFont", dynlib: dllname.}
+proc DrawGrid_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "DrawGrid_ScaleFontTo96", dynlib: dllname.}
+proc DrawGrid_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "DrawGrid_ScaleScreenToFont", dynlib: dllname.}
+proc DrawGrid_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "DrawGrid_ScaleFontToScreen", dynlib: dllname.}
+proc DrawGrid_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "DrawGrid_Scale96ToScreen", dynlib: dllname.}
+proc DrawGrid_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "DrawGrid_ScaleScreenTo96", dynlib: dllname.}
+proc DrawGrid_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "DrawGrid_AutoAdjustLayout", dynlib: dllname.}
+proc DrawGrid_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "DrawGrid_FixDesignFontsPPI", dynlib: dllname.}
+proc DrawGrid_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "DrawGrid_ScaleFontsPPI", dynlib: dllname.}
 proc DrawGrid_SetOnColRowMoved*(AObj: pointer, AEventId: TGridOperationEvent) {.importc: "DrawGrid_SetOnColRowMoved", dynlib: dllname.}
 proc DrawGrid_GetAlign*(AObj: pointer): TAlign {.importc: "DrawGrid_GetAlign", dynlib: dllname.}
 proc DrawGrid_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "DrawGrid_SetAlign", dynlib: dllname.}
@@ -11236,6 +11948,7 @@ proc ValueListEditor_Focused*(AObj: pointer): bool {.importc: "ValueListEditor_F
 proc ValueListEditor_HandleAllocated*(AObj: pointer): bool {.importc: "ValueListEditor_HandleAllocated", dynlib: dllname.}
 proc ValueListEditor_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "ValueListEditor_InsertControl", dynlib: dllname.}
 proc ValueListEditor_Invalidate*(AObj: pointer) {.importc: "ValueListEditor_Invalidate", dynlib: dllname.}
+proc ValueListEditor_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "ValueListEditor_PaintTo", dynlib: dllname.}
 proc ValueListEditor_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "ValueListEditor_RemoveControl", dynlib: dllname.}
 proc ValueListEditor_Realign*(AObj: pointer) {.importc: "ValueListEditor_Realign", dynlib: dllname.}
 proc ValueListEditor_Repaint*(AObj: pointer) {.importc: "ValueListEditor_Repaint", dynlib: dllname.}
@@ -11272,8 +11985,22 @@ proc ValueListEditor_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpac
 proc ValueListEditor_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "ValueListEditor_AnchorParallel", dynlib: dllname.}
 proc ValueListEditor_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ValueListEditor_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc ValueListEditor_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ValueListEditor_AnchorVerticalCenterTo", dynlib: dllname.}
+proc ValueListEditor_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "ValueListEditor_AnchorSame", dynlib: dllname.}
 proc ValueListEditor_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "ValueListEditor_AnchorAsAlign", dynlib: dllname.}
 proc ValueListEditor_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "ValueListEditor_AnchorClient", dynlib: dllname.}
+proc ValueListEditor_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ValueListEditor_ScaleDesignToForm", dynlib: dllname.}
+proc ValueListEditor_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "ValueListEditor_ScaleFormToDesign", dynlib: dllname.}
+proc ValueListEditor_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ValueListEditor_Scale96ToForm", dynlib: dllname.}
+proc ValueListEditor_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ValueListEditor_ScaleFormTo96", dynlib: dllname.}
+proc ValueListEditor_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ValueListEditor_Scale96ToFont", dynlib: dllname.}
+proc ValueListEditor_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ValueListEditor_ScaleFontTo96", dynlib: dllname.}
+proc ValueListEditor_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ValueListEditor_ScaleScreenToFont", dynlib: dllname.}
+proc ValueListEditor_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ValueListEditor_ScaleFontToScreen", dynlib: dllname.}
+proc ValueListEditor_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ValueListEditor_Scale96ToScreen", dynlib: dllname.}
+proc ValueListEditor_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ValueListEditor_ScaleScreenTo96", dynlib: dllname.}
+proc ValueListEditor_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "ValueListEditor_AutoAdjustLayout", dynlib: dllname.}
+proc ValueListEditor_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "ValueListEditor_FixDesignFontsPPI", dynlib: dllname.}
+proc ValueListEditor_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "ValueListEditor_ScaleFontsPPI", dynlib: dllname.}
 proc ValueListEditor_GetColCount*(AObj: pointer): int32 {.importc: "ValueListEditor_GetColCount", dynlib: dllname.}
 proc ValueListEditor_SetColCount*(AObj: pointer, AValue: int32) {.importc: "ValueListEditor_SetColCount", dynlib: dllname.}
 proc ValueListEditor_GetRowCount*(AObj: pointer): int32 {.importc: "ValueListEditor_GetRowCount", dynlib: dllname.}
@@ -11471,6 +12198,7 @@ proc HeaderControl_Focused*(AObj: pointer): bool {.importc: "HeaderControl_Focus
 proc HeaderControl_HandleAllocated*(AObj: pointer): bool {.importc: "HeaderControl_HandleAllocated", dynlib: dllname.}
 proc HeaderControl_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "HeaderControl_InsertControl", dynlib: dllname.}
 proc HeaderControl_Invalidate*(AObj: pointer) {.importc: "HeaderControl_Invalidate", dynlib: dllname.}
+proc HeaderControl_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "HeaderControl_PaintTo", dynlib: dllname.}
 proc HeaderControl_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "HeaderControl_RemoveControl", dynlib: dllname.}
 proc HeaderControl_Realign*(AObj: pointer) {.importc: "HeaderControl_Realign", dynlib: dllname.}
 proc HeaderControl_Repaint*(AObj: pointer) {.importc: "HeaderControl_Repaint", dynlib: dllname.}
@@ -11508,8 +12236,22 @@ proc HeaderControl_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace:
 proc HeaderControl_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "HeaderControl_AnchorParallel", dynlib: dllname.}
 proc HeaderControl_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "HeaderControl_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc HeaderControl_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "HeaderControl_AnchorVerticalCenterTo", dynlib: dllname.}
+proc HeaderControl_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "HeaderControl_AnchorSame", dynlib: dllname.}
 proc HeaderControl_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "HeaderControl_AnchorAsAlign", dynlib: dllname.}
 proc HeaderControl_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "HeaderControl_AnchorClient", dynlib: dllname.}
+proc HeaderControl_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "HeaderControl_ScaleDesignToForm", dynlib: dllname.}
+proc HeaderControl_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "HeaderControl_ScaleFormToDesign", dynlib: dllname.}
+proc HeaderControl_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "HeaderControl_Scale96ToForm", dynlib: dllname.}
+proc HeaderControl_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "HeaderControl_ScaleFormTo96", dynlib: dllname.}
+proc HeaderControl_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "HeaderControl_Scale96ToFont", dynlib: dllname.}
+proc HeaderControl_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "HeaderControl_ScaleFontTo96", dynlib: dllname.}
+proc HeaderControl_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "HeaderControl_ScaleScreenToFont", dynlib: dllname.}
+proc HeaderControl_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "HeaderControl_ScaleFontToScreen", dynlib: dllname.}
+proc HeaderControl_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "HeaderControl_Scale96ToScreen", dynlib: dllname.}
+proc HeaderControl_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "HeaderControl_ScaleScreenTo96", dynlib: dllname.}
+proc HeaderControl_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "HeaderControl_AutoAdjustLayout", dynlib: dllname.}
+proc HeaderControl_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "HeaderControl_FixDesignFontsPPI", dynlib: dllname.}
+proc HeaderControl_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "HeaderControl_ScaleFontsPPI", dynlib: dllname.}
 proc HeaderControl_GetAlign*(AObj: pointer): TAlign {.importc: "HeaderControl_GetAlign", dynlib: dllname.}
 proc HeaderControl_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "HeaderControl_SetAlign", dynlib: dllname.}
 proc HeaderControl_GetAnchors*(AObj: pointer): TAnchors {.importc: "HeaderControl_GetAnchors", dynlib: dllname.}
@@ -11714,6 +12456,7 @@ proc LabeledEdit_Focused*(AObj: pointer): bool {.importc: "LabeledEdit_Focused",
 proc LabeledEdit_HandleAllocated*(AObj: pointer): bool {.importc: "LabeledEdit_HandleAllocated", dynlib: dllname.}
 proc LabeledEdit_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "LabeledEdit_InsertControl", dynlib: dllname.}
 proc LabeledEdit_Invalidate*(AObj: pointer) {.importc: "LabeledEdit_Invalidate", dynlib: dllname.}
+proc LabeledEdit_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "LabeledEdit_PaintTo", dynlib: dllname.}
 proc LabeledEdit_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "LabeledEdit_RemoveControl", dynlib: dllname.}
 proc LabeledEdit_Realign*(AObj: pointer) {.importc: "LabeledEdit_Realign", dynlib: dllname.}
 proc LabeledEdit_Repaint*(AObj: pointer) {.importc: "LabeledEdit_Repaint", dynlib: dllname.}
@@ -11750,8 +12493,22 @@ proc LabeledEdit_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: i
 proc LabeledEdit_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "LabeledEdit_AnchorParallel", dynlib: dllname.}
 proc LabeledEdit_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "LabeledEdit_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc LabeledEdit_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "LabeledEdit_AnchorVerticalCenterTo", dynlib: dllname.}
+proc LabeledEdit_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "LabeledEdit_AnchorSame", dynlib: dllname.}
 proc LabeledEdit_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "LabeledEdit_AnchorAsAlign", dynlib: dllname.}
 proc LabeledEdit_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "LabeledEdit_AnchorClient", dynlib: dllname.}
+proc LabeledEdit_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "LabeledEdit_ScaleDesignToForm", dynlib: dllname.}
+proc LabeledEdit_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "LabeledEdit_ScaleFormToDesign", dynlib: dllname.}
+proc LabeledEdit_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "LabeledEdit_Scale96ToForm", dynlib: dllname.}
+proc LabeledEdit_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "LabeledEdit_ScaleFormTo96", dynlib: dllname.}
+proc LabeledEdit_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "LabeledEdit_Scale96ToFont", dynlib: dllname.}
+proc LabeledEdit_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "LabeledEdit_ScaleFontTo96", dynlib: dllname.}
+proc LabeledEdit_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "LabeledEdit_ScaleScreenToFont", dynlib: dllname.}
+proc LabeledEdit_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "LabeledEdit_ScaleFontToScreen", dynlib: dllname.}
+proc LabeledEdit_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "LabeledEdit_Scale96ToScreen", dynlib: dllname.}
+proc LabeledEdit_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "LabeledEdit_ScaleScreenTo96", dynlib: dllname.}
+proc LabeledEdit_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "LabeledEdit_AutoAdjustLayout", dynlib: dllname.}
+proc LabeledEdit_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "LabeledEdit_FixDesignFontsPPI", dynlib: dllname.}
+proc LabeledEdit_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "LabeledEdit_ScaleFontsPPI", dynlib: dllname.}
 proc LabeledEdit_GetAlignment*(AObj: pointer): TAlignment {.importc: "LabeledEdit_GetAlignment", dynlib: dllname.}
 proc LabeledEdit_SetAlignment*(AObj: pointer, AValue: TAlignment) {.importc: "LabeledEdit_SetAlignment", dynlib: dllname.}
 proc LabeledEdit_GetAnchors*(AObj: pointer): TAnchors {.importc: "LabeledEdit_GetAnchors", dynlib: dllname.}
@@ -11947,8 +12704,22 @@ proc BoundLabel_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: in
 proc BoundLabel_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "BoundLabel_AnchorParallel", dynlib: dllname.}
 proc BoundLabel_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "BoundLabel_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc BoundLabel_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "BoundLabel_AnchorVerticalCenterTo", dynlib: dllname.}
+proc BoundLabel_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "BoundLabel_AnchorSame", dynlib: dllname.}
 proc BoundLabel_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "BoundLabel_AnchorAsAlign", dynlib: dllname.}
 proc BoundLabel_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "BoundLabel_AnchorClient", dynlib: dllname.}
+proc BoundLabel_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "BoundLabel_ScaleDesignToForm", dynlib: dllname.}
+proc BoundLabel_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "BoundLabel_ScaleFormToDesign", dynlib: dllname.}
+proc BoundLabel_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "BoundLabel_Scale96ToForm", dynlib: dllname.}
+proc BoundLabel_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "BoundLabel_ScaleFormTo96", dynlib: dllname.}
+proc BoundLabel_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "BoundLabel_Scale96ToFont", dynlib: dllname.}
+proc BoundLabel_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "BoundLabel_ScaleFontTo96", dynlib: dllname.}
+proc BoundLabel_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "BoundLabel_ScaleScreenToFont", dynlib: dllname.}
+proc BoundLabel_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "BoundLabel_ScaleFontToScreen", dynlib: dllname.}
+proc BoundLabel_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "BoundLabel_Scale96ToScreen", dynlib: dllname.}
+proc BoundLabel_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "BoundLabel_ScaleScreenTo96", dynlib: dllname.}
+proc BoundLabel_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "BoundLabel_AutoAdjustLayout", dynlib: dllname.}
+proc BoundLabel_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "BoundLabel_FixDesignFontsPPI", dynlib: dllname.}
+proc BoundLabel_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "BoundLabel_ScaleFontsPPI", dynlib: dllname.}
 proc BoundLabel_GetBiDiMode*(AObj: pointer): TBiDiMode {.importc: "BoundLabel_GetBiDiMode", dynlib: dllname.}
 proc BoundLabel_SetBiDiMode*(AObj: pointer, AValue: TBiDiMode) {.importc: "BoundLabel_SetBiDiMode", dynlib: dllname.}
 proc BoundLabel_GetCaption*(AObj: pointer): cstring {.importc: "BoundLabel_GetCaption", dynlib: dllname.}
@@ -12060,6 +12831,7 @@ proc FlowPanel_Focused*(AObj: pointer): bool {.importc: "FlowPanel_Focused", dyn
 proc FlowPanel_HandleAllocated*(AObj: pointer): bool {.importc: "FlowPanel_HandleAllocated", dynlib: dllname.}
 proc FlowPanel_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "FlowPanel_InsertControl", dynlib: dllname.}
 proc FlowPanel_Invalidate*(AObj: pointer) {.importc: "FlowPanel_Invalidate", dynlib: dllname.}
+proc FlowPanel_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "FlowPanel_PaintTo", dynlib: dllname.}
 proc FlowPanel_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "FlowPanel_RemoveControl", dynlib: dllname.}
 proc FlowPanel_Realign*(AObj: pointer) {.importc: "FlowPanel_Realign", dynlib: dllname.}
 proc FlowPanel_Repaint*(AObj: pointer) {.importc: "FlowPanel_Repaint", dynlib: dllname.}
@@ -12097,8 +12869,22 @@ proc FlowPanel_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int
 proc FlowPanel_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "FlowPanel_AnchorParallel", dynlib: dllname.}
 proc FlowPanel_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "FlowPanel_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc FlowPanel_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "FlowPanel_AnchorVerticalCenterTo", dynlib: dllname.}
+proc FlowPanel_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "FlowPanel_AnchorSame", dynlib: dllname.}
 proc FlowPanel_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "FlowPanel_AnchorAsAlign", dynlib: dllname.}
 proc FlowPanel_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "FlowPanel_AnchorClient", dynlib: dllname.}
+proc FlowPanel_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "FlowPanel_ScaleDesignToForm", dynlib: dllname.}
+proc FlowPanel_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "FlowPanel_ScaleFormToDesign", dynlib: dllname.}
+proc FlowPanel_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "FlowPanel_Scale96ToForm", dynlib: dllname.}
+proc FlowPanel_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "FlowPanel_ScaleFormTo96", dynlib: dllname.}
+proc FlowPanel_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "FlowPanel_Scale96ToFont", dynlib: dllname.}
+proc FlowPanel_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "FlowPanel_ScaleFontTo96", dynlib: dllname.}
+proc FlowPanel_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "FlowPanel_ScaleScreenToFont", dynlib: dllname.}
+proc FlowPanel_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "FlowPanel_ScaleFontToScreen", dynlib: dllname.}
+proc FlowPanel_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "FlowPanel_Scale96ToScreen", dynlib: dllname.}
+proc FlowPanel_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "FlowPanel_ScaleScreenTo96", dynlib: dllname.}
+proc FlowPanel_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "FlowPanel_AutoAdjustLayout", dynlib: dllname.}
+proc FlowPanel_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "FlowPanel_FixDesignFontsPPI", dynlib: dllname.}
+proc FlowPanel_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "FlowPanel_ScaleFontsPPI", dynlib: dllname.}
 proc FlowPanel_GetAlign*(AObj: pointer): TAlign {.importc: "FlowPanel_GetAlign", dynlib: dllname.}
 proc FlowPanel_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "FlowPanel_SetAlign", dynlib: dllname.}
 proc FlowPanel_GetAlignment*(AObj: pointer): TAlignment {.importc: "FlowPanel_GetAlignment", dynlib: dllname.}
@@ -12257,6 +13043,7 @@ proc CoolBar_FindChildControl*(AObj: pointer, ControlName: cstring): pointer {.i
 proc CoolBar_Focused*(AObj: pointer): bool {.importc: "CoolBar_Focused", dynlib: dllname.}
 proc CoolBar_HandleAllocated*(AObj: pointer): bool {.importc: "CoolBar_HandleAllocated", dynlib: dllname.}
 proc CoolBar_Invalidate*(AObj: pointer) {.importc: "CoolBar_Invalidate", dynlib: dllname.}
+proc CoolBar_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "CoolBar_PaintTo", dynlib: dllname.}
 proc CoolBar_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "CoolBar_RemoveControl", dynlib: dllname.}
 proc CoolBar_Realign*(AObj: pointer) {.importc: "CoolBar_Realign", dynlib: dllname.}
 proc CoolBar_Repaint*(AObj: pointer) {.importc: "CoolBar_Repaint", dynlib: dllname.}
@@ -12294,8 +13081,22 @@ proc CoolBar_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32
 proc CoolBar_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "CoolBar_AnchorParallel", dynlib: dllname.}
 proc CoolBar_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "CoolBar_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc CoolBar_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "CoolBar_AnchorVerticalCenterTo", dynlib: dllname.}
+proc CoolBar_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "CoolBar_AnchorSame", dynlib: dllname.}
 proc CoolBar_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "CoolBar_AnchorAsAlign", dynlib: dllname.}
 proc CoolBar_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "CoolBar_AnchorClient", dynlib: dllname.}
+proc CoolBar_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "CoolBar_ScaleDesignToForm", dynlib: dllname.}
+proc CoolBar_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "CoolBar_ScaleFormToDesign", dynlib: dllname.}
+proc CoolBar_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "CoolBar_Scale96ToForm", dynlib: dllname.}
+proc CoolBar_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "CoolBar_ScaleFormTo96", dynlib: dllname.}
+proc CoolBar_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "CoolBar_Scale96ToFont", dynlib: dllname.}
+proc CoolBar_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "CoolBar_ScaleFontTo96", dynlib: dllname.}
+proc CoolBar_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "CoolBar_ScaleScreenToFont", dynlib: dllname.}
+proc CoolBar_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "CoolBar_ScaleFontToScreen", dynlib: dllname.}
+proc CoolBar_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "CoolBar_Scale96ToScreen", dynlib: dllname.}
+proc CoolBar_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "CoolBar_ScaleScreenTo96", dynlib: dllname.}
+proc CoolBar_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "CoolBar_AutoAdjustLayout", dynlib: dllname.}
+proc CoolBar_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "CoolBar_FixDesignFontsPPI", dynlib: dllname.}
+proc CoolBar_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "CoolBar_ScaleFontsPPI", dynlib: dllname.}
 proc CoolBar_GetAlign*(AObj: pointer): TAlign {.importc: "CoolBar_GetAlign", dynlib: dllname.}
 proc CoolBar_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "CoolBar_SetAlign", dynlib: dllname.}
 proc CoolBar_GetAnchors*(AObj: pointer): TAnchors {.importc: "CoolBar_GetAnchors", dynlib: dllname.}
@@ -12761,6 +13562,7 @@ proc ComboBoxEx_FlipChildren*(AObj: pointer, AllLevels: bool) {.importc: "ComboB
 proc ComboBoxEx_HandleAllocated*(AObj: pointer): bool {.importc: "ComboBoxEx_HandleAllocated", dynlib: dllname.}
 proc ComboBoxEx_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "ComboBoxEx_InsertControl", dynlib: dllname.}
 proc ComboBoxEx_Invalidate*(AObj: pointer) {.importc: "ComboBoxEx_Invalidate", dynlib: dllname.}
+proc ComboBoxEx_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "ComboBoxEx_PaintTo", dynlib: dllname.}
 proc ComboBoxEx_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "ComboBoxEx_RemoveControl", dynlib: dllname.}
 proc ComboBoxEx_Realign*(AObj: pointer) {.importc: "ComboBoxEx_Realign", dynlib: dllname.}
 proc ComboBoxEx_Repaint*(AObj: pointer) {.importc: "ComboBoxEx_Repaint", dynlib: dllname.}
@@ -12798,8 +13600,22 @@ proc ComboBoxEx_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: in
 proc ComboBoxEx_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "ComboBoxEx_AnchorParallel", dynlib: dllname.}
 proc ComboBoxEx_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ComboBoxEx_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc ComboBoxEx_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ComboBoxEx_AnchorVerticalCenterTo", dynlib: dllname.}
+proc ComboBoxEx_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "ComboBoxEx_AnchorSame", dynlib: dllname.}
 proc ComboBoxEx_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "ComboBoxEx_AnchorAsAlign", dynlib: dllname.}
 proc ComboBoxEx_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "ComboBoxEx_AnchorClient", dynlib: dllname.}
+proc ComboBoxEx_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBoxEx_ScaleDesignToForm", dynlib: dllname.}
+proc ComboBoxEx_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBoxEx_ScaleFormToDesign", dynlib: dllname.}
+proc ComboBoxEx_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBoxEx_Scale96ToForm", dynlib: dllname.}
+proc ComboBoxEx_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBoxEx_ScaleFormTo96", dynlib: dllname.}
+proc ComboBoxEx_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBoxEx_Scale96ToFont", dynlib: dllname.}
+proc ComboBoxEx_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBoxEx_ScaleFontTo96", dynlib: dllname.}
+proc ComboBoxEx_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBoxEx_ScaleScreenToFont", dynlib: dllname.}
+proc ComboBoxEx_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBoxEx_ScaleFontToScreen", dynlib: dllname.}
+proc ComboBoxEx_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBoxEx_Scale96ToScreen", dynlib: dllname.}
+proc ComboBoxEx_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ComboBoxEx_ScaleScreenTo96", dynlib: dllname.}
+proc ComboBoxEx_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "ComboBoxEx_AutoAdjustLayout", dynlib: dllname.}
+proc ComboBoxEx_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "ComboBoxEx_FixDesignFontsPPI", dynlib: dllname.}
+proc ComboBoxEx_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "ComboBoxEx_ScaleFontsPPI", dynlib: dllname.}
 proc ComboBoxEx_GetAlign*(AObj: pointer): TAlign {.importc: "ComboBoxEx_GetAlign", dynlib: dllname.}
 proc ComboBoxEx_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "ComboBoxEx_SetAlign", dynlib: dllname.}
 proc ComboBoxEx_GetAutoCompleteOptions*(AObj: pointer): TAutoCompleteOptions {.importc: "ComboBoxEx_GetAutoCompleteOptions", dynlib: dllname.}
@@ -13019,6 +13835,7 @@ proc Frame_Focused*(AObj: pointer): bool {.importc: "Frame_Focused", dynlib: dll
 proc Frame_HandleAllocated*(AObj: pointer): bool {.importc: "Frame_HandleAllocated", dynlib: dllname.}
 proc Frame_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "Frame_InsertControl", dynlib: dllname.}
 proc Frame_Invalidate*(AObj: pointer) {.importc: "Frame_Invalidate", dynlib: dllname.}
+proc Frame_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "Frame_PaintTo", dynlib: dllname.}
 proc Frame_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "Frame_RemoveControl", dynlib: dllname.}
 proc Frame_Realign*(AObj: pointer) {.importc: "Frame_Realign", dynlib: dllname.}
 proc Frame_Repaint*(AObj: pointer) {.importc: "Frame_Repaint", dynlib: dllname.}
@@ -13056,8 +13873,24 @@ proc Frame_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, 
 proc Frame_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "Frame_AnchorParallel", dynlib: dllname.}
 proc Frame_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Frame_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc Frame_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "Frame_AnchorVerticalCenterTo", dynlib: dllname.}
+proc Frame_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "Frame_AnchorSame", dynlib: dllname.}
 proc Frame_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "Frame_AnchorAsAlign", dynlib: dllname.}
 proc Frame_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "Frame_AnchorClient", dynlib: dllname.}
+proc Frame_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Frame_ScaleDesignToForm", dynlib: dllname.}
+proc Frame_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "Frame_ScaleFormToDesign", dynlib: dllname.}
+proc Frame_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "Frame_Scale96ToForm", dynlib: dllname.}
+proc Frame_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Frame_ScaleFormTo96", dynlib: dllname.}
+proc Frame_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Frame_Scale96ToFont", dynlib: dllname.}
+proc Frame_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Frame_ScaleFontTo96", dynlib: dllname.}
+proc Frame_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "Frame_ScaleScreenToFont", dynlib: dllname.}
+proc Frame_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Frame_ScaleFontToScreen", dynlib: dllname.}
+proc Frame_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "Frame_Scale96ToScreen", dynlib: dllname.}
+proc Frame_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "Frame_ScaleScreenTo96", dynlib: dllname.}
+proc Frame_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "Frame_AutoAdjustLayout", dynlib: dllname.}
+proc Frame_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "Frame_FixDesignFontsPPI", dynlib: dllname.}
+proc Frame_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "Frame_ScaleFontsPPI", dynlib: dllname.}
+proc Frame_GetDesignTimePPI*(AObj: pointer): int32 {.importc: "Frame_GetDesignTimePPI", dynlib: dllname.}
+proc Frame_SetDesignTimePPI*(AObj: pointer, AValue: int32) {.importc: "Frame_SetDesignTimePPI", dynlib: dllname.}
 proc Frame_GetAlign*(AObj: pointer): TAlign {.importc: "Frame_GetAlign", dynlib: dllname.}
 proc Frame_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "Frame_SetAlign", dynlib: dllname.}
 proc Frame_GetAnchors*(AObj: pointer): TAnchors {.importc: "Frame_GetAnchors", dynlib: dllname.}
@@ -13277,8 +14110,22 @@ proc XButton_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int32
 proc XButton_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "XButton_AnchorParallel", dynlib: dllname.}
 proc XButton_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "XButton_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc XButton_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "XButton_AnchorVerticalCenterTo", dynlib: dllname.}
+proc XButton_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "XButton_AnchorSame", dynlib: dllname.}
 proc XButton_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "XButton_AnchorAsAlign", dynlib: dllname.}
 proc XButton_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "XButton_AnchorClient", dynlib: dllname.}
+proc XButton_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "XButton_ScaleDesignToForm", dynlib: dllname.}
+proc XButton_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "XButton_ScaleFormToDesign", dynlib: dllname.}
+proc XButton_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "XButton_Scale96ToForm", dynlib: dllname.}
+proc XButton_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "XButton_ScaleFormTo96", dynlib: dllname.}
+proc XButton_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "XButton_Scale96ToFont", dynlib: dllname.}
+proc XButton_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "XButton_ScaleFontTo96", dynlib: dllname.}
+proc XButton_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "XButton_ScaleScreenToFont", dynlib: dllname.}
+proc XButton_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "XButton_ScaleFontToScreen", dynlib: dllname.}
+proc XButton_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "XButton_Scale96ToScreen", dynlib: dllname.}
+proc XButton_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "XButton_ScaleScreenTo96", dynlib: dllname.}
+proc XButton_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "XButton_AutoAdjustLayout", dynlib: dllname.}
+proc XButton_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "XButton_FixDesignFontsPPI", dynlib: dllname.}
+proc XButton_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "XButton_ScaleFontsPPI", dynlib: dllname.}
 proc XButton_GetCaption*(AObj: pointer): cstring {.importc: "XButton_GetCaption", dynlib: dllname.}
 proc XButton_SetCaption*(AObj: pointer, AValue: cstring) {.importc: "XButton_SetCaption", dynlib: dllname.}
 proc XButton_GetShowCaption*(AObj: pointer): bool {.importc: "XButton_GetShowCaption", dynlib: dllname.}
@@ -13487,6 +14334,7 @@ proc CheckGroup_Focused*(AObj: pointer): bool {.importc: "CheckGroup_Focused", d
 proc CheckGroup_HandleAllocated*(AObj: pointer): bool {.importc: "CheckGroup_HandleAllocated", dynlib: dllname.}
 proc CheckGroup_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "CheckGroup_InsertControl", dynlib: dllname.}
 proc CheckGroup_Invalidate*(AObj: pointer) {.importc: "CheckGroup_Invalidate", dynlib: dllname.}
+proc CheckGroup_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "CheckGroup_PaintTo", dynlib: dllname.}
 proc CheckGroup_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "CheckGroup_RemoveControl", dynlib: dllname.}
 proc CheckGroup_Realign*(AObj: pointer) {.importc: "CheckGroup_Realign", dynlib: dllname.}
 proc CheckGroup_Repaint*(AObj: pointer) {.importc: "CheckGroup_Repaint", dynlib: dllname.}
@@ -13524,8 +14372,22 @@ proc CheckGroup_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: in
 proc CheckGroup_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "CheckGroup_AnchorParallel", dynlib: dllname.}
 proc CheckGroup_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "CheckGroup_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc CheckGroup_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "CheckGroup_AnchorVerticalCenterTo", dynlib: dllname.}
+proc CheckGroup_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "CheckGroup_AnchorSame", dynlib: dllname.}
 proc CheckGroup_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "CheckGroup_AnchorAsAlign", dynlib: dllname.}
 proc CheckGroup_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "CheckGroup_AnchorClient", dynlib: dllname.}
+proc CheckGroup_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "CheckGroup_ScaleDesignToForm", dynlib: dllname.}
+proc CheckGroup_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "CheckGroup_ScaleFormToDesign", dynlib: dllname.}
+proc CheckGroup_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "CheckGroup_Scale96ToForm", dynlib: dllname.}
+proc CheckGroup_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "CheckGroup_ScaleFormTo96", dynlib: dllname.}
+proc CheckGroup_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "CheckGroup_Scale96ToFont", dynlib: dllname.}
+proc CheckGroup_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "CheckGroup_ScaleFontTo96", dynlib: dllname.}
+proc CheckGroup_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "CheckGroup_ScaleScreenToFont", dynlib: dllname.}
+proc CheckGroup_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "CheckGroup_ScaleFontToScreen", dynlib: dllname.}
+proc CheckGroup_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "CheckGroup_Scale96ToScreen", dynlib: dllname.}
+proc CheckGroup_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "CheckGroup_ScaleScreenTo96", dynlib: dllname.}
+proc CheckGroup_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "CheckGroup_AutoAdjustLayout", dynlib: dllname.}
+proc CheckGroup_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "CheckGroup_FixDesignFontsPPI", dynlib: dllname.}
+proc CheckGroup_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "CheckGroup_ScaleFontsPPI", dynlib: dllname.}
 proc CheckGroup_GetAlign*(AObj: pointer): TAlign {.importc: "CheckGroup_GetAlign", dynlib: dllname.}
 proc CheckGroup_SetAlign*(AObj: pointer, AValue: TAlign) {.importc: "CheckGroup_SetAlign", dynlib: dllname.}
 proc CheckGroup_GetAnchors*(AObj: pointer): TAnchors {.importc: "CheckGroup_GetAnchors", dynlib: dllname.}
@@ -13681,6 +14543,7 @@ proc ToggleBox_Focused*(AObj: pointer): bool {.importc: "ToggleBox_Focused", dyn
 proc ToggleBox_HandleAllocated*(AObj: pointer): bool {.importc: "ToggleBox_HandleAllocated", dynlib: dllname.}
 proc ToggleBox_InsertControl*(AObj: pointer, AControl: pointer) {.importc: "ToggleBox_InsertControl", dynlib: dllname.}
 proc ToggleBox_Invalidate*(AObj: pointer) {.importc: "ToggleBox_Invalidate", dynlib: dllname.}
+proc ToggleBox_PaintTo*(AObj: pointer, DC: HDC, X: int32, Y: int32) {.importc: "ToggleBox_PaintTo", dynlib: dllname.}
 proc ToggleBox_RemoveControl*(AObj: pointer, AControl: pointer) {.importc: "ToggleBox_RemoveControl", dynlib: dllname.}
 proc ToggleBox_Realign*(AObj: pointer) {.importc: "ToggleBox_Realign", dynlib: dllname.}
 proc ToggleBox_Repaint*(AObj: pointer) {.importc: "ToggleBox_Repaint", dynlib: dllname.}
@@ -13718,8 +14581,22 @@ proc ToggleBox_AnchorToNeighbour*(AObj: pointer, ASide: TAnchorKind, ASpace: int
 proc ToggleBox_AnchorParallel*(AObj: pointer, ASide: TAnchorKind, ASpace: int32, ASibling: pointer) {.importc: "ToggleBox_AnchorParallel", dynlib: dllname.}
 proc ToggleBox_AnchorHorizontalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ToggleBox_AnchorHorizontalCenterTo", dynlib: dllname.}
 proc ToggleBox_AnchorVerticalCenterTo*(AObj: pointer, ASibling: pointer) {.importc: "ToggleBox_AnchorVerticalCenterTo", dynlib: dllname.}
+proc ToggleBox_AnchorSame*(AObj: pointer, ASide: TAnchorKind, ASibling: pointer) {.importc: "ToggleBox_AnchorSame", dynlib: dllname.}
 proc ToggleBox_AnchorAsAlign*(AObj: pointer, ATheAlign: TAlign, ASpace: int32) {.importc: "ToggleBox_AnchorAsAlign", dynlib: dllname.}
 proc ToggleBox_AnchorClient*(AObj: pointer, ASpace: int32) {.importc: "ToggleBox_AnchorClient", dynlib: dllname.}
+proc ToggleBox_ScaleDesignToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ToggleBox_ScaleDesignToForm", dynlib: dllname.}
+proc ToggleBox_ScaleFormToDesign*(AObj: pointer, ASize: int32): int32 {.importc: "ToggleBox_ScaleFormToDesign", dynlib: dllname.}
+proc ToggleBox_Scale96ToForm*(AObj: pointer, ASize: int32): int32 {.importc: "ToggleBox_Scale96ToForm", dynlib: dllname.}
+proc ToggleBox_ScaleFormTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ToggleBox_ScaleFormTo96", dynlib: dllname.}
+proc ToggleBox_Scale96ToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ToggleBox_Scale96ToFont", dynlib: dllname.}
+proc ToggleBox_ScaleFontTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ToggleBox_ScaleFontTo96", dynlib: dllname.}
+proc ToggleBox_ScaleScreenToFont*(AObj: pointer, ASize: int32): int32 {.importc: "ToggleBox_ScaleScreenToFont", dynlib: dllname.}
+proc ToggleBox_ScaleFontToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ToggleBox_ScaleFontToScreen", dynlib: dllname.}
+proc ToggleBox_Scale96ToScreen*(AObj: pointer, ASize: int32): int32 {.importc: "ToggleBox_Scale96ToScreen", dynlib: dllname.}
+proc ToggleBox_ScaleScreenTo96*(AObj: pointer, ASize: int32): int32 {.importc: "ToggleBox_ScaleScreenTo96", dynlib: dllname.}
+proc ToggleBox_AutoAdjustLayout*(AObj: pointer, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) {.importc: "ToggleBox_AutoAdjustLayout", dynlib: dllname.}
+proc ToggleBox_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "ToggleBox_FixDesignFontsPPI", dynlib: dllname.}
+proc ToggleBox_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "ToggleBox_ScaleFontsPPI", dynlib: dllname.}
 proc ToggleBox_GetAllowGrayed*(AObj: pointer): bool {.importc: "ToggleBox_GetAllowGrayed", dynlib: dllname.}
 proc ToggleBox_SetAllowGrayed*(AObj: pointer, AValue: bool) {.importc: "ToggleBox_SetAllowGrayed", dynlib: dllname.}
 proc ToggleBox_GetAlign*(AObj: pointer): TAlign {.importc: "ToggleBox_GetAlign", dynlib: dllname.}
@@ -13853,6 +14730,8 @@ proc ToggleBox_StaticClassType*(): TClass {.importc: "ToggleBox_StaticClassType"
 # ----------------- TGridColumnTitle ----------------------
 proc GridColumnTitle_Assign*(AObj: pointer, Source: pointer) {.importc: "GridColumnTitle_Assign", dynlib: dllname.}
 proc GridColumnTitle_FillTitleDefaultFont*(AObj: pointer) {.importc: "GridColumnTitle_FillTitleDefaultFont", dynlib: dllname.}
+proc GridColumnTitle_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "GridColumnTitle_FixDesignFontsPPI", dynlib: dllname.}
+proc GridColumnTitle_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "GridColumnTitle_ScaleFontsPPI", dynlib: dllname.}
 proc GridColumnTitle_IsDefault*(AObj: pointer): bool {.importc: "GridColumnTitle_IsDefault", dynlib: dllname.}
 proc GridColumnTitle_GetNamePath*(AObj: pointer): cstring {.importc: "GridColumnTitle_GetNamePath", dynlib: dllname.}
 proc GridColumnTitle_ClassType*(AObj: pointer): TClass {.importc: "GridColumnTitle_ClassType", dynlib: dllname.}
@@ -13884,6 +14763,8 @@ proc GridColumnTitle_SetPrefixOption*(AObj: pointer, AValue: TPrefixOption) {.im
 proc GridColumnTitle_StaticClassType*(): TClass {.importc: "GridColumnTitle_StaticClassType", dynlib: dllname.}
 # ----------------- TGridColumn ----------------------
 proc GridColumn_Assign*(AObj: pointer, Source: pointer) {.importc: "GridColumn_Assign", dynlib: dllname.}
+proc GridColumn_FixDesignFontsPPI*(AObj: pointer, ADesignTimePPI: int32) {.importc: "GridColumn_FixDesignFontsPPI", dynlib: dllname.}
+proc GridColumn_ScaleFontsPPI*(AObj: pointer, AToPPI: int32, AProportion: var float64) {.importc: "GridColumn_ScaleFontsPPI", dynlib: dllname.}
 proc GridColumn_IsDefault*(AObj: pointer): bool {.importc: "GridColumn_IsDefault", dynlib: dllname.}
 proc GridColumn_GetNamePath*(AObj: pointer): cstring {.importc: "GridColumn_GetNamePath", dynlib: dllname.}
 proc GridColumn_ClassType*(AObj: pointer): TClass {.importc: "GridColumn_ClassType", dynlib: dllname.}

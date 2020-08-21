@@ -1618,6 +1618,12 @@ type
     ioHorizontal,
     ioVertical,
 
+  TLayoutAdjustmentPolicy* = enum
+    lapDefault, # widgetset dependent
+    lapFixedLayout, # A fixed absolute layout in all platforms
+    lapAutoAdjustWithoutHorizontalScrolling, # Smartphone platforms use this one,
+    lapAutoAdjustForDPI, # For desktops using High DPI, scale x and y to fit the DPI
+
 when defined(i386):
   type
     TDWordFiller = object
@@ -1806,9 +1812,9 @@ type
 
   TLVChangingEvent* = proc(sender: pointer, item: pointer, change: TItemChange, allowChange: var bool) {.nimcall.}
 
-  TLVOwnerDataEvent* = proc(sender: pointer, item: pointer) {.nimcall.}
+  TLVDataEvent* = proc(sender: pointer, item: pointer) {.nimcall.}
 
-  TLVOwnerDataFindEvent* = proc(sender: pointer, find: TItemFind, findString: cstring, findPosition: var TPoint, findData: TCustomData, startIndex: int32, direction: TSearchDirection, warp: bool, index: var int32) {.nimcall.}
+  TLVDataFindEvent* = proc(sender: pointer, find: TItemFind, findString: cstring, findPosition: var TPoint, findData: TCustomData, startIndex: int32, direction: TSearchDirection, warp: bool, index: var int32) {.nimcall.}
 
   TLVDeletedEvent* = proc(sender: pointer, item: pointer) {.nimcall.}
 
@@ -1845,8 +1851,6 @@ type
   TLVDrawItemEvent* = proc(sender: pointer, item: pointer, rect: var TRect, state: TOwnerDrawState) {.nimcall.}
 
   TLVDataHintEvent* = proc(sender: pointer, startIndex: int32, endIndex: int32) {.nimcall.}
-
-  TLVOwnerDataHintEvent* = TLVDataHintEvent
 
   TTVCustomDrawEvent* = proc(sender: pointer, aRect: var TRect, defaultDraw: var bool) {.nimcall.}
 

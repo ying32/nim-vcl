@@ -671,11 +671,54 @@ proc AnchorHorizontalCenterTo*(this: TControl, ASibling: TControl)  =
 proc AnchorVerticalCenterTo*(this: TControl, ASibling: TControl)  =
   Control_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TControl, ASide: TAnchorKind, ASibling: TControl)  =
+  Control_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TControl, ATheAlign: TAlign, ASpace: int32)  =
   Control_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TControl, ASpace: int32)  =
   Control_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TControl, ASize: int32): int32  =
+  return Control_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TControl, ASize: int32): int32  =
+  return Control_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TControl, ASize: int32): int32  =
+  return Control_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TControl, ASize: int32): int32  =
+  return Control_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TControl, ASize: int32): int32  =
+  return Control_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TControl, ASize: int32): int32  =
+  return Control_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TControl, ASize: int32): int32  =
+  return Control_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TControl, ASize: int32): int32  =
+  return Control_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TControl, ASize: int32): int32  =
+  return Control_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TControl, ASize: int32): int32  =
+  return Control_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TControl, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32)  =
+  Control_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TControl, ADesignTimePPI: int32)  =
+  Control_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TControl, AToPPI: int32, AProportion: float64)  =
+  var ps2 = AProportion
+  Control_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Enabled*(this: TControl): bool  =
   return Control_GetEnabled(this.Instance)
@@ -911,6 +954,9 @@ proc InsertControl*(this: TWinControl, AControl: TControl)  =
 proc Invalidate*(this: TWinControl) =
   WinControl_Invalidate(this.Instance)
 
+proc PaintTo*(this: TWinControl, DC: HDC, X: int32, Y: int32)  =
+  WinControl_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TWinControl, AControl: TControl)  =
   WinControl_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -1026,11 +1072,54 @@ proc AnchorHorizontalCenterTo*(this: TWinControl, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TWinControl, ASibling: TControl) =
   WinControl_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TWinControl, ASide: TAnchorKind, ASibling: TControl) =
+  WinControl_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TWinControl, ATheAlign: TAlign, ASpace: int32) =
   WinControl_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TWinControl, ASpace: int32) =
   WinControl_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TWinControl, ASize: int32): int32 =
+  return WinControl_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TWinControl, ASize: int32): int32 =
+  return WinControl_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TWinControl, ASize: int32): int32 =
+  return WinControl_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TWinControl, ASize: int32): int32 =
+  return WinControl_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TWinControl, ASize: int32): int32 =
+  return WinControl_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TWinControl, ASize: int32): int32 =
+  return WinControl_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TWinControl, ASize: int32): int32 =
+  return WinControl_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TWinControl, ASize: int32): int32 =
+  return WinControl_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TWinControl, ASize: int32): int32 =
+  return WinControl_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TWinControl, ASize: int32): int32 =
+  return WinControl_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TWinControl, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  WinControl_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TWinControl, ADesignTimePPI: int32) =
+  WinControl_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TWinControl, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  WinControl_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc DockClientCount*(this: TWinControl): int32  =
   return WinControl_GetDockClientCount(this.Instance)
@@ -1582,6 +1671,9 @@ proc InsertControl*(this: TCheckBox, AControl: TControl) =
 proc Invalidate*(this: TCheckBox) =
   CheckBox_Invalidate(this.Instance)
 
+proc PaintTo*(this: TCheckBox, DC: HDC, X: int32, Y: int32) =
+  CheckBox_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TCheckBox, AControl: TControl) =
   CheckBox_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -1697,11 +1789,54 @@ proc AnchorHorizontalCenterTo*(this: TCheckBox, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TCheckBox, ASibling: TControl) =
   CheckBox_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TCheckBox, ASide: TAnchorKind, ASibling: TControl) =
+  CheckBox_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TCheckBox, ATheAlign: TAlign, ASpace: int32) =
   CheckBox_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TCheckBox, ASpace: int32) =
   CheckBox_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TCheckBox, ASize: int32): int32 =
+  return CheckBox_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TCheckBox, ASize: int32): int32 =
+  return CheckBox_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TCheckBox, ASize: int32): int32 =
+  return CheckBox_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TCheckBox, ASize: int32): int32 =
+  return CheckBox_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TCheckBox, ASize: int32): int32 =
+  return CheckBox_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TCheckBox, ASize: int32): int32 =
+  return CheckBox_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TCheckBox, ASize: int32): int32 =
+  return CheckBox_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TCheckBox, ASize: int32): int32 =
+  return CheckBox_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TCheckBox, ASize: int32): int32 =
+  return CheckBox_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TCheckBox, ASize: int32): int32 =
+  return CheckBox_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TCheckBox, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  CheckBox_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TCheckBox, ADesignTimePPI: int32) =
+  CheckBox_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TCheckBox, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  CheckBox_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc `OnChange=`*(this: TCheckBox, AEventId: TNotifyEvent)  =
   CheckBox_SetOnChange(this.Instance, AEventId)
@@ -2144,6 +2279,9 @@ proc InsertControl*(this: TRadioButton, AControl: TControl) =
 proc Invalidate*(this: TRadioButton) =
   RadioButton_Invalidate(this.Instance)
 
+proc PaintTo*(this: TRadioButton, DC: HDC, X: int32, Y: int32) =
+  RadioButton_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TRadioButton, AControl: TControl) =
   RadioButton_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -2259,11 +2397,54 @@ proc AnchorHorizontalCenterTo*(this: TRadioButton, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TRadioButton, ASibling: TControl) =
   RadioButton_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TRadioButton, ASide: TAnchorKind, ASibling: TControl) =
+  RadioButton_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TRadioButton, ATheAlign: TAlign, ASpace: int32) =
   RadioButton_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TRadioButton, ASpace: int32) =
   RadioButton_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TRadioButton, ASize: int32): int32 =
+  return RadioButton_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TRadioButton, ASize: int32): int32 =
+  return RadioButton_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TRadioButton, ASize: int32): int32 =
+  return RadioButton_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TRadioButton, ASize: int32): int32 =
+  return RadioButton_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TRadioButton, ASize: int32): int32 =
+  return RadioButton_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TRadioButton, ASize: int32): int32 =
+  return RadioButton_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TRadioButton, ASize: int32): int32 =
+  return RadioButton_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TRadioButton, ASize: int32): int32 =
+  return RadioButton_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TRadioButton, ASize: int32): int32 =
+  return RadioButton_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TRadioButton, ASize: int32): int32 =
+  return RadioButton_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TRadioButton, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  RadioButton_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TRadioButton, ADesignTimePPI: int32) =
+  RadioButton_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TRadioButton, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  RadioButton_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc `OnChange=`*(this: TRadioButton, AEventId: TNotifyEvent)  =
   RadioButton_SetOnChange(this.Instance, AEventId)
@@ -2694,6 +2875,9 @@ proc InsertControl*(this: TGroupBox, AControl: TControl) =
 proc Invalidate*(this: TGroupBox) =
   GroupBox_Invalidate(this.Instance)
 
+proc PaintTo*(this: TGroupBox, DC: HDC, X: int32, Y: int32) =
+  GroupBox_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TGroupBox, AControl: TControl) =
   GroupBox_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -2809,11 +2993,54 @@ proc AnchorHorizontalCenterTo*(this: TGroupBox, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TGroupBox, ASibling: TControl) =
   GroupBox_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TGroupBox, ASide: TAnchorKind, ASibling: TControl) =
+  GroupBox_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TGroupBox, ATheAlign: TAlign, ASpace: int32) =
   GroupBox_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TGroupBox, ASpace: int32) =
   GroupBox_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TGroupBox, ASize: int32): int32 =
+  return GroupBox_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TGroupBox, ASize: int32): int32 =
+  return GroupBox_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TGroupBox, ASize: int32): int32 =
+  return GroupBox_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TGroupBox, ASize: int32): int32 =
+  return GroupBox_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TGroupBox, ASize: int32): int32 =
+  return GroupBox_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TGroupBox, ASize: int32): int32 =
+  return GroupBox_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TGroupBox, ASize: int32): int32 =
+  return GroupBox_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TGroupBox, ASize: int32): int32 =
+  return GroupBox_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TGroupBox, ASize: int32): int32 =
+  return GroupBox_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TGroupBox, ASize: int32): int32 =
+  return GroupBox_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TGroupBox, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  GroupBox_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TGroupBox, ADesignTimePPI: int32) =
+  GroupBox_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TGroupBox, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  GroupBox_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TGroupBox): TAlign  =
   return GroupBox_GetAlign(this.Instance)
@@ -3310,11 +3537,54 @@ proc AnchorHorizontalCenterTo*(this: TLabel, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TLabel, ASibling: TControl) =
   Label_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TLabel, ASide: TAnchorKind, ASibling: TControl) =
+  Label_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TLabel, ATheAlign: TAlign, ASpace: int32) =
   Label_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TLabel, ASpace: int32) =
   Label_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TLabel, ASize: int32): int32 =
+  return Label_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TLabel, ASize: int32): int32 =
+  return Label_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TLabel, ASize: int32): int32 =
+  return Label_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TLabel, ASize: int32): int32 =
+  return Label_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TLabel, ASize: int32): int32 =
+  return Label_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TLabel, ASize: int32): int32 =
+  return Label_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TLabel, ASize: int32): int32 =
+  return Label_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TLabel, ASize: int32): int32 =
+  return Label_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TLabel, ASize: int32): int32 =
+  return Label_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TLabel, ASize: int32): int32 =
+  return Label_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TLabel, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  Label_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TLabel, ADesignTimePPI: int32) =
+  Label_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TLabel, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  Label_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc OptimalFill*(this: TLabel): bool  =
   return Label_GetOptimalFill(this.Instance)
@@ -3716,6 +3986,9 @@ proc InsertControl*(this: TListBox, AControl: TControl) =
 proc Invalidate*(this: TListBox) =
   ListBox_Invalidate(this.Instance)
 
+proc PaintTo*(this: TListBox, DC: HDC, X: int32, Y: int32) =
+  ListBox_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TListBox, AControl: TControl) =
   ListBox_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -3831,11 +4104,54 @@ proc AnchorHorizontalCenterTo*(this: TListBox, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TListBox, ASibling: TControl) =
   ListBox_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TListBox, ASide: TAnchorKind, ASibling: TControl) =
+  ListBox_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TListBox, ATheAlign: TAlign, ASpace: int32) =
   ListBox_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TListBox, ASpace: int32) =
   ListBox_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TListBox, ASize: int32): int32 =
+  return ListBox_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TListBox, ASize: int32): int32 =
+  return ListBox_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TListBox, ASize: int32): int32 =
+  return ListBox_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TListBox, ASize: int32): int32 =
+  return ListBox_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TListBox, ASize: int32): int32 =
+  return ListBox_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TListBox, ASize: int32): int32 =
+  return ListBox_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TListBox, ASize: int32): int32 =
+  return ListBox_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TListBox, ASize: int32): int32 =
+  return ListBox_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TListBox, ASize: int32): int32 =
+  return ListBox_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TListBox, ASize: int32): int32 =
+  return ListBox_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TListBox, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  ListBox_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TListBox, ADesignTimePPI: int32) =
+  ListBox_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TListBox, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  ListBox_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc ClickOnSelChange*(this: TListBox): bool  =
   return ListBox_GetClickOnSelChange(this.Instance)
@@ -4356,6 +4672,9 @@ proc InsertControl*(this: TComboBox, AControl: TControl) =
 proc Invalidate*(this: TComboBox) =
   ComboBox_Invalidate(this.Instance)
 
+proc PaintTo*(this: TComboBox, DC: HDC, X: int32, Y: int32) =
+  ComboBox_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TComboBox, AControl: TControl) =
   ComboBox_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -4471,11 +4790,54 @@ proc AnchorHorizontalCenterTo*(this: TComboBox, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TComboBox, ASibling: TControl) =
   ComboBox_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TComboBox, ASide: TAnchorKind, ASibling: TControl) =
+  ComboBox_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TComboBox, ATheAlign: TAlign, ASpace: int32) =
   ComboBox_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TComboBox, ASpace: int32) =
   ComboBox_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TComboBox, ASize: int32): int32 =
+  return ComboBox_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TComboBox, ASize: int32): int32 =
+  return ComboBox_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TComboBox, ASize: int32): int32 =
+  return ComboBox_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TComboBox, ASize: int32): int32 =
+  return ComboBox_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TComboBox, ASize: int32): int32 =
+  return ComboBox_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TComboBox, ASize: int32): int32 =
+  return ComboBox_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TComboBox, ASize: int32): int32 =
+  return ComboBox_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TComboBox, ASize: int32): int32 =
+  return ComboBox_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TComboBox, ASize: int32): int32 =
+  return ComboBox_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TComboBox, ASize: int32): int32 =
+  return ComboBox_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TComboBox, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  ComboBox_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TComboBox, ADesignTimePPI: int32) =
+  ComboBox_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TComboBox, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  ComboBox_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TComboBox): TAlign  =
   return ComboBox_GetAlign(this.Instance)
@@ -4987,6 +5349,9 @@ proc InsertControl*(this: TPanel, AControl: TControl) =
 proc Invalidate*(this: TPanel) =
   Panel_Invalidate(this.Instance)
 
+proc PaintTo*(this: TPanel, DC: HDC, X: int32, Y: int32) =
+  Panel_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TPanel, AControl: TControl) =
   Panel_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -5102,11 +5467,54 @@ proc AnchorHorizontalCenterTo*(this: TPanel, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TPanel, ASibling: TControl) =
   Panel_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TPanel, ASide: TAnchorKind, ASibling: TControl) =
+  Panel_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TPanel, ATheAlign: TAlign, ASpace: int32) =
   Panel_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TPanel, ASpace: int32) =
   Panel_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TPanel, ASize: int32): int32 =
+  return Panel_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TPanel, ASize: int32): int32 =
+  return Panel_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TPanel, ASize: int32): int32 =
+  return Panel_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TPanel, ASize: int32): int32 =
+  return Panel_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TPanel, ASize: int32): int32 =
+  return Panel_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TPanel, ASize: int32): int32 =
+  return Panel_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TPanel, ASize: int32): int32 =
+  return Panel_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TPanel, ASize: int32): int32 =
+  return Panel_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TPanel, ASize: int32): int32 =
+  return Panel_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TPanel, ASize: int32): int32 =
+  return Panel_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TPanel, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  Panel_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TPanel, ADesignTimePPI: int32) =
+  Panel_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TPanel, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  Panel_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TPanel): TAlign  =
   return Panel_GetAlign(this.Instance)
@@ -5654,11 +6062,54 @@ proc AnchorHorizontalCenterTo*(this: TImage, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TImage, ASibling: TControl) =
   Image_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TImage, ASide: TAnchorKind, ASibling: TControl) =
+  Image_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TImage, ATheAlign: TAlign, ASpace: int32) =
   Image_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TImage, ASpace: int32) =
   Image_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TImage, ASize: int32): int32 =
+  return Image_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TImage, ASize: int32): int32 =
+  return Image_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TImage, ASize: int32): int32 =
+  return Image_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TImage, ASize: int32): int32 =
+  return Image_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TImage, ASize: int32): int32 =
+  return Image_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TImage, ASize: int32): int32 =
+  return Image_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TImage, ASize: int32): int32 =
+  return Image_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TImage, ASize: int32): int32 =
+  return Image_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TImage, ASize: int32): int32 =
+  return Image_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TImage, ASize: int32): int32 =
+  return Image_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TImage, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  Image_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TImage, ADesignTimePPI: int32) =
+  Image_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TImage, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  Image_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc AntialiasingMode*(this: TImage): TAntialiasingMode  =
   return Image_GetAntialiasingMode(this.Instance)
@@ -6086,11 +6537,54 @@ proc AnchorHorizontalCenterTo*(this: TLinkLabel, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TLinkLabel, ASibling: TControl) =
   LinkLabel_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TLinkLabel, ASide: TAnchorKind, ASibling: TControl) =
+  LinkLabel_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TLinkLabel, ATheAlign: TAlign, ASpace: int32) =
   LinkLabel_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TLinkLabel, ASpace: int32) =
   LinkLabel_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TLinkLabel, ASize: int32): int32 =
+  return LinkLabel_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TLinkLabel, ASize: int32): int32 =
+  return LinkLabel_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TLinkLabel, ASize: int32): int32 =
+  return LinkLabel_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TLinkLabel, ASize: int32): int32 =
+  return LinkLabel_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TLinkLabel, ASize: int32): int32 =
+  return LinkLabel_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TLinkLabel, ASize: int32): int32 =
+  return LinkLabel_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TLinkLabel, ASize: int32): int32 =
+  return LinkLabel_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TLinkLabel, ASize: int32): int32 =
+  return LinkLabel_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TLinkLabel, ASize: int32): int32 =
+  return LinkLabel_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TLinkLabel, ASize: int32): int32 =
+  return LinkLabel_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TLinkLabel, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  LinkLabel_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TLinkLabel, ADesignTimePPI: int32) =
+  LinkLabel_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TLinkLabel, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  LinkLabel_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TLinkLabel): TAlign  =
   return LinkLabel_GetAlign(this.Instance)
@@ -6503,11 +6997,54 @@ proc AnchorHorizontalCenterTo*(this: TSpeedButton, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TSpeedButton, ASibling: TControl) =
   SpeedButton_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TSpeedButton, ASide: TAnchorKind, ASibling: TControl) =
+  SpeedButton_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TSpeedButton, ATheAlign: TAlign, ASpace: int32) =
   SpeedButton_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TSpeedButton, ASpace: int32) =
   SpeedButton_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TSpeedButton, ASize: int32): int32 =
+  return SpeedButton_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TSpeedButton, ASize: int32): int32 =
+  return SpeedButton_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TSpeedButton, ASize: int32): int32 =
+  return SpeedButton_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TSpeedButton, ASize: int32): int32 =
+  return SpeedButton_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TSpeedButton, ASize: int32): int32 =
+  return SpeedButton_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TSpeedButton, ASize: int32): int32 =
+  return SpeedButton_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TSpeedButton, ASize: int32): int32 =
+  return SpeedButton_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TSpeedButton, ASize: int32): int32 =
+  return SpeedButton_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TSpeedButton, ASize: int32): int32 =
+  return SpeedButton_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TSpeedButton, ASize: int32): int32 =
+  return SpeedButton_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TSpeedButton, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  SpeedButton_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TSpeedButton, ADesignTimePPI: int32) =
+  SpeedButton_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TSpeedButton, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  SpeedButton_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc ImageIndex*(this: TSpeedButton): int32  =
   return SpeedButton_GetImageIndex(this.Instance)
@@ -6941,11 +7478,54 @@ proc AnchorHorizontalCenterTo*(this: TSplitter, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TSplitter, ASibling: TControl) =
   Splitter_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TSplitter, ASide: TAnchorKind, ASibling: TControl) =
+  Splitter_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TSplitter, ATheAlign: TAlign, ASpace: int32) =
   Splitter_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TSplitter, ASpace: int32) =
   Splitter_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TSplitter, ASize: int32): int32 =
+  return Splitter_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TSplitter, ASize: int32): int32 =
+  return Splitter_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TSplitter, ASize: int32): int32 =
+  return Splitter_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TSplitter, ASize: int32): int32 =
+  return Splitter_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TSplitter, ASize: int32): int32 =
+  return Splitter_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TSplitter, ASize: int32): int32 =
+  return Splitter_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TSplitter, ASize: int32): int32 =
+  return Splitter_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TSplitter, ASize: int32): int32 =
+  return Splitter_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TSplitter, ASize: int32): int32 =
+  return Splitter_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TSplitter, ASize: int32): int32 =
+  return Splitter_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TSplitter, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  Splitter_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TSplitter, ADesignTimePPI: int32) =
+  Splitter_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TSplitter, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  Splitter_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc ResizeAnchor*(this: TSplitter): TAnchorKind  =
   return Splitter_GetResizeAnchor(this.Instance)
@@ -7211,6 +7791,9 @@ proc InsertControl*(this: TRadioGroup, AControl: TControl) =
 proc Invalidate*(this: TRadioGroup) =
   RadioGroup_Invalidate(this.Instance)
 
+proc PaintTo*(this: TRadioGroup, DC: HDC, X: int32, Y: int32) =
+  RadioGroup_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TRadioGroup, AControl: TControl) =
   RadioGroup_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -7326,11 +7909,54 @@ proc AnchorHorizontalCenterTo*(this: TRadioGroup, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TRadioGroup, ASibling: TControl) =
   RadioGroup_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TRadioGroup, ASide: TAnchorKind, ASibling: TControl) =
+  RadioGroup_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TRadioGroup, ATheAlign: TAlign, ASpace: int32) =
   RadioGroup_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TRadioGroup, ASpace: int32) =
   RadioGroup_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TRadioGroup, ASize: int32): int32 =
+  return RadioGroup_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TRadioGroup, ASize: int32): int32 =
+  return RadioGroup_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TRadioGroup, ASize: int32): int32 =
+  return RadioGroup_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TRadioGroup, ASize: int32): int32 =
+  return RadioGroup_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TRadioGroup, ASize: int32): int32 =
+  return RadioGroup_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TRadioGroup, ASize: int32): int32 =
+  return RadioGroup_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TRadioGroup, ASize: int32): int32 =
+  return RadioGroup_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TRadioGroup, ASize: int32): int32 =
+  return RadioGroup_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TRadioGroup, ASize: int32): int32 =
+  return RadioGroup_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TRadioGroup, ASize: int32): int32 =
+  return RadioGroup_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TRadioGroup, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  RadioGroup_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TRadioGroup, ADesignTimePPI: int32) =
+  RadioGroup_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TRadioGroup, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  RadioGroup_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TRadioGroup): TAlign  =
   return RadioGroup_GetAlign(this.Instance)
@@ -7731,6 +8357,9 @@ proc InsertControl*(this: TStaticText, AControl: TControl) =
 proc Invalidate*(this: TStaticText) =
   StaticText_Invalidate(this.Instance)
 
+proc PaintTo*(this: TStaticText, DC: HDC, X: int32, Y: int32) =
+  StaticText_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TStaticText, AControl: TControl) =
   StaticText_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -7846,11 +8475,54 @@ proc AnchorHorizontalCenterTo*(this: TStaticText, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TStaticText, ASibling: TControl) =
   StaticText_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TStaticText, ASide: TAnchorKind, ASibling: TControl) =
+  StaticText_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TStaticText, ATheAlign: TAlign, ASpace: int32) =
   StaticText_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TStaticText, ASpace: int32) =
   StaticText_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TStaticText, ASize: int32): int32 =
+  return StaticText_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TStaticText, ASize: int32): int32 =
+  return StaticText_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TStaticText, ASize: int32): int32 =
+  return StaticText_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TStaticText, ASize: int32): int32 =
+  return StaticText_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TStaticText, ASize: int32): int32 =
+  return StaticText_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TStaticText, ASize: int32): int32 =
+  return StaticText_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TStaticText, ASize: int32): int32 =
+  return StaticText_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TStaticText, ASize: int32): int32 =
+  return StaticText_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TStaticText, ASize: int32): int32 =
+  return StaticText_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TStaticText, ASize: int32): int32 =
+  return StaticText_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TStaticText, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  StaticText_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TStaticText, ADesignTimePPI: int32) =
+  StaticText_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TStaticText, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  StaticText_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TStaticText): TAlign  =
   return StaticText_GetAlign(this.Instance)
@@ -8305,6 +8977,9 @@ proc InsertControl*(this: TColorBox, AControl: TControl) =
 proc Invalidate*(this: TColorBox) =
   ColorBox_Invalidate(this.Instance)
 
+proc PaintTo*(this: TColorBox, DC: HDC, X: int32, Y: int32) =
+  ColorBox_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TColorBox, AControl: TControl) =
   ColorBox_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -8420,11 +9095,54 @@ proc AnchorHorizontalCenterTo*(this: TColorBox, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TColorBox, ASibling: TControl) =
   ColorBox_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TColorBox, ASide: TAnchorKind, ASibling: TControl) =
+  ColorBox_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TColorBox, ATheAlign: TAlign, ASpace: int32) =
   ColorBox_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TColorBox, ASpace: int32) =
   ColorBox_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TColorBox, ASize: int32): int32 =
+  return ColorBox_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TColorBox, ASize: int32): int32 =
+  return ColorBox_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TColorBox, ASize: int32): int32 =
+  return ColorBox_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TColorBox, ASize: int32): int32 =
+  return ColorBox_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TColorBox, ASize: int32): int32 =
+  return ColorBox_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TColorBox, ASize: int32): int32 =
+  return ColorBox_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TColorBox, ASize: int32): int32 =
+  return ColorBox_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TColorBox, ASize: int32): int32 =
+  return ColorBox_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TColorBox, ASize: int32): int32 =
+  return ColorBox_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TColorBox, ASize: int32): int32 =
+  return ColorBox_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TColorBox, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  ColorBox_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TColorBox, ADesignTimePPI: int32) =
+  ColorBox_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TColorBox, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  ColorBox_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TColorBox): TAlign  =
   return ColorBox_GetAlign(this.Instance)
@@ -8937,6 +9655,9 @@ proc InsertControl*(this: TColorListBox, AControl: TControl) =
 proc Invalidate*(this: TColorListBox) =
   ColorListBox_Invalidate(this.Instance)
 
+proc PaintTo*(this: TColorListBox, DC: HDC, X: int32, Y: int32) =
+  ColorListBox_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TColorListBox, AControl: TControl) =
   ColorListBox_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -9052,11 +9773,54 @@ proc AnchorHorizontalCenterTo*(this: TColorListBox, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TColorListBox, ASibling: TControl) =
   ColorListBox_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TColorListBox, ASide: TAnchorKind, ASibling: TControl) =
+  ColorListBox_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TColorListBox, ATheAlign: TAlign, ASpace: int32) =
   ColorListBox_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TColorListBox, ASpace: int32) =
   ColorListBox_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TColorListBox, ASize: int32): int32 =
+  return ColorListBox_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TColorListBox, ASize: int32): int32 =
+  return ColorListBox_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TColorListBox, ASize: int32): int32 =
+  return ColorListBox_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TColorListBox, ASize: int32): int32 =
+  return ColorListBox_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TColorListBox, ASize: int32): int32 =
+  return ColorListBox_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TColorListBox, ASize: int32): int32 =
+  return ColorListBox_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TColorListBox, ASize: int32): int32 =
+  return ColorListBox_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TColorListBox, ASize: int32): int32 =
+  return ColorListBox_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TColorListBox, ASize: int32): int32 =
+  return ColorListBox_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TColorListBox, ASize: int32): int32 =
+  return ColorListBox_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TColorListBox, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  ColorListBox_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TColorListBox, ADesignTimePPI: int32) =
+  ColorListBox_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TColorListBox, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  ColorListBox_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TColorListBox): TAlign  =
   return ColorListBox_GetAlign(this.Instance)
@@ -9927,6 +10691,12 @@ proc Color*(this: TColorDialog): TColor  =
 proc `Color=`*(this: TColorDialog, AValue: TColor)  =
   ColorDialog_SetColor(this.Instance, AValue)
 
+proc CustomColors*(this: TColorDialog): TStrings  =
+  return ColorDialog_GetCustomColors(this.Instance).AsStrings
+
+proc `CustomColors=`*(this: TColorDialog, AValue: TStrings)  =
+  ColorDialog_SetCustomColors(this.Instance, CheckPtr(AValue))
+
 proc Handle*(this: TColorDialog): HWND  =
   return ColorDialog_GetHandle(this.Instance)
 
@@ -10648,6 +11418,9 @@ proc InsertControl*(this: TRichEdit, AControl: TControl) =
 proc Invalidate*(this: TRichEdit) =
   RichEdit_Invalidate(this.Instance)
 
+proc PaintTo*(this: TRichEdit, DC: HDC, X: int32, Y: int32) =
+  RichEdit_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TRichEdit, AControl: TControl) =
   RichEdit_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -10763,11 +11536,54 @@ proc AnchorHorizontalCenterTo*(this: TRichEdit, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TRichEdit, ASibling: TControl) =
   RichEdit_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TRichEdit, ASide: TAnchorKind, ASibling: TControl) =
+  RichEdit_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TRichEdit, ATheAlign: TAlign, ASpace: int32) =
   RichEdit_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TRichEdit, ASpace: int32) =
   RichEdit_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TRichEdit, ASize: int32): int32 =
+  return RichEdit_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TRichEdit, ASize: int32): int32 =
+  return RichEdit_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TRichEdit, ASize: int32): int32 =
+  return RichEdit_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TRichEdit, ASize: int32): int32 =
+  return RichEdit_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TRichEdit, ASize: int32): int32 =
+  return RichEdit_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TRichEdit, ASize: int32): int32 =
+  return RichEdit_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TRichEdit, ASize: int32): int32 =
+  return RichEdit_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TRichEdit, ASize: int32): int32 =
+  return RichEdit_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TRichEdit, ASize: int32): int32 =
+  return RichEdit_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TRichEdit, ASize: int32): int32 =
+  return RichEdit_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TRichEdit, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  RichEdit_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TRichEdit, ADesignTimePPI: int32) =
+  RichEdit_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TRichEdit, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  RichEdit_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TRichEdit): TAlign  =
   return RichEdit_GetAlign(this.Instance)
@@ -11327,6 +12143,9 @@ proc InsertControl*(this: TTrackBar, AControl: TControl) =
 proc Invalidate*(this: TTrackBar) =
   TrackBar_Invalidate(this.Instance)
 
+proc PaintTo*(this: TTrackBar, DC: HDC, X: int32, Y: int32) =
+  TrackBar_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TTrackBar, AControl: TControl) =
   TrackBar_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -11442,11 +12261,54 @@ proc AnchorHorizontalCenterTo*(this: TTrackBar, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TTrackBar, ASibling: TControl) =
   TrackBar_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TTrackBar, ASide: TAnchorKind, ASibling: TControl) =
+  TrackBar_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TTrackBar, ATheAlign: TAlign, ASpace: int32) =
   TrackBar_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TTrackBar, ASpace: int32) =
   TrackBar_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TTrackBar, ASize: int32): int32 =
+  return TrackBar_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TTrackBar, ASize: int32): int32 =
+  return TrackBar_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TTrackBar, ASize: int32): int32 =
+  return TrackBar_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TTrackBar, ASize: int32): int32 =
+  return TrackBar_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TTrackBar, ASize: int32): int32 =
+  return TrackBar_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TTrackBar, ASize: int32): int32 =
+  return TrackBar_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TTrackBar, ASize: int32): int32 =
+  return TrackBar_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TTrackBar, ASize: int32): int32 =
+  return TrackBar_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TTrackBar, ASize: int32): int32 =
+  return TrackBar_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TTrackBar, ASize: int32): int32 =
+  return TrackBar_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TTrackBar, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  TrackBar_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TTrackBar, ADesignTimePPI: int32) =
+  TrackBar_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TTrackBar, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  TrackBar_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TTrackBar): TAlign  =
   return TrackBar_GetAlign(this.Instance)
@@ -12096,6 +12958,9 @@ proc InsertControl*(this: TUpDown, AControl: TControl) =
 proc Invalidate*(this: TUpDown) =
   UpDown_Invalidate(this.Instance)
 
+proc PaintTo*(this: TUpDown, DC: HDC, X: int32, Y: int32) =
+  UpDown_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TUpDown, AControl: TControl) =
   UpDown_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -12211,11 +13076,54 @@ proc AnchorHorizontalCenterTo*(this: TUpDown, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TUpDown, ASibling: TControl) =
   UpDown_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TUpDown, ASide: TAnchorKind, ASibling: TControl) =
+  UpDown_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TUpDown, ATheAlign: TAlign, ASpace: int32) =
   UpDown_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TUpDown, ASpace: int32) =
   UpDown_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TUpDown, ASize: int32): int32 =
+  return UpDown_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TUpDown, ASize: int32): int32 =
+  return UpDown_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TUpDown, ASize: int32): int32 =
+  return UpDown_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TUpDown, ASize: int32): int32 =
+  return UpDown_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TUpDown, ASize: int32): int32 =
+  return UpDown_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TUpDown, ASize: int32): int32 =
+  return UpDown_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TUpDown, ASize: int32): int32 =
+  return UpDown_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TUpDown, ASize: int32): int32 =
+  return UpDown_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TUpDown, ASize: int32): int32 =
+  return UpDown_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TUpDown, ASize: int32): int32 =
+  return UpDown_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TUpDown, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  UpDown_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TUpDown, ADesignTimePPI: int32) =
+  UpDown_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TUpDown, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  UpDown_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Anchors*(this: TUpDown): TAnchors  =
   return UpDown_GetAnchors(this.Instance)
@@ -12610,6 +13518,9 @@ proc InsertControl*(this: TProgressBar, AControl: TControl) =
 proc Invalidate*(this: TProgressBar) =
   ProgressBar_Invalidate(this.Instance)
 
+proc PaintTo*(this: TProgressBar, DC: HDC, X: int32, Y: int32) =
+  ProgressBar_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TProgressBar, AControl: TControl) =
   ProgressBar_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -12725,11 +13636,54 @@ proc AnchorHorizontalCenterTo*(this: TProgressBar, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TProgressBar, ASibling: TControl) =
   ProgressBar_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TProgressBar, ASide: TAnchorKind, ASibling: TControl) =
+  ProgressBar_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TProgressBar, ATheAlign: TAlign, ASpace: int32) =
   ProgressBar_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TProgressBar, ASpace: int32) =
   ProgressBar_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TProgressBar, ASize: int32): int32 =
+  return ProgressBar_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TProgressBar, ASize: int32): int32 =
+  return ProgressBar_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TProgressBar, ASize: int32): int32 =
+  return ProgressBar_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TProgressBar, ASize: int32): int32 =
+  return ProgressBar_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TProgressBar, ASize: int32): int32 =
+  return ProgressBar_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TProgressBar, ASize: int32): int32 =
+  return ProgressBar_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TProgressBar, ASize: int32): int32 =
+  return ProgressBar_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TProgressBar, ASize: int32): int32 =
+  return ProgressBar_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TProgressBar, ASize: int32): int32 =
+  return ProgressBar_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TProgressBar, ASize: int32): int32 =
+  return ProgressBar_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TProgressBar, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  ProgressBar_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TProgressBar, ADesignTimePPI: int32) =
+  ProgressBar_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TProgressBar, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  ProgressBar_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TProgressBar): TAlign  =
   return ProgressBar_GetAlign(this.Instance)
@@ -13160,6 +14114,9 @@ proc InsertControl*(this: TDateTimePicker, AControl: TControl) =
 proc Invalidate*(this: TDateTimePicker) =
   DateTimePicker_Invalidate(this.Instance)
 
+proc PaintTo*(this: TDateTimePicker, DC: HDC, X: int32, Y: int32) =
+  DateTimePicker_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TDateTimePicker, AControl: TControl) =
   DateTimePicker_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -13275,11 +14232,54 @@ proc AnchorHorizontalCenterTo*(this: TDateTimePicker, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TDateTimePicker, ASibling: TControl) =
   DateTimePicker_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TDateTimePicker, ASide: TAnchorKind, ASibling: TControl) =
+  DateTimePicker_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TDateTimePicker, ATheAlign: TAlign, ASpace: int32) =
   DateTimePicker_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TDateTimePicker, ASpace: int32) =
   DateTimePicker_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TDateTimePicker, ASize: int32): int32 =
+  return DateTimePicker_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TDateTimePicker, ASize: int32): int32 =
+  return DateTimePicker_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TDateTimePicker, ASize: int32): int32 =
+  return DateTimePicker_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TDateTimePicker, ASize: int32): int32 =
+  return DateTimePicker_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TDateTimePicker, ASize: int32): int32 =
+  return DateTimePicker_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TDateTimePicker, ASize: int32): int32 =
+  return DateTimePicker_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TDateTimePicker, ASize: int32): int32 =
+  return DateTimePicker_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TDateTimePicker, ASize: int32): int32 =
+  return DateTimePicker_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TDateTimePicker, ASize: int32): int32 =
+  return DateTimePicker_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TDateTimePicker, ASize: int32): int32 =
+  return DateTimePicker_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TDateTimePicker, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  DateTimePicker_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TDateTimePicker, ADesignTimePPI: int32) =
+  DateTimePicker_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TDateTimePicker, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  DateTimePicker_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc ArrowShape*(this: TDateTimePicker): TArrowShape  =
   return DateTimePicker_GetArrowShape(this.Instance)
@@ -13824,6 +14824,9 @@ proc InsertControl*(this: TMonthCalendar, AControl: TControl) =
 proc Invalidate*(this: TMonthCalendar) =
   MonthCalendar_Invalidate(this.Instance)
 
+proc PaintTo*(this: TMonthCalendar, DC: HDC, X: int32, Y: int32) =
+  MonthCalendar_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TMonthCalendar, AControl: TControl) =
   MonthCalendar_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -13939,11 +14942,54 @@ proc AnchorHorizontalCenterTo*(this: TMonthCalendar, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TMonthCalendar, ASibling: TControl) =
   MonthCalendar_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TMonthCalendar, ASide: TAnchorKind, ASibling: TControl) =
+  MonthCalendar_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TMonthCalendar, ATheAlign: TAlign, ASpace: int32) =
   MonthCalendar_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TMonthCalendar, ASpace: int32) =
   MonthCalendar_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TMonthCalendar, ASize: int32): int32 =
+  return MonthCalendar_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TMonthCalendar, ASize: int32): int32 =
+  return MonthCalendar_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TMonthCalendar, ASize: int32): int32 =
+  return MonthCalendar_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TMonthCalendar, ASize: int32): int32 =
+  return MonthCalendar_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TMonthCalendar, ASize: int32): int32 =
+  return MonthCalendar_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TMonthCalendar, ASize: int32): int32 =
+  return MonthCalendar_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TMonthCalendar, ASize: int32): int32 =
+  return MonthCalendar_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TMonthCalendar, ASize: int32): int32 =
+  return MonthCalendar_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TMonthCalendar, ASize: int32): int32 =
+  return MonthCalendar_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TMonthCalendar, ASize: int32): int32 =
+  return MonthCalendar_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TMonthCalendar, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  MonthCalendar_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TMonthCalendar, ADesignTimePPI: int32) =
+  MonthCalendar_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TMonthCalendar, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  MonthCalendar_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc DateTime*(this: TMonthCalendar): uint32  =
   return MonthCalendar_GetDateTime(this.Instance)
@@ -14377,6 +15423,9 @@ proc InsertControl*(this: TListView, AControl: TControl) =
 proc Invalidate*(this: TListView) =
   ListView_Invalidate(this.Instance)
 
+proc PaintTo*(this: TListView, DC: HDC, X: int32, Y: int32) =
+  ListView_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TListView, AControl: TControl) =
   ListView_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -14492,11 +15541,54 @@ proc AnchorHorizontalCenterTo*(this: TListView, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TListView, ASibling: TControl) =
   ListView_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TListView, ASide: TAnchorKind, ASibling: TControl) =
+  ListView_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TListView, ATheAlign: TAlign, ASpace: int32) =
   ListView_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TListView, ASpace: int32) =
   ListView_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TListView, ASize: int32): int32 =
+  return ListView_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TListView, ASize: int32): int32 =
+  return ListView_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TListView, ASize: int32): int32 =
+  return ListView_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TListView, ASize: int32): int32 =
+  return ListView_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TListView, ASize: int32): int32 =
+  return ListView_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TListView, ASize: int32): int32 =
+  return ListView_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TListView, ASize: int32): int32 =
+  return ListView_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TListView, ASize: int32): int32 =
+  return ListView_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TListView, ASize: int32): int32 =
+  return ListView_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TListView, ASize: int32): int32 =
+  return ListView_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TListView, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  ListView_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TListView, ADesignTimePPI: int32) =
+  ListView_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TListView, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  ListView_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc AutoSort*(this: TListView): bool  =
   return ListView_GetAutoSort(this.Instance)
@@ -14861,13 +15953,13 @@ proc `OnCustomDrawItem=`*(this: TListView, AEventId: TLVCustomDrawItemEvent)  =
 proc `OnCustomDrawSubItem=`*(this: TListView, AEventId: TLVCustomDrawSubItemEvent)  =
   ListView_SetOnCustomDrawSubItem(this.Instance, AEventId)
 
-proc `OnData=`*(this: TListView, AEventId: TLVOwnerDataEvent)  =
+proc `OnData=`*(this: TListView, AEventId: TLVDataEvent)  =
   ListView_SetOnData(this.Instance, AEventId)
 
-proc `OnDataFind=`*(this: TListView, AEventId: TLVOwnerDataFindEvent)  =
+proc `OnDataFind=`*(this: TListView, AEventId: TLVDataFindEvent)  =
   ListView_SetOnDataFind(this.Instance, AEventId)
 
-proc `OnDataHint=`*(this: TListView, AEventId: TLVOwnerDataHintEvent)  =
+proc `OnDataHint=`*(this: TListView, AEventId: TLVDataHintEvent)  =
   ListView_SetOnDataHint(this.Instance, AEventId)
 
 proc `OnDblClick=`*(this: TListView, AEventId: TNotifyEvent)  =
@@ -15248,6 +16340,9 @@ proc InsertControl*(this: TTreeView, AControl: TControl) =
 proc Invalidate*(this: TTreeView) =
   TreeView_Invalidate(this.Instance)
 
+proc PaintTo*(this: TTreeView, DC: HDC, X: int32, Y: int32) =
+  TreeView_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TTreeView, AControl: TControl) =
   TreeView_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -15363,11 +16458,54 @@ proc AnchorHorizontalCenterTo*(this: TTreeView, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TTreeView, ASibling: TControl) =
   TreeView_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TTreeView, ASide: TAnchorKind, ASibling: TControl) =
+  TreeView_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TTreeView, ATheAlign: TAlign, ASpace: int32) =
   TreeView_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TTreeView, ASpace: int32) =
   TreeView_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TTreeView, ASize: int32): int32 =
+  return TreeView_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TTreeView, ASize: int32): int32 =
+  return TreeView_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TTreeView, ASize: int32): int32 =
+  return TreeView_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TTreeView, ASize: int32): int32 =
+  return TreeView_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TTreeView, ASize: int32): int32 =
+  return TreeView_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TTreeView, ASize: int32): int32 =
+  return TreeView_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TTreeView, ASize: int32): int32 =
+  return TreeView_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TTreeView, ASize: int32): int32 =
+  return TreeView_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TTreeView, ASize: int32): int32 =
+  return TreeView_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TTreeView, ASize: int32): int32 =
+  return TreeView_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TTreeView, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  TreeView_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TTreeView, ADesignTimePPI: int32) =
+  TreeView_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TTreeView, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  TreeView_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc DefaultItemHeight*(this: TTreeView): int32  =
   return TreeView_GetDefaultItemHeight(this.Instance)
@@ -16062,6 +17200,9 @@ proc InsertControl*(this: TStatusBar, AControl: TControl) =
 proc Invalidate*(this: TStatusBar) =
   StatusBar_Invalidate(this.Instance)
 
+proc PaintTo*(this: TStatusBar, DC: HDC, X: int32, Y: int32) =
+  StatusBar_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TStatusBar, AControl: TControl) =
   StatusBar_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -16174,11 +17315,54 @@ proc AnchorHorizontalCenterTo*(this: TStatusBar, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TStatusBar, ASibling: TControl) =
   StatusBar_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TStatusBar, ASide: TAnchorKind, ASibling: TControl) =
+  StatusBar_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TStatusBar, ATheAlign: TAlign, ASpace: int32) =
   StatusBar_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TStatusBar, ASpace: int32) =
   StatusBar_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TStatusBar, ASize: int32): int32 =
+  return StatusBar_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TStatusBar, ASize: int32): int32 =
+  return StatusBar_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TStatusBar, ASize: int32): int32 =
+  return StatusBar_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TStatusBar, ASize: int32): int32 =
+  return StatusBar_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TStatusBar, ASize: int32): int32 =
+  return StatusBar_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TStatusBar, ASize: int32): int32 =
+  return StatusBar_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TStatusBar, ASize: int32): int32 =
+  return StatusBar_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TStatusBar, ASize: int32): int32 =
+  return StatusBar_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TStatusBar, ASize: int32): int32 =
+  return StatusBar_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TStatusBar, ASize: int32): int32 =
+  return StatusBar_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TStatusBar, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  StatusBar_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TStatusBar, ADesignTimePPI: int32) =
+  StatusBar_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TStatusBar, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  StatusBar_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Action*(this: TStatusBar): TAction  =
   return StatusBar_GetAction(this.Instance).AsAction
@@ -16633,6 +17817,9 @@ proc InsertControl*(this: TToolBar, AControl: TControl) =
 proc Invalidate*(this: TToolBar) =
   ToolBar_Invalidate(this.Instance)
 
+proc PaintTo*(this: TToolBar, DC: HDC, X: int32, Y: int32) =
+  ToolBar_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TToolBar, AControl: TControl) =
   ToolBar_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -16748,11 +17935,54 @@ proc AnchorHorizontalCenterTo*(this: TToolBar, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TToolBar, ASibling: TControl) =
   ToolBar_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TToolBar, ASide: TAnchorKind, ASibling: TControl) =
+  ToolBar_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TToolBar, ATheAlign: TAlign, ASpace: int32) =
   ToolBar_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TToolBar, ASpace: int32) =
   ToolBar_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TToolBar, ASize: int32): int32 =
+  return ToolBar_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TToolBar, ASize: int32): int32 =
+  return ToolBar_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TToolBar, ASize: int32): int32 =
+  return ToolBar_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TToolBar, ASize: int32): int32 =
+  return ToolBar_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TToolBar, ASize: int32): int32 =
+  return ToolBar_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TToolBar, ASize: int32): int32 =
+  return ToolBar_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TToolBar, ASize: int32): int32 =
+  return ToolBar_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TToolBar, ASize: int32): int32 =
+  return ToolBar_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TToolBar, ASize: int32): int32 =
+  return ToolBar_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TToolBar, ASize: int32): int32 =
+  return ToolBar_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TToolBar, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  ToolBar_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TToolBar, ADesignTimePPI: int32) =
+  ToolBar_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TToolBar, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  ToolBar_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc ButtonCount*(this: TToolBar): int32  =
   return ToolBar_GetButtonCount(this.Instance)
@@ -17276,6 +18506,9 @@ proc InsertControl*(this: TBitBtn, AControl: TControl) =
 proc Invalidate*(this: TBitBtn) =
   BitBtn_Invalidate(this.Instance)
 
+proc PaintTo*(this: TBitBtn, DC: HDC, X: int32, Y: int32) =
+  BitBtn_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TBitBtn, AControl: TControl) =
   BitBtn_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -17391,11 +18624,54 @@ proc AnchorHorizontalCenterTo*(this: TBitBtn, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TBitBtn, ASibling: TControl) =
   BitBtn_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TBitBtn, ASide: TAnchorKind, ASibling: TControl) =
+  BitBtn_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TBitBtn, ATheAlign: TAlign, ASpace: int32) =
   BitBtn_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TBitBtn, ASpace: int32) =
   BitBtn_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TBitBtn, ASize: int32): int32 =
+  return BitBtn_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TBitBtn, ASize: int32): int32 =
+  return BitBtn_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TBitBtn, ASize: int32): int32 =
+  return BitBtn_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TBitBtn, ASize: int32): int32 =
+  return BitBtn_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TBitBtn, ASize: int32): int32 =
+  return BitBtn_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TBitBtn, ASize: int32): int32 =
+  return BitBtn_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TBitBtn, ASize: int32): int32 =
+  return BitBtn_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TBitBtn, ASize: int32): int32 =
+  return BitBtn_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TBitBtn, ASize: int32): int32 =
+  return BitBtn_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TBitBtn, ASize: int32): int32 =
+  return BitBtn_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TBitBtn, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  BitBtn_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TBitBtn, ADesignTimePPI: int32) =
+  BitBtn_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TBitBtn, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  BitBtn_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc DefaultCaption*(this: TBitBtn): bool  =
   return BitBtn_GetDefaultCaption(this.Instance)
@@ -18130,6 +19406,9 @@ proc InsertControl*(this: TMemo, AControl: TControl) =
 proc Invalidate*(this: TMemo) =
   Memo_Invalidate(this.Instance)
 
+proc PaintTo*(this: TMemo, DC: HDC, X: int32, Y: int32) =
+  Memo_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TMemo, AControl: TControl) =
   Memo_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -18245,11 +19524,54 @@ proc AnchorHorizontalCenterTo*(this: TMemo, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TMemo, ASibling: TControl) =
   Memo_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TMemo, ASide: TAnchorKind, ASibling: TControl) =
+  Memo_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TMemo, ATheAlign: TAlign, ASpace: int32) =
   Memo_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TMemo, ASpace: int32) =
   Memo_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TMemo, ASize: int32): int32 =
+  return Memo_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TMemo, ASize: int32): int32 =
+  return Memo_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TMemo, ASize: int32): int32 =
+  return Memo_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TMemo, ASize: int32): int32 =
+  return Memo_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TMemo, ASize: int32): int32 =
+  return Memo_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TMemo, ASize: int32): int32 =
+  return Memo_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TMemo, ASize: int32): int32 =
+  return Memo_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TMemo, ASize: int32): int32 =
+  return Memo_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TMemo, ASize: int32): int32 =
+  return Memo_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TMemo, ASize: int32): int32 =
+  return Memo_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TMemo, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  Memo_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TMemo, ADesignTimePPI: int32) =
+  Memo_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TMemo, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  Memo_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TMemo): TAlign  =
   return Memo_GetAlign(this.Instance)
@@ -20211,6 +21533,9 @@ proc InsertControl*(this: TPageControl, AControl: TControl) =
 proc Invalidate*(this: TPageControl) =
   PageControl_Invalidate(this.Instance)
 
+proc PaintTo*(this: TPageControl, DC: HDC, X: int32, Y: int32) =
+  PageControl_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TPageControl, AControl: TControl) =
   PageControl_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -20326,11 +21651,54 @@ proc AnchorHorizontalCenterTo*(this: TPageControl, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TPageControl, ASibling: TControl) =
   PageControl_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TPageControl, ASide: TAnchorKind, ASibling: TControl) =
+  PageControl_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TPageControl, ATheAlign: TAlign, ASpace: int32) =
   PageControl_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TPageControl, ASpace: int32) =
   PageControl_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TPageControl, ASize: int32): int32 =
+  return PageControl_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TPageControl, ASize: int32): int32 =
+  return PageControl_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TPageControl, ASize: int32): int32 =
+  return PageControl_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TPageControl, ASize: int32): int32 =
+  return PageControl_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TPageControl, ASize: int32): int32 =
+  return PageControl_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TPageControl, ASize: int32): int32 =
+  return PageControl_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TPageControl, ASize: int32): int32 =
+  return PageControl_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TPageControl, ASize: int32): int32 =
+  return PageControl_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TPageControl, ASize: int32): int32 =
+  return PageControl_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TPageControl, ASize: int32): int32 =
+  return PageControl_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TPageControl, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  PageControl_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TPageControl, ADesignTimePPI: int32) =
+  PageControl_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TPageControl, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  PageControl_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Options*(this: TPageControl): TCTabControlOptions  =
   return PageControl_GetOptions(this.Instance)
@@ -20794,6 +22162,9 @@ proc InsertControl*(this: TTabSheet, AControl: TControl) =
 proc Invalidate*(this: TTabSheet) =
   TabSheet_Invalidate(this.Instance)
 
+proc PaintTo*(this: TTabSheet, DC: HDC, X: int32, Y: int32) =
+  TabSheet_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TTabSheet, AControl: TControl) =
   TabSheet_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -20909,11 +22280,54 @@ proc AnchorHorizontalCenterTo*(this: TTabSheet, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TTabSheet, ASibling: TControl) =
   TabSheet_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TTabSheet, ASide: TAnchorKind, ASibling: TControl) =
+  TabSheet_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TTabSheet, ATheAlign: TAlign, ASpace: int32) =
   TabSheet_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TTabSheet, ASpace: int32) =
   TabSheet_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TTabSheet, ASize: int32): int32 =
+  return TabSheet_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TTabSheet, ASize: int32): int32 =
+  return TabSheet_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TTabSheet, ASize: int32): int32 =
+  return TabSheet_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TTabSheet, ASize: int32): int32 =
+  return TabSheet_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TTabSheet, ASize: int32): int32 =
+  return TabSheet_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TTabSheet, ASize: int32): int32 =
+  return TabSheet_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TTabSheet, ASize: int32): int32 =
+  return TabSheet_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TTabSheet, ASize: int32): int32 =
+  return TabSheet_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TTabSheet, ASize: int32): int32 =
+  return TabSheet_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TTabSheet, ASize: int32): int32 =
+  return TabSheet_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TTabSheet, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  TabSheet_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TTabSheet, ADesignTimePPI: int32) =
+  TabSheet_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TTabSheet, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  TabSheet_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc PageControl*(this: TTabSheet): TPageControl  =
   return TabSheet_GetPageControl(this.Instance).AsPageControl
@@ -21332,6 +22746,9 @@ proc InsertControl*(this: TButton, AControl: TControl) =
 proc Invalidate*(this: TButton) =
   Button_Invalidate(this.Instance)
 
+proc PaintTo*(this: TButton, DC: HDC, X: int32, Y: int32) =
+  Button_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TButton, AControl: TControl) =
   Button_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -21447,11 +22864,54 @@ proc AnchorHorizontalCenterTo*(this: TButton, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TButton, ASibling: TControl) =
   Button_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TButton, ASide: TAnchorKind, ASibling: TControl) =
+  Button_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TButton, ATheAlign: TAlign, ASpace: int32) =
   Button_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TButton, ASpace: int32) =
   Button_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TButton, ASize: int32): int32 =
+  return Button_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TButton, ASize: int32): int32 =
+  return Button_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TButton, ASize: int32): int32 =
+  return Button_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TButton, ASize: int32): int32 =
+  return Button_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TButton, ASize: int32): int32 =
+  return Button_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TButton, ASize: int32): int32 =
+  return Button_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TButton, ASize: int32): int32 =
+  return Button_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TButton, ASize: int32): int32 =
+  return Button_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TButton, ASize: int32): int32 =
+  return Button_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TButton, ASize: int32): int32 =
+  return Button_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TButton, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  Button_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TButton, ADesignTimePPI: int32) =
+  Button_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TButton, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  Button_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Action*(this: TButton): TAction  =
   return Button_GetAction(this.Instance).AsAction
@@ -21894,6 +23354,9 @@ proc InsertControl*(this: TEdit, AControl: TControl) =
 proc Invalidate*(this: TEdit) =
   Edit_Invalidate(this.Instance)
 
+proc PaintTo*(this: TEdit, DC: HDC, X: int32, Y: int32) =
+  Edit_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TEdit, AControl: TControl) =
   Edit_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -22009,11 +23472,54 @@ proc AnchorHorizontalCenterTo*(this: TEdit, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TEdit, ASibling: TControl) =
   Edit_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TEdit, ASide: TAnchorKind, ASibling: TControl) =
+  Edit_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TEdit, ATheAlign: TAlign, ASpace: int32) =
   Edit_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TEdit, ASpace: int32) =
   Edit_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TEdit, ASize: int32): int32 =
+  return Edit_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TEdit, ASize: int32): int32 =
+  return Edit_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TEdit, ASize: int32): int32 =
+  return Edit_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TEdit, ASize: int32): int32 =
+  return Edit_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TEdit, ASize: int32): int32 =
+  return Edit_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TEdit, ASize: int32): int32 =
+  return Edit_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TEdit, ASize: int32): int32 =
+  return Edit_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TEdit, ASize: int32): int32 =
+  return Edit_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TEdit, ASize: int32): int32 =
+  return Edit_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TEdit, ASize: int32): int32 =
+  return Edit_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TEdit, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  Edit_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TEdit, ADesignTimePPI: int32) =
+  Edit_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TEdit, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  Edit_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TEdit): TAlign  =
   return Edit_GetAlign(this.Instance)
@@ -23080,6 +24586,9 @@ proc InsertControl*(this: TSpinEdit, AControl: TControl) =
 proc Invalidate*(this: TSpinEdit) =
   SpinEdit_Invalidate(this.Instance)
 
+proc PaintTo*(this: TSpinEdit, DC: HDC, X: int32, Y: int32) =
+  SpinEdit_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TSpinEdit, AControl: TControl) =
   SpinEdit_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -23195,11 +24704,54 @@ proc AnchorHorizontalCenterTo*(this: TSpinEdit, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TSpinEdit, ASibling: TControl) =
   SpinEdit_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TSpinEdit, ASide: TAnchorKind, ASibling: TControl) =
+  SpinEdit_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TSpinEdit, ATheAlign: TAlign, ASpace: int32) =
   SpinEdit_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TSpinEdit, ASpace: int32) =
   SpinEdit_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TSpinEdit, ASize: int32): int32 =
+  return SpinEdit_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TSpinEdit, ASize: int32): int32 =
+  return SpinEdit_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TSpinEdit, ASize: int32): int32 =
+  return SpinEdit_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TSpinEdit, ASize: int32): int32 =
+  return SpinEdit_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TSpinEdit, ASize: int32): int32 =
+  return SpinEdit_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TSpinEdit, ASize: int32): int32 =
+  return SpinEdit_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TSpinEdit, ASize: int32): int32 =
+  return SpinEdit_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TSpinEdit, ASize: int32): int32 =
+  return SpinEdit_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TSpinEdit, ASize: int32): int32 =
+  return SpinEdit_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TSpinEdit, ASize: int32): int32 =
+  return SpinEdit_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TSpinEdit, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  SpinEdit_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TSpinEdit, ADesignTimePPI: int32) =
+  SpinEdit_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TSpinEdit, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  SpinEdit_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Anchors*(this: TSpinEdit): TAnchors  =
   return SpinEdit_GetAnchors(this.Instance)
@@ -23702,6 +25254,9 @@ proc InsertControl*(this: TMiniWebview, AControl: TControl) =
 proc Invalidate*(this: TMiniWebview) =
   MiniWebview_Invalidate(this.Instance)
 
+proc PaintTo*(this: TMiniWebview, DC: HDC, X: int32, Y: int32) =
+  MiniWebview_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TMiniWebview, AControl: TControl) =
   MiniWebview_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -23811,11 +25366,54 @@ proc AnchorHorizontalCenterTo*(this: TMiniWebview, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TMiniWebview, ASibling: TControl) =
   MiniWebview_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TMiniWebview, ASide: TAnchorKind, ASibling: TControl) =
+  MiniWebview_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TMiniWebview, ATheAlign: TAlign, ASpace: int32) =
   MiniWebview_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TMiniWebview, ASpace: int32) =
   MiniWebview_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TMiniWebview, ASize: int32): int32 =
+  return MiniWebview_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TMiniWebview, ASize: int32): int32 =
+  return MiniWebview_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TMiniWebview, ASize: int32): int32 =
+  return MiniWebview_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TMiniWebview, ASize: int32): int32 =
+  return MiniWebview_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TMiniWebview, ASize: int32): int32 =
+  return MiniWebview_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TMiniWebview, ASize: int32): int32 =
+  return MiniWebview_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TMiniWebview, ASize: int32): int32 =
+  return MiniWebview_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TMiniWebview, ASize: int32): int32 =
+  return MiniWebview_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TMiniWebview, ASize: int32): int32 =
+  return MiniWebview_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TMiniWebview, ASize: int32): int32 =
+  return MiniWebview_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TMiniWebview, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  MiniWebview_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TMiniWebview, ADesignTimePPI: int32) =
+  MiniWebview_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TMiniWebview, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  MiniWebview_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc ReadyState*(this: TMiniWebview): TReadyState  =
   return MiniWebview_GetReadyState(this.Instance)
@@ -25294,11 +26892,54 @@ proc AnchorHorizontalCenterTo*(this: TToolButton, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TToolButton, ASibling: TControl) =
   ToolButton_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TToolButton, ASide: TAnchorKind, ASibling: TControl) =
+  ToolButton_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TToolButton, ATheAlign: TAlign, ASpace: int32) =
   ToolButton_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TToolButton, ASpace: int32) =
   ToolButton_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TToolButton, ASize: int32): int32 =
+  return ToolButton_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TToolButton, ASize: int32): int32 =
+  return ToolButton_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TToolButton, ASize: int32): int32 =
+  return ToolButton_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TToolButton, ASize: int32): int32 =
+  return ToolButton_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TToolButton, ASize: int32): int32 =
+  return ToolButton_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TToolButton, ASize: int32): int32 =
+  return ToolButton_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TToolButton, ASize: int32): int32 =
+  return ToolButton_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TToolButton, ASize: int32): int32 =
+  return ToolButton_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TToolButton, ASize: int32): int32 =
+  return ToolButton_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TToolButton, ASize: int32): int32 =
+  return ToolButton_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TToolButton, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  ToolButton_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TToolButton, ADesignTimePPI: int32) =
+  ToolButton_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TToolButton, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  ToolButton_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Index*(this: TToolButton): int32  =
   return ToolButton_GetIndex(this.Instance)
@@ -26148,11 +27789,54 @@ proc AnchorHorizontalCenterTo*(this: TPaintBox, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TPaintBox, ASibling: TControl) =
   PaintBox_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TPaintBox, ASide: TAnchorKind, ASibling: TControl) =
+  PaintBox_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TPaintBox, ATheAlign: TAlign, ASpace: int32) =
   PaintBox_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TPaintBox, ASpace: int32) =
   PaintBox_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TPaintBox, ASize: int32): int32 =
+  return PaintBox_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TPaintBox, ASize: int32): int32 =
+  return PaintBox_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TPaintBox, ASize: int32): int32 =
+  return PaintBox_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TPaintBox, ASize: int32): int32 =
+  return PaintBox_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TPaintBox, ASize: int32): int32 =
+  return PaintBox_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TPaintBox, ASize: int32): int32 =
+  return PaintBox_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TPaintBox, ASize: int32): int32 =
+  return PaintBox_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TPaintBox, ASize: int32): int32 =
+  return PaintBox_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TPaintBox, ASize: int32): int32 =
+  return PaintBox_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TPaintBox, ASize: int32): int32 =
+  return PaintBox_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TPaintBox, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  PaintBox_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TPaintBox, ADesignTimePPI: int32) =
+  PaintBox_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TPaintBox, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  PaintBox_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Canvas*(this: TPaintBox): TCanvas  =
   return PaintBox_GetCanvas(this.Instance).AsCanvas
@@ -26656,6 +28340,9 @@ proc InsertControl*(this: TForm, AControl: TControl) =
 proc Invalidate*(this: TForm) =
   Form_Invalidate(this.Instance)
 
+proc PaintTo*(this: TForm, DC: HDC, X: int32, Y: int32) =
+  Form_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TForm, AControl: TControl) =
   Form_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -26762,11 +28449,54 @@ proc AnchorHorizontalCenterTo*(this: TForm, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TForm, ASibling: TControl) =
   Form_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TForm, ASide: TAnchorKind, ASibling: TControl) =
+  Form_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TForm, ATheAlign: TAlign, ASpace: int32) =
   Form_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TForm, ASpace: int32) =
   Form_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TForm, ASize: int32): int32 =
+  return Form_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TForm, ASize: int32): int32 =
+  return Form_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TForm, ASize: int32): int32 =
+  return Form_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TForm, ASize: int32): int32 =
+  return Form_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TForm, ASize: int32): int32 =
+  return Form_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TForm, ASize: int32): int32 =
+  return Form_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TForm, ASize: int32): int32 =
+  return Form_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TForm, ASize: int32): int32 =
+  return Form_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TForm, ASize: int32): int32 =
+  return Form_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TForm, ASize: int32): int32 =
+  return Form_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TForm, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  Form_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TForm, ADesignTimePPI: int32) =
+  Form_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TForm, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  Form_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc AllowDropFiles*(this: TForm): bool  =
   return Form_GetAllowDropFiles(this.Instance)
@@ -26782,6 +28512,12 @@ proc ShowInTaskBar*(this: TForm): TShowInTaskbar  =
 
 proc `ShowInTaskBar=`*(this: TForm, AValue: TShowInTaskbar)  =
   Form_SetShowInTaskBar(this.Instance, AValue)
+
+proc DesignTimePPI*(this: TForm): int32  =
+  return Form_GetDesignTimePPI(this.Instance)
+
+proc `DesignTimePPI=`*(this: TForm, AValue: int32)  =
+  Form_SetDesignTimePPI(this.Instance, AValue)
 
 proc Action*(this: TForm): TAction  =
   return Form_GetAction(this.Instance).AsAction
@@ -27587,6 +29323,9 @@ proc InsertControl*(this: TScrollBar, AControl: TControl) =
 proc Invalidate*(this: TScrollBar) =
   ScrollBar_Invalidate(this.Instance)
 
+proc PaintTo*(this: TScrollBar, DC: HDC, X: int32, Y: int32) =
+  ScrollBar_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TScrollBar, AControl: TControl) =
   ScrollBar_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -27702,11 +29441,54 @@ proc AnchorHorizontalCenterTo*(this: TScrollBar, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TScrollBar, ASibling: TControl) =
   ScrollBar_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TScrollBar, ASide: TAnchorKind, ASibling: TControl) =
+  ScrollBar_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TScrollBar, ATheAlign: TAlign, ASpace: int32) =
   ScrollBar_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TScrollBar, ASpace: int32) =
   ScrollBar_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TScrollBar, ASize: int32): int32 =
+  return ScrollBar_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TScrollBar, ASize: int32): int32 =
+  return ScrollBar_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TScrollBar, ASize: int32): int32 =
+  return ScrollBar_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TScrollBar, ASize: int32): int32 =
+  return ScrollBar_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TScrollBar, ASize: int32): int32 =
+  return ScrollBar_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TScrollBar, ASize: int32): int32 =
+  return ScrollBar_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TScrollBar, ASize: int32): int32 =
+  return ScrollBar_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TScrollBar, ASize: int32): int32 =
+  return ScrollBar_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TScrollBar, ASize: int32): int32 =
+  return ScrollBar_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TScrollBar, ASize: int32): int32 =
+  return ScrollBar_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TScrollBar, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  ScrollBar_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TScrollBar, ADesignTimePPI: int32) =
+  ScrollBar_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TScrollBar, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  ScrollBar_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TScrollBar): TAlign  =
   return ScrollBar_GetAlign(this.Instance)
@@ -28140,6 +29922,9 @@ proc InsertControl*(this: TMaskEdit, AControl: TControl) =
 proc Invalidate*(this: TMaskEdit) =
   MaskEdit_Invalidate(this.Instance)
 
+proc PaintTo*(this: TMaskEdit, DC: HDC, X: int32, Y: int32) =
+  MaskEdit_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TMaskEdit, AControl: TControl) =
   MaskEdit_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -28252,11 +30037,54 @@ proc AnchorHorizontalCenterTo*(this: TMaskEdit, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TMaskEdit, ASibling: TControl) =
   MaskEdit_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TMaskEdit, ASide: TAnchorKind, ASibling: TControl) =
+  MaskEdit_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TMaskEdit, ATheAlign: TAlign, ASpace: int32) =
   MaskEdit_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TMaskEdit, ASpace: int32) =
   MaskEdit_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TMaskEdit, ASize: int32): int32 =
+  return MaskEdit_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TMaskEdit, ASize: int32): int32 =
+  return MaskEdit_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TMaskEdit, ASize: int32): int32 =
+  return MaskEdit_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TMaskEdit, ASize: int32): int32 =
+  return MaskEdit_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TMaskEdit, ASize: int32): int32 =
+  return MaskEdit_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TMaskEdit, ASize: int32): int32 =
+  return MaskEdit_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TMaskEdit, ASize: int32): int32 =
+  return MaskEdit_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TMaskEdit, ASize: int32): int32 =
+  return MaskEdit_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TMaskEdit, ASize: int32): int32 =
+  return MaskEdit_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TMaskEdit, ASize: int32): int32 =
+  return MaskEdit_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TMaskEdit, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  MaskEdit_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TMaskEdit, ADesignTimePPI: int32) =
+  MaskEdit_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TMaskEdit, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  MaskEdit_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TMaskEdit): TAlign  =
   return MaskEdit_GetAlign(this.Instance)
@@ -28840,11 +30668,54 @@ proc AnchorHorizontalCenterTo*(this: TShape, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TShape, ASibling: TControl) =
   Shape_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TShape, ASide: TAnchorKind, ASibling: TControl) =
+  Shape_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TShape, ATheAlign: TAlign, ASpace: int32) =
   Shape_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TShape, ASpace: int32) =
   Shape_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TShape, ASize: int32): int32 =
+  return Shape_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TShape, ASize: int32): int32 =
+  return Shape_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TShape, ASize: int32): int32 =
+  return Shape_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TShape, ASize: int32): int32 =
+  return Shape_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TShape, ASize: int32): int32 =
+  return Shape_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TShape, ASize: int32): int32 =
+  return Shape_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TShape, ASize: int32): int32 =
+  return Shape_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TShape, ASize: int32): int32 =
+  return Shape_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TShape, ASize: int32): int32 =
+  return Shape_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TShape, ASize: int32): int32 =
+  return Shape_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TShape, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  Shape_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TShape, ADesignTimePPI: int32) =
+  Shape_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TShape, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  Shape_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TShape): TAlign  =
   return Shape_GetAlign(this.Instance)
@@ -29215,11 +31086,54 @@ proc AnchorHorizontalCenterTo*(this: TBevel, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TBevel, ASibling: TControl) =
   Bevel_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TBevel, ASide: TAnchorKind, ASibling: TControl) =
+  Bevel_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TBevel, ATheAlign: TAlign, ASpace: int32) =
   Bevel_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TBevel, ASpace: int32) =
   Bevel_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TBevel, ASize: int32): int32 =
+  return Bevel_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TBevel, ASize: int32): int32 =
+  return Bevel_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TBevel, ASize: int32): int32 =
+  return Bevel_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TBevel, ASize: int32): int32 =
+  return Bevel_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TBevel, ASize: int32): int32 =
+  return Bevel_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TBevel, ASize: int32): int32 =
+  return Bevel_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TBevel, ASize: int32): int32 =
+  return Bevel_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TBevel, ASize: int32): int32 =
+  return Bevel_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TBevel, ASize: int32): int32 =
+  return Bevel_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TBevel, ASize: int32): int32 =
+  return Bevel_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TBevel, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  Bevel_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TBevel, ADesignTimePPI: int32) =
+  Bevel_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TBevel, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  Bevel_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TBevel): TAlign  =
   return Bevel_GetAlign(this.Instance)
@@ -29476,6 +31390,9 @@ proc InsertControl*(this: TScrollBox, AControl: TControl) =
 proc Invalidate*(this: TScrollBox) =
   ScrollBox_Invalidate(this.Instance)
 
+proc PaintTo*(this: TScrollBox, DC: HDC, X: int32, Y: int32) =
+  ScrollBox_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TScrollBox, AControl: TControl) =
   ScrollBox_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -29591,11 +31508,54 @@ proc AnchorHorizontalCenterTo*(this: TScrollBox, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TScrollBox, ASibling: TControl) =
   ScrollBox_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TScrollBox, ASide: TAnchorKind, ASibling: TControl) =
+  ScrollBox_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TScrollBox, ATheAlign: TAlign, ASpace: int32) =
   ScrollBox_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TScrollBox, ASpace: int32) =
   ScrollBox_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TScrollBox, ASize: int32): int32 =
+  return ScrollBox_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TScrollBox, ASize: int32): int32 =
+  return ScrollBox_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TScrollBox, ASize: int32): int32 =
+  return ScrollBox_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TScrollBox, ASize: int32): int32 =
+  return ScrollBox_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TScrollBox, ASize: int32): int32 =
+  return ScrollBox_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TScrollBox, ASize: int32): int32 =
+  return ScrollBox_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TScrollBox, ASize: int32): int32 =
+  return ScrollBox_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TScrollBox, ASize: int32): int32 =
+  return ScrollBox_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TScrollBox, ASize: int32): int32 =
+  return ScrollBox_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TScrollBox, ASize: int32): int32 =
+  return ScrollBox_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TScrollBox, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  ScrollBox_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TScrollBox, ADesignTimePPI: int32) =
+  ScrollBox_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TScrollBox, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  ScrollBox_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TScrollBox): TAlign  =
   return ScrollBox_GetAlign(this.Instance)
@@ -30081,6 +32041,9 @@ proc InsertControl*(this: TCheckListBox, AControl: TControl) =
 proc Invalidate*(this: TCheckListBox) =
   CheckListBox_Invalidate(this.Instance)
 
+proc PaintTo*(this: TCheckListBox, DC: HDC, X: int32, Y: int32) =
+  CheckListBox_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TCheckListBox, AControl: TControl) =
   CheckListBox_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -30196,11 +32159,54 @@ proc AnchorHorizontalCenterTo*(this: TCheckListBox, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TCheckListBox, ASibling: TControl) =
   CheckListBox_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TCheckListBox, ASide: TAnchorKind, ASibling: TControl) =
+  CheckListBox_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TCheckListBox, ATheAlign: TAlign, ASpace: int32) =
   CheckListBox_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TCheckListBox, ASpace: int32) =
   CheckListBox_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TCheckListBox, ASize: int32): int32 =
+  return CheckListBox_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TCheckListBox, ASize: int32): int32 =
+  return CheckListBox_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TCheckListBox, ASize: int32): int32 =
+  return CheckListBox_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TCheckListBox, ASize: int32): int32 =
+  return CheckListBox_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TCheckListBox, ASize: int32): int32 =
+  return CheckListBox_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TCheckListBox, ASize: int32): int32 =
+  return CheckListBox_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TCheckListBox, ASize: int32): int32 =
+  return CheckListBox_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TCheckListBox, ASize: int32): int32 =
+  return CheckListBox_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TCheckListBox, ASize: int32): int32 =
+  return CheckListBox_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TCheckListBox, ASize: int32): int32 =
+  return CheckListBox_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TCheckListBox, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  CheckListBox_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TCheckListBox, ADesignTimePPI: int32) =
+  CheckListBox_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TCheckListBox, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  CheckListBox_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc `OnClickCheck=`*(this: TCheckListBox, AEventId: TNotifyEvent)  =
   CheckListBox_SetOnClickCheck(this.Instance, AEventId)
@@ -30784,11 +32790,54 @@ proc AnchorHorizontalCenterTo*(this: TGauge, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TGauge, ASibling: TControl) =
   Gauge_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TGauge, ASide: TAnchorKind, ASibling: TControl) =
+  Gauge_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TGauge, ATheAlign: TAlign, ASpace: int32) =
   Gauge_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TGauge, ASpace: int32) =
   Gauge_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TGauge, ASize: int32): int32 =
+  return Gauge_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TGauge, ASize: int32): int32 =
+  return Gauge_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TGauge, ASize: int32): int32 =
+  return Gauge_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TGauge, ASize: int32): int32 =
+  return Gauge_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TGauge, ASize: int32): int32 =
+  return Gauge_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TGauge, ASize: int32): int32 =
+  return Gauge_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TGauge, ASize: int32): int32 =
+  return Gauge_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TGauge, ASize: int32): int32 =
+  return Gauge_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TGauge, ASize: int32): int32 =
+  return Gauge_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TGauge, ASize: int32): int32 =
+  return Gauge_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TGauge, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  Gauge_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TGauge, ADesignTimePPI: int32) =
+  Gauge_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TGauge, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  Gauge_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc PercentDone*(this: TGauge): int32  =
   return Gauge_GetPercentDone(this.Instance)
@@ -31177,11 +33226,54 @@ proc AnchorHorizontalCenterTo*(this: TImageButton, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TImageButton, ASibling: TControl) =
   ImageButton_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TImageButton, ASide: TAnchorKind, ASibling: TControl) =
+  ImageButton_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TImageButton, ATheAlign: TAlign, ASpace: int32) =
   ImageButton_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TImageButton, ASpace: int32) =
   ImageButton_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TImageButton, ASize: int32): int32 =
+  return ImageButton_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TImageButton, ASize: int32): int32 =
+  return ImageButton_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TImageButton, ASize: int32): int32 =
+  return ImageButton_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TImageButton, ASize: int32): int32 =
+  return ImageButton_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TImageButton, ASize: int32): int32 =
+  return ImageButton_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TImageButton, ASize: int32): int32 =
+  return ImageButton_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TImageButton, ASize: int32): int32 =
+  return ImageButton_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TImageButton, ASize: int32): int32 =
+  return ImageButton_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TImageButton, ASize: int32): int32 =
+  return ImageButton_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TImageButton, ASize: int32): int32 =
+  return ImageButton_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TImageButton, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  ImageButton_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TImageButton, ADesignTimePPI: int32) =
+  ImageButton_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TImageButton, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  ImageButton_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Action*(this: TImageButton): TAction  =
   return ImageButton_GetAction(this.Instance).AsAction
@@ -32260,6 +34352,9 @@ proc InsertControl*(this: TStringGrid, AControl: TControl) =
 proc Invalidate*(this: TStringGrid) =
   StringGrid_Invalidate(this.Instance)
 
+proc PaintTo*(this: TStringGrid, DC: HDC, X: int32, Y: int32) =
+  StringGrid_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TStringGrid, AControl: TControl) =
   StringGrid_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -32375,11 +34470,54 @@ proc AnchorHorizontalCenterTo*(this: TStringGrid, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TStringGrid, ASibling: TControl) =
   StringGrid_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TStringGrid, ASide: TAnchorKind, ASibling: TControl) =
+  StringGrid_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TStringGrid, ATheAlign: TAlign, ASpace: int32) =
   StringGrid_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TStringGrid, ASpace: int32) =
   StringGrid_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TStringGrid, ASize: int32): int32 =
+  return StringGrid_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TStringGrid, ASize: int32): int32 =
+  return StringGrid_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TStringGrid, ASize: int32): int32 =
+  return StringGrid_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TStringGrid, ASize: int32): int32 =
+  return StringGrid_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TStringGrid, ASize: int32): int32 =
+  return StringGrid_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TStringGrid, ASize: int32): int32 =
+  return StringGrid_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TStringGrid, ASize: int32): int32 =
+  return StringGrid_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TStringGrid, ASize: int32): int32 =
+  return StringGrid_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TStringGrid, ASize: int32): int32 =
+  return StringGrid_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TStringGrid, ASize: int32): int32 =
+  return StringGrid_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TStringGrid, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  StringGrid_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TStringGrid, ADesignTimePPI: int32) =
+  StringGrid_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TStringGrid, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  StringGrid_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc SelectedColor*(this: TStringGrid): TColor  =
   return StringGrid_GetSelectedColor(this.Instance)
@@ -33260,6 +35398,9 @@ proc InsertControl*(this: TDrawGrid, AControl: TControl) =
 proc Invalidate*(this: TDrawGrid) =
   DrawGrid_Invalidate(this.Instance)
 
+proc PaintTo*(this: TDrawGrid, DC: HDC, X: int32, Y: int32) =
+  DrawGrid_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TDrawGrid, AControl: TControl) =
   DrawGrid_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -33375,11 +35516,54 @@ proc AnchorHorizontalCenterTo*(this: TDrawGrid, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TDrawGrid, ASibling: TControl) =
   DrawGrid_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TDrawGrid, ASide: TAnchorKind, ASibling: TControl) =
+  DrawGrid_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TDrawGrid, ATheAlign: TAlign, ASpace: int32) =
   DrawGrid_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TDrawGrid, ASpace: int32) =
   DrawGrid_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TDrawGrid, ASize: int32): int32 =
+  return DrawGrid_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TDrawGrid, ASize: int32): int32 =
+  return DrawGrid_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TDrawGrid, ASize: int32): int32 =
+  return DrawGrid_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TDrawGrid, ASize: int32): int32 =
+  return DrawGrid_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TDrawGrid, ASize: int32): int32 =
+  return DrawGrid_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TDrawGrid, ASize: int32): int32 =
+  return DrawGrid_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TDrawGrid, ASize: int32): int32 =
+  return DrawGrid_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TDrawGrid, ASize: int32): int32 =
+  return DrawGrid_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TDrawGrid, ASize: int32): int32 =
+  return DrawGrid_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TDrawGrid, ASize: int32): int32 =
+  return DrawGrid_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TDrawGrid, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  DrawGrid_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TDrawGrid, ADesignTimePPI: int32) =
+  DrawGrid_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TDrawGrid, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  DrawGrid_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc `OnColRowMoved=`*(this: TDrawGrid, AEventId: TGridOperationEvent)  =
   DrawGrid_SetOnColRowMoved(this.Instance, AEventId)
@@ -33975,6 +36159,9 @@ proc InsertControl*(this: TValueListEditor, AControl: TControl) =
 proc Invalidate*(this: TValueListEditor) =
   ValueListEditor_Invalidate(this.Instance)
 
+proc PaintTo*(this: TValueListEditor, DC: HDC, X: int32, Y: int32) =
+  ValueListEditor_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TValueListEditor, AControl: TControl) =
   ValueListEditor_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -34087,11 +36274,54 @@ proc AnchorHorizontalCenterTo*(this: TValueListEditor, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TValueListEditor, ASibling: TControl) =
   ValueListEditor_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TValueListEditor, ASide: TAnchorKind, ASibling: TControl) =
+  ValueListEditor_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TValueListEditor, ATheAlign: TAlign, ASpace: int32) =
   ValueListEditor_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TValueListEditor, ASpace: int32) =
   ValueListEditor_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TValueListEditor, ASize: int32): int32 =
+  return ValueListEditor_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TValueListEditor, ASize: int32): int32 =
+  return ValueListEditor_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TValueListEditor, ASize: int32): int32 =
+  return ValueListEditor_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TValueListEditor, ASize: int32): int32 =
+  return ValueListEditor_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TValueListEditor, ASize: int32): int32 =
+  return ValueListEditor_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TValueListEditor, ASize: int32): int32 =
+  return ValueListEditor_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TValueListEditor, ASize: int32): int32 =
+  return ValueListEditor_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TValueListEditor, ASize: int32): int32 =
+  return ValueListEditor_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TValueListEditor, ASize: int32): int32 =
+  return ValueListEditor_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TValueListEditor, ASize: int32): int32 =
+  return ValueListEditor_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TValueListEditor, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  ValueListEditor_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TValueListEditor, ADesignTimePPI: int32) =
+  ValueListEditor_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TValueListEditor, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  ValueListEditor_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc ColCount*(this: TValueListEditor): int32  =
   return ValueListEditor_GetColCount(this.Instance)
@@ -34684,6 +36914,9 @@ proc InsertControl*(this: THeaderControl, AControl: TControl) =
 proc Invalidate*(this: THeaderControl) =
   HeaderControl_Invalidate(this.Instance)
 
+proc PaintTo*(this: THeaderControl, DC: HDC, X: int32, Y: int32) =
+  HeaderControl_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: THeaderControl, AControl: TControl) =
   HeaderControl_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -34799,11 +37032,54 @@ proc AnchorHorizontalCenterTo*(this: THeaderControl, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: THeaderControl, ASibling: TControl) =
   HeaderControl_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: THeaderControl, ASide: TAnchorKind, ASibling: TControl) =
+  HeaderControl_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: THeaderControl, ATheAlign: TAlign, ASpace: int32) =
   HeaderControl_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: THeaderControl, ASpace: int32) =
   HeaderControl_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: THeaderControl, ASize: int32): int32 =
+  return HeaderControl_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: THeaderControl, ASize: int32): int32 =
+  return HeaderControl_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: THeaderControl, ASize: int32): int32 =
+  return HeaderControl_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: THeaderControl, ASize: int32): int32 =
+  return HeaderControl_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: THeaderControl, ASize: int32): int32 =
+  return HeaderControl_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: THeaderControl, ASize: int32): int32 =
+  return HeaderControl_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: THeaderControl, ASize: int32): int32 =
+  return HeaderControl_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: THeaderControl, ASize: int32): int32 =
+  return HeaderControl_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: THeaderControl, ASize: int32): int32 =
+  return HeaderControl_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: THeaderControl, ASize: int32): int32 =
+  return HeaderControl_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: THeaderControl, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  HeaderControl_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: THeaderControl, ADesignTimePPI: int32) =
+  HeaderControl_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: THeaderControl, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  HeaderControl_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: THeaderControl): TAlign  =
   return HeaderControl_GetAlign(this.Instance)
@@ -35415,6 +37691,9 @@ proc InsertControl*(this: TLabeledEdit, AControl: TControl) =
 proc Invalidate*(this: TLabeledEdit) =
   LabeledEdit_Invalidate(this.Instance)
 
+proc PaintTo*(this: TLabeledEdit, DC: HDC, X: int32, Y: int32) =
+  LabeledEdit_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TLabeledEdit, AControl: TControl) =
   LabeledEdit_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -35527,11 +37806,54 @@ proc AnchorHorizontalCenterTo*(this: TLabeledEdit, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TLabeledEdit, ASibling: TControl) =
   LabeledEdit_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TLabeledEdit, ASide: TAnchorKind, ASibling: TControl) =
+  LabeledEdit_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TLabeledEdit, ATheAlign: TAlign, ASpace: int32) =
   LabeledEdit_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TLabeledEdit, ASpace: int32) =
   LabeledEdit_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TLabeledEdit, ASize: int32): int32 =
+  return LabeledEdit_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TLabeledEdit, ASize: int32): int32 =
+  return LabeledEdit_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TLabeledEdit, ASize: int32): int32 =
+  return LabeledEdit_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TLabeledEdit, ASize: int32): int32 =
+  return LabeledEdit_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TLabeledEdit, ASize: int32): int32 =
+  return LabeledEdit_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TLabeledEdit, ASize: int32): int32 =
+  return LabeledEdit_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TLabeledEdit, ASize: int32): int32 =
+  return LabeledEdit_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TLabeledEdit, ASize: int32): int32 =
+  return LabeledEdit_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TLabeledEdit, ASize: int32): int32 =
+  return LabeledEdit_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TLabeledEdit, ASize: int32): int32 =
+  return LabeledEdit_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TLabeledEdit, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  LabeledEdit_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TLabeledEdit, ADesignTimePPI: int32) =
+  LabeledEdit_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TLabeledEdit, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  LabeledEdit_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Alignment*(this: TLabeledEdit): TAlignment  =
   return LabeledEdit_GetAlignment(this.Instance)
@@ -36121,11 +38443,54 @@ proc AnchorHorizontalCenterTo*(this: TBoundLabel, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TBoundLabel, ASibling: TControl) =
   BoundLabel_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TBoundLabel, ASide: TAnchorKind, ASibling: TControl) =
+  BoundLabel_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TBoundLabel, ATheAlign: TAlign, ASpace: int32) =
   BoundLabel_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TBoundLabel, ASpace: int32) =
   BoundLabel_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TBoundLabel, ASize: int32): int32 =
+  return BoundLabel_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TBoundLabel, ASize: int32): int32 =
+  return BoundLabel_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TBoundLabel, ASize: int32): int32 =
+  return BoundLabel_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TBoundLabel, ASize: int32): int32 =
+  return BoundLabel_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TBoundLabel, ASize: int32): int32 =
+  return BoundLabel_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TBoundLabel, ASize: int32): int32 =
+  return BoundLabel_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TBoundLabel, ASize: int32): int32 =
+  return BoundLabel_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TBoundLabel, ASize: int32): int32 =
+  return BoundLabel_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TBoundLabel, ASize: int32): int32 =
+  return BoundLabel_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TBoundLabel, ASize: int32): int32 =
+  return BoundLabel_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TBoundLabel, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  BoundLabel_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TBoundLabel, ADesignTimePPI: int32) =
+  BoundLabel_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TBoundLabel, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  BoundLabel_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc BiDiMode*(this: TBoundLabel): TBiDiMode  =
   return BoundLabel_GetBiDiMode(this.Instance)
@@ -36460,6 +38825,9 @@ proc InsertControl*(this: TFlowPanel, AControl: TControl) =
 proc Invalidate*(this: TFlowPanel) =
   FlowPanel_Invalidate(this.Instance)
 
+proc PaintTo*(this: TFlowPanel, DC: HDC, X: int32, Y: int32) =
+  FlowPanel_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TFlowPanel, AControl: TControl) =
   FlowPanel_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -36575,11 +38943,54 @@ proc AnchorHorizontalCenterTo*(this: TFlowPanel, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TFlowPanel, ASibling: TControl) =
   FlowPanel_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TFlowPanel, ASide: TAnchorKind, ASibling: TControl) =
+  FlowPanel_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TFlowPanel, ATheAlign: TAlign, ASpace: int32) =
   FlowPanel_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TFlowPanel, ASpace: int32) =
   FlowPanel_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TFlowPanel, ASize: int32): int32 =
+  return FlowPanel_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TFlowPanel, ASize: int32): int32 =
+  return FlowPanel_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TFlowPanel, ASize: int32): int32 =
+  return FlowPanel_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TFlowPanel, ASize: int32): int32 =
+  return FlowPanel_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TFlowPanel, ASize: int32): int32 =
+  return FlowPanel_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TFlowPanel, ASize: int32): int32 =
+  return FlowPanel_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TFlowPanel, ASize: int32): int32 =
+  return FlowPanel_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TFlowPanel, ASize: int32): int32 =
+  return FlowPanel_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TFlowPanel, ASize: int32): int32 =
+  return FlowPanel_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TFlowPanel, ASize: int32): int32 =
+  return FlowPanel_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TFlowPanel, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  FlowPanel_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TFlowPanel, ADesignTimePPI: int32) =
+  FlowPanel_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TFlowPanel, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  FlowPanel_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TFlowPanel): TAlign  =
   return FlowPanel_GetAlign(this.Instance)
@@ -37055,6 +39466,9 @@ proc HandleAllocated*(this: TCoolBar): bool =
 proc Invalidate*(this: TCoolBar) =
   CoolBar_Invalidate(this.Instance)
 
+proc PaintTo*(this: TCoolBar, DC: HDC, X: int32, Y: int32) =
+  CoolBar_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TCoolBar, AControl: TControl) =
   CoolBar_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -37170,11 +39584,54 @@ proc AnchorHorizontalCenterTo*(this: TCoolBar, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TCoolBar, ASibling: TControl) =
   CoolBar_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TCoolBar, ASide: TAnchorKind, ASibling: TControl) =
+  CoolBar_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TCoolBar, ATheAlign: TAlign, ASpace: int32) =
   CoolBar_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TCoolBar, ASpace: int32) =
   CoolBar_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TCoolBar, ASize: int32): int32 =
+  return CoolBar_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TCoolBar, ASize: int32): int32 =
+  return CoolBar_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TCoolBar, ASize: int32): int32 =
+  return CoolBar_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TCoolBar, ASize: int32): int32 =
+  return CoolBar_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TCoolBar, ASize: int32): int32 =
+  return CoolBar_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TCoolBar, ASize: int32): int32 =
+  return CoolBar_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TCoolBar, ASize: int32): int32 =
+  return CoolBar_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TCoolBar, ASize: int32): int32 =
+  return CoolBar_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TCoolBar, ASize: int32): int32 =
+  return CoolBar_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TCoolBar, ASize: int32): int32 =
+  return CoolBar_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TCoolBar, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  CoolBar_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TCoolBar, ADesignTimePPI: int32) =
+  CoolBar_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TCoolBar, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  CoolBar_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TCoolBar): TAlign  =
   return CoolBar_GetAlign(this.Instance)
@@ -38563,6 +41020,9 @@ proc InsertControl*(this: TComboBoxEx, AControl: TControl) =
 proc Invalidate*(this: TComboBoxEx) =
   ComboBoxEx_Invalidate(this.Instance)
 
+proc PaintTo*(this: TComboBoxEx, DC: HDC, X: int32, Y: int32) =
+  ComboBoxEx_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TComboBoxEx, AControl: TControl) =
   ComboBoxEx_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -38678,11 +41138,54 @@ proc AnchorHorizontalCenterTo*(this: TComboBoxEx, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TComboBoxEx, ASibling: TControl) =
   ComboBoxEx_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TComboBoxEx, ASide: TAnchorKind, ASibling: TControl) =
+  ComboBoxEx_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TComboBoxEx, ATheAlign: TAlign, ASpace: int32) =
   ComboBoxEx_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TComboBoxEx, ASpace: int32) =
   ComboBoxEx_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TComboBoxEx, ASize: int32): int32 =
+  return ComboBoxEx_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TComboBoxEx, ASize: int32): int32 =
+  return ComboBoxEx_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TComboBoxEx, ASize: int32): int32 =
+  return ComboBoxEx_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TComboBoxEx, ASize: int32): int32 =
+  return ComboBoxEx_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TComboBoxEx, ASize: int32): int32 =
+  return ComboBoxEx_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TComboBoxEx, ASize: int32): int32 =
+  return ComboBoxEx_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TComboBoxEx, ASize: int32): int32 =
+  return ComboBoxEx_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TComboBoxEx, ASize: int32): int32 =
+  return ComboBoxEx_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TComboBoxEx, ASize: int32): int32 =
+  return ComboBoxEx_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TComboBoxEx, ASize: int32): int32 =
+  return ComboBoxEx_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TComboBoxEx, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  ComboBoxEx_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TComboBoxEx, ADesignTimePPI: int32) =
+  ComboBoxEx_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TComboBoxEx, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  ComboBoxEx_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TComboBoxEx): TAlign  =
   return ComboBoxEx_GetAlign(this.Instance)
@@ -39341,6 +41844,9 @@ proc InsertControl*(this: TFrame, AControl: TControl) =
 proc Invalidate*(this: TFrame) =
   Frame_Invalidate(this.Instance)
 
+proc PaintTo*(this: TFrame, DC: HDC, X: int32, Y: int32) =
+  Frame_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TFrame, AControl: TControl) =
   Frame_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -39456,11 +41962,60 @@ proc AnchorHorizontalCenterTo*(this: TFrame, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TFrame, ASibling: TControl) =
   Frame_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TFrame, ASide: TAnchorKind, ASibling: TControl) =
+  Frame_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TFrame, ATheAlign: TAlign, ASpace: int32) =
   Frame_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TFrame, ASpace: int32) =
   Frame_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TFrame, ASize: int32): int32 =
+  return Frame_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TFrame, ASize: int32): int32 =
+  return Frame_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TFrame, ASize: int32): int32 =
+  return Frame_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TFrame, ASize: int32): int32 =
+  return Frame_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TFrame, ASize: int32): int32 =
+  return Frame_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TFrame, ASize: int32): int32 =
+  return Frame_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TFrame, ASize: int32): int32 =
+  return Frame_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TFrame, ASize: int32): int32 =
+  return Frame_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TFrame, ASize: int32): int32 =
+  return Frame_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TFrame, ASize: int32): int32 =
+  return Frame_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TFrame, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  Frame_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TFrame, ADesignTimePPI: int32) =
+  Frame_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TFrame, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  Frame_ScaleFontsPPI(this.Instance, AToPPI, ps2)
+
+proc DesignTimePPI*(this: TFrame): int32  =
+  return Frame_GetDesignTimePPI(this.Instance)
+
+proc `DesignTimePPI=`*(this: TFrame, AValue: int32)  =
+  Frame_SetDesignTimePPI(this.Instance, AValue)
 
 proc Align*(this: TFrame): TAlign  =
   return Frame_GetAlign(this.Instance)
@@ -40122,11 +42677,54 @@ proc AnchorHorizontalCenterTo*(this: TXButton, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TXButton, ASibling: TControl) =
   XButton_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TXButton, ASide: TAnchorKind, ASibling: TControl) =
+  XButton_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TXButton, ATheAlign: TAlign, ASpace: int32) =
   XButton_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TXButton, ASpace: int32) =
   XButton_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TXButton, ASize: int32): int32 =
+  return XButton_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TXButton, ASize: int32): int32 =
+  return XButton_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TXButton, ASize: int32): int32 =
+  return XButton_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TXButton, ASize: int32): int32 =
+  return XButton_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TXButton, ASize: int32): int32 =
+  return XButton_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TXButton, ASize: int32): int32 =
+  return XButton_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TXButton, ASize: int32): int32 =
+  return XButton_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TXButton, ASize: int32): int32 =
+  return XButton_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TXButton, ASize: int32): int32 =
+  return XButton_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TXButton, ASize: int32): int32 =
+  return XButton_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TXButton, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  XButton_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TXButton, ADesignTimePPI: int32) =
+  XButton_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TXButton, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  XButton_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Caption*(this: TXButton): string  =
   return $XButton_GetCaption(this.Instance)
@@ -40752,6 +43350,9 @@ proc InsertControl*(this: TCheckGroup, AControl: TControl) =
 proc Invalidate*(this: TCheckGroup) =
   CheckGroup_Invalidate(this.Instance)
 
+proc PaintTo*(this: TCheckGroup, DC: HDC, X: int32, Y: int32) =
+  CheckGroup_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TCheckGroup, AControl: TControl) =
   CheckGroup_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -40867,11 +43468,54 @@ proc AnchorHorizontalCenterTo*(this: TCheckGroup, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TCheckGroup, ASibling: TControl) =
   CheckGroup_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TCheckGroup, ASide: TAnchorKind, ASibling: TControl) =
+  CheckGroup_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TCheckGroup, ATheAlign: TAlign, ASpace: int32) =
   CheckGroup_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TCheckGroup, ASpace: int32) =
   CheckGroup_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TCheckGroup, ASize: int32): int32 =
+  return CheckGroup_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TCheckGroup, ASize: int32): int32 =
+  return CheckGroup_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TCheckGroup, ASize: int32): int32 =
+  return CheckGroup_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TCheckGroup, ASize: int32): int32 =
+  return CheckGroup_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TCheckGroup, ASize: int32): int32 =
+  return CheckGroup_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TCheckGroup, ASize: int32): int32 =
+  return CheckGroup_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TCheckGroup, ASize: int32): int32 =
+  return CheckGroup_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TCheckGroup, ASize: int32): int32 =
+  return CheckGroup_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TCheckGroup, ASize: int32): int32 =
+  return CheckGroup_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TCheckGroup, ASize: int32): int32 =
+  return CheckGroup_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TCheckGroup, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  CheckGroup_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TCheckGroup, ADesignTimePPI: int32) =
+  CheckGroup_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TCheckGroup, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  CheckGroup_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc Align*(this: TCheckGroup): TAlign  =
   return CheckGroup_GetAlign(this.Instance)
@@ -41338,6 +43982,9 @@ proc InsertControl*(this: TToggleBox, AControl: TControl) =
 proc Invalidate*(this: TToggleBox) =
   ToggleBox_Invalidate(this.Instance)
 
+proc PaintTo*(this: TToggleBox, DC: HDC, X: int32, Y: int32) =
+  ToggleBox_PaintTo(this.Instance, DC, X, Y)
+
 proc RemoveControl*(this: TToggleBox, AControl: TControl) =
   ToggleBox_RemoveControl(this.Instance, CheckPtr(AControl))
 
@@ -41453,11 +44100,54 @@ proc AnchorHorizontalCenterTo*(this: TToggleBox, ASibling: TControl) =
 proc AnchorVerticalCenterTo*(this: TToggleBox, ASibling: TControl) =
   ToggleBox_AnchorVerticalCenterTo(this.Instance, CheckPtr(ASibling))
 
+proc AnchorSame*(this: TToggleBox, ASide: TAnchorKind, ASibling: TControl) =
+  ToggleBox_AnchorSame(this.Instance, ASide, CheckPtr(ASibling))
+
 proc AnchorAsAlign*(this: TToggleBox, ATheAlign: TAlign, ASpace: int32) =
   ToggleBox_AnchorAsAlign(this.Instance, ATheAlign, ASpace)
 
 proc AnchorClient*(this: TToggleBox, ASpace: int32) =
   ToggleBox_AnchorClient(this.Instance, ASpace)
+
+proc ScaleDesignToForm*(this: TToggleBox, ASize: int32): int32 =
+  return ToggleBox_ScaleDesignToForm(this.Instance, ASize)
+
+proc ScaleFormToDesign*(this: TToggleBox, ASize: int32): int32 =
+  return ToggleBox_ScaleFormToDesign(this.Instance, ASize)
+
+proc Scale96ToForm*(this: TToggleBox, ASize: int32): int32 =
+  return ToggleBox_Scale96ToForm(this.Instance, ASize)
+
+proc ScaleFormTo9*(this: TToggleBox, ASize: int32): int32 =
+  return ToggleBox_ScaleFormTo96(this.Instance, ASize)
+
+proc Scale96ToFont*(this: TToggleBox, ASize: int32): int32 =
+  return ToggleBox_Scale96ToFont(this.Instance, ASize)
+
+proc ScaleFontTo9*(this: TToggleBox, ASize: int32): int32 =
+  return ToggleBox_ScaleFontTo96(this.Instance, ASize)
+
+proc ScaleScreenToFont*(this: TToggleBox, ASize: int32): int32 =
+  return ToggleBox_ScaleScreenToFont(this.Instance, ASize)
+
+proc ScaleFontToScreen*(this: TToggleBox, ASize: int32): int32 =
+  return ToggleBox_ScaleFontToScreen(this.Instance, ASize)
+
+proc Scale96ToScreen*(this: TToggleBox, ASize: int32): int32 =
+  return ToggleBox_Scale96ToScreen(this.Instance, ASize)
+
+proc ScaleScreenTo9*(this: TToggleBox, ASize: int32): int32 =
+  return ToggleBox_ScaleScreenTo96(this.Instance, ASize)
+
+proc AutoAdjustLayout*(this: TToggleBox, AMode: TLayoutAdjustmentPolicy, AFromPPI: int32, AToPPI: int32, AOldFormWidth: int32, ANewFormWidth: int32) =
+  ToggleBox_AutoAdjustLayout(this.Instance, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth)
+
+proc FixDesignFontsPPI*(this: TToggleBox, ADesignTimePPI: int32) =
+  ToggleBox_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TToggleBox, AToPPI: int32, AProportion: float64) =
+  var ps2 = AProportion
+  ToggleBox_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc AllowGrayed*(this: TToggleBox): bool  =
   return ToggleBox_GetAllowGrayed(this.Instance)
@@ -41858,6 +44548,13 @@ proc Assign*(this: TGridColumnTitle, Source: TObject)  =
 proc FillTitleDefaultFont*(this: TGridColumnTitle)  =
   GridColumnTitle_FillTitleDefaultFont(this.Instance)
 
+proc FixDesignFontsPPI*(this: TGridColumnTitle, ADesignTimePPI: int32)  =
+  GridColumnTitle_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TGridColumnTitle, AToPPI: int32, AProportion: float64)  =
+  var ps2 = AProportion
+  GridColumnTitle_ScaleFontsPPI(this.Instance, AToPPI, ps2)
+
 proc IsDefault*(this: TGridColumnTitle): bool  =
   return GridColumnTitle_IsDefault(this.Instance)
 
@@ -41950,6 +44647,13 @@ proc TGridColumnTitleClass*(): TClass = GridColumnTitle_StaticClassType()
 
 proc Assign*(this: TGridColumn, Source: TObject)  =
   GridColumn_Assign(this.Instance, CheckPtr(Source))
+
+proc FixDesignFontsPPI*(this: TGridColumn, ADesignTimePPI: int32)  =
+  GridColumn_FixDesignFontsPPI(this.Instance, ADesignTimePPI)
+
+proc ScaleFontsPPI*(this: TGridColumn, AToPPI: int32, AProportion: float64)  =
+  var ps2 = AProportion
+  GridColumn_ScaleFontsPPI(this.Instance, AToPPI, ps2)
 
 proc IsDefault*(this: TGridColumn): bool  =
   return GridColumn_IsDefault(this.Instance)
