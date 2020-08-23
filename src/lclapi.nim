@@ -32,28 +32,17 @@ proc DTextToShortCut*(AText: cstring): TShortCut {.importc: "DTextToShortCut", d
 proc DShortCutToText*(AVal: TShortCut): cstring {.importc: "DShortCutToText", dynlib: dllname.}
 proc Clipboard_Instance*(): pointer {.importc: "Clipboard_Instance", dynlib: dllname.}
 proc DSetClipboard*(ANewClipboard: pointer): pointer {.importc: "DSetClipboard", dynlib: dllname.}
-when not defined(windows):
-  proc DSendMessage*(hWd: HWND, msg: uint32, wParam: WPARAM, lParam: LPARAM): LRESULT {.importc: "DSendMessage", dynlib: dllname.}
-when not defined(windows):
-  proc DPostMessage*(hWd: HWND, msg: uint32, wParam: WPARAM, lParam: LPARAM): bool {.importc: "DPostMessage", dynlib: dllname.}
-when not defined(windows):
-  proc DIsIconic*(hWnd: HWND): bool {.importc: "DIsIconic", dynlib: dllname.}
-when not defined(windows):
-  proc DIsWindow*(hWnd: HWND): bool {.importc: "DIsWindow", dynlib: dllname.}
-when not defined(windows):
-  proc DIsZoomed*(hWnd: HWND): bool {.importc: "DIsZoomed", dynlib: dllname.}
-when not defined(windows):
-  proc DIsWindowVisible*(hWnd: HWND): bool {.importc: "DIsWindowVisible", dynlib: dllname.}
-when not defined(windows):
-  proc DGetDC*(hWnd: HWND): HDC {.importc: "DGetDC", dynlib: dllname.}
-when not defined(windows):
-  proc DReleaseDC*(hWnd: HWND, dc: HDC): int32 {.importc: "DReleaseDC", dynlib: dllname.}
-when not defined(windows):
-  proc DSetForegroundWindow*(hWnd: HWND): bool {.importc: "DSetForegroundWindow", dynlib: dllname.}
-when not defined(windows):
-  proc DRegisterClipboardFormat*(AFormat: cstring): TClipboardFormat {.importc: "DRegisterClipboardFormat", dynlib: dllname.}
-when not defined(windows):
-  proc DWindowFromPoint*(point: var TPoint): HWND {.importc: "DWindowFromPoint", dynlib: dllname.}
+proc DSendMessage*(hWd: HWND, msg: uint32, wParam: WPARAM, lParam: LPARAM): LRESULT {.importc: "DSendMessage", dynlib: dllname.}
+proc DPostMessage*(hWd: HWND, msg: uint32, wParam: WPARAM, lParam: LPARAM): bool {.importc: "DPostMessage", dynlib: dllname.}
+proc DIsIconic*(hWnd: HWND): bool {.importc: "DIsIconic", dynlib: dllname.}
+proc DIsWindow*(hWnd: HWND): bool {.importc: "DIsWindow", dynlib: dllname.}
+proc DIsZoomed*(hWnd: HWND): bool {.importc: "DIsZoomed", dynlib: dllname.}
+proc DIsWindowVisible*(hWnd: HWND): bool {.importc: "DIsWindowVisible", dynlib: dllname.}
+proc DGetDC*(hWnd: HWND): HDC {.importc: "DGetDC", dynlib: dllname.}
+proc DReleaseDC*(hWnd: HWND, dc: HDC): int32 {.importc: "DReleaseDC", dynlib: dllname.}
+proc DSetForegroundWindow*(hWnd: HWND): bool {.importc: "DSetForegroundWindow", dynlib: dllname.}
+proc DRegisterClipboardFormat*(AFormat: cstring): TClipboardFormat {.importc: "DRegisterClipboardFormat", dynlib: dllname.}
+proc DWindowFromPoint*(point: var TPoint): HWND {.importc: "DWindowFromPoint", dynlib: dllname.}
 proc SetEventCallback*(APtr: pointer) {.importc: "SetEventCallback", dynlib: dllname.}
 proc SetMessageCallback*(APtr: pointer) {.importc: "SetMessageCallback", dynlib: dllname.}
 proc SetThreadSyncCallback*(APtr: pointer) {.importc: "SetThreadSyncCallback", dynlib: dllname.}
@@ -112,6 +101,8 @@ when defined(macosx):
 proc ResFormLoadFromResourceName*(AInstance: uint, AResName: cstring, ARoot: pointer) {.importc: "ResFormLoadFromResourceName", dynlib: dllname.}
 proc ResFormLoadFromFile*(AFileName: cstring, ARoot: pointer) {.importc: "ResFormLoadFromFile", dynlib: dllname.}
 proc ResFormLoadFromStream*(AStream: pointer, ARoot: pointer) {.importc: "ResFormLoadFromStream", dynlib: dllname.}
+proc ResFormRegisterFormResource*(AClassName: cstring, AData: pointer, ALen: int32): bool {.importc: "ResFormRegisterFormResource", dynlib: dllname.}
+proc ResFormLoadFromClassName*(AClassName: cstring, ARoot: pointer): bool {.importc: "ResFormLoadFromClassName", dynlib: dllname.}
 
 
 # ----------------- TObject ----------------------
@@ -5056,6 +5047,10 @@ proc ListView_AlphaSort*(AObj: pointer): bool {.importc: "ListView_AlphaSort", d
 proc ListView_Clear*(AObj: pointer) {.importc: "ListView_Clear", dynlib: dllname.}
 proc ListView_ClearSelection*(AObj: pointer) {.importc: "ListView_ClearSelection", dynlib: dllname.}
 proc ListView_DeleteSelected*(AObj: pointer) {.importc: "ListView_DeleteSelected", dynlib: dllname.}
+proc ListView_GetHitTestInfoAt*(AObj: pointer, X: int32, Y: int32): THitTests {.importc: "ListView_GetHitTestInfoAt", dynlib: dllname.}
+proc ListView_GetItemAt*(AObj: pointer, X: int32, Y: int32): pointer {.importc: "ListView_GetItemAt", dynlib: dllname.}
+proc ListView_GetNearestItem*(AObj: pointer, Point: var TPoint, Direction: TSearchDirection): pointer {.importc: "ListView_GetNearestItem", dynlib: dllname.}
+proc ListView_GetNextItem*(AObj: pointer, StartItem: pointer, Direction: TSearchDirection, States: TListItemStates): pointer {.importc: "ListView_GetNextItem", dynlib: dllname.}
 proc ListView_IsEditing*(AObj: pointer): bool {.importc: "ListView_IsEditing", dynlib: dllname.}
 proc ListView_SelectAll*(AObj: pointer) {.importc: "ListView_SelectAll", dynlib: dllname.}
 proc ListView_CustomSort*(AObj: pointer, SortProc: PFNLVCOMPARE, lParam: int): bool {.importc: "ListView_CustomSort", dynlib: dllname.}
@@ -5144,6 +5139,7 @@ proc ListView_GetToolTips*(AObj: pointer): bool {.importc: "ListView_GetToolTips
 proc ListView_SetToolTips*(AObj: pointer, AValue: bool) {.importc: "ListView_SetToolTips", dynlib: dllname.}
 proc ListView_GetScrollBars*(AObj: pointer): TScrollStyle {.importc: "ListView_GetScrollBars", dynlib: dllname.}
 proc ListView_SetScrollBars*(AObj: pointer, AValue: TScrollStyle) {.importc: "ListView_SetScrollBars", dynlib: dllname.}
+proc ListView_GetColumnCount*(AObj: pointer): int32 {.importc: "ListView_GetColumnCount", dynlib: dllname.}
 proc ListView_GetAction*(AObj: pointer): pointer {.importc: "ListView_GetAction", dynlib: dllname.}
 proc ListView_SetAction*(AObj: pointer, AValue: pointer) {.importc: "ListView_SetAction", dynlib: dllname.}
 proc ListView_GetAlign*(AObj: pointer): TAlign {.importc: "ListView_GetAlign", dynlib: dllname.}
@@ -5355,6 +5351,7 @@ proc TreeView_Free*(AObj: pointer) {.importc: "TreeView_Free", dynlib: dllname.}
 proc TreeView_AlphaSort*(AObj: pointer, ARecurse: bool): bool {.importc: "TreeView_AlphaSort", dynlib: dllname.}
 proc TreeView_FullCollapse*(AObj: pointer) {.importc: "TreeView_FullCollapse", dynlib: dllname.}
 proc TreeView_FullExpand*(AObj: pointer) {.importc: "TreeView_FullExpand", dynlib: dllname.}
+proc TreeView_GetHitTestInfoAt*(AObj: pointer, X: int32, Y: int32): THitTests {.importc: "TreeView_GetHitTestInfoAt", dynlib: dllname.}
 proc TreeView_GetNodeAt*(AObj: pointer, X: int32, Y: int32): pointer {.importc: "TreeView_GetNodeAt", dynlib: dllname.}
 proc TreeView_IsEditing*(AObj: pointer): bool {.importc: "TreeView_IsEditing", dynlib: dllname.}
 proc TreeView_LoadFromFile*(AObj: pointer, FileName: cstring) {.importc: "TreeView_LoadFromFile", dynlib: dllname.}
@@ -6319,6 +6316,10 @@ proc Icon_StaticClassType*(): TClass {.importc: "Icon_StaticClassType", dynlib: 
 # ----------------- TBitmap ----------------------
 proc Bitmap_Create*(): pointer {.importc: "Bitmap_Create", dynlib: dllname.}
 proc Bitmap_Free*(AObj: pointer) {.importc: "Bitmap_Free", dynlib: dllname.}
+proc Bitmap_LoadFromDevice*(AObj: pointer, ADc: HDC) {.importc: "Bitmap_LoadFromDevice", dynlib: dllname.}
+proc Bitmap_EndUpdate*(AObj: pointer, AStreamIsValid: bool) {.importc: "Bitmap_EndUpdate", dynlib: dllname.}
+proc Bitmap_BeginUpdate*(AObj: pointer, ACanvasOnly: bool) {.importc: "Bitmap_BeginUpdate", dynlib: dllname.}
+proc Bitmap_Clear*(AObj: pointer) {.importc: "Bitmap_Clear", dynlib: dllname.}
 proc Bitmap_Assign*(AObj: pointer, Source: pointer) {.importc: "Bitmap_Assign", dynlib: dllname.}
 proc Bitmap_FreeImage*(AObj: pointer) {.importc: "Bitmap_FreeImage", dynlib: dllname.}
 proc Bitmap_HandleAllocated*(AObj: pointer): bool {.importc: "Bitmap_HandleAllocated", dynlib: dllname.}
@@ -6364,10 +6365,6 @@ proc Bitmap_SetWidth*(AObj: pointer, AValue: int32) {.importc: "Bitmap_SetWidth"
 proc Bitmap_SetOnChange*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Bitmap_SetOnChange", dynlib: dllname.}
 proc Bitmap_GetScanLine*(AObj: pointer, Row: int32): pointer {.importc: "Bitmap_GetScanLine", dynlib: dllname.}
 proc Bitmap_StaticClassType*(): TClass {.importc: "Bitmap_StaticClassType", dynlib: dllname.}
-proc Bitmap_Clear*(AObj: pointer) {.importc: "Bitmap_Clear", dynlib: dllname.}
-proc Bitmap_BeginUpdate*(AObj: pointer, ACanvasOnly: bool) {.importc: "Bitmap_BeginUpdate", dynlib: dllname.}
-proc Bitmap_EndUpdate*(AObj: pointer, AStreamIsValid: bool) {.importc: "Bitmap_EndUpdate", dynlib: dllname.}
-proc Bitmap_LoadFromDevice*(AObj: pointer, ADc: HDC) {.importc: "Bitmap_LoadFromDevice", dynlib: dllname.}
 # ----------------- TMemo ----------------------
 proc Memo_Create*(AOwner: pointer): pointer {.importc: "Memo_Create", dynlib: dllname.}
 proc Memo_Free*(AObj: pointer) {.importc: "Memo_Free", dynlib: dllname.}
@@ -9339,6 +9336,14 @@ proc List_StaticClassType*(): TClass {.importc: "List_StaticClassType", dynlib: 
 # ----------------- TForm ----------------------
 proc Form_Create*(AOwner: pointer): pointer {.importc: "Form_Create", dynlib: dllname.}
 proc Form_Free*(AObj: pointer) {.importc: "Form_Free", dynlib: dllname.}
+proc Form_InheritedWndProc*(AObj: pointer, TheMessage: var TMessage) {.importc: "Form_InheritedWndProc", dynlib: dllname.}
+proc Form_EnabledMaximize*(AObj: pointer, AValue: bool) {.importc: "Form_EnabledMaximize", dynlib: dllname.}
+proc Form_EnabledMinimize*(AObj: pointer, AValue: bool) {.importc: "Form_EnabledMinimize", dynlib: dllname.}
+proc Form_EnabledSystemMenu*(AObj: pointer, AValue: bool) {.importc: "Form_EnabledSystemMenu", dynlib: dllname.}
+proc Form_ScaleForCurrentDpi*(AObj: pointer) {.importc: "Form_ScaleForCurrentDpi", dynlib: dllname.}
+proc Form_ScaleForPPI*(AObj: pointer, ANewPPI: int32) {.importc: "Form_ScaleForPPI", dynlib: dllname.}
+proc Form_ScreenCenter*(AObj: pointer) {.importc: "Form_ScreenCenter", dynlib: dllname.}
+proc Form_WorkAreaCenter*(AObj: pointer) {.importc: "Form_WorkAreaCenter", dynlib: dllname.}
 proc Form_Cascade*(AObj: pointer) {.importc: "Form_Cascade", dynlib: dllname.}
 proc Form_Close*(AObj: pointer) {.importc: "Form_Close", dynlib: dllname.}
 proc Form_FocusControl*(AObj: pointer, Control: pointer) {.importc: "Form_FocusControl", dynlib: dllname.}
@@ -9503,8 +9508,10 @@ proc Form_SetOnAlignPosition*(AObj: pointer, AEventId: TAlignPositionEvent) {.im
 proc Form_SetOnClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Form_SetOnClick", dynlib: dllname.}
 proc Form_SetOnClose*(AObj: pointer, AEventId: TCloseEvent) {.importc: "Form_SetOnClose", dynlib: dllname.}
 proc Form_SetOnCloseQuery*(AObj: pointer, AEventId: TCloseQueryEvent) {.importc: "Form_SetOnCloseQuery", dynlib: dllname.}
+proc Form_SetOnConstrainedResize*(AObj: pointer, AEventId: TConstrainedResizeEvent) {.importc: "Form_SetOnConstrainedResize", dynlib: dllname.}
 proc Form_SetOnContextPopup*(AObj: pointer, AEventId: TContextPopupEvent) {.importc: "Form_SetOnContextPopup", dynlib: dllname.}
 proc Form_SetOnDblClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Form_SetOnDblClick", dynlib: dllname.}
+proc Form_SetOnDestroy*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Form_SetOnDestroy", dynlib: dllname.}
 proc Form_SetOnDeactivate*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Form_SetOnDeactivate", dynlib: dllname.}
 proc Form_SetOnDockDrop*(AObj: pointer, AEventId: TDockDropEvent) {.importc: "Form_SetOnDockDrop", dynlib: dllname.}
 proc Form_SetOnDragDrop*(AObj: pointer, AEventId: TDragDropEvent) {.importc: "Form_SetOnDragDrop", dynlib: dllname.}
@@ -9594,16 +9601,7 @@ proc Form_GetComponents*(AObj: pointer, AIndex: int32): pointer {.importc: "Form
 proc Form_GetAnchorSide*(AObj: pointer, AKind: TAnchorKind): pointer {.importc: "Form_GetAnchorSide", dynlib: dllname.}
 proc Form_StaticClassType*(): TClass {.importc: "Form_StaticClassType", dynlib: dllname.}
 proc Form_Create2*(AOwner: pointer, AInitScale: bool): pointer {.importc: "Form_Create2", dynlib: dllname.}
-proc Form_EnabledMaximize*(AObj: pointer, AValue: bool) {.importc: "Form_EnabledMaximize", dynlib: dllname.}
-proc Form_EnabledMinimize*(AObj: pointer, AValue: bool) {.importc: "Form_EnabledMinimize", dynlib: dllname.}
-proc Form_EnabledSystemMenu*(AObj: pointer, AValue: bool) {.importc: "Form_EnabledSystemMenu", dynlib: dllname.}
-proc Form_SetOnDestroy*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Form_SetOnDestroy", dynlib: dllname.}
-proc Form_SetOnConstrainedResize*(AObj: pointer, AEventId: TConstrainedResizeEvent) {.importc: "Form_SetOnConstrainedResize", dynlib: dllname.}
 proc Form_SetOnWndProc*(AObj: pointer, AEventId: TWndProcEvent) {.importc: "Form_SetOnWndProc", dynlib: dllname.}
-proc Form_ScaleForPPI*(AObj: pointer, ANewPPI: int32) {.importc: "Form_ScaleForPPI", dynlib: dllname.}
-proc Form_ScaleControlsForDpi*(AObj: pointer, ANewPPI: int32) {.importc: "Form_ScaleControlsForDpi", dynlib: dllname.}
-proc Form_ScaleForCurrentDpi*(AObj: pointer) {.importc: "Form_ScaleForCurrentDpi", dynlib: dllname.}
-proc Form_InheritedWndProc*(AObj: pointer, AMsg: var TMessage) {.importc: "Form_InheritedWndProc", dynlib: dllname.}
 # ----------------- TParaAttributes ----------------------
 proc ParaAttributes_Assign*(AObj: pointer, Source: pointer) {.importc: "ParaAttributes_Assign", dynlib: dllname.}
 proc ParaAttributes_GetNamePath*(AObj: pointer): cstring {.importc: "ParaAttributes_GetNamePath", dynlib: dllname.}
@@ -10472,6 +10470,7 @@ proc ScrollBox_SetTabStop*(AObj: pointer, AValue: bool) {.importc: "ScrollBox_Se
 proc ScrollBox_GetVisible*(AObj: pointer): bool {.importc: "ScrollBox_GetVisible", dynlib: dllname.}
 proc ScrollBox_SetVisible*(AObj: pointer, AValue: bool) {.importc: "ScrollBox_SetVisible", dynlib: dllname.}
 proc ScrollBox_SetOnClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "ScrollBox_SetOnClick", dynlib: dllname.}
+proc ScrollBox_SetOnConstrainedResize*(AObj: pointer, AEventId: TConstrainedResizeEvent) {.importc: "ScrollBox_SetOnConstrainedResize", dynlib: dllname.}
 proc ScrollBox_SetOnDblClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "ScrollBox_SetOnDblClick", dynlib: dllname.}
 proc ScrollBox_SetOnDockDrop*(AObj: pointer, AEventId: TDockDropEvent) {.importc: "ScrollBox_SetOnDockDrop", dynlib: dllname.}
 proc ScrollBox_SetOnDragDrop*(AObj: pointer, AEventId: TDragDropEvent) {.importc: "ScrollBox_SetOnDragDrop", dynlib: dllname.}
@@ -12949,6 +12948,7 @@ proc FlowPanel_GetVisible*(AObj: pointer): bool {.importc: "FlowPanel_GetVisible
 proc FlowPanel_SetVisible*(AObj: pointer, AValue: bool) {.importc: "FlowPanel_SetVisible", dynlib: dllname.}
 proc FlowPanel_SetOnAlignPosition*(AObj: pointer, AEventId: TAlignPositionEvent) {.importc: "FlowPanel_SetOnAlignPosition", dynlib: dllname.}
 proc FlowPanel_SetOnClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "FlowPanel_SetOnClick", dynlib: dllname.}
+proc FlowPanel_SetOnConstrainedResize*(AObj: pointer, AEventId: TConstrainedResizeEvent) {.importc: "FlowPanel_SetOnConstrainedResize", dynlib: dllname.}
 proc FlowPanel_SetOnContextPopup*(AObj: pointer, AEventId: TContextPopupEvent) {.importc: "FlowPanel_SetOnContextPopup", dynlib: dllname.}
 proc FlowPanel_SetOnDockDrop*(AObj: pointer, AEventId: TDockDropEvent) {.importc: "FlowPanel_SetOnDockDrop", dynlib: dllname.}
 proc FlowPanel_SetOnDblClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "FlowPanel_SetOnDblClick", dynlib: dllname.}
@@ -13939,6 +13939,7 @@ proc Frame_GetVisible*(AObj: pointer): bool {.importc: "Frame_GetVisible", dynli
 proc Frame_SetVisible*(AObj: pointer, AValue: bool) {.importc: "Frame_SetVisible", dynlib: dllname.}
 proc Frame_SetOnAlignPosition*(AObj: pointer, AEventId: TAlignPositionEvent) {.importc: "Frame_SetOnAlignPosition", dynlib: dllname.}
 proc Frame_SetOnClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Frame_SetOnClick", dynlib: dllname.}
+proc Frame_SetOnConstrainedResize*(AObj: pointer, AEventId: TConstrainedResizeEvent) {.importc: "Frame_SetOnConstrainedResize", dynlib: dllname.}
 proc Frame_SetOnContextPopup*(AObj: pointer, AEventId: TContextPopupEvent) {.importc: "Frame_SetOnContextPopup", dynlib: dllname.}
 proc Frame_SetOnDblClick*(AObj: pointer, AEventId: TNotifyEvent) {.importc: "Frame_SetOnDblClick", dynlib: dllname.}
 proc Frame_SetOnDockDrop*(AObj: pointer, AEventId: TDockDropEvent) {.importc: "Frame_SetOnDockDrop", dynlib: dllname.}

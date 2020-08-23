@@ -1624,6 +1624,30 @@ type
     lapAutoAdjustWithoutHorizontalScrolling, # Smartphone platforms use this one,
     lapAutoAdjustForDPI, # For desktops using High DPI, scale x and y to fit the DPI
 
+  THitTest* = enum
+    htAbove,
+    htBelow,
+    htNowhere,
+    htOnItem,
+    htOnButton,
+    htOnIcon,
+    htOnIndent,
+    htOnLabel,
+    htOnRight,
+    htOnStateIcon,
+    htToLeft,
+    htToRight,
+
+  THitTests* = set[THitTest]
+
+  TListItemState* = enum
+    lisCut,
+    lisDropTarget,
+    lisFocused,
+    lisSelected,
+
+  TListItemStates* = set[TListItemState]
+
 when defined(i386):
   type
     TDWordFiller = object

@@ -15380,6 +15380,19 @@ proc ClearSelection*(this: TListView)  =
 proc DeleteSelected*(this: TListView)  =
   ListView_DeleteSelected(this.Instance)
 
+proc GetHitTestInfoAt*(this: TListView, X: int32, Y: int32): THitTests  =
+  return ListView_GetHitTestInfoAt(this.Instance, X, Y)
+
+proc GetItemAt*(this: TListView, X: int32, Y: int32): TListItem  =
+  return ListView_GetItemAt(this.Instance, X, Y).AsListItem
+
+proc GetNearestItem*(this: TListView, Point: TPoint, Direction: TSearchDirection): TListItem  =
+  var ps1 = Point
+  return ListView_GetNearestItem(this.Instance, ps1, Direction).AsListItem
+
+proc GetNextItem*(this: TListView, StartItem: TListItem, Direction: TSearchDirection, States: TListItemStates): TListItem  =
+  return ListView_GetNextItem(this.Instance, CheckPtr(StartItem), Direction, States).AsListItem
+
 proc IsEditing*(this: TListView): bool  =
   return ListView_IsEditing(this.Instance)
 
@@ -15649,6 +15662,9 @@ proc ScrollBars*(this: TListView): TScrollStyle  =
 
 proc `ScrollBars=`*(this: TListView, AValue: TScrollStyle)  =
   ListView_SetScrollBars(this.Instance, AValue)
+
+proc ColumnCount*(this: TListView): int32  =
+  return ListView_GetColumnCount(this.Instance)
 
 proc Action*(this: TListView): TAction  =
   return ListView_GetAction(this.Instance).AsAction
@@ -16281,6 +16297,9 @@ proc FullCollapse*(this: TTreeView)  =
 
 proc FullExpand*(this: TTreeView)  =
   TreeView_FullExpand(this.Instance)
+
+proc GetHitTestInfoAt*(this: TTreeView, X: int32, Y: int32): THitTests  =
+  return TreeView_GetHitTestInfoAt(this.Instance, X, Y)
 
 proc GetNodeAt*(this: TTreeView, X: int32, Y: int32): TTreeNode  =
   return TreeView_GetNodeAt(this.Instance, X, Y).AsTreeNode
@@ -19193,6 +19212,18 @@ proc NewBitmap*(): TBitmap =
   new(result, Free)
   result.Instance = Bitmap_Create()
 
+proc LoadFromDevice*(this: TBitmap, ADc: HDC)  =
+  Bitmap_LoadFromDevice(this.Instance, ADc)
+
+proc EndUpdate*(this: TBitmap, AStreamIsValid: bool)  =
+  Bitmap_EndUpdate(this.Instance, AStreamIsValid)
+
+proc BeginUpdate*(this: TBitmap, ACanvasOnly: bool)  =
+  Bitmap_BeginUpdate(this.Instance, ACanvasOnly)
+
+proc Clear*(this: TBitmap)  =
+  Bitmap_Clear(this.Instance)
+
 proc Assign*(this: TBitmap, Source: TObject) =
   Bitmap_Assign(this.Instance, CheckPtr(Source))
 
@@ -19327,18 +19358,6 @@ proc ScanLine*(this: TBitmap, Row: int32): pointer  =
 
 proc TBitmapClass*(): TClass = Bitmap_StaticClassType()
 
-
-proc Clear*(this: TBitmap)  =
-  Bitmap_Clear(this.Instance)
-
-proc BeginUpdate*(this: TBitmap, ACanvasOnly: bool)  =
-  Bitmap_BeginUpdate(this.Instance, ACanvasOnly)
-
-proc EndUpdate*(this: TBitmap, AStreamIsValid: bool)  =
-  Bitmap_EndUpdate(this.Instance, AStreamIsValid)
-
-proc LoadFromDevice*(this: TBitmap, ADc: HDC)  =
-  Bitmap_LoadFromDevice(this.Instance, ADc)
 
 #------------------------- TMemo -------------------------
 
@@ -28282,6 +28301,30 @@ proc NewForm*(AOwner: TComponent): TForm =
   new(result)
   result.Instance = Form_Create(CheckPtr(AOwner))
 
+proc InheritedWndProc*(this: TForm, TheMessage: var TMessage)  =
+  Form_InheritedWndProc(this.Instance, TheMessage)
+
+proc EnabledMaximize*(this: TForm, AValue: bool)  =
+  Form_EnabledMaximize(this.Instance, AValue)
+
+proc EnabledMinimize*(this: TForm, AValue: bool)  =
+  Form_EnabledMinimize(this.Instance, AValue)
+
+proc EnabledSystemMenu*(this: TForm, AValue: bool)  =
+  Form_EnabledSystemMenu(this.Instance, AValue)
+
+proc ScaleForCurrentDpi*(this: TForm)  =
+  Form_ScaleForCurrentDpi(this.Instance)
+
+proc ScaleForPPI*(this: TForm, ANewPPI: int32)  =
+  Form_ScaleForPPI(this.Instance, ANewPPI)
+
+proc ScreenCenter*(this: TForm)  =
+  Form_ScreenCenter(this.Instance)
+
+proc WorkAreaCenter*(this: TForm)  =
+  Form_WorkAreaCenter(this.Instance)
+
 proc Cascade*(this: TForm)  =
   Form_Cascade(this.Instance)
 
@@ -28780,11 +28823,17 @@ proc `OnClose=`*(this: TForm, AEventId: TCloseEvent)  =
 proc `OnCloseQuery=`*(this: TForm, AEventId: TCloseQueryEvent)  =
   Form_SetOnCloseQuery(this.Instance, AEventId)
 
+proc `OnConstrainedResize=`*(this: TForm, AEventId: TConstrainedResizeEvent)  =
+  Form_SetOnConstrainedResize(this.Instance, AEventId)
+
 proc `OnContextPopup=`*(this: TForm, AEventId: TContextPopupEvent)  =
   Form_SetOnContextPopup(this.Instance, AEventId)
 
 proc `OnDblClick=`*(this: TForm, AEventId: TNotifyEvent)  =
   Form_SetOnDblClick(this.Instance, AEventId)
+
+proc `OnDestroy=`*(this: TForm, AEventId: TNotifyEvent)  =
+  Form_SetOnDestroy(this.Instance, AEventId)
 
 proc `OnDeactivate=`*(this: TForm, AEventId: TNotifyEvent)  =
   Form_SetOnDeactivate(this.Instance, AEventId)
@@ -29053,35 +29102,8 @@ proc TFormClass*(): TClass = Form_StaticClassType()
 proc Create*(this: TForm, AInitScale: bool): TForm  =
   return Form_Create2(this.Instance, AInitScale).AsForm
 
-proc EnabledMaximize*(this: TForm, AValue: bool)  =
-  Form_EnabledMaximize(this.Instance, AValue)
-
-proc EnabledMinimize*(this: TForm, AValue: bool)  =
-  Form_EnabledMinimize(this.Instance, AValue)
-
-proc EnabledSystemMenu*(this: TForm, AValue: bool)  =
-  Form_EnabledSystemMenu(this.Instance, AValue)
-
-proc `OnDestroy=`*(this: TForm, AEventId: TNotifyEvent)  =
-  Form_SetOnDestroy(this.Instance, AEventId)
-
-proc `OnConstrainedResize=`*(this: TForm, AEventId: TConstrainedResizeEvent)  =
-  Form_SetOnConstrainedResize(this.Instance, AEventId)
-
 proc `OnWndProc=`*(this: TForm, AEventId: TWndProcEvent)  =
   Form_SetOnWndProc(this.Instance, AEventId)
-
-proc ScaleForPPI*(this: TForm, ANewPPI: int32)  =
-  Form_ScaleForPPI(this.Instance, ANewPPI)
-
-proc ScaleControlsForDpi*(this: TForm, ANewPPI: int32)  =
-  Form_ScaleControlsForDpi(this.Instance, ANewPPI)
-
-proc ScaleForCurrentDpi*(this: TForm)  =
-  Form_ScaleForCurrentDpi(this.Instance)
-
-proc InheritedWndProc*(this: TForm, AMsg: var TMessage)  =
-  Form_InheritedWndProc(this.Instance, AMsg)
 
 #------------------------- TParaAttributes -------------------------
 
@@ -31709,6 +31731,9 @@ proc `Visible=`*(this: TScrollBox, AValue: bool)  =
 
 proc `OnClick=`*(this: TScrollBox, AEventId: TNotifyEvent)  =
   ScrollBox_SetOnClick(this.Instance, AEventId)
+
+proc `OnConstrainedResize=`*(this: TScrollBox, AEventId: TConstrainedResizeEvent)  =
+  ScrollBox_SetOnConstrainedResize(this.Instance, AEventId)
 
 proc `OnDblClick=`*(this: TScrollBox, AEventId: TNotifyEvent)  =
   ScrollBox_SetOnDblClick(this.Instance, AEventId)
@@ -39184,6 +39209,9 @@ proc `OnAlignPosition=`*(this: TFlowPanel, AEventId: TAlignPositionEvent)  =
 proc `OnClick=`*(this: TFlowPanel, AEventId: TNotifyEvent)  =
   FlowPanel_SetOnClick(this.Instance, AEventId)
 
+proc `OnConstrainedResize=`*(this: TFlowPanel, AEventId: TConstrainedResizeEvent)  =
+  FlowPanel_SetOnConstrainedResize(this.Instance, AEventId)
+
 proc `OnContextPopup=`*(this: TFlowPanel, AEventId: TContextPopupEvent)  =
   FlowPanel_SetOnContextPopup(this.Instance, AEventId)
 
@@ -40487,7 +40515,7 @@ proc `Title=`*(this: TPrinter, AValue: string)  =
 proc TPrinterClass*(): TClass = Printer_StaticClassType()
 
 
-proc `Printer=`*(this: TPrinter, aName: string)  =
+proc SetPrinter*(this: TPrinter, aName: string)  =
   Printer_SetPrinter(this.Instance, aName)
 
 #------------------------- TTaskDialog -------------------------
@@ -42160,6 +42188,9 @@ proc `OnAlignPosition=`*(this: TFrame, AEventId: TAlignPositionEvent)  =
 
 proc `OnClick=`*(this: TFrame, AEventId: TNotifyEvent)  =
   Frame_SetOnClick(this.Instance, AEventId)
+
+proc `OnConstrainedResize=`*(this: TFrame, AEventId: TConstrainedResizeEvent)  =
+  Frame_SetOnConstrainedResize(this.Instance, AEventId)
 
 proc `OnContextPopup=`*(this: TFrame, AEventId: TContextPopupEvent)  =
   Frame_SetOnContextPopup(this.Instance, AEventId)

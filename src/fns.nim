@@ -46,6 +46,10 @@ when defined(linux):
   proc GdkWindow_GetXId*(AW: PGdkWindow): TXId =
     lclapi.GdkWindow_GetXId(AW, result)
 
+proc WindowFromPoint*(point: TPoint): HWND =
+  var ps0 = point
+  return lclapi.DWindowFromPoint(ps0)
+
 
 
 proc LibStringEncoding*(): TStringEncoding =
@@ -66,49 +70,35 @@ proc ShortCutToText*(AVal: TShortCut): string =
 proc SetClipboard*(ANewClipboard: TClipboard): TClipboard =
   return lclapi.DSetClipboard(CheckPtr(ANewClipboard)).AsClipboard
 
-when not defined(windows):
-  proc SendMessage*(hWd: HWND, msg: uint32, wParam: WPARAM, lParam: LPARAM): LRESULT =
-    return lclapi.DSendMessage(hWd, msg, wParam, lParam)
+proc SendMessage*(hWd: HWND, msg: uint32, wParam: WPARAM, lParam: LPARAM): LRESULT =
+  return lclapi.DSendMessage(hWd, msg, wParam, lParam)
 
-when not defined(windows):
-  proc PostMessage*(hWd: HWND, msg: uint32, wParam: WPARAM, lParam: LPARAM): bool =
-    return lclapi.DPostMessage(hWd, msg, wParam, lParam)
+proc PostMessage*(hWd: HWND, msg: uint32, wParam: WPARAM, lParam: LPARAM): bool =
+  return lclapi.DPostMessage(hWd, msg, wParam, lParam)
 
-when not defined(windows):
-  proc IsIconic*(hWnd: HWND): bool =
-    return lclapi.DIsIconic(hWnd)
+proc IsIconic*(hWnd: HWND): bool =
+  return lclapi.DIsIconic(hWnd)
 
-when not defined(windows):
-  proc IsWindow*(hWnd: HWND): bool =
-    return lclapi.DIsWindow(hWnd)
+proc IsWindow*(hWnd: HWND): bool =
+  return lclapi.DIsWindow(hWnd)
 
-when not defined(windows):
-  proc IsZoomed*(hWnd: HWND): bool =
-    return lclapi.DIsZoomed(hWnd)
+proc IsZoomed*(hWnd: HWND): bool =
+  return lclapi.DIsZoomed(hWnd)
 
-when not defined(windows):
-  proc IsWindowVisible*(hWnd: HWND): bool =
-    return lclapi.DIsWindowVisible(hWnd)
+proc IsWindowVisible*(hWnd: HWND): bool =
+  return lclapi.DIsWindowVisible(hWnd)
 
-when not defined(windows):
-  proc GetDC*(hWnd: HWND): HDC =
-    return lclapi.DGetDC(hWnd)
+proc GetDC*(hWnd: HWND): HDC =
+  return lclapi.DGetDC(hWnd)
 
-when not defined(windows):
-  proc ReleaseDC*(hWnd: HWND, dc: HDC): int32 =
-    return lclapi.DReleaseDC(hWnd, dc)
+proc ReleaseDC*(hWnd: HWND, dc: HDC): int32 =
+  return lclapi.DReleaseDC(hWnd, dc)
 
-when not defined(windows):
-  proc SetForegroundWindow*(hWnd: HWND): bool =
-    return lclapi.DSetForegroundWindow(hWnd)
+proc SetForegroundWindow*(hWnd: HWND): bool =
+  return lclapi.DSetForegroundWindow(hWnd)
 
-when not defined(windows):
-  proc RegisterClipboardFormat*(AFormat: string): TClipboardFormat =
-    return lclapi.DRegisterClipboardFormat(AFormat)
-
-when not defined(windows):
-  proc WindowFromPoint*(point: var TPoint): HWND =
-    return lclapi.DWindowFromPoint(point)
+proc RegisterClipboardFormat*(AFormat: string): TClipboardFormat =
+  return lclapi.DRegisterClipboardFormat(AFormat)
 
 proc ShowMessage*(AMsg: string) =
   lclapi.DShowMessage(AMsg)
@@ -225,3 +215,9 @@ proc ResFormLoadFromFile*(AFileName: string, ARoot: TComponent) =
 
 proc ResFormLoadFromStream*(AStream: TStream, ARoot: TComponent) =
   lclapi.ResFormLoadFromStream(CheckPtr(AStream), CheckPtr(ARoot))
+
+proc ResFormRegisterFormResource*(AClassName: string, AData: pointer, ALen: int32): bool =
+  return lclapi.ResFormRegisterFormResource(AClassName, AData, ALen)
+
+proc ResFormLoadFromClassName*(AClassName: string, ARoot: TComponent): bool =
+  return lclapi.ResFormLoadFromClassName(AClassName, CheckPtr(ARoot))
