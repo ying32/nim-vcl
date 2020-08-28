@@ -753,8 +753,9 @@ proc `BiDiMode=`*(this: TControl, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TControl): TRect  =
   Control_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TControl, AValue: var TRect)  =
-  Control_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TControl, AValue: TRect)  =
+  var ps1 = AValue
+  Control_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TControl): int32  =
   return Control_GetClientHeight(this.Instance)
@@ -1217,8 +1218,9 @@ proc `BiDiMode=`*(this: TWinControl, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TWinControl): TRect  =
   WinControl_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TWinControl, AValue: var TRect)  =
-  WinControl_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TWinControl, AValue: TRect)  =
+  var ps1 = AValue
+  WinControl_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TWinControl): int32  =
   return WinControl_GetClientHeight(this.Instance)
@@ -2084,8 +2086,9 @@ proc `UseDockManager=`*(this: TCheckBox, AValue: bool)  =
 proc BoundsRect*(this: TCheckBox): TRect  =
   CheckBox_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TCheckBox, AValue: var TRect)  =
-  CheckBox_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TCheckBox, AValue: TRect)  =
+  var ps1 = AValue
+  CheckBox_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TCheckBox): int32  =
   return CheckBox_GetClientHeight(this.Instance)
@@ -2680,8 +2683,9 @@ proc `UseDockManager=`*(this: TRadioButton, AValue: bool)  =
 proc BoundsRect*(this: TRadioButton): TRect  =
   RadioButton_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TRadioButton, AValue: var TRect)  =
-  RadioButton_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TRadioButton, AValue: TRect)  =
+  var ps1 = AValue
+  RadioButton_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TRadioButton): int32  =
   return RadioButton_GetClientHeight(this.Instance)
@@ -3273,8 +3277,9 @@ proc `Action=`*(this: TGroupBox, AValue: TAction)  =
 proc BoundsRect*(this: TGroupBox): TRect  =
   GroupBox_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TGroupBox, AValue: var TRect)  =
-  GroupBox_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TGroupBox, AValue: TRect)  =
+  var ps1 = AValue
+  GroupBox_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TGroupBox): int32  =
   return GroupBox_GetClientHeight(this.Instance)
@@ -3781,8 +3786,9 @@ proc `Action=`*(this: TLabel, AValue: TAction)  =
 proc BoundsRect*(this: TLabel): TRect  =
   Label_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TLabel, AValue: var TRect)  =
-  Label_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TLabel, AValue: TRect)  =
+  var ps1 = AValue
+  Label_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TLabel): int32  =
   return Label_GetClientHeight(this.Instance)
@@ -4456,8 +4462,9 @@ proc `Action=`*(this: TListBox, AValue: TAction)  =
 proc BoundsRect*(this: TListBox): TRect  =
   ListBox_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TListBox, AValue: var TRect)  =
-  ListBox_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TListBox, AValue: TRect)  =
+  var ps1 = AValue
+  ListBox_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TListBox): int32  =
   return ListBox_GetClientHeight(this.Instance)
@@ -5154,8 +5161,9 @@ proc `Action=`*(this: TComboBox, AValue: TAction)  =
 proc BoundsRect*(this: TComboBox): TRect  =
   ComboBox_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TComboBox, AValue: var TRect)  =
-  ComboBox_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TComboBox, AValue: TRect)  =
+  var ps1 = AValue
+  ComboBox_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TComboBox): int32  =
   return ComboBox_GetClientHeight(this.Instance)
@@ -5798,8 +5806,9 @@ proc `Action=`*(this: TPanel, AValue: TAction)  =
 proc BoundsRect*(this: TPanel): TRect  =
   Panel_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TPanel, AValue: var TRect)  =
-  Panel_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TPanel, AValue: TRect)  =
+  var ps1 = AValue
+  Panel_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TPanel): int32  =
   return Panel_GetClientHeight(this.Instance)
@@ -6285,8 +6294,9 @@ proc `BiDiMode=`*(this: TImage, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TImage): TRect  =
   Image_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TImage, AValue: var TRect)  =
-  Image_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TImage, AValue: TRect)  =
+  var ps1 = AValue
+  Image_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TImage): int32  =
   return Image_GetClientHeight(this.Instance)
@@ -6748,8 +6758,9 @@ proc `BiDiMode=`*(this: TLinkLabel, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TLinkLabel): TRect  =
   LinkLabel_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TLinkLabel, AValue: var TRect)  =
-  LinkLabel_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TLinkLabel, AValue: TRect)  =
+  var ps1 = AValue
+  LinkLabel_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TLinkLabel): int32  =
   return LinkLabel_GetClientHeight(this.Instance)
@@ -7226,8 +7237,9 @@ proc `OnMouseUp=`*(this: TSpeedButton, AEventId: TMouseEvent)  =
 proc BoundsRect*(this: TSpeedButton): TRect  =
   SpeedButton_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TSpeedButton, AValue: var TRect)  =
-  SpeedButton_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TSpeedButton, AValue: TRect)  =
+  var ps1 = AValue
+  SpeedButton_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TSpeedButton): int32  =
   return SpeedButton_GetClientHeight(this.Instance)
@@ -7614,8 +7626,9 @@ proc `BiDiMode=`*(this: TSplitter, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TSplitter): TRect  =
   Splitter_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TSplitter, AValue: var TRect)  =
-  Splitter_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TSplitter, AValue: TRect)  =
+  var ps1 = AValue
+  Splitter_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TSplitter): int32  =
   return Splitter_GetClientHeight(this.Instance)
@@ -8162,8 +8175,9 @@ proc `Action=`*(this: TRadioGroup, AValue: TAction)  =
 proc BoundsRect*(this: TRadioGroup): TRect  =
   RadioGroup_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TRadioGroup, AValue: var TRect)  =
-  RadioGroup_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TRadioGroup, AValue: TRect)  =
+  var ps1 = AValue
+  RadioGroup_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TRadioGroup): int32  =
   return RadioGroup_GetClientHeight(this.Instance)
@@ -8767,8 +8781,9 @@ proc `Action=`*(this: TStaticText, AValue: TAction)  =
 proc BoundsRect*(this: TStaticText): TRect  =
   StaticText_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TStaticText, AValue: var TRect)  =
-  StaticText_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TStaticText, AValue: TRect)  =
+  var ps1 = AValue
+  StaticText_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TStaticText): int32  =
   return StaticText_GetClientHeight(this.Instance)
@@ -9432,8 +9447,9 @@ proc `Action=`*(this: TColorBox, AValue: TAction)  =
 proc BoundsRect*(this: TColorBox): TRect  =
   ColorBox_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TColorBox, AValue: var TRect)  =
-  ColorBox_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TColorBox, AValue: TRect)  =
+  var ps1 = AValue
+  ColorBox_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TColorBox): int32  =
   return ColorBox_GetClientHeight(this.Instance)
@@ -10083,8 +10099,9 @@ proc `Action=`*(this: TColorListBox, AValue: TAction)  =
 proc BoundsRect*(this: TColorListBox): TRect  =
   ColorListBox_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TColorListBox, AValue: var TRect)  =
-  ColorListBox_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TColorListBox, AValue: TRect)  =
+  var ps1 = AValue
+  ColorListBox_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TColorListBox): int32  =
   return ColorListBox_GetClientHeight(this.Instance)
@@ -11843,8 +11860,9 @@ proc Paragraph*(this: TRichEdit): TParaAttributes  =
 proc CaretPos*(this: TRichEdit): TPoint  =
   RichEdit_GetCaretPos(this.Instance, result)
 
-proc `CaretPos=`*(this: TRichEdit, AValue: var TPoint)  =
-  RichEdit_SetCaretPos(this.Instance, AValue)
+proc `CaretPos=`*(this: TRichEdit, AValue: TPoint)  =
+  var ps1 = AValue
+  RichEdit_SetCaretPos(this.Instance, ps1)
 
 proc CanUndo*(this: TRichEdit): bool  =
   return RichEdit_GetCanUndo(this.Instance)
@@ -11945,8 +11963,9 @@ proc `Action=`*(this: TRichEdit, AValue: TAction)  =
 proc BoundsRect*(this: TRichEdit): TRect  =
   RichEdit_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TRichEdit, AValue: var TRect)  =
-  RichEdit_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TRichEdit, AValue: TRect)  =
+  var ps1 = AValue
+  RichEdit_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TRichEdit): int32  =
   return RichEdit_GetClientHeight(this.Instance)
@@ -12556,8 +12575,9 @@ proc `BiDiMode=`*(this: TTrackBar, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TTrackBar): TRect  =
   TrackBar_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TTrackBar, AValue: var TRect)  =
-  TrackBar_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TTrackBar, AValue: TRect)  =
+  var ps1 = AValue
+  TrackBar_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TTrackBar): int32  =
   return TrackBar_GetClientHeight(this.Instance)
@@ -13323,8 +13343,9 @@ proc `BiDiMode=`*(this: TUpDown, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TUpDown): TRect  =
   UpDown_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TUpDown, AValue: var TRect)  =
-  UpDown_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TUpDown, AValue: TRect)  =
+  var ps1 = AValue
+  UpDown_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TUpDown): int32  =
   return UpDown_GetClientHeight(this.Instance)
@@ -13916,8 +13937,9 @@ proc `BiDiMode=`*(this: TProgressBar, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TProgressBar): TRect  =
   ProgressBar_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TProgressBar, AValue: var TRect)  =
-  ProgressBar_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TProgressBar, AValue: TRect)  =
+  var ps1 = AValue
+  ProgressBar_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TProgressBar): int32  =
   return ProgressBar_GetClientHeight(this.Instance)
@@ -14629,8 +14651,9 @@ proc `Action=`*(this: TDateTimePicker, AValue: TAction)  =
 proc BoundsRect*(this: TDateTimePicker): TRect  =
   DateTimePicker_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TDateTimePicker, AValue: var TRect)  =
-  DateTimePicker_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TDateTimePicker, AValue: TRect)  =
+  var ps1 = AValue
+  DateTimePicker_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TDateTimePicker): int32  =
   return DateTimePicker_GetClientHeight(this.Instance)
@@ -15204,8 +15227,9 @@ proc `Action=`*(this: TMonthCalendar, AValue: TAction)  =
 proc BoundsRect*(this: TMonthCalendar): TRect  =
   MonthCalendar_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TMonthCalendar, AValue: var TRect)  =
-  MonthCalendar_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TMonthCalendar, AValue: TRect)  =
+  var ps1 = AValue
+  MonthCalendar_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TMonthCalendar): int32  =
   return MonthCalendar_GetClientHeight(this.Instance)
@@ -16125,8 +16149,9 @@ proc `UseDockManager=`*(this: TListView, AValue: bool)  =
 proc BoundsRect*(this: TListView): TRect  =
   ListView_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TListView, AValue: var TRect)  =
-  ListView_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TListView, AValue: TRect)  =
+  var ps1 = AValue
+  ListView_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TListView): int32  =
   return ListView_GetClientHeight(this.Instance)
@@ -17018,8 +17043,9 @@ proc `Action=`*(this: TTreeView, AValue: TAction)  =
 proc BoundsRect*(this: TTreeView): TRect  =
   TreeView_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TTreeView, AValue: var TRect)  =
-  TreeView_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TTreeView, AValue: TRect)  =
+  var ps1 = AValue
+  TreeView_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TTreeView): int32  =
   return TreeView_GetClientHeight(this.Instance)
@@ -17641,8 +17667,9 @@ proc `UseDockManager=`*(this: TStatusBar, AValue: bool)  =
 proc BoundsRect*(this: TStatusBar): TRect  =
   StatusBar_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TStatusBar, AValue: var TRect)  =
-  StatusBar_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TStatusBar, AValue: TRect)  =
+  var ps1 = AValue
+  StatusBar_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TStatusBar): int32  =
   return StatusBar_GetClientHeight(this.Instance)
@@ -18330,8 +18357,9 @@ proc `BiDiMode=`*(this: TToolBar, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TToolBar): TRect  =
   ToolBar_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TToolBar, AValue: var TRect)  =
-  ToolBar_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TToolBar, AValue: TRect)  =
+  var ps1 = AValue
+  ToolBar_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TToolBar): int32  =
   return ToolBar_GetClientHeight(this.Instance)
@@ -18941,8 +18969,9 @@ proc `UseDockManager=`*(this: TBitBtn, AValue: bool)  =
 proc BoundsRect*(this: TBitBtn): TRect  =
   BitBtn_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TBitBtn, AValue: var TRect)  =
-  BitBtn_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TBitBtn, AValue: TRect)  =
+  var ps1 = AValue
+  BitBtn_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TBitBtn): int32  =
   return BitBtn_GetClientHeight(this.Instance)
@@ -19832,8 +19861,9 @@ proc `OnMouseUp=`*(this: TMemo, AEventId: TMouseEvent)  =
 proc CaretPos*(this: TMemo): TPoint  =
   Memo_GetCaretPos(this.Instance, result)
 
-proc `CaretPos=`*(this: TMemo, AValue: var TPoint)  =
-  Memo_SetCaretPos(this.Instance, AValue)
+proc `CaretPos=`*(this: TMemo, AValue: TPoint)  =
+  var ps1 = AValue
+  Memo_SetCaretPos(this.Instance, ps1)
 
 proc CanUndo*(this: TMemo): bool  =
   return Memo_GetCanUndo(this.Instance)
@@ -19922,8 +19952,9 @@ proc `Action=`*(this: TMemo, AValue: TAction)  =
 proc BoundsRect*(this: TMemo): TRect  =
   Memo_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TMemo, AValue: var TRect)  =
-  Memo_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TMemo, AValue: TRect)  =
+  var ps1 = AValue
+  Memo_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TMemo): int32  =
   return Memo_GetClientHeight(this.Instance)
@@ -20133,14 +20164,16 @@ proc Memory*(this: TMemoryStream): pointer  =
 proc Position*(this: TMemoryStream): int64  =
   MemoryStream_GetPosition(this.Instance, result)
 
-proc `Position=`*(this: TMemoryStream, AValue: var int64)  =
-  MemoryStream_SetPosition(this.Instance, AValue)
+proc `Position=`*(this: TMemoryStream, AValue: int64)  =
+  var ps1 = AValue
+  MemoryStream_SetPosition(this.Instance, ps1)
 
 proc Size*(this: TMemoryStream): int64  =
   MemoryStream_GetSize(this.Instance, result)
 
-proc `Size=`*(this: TMemoryStream, AValue: var int64)  =
-  MemoryStream_SetSize(this.Instance, AValue)
+proc `Size=`*(this: TMemoryStream, AValue: int64)  =
+  var ps1 = AValue
+  MemoryStream_SetSize(this.Instance, ps1)
 
 proc TMemoryStreamClass*(): TClass = MemoryStream_StaticClassType()
 
@@ -21301,8 +21334,9 @@ proc Owner*(this: TListItem): TListItems  =
 proc Position*(this: TListItem): TPoint  =
   ListItem_GetPosition(this.Instance, result)
 
-proc `Position=`*(this: TListItem, AValue: var TPoint)  =
-  ListItem_SetPosition(this.Instance, AValue)
+proc `Position=`*(this: TListItem, AValue: TPoint)  =
+  var ps1 = AValue
+  ListItem_SetPosition(this.Instance, ps1)
 
 proc Selected*(this: TListItem): bool  =
   return ListItem_GetSelected(this.Instance)
@@ -21983,8 +22017,9 @@ proc `Action=`*(this: TPageControl, AValue: TAction)  =
 proc BoundsRect*(this: TPageControl): TRect  =
   PageControl_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TPageControl, AValue: var TRect)  =
-  PageControl_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TPageControl, AValue: TRect)  =
+  var ps1 = AValue
+  PageControl_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TPageControl): int32  =
   return PageControl_GetClientHeight(this.Instance)
@@ -22591,8 +22626,9 @@ proc `BiDiMode=`*(this: TTabSheet, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TTabSheet): TRect  =
   TabSheet_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TTabSheet, AValue: var TRect)  =
-  TabSheet_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TTabSheet, AValue: TRect)  =
+  var ps1 = AValue
+  TabSheet_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TTabSheet): int32  =
   return TabSheet_GetClientHeight(this.Instance)
@@ -23157,8 +23193,9 @@ proc `UseDockManager=`*(this: TButton, AValue: bool)  =
 proc BoundsRect*(this: TButton): TRect  =
   Button_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TButton, AValue: var TRect)  =
-  Button_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TButton, AValue: TRect)  =
+  var ps1 = AValue
+  Button_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TButton): int32  =
   return Button_GetClientHeight(this.Instance)
@@ -23858,8 +23895,9 @@ proc `Action=`*(this: TEdit, AValue: TAction)  =
 proc BoundsRect*(this: TEdit): TRect  =
   Edit_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TEdit, AValue: var TRect)  =
-  Edit_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TEdit, AValue: TRect)  =
+  var ps1 = AValue
+  Edit_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TEdit): int32  =
   return Edit_GetClientHeight(this.Instance)
@@ -24201,8 +24239,9 @@ proc `Capture=`*(this: TMouse, AValue: HWND)  =
 proc CursorPos*(this: TMouse): TPoint  =
   Mouse_GetCursorPos(this.Instance, result)
 
-proc `CursorPos=`*(this: TMouse, AValue: var TPoint)  =
-  Mouse_SetCursorPos(this.Instance, AValue)
+proc `CursorPos=`*(this: TMouse, AValue: TPoint)  =
+  var ps1 = AValue
+  Mouse_SetCursorPos(this.Instance, ps1)
 
 proc IsDragging*(this: TMouse): bool  =
   return Mouse_GetIsDragging(this.Instance)
@@ -25045,8 +25084,9 @@ proc `BiDiMode=`*(this: TSpinEdit, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TSpinEdit): TRect  =
   SpinEdit_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TSpinEdit, AValue: var TRect)  =
-  SpinEdit_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TSpinEdit, AValue: TRect)  =
+  var ps1 = AValue
+  SpinEdit_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TSpinEdit): int32  =
   return SpinEdit_GetClientHeight(this.Instance)
@@ -25551,8 +25591,9 @@ proc `BiDiMode=`*(this: TMiniWebview, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TMiniWebview): TRect  =
   MiniWebview_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TMiniWebview, AValue: var TRect)  =
-  MiniWebview_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TMiniWebview, AValue: TRect)  =
+  var ps1 = AValue
+  MiniWebview_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TMiniWebview): int32  =
   return MiniWebview_GetClientHeight(this.Instance)
@@ -27152,8 +27193,9 @@ proc `BiDiMode=`*(this: TToolButton, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TToolButton): TRect  =
   ToolButton_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TToolButton, AValue: var TRect)  =
-  ToolButton_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TToolButton, AValue: TRect)  =
+  var ps1 = AValue
+  ToolButton_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TToolButton): int32  =
   return ToolButton_GetClientHeight(this.Instance)
@@ -27992,8 +28034,9 @@ proc `BiDiMode=`*(this: TPaintBox, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TPaintBox): TRect  =
   PaintBox_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TPaintBox, AValue: var TRect)  =
-  PaintBox_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TPaintBox, AValue: TRect)  =
+  var ps1 = AValue
+  PaintBox_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TPaintBox): int32  =
   return PaintBox_GetClientHeight(this.Instance)
@@ -28982,8 +29025,9 @@ proc `TabStop=`*(this: TForm, AValue: bool)  =
 proc BoundsRect*(this: TForm): TRect  =
   Form_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TForm, AValue: var TRect)  =
-  Form_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TForm, AValue: TRect)  =
+  var ps1 = AValue
+  Form_SetBoundsRect(this.Instance, ps1)
 
 proc ClientOrigin*(this: TForm): TPoint  =
   Form_GetClientOrigin(this.Instance, result)
@@ -29722,8 +29766,9 @@ proc `Action=`*(this: TScrollBar, AValue: TAction)  =
 proc BoundsRect*(this: TScrollBar): TRect  =
   ScrollBar_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TScrollBar, AValue: var TRect)  =
-  ScrollBar_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TScrollBar, AValue: TRect)  =
+  var ps1 = AValue
+  ScrollBar_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TScrollBar): int32  =
   return ScrollBar_GetClientHeight(this.Instance)
@@ -30426,8 +30471,9 @@ proc `Action=`*(this: TMaskEdit, AValue: TAction)  =
 proc BoundsRect*(this: TMaskEdit): TRect  =
   MaskEdit_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TMaskEdit, AValue: var TRect)  =
-  MaskEdit_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TMaskEdit, AValue: TRect)  =
+  var ps1 = AValue
+  MaskEdit_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TMaskEdit): int32  =
   return MaskEdit_GetClientHeight(this.Instance)
@@ -30856,8 +30902,9 @@ proc `BiDiMode=`*(this: TShape, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TShape): TRect  =
   Shape_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TShape, AValue: var TRect)  =
-  Shape_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TShape, AValue: TRect)  =
+  var ps1 = AValue
+  Shape_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TShape): int32  =
   return Shape_GetClientHeight(this.Instance)
@@ -31226,8 +31273,9 @@ proc `BiDiMode=`*(this: TBevel, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TBevel): TRect  =
   Bevel_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TBevel, AValue: var TRect)  =
-  Bevel_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TBevel, AValue: TRect)  =
+  var ps1 = AValue
+  Bevel_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TBevel): int32  =
   return Bevel_GetClientHeight(this.Instance)
@@ -31846,8 +31894,9 @@ proc `Action=`*(this: TScrollBox, AValue: TAction)  =
 proc BoundsRect*(this: TScrollBox): TRect  =
   ScrollBox_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TScrollBox, AValue: var TRect)  =
-  ScrollBox_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TScrollBox, AValue: TRect)  =
+  var ps1 = AValue
+  ScrollBox_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TScrollBox): int32  =
   return ScrollBox_GetClientHeight(this.Instance)
@@ -32518,8 +32567,9 @@ proc `Action=`*(this: TCheckListBox, AValue: TAction)  =
 proc BoundsRect*(this: TCheckListBox): TRect  =
   CheckListBox_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TCheckListBox, AValue: var TRect)  =
-  CheckListBox_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TCheckListBox, AValue: TRect)  =
+  var ps1 = AValue
+  CheckListBox_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TCheckListBox): int32  =
   return CheckListBox_GetClientHeight(this.Instance)
@@ -32996,8 +33046,9 @@ proc `BiDiMode=`*(this: TGauge, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TGauge): TRect  =
   Gauge_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TGauge, AValue: var TRect)  =
-  Gauge_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TGauge, AValue: TRect)  =
+  var ps1 = AValue
+  Gauge_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TGauge): int32  =
   return Gauge_GetClientHeight(this.Instance)
@@ -33471,8 +33522,9 @@ proc `BiDiMode=`*(this: TImageButton, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TImageButton): TRect  =
   ImageButton_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TImageButton, AValue: var TRect)  =
-  ImageButton_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TImageButton, AValue: TRect)  =
+  var ps1 = AValue
+  ImageButton_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TImageButton): int32  =
   return ImageButton_GetClientHeight(this.Instance)
@@ -33668,8 +33720,9 @@ proc `Left=`*(this: TFindDialog, AValue: int32)  =
 proc Position*(this: TFindDialog): TPoint  =
   FindDialog_GetPosition(this.Instance, result)
 
-proc `Position=`*(this: TFindDialog, AValue: var TPoint)  =
-  FindDialog_SetPosition(this.Instance, AValue)
+proc `Position=`*(this: TFindDialog, AValue: TPoint)  =
+  var ps1 = AValue
+  FindDialog_SetPosition(this.Instance, ps1)
 
 proc Top*(this: TFindDialog): int32  =
   return FindDialog_GetTop(this.Instance)
@@ -33796,8 +33849,9 @@ proc `Left=`*(this: TReplaceDialog, AValue: int32)  =
 proc Position*(this: TReplaceDialog): TPoint  =
   ReplaceDialog_GetPosition(this.Instance, result)
 
-proc `Position=`*(this: TReplaceDialog, AValue: var TPoint)  =
-  ReplaceDialog_SetPosition(this.Instance, AValue)
+proc `Position=`*(this: TReplaceDialog, AValue: TPoint)  =
+  var ps1 = AValue
+  ReplaceDialog_SetPosition(this.Instance, ps1)
 
 proc Top*(this: TReplaceDialog): int32  =
   return ReplaceDialog_GetTop(this.Instance)
@@ -34117,8 +34171,9 @@ proc `AlwaysShowDragImages=`*(this: TDragObject, AValue: bool)  =
 proc DragPos*(this: TDragObject): TPoint  =
   DragObject_GetDragPos(this.Instance, result)
 
-proc `DragPos=`*(this: TDragObject, AValue: var TPoint)  =
-  DragObject_SetDragPos(this.Instance, AValue)
+proc `DragPos=`*(this: TDragObject, AValue: TPoint)  =
+  var ps1 = AValue
+  DragObject_SetDragPos(this.Instance, ps1)
 
 proc DragTarget*(this: TDragObject): pointer  =
   return DragObject_GetDragTarget(this.Instance)
@@ -34129,8 +34184,9 @@ proc `DragTarget=`*(this: TDragObject, AValue: pointer)  =
 proc DragTargetPos*(this: TDragObject): TPoint  =
   DragObject_GetDragTargetPos(this.Instance, result)
 
-proc `DragTargetPos=`*(this: TDragObject, AValue: var TPoint)  =
-  DragObject_SetDragTargetPos(this.Instance, AValue)
+proc `DragTargetPos=`*(this: TDragObject, AValue: TPoint)  =
+  var ps1 = AValue
+  DragObject_SetDragTargetPos(this.Instance, ps1)
 
 proc Dropped*(this: TDragObject): bool  =
   return DragObject_GetDropped(this.Instance)
@@ -34179,8 +34235,9 @@ proc ToString*(this: TDragDockObject): string =
 proc DockRect*(this: TDragDockObject): TRect  =
   DragDockObject_GetDockRect(this.Instance, result)
 
-proc `DockRect=`*(this: TDragDockObject, AValue: var TRect)  =
-  DragDockObject_SetDockRect(this.Instance, AValue)
+proc `DockRect=`*(this: TDragDockObject, AValue: TRect)  =
+  var ps1 = AValue
+  DragDockObject_SetDockRect(this.Instance, ps1)
 
 proc DropAlign*(this: TDragDockObject): TAlign  =
   return DragDockObject_GetDropAlign(this.Instance)
@@ -34191,8 +34248,9 @@ proc DropOnControl*(this: TDragDockObject): TControl  =
 proc EraseDockRect*(this: TDragDockObject): TRect  =
   DragDockObject_GetEraseDockRect(this.Instance, result)
 
-proc `EraseDockRect=`*(this: TDragDockObject, AValue: var TRect)  =
-  DragDockObject_SetEraseDockRect(this.Instance, AValue)
+proc `EraseDockRect=`*(this: TDragDockObject, AValue: TRect)  =
+  var ps1 = AValue
+  DragDockObject_SetEraseDockRect(this.Instance, ps1)
 
 proc Floating*(this: TDragDockObject): bool  =
   return DragDockObject_GetFloating(this.Instance)
@@ -34215,8 +34273,9 @@ proc `AlwaysShowDragImages=`*(this: TDragDockObject, AValue: bool)  =
 proc DragPos*(this: TDragDockObject): TPoint  =
   DragDockObject_GetDragPos(this.Instance, result)
 
-proc `DragPos=`*(this: TDragDockObject, AValue: var TPoint)  =
-  DragDockObject_SetDragPos(this.Instance, AValue)
+proc `DragPos=`*(this: TDragDockObject, AValue: TPoint)  =
+  var ps1 = AValue
+  DragDockObject_SetDragPos(this.Instance, ps1)
 
 proc DragTarget*(this: TDragDockObject): pointer  =
   return DragDockObject_GetDragTarget(this.Instance)
@@ -34227,8 +34286,9 @@ proc `DragTarget=`*(this: TDragDockObject, AValue: pointer)  =
 proc DragTargetPos*(this: TDragDockObject): TPoint  =
   DragDockObject_GetDragTargetPos(this.Instance, result)
 
-proc `DragTargetPos=`*(this: TDragDockObject, AValue: var TPoint)  =
-  DragDockObject_SetDragTargetPos(this.Instance, AValue)
+proc `DragTargetPos=`*(this: TDragDockObject, AValue: TPoint)  =
+  var ps1 = AValue
+  DragDockObject_SetDragTargetPos(this.Instance, ps1)
 
 proc Dropped*(this: TDragDockObject): bool  =
   return DragDockObject_GetDropped(this.Instance)
@@ -35111,8 +35171,9 @@ proc `LeftCol=`*(this: TStringGrid, AValue: int32)  =
 proc Selection*(this: TStringGrid): TGridRect  =
   StringGrid_GetSelection(this.Instance, result)
 
-proc `Selection=`*(this: TStringGrid, AValue: var TGridRect)  =
-  StringGrid_SetSelection(this.Instance, AValue)
+proc `Selection=`*(this: TStringGrid, AValue: TGridRect)  =
+  var ps1 = AValue
+  StringGrid_SetSelection(this.Instance, ps1)
 
 proc Row*(this: TStringGrid): int32  =
   return StringGrid_GetRow(this.Instance)
@@ -35180,8 +35241,9 @@ proc `Action=`*(this: TStringGrid, AValue: TAction)  =
 proc BoundsRect*(this: TStringGrid): TRect  =
   StringGrid_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TStringGrid, AValue: var TRect)  =
-  StringGrid_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TStringGrid, AValue: TRect)  =
+  var ps1 = AValue
+  StringGrid_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TStringGrid): int32  =
   return StringGrid_GetClientHeight(this.Instance)
@@ -35893,8 +35955,9 @@ proc `LeftCol=`*(this: TDrawGrid, AValue: int32)  =
 proc Selection*(this: TDrawGrid): TGridRect  =
   DrawGrid_GetSelection(this.Instance, result)
 
-proc `Selection=`*(this: TDrawGrid, AValue: var TGridRect)  =
-  DrawGrid_SetSelection(this.Instance, AValue)
+proc `Selection=`*(this: TDrawGrid, AValue: TGridRect)  =
+  var ps1 = AValue
+  DrawGrid_SetSelection(this.Instance, ps1)
 
 proc Row*(this: TDrawGrid): int32  =
   return DrawGrid_GetRow(this.Instance)
@@ -35962,8 +36025,9 @@ proc `Action=`*(this: TDrawGrid, AValue: TAction)  =
 proc BoundsRect*(this: TDrawGrid): TRect  =
   DrawGrid_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TDrawGrid, AValue: var TRect)  =
-  DrawGrid_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TDrawGrid, AValue: TRect)  =
+  var ps1 = AValue
+  DrawGrid_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TDrawGrid): int32  =
   return DrawGrid_GetClientHeight(this.Instance)
@@ -36651,8 +36715,9 @@ proc `LeftCol=`*(this: TValueListEditor, AValue: int32)  =
 proc Selection*(this: TValueListEditor): TGridRect  =
   ValueListEditor_GetSelection(this.Instance, result)
 
-proc `Selection=`*(this: TValueListEditor, AValue: var TGridRect)  =
-  ValueListEditor_SetSelection(this.Instance, AValue)
+proc `Selection=`*(this: TValueListEditor, AValue: TGridRect)  =
+  var ps1 = AValue
+  ValueListEditor_SetSelection(this.Instance, ps1)
 
 proc Row*(this: TValueListEditor): int32  =
   return ValueListEditor_GetRow(this.Instance)
@@ -36720,8 +36785,9 @@ proc `Action=`*(this: TValueListEditor, AValue: TAction)  =
 proc BoundsRect*(this: TValueListEditor): TRect  =
   ValueListEditor_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TValueListEditor, AValue: var TRect)  =
-  ValueListEditor_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TValueListEditor, AValue: TRect)  =
+  var ps1 = AValue
+  ValueListEditor_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TValueListEditor): int32  =
   return ValueListEditor_GetClientHeight(this.Instance)
@@ -37325,8 +37391,9 @@ proc `Action=`*(this: THeaderControl, AValue: TAction)  =
 proc BoundsRect*(this: THeaderControl): TRect  =
   HeaderControl_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: THeaderControl, AValue: var TRect)  =
-  HeaderControl_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: THeaderControl, AValue: TRect)  =
+  var ps1 = AValue
+  HeaderControl_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: THeaderControl): int32  =
   return HeaderControl_GetClientHeight(this.Instance)
@@ -38204,8 +38271,9 @@ proc `Align=`*(this: TLabeledEdit, AValue: TAlign)  =
 proc BoundsRect*(this: TLabeledEdit): TRect  =
   LabeledEdit_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TLabeledEdit, AValue: var TRect)  =
-  LabeledEdit_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TLabeledEdit, AValue: TRect)  =
+  var ps1 = AValue
+  LabeledEdit_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TLabeledEdit): int32  =
   return LabeledEdit_GetClientHeight(this.Instance)
@@ -38673,8 +38741,9 @@ proc `Anchors=`*(this: TBoundLabel, AValue: TAnchors)  =
 proc BoundsRect*(this: TBoundLabel): TRect  =
   BoundLabel_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TBoundLabel, AValue: var TRect)  =
-  BoundLabel_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TBoundLabel, AValue: TRect)  =
+  var ps1 = AValue
+  BoundLabel_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TBoundLabel): int32  =
   return BoundLabel_GetClientHeight(this.Instance)
@@ -39302,8 +39371,9 @@ proc `Action=`*(this: TFlowPanel, AValue: TAction)  =
 proc BoundsRect*(this: TFlowPanel): TRect  =
   FlowPanel_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TFlowPanel, AValue: var TRect)  =
-  FlowPanel_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TFlowPanel, AValue: TRect)  =
+  var ps1 = AValue
+  FlowPanel_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TFlowPanel): int32  =
   return FlowPanel_GetClientHeight(this.Instance)
@@ -39967,8 +40037,9 @@ proc `BiDiMode=`*(this: TCoolBar, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TCoolBar): TRect  =
   CoolBar_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TCoolBar, AValue: var TRect)  =
-  CoolBar_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TCoolBar, AValue: TRect)  =
+  var ps1 = AValue
+  CoolBar_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TCoolBar): int32  =
   return CoolBar_GetClientHeight(this.Instance)
@@ -41527,8 +41598,9 @@ proc `UseDockManager=`*(this: TComboBoxEx, AValue: bool)  =
 proc BoundsRect*(this: TComboBoxEx): TRect  =
   ComboBoxEx_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TComboBoxEx, AValue: var TRect)  =
-  ComboBoxEx_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TComboBoxEx, AValue: TRect)  =
+  var ps1 = AValue
+  ComboBoxEx_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TComboBoxEx): int32  =
   return ComboBoxEx_GetClientHeight(this.Instance)
@@ -42309,8 +42381,9 @@ proc `Action=`*(this: TFrame, AValue: TAction)  =
 proc BoundsRect*(this: TFrame): TRect  =
   Frame_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TFrame, AValue: var TRect)  =
-  Frame_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TFrame, AValue: TRect)  =
+  var ps1 = AValue
+  Frame_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TFrame): int32  =
   return Frame_GetClientHeight(this.Instance)
@@ -42925,8 +42998,9 @@ proc `OnMouseUp=`*(this: TXButton, AEventId: TMouseEvent)  =
 proc BoundsRect*(this: TXButton): TRect  =
   XButton_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TXButton, AValue: var TRect)  =
-  XButton_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TXButton, AValue: TRect)  =
+  var ps1 = AValue
+  XButton_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TXButton): int32  =
   return XButton_GetClientHeight(this.Instance)
@@ -43818,8 +43892,9 @@ proc `Action=`*(this: TCheckGroup, AValue: TAction)  =
 proc BoundsRect*(this: TCheckGroup): TRect  =
   CheckGroup_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TCheckGroup, AValue: var TRect)  =
-  CheckGroup_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TCheckGroup, AValue: TRect)  =
+  var ps1 = AValue
+  CheckGroup_SetBoundsRect(this.Instance, ps1)
 
 proc ClientOrigin*(this: TCheckGroup): TPoint  =
   CheckGroup_GetClientOrigin(this.Instance, result)
@@ -44423,8 +44498,9 @@ proc `BiDiMode=`*(this: TToggleBox, AValue: TBiDiMode)  =
 proc BoundsRect*(this: TToggleBox): TRect  =
   ToggleBox_GetBoundsRect(this.Instance, result)
 
-proc `BoundsRect=`*(this: TToggleBox, AValue: var TRect)  =
-  ToggleBox_SetBoundsRect(this.Instance, AValue)
+proc `BoundsRect=`*(this: TToggleBox, AValue: TRect)  =
+  var ps1 = AValue
+  ToggleBox_SetBoundsRect(this.Instance, ps1)
 
 proc ClientHeight*(this: TToggleBox): int32  =
   return ToggleBox_GetClientHeight(this.Instance)
